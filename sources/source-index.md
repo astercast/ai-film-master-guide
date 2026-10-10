@@ -34,7 +34,29 @@ Every source consulted, grouped by section, with what was pulled from it.
 - https://medium.com/@lavamedia/7-prompts-for-ai-powered-videos-in-veo-and-runway-part-2-53439a164727 — structured JSON prompting for product/editorial video
 - https://medium.com/@PriyanshuThe1.Blogs/from-prompt-to-premiere-the-ultimate-2025-guide-to-ai-tools-for-filmmakers-content-creators-2db37fab2b20 — AI tools for filmmakers, use cases
 
-## Pending (deep research in flight)
-- Festival winner case studies (Runway AIFF, Project Odyssey, more Higgsfield winners)
-- Judging-criteria pattern analysis across festivals
-- Community tutorials and credit-economics deep dive
+## Festival winners & judging (deep research, 2026-10-10)
+- https://news.artnet.com/art-world/total-pixel-space-jacob-adler-a-i-film-festival-2662774 — "Total Pixel Space" (Runway AIFF 2025 Grand Prix) breakdown
+- https://alphaleaders.co.uk/runway-festival-creators-of-stunning-top-films-on-ai-as-art-partner/ — Antebi interview ("Get Me Out")
+- https://venturebeat.com/ai/runways-la-film-festival-marked-an-inflection-point-for-ai-movies — AIFF 2024 judging takeaways
+- https://www.fastcompany.com/91565229/runway-ai-film-festival — 2026 AIFF winners, anti-slop jury read
+- https://www.cined.com/winners-of-the-first-ai-film-festival-showcasing-the-latest-tools-in-ai-filmmaking/ — inaugural 2023 winners
+- https://thinkdiffusion.studio/one-last-wish-by-edmond-yang/ — "One Last Wish" (Odyssey S2 Narrative Gold), 48-hour production
+- https://newsbywire.com/?nbw-download=pdf&nbw-post=115189 — Reply AIFF 2026 results
+- https://www.shootonline.com/article/film-festival-showcases-what-ai-can-do-on-the-big-screen/ — AIFF 2025 field and finalists
+- https://www.tbsnews.net/splash/100000-odyssey-groks-ai-epic-anything-historically-accurate-1546781 — Grok "Odyssey" $100K winner controversy (cautionary)
+- https://qazinform.com/news/aaiff-2026-winners-share-stories-behind-their-ai-generated-films-163b82 — AAIFF 2026 winners (8,067 entries)
+- https://www.bottlerocketcontent.com/higgsfield-global-film-festival-1-million/ — $1M festival details
+- https://higgsfieldglobalfilmfestival.com/ — official festival site
+
+## Credit economics (deep research, 2026-10-10)
+- https://higgsfield.ai/blog/best-affordable-ai-video-generators — vendor-published per-clip costs (directional)
+- https://dev.to/toryreut/everyones-generating-videos-i-calculated-what-ai-video-actually-costs-in-2026-37ag — per-clip cost calculations
+- https://blog.designhero.tv/ai-filmmaking-2/ — full short-film budgets, sound-design doctrine
+- https://github.com/tareksadi91/ai-film-kit/blob/HEAD/reference/failure-modes.md — failure modes, $80/finished-minute rule
+- https://www.cinemadrop.com/blog/ai-generated-movie — 36-shot short budget breakdown
+- https://hackernoon.com/how-to-master-ai-generated-film-audio-for-youtube — audio mastering for AI film
+- https://www.youtube.com/watch?v=A-KZ_A50YEs — cost-per-finished-clip methodology
+- https://www.youtube.com/watch?v=3inS3sCunaA — resolution ladder + previs credit savings
+
+## Pending
+- Higgsfield Global Film Festival $1M winners (announced end of Oct 2026) — check https://higgsfieldglobalfilmfestival.com/ after announcement and add the winning breakdowns here.

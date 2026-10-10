@@ -32,6 +32,30 @@ Going direct to Kling: ~$0.084/sec at 720p standard, ~$0.112/sec pro, ~$0.42/sec
 
 A 3–5 minute festival film at ~4 seconds per shot is 45–75 shots. At draft-then-hero discipline, most shots need 2–4 generations to land. Budget for 150–300 generations and plan the credit pool before starting — or split across platforms by shot type.
 
+## Per-clip costs across platforms (third-party estimates, Oct 2026 — re-verify before budgeting)
+
+| Platform | Est. cost per clip | Notes |
+|---|---|---|
+| Vidu | ~$0.05 | Cheapest; free tier non-commercial |
+| PixVerse | ~$0.07 | Budget pick |
+| Pika | ~$0.17–0.61 | Standard plan has NO commercial use — trap |
+| Hailuo (MiniMax) | ~$0.44–0.76 | Best price/quality ratio per multiple sources |
+| Luma | ~$0.30–1.20 | |
+| Kling 3.0 | ~$0.40 | Strong motion/camera control |
+| Veo 3.1 Fast | ~$0.40–0.50 | Native audio; cheapest premium-quality route |
+| Runway Gen-4.5 | ~$1.44–1.50 | Fastest generation |
+| Higgsfield (Seedance 2.5) | ~$2.48 | Aggregates many models |
+| Sora 2 | ~$0.40–2.00 | Longest clips (up to 25s) |
+
+## Rules of thumb from working filmmakers
+
+- **~$80 per finished minute** of film, all-in.
+- **3–5 takes per keeper; 2–5x raw-to-finished multiplier.** Budget the rejects, not the hero renders.
+- **$40–165 in credits** for a disciplined 3-minute short; $150–300+ without discipline.
+- **Resolution ladder:** 480p drafts → 720/1080p heroes → upscale to 4K in post (native 4K ≈ $1/sec).
+- **Audio-first:** lock voiceover/soundtrack before generating video — cheap audio prevents expensive timing-mismatch re-rolls.
+- **Cautionary:** one documented Higgsfield pilot burned ~$260,000 in credits over 4 days for ~8 usable shots — brute-force iteration without craft. The no-guess rule exists because of math like this.
+
 ## Sources
 - https://www.thehypemagazine.com/2026/10/09/what-is-higgsfield-ai-uses-features-pricing/
 - https://www.meltflexai.com/blog/higgsfield-alternatives
