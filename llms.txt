@@ -36,6 +36,21 @@ research artifacts; outputs committed).
 - `api/v1/festivals.json` — $1M festival rules, prizes, jury, criteria, timeline; winners marked pending
 - `api/v1/schema/` — JSON Schema (draft-07) for models, prompt templates, camera movements
 
+## Skills (agentic task procedures)
+
+173 skills in `skills/` — rebuild with `python3 scripts/build_skills.py`
+(generates from `api/v1/` data + authored procedures; outputs committed).
+`skills/index.json` is the manifest: id, title, description, path per skill.
+
+For agents: load the skill whose task matches the request — skills are the
+primary interface for *doing* work; the JSON endpoints are the data layer.
+`api/v1/index.json` points here (`repository`, `skills`, `for_agents`).
+
+Categories: prompts (31), camera (22), models (18), checklists (5),
+longform (12), techniques (7), craft (20), festival (4), workflow (8),
+compare (10), fix (6), budget (3), delivery (3), audio (4), recipes (12),
+styles (8).
+
 ## Key facts agents should know
 
 - Higgsfield pricing (read live 2026-10-10): Starter $19/mo annual = 270 credits;

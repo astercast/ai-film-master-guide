@@ -169,10 +169,23 @@ def main():
     gloss = {"version": VERSION, "observed": OBSERVED, "terms": glossary}
     fest_doc = {"version": VERSION, "observed": OBSERVED, "festivals": fest}
 
+    skills_index = {}
+    skills_idx_path = ROOT / "skills" / "index.json"
+    if skills_idx_path.exists():
+        skills_index = json.loads(skills_idx_path.read_text())
+
     index = {
         "name": "AI Film Master Guide API",
         "version": VERSION, "observed": OBSERVED,
+        "repository": "https://github.com/astercast/ai-film-master-guide",
+        "for_agents": "Start at api/v1/index.json. For task procedures, read skills/index.json and load the relevant skill file — skills are the primary agentic interface for doing work, the JSON endpoints are the data layer.",
         "provenance": "Compiled from the 2026-10-10 mega-research pass (Higgsfield pricing page read live; festival details from the official festival blog). Unverified values are listed explicitly, never invented.",
+        "skills": {
+            "directory": "skills/",
+            "index": "skills/index.json",
+            "count": skills_index.get("count", 0),
+            "usage": "Each skill is a markdown file with frontmatter (name, description), then: Use when, Inputs, Procedure, Worked example, API references, Pitfalls. Load the skill whose task matches the user's request.",
+        },
         "endpoints": {
             "index": "api/v1/index.json",
             "models": "api/v1/models.json",

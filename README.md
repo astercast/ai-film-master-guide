@@ -44,6 +44,10 @@ plus the hand-authored festival record. Commit the outputs.
 - `festivals.json` — $1M festival rules/prizes/jury (winners pending)
 - `schema/` — JSON Schemas
 
+`skills/` — 173 agentic task procedures (`python3 scripts/build_skills.py`
+regenerates from `api/v1/` data + authored procedures). `skills/index.json`
+is the manifest agents should load first; `api/v1/index.json` points at it.
+
 ## Freshness notes
 
 - Higgsfield pricing read live 2026-10-10 (Starter $19/mo annual = 270 credits; Plus $47/mo annual = 1,200; Ultra $99/mo annual = 3,000). Verify live before budgeting.

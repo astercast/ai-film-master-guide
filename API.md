@@ -68,8 +68,21 @@ Placeholders use `[BRACKETS]`; keep `[STYLE]` identical across a project.
 `status` is `"winners_pending"` until winners are announced — do not present
 winners as known. Prizes are in USD.
 
+## Skills
+
+173 task procedures in `skills/`, indexed by `skills/index.json`
+(id, title, description, path). Each skill file has frontmatter
+(`name`, `description`) followed by: Use when, Inputs, Procedure,
+Worked example, API references, Pitfalls.
+
+Agents: `api/v1/index.json` carries `repository`, `skills` (directory,
+index, count, usage), and `for_agents` routing. Load the skill matching
+the task; use the JSON endpoints as the data layer behind it.
+
 ## Regenerating
 
 `python3 scripts/build_api.py` rebuilds `api/v1/` from the research artifacts
 under `~/workspace/research_notes/ai-film-mega-research-20261010-0311/artifacts/`
 plus the hand-authored festival record. Commit the outputs.
+`python3 scripts/build_skills.py` rebuilds `skills/` from `api/v1/` data plus
+authored procedures. Commit the outputs.
