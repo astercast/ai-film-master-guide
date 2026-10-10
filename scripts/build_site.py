@@ -25,10 +25,10 @@ SECTIONS = [
 
 CHAPTER_ORDER = {
     "higgsfield": ["platform-mastery", "prompt-engineering", "soul-id-deep-dive", "100k-festival-playbook"],
-    "craft": ["story-structure", "cinematic-language", "character-consistency", "sound-music-audio", "editing-pipeline"],
+    "craft": ["story-structure", "cinematic-language", "character-consistency", "sound-music-audio", "editing-pipeline", "long-form-pipeline"],
     "platforms": ["field-guide", "when-to-use-what"],
     "economics": ["credit-math"],
-    "case-studies": ["festival-winners"],
+    "case-studies": ["festival-winners", "entry-craft-teardowns"],
     "sources": ["source-index"],
 }
 
