@@ -1,0 +1,175 @@
+{
+  "version": "1.0.0",
+  "observed": "2026-10-10",
+  "cost_basis": "Higgsfield live pricing page https://higgsfield.ai/pricing read 2026-10-10; credits per 5s unless noted; USD derived on Plus plan ($47/1200cr = $0.0392/credit). Verify live before budgeting.",
+  "models": [
+    {
+      "best_use": "Fashion/portrait/aesthetic keyframes; character-sheet generation",
+      "est_cost_credits": "0.12 / image",
+      "model": "Soul 2.0",
+      "platform": "Higgsfield",
+      "strength": "Style presets, Color Transfer, cultural fluency, Soul ID slot; 0.12 credits/image",
+      "type": "image",
+      "weakness": "Image only; style range narrower than general models"
+    },
+    {
+      "best_use": "Cinematic keyframes, close-ups, film-grain stills for I2V",
+      "est_cost_credits": "not in captured table — verify live",
+      "model": "Soul Cinema",
+      "platform": "Higgsfield",
+      "strength": "Prompt-driven cinematic look, natural grain, era-aware; feeds video models",
+      "type": "image",
+      "weakness": "Preview status at time of research; image only"
+    },
+    {
+      "best_use": "Consistent cinematic character identity / AI actors",
+      "est_cost_credits": "~0.125 / image (third-party)",
+      "model": "Soul Cast",
+      "platform": "Higgsfield",
+      "strength": "Archetype-based casting, 16:9, era control",
+      "type": "image",
+      "weakness": "One person per identity; ecosystem-locked"
+    },
+    {
+      "best_use": "Multi-shot narrative, reference-driven continuity, dialogue scenes",
+      "est_cost_credits": "720p ~22/5s, 1080p ~45/5s, 4K ~110/5s, Fast 720p ~12/5s",
+      "model": "Seedance 2.0",
+      "platform": "ByteDance",
+      "strength": "Single-pass multimodal refs (@Image/@Video/@Audio), multi-shot in one call, native synced audio, multilingual lip-sync",
+      "type": "video",
+      "weakness": "Facial micro-acting weakest; drift after chained gens; tiny detail degrades; negation summons"
+    },
+    {
+      "best_use": "Hero multi-shot sequences; Higgsfield default video model",
+      "est_cost_credits": "not in captured table — verify live (promo: ~80 videos on Plus/mo)",
+      "model": "Seedance 2.5",
+      "platform": "ByteDance",
+      "strength": "Omni reference mode + start-image; best continuity per community",
+      "type": "video",
+      "weakness": "Premium credit cost; 30-day unlimited promos are business-plan only"
+    },
+    {
+      "best_use": "Motion-heavy cinematic clips, action, multi-shot, camera direction",
+      "est_cost_credits": "720p ~7/5s (~$0.55/8s), 1080p ~8/5s, 4K ~30/5s; Motion Control 720p ~7, 1080p ~12",
+      "model": "Kling 3.0",
+      "platform": "Kuaishou",
+      "strength": "Best-in-class motion/physics; native audio; Motion Control puppetry; Omni multi-shot; 15s",
+      "type": "video",
+      "weakness": "Subtle emotional faces trail Hailuo; fingers/camera drift without control; probabilistic"
+    },
+    {
+      "best_use": "Cheap drafts, fast start-frame animation",
+      "est_cost_credits": "720p ~4/5s (~$0.16/5s), 1080p ~6/5s",
+      "model": "Kling 2.5 Turbo",
+      "platform": "Kuaishou",
+      "strength": "Cheapest usable motion (~4cr/5s 720p)",
+      "type": "video",
+      "weakness": "No native audio; lower fidelity"
+    },
+    {
+      "best_use": "Controlled narrative production, cinematic realism, dialogue w/ lip-sync",
+      "est_cost_credits": "720p/1080p ~40/4s (~$3.14/8s); Fast ~16/4s (~$1.26/8s)",
+      "model": "Veo 3.1",
+      "platform": "Google DeepMind",
+      "strength": "Film-grade lighting/prompt adherence, native audio + lip-sync, ingredients (3 refs), first-last frames, scene extension",
+      "type": "video",
+      "weakness": "Most expensive per second; 4-8s clips; fine text issues"
+    },
+    {
+      "best_use": "Budget b-roll, fast iteration of Veo look",
+      "est_cost_credits": "Veo 3.1 Fast ~16/4s; Veo 3 720p ~58/8s; Veo 3 Fast ~22/8s",
+      "model": "Veo 3.1 Fast / Veo 3",
+      "platform": "Google DeepMind",
+      "strength": "Veo quality at ~40% credit cost",
+      "type": "video",
+      "weakness": "Lower fidelity than full 3.1"
+    },
+    {
+      "best_use": "Smooth camera moves, consistent lighting, talking-head UGC",
+      "est_cost_credits": "720p ~10/4s (~$0.78/8s); Pro 1080p ~50/4s (~$3.92/8s); Max 1080p ~34/4s; Pro Max 1080p ~54/4s",
+      "model": "Sora 2 / Pro / Max",
+      "platform": "OpenAI",
+      "strength": "Scene coherence, Remix consistency branching, Cameo avatars, strong UGC lip-sync",
+      "type": "video",
+      "weakness": "Garbled fine text; multi-person face merging; hand poses"
+    },
+    {
+      "best_use": "Camera-first directing: precise dolly/orbit/crane paths",
+      "est_cost_credits": "480p ~5/5s, 720p ~7/5s, 1080p ~10/5s",
+      "model": "Wan 2.6",
+      "platform": "Alibaba",
+      "strength": "Physics-based motion paths, inertia/speed curves; shot-type control",
+      "type": "video",
+      "weakness": "No native audio (second pass / LipSync Studio needed)"
+    },
+    {
+      "best_use": "Next-gen Wan quality when budget allows",
+      "est_cost_credits": "3.0: 480p 5, 720p 8.75, 1080p 17.5 /5s; Prime: 480p 7.5, 720p 15, 1080p 30 /5s",
+      "model": "Wan 3.0 / 3.0 Prime",
+      "platform": "Alibaba",
+      "strength": "Newest Wan generation on Higgsfield",
+      "type": "video",
+      "weakness": "Premium pricing; Prime 1080p = 30cr/5s"
+    },
+    {
+      "best_use": "Emotional close-ups, subtle facial performance, clean stylized moments",
+      "est_cost_credits": "02: 768p ~6/6s (~$0.24/6s), 1080p ~10/6s; 2.3: 768p ~6/6s, 1080p ~10/6s, Fast 768p ~4/6s",
+      "model": "Hailuo 02 / 2.3",
+      "platform": "MiniMax",
+      "strength": "Expressive physical motion, prompt-to-action fidelity, official [camera command] syntax",
+      "type": "video",
+      "weakness": "6s/10s only; silent variants; not for multi-shot"
+    },
+    {
+      "best_use": "Action/sports/physics, fluid dynamics, motion blur",
+      "est_cost_credits": "not in captured Higgsfield table — verify live",
+      "model": "Dream Machine / Ray 3.2",
+      "platform": "Luma",
+      "strength": "12 named camera motions via 'camera' trigger; realistic motion blur",
+      "type": "video",
+      "weakness": "Higgsfield credit cost not captured — verify availability live"
+    },
+    {
+      "best_use": "Stylized/social content, animation styles, fast iteration",
+      "est_cost_credits": "not in captured Higgsfield table — verify live; Pika native: 12-80 credits/gen by tier",
+      "model": "Pika 2.5",
+      "platform": "Pika",
+      "strength": "20+ animation styles, Pikaframes keyframes, Pikadditions/Pikaswaps, built-in lip sync; 25s 1080p",
+      "type": "video",
+      "weakness": "Realism trails Veo/Kling; negative-prompt dependence"
+    },
+    {
+      "best_use": "Quick 3s directed shots",
+      "est_cost_credits": "Lite ~3/3s, Turbo ~5/3s, Standard ~7/3s (720p)",
+      "model": "DoP (Lite/Standard/Turbo)",
+      "platform": "Higgsfield",
+      "strength": "Native Higgsfield model, cheap 3s clips",
+      "type": "video",
+      "weakness": "3-second cap; less documented"
+    },
+    {
+      "best_use": "Talking-presenter ads with speech + lip-sync + product lock",
+      "est_cost_credits": "~60/12s, ~75/15s (third-party, verify live)",
+      "model": "Marketing Studio video",
+      "platform": "Higgsfield",
+      "strength": "Only package that lip-syncs its own speech; URL-to-video",
+      "type": "video",
+      "weakness": "Highest per-clip image/video cost; presenter ages skew 18-35"
+    },
+    {
+      "best_use": "Fast social clips; video-to-video edits",
+      "est_cost_credits": "~7/5s; Edit ~10/5s",
+      "model": "Grok Video / Video Edit",
+      "platform": "xAI",
+      "strength": "Speed; edit mode",
+      "type": "video",
+      "weakness": "Less cinematic control documented"
+    }
+  ],
+  "unverified": [
+    "Soul Cinema per-image credit cost",
+    "Seedance 2.5 per-second credit cost",
+    "Luma and Pika credit costs on Higgsfield",
+    "Runway Gen-4/4.5 via Higgsfield (Runway native: ~60 credits/5s Gen-4.5)"
+  ]
+}

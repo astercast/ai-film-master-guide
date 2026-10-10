@@ -1,0 +1,331 @@
+{
+  "version": "1.0.0",
+  "observed": "2026-10-10",
+  "conventions": "Placeholders: [SHOT] [MOVE] [SUBJECT] [ACTION] [ENV] [LIGHT] [STYLE] [AUDIO]. Keep [STYLE] identical across a project. One primary motion per prompt.",
+  "templates": [
+    {
+      "id": "t1",
+      "title": "Establishing drone shot",
+      "track": "core",
+      "anatomy": "starts wide → reveals geography",
+      "use": "openings, transitions",
+      "models": [
+        "Kling 3.0",
+        "Veo 3.1",
+        "Seedance 2.0"
+      ],
+      "prompt": "Aerial pull-back over [ENV], dawn mist lifting, [LIGHT: golden hour backlight]. Slow, majestic. [STYLE]. [AUDIO: wind, distant birds.]"
+    },
+    {
+      "id": "t2",
+      "title": "Dialogue two-shot (shot-reverse-shot pair)",
+      "track": "core",
+      "anatomy": "coverage, not chaos",
+      "use": "conversations",
+      "models": [
+        "Veo 3.1 (ingredients)",
+        "Seedance 2.0 multi-shot",
+        "Kling 3.0"
+      ],
+      "prompt": "Medium two-shot of [SUBJECT A] and [SUBJECT B] at [ENV], [LIGHT]. Static locked-off. [SUBJECT A] says, \"[LINE].\" [STYLE].\nClose-up of [SUBJECT B] reacting, shallow depth of field, [LIGHT]. Static. [SUBJECT B] replies, \"[LINE].\" [STYLE]."
+    },
+    {
+      "id": "t3",
+      "title": "Emotional close-up",
+      "track": "core",
+      "anatomy": "ration close-ups (micro-acting is the weakest link)",
+      "use": "emotional peaks",
+      "models": [
+        "Hailuo 02/2.3",
+        "Veo 3.1"
+      ],
+      "prompt": "Extreme close-up of [SUBJECT], eyes glistening, [LIGHT: soft window light, cool shadows]. Slow push-in. Micro-expression: restrained grief. [STYLE]. [AUDIO: room tone, faint breath.]"
+    },
+    {
+      "id": "t4",
+      "title": "Product macro orbit",
+      "track": "core",
+      "anatomy": "one move (orbit) + one focus event",
+      "use": "commercials",
+      "models": [
+        "Wan 2.6 (camera-first)",
+        "Seedance 2.0"
+      ],
+      "prompt": "Macro shot of [PRODUCT], [LIGHT: warm rim light, dark studio]. Slow 180-degree orbit, focus pull from reflections to label. [STYLE]."
+    },
+    {
+      "id": "t5",
+      "title": "Action tracking shot",
+      "track": "core",
+      "anatomy": "camera pace matches subject pace",
+      "use": "chases, action",
+      "models": [
+        "Kling 3.0",
+        "Luma"
+      ],
+      "prompt": "Tracking shot alongside [SUBJECT] [ACTION: sprinting through rain-slick alley], [LIGHT: neon reflections, volumetric haze]. Handheld energy, motion blur. [STYLE]."
+    },
+    {
+      "id": "t6",
+      "title": "Horror creep",
+      "track": "core",
+      "anatomy": "slow, hesitant verbs; danger hinted, not shown",
+      "use": "horror/suspense",
+      "models": [
+        "Veo 3.1",
+        "Kling 3.0"
+      ],
+      "prompt": "The hallway stretches, lit by a flickering bulb. The camera tilts cautiously, revealing a darkened doorway. [LIGHT: low-key, deep shadows]. [STYLE]. [AUDIO: faint whispers, floorboard creak.]"
+    },
+    {
+      "id": "t7",
+      "title": "Interview / talking head",
+      "track": "core",
+      "anatomy": "static camera, clean front face, short lines",
+      "use": "testimonials, UGC",
+      "models": [
+        "Marketing Studio",
+        "Kling 3.0",
+        "Pika lip sync"
+      ],
+      "prompt": "Medium close-up of [SUBJECT], eye-level, [ENV: warm studio, soft bokeh]. Static tripod. [SUBJECT] says, \"[LINE].\" [STYLE]."
+    },
+    {
+      "id": "t8",
+      "title": "Dream sequence",
+      "track": "core",
+      "anatomy": "orbit + atmosphere carry the effect",
+      "use": "fantasy, transitions",
+      "models": [],
+      "prompt": "Slow 360-degree orbit around [SUBJECT] in [ENV: surreal floating landscape], [LIGHT: bioluminescent glow, haze]. Weightless drift, soft focus. [STYLE]. [AUDIO: reversed piano, sub-bass swell.]"
+    },
+    {
+      "id": "t9",
+      "title": "Time-lapse city",
+      "track": "core",
+      "anatomy": "static camera mandatory for timelapse",
+      "use": "montages, transitions",
+      "models": [],
+      "prompt": "Static wide shot of [CITY], day-to-night timelapse, traffic trails, windows igniting. [STYLE]."
+    },
+    {
+      "id": "t10",
+      "title": "Food commercial macro",
+      "track": "core",
+      "anatomy": "texture + steam + dolly",
+      "use": "food ads",
+      "models": [
+        "Kling 3.0",
+        "Seedance 2.0"
+      ],
+      "prompt": "Macro close-up of [DISH], steam rising, [LIGHT: warm side light, shallow DOF]. Slow dolly-in. [STYLE]. [AUDIO: sizzle.]"
+    },
+    {
+      "id": "t11",
+      "title": "Fashion film",
+      "track": "core",
+      "anatomy": "wardrobe locked in Identity Block",
+      "use": "fashion, lookbooks",
+      "models": [
+        "Soul Cinema keyframe → Kling 3.0 I2V"
+      ],
+      "prompt": "Full shot of [MODEL] in [OUTFIT] walking toward camera on [RUNWAY/LOCATION], [LIGHT: golden hour rim]. Slow-motion, fabric in motion. [STYLE]."
+    },
+    {
+      "id": "t12",
+      "title": "Sci-fi corridor dolly",
+      "track": "core",
+      "anatomy": "one corridor, one move, motivated practicals",
+      "use": "sci-fi",
+      "models": [
+        "Veo 3.1",
+        "Wan 2.6"
+      ],
+      "prompt": "Slow dolly forward down [CORRIDOR], [LIGHT: cold fluorescent + red alert practicals], haze. [STYLE]. [AUDIO: starship hum, distant klaxon.]"
+    },
+    {
+      "id": "t13",
+      "title": "Underwater reveal",
+      "track": "core",
+      "anatomy": "tilt reveals; light does the exposition. Models: Luma (fluid dynamics), Kling 3.0",
+      "use": null,
+      "models": [
+        "Luma (fluid dynamics)",
+        "Kling 3.0"
+      ],
+      "prompt": "Camera tilts down from surface glare to reveal [SUBJECT] below, [LIGHT: caustic light rays, deep blue]. Slow descent. [STYLE]."
+    },
+    {
+      "id": "t14",
+      "title": "Car commercial",
+      "track": "core",
+      "anatomy": "low angle = power; smooth move = luxury. Models: Kling 3.0, Veo 3.1",
+      "use": null,
+      "models": [
+        "Kling 3.0",
+        "Veo 3.1"
+      ],
+      "prompt": "Low-angle tracking shot of [CAR] on [ROAD] at blue hour, [LIGHT: headlight bloom, city glow]. Smooth gimbal. [STYLE]."
+    },
+    {
+      "id": "t15",
+      "title": "Match-cut transition pair",
+      "track": "core",
+      "anatomy": "identical motion vector across the cut; lock endpoints",
+      "use": "transitions, transformations",
+      "models": [
+        "Seedance FLF",
+        "Veo first-last"
+      ],
+      "prompt": "[SUBJECT] opens [DOOR A] in [ENV A], swings toward camera. Match-cut motion. [STYLE].\nSame swing continues as [DOOR B] opens in [ENV B], revealing [REVEAL]. [STYLE]."
+    },
+    {
+      "id": "a1",
+      "title": "Anime action (sakuga)",
+      "track": "animated",
+      "anatomy": "cel/sakuga/impact frames — NO lens or DOF language. Models: PixVerse (Anime), Vidu Q1, Pika",
+      "use": null,
+      "models": [
+        "PixVerse (Anime)",
+        "Vidu Q1",
+        "Pika"
+      ],
+      "prompt": "Cel-animated action cut: [CHARACTER] dashes forward, speed lines and impact frames, painted background holds still. Sakuga flourish on the strike. STYLE LOCK: bold colors, expressive features, dramatic lighting, hand-drawn anime."
+    },
+    {
+      "id": "a2",
+      "title": "Ghibli-style landscape",
+      "track": "animated",
+      "anatomy": null,
+      "use": null,
+      "models": [],
+      "prompt": "Hand-painted pastoral landscape, drifting clouds, grass swaying; a [CHARACTER] walks a winding path. Gentle, held frames, watercolor skies. STYLE LOCK: Studio Ghibli-inspired hand-drawn, soft light, painterly detail."
+    },
+    {
+      "id": "a3",
+      "title": "Pixar-style 3D character beat",
+      "track": "animated",
+      "anatomy": null,
+      "use": null,
+      "models": [],
+      "prompt": "Stylized 3D animation: [CHARACTER: big expressive eyes, soft rounded forms] reacts with surprise, squash-and-stretch. Warm key light, soft bounce. STYLE LOCK: modern 3D animated film, subsurface warmth, clean shapes."
+    },
+    {
+      "id": "a4",
+      "title": "2D cartoon dialogue",
+      "track": "animated",
+      "anatomy": null,
+      "use": null,
+      "models": [],
+      "prompt": "Flat 2D cartoon: [CHARACTER A] and [CHARACTER B] talk at [LOCATION], simple shapes, bold outlines, limited animation, mouth shapes on dialogue beats. STYLE LOCK: western 2D cartoon, flat colors, thick outlines."
+    },
+    {
+      "id": "a5",
+      "title": "Stop-motion claymation gag",
+      "track": "animated",
+      "anatomy": null,
+      "use": null,
+      "models": [],
+      "prompt": "Stop-motion clay: [CHARACTER] slips on a banana peel, limbs flail in stepped poses, visible fingerprints in the clay, miniature set, warm practical lighting. STYLE LOCK: Aardman/Laika stop-motion, handcrafted, stepped motion."
+    },
+    {
+      "id": "a6",
+      "title": "Oil-painting painterly motion",
+      "track": "animated",
+      "anatomy": null,
+      "use": null,
+      "models": [],
+      "prompt": "Oil painting come alive: [SCENE] rendered in thick impasto brushstrokes, paint swirls as clouds move, canvas texture visible. STYLE LOCK: painterly, visible brushwork, impasto, no photorealism."
+    },
+    {
+      "id": "a7",
+      "title": "Pixel-art game cinematic",
+      "track": "animated",
+      "anatomy": null,
+      "use": null,
+      "models": [],
+      "prompt": "Pixel-art cinematic: [CHARACTER] traverses [ENV], parallax layers scroll, limited palette, chunky pixels, chiptune energy. STYLE LOCK: 16-bit pixel art, crisp pixels, retro palette."
+    },
+    {
+      "id": "a8",
+      "title": "Felt-art cozy scene",
+      "track": "animated",
+      "anatomy": null,
+      "use": null,
+      "models": [],
+      "prompt": "Felt-art stop-motion: [CHARACTER] made of stitched felt sips tea in a cozy room, fibers visible, gentle bobbing motion. STYLE LOCK: felt craft, soft fibers, handmade warmth."
+    },
+    {
+      "id": "p1",
+      "title": "Dialogue drama close-up",
+      "track": "photorealistic",
+      "anatomy": null,
+      "use": null,
+      "models": [],
+      "prompt": "Close-up of [SUBJECT], natural skin texture with visible pores, [LIGHT: soft window light, cool practical fill]. Static locked-off. [SUBJECT] says quietly, \"[LINE].\" STYLE LOCK: cinematic realism, 35mm film grain, shallow DOF, muted grade."
+    },
+    {
+      "id": "p2",
+      "title": "Documentary handheld",
+      "track": "photorealistic",
+      "anatomy": null,
+      "use": null,
+      "models": [],
+      "prompt": "Handheld follow of [SUBJECT] through [LOCATION], natural daylight, slight motion blur, muted grade, authentic feel. No music. STYLE LOCK: documentary realism, imperfect framing allowed."
+    },
+    {
+      "id": "p3",
+      "title": "Car commercial (photoreal)",
+      "track": "photorealistic",
+      "anatomy": null,
+      "use": null,
+      "models": [],
+      "prompt": "Low-angle tracking of [CAR] at blue hour, anamorphic lens flare, wet asphalt reflections, [LIGHT: mixed streetlight temperatures]. STYLE LOCK: automotive commercial, ARRI Alexa, 35mm, teal-orange."
+    },
+    {
+      "id": "p4",
+      "title": "Food macro (photoreal)",
+      "track": "photorealistic",
+      "anatomy": null,
+      "use": null,
+      "models": [],
+      "prompt": "Macro of [DISH], steam, glistening texture, [LIGHT: warm side light, dark background], 100mm macro shallow DOF. Slow dolly-in. STYLE LOCK: food commercial, high detail, warm grade."
+    },
+    {
+      "id": "p5",
+      "title": "Horror corridor (photoreal)",
+      "track": "photorealistic",
+      "anatomy": null,
+      "use": null,
+      "models": [],
+      "prompt": "Slow dolly down [CORRIDOR], practical flickering fluorescents, deep shadows, dust in the air, 16mm grain. STYLE LOCK: horror realism, low-key chiaroscuro, motivated practicals."
+    },
+    {
+      "id": "p6",
+      "title": "Sci-fi corridor dolly (photoreal)",
+      "track": "photorealistic",
+      "anatomy": null,
+      "use": null,
+      "models": [],
+      "prompt": "Slow dolly forward, [LIGHT: cold fluorescents + red alert practicals], volumetric haze, lens breathing. STYLE LOCK: sci-fi realism, anamorphic, cool grade, subtle grain."
+    },
+    {
+      "id": "p7",
+      "title": "Fashion editorial (photoreal)",
+      "track": "photorealistic",
+      "anatomy": null,
+      "use": null,
+      "models": [],
+      "prompt": "Full shot of [MODEL], [OUTFIT], [LOCATION], golden hour rim light, fabric motion, shallow DOF, 85mm. STYLE LOCK: high-fashion editorial, film grain, warm grade."
+    },
+    {
+      "id": "p8",
+      "title": "Nature drone (photoreal)",
+      "track": "photorealistic",
+      "anatomy": null,
+      "use": null,
+      "models": [],
+      "prompt": "Aerial pull-back over [LANDSCAPE], dawn mist, golden backlight, slow majestic drift. STYLE LOCK: nature documentary, natural color, subtle grain."
+    }
+  ]
+}

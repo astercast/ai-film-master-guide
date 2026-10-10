@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Model",
+  "type": "object",
+  "required": [
+    "model",
+    "platform",
+    "type",
+    "est_cost_credits"
+  ],
+  "properties": {
+    "model": {
+      "type": "string"
+    },
+    "platform": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "est_cost_credits": {
+      "type": "string"
+    },
+    "strength": {
+      "type": "string"
+    },
+    "weakness": {
+      "type": "string"
+    },
+    "best_use": {
+      "type": "string"
+    }
+  }
+}

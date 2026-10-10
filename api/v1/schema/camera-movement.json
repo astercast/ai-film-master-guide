@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CameraMovement",
+  "type": "object",
+  "required": [
+    "id",
+    "move",
+    "prompt_phrasing",
+    "when_to_use"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "move": {
+      "type": "string"
+    },
+    "prompt_phrasing": {
+      "type": "string"
+    },
+    "when_to_use": {
+      "type": "string"
+    }
+  }
+}

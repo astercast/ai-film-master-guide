@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Higgsfield Platform Mastery — AI Film Master Guide</title>
+  <meta name="description" content="Higgsfield is model-agnostic — it hosts many engines under one credit pool. Third-party model guides rank them this way (tiers: Free / Low 0.1–2 credits / Mid 2">
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/docs.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="../index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="../index.html">Guide</a>
+        <a href="../api.html">API</a>
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">⌘K</span> Search
+      </button>
+    </div>
+  </header>
+  <div class="container docs-layout">
+    <nav class="docs-nav" aria-label="Chapters"><details open><summary>Higgsfield</summary><ul><li><a href="../higgsfield/platform-mastery.html">Higgsfield Platform Mastery</a></li><li><a href="../higgsfield/prompt-engineering.html">Higgsfield Prompt Engineering</a></li><li><a href="../higgsfield/soul-id-deep-dive.html">Soul ID Deep Dive</a></li><li><a href="../higgsfield/100k-festival-playbook.html">The $100K Festival Playbook</a></li></ul></details>
+<details open><summary>Craft</summary><ul><li><a href="../craft/story-structure.html">Story Structure for AI Short Films</a></li><li><a href="../craft/cinematic-language.html">Cinematic Language</a></li><li><a href="../craft/character-consistency.html">Character Consistency</a></li><li><a href="../craft/sound-music-audio.html">Sound, Music & Audio</a></li><li><a href="../craft/editing-pipeline.html">Editing Pipeline</a></li></ul></details>
+<details open><summary>Platforms</summary><ul><li><a href="../platforms/field-guide.html">AI Video Platform Field Guide</a></li><li><a href="../platforms/when-to-use-what.html">When to Use What</a></li></ul></details>
+<details open><summary>Economics</summary><ul><li><a href="../economics/credit-math.html">Credit Math</a></li></ul></details>
+<details open><summary>Case Studies</summary><ul><li><a href="../case-studies/festival-winners.html">Festival Winner Breakdowns</a></li></ul></details>
+<details open><summary>Sources</summary><ul><li><a href="../sources/source-index.html">Source Index</a></li></ul></details></nav>
+    <main id="main" class="docs-main">
+      <p class="crumb"><a href="../index.html">Guide</a> / Higgsfield</p>
+      <article class="prose"><h1 id="higgsfield-platform-mastery">Higgsfield Platform Mastery</h1>
+<h2 id="the-model-roster-what-to-use-when">The model roster (what to use when)</h2>
+<p>Higgsfield is model-agnostic — it hosts many engines under one credit pool. Third-party model guides rank them this way (tiers: Free / Low 0.1–2 credits / Mid 2–10 / Premium 10+):</p>
+<table><thead><tr><th>Need</th><th>Model</th><th>Tier</th></tr></thead><tbody>
+<tr><td>Top-tier cinematic video + native audio</td><td>Kling 3.0</td><td>Premium</td></tr>
+<tr><td>Epic scale / spectacle</td><td>Sora 2</td><td>Premium</td></tr>
+<tr><td>Nature / landscapes + reference images</td><td>Veo 3.1</td><td>Premium</td></tr>
+<tr><td>Artistic / stylized video</td><td>Wan 2.6</td><td>Mid</td></tr>
+<tr><td>Fast iteration</td><td>Seedance 2.0 Pro</td><td>Mid</td></tr>
+<tr><td>VFX / fluid motion</td><td>Minimax Hailuo 2.3</td><td>Mid</td></tr>
+<tr><td>Budget-friendly video</td><td>Kling 2.5 Turbo / Higgsfield DoP Lite</td><td>Free–Low</td></tr>
+</tbody></table>
+<p>Image side: Soul 2.0 (fashion/aesthetic, free), Soul Cinema (cinematic stills with film grain and era-aware styling), Nano Banana Pro (photorealistic, low cost), Soul Cast (AI actor generation).</p>
+<p><strong>Key insight:</strong> a clip made through Higgsfield on the Kling engine is a Kling clip — what differs is how you buy it (shared credit pool) and what you can steer (presets vs raw prompt control). Going to Kling directly exposes controls Higgsfield&#x27;s preset UI hides: end-frame pinning, multi-reference <code>elements</code>, multi-prompt shots, 3–15s durations.</p>
+<h2 id="cinema-studio-the-filmmaking-layer">Cinema Studio — the filmmaking layer</h2>
+<p>Cinema Studio is Higgsfield&#x27;s director-mode workspace:</p>
+<ul>
+<li><strong>Camera movement controls:</strong> static, handheld, zoom, pan, dolly, orbit and more — several moves can be stacked in one shot</li>
+<li><strong>Genre settings:</strong> Action, Epic, Drama, Comedy, Horror — the whole scene follows the genre&#x27;s look and pacing</li>
+<li><strong>Era selection:</strong> regrade to look like the 1960s, 1980s, 1990s, or today</li>
+<li><strong>AI Cast:</strong> build custom AI actors with chosen look, outfit, era, personality</li>
+<li><strong>Scene building:</strong> place locations and props, shape the frame</li>
+<li><strong>Emotions:</strong> choose what each character shows</li>
+<li><strong>Color grading:</strong> fine-tune color, temperature, contrast, presets</li>
+<li><strong>Multiple references:</strong> upload many reference images to guide generation</li>
+<li><strong>Real-time co-directing:</strong> invite teammates onto one project</li>
+<li><strong>AI assistant:</strong> help with camera angles, lighting, prompts, script-to-shot breakdowns</li>
+</ul>
+<p>It isn&#x27;t tied to one model — pick the best engine per shot.</p>
+<h2 id="generation-controls-that-matter">Generation controls that matter</h2>
+<ul>
+<li><strong>Start frame:</strong> upload or generate the opening image; the clip grows from it. This is the single biggest quality lever.</li>
+<li><strong>End frame</strong> (where supported): pin exactly where a camera move finishes — turns drift into intention.</li>
+<li><strong>Camera movement presets:</strong> faster than prompt engineering; pick the move, don&#x27;t describe it.</li>
+<li><strong>Duration:</strong> longer clips cost more and drift more. Short, locked shots chain better than long wandering ones.</li>
+<li><strong>Aspect ratio:</strong> match your delivery format from the first generation, never crop later.</li>
+</ul>
+<h2 id="turbo-vs-standard-thinking">Turbo vs Standard thinking</h2>
+<ul>
+<li><strong>Standard / Premium models (Kling 3.0 etc.):</strong> hero shots — faces, dialogue, key story beats.</li>
+<li><strong>Turbo / Lite models:</strong> iteration, B-roll, establishers, tests. Draft cheap, render the winners expensive.</li>
+<li><strong>One clip at a time, quality-gated:</strong> a failed clip never chains. Re-prompt, don&#x27;t hope.</li>
+</ul>
+<h2 id="reliability-rules">Reliability rules</h2>
+<ol>
+<li>Never spend credits on a guess — pre-check the prompt against the checklists in <code>prompt-engineering.md</code>.</li>
+<li>Failed/NSFW generations aren&#x27;t billed on the API path; verify billing behavior in the app before a big batch.</li>
+<li>Credits reset each billing cycle and don&#x27;t roll over — plan usage so paid credits don&#x27;t evaporate.</li>
+<li>Higgsfield open-sourced three of its own AI films with every prompt, camera setting, and asset published — mine those before inventing your own pipeline.</li>
+</ol>
+<h2 id="sources">Sources</h2>
+<ul>
+<li>https://higgsfield.ai/creator-hub/help-center/ai-models/how-do-i-create-and-use-a-soul-id-character</li>
+<li>https://www.thehypemagazine.com/2026/10/09/what-is-higgsfield-ai-uses-features-pricing/</li>
+<li>https://www.meltflexai.com/blog/higgsfield-alternatives</li>
+<li>https://github.com/ivan-meer/higgsfield-ai-prompt-skill/blob/HEAD/skills/higgsfield-models/SKILL.md</li>
+<li>http://dev.to/mckennachapman/higgsfield-api-in-practice-prompt-to-editorial-photo-and-the-defaults-that-bite-f0c</li>
+</ul></article>
+      <nav class="prevnext" aria-label="Next and previous chapters"><a class="btn" href="../higgsfield/prompt-engineering.html" rel="next">Higgsfield Prompt Engineering →</a></nav>
+    </main>
+    <aside class="docs-toc" aria-label="On this page"><p class="toc-h">On this page</p><ul><li class="toc-l2"><a href="#the-model-roster-what-to-use-when">The model roster (what to use when)</a></li><li class="toc-l2"><a href="#cinema-studio-the-filmmaking-layer">Cinema Studio — the filmmaking layer</a></li><li class="toc-l2"><a href="#generation-controls-that-matter">Generation controls that matter</a></li><li class="toc-l2"><a href="#turbo-vs-standard-thinking">Turbo vs Standard thinking</a></li><li class="toc-l2"><a href="#reliability-rules">Reliability rules</a></li><li class="toc-l2"><a href="#sources">Sources</a></li></ul></aside>
+  </div>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer"><a href="../index.html">Guide</a><a href="../api.html">API</a></nav>
+    </div>
+  </footer>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
+    <div class="palette-box">
+      <input id="palette-input" type="search" placeholder="Search chapters, prompts, models…" autocomplete="off" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="../assets/js/palette.js"></script>
+</body>
+</html>

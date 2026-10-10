@@ -1,0 +1,15 @@
+{
+  "name": "AI Film Master Guide API",
+  "version": "1.0.0",
+  "observed": "2026-10-10",
+  "provenance": "Compiled from the 2026-10-10 mega-research pass (Higgsfield pricing page read live; festival details from the official festival blog). Unverified values are listed explicitly, never invented.",
+  "endpoints": {
+    "index": "api/v1/index.json",
+    "models": "api/v1/models.json",
+    "prompt-templates": "api/v1/prompt-templates.json",
+    "camera-movements": "api/v1/camera-movements.json",
+    "checklists": "api/v1/checklists.json",
+    "glossary": "api/v1/glossary.json",
+    "festivals": "api/v1/festivals.json"
+  }
+}

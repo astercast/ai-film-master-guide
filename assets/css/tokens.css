@@ -1,0 +1,33 @@
+/* Design tokens — AI Film Master Guide (cinematic dark) */
+:root {
+  --bg: #09090c;
+  --bg-soft: #0e0e13;
+  --panel: #14141b;
+  --panel-2: #1b1b24;
+  --line: #262630;
+  --line-soft: #1c1c25;
+
+  --ink: #f5f4f0;
+  --ink-dim: #bcbcc8;
+  --muted: #8b8b99;
+
+  --gold: #f5b301;
+  --red: #e62429;
+  --red-deep: #a31218;
+  --blue: #7fd4ff;
+
+  --radius-s: 6px;
+  --radius-m: 10px;
+  --radius-l: 16px;
+
+  --font-display: "Archivo", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --font-body: "Inter", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
+  --space-5: 24px; --space-6: 32px; --space-7: 48px; --space-8: 64px;
+
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-2: 0 8px 28px rgba(0, 0, 0, 0.55);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}

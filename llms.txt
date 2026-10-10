@@ -1,0 +1,52 @@
+# AI Film Master Guide
+
+The master guide to professional AI filmmaking: Higgsfield mastery, pro craft,
+animated and photorealistic tracks, festival playbooks. Static site + API.
+Private research repo. Full text: `llms-full.txt`.
+
+## Guide (human-readable site)
+
+Generated static site in `site/` — rebuild with `python3 scripts/build_site.py`
+after editing chapters. Open `site/index.html`.
+
+- `site/index.html` — landing: track picker (animated vs photorealistic), chapter grid
+- `site/<section>/<chapter>.html` — 14 chapters with sidebar nav, table of contents, prev/next
+- `site/api.html` — human-readable API docs
+- `site/search-index.json` — client-side search index (Ctrl+K palette)
+
+Chapters (source Markdown, also the canonical text):
+- `higgsfield/` — platform-mastery, prompt-engineering, soul-id-deep-dive, 100k-festival-playbook
+- `craft/` — story-structure, cinematic-language, character-consistency, sound-music-audio, editing-pipeline
+- `platforms/` — field-guide, when-to-use-what
+- `economics/` — credit-math
+- `case-studies/` — festival-winners
+- `sources/` — source-index
+
+## API (static JSON, versioned)
+
+Base: `api/v1/` — rebuild with `python3 scripts/build_api.py` (reads the
+research artifacts; outputs committed).
+
+- `api/v1/index.json` — manifest: version, endpoints, observation date, provenance
+- `api/v1/models.json` — 18 models: platform, type, credit costs, strengths, weaknesses, best use; explicit `unverified` list
+- `api/v1/prompt-templates.json` — 31 templates: 15 core (`t1`–`t15`), 8 animated (`a1`–`a8`), 8 photorealistic (`p1`–`p8`); anatomy, use, models
+- `api/v1/camera-movements.json` — 22-move camera lexicon with prompt phrasing and use cases
+- `api/v1/checklists.json` — pre-production, per-shot, continuity, audio, delivery checklists
+- `api/v1/glossary.json` — 79 AI film / production terms
+- `api/v1/festivals.json` — $1M festival rules, prizes, jury, criteria, timeline; winners marked pending
+- `api/v1/schema/` — JSON Schema (draft-07) for models, prompt templates, camera movements
+
+## Key facts agents should know
+
+- Higgsfield pricing (read live 2026-10-10): Starter $19/mo annual = 270 credits;
+  Plus $47/mo annual = 1,200; Ultra $99/mo annual = 3,000. Verify live before budgeting.
+- $1M festival: $500K/$200K/$100K + $100K Audience Choice + 10×$10K. Jury:
+  Edwin Catmull, Phedon Papamichael, Paul W.S. Anderson. Winners not announced
+  (expected end of Oct 2026).
+- Credit costs in `models.json` are Higgsfield credits per 5s unless noted.
+
+## Known limitations
+
+- Some per-model costs unverified (Seedance 2.5, Soul Cinema, Luma/Pika on
+  Higgsfield) — listed in `models.json` → `unverified`.
+- Festival winners pending — `festivals.json` → `status: "winners_pending"`.

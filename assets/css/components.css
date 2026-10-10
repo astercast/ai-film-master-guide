@@ -1,0 +1,56 @@
+/* Components — buttons, cards, inputs */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
+  border: 1px solid var(--line); background: var(--panel-2); color: var(--ink);
+  font-weight: 700; font-size: 0.9rem; padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-m); cursor: pointer; text-decoration: none;
+  transition: background 0.15s var(--ease), border-color 0.15s var(--ease);
+}
+.btn:hover { background: #232330; border-color: #353545; text-decoration: none; }
+.btn-sm { padding: var(--space-1) var(--space-3); font-size: 0.82rem; border-radius: var(--radius-s); }
+.btn-ghost { background: transparent; }
+.btn-gold { background: var(--gold); border-color: var(--gold); color: #181204; }
+.btn-gold:hover { background: #d99f02; border-color: #d99f02; }
+.btn-row { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-4); }
+
+.card {
+  background: var(--panel); border: 1px solid var(--line-soft);
+  border-radius: var(--radius-m); padding: var(--space-5); box-shadow: var(--shadow-1);
+}
+.card h3 { font-size: 1.15rem; margin-bottom: var(--space-2); }
+.card p { color: var(--ink-dim); font-size: 0.94rem; }
+
+.input {
+  width: 100%; background: var(--panel); border: 1px solid var(--line);
+  color: var(--ink); border-radius: var(--radius-m); padding: var(--space-2) var(--space-3);
+}
+.input:focus { border-color: var(--gold); outline: none; }
+
+.empty-state { text-align: center; padding: var(--space-8) var(--space-5); color: var(--muted); border: 1px dashed var(--line); border-radius: var(--radius-l); }
+
+/* Command palette */
+.palette {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(4, 4, 8, 0.7); backdrop-filter: blur(6px);
+  display: flex; justify-content: center; padding: 12vh var(--space-4) var(--space-4);
+}
+.palette[hidden] { display: none; }
+.palette-box {
+  width: min(620px, 100%); height: fit-content; max-height: 70vh; overflow: auto;
+  background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-l);
+  box-shadow: var(--shadow-2);
+}
+.palette-box input {
+  width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--line-soft);
+  color: var(--ink); font-size: 1.05rem; padding: var(--space-4) var(--space-5);
+}
+.palette-box input:focus { outline: none; }
+#palette-results button {
+  display: block; width: 100%; text-align: left; background: none; border: none;
+  border-bottom: 1px solid var(--line-soft); color: var(--ink);
+  padding: var(--space-3) var(--space-5); cursor: pointer;
+}
+#palette-results button:hover, #palette-results button[aria-selected="true"] { background: var(--panel-2); }
+#palette-results .r-title { font-weight: 700; font-size: 0.95rem; }
+#palette-results .r-meta { font-size: 0.78rem; color: var(--muted); }
+#palette-results .r-snippet { font-size: 0.85rem; color: var(--ink-dim); margin-top: 2px; }
