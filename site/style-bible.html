@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Style-bible builder — AI Film Master Guide</title>
   <meta name="description" content="Build a reusable STYLE LOCK block for your production — character, world, palette, lens, texture — the consistency system's core artifact. Save bibles in your browser and prepend them in the prompt workshop.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap">
   <link rel="stylesheet" href="assets/css/tokens.css">
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/layout.css">
@@ -49,8 +52,9 @@
   </header>
   <main id="main">
     <section class="hero hero-film" aria-labelledby="sb-title">
+      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
       <div class="container hero-inner">
-        <span class="hero-kicker">Tools</span>
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Tools</span>
         <h1 id="sb-title">Style-bible <span class="accent">builder.</span></h1>
         <p class="lede">Consistency is not a prompt trick — it is a document. Describe your character and world once, lock it into a STYLE LOCK block, and prepend that block verbatim to every generation in the production. Save named bibles in your browser; the <a href="workshop.html">prompt workshop</a> can prepend any saved bible automatically.</p>
       </div>

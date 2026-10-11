@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Prompt linter — AI Film Master Guide</title>
   <meta name="description" content="Paste any prompt and get a structural analysis against the ten-layer prompt anatomy: which layers are present, what's missing, vague words flagged, and concrete fixes.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap">
   <link rel="stylesheet" href="assets/css/tokens.css">
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/layout.css">
@@ -45,8 +48,9 @@
   </header>
   <main id="main">
     <section class="hero hero-film" aria-labelledby="lint-title">
+      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
       <div class="container hero-inner">
-        <span class="hero-kicker">Tools</span>
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Tools</span>
         <h1 id="lint-title">Prompt <span class="accent">linter.</span></h1>
         <p class="lede">Paste any prompt. The linter checks it against the ten-layer anatomy — which layers are present, which are missing, what each gap costs you on screen — and flags the vague words models can't act on. Heuristic, honest about being heuristic: it checks structure, not taste.</p>
       </div>

@@ -5,6 +5,10 @@
 @media print {
   :root { color-scheme: light; }
 
+  /* Kill the film grain and motion chrome on paper */
+  body::after { display: none !important; }
+  .leader-ring { display: none !important; }
+
   /* Strip all navigation / interactivity chrome */
   .site-header,
   .docs-nav,

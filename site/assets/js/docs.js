@@ -84,4 +84,28 @@
       window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
     });
   }
+
+  /* Reveal-on-scroll — cinematic entrance for cards and sections.
+     JS-gated: without JS (or with reduced motion) everything stays visible. */
+  if (!reduceMotion && "IntersectionObserver" in window) {
+    var revealEls = document.querySelectorAll(
+      ".card, .chapter-card, .mw-card, .stat, .check, .td-card, .recipe-card, " +
+      ".track-card, .path-card, .quiz-card, .calc-promo, .verify-banner, .check-callout"
+    );
+    if (revealEls.length) {
+      var robs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add("is-visible");
+            robs.unobserve(e.target);
+          }
+        });
+      }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+      Array.prototype.forEach.call(revealEls, function (el, i) {
+        el.classList.add("reveal");
+        el.style.setProperty("--rd", ((i % 5) * 55) + "ms");
+        robs.observe(el);
+      });
+    }
+  }
 })();

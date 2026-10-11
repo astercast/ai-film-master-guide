@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Shot-list builder — AI Film Master Guide</title>
   <meta name="description" content="Plan your AI shoot shot by shot: add shots with models and takes, get live per-shot and total costs from models.json, save lists in the browser, and hand off to the budget optimizer.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap">
   <link rel="stylesheet" href="assets/css/tokens.css">
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/layout.css">
@@ -45,8 +48,9 @@
   </header>
   <main id="main">
     <section class="hero hero-film" aria-labelledby="sh-title">
+      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
       <div class="container hero-inner">
-        <span class="hero-kicker">Tools</span>
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Tools</span>
         <h1 id="sh-title">Shot-list <span class="accent">builder.</span></h1>
         <p class="lede">The pre-production planner the optimizer was missing: list every shot with its model and takes, watch the cost add up live from <code>models.json</code>, then hand the whole plan to the budget optimizer. Lists save in your browser; export the JSON and take it to set.</p>
       </div>

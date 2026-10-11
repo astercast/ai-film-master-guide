@@ -184,8 +184,9 @@ INDEX_TMPL = """<!DOCTYPE html>
   </header>
   <main id="main">
     <section class="hero hero-film" aria-labelledby="hero-title">
+      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
       <div class="container hero-inner">
-        <span class="hero-kicker">Professional AI filmmaking</span>
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Professional AI filmmaking</span>
         <h1 id="hero-title">Make films with AI<br><span class="accent">like a studio.</span></h1>
         <p class="lede">Twenty-three chapters on Higgsfield mastery, professional craft, directing performance, color grading, sound, economics, long-form pipelines, competition-entry craft, distribution, and rights — with separate tracks for animated/stylized and photorealistic production. Plus a machine-readable API and 192 task skills for agents.</p>
         <div class="btn-row">
@@ -479,8 +480,9 @@ SKILLS_TMPL = """<!DOCTYPE html>
   </header>
   <main id="main">
     <section class="hero hero-film" aria-labelledby="skills-title">
+      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
       <div class="container hero-inner">
-        <span class="hero-kicker">For agents &amp; humans</span>
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>For agents &amp; humans</span>
         <h1 id="skills-title">Task <span class="accent">skills.</span></h1>
         <p class="lede">Every procedure in the guide as a loadable skill: inputs, steps, worked examples, pitfalls. <span id="skills-count" aria-live="polite"></span></p>
         <div class="field" style="max-width:480px;">
@@ -533,8 +535,9 @@ BUDGET_TMPL = """<!DOCTYPE html>
   </header>
   <main id="main">
     <section class="hero hero-film" aria-labelledby="budget-title">
+      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
       <div class="container hero-inner">
-        <span class="hero-kicker">Economics</span>
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Economics</span>
         <h1 id="budget-title">Budget <span class="accent">calculator.</span></h1>
         <p class="lede">Runtime, shot length, model, and discipline in — a cost envelope out. Grounded in the <a href="economics/credit-math.html">credit-math</a> chapter (third-party per-clip estimates, Oct 2026).</p>
       </div>
@@ -614,8 +617,9 @@ OPTIMIZER_TMPL = """<!DOCTYPE html>
   </header>
   <main id="main">
     <section class="hero hero-film" aria-labelledby="opt-title">
+      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
       <div class="container hero-inner">
-        <span class="hero-kicker">Economics</span>
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Economics</span>
         <h1 id="opt-title">Budget <span class="accent">optimizer.</span></h1>
         <p class="lede">The calculator tells you what one model costs. The optimizer tells you what your film should cost: it splits your runtime into dialogue and non-dialogue buckets and assigns the cheapest model that satisfies your quality bar — computed live from <code>models.json</code>, so the picks stay fresh as the data does.</p>
       </div>
@@ -700,8 +704,9 @@ DOCTOR_TMPL = """<!DOCTYPE html>
   </header>
   <main id="main">
     <section class="hero hero-film" aria-labelledby="doc-title">
+      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
       <div class="container hero-inner">
-        <span class="hero-kicker">Tools</span>
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Tools</span>
         <h1 id="doc-title">Failure <span class="accent">doctor.</span></h1>
         <p class="lede">Something broke in your footage? Pick the symptom. The doctor gives you the diagnosis in craft terms, the fix that works, and — where one exists — the repair template loaded in the workshop. Every diagnosis is sourced from the guide's chapters.</p>
       </div>
@@ -758,8 +763,9 @@ LINTER_TMPL = """<!DOCTYPE html>
   </header>
   <main id="main">
     <section class="hero hero-film" aria-labelledby="lint-title">
+      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
       <div class="container hero-inner">
-        <span class="hero-kicker">Tools</span>
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Tools</span>
         <h1 id="lint-title">Prompt <span class="accent">linter.</span></h1>
         <p class="lede">Paste any prompt. The linter checks it against the ten-layer anatomy — which layers are present, which are missing, what each gap costs you on screen — and flags the vague words models can't act on. Heuristic, honest about being heuristic: it checks structure, not taste.</p>
       </div>
@@ -824,8 +830,9 @@ SHOTS_TMPL = """<!DOCTYPE html>
   </header>
   <main id="main">
     <section class="hero hero-film" aria-labelledby="sh-title">
+      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
       <div class="container hero-inner">
-        <span class="hero-kicker">Tools</span>
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Tools</span>
         <h1 id="sh-title">Shot-list <span class="accent">builder.</span></h1>
         <p class="lede">The pre-production planner the optimizer was missing: list every shot with its model and takes, watch the cost add up live from <code>models.json</code>, then hand the whole plan to the budget optimizer. Lists save in your browser; export the JSON and take it to set.</p>
       </div>
@@ -953,8 +960,9 @@ STYLEBIBLE_TMPL = """<!DOCTYPE html>
   </header>
   <main id="main">
     <section class="hero hero-film" aria-labelledby="sb-title">
+      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
       <div class="container hero-inner">
-        <span class="hero-kicker">Tools</span>
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Tools</span>
         <h1 id="sb-title">Style-bible <span class="accent">builder.</span></h1>
         <p class="lede">Consistency is not a prompt trick — it is a document. Describe your character and world once, lock it into a STYLE LOCK block, and prepend that block verbatim to every generation in the production. Save named bibles in your browser; the <a href="workshop.html">prompt workshop</a> can prepend any saved bible automatically.</p>
       </div>
@@ -1070,8 +1078,9 @@ ANATOMY_TMPL = """<!DOCTYPE html>
   </header>
   <main id="main">
     <section class="hero hero-film" aria-labelledby="anat-title">
+      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
       <div class="container hero-inner">
-        <span class="hero-kicker">Craft</span>
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Craft</span>
         <h1 id="anat-title">Anatomy of <span class="accent">a prompt.</span></h1>
         <p class="lede">Treat the prompt as a directing system, not a description. Nine layers, in order — plus the exclusion block. Missing layers = randomness. Hover, tap, or focus any layer below to see what it does.</p>
       </div>
@@ -1144,8 +1153,9 @@ WORKSHOP_TMPL = """<!DOCTYPE html>
   </header>
   <main id="main">
     <section class="hero hero-film" aria-labelledby="workshop-title">
+      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
       <div class="container hero-inner">
-        <span class="hero-kicker">Interactive tool</span>
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Interactive tool</span>
         <h1 id="workshop-title">Prompt <span class="accent">workshop.</span></h1>
         <p class="lede">Pick a template, a model, and a track — fill the placeholders and copy a production-ready prompt. Every template carries its anatomy notes, so you learn why it works while you use it. New to prompt structure? Start with the <a href="anatomy.html">anatomy explorer</a>.</p>
       </div>
@@ -1257,8 +1267,9 @@ QUIZ_TMPL = """<!DOCTYPE html>
   </header>
   <main id="main">
     <section class="hero hero-film" aria-labelledby="quiz-title">
+      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
       <div class="container hero-inner">
-        <span class="hero-kicker">Interactive tool</span>
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Interactive tool</span>
         <h1 id="quiz-title">Model-picker <span class="accent">quiz.</span></h1>
         <p class="lede">Five questions. A ranked top 3 with cost math — scored live from <code>models.json</code>, so the picks stay fresh as the data does.</p>
       </div>
@@ -1356,8 +1367,9 @@ COMPARE_TMPL = """<!DOCTYPE html>
   </header>
   <main id="main">
     <section class="hero hero-film" aria-labelledby="cmp-title">
+      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
       <div class="container hero-inner">
-        <span class="hero-kicker">Tools</span>
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Tools</span>
         <h1 id="cmp-title">Model <span class="accent">compare.</span></h1>
         <p class="lede">The quiz picks for you. This page lets you argue with it: put 2–3 models side by side — cost, best use, strengths, weaknesses, native audio, freshness — all rendered live from <code>models.json</code>. The URL updates as you pick, so the comparison is shareable.</p>
       </div>
@@ -1431,8 +1443,9 @@ GALLERY_TMPL = """<!DOCTYPE html>
   </header>
   <main id="main">
     <section class="hero hero-film" aria-labelledby="gal-title">
+      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
       <div class="container hero-inner">
-        <span class="hero-kicker">Workshop</span>
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Workshop</span>
         <h1 id="gal-title">Prompt <span class="accent">gallery.</span></h1>
         <p class="lede">Every prompt you've saved and rated in the workshop, in one browsable place. Filter by track and model, sort by rating, jump back into the workshop, or take your collection with you as JSON. Everything lives in your browser — nothing leaves it.</p>
       </div>
@@ -1519,8 +1532,9 @@ CHANGELOG_TMPL = """<!DOCTYPE html>
   </header>
   <main id="main">
     <section class="hero hero-film" aria-labelledby="changelog-title">
+      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
       <div class="container hero-inner">
-        <span class="hero-kicker">Freshness log</span>
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Freshness log</span>
         <h1 id="changelog-title">What <span class="accent">changed.</span></h1>
         <p class="lede">AI film tooling rots in months. This page is how the guide stays fresh — every shipped change, dated, newest first.</p>
       </div>
@@ -1579,8 +1593,9 @@ SKILLSPEC_TMPL = """<!DOCTYPE html>
   </header>
   <main id="main">
     <section class="hero hero-film" aria-labelledby="spec-title">
+      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
       <div class="container hero-inner">
-        <span class="hero-kicker">Agent-native</span>
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Agent-native</span>
         <h1 id="spec-title">Skill schema <span class="accent">spec.</span></h1>
         <p class="lede">Every one of the {skill_count} skills in <code>skills/</code> follows this exact format — YAML frontmatter plus six Markdown sections. Build to it and your skills slot straight into this library, or any agent framework that reads it.</p>
       </div>
@@ -1663,8 +1678,9 @@ TEARDOWN_TMPL = """<!DOCTYPE html>
   </header>
   <main id="main">
     <section class="hero hero-film" aria-labelledby="td-title">
+      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
       <div class="container hero-inner">
-        <span class="hero-kicker">Learn to see</span>
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Learn to see</span>
         <h1 id="td-title">Shot-by-shot <span class="accent">teardowns.</span></h1>
         <p class="lede">Four documented AI-film sequences, broken into shots: what each shot did, what worked, what broke, and the craft lesson. Prompt reconstructions are analytical — they teach the thinking, not the buttons.</p>
       </div>
@@ -1720,8 +1736,9 @@ MANIFESTO_TMPL = """<!DOCTYPE html>
   </header>
   <main id="main">
     <section class="hero hero-film" aria-labelledby="man-title">
+      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
       <div class="container hero-inner">
-        <span class="hero-kicker">The manifesto</span>
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>The manifesto</span>
         <h1 id="man-title">This is <span class="accent">not a course.</span></h1>
         <p class="lede">No cohort. No certificate. No $2,000 upsell. This is a living reference for people making films with AI — and it has opinions.</p>
       </div>
@@ -1795,8 +1812,9 @@ RECIPES_TMPL = """<!DOCTYPE html>
   </header>
   <main id="main">
     <section class="hero hero-film" aria-labelledby="recipes-title">
+      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
       <div class="container hero-inner">
-        <span class="hero-kicker">Repeatable workflows</span>
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Repeatable workflows</span>
         <h1 id="recipes-title">Shoot <span class="accent">recipes.</span></h1>
         <p class="lede">The guide's recipe skills as cards: the procedure, the inputs, a worked example, and the pitfalls — for the twelve shots and sequences every AI film needs. <span id="recipes-count" aria-live="polite">{count} recipes</span></p>
         <div class="field" style="max-width:480px;">
@@ -1905,8 +1923,9 @@ FIELDGUIDES_INDEX_TMPL = """<!DOCTYPE html>
   </header>
   <main id="main">
     <section class="hero hero-film" aria-labelledby="fg-title">
+      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
       <div class="container hero-inner">
-        <span class="hero-kicker">Print-ready</span>
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Print-ready</span>
         <h1 id="fg-title">Field <span class="accent">guides.</span></h1>
         <p class="lede">One-page references, generated from the guide's own data — dense enough to be useful on set, honest enough to print. Every chapter prints cleanly too: open any chapter and use your browser's print.</p>
       </div>
@@ -2180,8 +2199,9 @@ MODELWATCH_TMPL = """<!DOCTYPE html>
   </header>
   <main id="main">
     <section class="hero hero-film" aria-labelledby="mw-title">
+      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
       <div class="container hero-inner">
-        <span class="hero-kicker">Trust, dated</span>
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Trust, dated</span>
         <h1 id="mw-title">Model <span class="accent">watch.</span></h1>
         <p class="lede">Every model in the guide's API — what it is, what it costs, what changed, and when we last checked. Generated from <code>models.json</code> at build time, so this page can never drift from the data.</p>
       </div>
@@ -2307,8 +2327,9 @@ MODEL_TMPL = """<!DOCTYPE html>
   </header>
   <main id="main">
     <section class="hero hero-film" aria-labelledby="md-title">
+      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
       <div class="container hero-inner">
-        <span class="hero-kicker">Model deep dive</span>
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Model deep dive</span>
         <h1 id="md-title">{name}</h1>
         <p class="lede">{platform} · {mtype}</p>
         <p><span class="mw-badge mw-badge-{status}">{badge}</span>
@@ -2397,8 +2418,9 @@ MODELS_INDEX_TMPL = """<!DOCTYPE html>
   </header>
   <main id="main">
     <section class="hero hero-film" aria-labelledby="mdi-title">
+      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
       <div class="container hero-inner">
-        <span class="hero-kicker">Reference</span>
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Reference</span>
         <h1 id="mdi-title">Model <span class="accent">deep dives.</span></h1>
         <p class="lede">One page per model: the spec record, worked cost math, prompt tips from the guide's chapters, and honest use-when/avoid-when. Generated from <code>models.json</code> — it can't drift from the data.</p>
       </div>
@@ -2577,8 +2599,9 @@ CHECK_TMPL = """<!DOCTYPE html>
   </header>
   <main id="main">
     <section class="hero hero-film" aria-labelledby="check-title">
+      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
       <div class="container hero-inner">
-        <span class="hero-kicker">Knowledge check</span>
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Knowledge check</span>
         <h1 id="check-title">{title}</h1>
         <p class="lede">{n} scenario questions drawn from the chapter. These test understanding, not trivia — every answer explains <em>why</em>. Your score saves in this browser.</p>
         <p><a class="btn btn-ghost" href="../{chapter_url}">&larr; Back to the chapter</a></p>
@@ -2642,8 +2665,9 @@ CHECKS_INDEX_TMPL = """<!DOCTYPE html>
   </header>
   <main id="main">
     <section class="hero hero-film" aria-labelledby="checks-title">
+      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
       <div class="container hero-inner">
-        <span class="hero-kicker">The course-killer</span>
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>The course-killer</span>
         <h1 id="checks-title">Knowledge <span class="accent">checks.</span></h1>
         <p class="lede">Six chapters, {total_q} scenario questions. Not trivia — situations a director actually faces, with every answer explaining why. Pass these and the chapters are yours.</p>
         <p class="card-meta" id="checks-summary" role="status"></p>
@@ -2754,7 +2778,12 @@ def main():
                 "read_min": read_minutes(md),
             }))
 
-    css_links = "\n  ".join(f'<link rel="stylesheet" href="{c}">' for c in CSS)
+    font_links = (
+        '<link rel="preconnect" href="https://fonts.googleapis.com">\n  '
+        '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n  '
+        '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap">\n  '
+    )
+    css_links = font_links + "\n  ".join(f'<link rel="stylesheet" href="{c}">' for c in CSS)
 
     # Chapter pages
     flat = [(sid, slug, c) for sid, sname in SECTIONS for slug, c in chapters[sid] for sname in [dict(SECTIONS)[sid]]]
