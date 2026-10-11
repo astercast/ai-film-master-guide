@@ -23,4 +23,4 @@
 
 **Validation:** `node --check` all site/assets JS — pass; 23 JSON files parse — pass; JSON Schema (draft-07) validation for models/teardowns/templates/camera/competitions/diagnoses — pass; internal link check 5,359 links, 0 broken; full rebuilds (build_api, build_site → 26 chapters, build_skills).
 
-**Commit:** <pending push>
+**Commit:** `1f0c7804b4e869a41e9fc9e2cbf8a3579192e8d4` ([view](https://github.com/astercast/ai-film-master-guide/commit/1f0c7804b4e869a41e9fc9e2cbf8a3579192e8d4)) — 54 files, pushed 2026-10-11, verified on remote main.
