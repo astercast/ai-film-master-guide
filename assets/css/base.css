@@ -17,6 +17,10 @@ pre { background: var(--panel); border: 1px solid var(--line-soft); border-radiu
 pre code { background: none; padding: 0; }
 :focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: var(--radius-s); }
 ::selection { background: var(--gold); color: #111; }
+[id] { scroll-margin-top: 96px; }
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
 .visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .skip-link {
   position: absolute; left: var(--space-4); top: -48px; z-index: 200;

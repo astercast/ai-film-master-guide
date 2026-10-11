@@ -15,6 +15,57 @@
 .path-steps a { color: var(--ink); font-weight: 600; }
 .path-note { font-size: 0.8rem; color: var(--muted); }
 
+/* Chapter reading experience */
+.progress-bar { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 60; pointer-events: none; }
+.progress-bar span { display: block; height: 100%; background: linear-gradient(90deg, var(--gold), #ffd25e); transform: scaleX(0); transform-origin: 0 50%; }
+.docs-toc a.active { color: var(--gold); font-weight: 700; }
+.docs-toc a.active::before { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); margin-right: 6px; vertical-align: 1px; }
+
+.prose pre { position: relative; }
+.copy-btn {
+  position: absolute; top: var(--space-2); right: var(--space-2);
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.04em;
+  color: var(--ink-dim); background: var(--panel-2); border: 1px solid var(--line);
+  border-radius: var(--radius-s); padding: 4px 10px; cursor: pointer;
+  opacity: 0; transition: opacity 0.15s var(--ease), color 0.15s;
+}
+.prose pre:hover .copy-btn, .copy-btn:focus-visible { opacity: 1; }
+.copy-btn:hover { color: var(--ink); border-color: var(--gold); }
+.copy-btn.ok { color: var(--gold); border-color: var(--gold); }
+@media (hover: none) { .copy-btn { opacity: 1; } }
+
+.back-to-top {
+  position: fixed; right: var(--space-5); bottom: var(--space-5); z-index: 50;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--panel-2); border: 1px solid var(--line); color: var(--ink-dim);
+  font-size: 1.1rem; cursor: pointer; opacity: 0; pointer-events: none;
+  transform: translateY(8px); transition: opacity 0.2s var(--ease), transform 0.2s var(--ease);
+}
+.back-to-top.show { opacity: 1; pointer-events: auto; transform: none; }
+.back-to-top:hover { color: var(--gold); border-color: var(--gold); }
+
+/* Prose refinements */
+.prose { max-width: 72ch; }
+.prose h1 { letter-spacing: -0.02em; line-height: 1.08; }
+.prose h1::after { content: ""; display: block; width: 72px; height: 3px; background: var(--gold); margin-top: var(--space-3); border-radius: 2px; }
+.prose p, .prose li { line-height: 1.72; }
+.prose blockquote {
+  border-left: 3px solid var(--gold); background: var(--panel);
+  border-radius: 0 var(--radius-m) var(--radius-m) 0;
+  padding: var(--space-4) var(--space-5); margin: var(--space-5) 0;
+  font-size: 1.06rem; color: var(--ink);
+}
+.prose blockquote p { margin: 0; }
+.prose table { border: 1px solid var(--line-soft); border-radius: var(--radius-m); overflow: hidden; }
+.prose thead th { background: var(--panel-2); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-dim); }
+.prose tbody tr:hover { background: rgba(245, 179, 1, 0.04); }
+.prose code { font-size: 0.88em; }
+.prose img { border-radius: var(--radius-m); border: 1px solid var(--line-soft); }
+
+@media (prefers-reduced-motion: reduce) {
+  .progress-bar span, .back-to-top, .copy-btn { transition: none; }
+}
+
 .section-h {
   font-size: 0.78rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase;
   color: var(--gold); margin: var(--space-6) 0 var(--space-3);

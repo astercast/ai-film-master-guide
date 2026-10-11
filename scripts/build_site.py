@@ -64,6 +64,7 @@ PAGE_TMPL = """<!DOCTYPE html>
   <div class="container docs-layout">
     <nav class="docs-nav" aria-label="Chapters">{nav}</nav>
     <main id="main" class="docs-main">
+      <div class="progress-bar" aria-hidden="true"><span></span></div>
       <p class="crumb"><a href="../index.html">Guide</a> / {section_name}</p>
       <article class="prose">{body}</article>
       <nav class="prevnext" aria-label="Next and previous chapters">{prevnext}</nav>
@@ -76,6 +77,7 @@ PAGE_TMPL = """<!DOCTYPE html>
       <nav aria-label="Footer"><a href="../index.html">Guide</a><a href="../api.html">API</a></nav>
     </div>
   </footer>
+  <button type="button" class="back-to-top" aria-label="Back to top">↑</button>
   <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
     <div class="palette-box">
       <input id="palette-input" type="search" placeholder="Search chapters, prompts, models…" autocomplete="off" aria-label="Search the guide">
@@ -83,6 +85,7 @@ PAGE_TMPL = """<!DOCTYPE html>
     </div>
   </div>
   <script src="../assets/js/palette.js"></script>
+  <script src="../assets/js/docs.js"></script>
 </body>
 </html>
 """
