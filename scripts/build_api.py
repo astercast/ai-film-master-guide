@@ -34,7 +34,9 @@ def parse_prompt_library():
         if m:
             flush()
             current = None
-            section = {"1": "core", "2": "animated", "3": "photorealistic"}[m.group(1)]
+            section = {"1": "core", "2": "animated", "3": "photorealistic",
+                       "4": "performance", "5": "audio", "6": "longform",
+                       "7": "repair"}[m.group(1)]
             continue
         m = re.match(r"^### ([A-Z]\d+)\.\s+(.+)$", line)
         if m:
@@ -144,8 +146,19 @@ def competitions():
 
 
 def main():
+    # Preserve hand-maintained API files this script does not generate
+    # (teardowns.json + its schema are authored by hand, not from artifacts).
+    preserved = {}
+    for rel in ["teardowns.json", "schema/teardown.json"]:
+        p = API / rel
+        if p.exists():
+            preserved[rel] = p.read_bytes()
     shutil.rmtree(API, ignore_errors=True)
     (API / "schema").mkdir(parents=True)
+    for rel, data in preserved.items():
+        p = API / rel
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_bytes(data)
 
     model_data = json.loads((ART / "artifact-3-model-comparison.json").read_text())
     camera_data = json.loads((ART / "artifact-5-camera-lexicon.json").read_text())
@@ -154,7 +167,7 @@ def main():
     glossary = parse_glossary()
     comps = competitions()
 
-    assert len(templates) == 31, f"expected 31 prompt templates, got {len(templates)}"
+    assert len(templates) == 47, f"expected 47 prompt templates, got {len(templates)}"
     assert len(checklists) == 5, f"expected 5 checklists, got {len(checklists)}"
     assert len(glossary) >= 60, f"expected 60+ glossary terms, got {len(glossary)}"
     assert len(model_data["models"]) == 18
@@ -231,7 +244,8 @@ def main():
             "required": ["id", "title", "track", "prompt"],
             "properties": {
                 "id": {"type": "string"}, "title": {"type": "string"},
-                "track": {"type": "string", "enum": ["core", "animated", "photorealistic"]},
+                "track": {"type": "string", "enum": ["core", "animated", "photorealistic",
+                                                          "performance", "audio", "longform", "repair"]},
                 "prompt": {"type": "string"}, "anatomy": {"type": ["string", "null"]},
                 "use": {"type": ["string", "null"]},
                 "models": {"type": "array", "items": {"type": "string"}},

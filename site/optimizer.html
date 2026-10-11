@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Budget optimizer — AI Film Master Guide</title>
+  <meta name="description" content="Turn the budget calculator into a production plan: runtime, dialogue share, and quality bar in — an optimal model mix with cost envelopes out, computed live from models.json.">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/docs.css">
+  <link rel="stylesheet" href="assets/css/print.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html">Guide</a>
+        <a href="skills.html">Skills</a>
+        <a href="workshop.html">Workshop</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="teardown.html">Teardowns</a>
+        <a href="changelog.html">Changelog</a>
+        <a href="skill-spec.html">Skill spec</a>
+        <a href="api.html">API</a>
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">⌘K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="opt-title">
+      <div class="container hero-inner">
+        <span class="hero-kicker">Economics</span>
+        <h1 id="opt-title">Budget <span class="accent">optimizer.</span></h1>
+        <p class="lede">The calculator tells you what one model costs. The optimizer tells you what your film should cost: it splits your runtime into dialogue and non-dialogue buckets and assigns the cheapest model that satisfies your quality bar — computed live from <code>models.json</code>, so the picks stay fresh as the data does.</p>
+      </div>
+    </section>
+    <section class="container" aria-labelledby="opt-h">
+      <h2 id="opt-h">Your production</h2>
+      <div class="calc-grid">
+        <form class="card calc-form" aria-label="Optimizer inputs" onsubmit="return false;">
+          <div class="field">
+            <label for="o-runtime">Target runtime: <output id="o-runtime-out" for="o-runtime">4 min</output></label>
+            <input type="range" id="o-runtime" min="1" max="120" step="1" value="4">
+          </div>
+          <div class="field">
+            <label for="o-dialogue">Dialogue share: <output id="o-dialogue-out" for="o-dialogue">30%</output></label>
+            <input type="range" id="o-dialogue" min="0" max="100" step="5" value="30">
+          </div>
+          <div class="field">
+            <label for="o-shotlen">Average shot length (seconds)</label>
+            <input class="input" type="number" id="o-shotlen" min="2" max="30" step="1" value="4">
+          </div>
+          <div class="field">
+            <label for="o-tier">Quality bar</label>
+            <select class="input" id="o-tier">
+              <option value="draft">Draft — cheapest that moves</option>
+              <option value="standard" selected>Standard — mid-range workhorse</option>
+              <option value="premium">Premium — cinematic finish</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="o-takes">Takes per keeper</label>
+            <select class="input" id="o-takes">
+              <option value="3">3 — disciplined (draft-then-hero)</option>
+              <option value="5" selected>5 — typical</option>
+              <option value="8">8 — perfectionist / action-heavy</option>
+            </select>
+          </div>
+        </form>
+        <div class="card calc-results" aria-live="polite" aria-label="Optimized plan" id="o-results">
+          <p class="calc-note">Loading model data…</p>
+        </div>
+      </div>
+      <p class="empty-state" id="o-error" hidden></p>
+      <p style="margin-top:var(--space-5);"><a class="btn btn-ghost" href="budget.html">← Back to the single-model calculator</a></p>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer"><a href="index.html">Guide</a><a href="skills.html">Skills</a><a href="workshop.html">Workshop</a><a href="quiz.html">Quiz</a><a href="teardown.html">Teardowns</a><a href="budget.html">Budget</a><a href="optimizer.html">Optimizer</a><a href="anatomy.html">Anatomy</a><a href="manifesto.html">Manifesto</a><a href="craft-not-buttons.html">Craft, not buttons</a><a href="recipes.html">Recipes</a><a href="field-guides/">Field guides</a><a href="changelog.html">Changelog</a><a href="skill-spec.html">Skill spec</a><a href="api.html">API</a></nav>
+    </div>
+  </footer>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/optimizer.js"></script>
+</body>
+</html>

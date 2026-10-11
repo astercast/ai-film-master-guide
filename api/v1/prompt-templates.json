@@ -326,6 +326,199 @@
       "use": null,
       "models": [],
       "prompt": "Aerial pull-back over [LANDSCAPE], dawn mist, golden backlight, slow majestic drift. STYLE LOCK: nature documentary, natural color, subtle grain."
+    },
+    {
+      "id": "f1",
+      "title": "Restraint pass — subtle acting",
+      "track": "performance",
+      "anatomy": "one tactic, one micro-action — the restraint pass tames AI over-acting",
+      "use": "dialogue scenes, emotional beats",
+      "models": [
+        "Hailuo 02/2.3",
+        "Veo 3.1",
+        "Kling 3.0"
+      ],
+      "prompt": "Medium close-up of [SUBJECT], [LIGHT: soft natural key]. [SUBJECT] performs [MICRO-ACTION: small and restrained — a glance away, a held breath], tactic: [TACTIC: to deflect]. Eyes track the scene partner, blink naturally, never stare into the lens. [STYLE]. [AUDIO: room tone.]"
+    },
+    {
+      "id": "f2",
+      "title": "Dead-eyes fix — give the eyes a job",
+      "track": "performance",
+      "anatomy": "eyes need a job every 2–3 seconds or they die on screen",
+      "use": "reaction shots, listening coverage",
+      "models": [
+        "Hailuo 02/2.3",
+        "Veo 3.1"
+      ],
+      "prompt": "Close-up of [SUBJECT] [ACTION: listening], [LIGHT]. Eyes move with purpose: glance to [FOCUS POINT], blink on the thought change, micro-reaction at [BEAT]. Never hold a glassy stare. [STYLE]."
+    },
+    {
+      "id": "f3",
+      "title": "Tactics-driven dialogue beat",
+      "track": "performance",
+      "anatomy": "tactic + line + one physical action = playable direction",
+      "use": "dialogue coverage",
+      "models": [
+        "Veo 3.1",
+        "Seedance 2.0",
+        "Kling 3.0"
+      ],
+      "prompt": "[SHOT] of [SUBJECT] at [ENV], [LIGHT]. [SUBJECT] says \"[LINE]\" with tactic [TACTIC: to accuse], physical action [ACTION: leaning in, controlled]. Subtext lives in the body, not the face — no mugging. [STYLE]. [AUDIO: dialogue + room tone.]"
+    },
+    {
+      "id": "f4",
+      "title": "Scene-locked ensemble",
+      "track": "performance",
+      "anatomy": "spatial locks stop the model merging or teleporting performers",
+      "use": "multi-character scenes",
+      "models": [
+        "Seedance 2.0",
+        "Kling 3.0",
+        "Veo 3.1"
+      ],
+      "prompt": "Wide shot of [ENV], [LIGHT]. [SUBJECT A] [ACTION A: tending the fire, stage left], [SUBJECT B] [ACTION B: watching, stage right] — each performer holds one spatial zone and one action, no crossing. Static camera. [STYLE]."
+    },
+    {
+      "id": "f5",
+      "title": "Listening reaction — the other half of dialogue",
+      "track": "performance",
+      "anatomy": "listening shots sell dialogue; AI defaults to blank — direct the arc",
+      "use": "shot-reverse-shot coverage",
+      "models": [
+        "Hailuo 02/2.3",
+        "Veo 3.1"
+      ],
+      "prompt": "Close-up of [SUBJECT] listening, [LIGHT: soft key]. Micro-expression arc: neutral → [EMOTION: dawning concern] across the line. Small head tilt, breath catch, eyes drop then return. [STYLE]. [AUDIO: faint room tone, partner's muffled line.]"
+    },
+    {
+      "id": "s1",
+      "title": "TTS dialogue line with direction tags",
+      "track": "audio",
+      "anatomy": "bracketed tags and punctuation are the TTS director's camera moves",
+      "use": "decoupled dialogue, narration",
+      "models": [
+        "TTS-agnostic — direction tags transfer across engines"
+      ],
+      "prompt": "[VOICE: voice-bible descriptor — age, texture, pace]. [SUBJECT] says: \"[LINE]\" [pause 0.5s] \"[LINE 2, quieter]\". Direction: [EMOTION] rising to [EMOTION]; do not rush the last word."
+    },
+    {
+      "id": "s2",
+      "title": "Voice-designed narration (Voice Bible)",
+      "track": "audio",
+      "anatomy": "cast the voice like an actor; consistency comes from the bible, not the engine",
+      "use": "documentary VO, trailers",
+      "models": [
+        "TTS-agnostic"
+      ],
+      "prompt": "Narration, [VOICE BIBLE: 40s, gravel texture, slow deliberate pace, slight regional lilt, never rushed]. Script: \"[NARRATION]\". Record three passes — neutral, weary, warm — and pick in the edit."
+    },
+    {
+      "id": "s3",
+      "title": "AI music cue brief",
+      "track": "audio",
+      "anatomy": "brief the arc and demand stems; never temp-track with a song you cannot clear",
+      "use": "scoring AI films",
+      "models": [
+        "AI-music-agnostic — the brief is the instrument"
+      ],
+      "prompt": "Cue: [CUE NAME], [DURATION]s, enters at [TIMECODE]. Brief: [REFERENCE FEEL — describe it, never name a track you cannot clear], tempo [BPM], key [KEY], instrumentation [INSTRUMENTS], arc: [ARC: sparse → swell → cut on the door slam]. Deliver stems. Rights: licensed or AI-generated per project policy — see the rights chapter."
+    },
+    {
+      "id": "s4",
+      "title": "Foley pass — three-layer sound design",
+      "track": "audio",
+      "anatomy": "three layers spotted to picture — production, foley, design",
+      "use": "sound-design passes",
+      "models": [
+        "editorial — no generation model"
+      ],
+      "prompt": "Scene [SCENE]: layer 1 — production sound [DIALOGUE / ROOM TONE]; layer 2 — foley [FOOTSTEPS / CLOTH / PROPS performed to picture]; layer 3 — designed [WHOOSHES / IMPACTS]. Spot every effect to the frame it lands on; nothing floats."
+    },
+    {
+      "id": "l1",
+      "title": "Style-locked scene plate",
+      "track": "longform",
+      "anatomy": "the style bible repeated verbatim is what survives 90 minutes",
+      "use": "multi-scene projects",
+      "models": [
+        "Seedance 2.0",
+        "Kling 3.0",
+        "Veo 3.1"
+      ],
+      "prompt": "STYLE LOCK: [STYLE BIBLE — one line, verbatim in every scene]. Scene [N]: [SHOT] of [SUBJECT] [ACTION] at [ENV], [LIGHT]. [CAMERA MOVE]. [STYLE BIBLE repeated verbatim]."
+    },
+    {
+      "id": "l2",
+      "title": "Character re-entry (consistency)",
+      "track": "longform",
+      "anatomy": "re-entry prompts restate identity; never trust the model to remember",
+      "use": "features, episodic work",
+      "models": [
+        "Seedance 2.0 (reference-driven)",
+        "Kling 3.0",
+        "Veo 3.1"
+      ],
+      "prompt": "[SHOT] of [SUBJECT: identity label + three locked visual traits], re-entering at [ENV], [LIGHT]. Match the approved reference frame [REFERENCE]: same wardrobe, same hair, same build — no redesigns between scenes. [STYLE]."
+    },
+    {
+      "id": "l3",
+      "title": "Native-audio dialogue scene",
+      "track": "longform",
+      "anatomy": "native-audio models keep voice and face in one generation — no dub drift",
+      "use": "dialogue-heavy scenes",
+      "models": [
+        "Seedance 2.0",
+        "Veo 3.1"
+      ],
+      "prompt": "[SHOT] of [SUBJECT A] and [SUBJECT B] at [ENV], [LIGHT]. [SUBJECT A] says \"[LINE]\" — generate WITH native dialogue audio, lip-sync locked. Performance tactic: [TACTIC]. [STYLE]. [AUDIO: dialogue + room tone, no music.]"
+    },
+    {
+      "id": "l4",
+      "title": "Sequence bridge (match-cut)",
+      "track": "longform",
+      "anatomy": "design the seam — AI features die in the transitions",
+      "use": "sequence assembly",
+      "models": [
+        "Kling 3.0",
+        "Seedance 2.0"
+      ],
+      "prompt": "End of scene [N]: [SHOT A: final-frame description]. Start of scene [N+1]: [SHOT B: opening-frame description] — match on [MATCH: shape / color / motion]. Bridge the cut with [TRANSITION: whip-pan / match-cut / sound bridge]. [STYLE]."
+    },
+    {
+      "id": "r1",
+      "title": "Face-morph rescue",
+      "track": "repair",
+      "anatomy": "shorter + locked frame + static camera starves the morph",
+      "use": "fixing face morphs",
+      "models": [
+        "any image-to-video (Kling 3.0",
+        "Veo 3.1)"
+      ],
+      "prompt": "RESCUE for a morphing face: shorten to [DURATION: 3s], lock the start frame [REFERENCE], static camera, [SUBJECT] holds [SIMPLE ACTION]. Exclude: morphing faces, shifting features, extra limbs. If it still morphs, regenerate from the locked frame — do not extend."
+    },
+    {
+      "id": "r2",
+      "title": "Identity-drift repair",
+      "track": "repair",
+      "anatomy": "the approved frame IS the identity; everything regenerates from it",
+      "use": "multi-shot consistency",
+      "models": [
+        "Seedance 2.0",
+        "Kling 3.0 image-to-video"
+      ],
+      "prompt": "RESCUE for identity drift: rebuild from the approved-frame library — start frame [REFERENCE], [SUBJECT: three locked traits restated]. One action, uncrowded frame. Compare output to the reference before accepting; reject on any trait change."
+    },
+    {
+      "id": "r3",
+      "title": "Plasticky wide-shot fix",
+      "track": "repair",
+      "anatomy": "AI faces need pixels — shoot closer or composite",
+      "use": "wide-shot face quality",
+      "models": [
+        "Hailuo 02/2.3",
+        "Veo 3.1"
+      ],
+      "prompt": "RESCUE for plasticky faces in wides: punch in — regenerate as [SHOT: medium close-up] of [SUBJECT], [LIGHT], natural skin texture, pores, catchlights. If the wide is otherwise good, composite the close face over it in post."
     }
   ]
 }

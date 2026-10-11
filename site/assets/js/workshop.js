@@ -82,8 +82,10 @@
       if (want !== "all" && t.track !== want) return;
       (groups[t.track] = groups[t.track] || []).push(t);
     });
-    var order = ["core", "animated", "photorealistic"];
-    var names = { core: "Core", animated: "Animated / stylized", photorealistic: "Photorealistic" };
+    var order = ["core", "animated", "photorealistic", "performance", "audio", "longform", "repair"];
+    var names = { core: "Core", animated: "Animated / stylized", photorealistic: "Photorealistic",
+      performance: "Performance direction", audio: "Audio & voice", longform: "Long-form craft",
+      repair: "Failure repair" };
     els.template.innerHTML = "";
     order.forEach(function (tr) {
       (groups[tr] || []).forEach(function (t) {

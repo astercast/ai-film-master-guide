@@ -61,6 +61,8 @@ FOOTER_ITEMS = [
     ("quiz.html", "Quiz"),
     ("teardown.html", "Teardowns"),
     ("budget.html", "Budget"),
+    ("optimizer.html", "Optimizer"),
+    ("anatomy.html", "Anatomy"),
     ("manifesto.html", "Manifesto"),
     ("craft-not-buttons.html", "Craft, not buttons"),
     ("recipes.html", "Recipes"),
@@ -321,7 +323,7 @@ INDEX_TMPL = """<!DOCTYPE html>
     <section class="container" aria-labelledby="api-h">
       <h2 id="api-h">Built for agents too</h2>
       <div class="card" style="margin-bottom:var(--space-7);">
-        <p style="color:var(--ink-dim);">Versioned JSON under <code>api/v1/</code>: models with live credit costs, 31 prompt templates, the 22-move camera lexicon, production checklists, and the glossary — with JSON Schemas, <code>llms.txt</code>, and <code>API.md</code>.</p>
+        <p style="color:var(--ink-dim);">Versioned JSON under <code>api/v1/</code>: models with live credit costs, 47 prompt templates, the 22-move camera lexicon, production checklists, and the glossary — with JSON Schemas, <code>llms.txt</code>, and <code>API.md</code>.</p>
         <div class="btn-row"><a class="btn" href="api.html">Read the API docs</a></div>
       </div>
     </section>
@@ -532,6 +534,7 @@ BUDGET_TMPL = """<!DOCTYPE html>
           <div class="calc-stat highlight"><div class="calc-value" id="r-high">—</div><div class="calc-label">Envelope high</div></div>
           <div class="calc-stat"><div class="calc-value" id="r-rule">—</div><div class="calc-label">$80/min rule of thumb</div></div>
           <p class="calc-note">Per-clip costs are third-party estimates (Oct 2026) — verify live before budgeting. The envelope budgets the rejects, not just the hero renders.</p>
+          <p style="margin-top:var(--space-4);"><a class="btn" href="optimizer.html">Plan a full production → budget optimizer</a></p>
         </div>
       </div>
     </section>
@@ -543,6 +546,166 @@ BUDGET_TMPL = """<!DOCTYPE html>
     </div>
   </footer>
   <script src="assets/js/budget.js"></script>
+</body>
+</html>
+"""
+
+OPTIMIZER_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Budget optimizer — AI Film Master Guide</title>
+  <meta name="description" content="Turn the budget calculator into a production plan: runtime, dialogue share, and quality bar in — an optimal model mix with cost envelopes out, computed live from models.json.">
+  {css}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        {sitenav}
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">⌘K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="opt-title">
+      <div class="container hero-inner">
+        <span class="hero-kicker">Economics</span>
+        <h1 id="opt-title">Budget <span class="accent">optimizer.</span></h1>
+        <p class="lede">The calculator tells you what one model costs. The optimizer tells you what your film should cost: it splits your runtime into dialogue and non-dialogue buckets and assigns the cheapest model that satisfies your quality bar — computed live from <code>models.json</code>, so the picks stay fresh as the data does.</p>
+      </div>
+    </section>
+    <section class="container" aria-labelledby="opt-h">
+      <h2 id="opt-h">Your production</h2>
+      <div class="calc-grid">
+        <form class="card calc-form" aria-label="Optimizer inputs" onsubmit="return false;">
+          <div class="field">
+            <label for="o-runtime">Target runtime: <output id="o-runtime-out" for="o-runtime">4 min</output></label>
+            <input type="range" id="o-runtime" min="1" max="120" step="1" value="4">
+          </div>
+          <div class="field">
+            <label for="o-dialogue">Dialogue share: <output id="o-dialogue-out" for="o-dialogue">30%</output></label>
+            <input type="range" id="o-dialogue" min="0" max="100" step="5" value="30">
+          </div>
+          <div class="field">
+            <label for="o-shotlen">Average shot length (seconds)</label>
+            <input class="input" type="number" id="o-shotlen" min="2" max="30" step="1" value="4">
+          </div>
+          <div class="field">
+            <label for="o-tier">Quality bar</label>
+            <select class="input" id="o-tier">
+              <option value="draft">Draft — cheapest that moves</option>
+              <option value="standard" selected>Standard — mid-range workhorse</option>
+              <option value="premium">Premium — cinematic finish</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="o-takes">Takes per keeper</label>
+            <select class="input" id="o-takes">
+              <option value="3">3 — disciplined (draft-then-hero)</option>
+              <option value="5" selected>5 — typical</option>
+              <option value="8">8 — perfectionist / action-heavy</option>
+            </select>
+          </div>
+        </form>
+        <div class="card calc-results" aria-live="polite" aria-label="Optimized plan" id="o-results">
+          <p class="calc-note">Loading model data…</p>
+        </div>
+      </div>
+      <p class="empty-state" id="o-error" hidden></p>
+      <p style="margin-top:var(--space-5);"><a class="btn btn-ghost" href="budget.html">← Back to the single-model calculator</a></p>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer">{footer}</nav>
+    </div>
+  </footer>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/optimizer.js"></script>
+</body>
+</html>
+"""
+
+ANATOMY_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anatomy of a prompt — AI Film Master Guide</title>
+  <meta name="description" content="The nine-layer prompt anatomy as an interactive annotated example: hover any layer to learn what it does, then build your own prompt layer by layer.">
+  {css}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        {sitenav}
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">⌘K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="anat-title">
+      <div class="container hero-inner">
+        <span class="hero-kicker">Craft</span>
+        <h1 id="anat-title">Anatomy of <span class="accent">a prompt.</span></h1>
+        <p class="lede">Treat the prompt as a directing system, not a description. Nine layers, in order — plus the exclusion block. Missing layers = randomness. Hover, tap, or focus any layer below to see what it does.</p>
+      </div>
+    </section>
+    <section class="container" aria-labelledby="anat-h">
+      <h2 id="anat-h" class="visually-hidden">Prompt anatomy explorer</h2>
+      <div class="anatomy-tabs" role="group" aria-label="Explorer mode">
+        <button type="button" class="btn" id="anat-tab-explore" aria-pressed="true">Explore the example</button>
+        <button type="button" class="btn btn-ghost" id="anat-tab-build" aria-pressed="false">Build yours</button>
+      </div>
+      <div id="anat-explore">
+        <p class="calc-note">One real prompt, ten highlighted layers. Pick any layer — here or in the list — for its breakdown. Esc clears.</p>
+        <div class="anatomy-sample" id="anat-sample" aria-label="Annotated sample prompt"></div>
+        <ol class="anatomy-layers" id="anat-layers" aria-label="The ten layers"></ol>
+        <div class="card anatomy-detail" id="anat-detail" aria-live="polite" aria-label="Layer breakdown">
+          <p class="calc-note">Pick a layer above — in the prompt or the list — to see what it does, why it matters, and what breaks without it.</p>
+        </div>
+      </div>
+      <div id="anat-build" hidden>
+        <p class="calc-note">Fill the nine layers in order. Your prompt assembles below — copy it, then continue in the workshop with a full template.</p>
+        <div class="card">
+          <div class="anatomy-build-grid" id="anat-form"></div>
+        </div>
+        <h3>Your prompt</h3>
+        <div class="card"><p class="anatomy-preview" id="anat-preview" aria-live="polite"></p></div>
+        <div class="btn-row" style="margin-top:var(--space-4);">
+          <button type="button" class="btn" id="anat-copy">Copy prompt</button>
+          <a class="btn btn-ghost" href="workshop.html">Continue in the workshop →</a>
+        </div>
+      </div>
+      <p style="margin-top:var(--space-6);"><a href="field-guides/prompt-anatomy.html">Printable cheat-sheet version</a> · <a href="higgsfield/prompt-engineering.html">Full prompt-engineering chapter</a></p>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer">{footer}</nav>
+    </div>
+  </footer>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/anatomy.js"></script>
 </body>
 </html>
 """
@@ -577,7 +740,7 @@ WORKSHOP_TMPL = """<!DOCTYPE html>
       <div class="container hero-inner">
         <span class="hero-kicker">Interactive tool</span>
         <h1 id="workshop-title">Prompt <span class="accent">workshop.</span></h1>
-        <p class="lede">Pick a template, a model, and a track — fill the placeholders and copy a production-ready prompt. Every template carries its anatomy notes, so you learn why it works while you use it.</p>
+        <p class="lede">Pick a template, a model, and a track — fill the placeholders and copy a production-ready prompt. Every template carries its anatomy notes, so you learn why it works while you use it. New to prompt structure? Start with the <a href="anatomy.html">anatomy explorer</a>.</p>
       </div>
     </section>
     <section class="container" aria-labelledby="ws-pick-h">
@@ -591,6 +754,10 @@ WORKSHOP_TMPL = """<!DOCTYPE html>
               <option value="core">Core</option>
               <option value="animated">Animated / stylized</option>
               <option value="photorealistic">Photorealistic</option>
+              <option value="performance">Performance direction</option>
+              <option value="audio">Audio &amp; voice</option>
+              <option value="longform">Long-form craft</option>
+              <option value="repair">Failure repair</option>
             </select>
           </div>
           <div class="field">
@@ -1481,6 +1648,14 @@ def main():
         sitenav=nav_html("", "index.html"), footer=footer_html("")))
     (SITE / "budget.html").write_text(BUDGET_TMPL.format(
         css=css_links, sitenav=nav_html("", ""), footer=footer_html("")))
+
+    # Budget optimizer page (model mix planner, data-driven from models.json)
+    (SITE / "optimizer.html").write_text(OPTIMIZER_TMPL.format(
+        css=css_links, sitenav=nav_html("", ""), footer=footer_html("")))
+
+    # Anatomy of a prompt explorer
+    (SITE / "anatomy.html").write_text(ANATOMY_TMPL.format(
+        css=css_links, sitenav=nav_html("", ""), footer=footer_html("")))
     (SITE / "skills.html").write_text(SKILLS_TMPL.format(
         css=css_links, sitenav=nav_html("", "skills.html"), footer=footer_html("")))
     shutil.copy(ROOT / "skills" / "index.json", SITE / "skills-index.json")
@@ -1547,6 +1722,12 @@ def main():
         {"url": "budget.html", "title": "Budget calculator", "section": "Tools",
          "headings": ["Your production"],
          "text": "Interactive budget calculator: runtime, shot length, model, and takes per keeper in — a cost envelope out, grounded in the credit-math chapter's third-party per-clip estimates."},
+        {"url": "optimizer.html", "title": "Budget optimizer", "section": "Tools",
+         "headings": ["Your production", "Your shoot plan"],
+         "text": "Budget optimizer: runtime, dialogue share, and quality bar in — an optimal model mix out. Splits the film into dialogue and non-dialogue buckets, assigns the cheapest model that satisfies the tier from models.json, with 5x and 20x cost envelopes from the long-form chapter."},
+        {"url": "anatomy.html", "title": "Anatomy of a prompt", "section": "Tools",
+         "headings": ["Prompt anatomy explorer", "Your prompt"],
+         "text": "Anatomy of a prompt: the nine-layer prompt anatomy as an interactive annotated example — hover any layer to learn what it does, why it matters, and what breaks without it. Plus a build-your-own mode that assembles the layers into a production-ready prompt."},
         {"url": "skills.html", "title": "Skills browser", "section": "Tools",
          "headings": [],
          "text": "Browse all task skills: prompt templates, camera moves, models, long-form pipelines, craft techniques, checklists, and more, with live filtering."},

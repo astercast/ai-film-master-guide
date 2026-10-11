@@ -17,6 +17,8 @@ after editing chapters. Open `site/index.html`.
 - `site/api.html` — human-readable API docs
 - `site/skills.html` — browsable skills library with live filter
 - `site/budget.html` — interactive credit-budget calculator
+- `site/optimizer.html` — budget optimizer: runtime + dialogue share + quality bar → optimal model mix per bucket from `models.json`, with 5×/20× cost envelopes
+- `site/anatomy.html` — anatomy of a prompt: interactive nine-layer annotated example + build-your-own mode
 - `site/workshop.html` — interactive prompt workshop (template × model × track, save/rate)
 - `site/quiz.html` — model-picker quiz: 5 questions → ranked top-3 from `models.json` with cost math, one-click handoff to the workshop
 - `site/changelog.html` — dated changelog rebuilt from git history
@@ -46,7 +48,7 @@ research artifacts; outputs committed).
 
 - `api/v1/index.json` — manifest: version, endpoints, observation date, provenance
 - `api/v1/models.json` — 18 models: platform, type, credit costs, strengths, weaknesses, best use; explicit `unverified` list
-- `api/v1/prompt-templates.json` — 31 templates: 15 core (`t1`–`t15`), 8 animated (`a1`–`a8`), 8 photorealistic (`p1`–`p8`); anatomy, use, models
+- `api/v1/prompt-templates.json` — 47 templates: 15 core (`t1`–`t15`), 8 animated (`a1`–`a8`), 8 photorealistic (`p1`–`p8`), 5 performance (`f1`–`f5`), 4 audio (`s1`–`s4`), 4 longform (`l1`–`l4`), 3 repair (`r1`–`r3`); anatomy, use, models
 - `api/v1/camera-movements.json` — 22-move camera lexicon with prompt phrasing and use cases
 - `api/v1/checklists.json` — pre-production, per-shot, continuity, audio, delivery checklists
 - `api/v1/glossary.json` — 79 AI film / production terms

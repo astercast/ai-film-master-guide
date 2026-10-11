@@ -37,7 +37,7 @@ plus the hand-authored competition record. Commit the outputs.
 
 - `index.json` — manifest
 - `models.json` — 18 models with live credit costs + explicit unverified list
-- `prompt-templates.json` — 31 templates (core / animated / photorealistic)
+- `prompt-templates.json` — 47 templates (core / animated / photorealistic / performance / audio / longform / repair)
 - `camera-movements.json` — 22-move camera lexicon
 - `checklists.json` — production checklists
 - `glossary.json` — 79 terms

@@ -20,7 +20,11 @@
       "enum": [
         "core",
         "animated",
-        "photorealistic"
+        "photorealistic",
+        "performance",
+        "audio",
+        "longform",
+        "repair"
       ]
     },
     "prompt": {

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anatomy of a prompt — AI Film Master Guide</title>
+  <meta name="description" content="The nine-layer prompt anatomy as an interactive annotated example: hover any layer to learn what it does, then build your own prompt layer by layer.">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/docs.css">
+  <link rel="stylesheet" href="assets/css/print.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html">Guide</a>
+        <a href="skills.html">Skills</a>
+        <a href="workshop.html">Workshop</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="teardown.html">Teardowns</a>
+        <a href="changelog.html">Changelog</a>
+        <a href="skill-spec.html">Skill spec</a>
+        <a href="api.html">API</a>
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">⌘K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="anat-title">
+      <div class="container hero-inner">
+        <span class="hero-kicker">Craft</span>
+        <h1 id="anat-title">Anatomy of <span class="accent">a prompt.</span></h1>
+        <p class="lede">Treat the prompt as a directing system, not a description. Nine layers, in order — plus the exclusion block. Missing layers = randomness. Hover, tap, or focus any layer below to see what it does.</p>
+      </div>
+    </section>
+    <section class="container" aria-labelledby="anat-h">
+      <h2 id="anat-h" class="visually-hidden">Prompt anatomy explorer</h2>
+      <div class="anatomy-tabs" role="group" aria-label="Explorer mode">
+        <button type="button" class="btn" id="anat-tab-explore" aria-pressed="true">Explore the example</button>
+        <button type="button" class="btn btn-ghost" id="anat-tab-build" aria-pressed="false">Build yours</button>
+      </div>
+      <div id="anat-explore">
+        <p class="calc-note">One real prompt, ten highlighted layers. Pick any layer — here or in the list — for its breakdown. Esc clears.</p>
+        <div class="anatomy-sample" id="anat-sample" aria-label="Annotated sample prompt"></div>
+        <ol class="anatomy-layers" id="anat-layers" aria-label="The ten layers"></ol>
+        <div class="card anatomy-detail" id="anat-detail" aria-live="polite" aria-label="Layer breakdown">
+          <p class="calc-note">Pick a layer above — in the prompt or the list — to see what it does, why it matters, and what breaks without it.</p>
+        </div>
+      </div>
+      <div id="anat-build" hidden>
+        <p class="calc-note">Fill the nine layers in order. Your prompt assembles below — copy it, then continue in the workshop with a full template.</p>
+        <div class="card">
+          <div class="anatomy-build-grid" id="anat-form"></div>
+        </div>
+        <h3>Your prompt</h3>
+        <div class="card"><p class="anatomy-preview" id="anat-preview" aria-live="polite"></p></div>
+        <div class="btn-row" style="margin-top:var(--space-4);">
+          <button type="button" class="btn" id="anat-copy">Copy prompt</button>
+          <a class="btn btn-ghost" href="workshop.html">Continue in the workshop →</a>
+        </div>
+      </div>
+      <p style="margin-top:var(--space-6);"><a href="field-guides/prompt-anatomy.html">Printable cheat-sheet version</a> · <a href="higgsfield/prompt-engineering.html">Full prompt-engineering chapter</a></p>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer"><a href="index.html">Guide</a><a href="skills.html">Skills</a><a href="workshop.html">Workshop</a><a href="quiz.html">Quiz</a><a href="teardown.html">Teardowns</a><a href="budget.html">Budget</a><a href="optimizer.html">Optimizer</a><a href="anatomy.html">Anatomy</a><a href="manifesto.html">Manifesto</a><a href="craft-not-buttons.html">Craft, not buttons</a><a href="recipes.html">Recipes</a><a href="field-guides/">Field guides</a><a href="changelog.html">Changelog</a><a href="skill-spec.html">Skill spec</a><a href="api.html">API</a></nav>
+    </div>
+  </footer>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/anatomy.js"></script>
+</body>
+</html>

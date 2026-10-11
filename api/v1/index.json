@@ -8,7 +8,7 @@
   "skills": {
     "directory": "skills/",
     "index": "skills/index.json",
-    "count": 180,
+    "count": 192,
     "usage": "Each skill is a markdown file with frontmatter (name, description), then: Use when, Inputs, Procedure, Worked example, API references, Pitfalls. Load the skill whose task matches the user's request."
   },
   "endpoints": {

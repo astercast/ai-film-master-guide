@@ -254,3 +254,30 @@
 .table-scroll thead th { border-top: 0; color: var(--ink); font-size: 0.85rem; }
 .table-scroll tbody th[scope="row"] { color: var(--ink-dim); font-weight: 600; min-width: 12em; }
 @media (prefers-reduced-motion: reduce) { .table-scroll { scroll-behavior: auto; } }
+
+/* Anatomy explorer — nine-layer prompt anatomy */
+.anatomy-tabs { display: flex; gap: var(--space-2); margin: var(--space-5) 0; }
+.anatomy-sample { font-size: 1.12rem; line-height: 2; color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-l); padding: var(--space-5); margin: var(--space-4) 0; }
+.lyr { --lc: var(--gold); font: inherit; color: inherit; background: none; border: none; border-bottom: 2px solid var(--lc); border-radius: 3px; padding: 0 2px; cursor: pointer; text-align: left; }
+.lyr:hover { background: color-mix(in srgb, var(--lc) 18%, transparent); }
+.lyr.active { background: color-mix(in srgb, var(--lc) 30%, transparent); outline: 2px solid var(--lc); outline-offset: 1px; }
+.lyr[data-layer="subject"] { --lc: #f5b301; }
+.lyr[data-layer="action"] { --lc: #7fd4ff; }
+.lyr[data-layer="environment"] { --lc: #8be28b; }
+.lyr[data-layer="camera"] { --lc: #c79bff; }
+.lyr[data-layer="lighting"] { --lc: #ffb35c; }
+.lyr[data-layer="style"] { --lc: #ff8fb3; }
+.lyr[data-layer="tone"] { --lc: #6fe3c1; }
+.lyr[data-layer="physics"] { --lc: #6aa8ff; }
+.lyr[data-layer="render"] { --lc: #d3d3e0; }
+.lyr[data-layer="exclusion"] { --lc: #e62429; }
+.anatomy-layers { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--space-2); margin: var(--space-4) 0; list-style: none; padding: 0; }
+.anatomy-layers .lyr { display: flex; align-items: center; gap: var(--space-2); border: 1px solid var(--line); border-bottom-width: 3px; border-radius: var(--radius-m); padding: var(--space-2) var(--space-3); font-size: 0.9rem; }
+.anatomy-layers .lyr-num { font-family: var(--font-mono); color: var(--muted); font-size: 0.8rem; }
+.anatomy-detail { min-height: 8em; }
+.anatomy-detail h3 { margin-top: 0; }
+.anatomy-detail dl { margin: 0; }
+.anatomy-detail dt { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-top: var(--space-3); }
+.anatomy-detail dd { margin: var(--space-1) 0 0; color: var(--ink-dim); }
+.anatomy-build-grid { display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin: var(--space-4) 0; }
+.anatomy-preview { white-space: pre-wrap; font-family: var(--font-body); }

@@ -10,7 +10,7 @@ Base path: `api/v1/`
 |---|---|
 | `index.json` | Manifest: name, version, observation date, provenance, endpoint map |
 | `models.json` | 18 models with platform, type, credit cost, strengths, weaknesses, best use; `cost_basis` note; explicit `unverified` list |
-| `prompt-templates.json` | 31 templates: id, title, track (`core`/`animated`/`photorealistic`), prompt, anatomy, use, models |
+| `prompt-templates.json` | 47 templates: id, title, track (`core`/`animated`/`photorealistic`/`performance`/`audio`/`longform`/`repair`), prompt, anatomy, use, models |
 | `camera-movements.json` | 22 camera moves: id, move, prompt_phrasing, when_to_use |
 | `checklists.json` | Named checklists (pre-production, per-shot, continuity, audio, delivery) with item arrays |
 | `glossary.json` | 79 terms: term + definition |
