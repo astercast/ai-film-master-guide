@@ -54,6 +54,7 @@ NAV_ITEMS = [
     ("model-watch.html", "Model watch"),
     ("doctor.html", "Doctor"),
     ("shots.html", "Shot list"),
+    ("style-bible.html", "Style bible"),
     ("changelog.html", "Changelog"),
     ("skill-spec.html", "Skill spec"),
     ("api.html", "API"),
@@ -72,6 +73,7 @@ FOOTER_ITEMS = [
     ("budget.html", "Budget"),
     ("optimizer.html", "Optimizer"),
     ("shots.html", "Shot list"),
+    ("style-bible.html", "Style bible"),
     ("doctor.html", "Doctor"),
     ("anatomy.html", "Anatomy"),
     ("manifesto.html", "Manifesto"),
@@ -303,6 +305,26 @@ INDEX_TMPL = """<!DOCTYPE html>
             <li><input type="checkbox" class="path-check" id="pc-first-short-7" data-step="first-short-7" aria-label="Mark complete: Day 7, grade and export"><a href="guides/first-short.html">Day 7</a> <span class="path-note">grade &amp; export</span></li>
           </ol>
         </article>
+        <article class="card path-card" data-path="filmmaker">
+          <h3>The 90-day filmmaker <span class="path-time">12 weeks</span></h3>
+          <p>From first short to competition-ready entry. The advanced arc the 7-day plan feeds into — one milestone project per month.</p>
+          <div class="path-bar" aria-hidden="true"><span class="path-bar-fill"></span></div>
+          <p class="path-progress"><span data-path-progress aria-live="polite">0 of 12 complete</span><button type="button" class="btn btn-sm btn-ghost" data-path-reset="filmmaker">Reset</button></p>
+          <ol class="path-steps">
+            <li><input type="checkbox" class="path-check" id="pc-filmmaker-1" data-step="filmmaker-1" aria-label="Mark complete: Weeks 1 and 2, story foundations"><a href="craft/story-structure.html">Weeks 1&ndash;2</a> <span class="path-note">story foundations — logline + beat sheet</span></li>
+            <li><input type="checkbox" class="path-check" id="pc-filmmaker-2" data-step="filmmaker-2" aria-label="Mark complete: Week 3, prompt craft"><a href="higgsfield/prompt-engineering.html">Week 3</a> <span class="path-note">prompt craft + <a href="anatomy.html">anatomy explorer</a></span></li>
+            <li><input type="checkbox" class="path-check" id="pc-filmmaker-3" data-step="filmmaker-3" aria-label="Mark complete: Week 4, consistency system"><a href="craft/character-consistency.html">Week 4</a> <span class="path-note">consistency system — build a <a href="style-bible.html">style bible</a></span></li>
+            <li><input type="checkbox" class="path-check" id="pc-filmmaker-4" data-step="filmmaker-4" aria-label="Mark complete: Weeks 5 and 6, directing performance"><a href="craft/directing-performance.html">Weeks 5&ndash;6</a> <span class="path-note">directing performance</span></li>
+            <li><input type="checkbox" class="path-check" id="pc-filmmaker-5" data-step="filmmaker-5" aria-label="Mark complete: Week 7, first 60-second short"><a href="guides/first-short.html">Week 7</a> <span class="path-note">milestone: finished 60-second short</span></li>
+            <li><input type="checkbox" class="path-check" id="pc-filmmaker-6" data-step="filmmaker-6" aria-label="Mark complete: Week 8, grade and sound"><a href="craft/color-grading.html">Week 8</a> <span class="path-note">grade + <a href="craft/sound-music-audio.html">sound</a></span></li>
+            <li><input type="checkbox" class="path-check" id="pc-filmmaker-7" data-step="filmmaker-7" aria-label="Mark complete: Week 9, edit and repair"><a href="craft/editing-pipeline.html">Week 9</a> <span class="path-note">edit + <a href="doctor.html">failure doctor</a> repairs</span></li>
+            <li><input type="checkbox" class="path-check" id="pc-filmmaker-8" data-step="filmmaker-8" aria-label="Mark complete: Week 10, the 3-minute short"><a href="craft/longform-pipelines.html">Week 10</a> <span class="path-note">milestone: 3-minute short</span></li>
+            <li><input type="checkbox" class="path-check" id="pc-filmmaker-9" data-step="filmmaker-9" aria-label="Mark complete: Week 11, competition craft"><a href="higgsfield/competition-entry-craft.html">Week 11</a> <span class="path-note">competition-entry craft</span></li>
+            <li><input type="checkbox" class="path-check" id="pc-filmmaker-10" data-step="filmmaker-10" aria-label="Mark complete: Week 12, distribution and rights"><a href="distribution/release-paths.html">Week 12</a> <span class="path-note"><a href="legal/rights-and-disclosure.html">rights</a> + release plan</span></li>
+            <li><input type="checkbox" class="path-check" id="pc-filmmaker-11" data-step="filmmaker-11" aria-label="Mark complete: study the teardowns"><a href="teardown.html">Study</a> <span class="path-note">shot-by-shot teardowns, all four films</span></li>
+            <li><input type="checkbox" class="path-check" id="pc-filmmaker-12" data-step="filmmaker-12" aria-label="Mark complete: ship the entry"><a href="case-studies/entry-craft-teardowns.html">Ship</a> <span class="path-note">milestone: competition entry submitted</span></li>
+          </ol>
+        </article>
       </div>
     </section>
 
@@ -325,7 +347,7 @@ INDEX_TMPL = """<!DOCTYPE html>
       <div class="card calc-promo">
         <div>
           <h2 id="workshop-promo-h">Write a pro prompt in sixty seconds</h2>
-          <p>The prompt workshop fills any of the 31 guide templates against the model of your choice — with the anatomy notes that explain why each template works, and one-click copy.</p>
+          <p>The prompt workshop fills any of the 47 guide templates against the model of your choice — with the anatomy notes that explain why each template works, and one-click copy.</p>
         </div>
         <a class="btn" href="workshop.html">Open the workshop</a>
       </div>
@@ -830,6 +852,127 @@ SHOTS_TMPL = """<!DOCTYPE html>
 </html>
 """
 
+STYLEBIBLE_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Style-bible builder — AI Film Master Guide</title>
+  <meta name="description" content="Build a reusable STYLE LOCK block for your production — character, world, palette, lens, texture — the consistency system's core artifact. Save bibles in your browser and prepend them in the prompt workshop.">
+  {css}
+  <style>
+    .bible-text {{ max-height: 16rem; overflow: auto; }}
+    .sb-preview {{ white-space: pre-wrap; font-family: ui-monospace, monospace; font-size: 0.9rem; }}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        {sitenav}
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">&#8984;K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="sb-title">
+      <div class="container hero-inner">
+        <span class="hero-kicker">Tools</span>
+        <h1 id="sb-title">Style-bible <span class="accent">builder.</span></h1>
+        <p class="lede">Consistency is not a prompt trick — it is a document. Describe your character and world once, lock it into a STYLE LOCK block, and prepend that block verbatim to every generation in the production. Save named bibles in your browser; the <a href="workshop.html">prompt workshop</a> can prepend any saved bible automatically.</p>
+      </div>
+    </section>
+    <section class="container" aria-labelledby="sb-why-h">
+      <h2 id="sb-why-h">Why this works</h2>
+      <p>Long-form productions survive on reference discipline: one locked description of who and where, reused word-for-word so the model has no room to reinterpret between shots. The <a href="craft/character-consistency.html">character-consistency</a> and <a href="craft/longform-pipelines.html">long-form pipelines</a> chapters cover the system; this tool produces its core artifact. Rule of the lock: <strong>never paraphrase it</strong> — if the model drifts, regenerate the shot, don't rewrite the bible.</p>
+    </section>
+    <form class="container" id="sb-form" aria-labelledby="sb-form-h" onsubmit="return false;">
+      <h2 id="sb-form-h">Describe the production</h2>
+      <p class="empty-state" id="sb-error" hidden role="alert"></p>
+      <div class="card" style="margin-bottom:var(--space-5);">
+        <h3>Production</h3>
+        <div class="field">
+          <label for="sb-name">Production name (used when saving)</label>
+          <input class="input" type="text" id="sb-name" placeholder="e.g. Neon Harbor">
+        </div>
+      </div>
+      <div class="card" style="margin-bottom:var(--space-5);">
+        <h3>Character</h3>
+        <div class="placeholder-grid">
+          <div class="field"><label for="sb-char-name">Character name</label><input class="input" type="text" id="sb-char-name" placeholder="e.g. Mara Voss"></div>
+          <div class="field"><label for="sb-char-age">Age &amp; presentation</label><input class="input" type="text" id="sb-char-age" placeholder="e.g. mid-30s woman, tired, deliberate"></div>
+          <div class="field"><label for="sb-char-face">Face &amp; distinguishing features</label><input class="input" type="text" id="sb-char-face" placeholder="e.g. round face, freckles across the nose, scar through left brow"></div>
+          <div class="field"><label for="sb-char-hair">Hair</label><input class="input" type="text" id="sb-char-hair" placeholder="e.g. black bob, never covers the face"></div>
+          <div class="field"><label for="sb-char-wardrobe">Wardrobe / signature look</label><input class="input" type="text" id="sb-char-wardrobe" placeholder="e.g. oil-stained canvas jacket, brass diving watch"></div>
+          <div class="field"><label for="sb-char-build">Build &amp; movement quality</label><input class="input" type="text" id="sb-char-build" placeholder="e.g. wiry, moves like she is conserving energy"></div>
+        </div>
+      </div>
+      <div class="card" style="margin-bottom:var(--space-5);">
+        <h3>World &amp; style</h3>
+        <div class="placeholder-grid">
+          <div class="field"><label for="sb-world-era">Era &amp; setting</label><input class="input" type="text" id="sb-world-era" placeholder="e.g. 1987, rain-drowned harbor city"></div>
+          <div class="field"><label for="sb-world-palette">Color palette</label><input class="input" type="text" id="sb-world-palette" placeholder="e.g. sodium orange, wet asphalt black, signal green"></div>
+          <div class="field"><label for="sb-world-light">Light quality</label><input class="input" type="text" id="sb-world-light" placeholder="e.g. overcast daylight, practical neon at night"></div>
+          <div class="field"><label for="sb-world-lens">Lens &amp; camera language</label><input class="input" type="text" id="sb-world-lens" placeholder="e.g. 35mm, handheld, shallow focus on faces"></div>
+          <div class="field"><label for="sb-world-texture">Texture &amp; grain / finish</label><input class="input" type="text" id="sb-world-texture" placeholder="e.g. 16mm grain, halation on highlights"></div>
+          <div class="field"><label for="sb-world-mood">Mood keywords</label><input class="input" type="text" id="sb-world-mood" placeholder="e.g. weary, tender, salt-air melancholy"></div>
+        </div>
+      </div>
+      <div class="card" style="margin-bottom:var(--space-5);">
+        <h3>Recurring elements &amp; exclusions</h3>
+        <div class="field">
+          <label for="sb-recurring">Recurring elements (one per line)</label>
+          <textarea class="input" id="sb-recurring" rows="3" placeholder="e.g. the brass diving watch&#10;harbor fog in every exterior"></textarea>
+        </div>
+        <div class="field">
+          <label for="sb-never">Never do this (one per line)</label>
+          <textarea class="input" id="sb-never" rows="3" placeholder="e.g. clean modern skylines&#10;day-for-night grading"></textarea>
+        </div>
+      </div>
+    </form>
+    <section class="container" aria-labelledby="sb-out-h" style="margin-top:var(--space-6);">
+      <h2 id="sb-out-h">Your style lock</h2>
+      <div class="card">
+        <div class="prompt-preview sb-preview" id="sb-preview" aria-live="polite"></div>
+        <p class="empty-state" id="sb-preview-empty">Fill in the form above — the lock assembles itself here.</p>
+        <div class="btn-row" style="margin-top:var(--space-4);">
+          <button type="button" class="btn btn-gold" id="sb-copy" disabled>Copy style lock</button>
+          <button type="button" class="btn" id="sb-save" disabled>Save style bible</button>
+          <a class="btn btn-ghost" id="sb-open-workshop" href="workshop.html">Open in workshop &rarr;</a>
+        </div>
+      </div>
+    </section>
+    <section class="container" aria-labelledby="sb-saved-h" style="margin-top:var(--space-6);">
+      <h2 id="sb-saved-h">Saved bibles</h2>
+      <p class="section-lede">Stored in this browser only. The workshop's style-bible menu lists these automatically.</p>
+      <div id="sb-saved"></div>
+      <p class="empty-state" id="sb-saved-empty" hidden>No saved bibles yet.</p>
+      <div class="btn-row" style="margin-top:var(--space-4);">
+        <button type="button" class="btn btn-ghost" id="sb-export">Export JSON</button>
+        <label class="btn btn-ghost" for="sb-import-file" style="cursor:pointer;">Import JSON</label>
+        <input type="file" id="sb-import-file" accept="application/json" hidden>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer">{footer}</nav>
+    </div>
+  </footer>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/style-bible.js"></script>
+</body>
+</html>
+"""
+
 ANATOMY_TMPL = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -961,6 +1104,11 @@ WORKSHOP_TMPL = """<!DOCTYPE html>
           <div class="field">
             <label for="ws-model">Model</label>
             <select class="input" id="ws-model"></select>
+          </div>
+          <div class="field">
+            <label for="ws-stylebible">Style bible</label>
+            <select class="input" id="ws-stylebible"></select>
+            <p class="calc-note" style="margin-top:var(--space-2);">Optional: prepend a saved <a href="style-bible.html">style bible</a> to every prompt.</p>
           </div>
         </div>
         <p class="empty-state" id="ws-error" hidden></p>
@@ -1448,7 +1596,7 @@ TEARDOWN_TMPL = """<!DOCTYPE html>
       <div class="container hero-inner">
         <span class="hero-kicker">Learn to see</span>
         <h1 id="td-title">Shot-by-shot <span class="accent">teardowns.</span></h1>
-        <p class="lede">Three documented AI-film sequences, broken into shots: what each shot did, what worked, what broke, and the craft lesson. Prompt reconstructions are analytical — they teach the thinking, not the buttons.</p>
+        <p class="lede">Four documented AI-film sequences, broken into shots: what each shot did, what worked, what broke, and the craft lesson. Prompt reconstructions are analytical — they teach the thinking, not the buttons.</p>
       </div>
     </section>
     <section class="container" aria-labelledby="td-app-h" style="margin-bottom:var(--space-7);">
@@ -2377,6 +2525,10 @@ def main():
     (SITE / "shots.html").write_text(SHOTS_TMPL.format(
         css=css_links, sitenav=nav_html("", "shots.html"), footer=footer_html("")))
 
+    # Style-bible builder (consistency system's core artifact; workshop can prepend saved bibles)
+    (SITE / "style-bible.html").write_text(STYLEBIBLE_TMPL.format(
+        css=css_links, sitenav=nav_html("", "style-bible.html"), footer=footer_html("")))
+
     # Manifesto page
     (SITE / "manifesto.html").write_text(MANIFESTO_TMPL.format(
         css=css_links, sitenav=nav_html("", "manifesto.html"), footer=footer_html("")))
@@ -2399,8 +2551,8 @@ def main():
     # New pages discoverable through the search palette
     search_index.extend([
         {"url": "teardown.html", "title": "Shot-by-shot teardowns", "section": "Tools",
-         "headings": ["Passport Rush", "ONEIRIC", "The $100K cautionary case"],
-         "text": "Learn to see: shot-by-shot teardowns of Passport Rush, ONEIRIC, and the Grok Odyssey $100K winner — what each shot did, what worked, what broke, and the craft lesson, with labeled prompt reconstructions."},
+         "headings": ["Passport Rush", "ONEIRIC", "The $100K cautionary case", "Dear Upstairs Neighbors"],
+         "text": "Learn to see: shot-by-shot teardowns of Passport Rush, ONEIRIC, the Grok Odyssey $100K winner, and Google DeepMind's Dear Upstairs Neighbors — what each shot did, what worked, what broke, and the craft lesson, with labeled prompt reconstructions."},
         {"url": "manifesto.html", "title": "Manifesto", "section": "Meta",
          "headings": ["What this is", "What it costs", "Everything is sourced", "What it won't do", "How to use it", "Who it's for"],
          "text": "This is not a course: the guide's positioning — a living, free, sourced reference. What it costs, what it refuses to do (no hype, no tool worship, no secrets), and how to use it in 10 minutes or 10 hours."},
@@ -2431,6 +2583,9 @@ def main():
         {"url": "shots.html", "title": "Shot-list builder", "section": "Tools",
          "headings": ["Add a shot", "Your shot list", "Saved lists"],
          "text": "Shot-list builder: add shots with type, model, seconds, and takes; live per-shot and total costs from models.json with 5x and 20x envelopes; save lists in the browser, export JSON, and hand off to the budget optimizer."},
+        {"url": "style-bible.html", "title": "Style-bible builder", "section": "Tools",
+         "headings": ["Describe the production", "Your style lock", "Saved bibles"],
+         "text": "Style-bible builder: describe your character and world once, get a reusable STYLE LOCK block to prepend verbatim to every prompt. Save named bibles in the browser; the prompt workshop can prepend any saved bible automatically."},
         {"url": "anatomy.html", "title": "Anatomy of a prompt", "section": "Tools",
          "headings": ["Prompt anatomy explorer", "Your prompt"],
          "text": "Anatomy of a prompt: the nine-layer prompt anatomy as an interactive annotated example — hover any layer to learn what it does, why it matters, and what breaks without it. Plus a build-your-own mode that assembles the layers into a production-ready prompt."},

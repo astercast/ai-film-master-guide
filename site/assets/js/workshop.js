@@ -5,6 +5,7 @@
   "use strict";
 
   var SAVE_KEY = "afg-workshop-saves";
+  var BIBLE_KEY = "afg-style-bibles";
   var TOK = /\[([^\[\]]+)\]/g; /* [PLACEHOLDER] or [PLACEHOLDER: suggested default] */
 
   function esc(s) {
@@ -17,6 +18,7 @@
     track: document.getElementById("ws-track"),
     template: document.getElementById("ws-template"),
     model: document.getElementById("ws-model"),
+    styleBible: document.getElementById("ws-stylebible"),
     fields: document.getElementById("ws-fields"),
     fieldsEmpty: document.getElementById("ws-fields-empty"),
     why: document.getElementById("ws-why"),
@@ -67,10 +69,46 @@
   }
 
   function fillText(tpl, vals) {
-    return tpl.prompt.replace(TOK, function (match, raw) {
+    var body = tpl.prompt.replace(TOK, function (match, raw) {
       var v = (vals[raw] || "").trim();
       return v ? v : match;
     });
+    var bible = styleBibleText();
+    return bible ? bible + "\n\n" + body : body;
+  }
+
+  /* ---------- style bibles (from the style-bible builder) ---------- */
+
+  function loadBibles() {
+    try {
+      var raw = JSON.parse(localStorage.getItem(BIBLE_KEY) || "[]");
+      return Array.isArray(raw) ? raw : [];
+    } catch (e) { return []; }
+  }
+
+  function renderBibleSelect() {
+    if (!els.styleBible) return;
+    var bibles = loadBibles();
+    var keep = els.styleBible.value;
+    els.styleBible.innerHTML = "";
+    var none = document.createElement("option");
+    none.value = "";
+    none.textContent = bibles.length ? "No style bible" : "No style bible (build one)";
+    els.styleBible.appendChild(none);
+    bibles.forEach(function (b) {
+      var o = document.createElement("option");
+      o.value = b.id;
+      o.textContent = b.name;
+      els.styleBible.appendChild(o);
+    });
+    if (keep) els.styleBible.value = keep;
+  }
+
+  function styleBibleText() {
+    if (!els.styleBible || !els.styleBible.value) return "";
+    var found = "";
+    loadBibles().forEach(function (b) { if (b.id === els.styleBible.value) found = b.text || ""; });
+    return found;
   }
 
   /* ---------- render ---------- */
@@ -170,6 +208,11 @@
       last = m.index + m[0].length;
     }
     html += esc(tpl.prompt.slice(last));
+    var bible = styleBibleText();
+    if (bible) {
+      html = '<div class="bible-preview"><p class="bible-label">Style bible</p><p>' +
+        esc(bible) + "</p></div>" + html;
+    }
     els.preview.innerHTML = html;
     els.previewEmpty.hidden = true;
     var remaining = unfilled;
@@ -239,7 +282,8 @@
     els.saves.innerHTML = ordered.map(function (s) {
       return '<article class="card save-card" data-save="' + s.id + '">' +
         "<h3>" + esc(s.title) + "</h3>" +
-        '<p class="save-meta">' + esc(s.model) + " · saved " + esc(s.savedAt) + "</p>" +
+        '<p class="save-meta">' + esc(s.model) + " · saved " + esc(s.savedAt) +
+        (s.styleBibleName ? " · bible: " + esc(s.styleBibleName) : "") + "</p>" +
         '<p class="save-text">' + esc(s.prompt.length > 220 ? s.prompt.slice(0, 220) + "…" : s.prompt) + "</p>" +
         '<div class="btn-row save-actions">' + starButtons(s) +
         '<button type="button" class="btn btn-sm" data-load="' + s.id + '">Load</button>' +
@@ -261,6 +305,9 @@
       track: tpl.track,
       prompt: fillText(tpl, vals),
       vals: vals,
+      styleBibleId: els.styleBible ? els.styleBible.value : "",
+      styleBibleName: els.styleBible && els.styleBible.selectedIndex > 0
+        ? els.styleBible.options[els.styleBible.selectedIndex].textContent : "",
       rating: 0,
       savedAt: new Date().toISOString().slice(0, 10)
     });
@@ -281,6 +328,11 @@
     /* restore model by matching the stored option label prefix */
     for (var i = 0; i < els.model.options.length; i++) {
       if (els.model.options[i].textContent === s.model) { els.model.selectedIndex = i; break; }
+    }
+    /* restore style bible selection */
+    if (els.styleBible && s.styleBibleId) {
+      renderBibleSelect();
+      els.styleBible.value = s.styleBibleId;
     }
     /* restore placeholder values */
     els.fields.querySelectorAll("input[data-token]").forEach(function (inp) {
@@ -366,6 +418,13 @@
         }
       }
     } catch (e) { /* ignore */ }
+
+    renderBibleSelect();
+    if (els.styleBible) {
+      els.styleBible.addEventListener("change", renderPreview);
+      /* Bibles are managed on style-bible.html; refresh the menu when focused. */
+      els.styleBible.addEventListener("focus", renderBibleSelect);
+    }
 
     /* Deep link from the prompt gallery: ?save=<id> loads that saved prompt. */
     try {

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Style-bible builder — AI Film Master Guide</title>
+  <meta name="description" content="Build a reusable STYLE LOCK block for your production — character, world, palette, lens, texture — the consistency system's core artifact. Save bibles in your browser and prepend them in the prompt workshop.">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/docs.css">
+  <link rel="stylesheet" href="assets/css/print.css">
+  <style>
+    .bible-text { max-height: 16rem; overflow: auto; }
+    .sb-preview { white-space: pre-wrap; font-family: ui-monospace, monospace; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html">Guide</a>
+        <a href="skills.html">Skills</a>
+        <a href="workshop.html">Workshop</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="compare.html">Compare</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="teardown.html">Teardowns</a>
+        <a href="model-watch.html">Model watch</a>
+        <a href="doctor.html">Doctor</a>
+        <a href="shots.html">Shot list</a>
+        <a href="style-bible.html" aria-current="page">Style bible</a>
+        <a href="changelog.html">Changelog</a>
+        <a href="skill-spec.html">Skill spec</a>
+        <a href="api.html">API</a>
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">&#8984;K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="sb-title">
+      <div class="container hero-inner">
+        <span class="hero-kicker">Tools</span>
+        <h1 id="sb-title">Style-bible <span class="accent">builder.</span></h1>
+        <p class="lede">Consistency is not a prompt trick — it is a document. Describe your character and world once, lock it into a STYLE LOCK block, and prepend that block verbatim to every generation in the production. Save named bibles in your browser; the <a href="workshop.html">prompt workshop</a> can prepend any saved bible automatically.</p>
+      </div>
+    </section>
+    <section class="container" aria-labelledby="sb-why-h">
+      <h2 id="sb-why-h">Why this works</h2>
+      <p>Long-form productions survive on reference discipline: one locked description of who and where, reused word-for-word so the model has no room to reinterpret between shots. The <a href="craft/character-consistency.html">character-consistency</a> and <a href="craft/longform-pipelines.html">long-form pipelines</a> chapters cover the system; this tool produces its core artifact. Rule of the lock: <strong>never paraphrase it</strong> — if the model drifts, regenerate the shot, don't rewrite the bible.</p>
+    </section>
+    <form class="container" id="sb-form" aria-labelledby="sb-form-h" onsubmit="return false;">
+      <h2 id="sb-form-h">Describe the production</h2>
+      <p class="empty-state" id="sb-error" hidden role="alert"></p>
+      <div class="card" style="margin-bottom:var(--space-5);">
+        <h3>Production</h3>
+        <div class="field">
+          <label for="sb-name">Production name (used when saving)</label>
+          <input class="input" type="text" id="sb-name" placeholder="e.g. Neon Harbor">
+        </div>
+      </div>
+      <div class="card" style="margin-bottom:var(--space-5);">
+        <h3>Character</h3>
+        <div class="placeholder-grid">
+          <div class="field"><label for="sb-char-name">Character name</label><input class="input" type="text" id="sb-char-name" placeholder="e.g. Mara Voss"></div>
+          <div class="field"><label for="sb-char-age">Age &amp; presentation</label><input class="input" type="text" id="sb-char-age" placeholder="e.g. mid-30s woman, tired, deliberate"></div>
+          <div class="field"><label for="sb-char-face">Face &amp; distinguishing features</label><input class="input" type="text" id="sb-char-face" placeholder="e.g. round face, freckles across the nose, scar through left brow"></div>
+          <div class="field"><label for="sb-char-hair">Hair</label><input class="input" type="text" id="sb-char-hair" placeholder="e.g. black bob, never covers the face"></div>
+          <div class="field"><label for="sb-char-wardrobe">Wardrobe / signature look</label><input class="input" type="text" id="sb-char-wardrobe" placeholder="e.g. oil-stained canvas jacket, brass diving watch"></div>
+          <div class="field"><label for="sb-char-build">Build &amp; movement quality</label><input class="input" type="text" id="sb-char-build" placeholder="e.g. wiry, moves like she is conserving energy"></div>
+        </div>
+      </div>
+      <div class="card" style="margin-bottom:var(--space-5);">
+        <h3>World &amp; style</h3>
+        <div class="placeholder-grid">
+          <div class="field"><label for="sb-world-era">Era &amp; setting</label><input class="input" type="text" id="sb-world-era" placeholder="e.g. 1987, rain-drowned harbor city"></div>
+          <div class="field"><label for="sb-world-palette">Color palette</label><input class="input" type="text" id="sb-world-palette" placeholder="e.g. sodium orange, wet asphalt black, signal green"></div>
+          <div class="field"><label for="sb-world-light">Light quality</label><input class="input" type="text" id="sb-world-light" placeholder="e.g. overcast daylight, practical neon at night"></div>
+          <div class="field"><label for="sb-world-lens">Lens &amp; camera language</label><input class="input" type="text" id="sb-world-lens" placeholder="e.g. 35mm, handheld, shallow focus on faces"></div>
+          <div class="field"><label for="sb-world-texture">Texture &amp; grain / finish</label><input class="input" type="text" id="sb-world-texture" placeholder="e.g. 16mm grain, halation on highlights"></div>
+          <div class="field"><label for="sb-world-mood">Mood keywords</label><input class="input" type="text" id="sb-world-mood" placeholder="e.g. weary, tender, salt-air melancholy"></div>
+        </div>
+      </div>
+      <div class="card" style="margin-bottom:var(--space-5);">
+        <h3>Recurring elements &amp; exclusions</h3>
+        <div class="field">
+          <label for="sb-recurring">Recurring elements (one per line)</label>
+          <textarea class="input" id="sb-recurring" rows="3" placeholder="e.g. the brass diving watch&#10;harbor fog in every exterior"></textarea>
+        </div>
+        <div class="field">
+          <label for="sb-never">Never do this (one per line)</label>
+          <textarea class="input" id="sb-never" rows="3" placeholder="e.g. clean modern skylines&#10;day-for-night grading"></textarea>
+        </div>
+      </div>
+    </form>
+    <section class="container" aria-labelledby="sb-out-h" style="margin-top:var(--space-6);">
+      <h2 id="sb-out-h">Your style lock</h2>
+      <div class="card">
+        <div class="prompt-preview sb-preview" id="sb-preview" aria-live="polite"></div>
+        <p class="empty-state" id="sb-preview-empty">Fill in the form above — the lock assembles itself here.</p>
+        <div class="btn-row" style="margin-top:var(--space-4);">
+          <button type="button" class="btn btn-gold" id="sb-copy" disabled>Copy style lock</button>
+          <button type="button" class="btn" id="sb-save" disabled>Save style bible</button>
+          <a class="btn btn-ghost" id="sb-open-workshop" href="workshop.html">Open in workshop &rarr;</a>
+        </div>
+      </div>
+    </section>
+    <section class="container" aria-labelledby="sb-saved-h" style="margin-top:var(--space-6);">
+      <h2 id="sb-saved-h">Saved bibles</h2>
+      <p class="section-lede">Stored in this browser only. The workshop's style-bible menu lists these automatically.</p>
+      <div id="sb-saved"></div>
+      <p class="empty-state" id="sb-saved-empty" hidden>No saved bibles yet.</p>
+      <div class="btn-row" style="margin-top:var(--space-4);">
+        <button type="button" class="btn btn-ghost" id="sb-export">Export JSON</button>
+        <label class="btn btn-ghost" for="sb-import-file" style="cursor:pointer;">Import JSON</label>
+        <input type="file" id="sb-import-file" accept="application/json" hidden>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer"><a href="index.html">Guide</a><a href="skills.html">Skills</a><a href="workshop.html">Workshop</a><a href="quiz.html">Quiz</a><a href="compare.html">Compare</a><a href="gallery.html">Gallery</a><a href="teardown.html">Teardowns</a><a href="model-watch.html">Model watch</a><a href="checks/">Knowledge checks</a><a href="budget.html">Budget</a><a href="optimizer.html">Optimizer</a><a href="shots.html">Shot list</a><a href="style-bible.html">Style bible</a><a href="doctor.html">Doctor</a><a href="anatomy.html">Anatomy</a><a href="manifesto.html">Manifesto</a><a href="craft-not-buttons.html">Craft, not buttons</a><a href="recipes.html">Recipes</a><a href="field-guides/">Field guides</a><a href="changelog.html">Changelog</a><a href="skill-spec.html">Skill spec</a><a href="api.html">API</a></nav>
+    </div>
+  </footer>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/style-bible.js"></script>
+</body>
+</html>

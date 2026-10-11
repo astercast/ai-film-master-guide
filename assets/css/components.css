@@ -341,3 +341,20 @@
 @media (prefers-reduced-motion: reduce) {
   .doc-symptom { transition: none; }
 }
+
+/* Style-bible prepend block in the workshop preview */
+.bible-preview {
+  border-left: 3px solid var(--gold);
+  padding: var(--space-2) var(--space-3);
+  margin-bottom: var(--space-3);
+  background: color-mix(in srgb, var(--gold) 6%, transparent);
+}
+.bible-preview p { white-space: pre-wrap; font-family: ui-monospace, monospace; font-size: 0.85rem; margin: 0; }
+.bible-preview p.bible-label {
+  font-family: var(--font-sans, inherit);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  margin-bottom: var(--space-1);
+}
