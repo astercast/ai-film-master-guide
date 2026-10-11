@@ -1,13 +1,13 @@
 ---
-name: direct-dream-machine-ray-3-2
-description: Use Dream Machine / Ray 3.2 well: costs, strengths, weaknesses, best use.
+name: direct-luma-app-ray-3-2
+description: Use Luma App / Ray 3.2 well: costs, strengths, weaknesses, best use.
 ---
 
-# Direct with Dream Machine / Ray 3.2
+# Direct with Luma App / Ray 3.2
 
 ## Use when
 
-You are generating on Dream Machine / Ray 3.2 (Luma, video). Best use: Action/sports/physics, fluid dynamics, motion blur.
+You are generating on Luma App / Ray 3.2 (Luma, video). Best use: Action/sports/physics, fluid dynamics, motion blur.
 
 ## Inputs
 
@@ -34,4 +34,4 @@ You are generating on Dream Machine / Ray 3.2 (Luma, video). Best use: Action/sp
 ## Pitfalls
 
 - Weakness to respect: Higgsfield credit cost not captured — verify availability live.
-- Costs in models.json were read 2026-10-10 — verify live before spending real money.
+- Costs in models.json were refreshed 2026-10-11 — verify live before spending real money.

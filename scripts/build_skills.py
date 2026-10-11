@@ -157,6 +157,8 @@ def camera_skills(moves):
 def model_skills(models):
     out = []
     for m in models["models"]:
+        if m.get("status") == "discontinued":
+            continue  # no "direct with" skill for dead models; history lives in model-watch
         mid = slug(m["model"])
         out.append({
             "id": f"direct-{mid}",
@@ -181,7 +183,7 @@ def model_skills(models):
             "apis": ["api/v1/models.json"],
             "pitfalls": [
                 f"Weakness to respect: {m['weakness']}.",
-                "Costs in models.json were read 2026-10-10 — verify live before spending real money.",
+                "Costs in models.json were refreshed 2026-10-11 — verify live before spending real money.",
             ],
         })
     return out
@@ -570,7 +572,7 @@ HAND = [
       desc="Pick between native-audio models for talking heads and dialogue scenes.",
       use="Any scene with synced dialogue.",
       inputs=["Dialogue length", "Need for multi-shot coverage", "Budget per second"],
-      steps=["Shortlist native-audio models: Seedance 2.0/2.5, Veo 3.1/3.0, Kling 3.0 (sound variants), Sora 2.",
+      steps=["Shortlist native-audio models: Seedance 2.0/2.5, Veo 3.1/3.0, Kling 3.0 (sound variants), Grok Imagine Video 1.5 (Sora discontinued Mar 2026).",
              "Compare per-second cost at your target resolution (models.json).",
              "Dialogue quoted + attributed in-prompt beats post lip-sync for short lines; post tools win for long scenes.",
              "Test one line on two models before committing the scene."],

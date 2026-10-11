@@ -34,4 +34,4 @@ You are generating on Veo 3.1 (Google DeepMind, video). Best use: Controlled nar
 ## Pitfalls
 
 - Weakness to respect: Most expensive per second; 4-8s clips; fine text issues.
-- Costs in models.json were read 2026-10-10 — verify live before spending real money.
+- Costs in models.json were refreshed 2026-10-11 — verify live before spending real money.

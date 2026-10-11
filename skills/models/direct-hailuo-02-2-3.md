@@ -34,4 +34,4 @@ You are generating on Hailuo 02 / 2.3 (MiniMax, video). Best use: Emotional clos
 ## Pitfalls
 
 - Weakness to respect: 6s/10s only; silent variants; not for multi-shot.
-- Costs in models.json were read 2026-10-10 — verify live before spending real money.
+- Costs in models.json were refreshed 2026-10-11 — verify live before spending real money.

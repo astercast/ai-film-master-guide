@@ -34,4 +34,4 @@ You are generating on Veo 3.1 Fast / Veo 3 (Google DeepMind, video). Best use: B
 ## Pitfalls
 
 - Weakness to respect: Lower fidelity than full 3.1.
-- Costs in models.json were read 2026-10-10 — verify live before spending real money.
+- Costs in models.json were refreshed 2026-10-11 — verify live before spending real money.

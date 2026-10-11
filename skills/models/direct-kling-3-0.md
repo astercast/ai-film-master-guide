@@ -34,4 +34,4 @@ You are generating on Kling 3.0 (Kuaishou, video). Best use: Motion-heavy cinema
 ## Pitfalls
 
 - Weakness to respect: Subtle emotional faces trail Hailuo; fingers/camera drift without control; probabilistic.
-- Costs in models.json were read 2026-10-10 — verify live before spending real money.
+- Costs in models.json were refreshed 2026-10-11 — verify live before spending real money.

@@ -34,4 +34,4 @@ You are generating on Soul Cinema (Higgsfield, image). Best use: Cinematic keyfr
 ## Pitfalls
 
 - Weakness to respect: Preview status at time of research; image only.
-- Costs in models.json were read 2026-10-10 — verify live before spending real money.
+- Costs in models.json were refreshed 2026-10-11 — verify live before spending real money.

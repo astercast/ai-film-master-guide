@@ -134,7 +134,7 @@
   fetch("models.json")
     .then(function (r) { if (!r.ok) throw new Error("models failed"); return r.json(); })
     .then(function (d) {
-      var models = ((d && d.models) || []).filter(function (m) { return m.type === "video"; });
+      var models = ((d && d.models) || []).filter(function (m) { return m.type === "video" && m.status !== "discontinued"; });
       if (!models.length) { fail("No video models found in models.json."); return; }
       videoModels = models.map(function (m) { return { m: m, cps: costPerSec(m) }; });
       unpriced = videoModels.filter(function (x) { return x.cps === null; }).map(function (x) { return x.m.model; });

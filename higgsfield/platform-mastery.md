@@ -7,7 +7,7 @@ Higgsfield is model-agnostic — it hosts many engines under one credit pool. Th
 | Need | Model | Tier |
 |---|---|---|
 | Top-tier cinematic video + native audio | Kling 3.0 | Premium |
-| Epic scale / spectacle | Sora 2 | Premium |
+| Epic scale / spectacle | Kling 3.0 | Premium |
 | Nature / landscapes + reference images | Veo 3.1 | Premium |
 | Artistic / stylized video | Wan 2.6 | Mid |
 | Fast iteration | Seedance 2.0 Pro | Mid |

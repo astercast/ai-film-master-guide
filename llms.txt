@@ -21,6 +21,8 @@ after editing chapters. Open `site/index.html`.
 - `site/anatomy.html` — anatomy of a prompt: interactive nine-layer annotated example + build-your-own mode
 - `site/workshop.html` — interactive prompt workshop (template × model × track, save/rate)
 - `site/quiz.html` — model-picker quiz: 5 questions → ranked top-3 from `models.json` with cost math, one-click handoff to the workshop
+- `site/model-watch.html` — model freshness page: all 21 models with last-verified dates, status (active/reported/discontinued), what changed, sources; "verify live before spending" banner; generated from `models.json` at build time
+- `site/checks/` — knowledge checks: 6 scenario-based quizzes (5 questions each) for prompt engineering, directing performance, character consistency, long-form pipelines, sound/music/audio, rights & disclosure; answers explain why, progress in localStorage (`assets/js/checks.js`, data in `scripts/checks.json`)
 - `site/changelog.html` — dated changelog rebuilt from git history
 - `site/skill-spec.html` — the skill frontmatter+sections format as a spec
 - `site/search-index.json` — client-side search index (Ctrl+K palette)
@@ -47,7 +49,7 @@ Base: `api/v1/` — rebuild with `python3 scripts/build_api.py` (reads the
 research artifacts; outputs committed).
 
 - `api/v1/index.json` — manifest: version, endpoints, observation date, provenance
-- `api/v1/models.json` — 18 models: platform, type, credit costs, strengths, weaknesses, best use; explicit `unverified` list
+- `api/v1/models.json` — 21 models: platform, type, credit costs, strengths, weaknesses, best use, plus per-model `last_verified`, `status` (active/reported/discontinued), `what_changed`, `sources`; explicit `unverified` list. Refreshed 2026-10-11: Sora discontinued, Kling 4.0 announced, MiniMax H3 / Midjourney V1 Video / Seedance 3.0 (reported) added. See `api/v1/model-updates.md`
 - `api/v1/prompt-templates.json` — 47 templates: 15 core (`t1`–`t15`), 8 animated (`a1`–`a8`), 8 photorealistic (`p1`–`p8`), 5 performance (`f1`–`f5`), 4 audio (`s1`–`s4`), 4 longform (`l1`–`l4`), 3 repair (`r1`–`r3`); anatomy, use, models
 - `api/v1/camera-movements.json` — 22-move camera lexicon with prompt phrasing and use cases
 - `api/v1/checklists.json` — pre-production, per-shot, continuity, audio, delivery checklists

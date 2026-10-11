@@ -49,6 +49,7 @@ NAV_ITEMS = [
     ("workshop.html", "Workshop"),
     ("quiz.html", "Quiz"),
     ("teardown.html", "Teardowns"),
+    ("model-watch.html", "Model watch"),
     ("changelog.html", "Changelog"),
     ("skill-spec.html", "Skill spec"),
     ("api.html", "API"),
@@ -60,6 +61,8 @@ FOOTER_ITEMS = [
     ("workshop.html", "Workshop"),
     ("quiz.html", "Quiz"),
     ("teardown.html", "Teardowns"),
+    ("model-watch.html", "Model watch"),
+    ("checks/", "Knowledge checks"),
     ("budget.html", "Budget"),
     ("optimizer.html", "Optimizer"),
     ("anatomy.html", "Anatomy"),
@@ -116,7 +119,7 @@ PAGE_TMPL = """<!DOCTYPE html>
       <p class="crumb"><a href="../index.html">Guide</a> / {section_name}</p>
       <p class="read-time">{read_min} min read · {words} words</p>
       <article class="prose">{body}</article>
-      <nav class="prevnext" aria-label="Next and previous chapters">{prevnext}</nav>
+      <nav class="prevnext" aria-label="Next and previous chapters">{prevnext}</nav>{check}
     </main>
     <aside class="docs-toc" aria-label="On this page"><p class="toc-h">On this page</p>{toc}</aside>
   </div>
@@ -824,7 +827,7 @@ QUIZ_TMPL = """<!DOCTYPE html>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Model-picker quiz — AI Film Master Guide</title>
-  <meta name="description" content="Five questions, one ranked shortlist: the model-picker quiz scores all 18 video models in the guide's API against your use case, budget, and audio needs — with live cost math.">
+  <meta name="description" content="Five questions, one ranked shortlist: the model-picker quiz scores all 17 active video models in the guide's API against your use case, budget, and audio needs — with live cost math.">
   {css}
 </head>
 <body>
@@ -1423,7 +1426,8 @@ def build_field_guides(css_links):
         f"<td>{html.escape(str(m.get('type', '')))}</td>"
         f"<td>{html.escape(str(m.get('best_use', '')))}</td>"
         f"<td>{html.escape(str(m.get('est_cost_credits', '—')))}</td>"
-        f"<td>{html.escape(str(m.get('weakness', '')))}</td></tr>"
+        f"<td>{html.escape(str(m.get('weakness', '')))}</td>"
+        f"<td>{html.escape(str(m.get('status', 'active')))}</td></tr>"
         for m in models)
     cost_basis = html.escape(str(models_doc.get("cost_basis", "")))
     unverified = ", ".join(models_doc.get("unverified", []))
@@ -1577,6 +1581,318 @@ def build_recipes(css_links):
     return recipes
 
 
+MODELWATCH_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Model watch — AI Film Master Guide</title>
+  <meta name="description" content="Every video and image model in the guide, with last-verified dates, version status, and what changed. Generated from models.json so it never drifts.">
+  {css}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        {sitenav}
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">&#8984;K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="mw-title">
+      <div class="container hero-inner">
+        <span class="hero-kicker">Trust, dated</span>
+        <h1 id="mw-title">Model <span class="accent">watch.</span></h1>
+        <p class="lede">Every model in the guide's API — what it is, what it costs, what changed, and when we last checked. Generated from <code>models.json</code> at build time, so this page can never drift from the data.</p>
+      </div>
+    </section>
+    <section class="container" aria-label="Model status" style="margin-bottom:var(--space-7);">
+      <div class="verify-banner" role="note" aria-label="Verify live before spending">
+        <p><strong>Verify live before spending.</strong> Model versions, prices, and availability move monthly — sometimes weekly. Every card below shows its last-verified date. If a card is older than your shoot budget, re-check the vendor's pricing page first.</p>
+      </div>
+      <div class="mw-filters" role="group" aria-label="Filter by model status">
+        <button type="button" class="btn btn-sm" data-mw-filter="all" aria-pressed="true">All ({total})</button>
+        <button type="button" class="btn btn-sm" data-mw-filter="active" aria-pressed="false">Active ({n_active})</button>
+        <button type="button" class="btn btn-sm" data-mw-filter="reported" aria-pressed="false">Reported ({n_reported})</button>
+        <button type="button" class="btn btn-sm" data-mw-filter="discontinued" aria-pressed="false">Discontinued ({n_discontinued})</button>
+      </div>
+      <p class="card-meta">Last full refresh: {refresh_date} · {total} models · <a href="../api/v1/model-updates.md">changelog</a> · <a href="../api/v1/models.json">raw JSON</a></p>
+      <div class="mw-grid" id="mw-grid">
+{cards}
+      </div>
+      <noscript><p>Filtering needs JavaScript; all {total} models are listed above regardless.</p></noscript>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer">{footer}</nav>
+    </div>
+  </footer>
+  <button type="button" class="back-to-top" aria-label="Back to top">&uarr;</button>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
+    <div class="palette-box">
+      <input id="palette-input" type="search" placeholder="Search chapters, prompts, models&hellip;" autocomplete="off" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="assets/js/palette.js"></script>
+  <script>
+  (function () {{
+    var btns = Array.prototype.slice.call(document.querySelectorAll("[data-mw-filter]"));
+    var cards = Array.prototype.slice.call(document.querySelectorAll("#mw-grid .mw-card"));
+    btns.forEach(function (b) {{
+      b.addEventListener("click", function () {{
+        var f = b.getAttribute("data-mw-filter");
+        btns.forEach(function (x) {{ x.setAttribute("aria-pressed", x === b ? "true" : "false"); }});
+        cards.forEach(function (c) {{
+          c.hidden = (f !== "all" && c.getAttribute("data-status") !== f);
+        }});
+      }});
+    }});
+  }})();
+  </script>
+</body>
+</html>
+"""
+
+def build_model_watch(css_links):
+    """Model freshness page, generated from api/v1/models.json."""
+    doc = json.loads((ROOT / "api" / "v1" / "models.json").read_text())
+    models = doc["models"]
+
+    def card(m):
+        status = m.get("status", "active")
+        badge = {"active": "Active", "reported": "Reported — unconfirmed",
+                 "discontinued": "Discontinued"}.get(status, status)
+        sources = "".join(
+            f'<li><a href="{html.escape(u)}" rel="noopener">{html.escape(u.split("/")[2])}</a></li>'
+            for u in m.get("sources", []) if u.startswith("http"))
+        sources_html = f"<ul>{sources}</ul>" if sources else "<p>Vendor page — verify live.</p>"
+        return (
+            f'<article class="mw-card{" is-discontinued" if status == "discontinued" else ""}" data-status="{status}">\n'
+            f'  <span class="mw-badge mw-badge-{status}">{badge}</span>\n'
+            f'  <h3>{html.escape(m["model"])}</h3>\n'
+            f'  <p class="mw-platform">{html.escape(str(m.get("platform", "")))} · {html.escape(str(m.get("type", "")))}</p>\n'
+            f'  <dl>\n'
+            f'    <dt>Best use</dt><dd>{html.escape(str(m.get("best_use", "")))}</dd>\n'
+            f'    <dt>Cost</dt><dd>{html.escape(str(m.get("est_cost_credits", "")))}</dd>\n'
+            f'    <dt>Strength</dt><dd>{html.escape(str(m.get("strength", "")))}</dd>\n'
+            f'    <dt>Weakness</dt><dd>{html.escape(str(m.get("weakness", "")))}</dd>\n'
+            f'  </dl>\n'
+            f'  <p class="mw-changed"><strong>What changed:</strong> {html.escape(str(m.get("what_changed", "")))}</p>\n'
+            f'  <div class="mw-sources"><strong>Sources</strong>{sources_html}</div>\n'
+            f'  <p class="mw-verified">last verified {html.escape(str(m.get("last_verified", "—")))}</p>\n'
+            f'</article>'
+        )
+
+    counts = {"active": 0, "reported": 0, "discontinued": 0}
+    for m in models:
+        counts[m.get("status", "active")] = counts.get(m.get("status", "active"), 0) + 1
+    (SITE / "model-watch.html").write_text(MODELWATCH_TMPL.format(
+        css=css_links, sitenav=nav_html("", "model-watch.html"), footer=footer_html(""),
+        cards="\n".join(card(m) for m in models),
+        total=len(models), n_active=counts.get("active", 0),
+        n_reported=counts.get("reported", 0), n_discontinued=counts.get("discontinued", 0),
+        refresh_date="2026-10-11"))
+
+
+CHECK_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{title} — knowledge check — AI Film Master Guide</title>
+  <meta name="description" content="Test your understanding of the {title} chapter: scenario questions with explained answers. Progress saves in your browser.">
+  {css}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="../index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        {sitenav}
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">&#8984;K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="check-title">
+      <div class="container hero-inner">
+        <span class="hero-kicker">Knowledge check</span>
+        <h1 id="check-title">{title}</h1>
+        <p class="lede">{n} scenario questions drawn from the chapter. These test understanding, not trivia — every answer explains <em>why</em>. Your score saves in this browser.</p>
+        <p><a class="btn btn-ghost" href="../{chapter_url}">&larr; Back to the chapter</a></p>
+      </div>
+    </section>
+    <section class="container check" data-check="{slug}" aria-label="Quiz questions" style="margin-bottom:var(--space-7);">
+      <form id="check-form" novalidate>
+        {questions}
+        <div class="check-actions">
+          <button type="submit" class="btn btn-gold">Check answers</button>
+          <button type="reset" class="btn btn-ghost">Clear</button>
+        </div>
+      </form>
+      <div class="check-result" role="status" hidden></div>
+      <noscript><p>These checks need JavaScript to score. The chapter itself is fully readable without it.</p></noscript>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer">{footer}</nav>
+    </div>
+  </footer>
+  <button type="button" class="back-to-top" aria-label="Back to top">&uarr;</button>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
+    <div class="palette-box">
+      <input id="palette-input" type="search" placeholder="Search chapters, prompts, models&hellip;" autocomplete="off" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="../assets/js/palette.js"></script>
+  <script src="../assets/js/checks.js"></script>
+</body>
+</html>
+"""
+
+CHECKS_INDEX_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Knowledge checks — AI Film Master Guide</title>
+  <meta name="description" content="Scenario-based knowledge checks for the guide's core craft chapters. Test understanding, get explained answers, track progress.">
+  {css}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="../index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        {sitenav}
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">&#8984;K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="checks-title">
+      <div class="container hero-inner">
+        <span class="hero-kicker">The course-killer</span>
+        <h1 id="checks-title">Knowledge <span class="accent">checks.</span></h1>
+        <p class="lede">Six chapters, {total_q} scenario questions. Not trivia — situations a director actually faces, with every answer explaining why. Pass these and the chapters are yours.</p>
+        <p class="card-meta" id="checks-summary" role="status"></p>
+      </div>
+    </section>
+    <section class="container" aria-label="All knowledge checks" style="margin-bottom:var(--space-7);">
+      <div class="checks-grid" id="checks-progress">
+{cards}
+      </div>
+      <noscript><p>Progress tracking needs JavaScript; the checks themselves are linked above regardless.</p></noscript>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer">{footer}</nav>
+    </div>
+  </footer>
+  <button type="button" class="back-to-top" aria-label="Back to top">&uarr;</button>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
+    <div class="palette-box">
+      <input id="palette-input" type="search" placeholder="Search chapters, prompts, models&hellip;" autocomplete="off" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="../assets/js/palette.js"></script>
+  <script src="../assets/js/checks.js"></script>
+</body>
+</html>
+"""
+
+def build_checks(css_links):
+    """Knowledge checks: one page per chapter + index, from scripts/checks.json."""
+    data = json.loads((ROOT / "scripts" / "checks.json").read_text())
+    checks = data["checks"]
+    out_dir = SITE / "checks"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    css_sub = css_links.replace('href="assets/', 'href="../assets/')
+    cards = []
+    for c in checks:
+        slug = c["slug"]
+        qs = []
+        for i, q in enumerate(c["questions"]):
+            opts = "".join(
+                f'<label><input type="radio" name="q{i}" value="{j}" required> '
+                f'<span>{html.escape(opt)}</span></label>'
+                for j, opt in enumerate(q["options"]))
+            qs.append(
+                f'<fieldset data-answer="{q["answer"]}" data-why="{html.escape(q["why"], quote=True)}">\n'
+                f'  <legend>{i + 1}. {html.escape(q["q"])}</legend>\n'
+                f'  {opts}\n'
+                f'  <p class="check-feedback" hidden></p>\n'
+                f'</fieldset>')
+        (out_dir / f"{slug}.html").write_text(CHECK_TMPL.format(
+            title=html.escape(c["title"]), slug=slug, n=len(c["questions"]),
+            chapter_url=c["chapter_url"], questions="\n".join(qs),
+            css=css_sub, sitenav=nav_html("../", ""), footer=footer_html("../")))
+        cards.append(
+            f'<article class="card chapter-card" data-check-card="{slug}">\n'
+            f'  <h3><a href="{slug}.html">{html.escape(c["title"])}</a></h3>\n'
+            f'  <p>{len(c["questions"])} scenario questions · answers explain why</p>\n'
+            f'  <p><a href="../{c["chapter_url"]}">Read the chapter first &rarr;</a></p>\n'
+            f'  <span class="check-status">Not taken</span>\n'
+            f'</article>')
+    total_q = sum(len(c["questions"]) for c in checks)
+    css_idx = css_links.replace('href="assets/', 'href="../assets/')
+    (out_dir / "index.html").write_text(CHECKS_INDEX_TMPL.format(
+        css=css_idx, sitenav=nav_html("../", ""), footer=footer_html("../"),
+        cards="\n".join(cards), total_q=total_q))
+    return checks
+
+
+CHECK_SLUGS = {
+    ("higgsfield", "prompt-engineering"): "prompt-engineering",
+    ("craft", "directing-performance"): "directing-performance",
+    ("craft", "character-consistency"): "character-consistency",
+    ("craft", "longform-pipelines"): "longform-pipelines",
+    ("craft", "sound-music-audio"): "sound-music-audio",
+    ("legal", "rights-and-disclosure"): "rights-and-disclosure",
+}
+
+def check_html(section_id, slug):
+    """'Test yourself' callout for chapters that have a knowledge check."""
+    cslug = CHECK_SLUGS.get((section_id, slug))
+    if not cslug:
+        return ""
+    return (
+        '<aside class="check-callout" aria-label="Knowledge check">'
+        '<p><strong>Test yourself:</strong> '
+        f'<a href="../checks/{cslug}.html">take the {cslug.replace("-", " ")} knowledge check</a> '
+        "(5 scenario questions, answers explain why).</p></aside>"
+    )
+
+
 def main():
     shutil.rmtree(SITE, ignore_errors=True)
     chapters = {}  # section_id -> [(slug, {title, desc, path})]
@@ -1615,7 +1931,7 @@ def main():
             title=c["title"], desc=c["desc"].replace('"', "&quot;"),
             css=css_links.replace('href="assets/', 'href="../assets/'),
             nav=nav, section_name=section_name, body=body, toc=toc,
-            prevnext=prev_l + next_l, read_min=c["read_min"],
+            prevnext=prev_l + next_l, check=check_html(section_id, slug), read_min=c["read_min"],
             words=f"{c['words']:,}",
             sitenav=nav_html("../", ""), footer=footer_html("../"),
         )
@@ -1699,6 +2015,12 @@ def main():
     # Shoot recipes (generated from skills/recipes/*.md at build time)
     build_recipes(css_links)
 
+    # Model freshness page (generated from api/v1/models.json)
+    build_model_watch(css_links)
+
+    # Knowledge checks (generated from scripts/checks.json)
+    wave7_checks = build_checks(css_links)
+
     # Vendor-neutral craft page (static, repo root)
     shutil.copy(ROOT / "craft-not-buttons.html", SITE / "craft-not-buttons.html")
 
@@ -1715,7 +2037,7 @@ def main():
          "text": "Printable one-page field guides generated from the guide's own data: model quick-reference, prompt anatomy cheat sheet, consistency and dead-eyes checklist."},
         {"url": "quiz.html", "title": "Model-picker quiz", "section": "Tools",
          "headings": ["What's the job?", "Budget tier?", "What look?", "Native audio needed?", "Your footage plan"],
-         "text": "Five questions, one ranked shortlist: the model-picker quiz scores all 18 video models against your use case, budget, and audio needs, with live cost math and a one-click handoff to the prompt workshop."},
+         "text": "Five questions, one ranked shortlist: the model-picker quiz scores all 17 active video models against your use case, budget, and audio needs, with live cost math and a one-click handoff to the prompt workshop."},
         {"url": "workshop.html", "title": "Prompt workshop", "section": "Tools",
          "headings": ["Pick your ingredients", "Fill the placeholders", "Copy your prompt", "Your saved prompts"],
          "text": "Interactive prompt workshop: pick a template, model, and track, fill the placeholders, and copy a production-ready prompt. Every template carries anatomy notes explaining why it works. Save and rate your own prompts in the browser."},
@@ -1743,6 +2065,19 @@ def main():
         {"url": "recipes.html", "title": "Shoot recipes", "section": "Tools",
          "headings": ["Steps", "Inputs", "Worked example", "Pitfalls"],
          "text": "Twelve repeatable shoot recipes from the guide's skill library as visual cards: dialogue scenes, trailers, fight scenes, horror shorts, montages, music videos and more — steps, inputs, worked examples, pitfalls, generated from the skill files at build time."},
+    ])
+    search_index.extend([
+        {"url": "model-watch.html", "title": "Model watch", "section": "Tools",
+         "headings": ["Verify live before spending", "Active", "Reported", "Discontinued"],
+         "text": "Every model in the guide with last-verified dates, version status, and what changed: Sora discontinued, Kling 4.0 announced, MiniMax H3 and Midjourney V1 Video added, Veo 3.1 current with no Veo 4. Generated from models.json."},
+        {"url": "checks/", "title": "Knowledge checks", "section": "Tools",
+         "headings": ["Prompt engineering", "Directing performance", "Character consistency",
+                      "Long-form pipelines", "Sound, music and audio", "Rights and disclosure"],
+         "text": "Scenario-based knowledge checks for six core craft chapters: 30 questions testing real directing judgment, every answer explained, progress saved in the browser."},
+    ] + [
+        {"url": f"checks/{c['slug']}.html", "title": c["title"] + " — knowledge check", "section": "Tools",
+         "headings": [], "text": f"Knowledge check for the {c['title']} chapter: scenario questions with explained answers."}
+        for c in wave7_checks
     ])
     (SITE / "search-index.json").write_text(json.dumps(search_index, ensure_ascii=False))
 

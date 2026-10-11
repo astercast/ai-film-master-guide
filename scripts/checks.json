@@ -1,0 +1,376 @@
+{
+  "checks": [
+    {
+      "chapter_url": "higgsfield/prompt-engineering.html",
+      "questions": [
+        {
+          "answer": 1,
+          "options": [
+            "Add more adjectives to the subject description",
+            "Add the exclusion block: morphing faces, extra limbs, melting hands, warping architecture, flicker",
+            "Switch to a higher resolution",
+            "Generate three variations and pick the best"
+          ],
+          "q": "Your first generation comes back with a morphing face and melting hands. Which prompt layer was missing?",
+          "why": "The exclusion block names what breaks cinematic output — morphing faces, extra limbs, melting hands, warping architecture, flicker. The chapter says to put it in every prompt, not just the risky ones."
+        },
+        {
+          "answer": 2,
+          "options": [
+            "Re-describe the face in even more detail for safety",
+            "Drop the Soul ID and use a text description instead",
+            "Describe only what changes: wardrobe, setting, action, expression, camera, light, style",
+            "Generate the face separately and composite it in post"
+          ],
+          "q": "You're directing a Soul ID character and re-describing her face in detail in every shot's prompt. What's wrong?",
+          "why": "The Soul ID prompting rule: when a Soul ID character is active, do not re-describe the face or core features — the Soul ID handles that. Describe only what changes."
+        },
+        {
+          "answer": 0,
+          "options": [
+            "Split it: one believable action per clip",
+            "Add the exclusion block and try again",
+            "Use a longer duration so all four actions fit",
+            "Describe the actions faster with shorter sentences"
+          ],
+          "q": "One 5-second clip asks the character to enter the room, sit down, pick up the phone, and answer it. What breaks, and what's the fix?",
+          "why": "Per-shot discipline: one shot = one fully self-contained prompt, one action per clip. Four actions in five seconds guarantees none of them land."
+        },
+        {
+          "answer": 3,
+          "options": [
+            "Text-to-video, because it gives the model more creative freedom",
+            "Text-to-video, because start frames slow you down",
+            "Either — the chapter says they're equivalent for control",
+            "Image-to-video: generate the still, approve it, then animate"
+          ],
+          "q": "You need precise control over a product shot. Which does the chapter recommend?",
+          "why": "Image-to-video (start frame first) beats text-to-video for control. Generate the still, approve it, then animate."
+        },
+        {
+          "answer": 1,
+          "options": [
+            "\"Zoom in\" is fine — the models understand it",
+            "Use motivated, physical phrasing: \"the camera slowly dollies toward the subject with smooth stabilized movement\" — every move needs a purpose",
+            "Stack three camera moves so one of them lands",
+            "Avoid camera language entirely and let the model decide"
+          ],
+          "q": "Your camera direction just says \"zoom in.\" What does the chapter recommend instead?",
+          "why": "\"Slow dolly push-in\" beats \"zoom in.\" Rule: every movement needs a purpose — ask what the move reveals or withholds."
+        }
+      ],
+      "slug": "prompt-engineering",
+      "title": "Prompt engineering"
+    },
+    {
+      "chapter_url": "craft/directing-performance.html",
+      "questions": [
+        {
+          "answer": 2,
+          "options": [
+            "Increase the lighting contrast on the face",
+            "Add \"cinematic, emotional\" to the style layer",
+            "Give the eyes a job: name an eyeline target per beat — eyes move between targets, never stare into the middle distance",
+            "Use a tighter close-up so the eyes are bigger in frame"
+          ],
+          "q": "Your AI actor's performance feels dead — glassy, unfocused eyes. What's the first fix?",
+          "why": "The chapter's highest-leverage note: dead, glassy eyes are never fixed with lighting — they're fixed by giving the eyes a job. Name the eyeline target per beat; if a performance feels dead, check the eyes first."
+        },
+        {
+          "answer": 0,
+          "options": [
+            "Break the turn into separate shots — the turn happens in the cut; one feeling per shot",
+            "Write a longer, more emotional prompt so the arc fits in the clip",
+            "Use the exclusion block to remove the flat expression",
+            "Generate at higher resolution for more facial detail"
+          ],
+          "q": "A single 6-second clip needs the character to go from hopeful to devastated. How do you direct it?",
+          "why": "One feeling per shot: AI can't play an arc inside a single clip. It can hold one tactic for 4–8 seconds. Break emotional turns into separate shots."
+        },
+        {
+          "answer": 3,
+          "options": [
+            "Make the speaker's prompt longer and more detailed",
+            "Add dialogue audio in the same generation",
+            "Switch to a more expensive model tier",
+            "Cut to the listener: the listener's eyes do half the acting — AI renders listening better than complex feeling"
+          ],
+          "q": "A dialogue scene feels flat even though the speaker's lines are well prompted. What's the chapter's fix?",
+          "why": "In dialogue coverage, the listener's eyes do half the acting. The reaction shot is your best friend: AI renders listening better than it renders complex feeling."
+        },
+        {
+          "answer": 1,
+          "options": [
+            "Use them for every emotional beat — faces are the model's strength",
+            "Ration them: close-ups magnify every flaw, so spend them where they count",
+            "Avoid them entirely; only use wide shots",
+            "Use them only for dialogue, never for silent moments"
+          ],
+          "q": "How should you deploy close-ups in an AI-directed scene?",
+          "why": "Micro-acting is the weakest link in every current model. Spend close-ups at emotional peaks — that's where the audience looks hardest and where the model fails most visibly. Wides and mediums carry the rest."
+        },
+        {
+          "answer": 2,
+          "options": [
+            "Generate the whole scene in one long take",
+            "Describe the full emotional arc in a single prompt and let the model pace it",
+            "Direct in passes: rehearsal is drafts — generate, judge, adjust the tactic, re-shoot the beat",
+            "Lock the first acceptable take and never iterate"
+          ],
+          "q": "Your dialogue scene isn't landing after the first generation. What's the directing discipline?",
+          "why": "Rehearsal is drafts. AI directing is iterative: generate the beat, read it like a director, adjust one thing (the tactic, the eyeline, the framing), and re-shoot."
+        }
+      ],
+      "slug": "directing-performance",
+      "title": "Directing performance"
+    },
+    {
+      "chapter_url": "craft/character-consistency.html",
+      "questions": [
+        {
+          "answer": 0,
+          "options": [
+            "Trained identity (Soul ID) > character-sheet reference > per-generation reference > text description alone",
+            "Text description alone > per-generation reference > character sheet > trained identity",
+            "Per-generation reference > trained identity > text description > character sheet",
+            "They're all equally reliable if the prompt is detailed"
+          ],
+          "q": "Rank the identity stack from most to least reliable for holding a face across 50 shots.",
+          "why": "The ranked identity stack: trained identity (Soul ID) is the gold standard; then character sheet as reference; then per-generation reference upload; text description alone is weakest — never rely on prose to hold a face across 50 shots."
+        },
+        {
+          "answer": 2,
+          "options": [
+            "Describe the jacket slightly differently each time for variety",
+            "Let the model improvise wardrobe from the character's personality",
+            "Write the wardrobe once in exact language and paste it verbatim into every prompt",
+            "Fix wardrobe drift in the grade"
+          ],
+          "q": "Your character's jacket changes shade between shots. What's the fix?",
+          "why": "Wardrobe lock: write the wardrobe once, in exact language, and paste it verbatim into every prompt. Props get the same treatment."
+        },
+        {
+          "answer": 1,
+          "options": [
+            "Generate a fresh start frame for visual variety",
+            "Start from the last frame of the previous approved clip — never fabricate a start frame",
+            "Start from the first frame of the scene for consistency",
+            "Use text-to-video so the model invents the transition"
+          ],
+          "q": "Shot 12 must continue shot 11's action seamlessly. What starts the generation?",
+          "why": "Last-frame chaining: every clip starts from the last frame of the previous approved clip. Never fabricate a start frame."
+        },
+        {
+          "answer": 3,
+          "options": [
+            "Chain it anyway — minor drift is invisible in motion",
+            "Fix it in the edit with a quick cutaway",
+            "Keep it for B-roll",
+            "Reject it: failed clips don't chain — they get re-prompted"
+          ],
+          "q": "A clip comes back with the face drifting and the light flipped from the scene's lock. What do you do with it?",
+          "why": "Rejection rules: a clip fails if the face drifts, wardrobe changes, the light flips, or the camera moves without motivation. Failed clips don't chain — they get re-prompted."
+        },
+        {
+          "answer": 0,
+          "options": [
+            "Generate and approve a master still of each location first; every shot starts from it or references it",
+            "Describe the location fresh in each prompt for richness",
+            "Rely on the model's memory of earlier clips",
+            "Shoot all location shots in one batch and hope"
+          ],
+          "q": "The location looks different in every shot of your film. What's the chapter's system?",
+          "why": "World consistency: generate and approve a master still of each location first. Every shot in that location starts from it or references it. Same for lighting continuity — lock time of day and light direction per scene."
+        }
+      ],
+      "slug": "character-consistency",
+      "title": "Character consistency"
+    },
+    {
+      "chapter_url": "craft/longform-pipelines.html",
+      "questions": [
+        {
+          "answer": 2,
+          "options": [
+            "It's realistic — the models are that reliable now",
+            "Double it to be safe",
+            "It's a fiction: the documented regime is 5–20x regeneration overhead — tens of thousands of assets per finished minute",
+            "It only applies to dialogue-heavy films"
+          ],
+          "q": "Your budget spreadsheet for a 20-minute short assumes every second generated exactly once (the \"clean pass\"). What's wrong?",
+          "why": "The clean pass is a fiction in practice. The documented regime is 5–20x regeneration overhead — the chapter cites 41,118 assets for 20 finished minutes."
+        },
+        {
+          "answer": 1,
+          "options": [
+            "Sequence assembly — parallel teams are always better",
+            "Scene-by-scene — one director, chained folders, tight control (the ONEIRIC pattern)",
+            "Generate the whole film as one prompt",
+            "Whichever is cheaper per credit"
+          ],
+          "q": "You're a solo creator making a 20-minute short with a single strong vision. Which build architecture fits?",
+          "why": "Two documented architectures: scene-by-scene (ONEIRIC's video-chained per-scene folders — tight directorial control, fits solo/small teams) vs. sequence assembly (parallel teams with version logs — throughput at scale, fits crews)."
+        },
+        {
+          "answer": 0,
+          "options": [
+            "Native audio only — it's the simplest",
+            "Human-recorded dialogue, then AI-converted (the Koosha 75-minute-feature pattern) or decoupled TTS — dialogue at scale needs a controllable pipeline",
+            "Generate dialogue natively and accept whatever comes out",
+            "Skip dialogue entirely; use title cards"
+          ],
+          "q": "You're planning a 75-minute feature with heavy dialogue. Which dialogue architecture does the chapter document for this scale?",
+          "why": "Three architectures: native audio (Seedance), human-recorded then AI-converted (Koosha's 75-min feature), decoupled TTS. At feature scale with heavy dialogue, you need a controllable pipeline — native generation doesn't survive 75 minutes of lip-sync."
+        },
+        {
+          "answer": 3,
+          "options": [
+            "~$38 — one clean pass at $1.90/min",
+            "It can't be estimated",
+            "~$1,900 flat regardless of overhead",
+            "~$190–$750 at 5–20x overhead (clean pass ~$1.90/min is the fiction) — and verify live, rates move monthly"
+          ],
+          "q": "What's the chapter's documented cost envelope for a 20-minute film on Kling 2.5 Turbo?",
+          "why": "Clean $1.90/finished minute is the fiction; the real envelope is ~$190–$750 at 5–20x overhead. And rates move monthly — verify live before budgeting."
+        },
+        {
+          "answer": 2,
+          "options": [
+            "Nothing — long-form is a solved problem now",
+            "Only the cost",
+            "The subtle-acting ceiling, cumulative drift across scenes, and asset counts that break undisciplined pipelines",
+            "Only render times"
+          ],
+          "q": "What does the chapter list as the honest limits — what still breaks at 20+ minutes?",
+          "why": "Honest limits: the subtle-acting ceiling (AI still can't do restrained interior performance), cumulative drift over long runtimes, and the asset-count reality that breaks undisciplined pipelines."
+        }
+      ],
+      "slug": "longform-pipelines",
+      "title": "Long-form pipelines"
+    },
+    {
+      "chapter_url": "craft/sound-music-audio.html",
+      "questions": [
+        {
+          "answer": 1,
+          "options": [
+            "Keep it — native audio is the final mix",
+            "Strip the dialogue and build it deliberately on its own track; keep native audio only as ambient texture",
+            "Delete all native audio on principle",
+            "Use it only if the lip-sync is perfect"
+          ],
+          "q": "Your video model generated a clip with native audio including dialogue. What do you do with the dialogue?",
+          "why": "Treat native audio as raw material, never as the mix: keep it for ambient texture (room tone, wind, footsteps); strip dialogue, music, anything prominent — those get built deliberately on their own tracks."
+        },
+        {
+          "q": "You're casting a synthetic voice for a character across 40 shots. What's the chapter's discipline?",
+          "options": [
+            "Use a different voice per scene for variety",
+            "Write a Voice Bible for the character and choose the dialogue route per scene — native or decoupled, never mixed mid-scene",
+            "Generate the voice fresh each shot; the model remembers the character",
+            "Use whatever default voice the TTS platform suggests"
+          ],
+          "answer": 1,
+          "why": "The audio checklist: a Voice Bible written and referenced for every speaking character, and the dialogue route chosen per scene — native or decoupled, never mixed mid-scene."
+        },
+        {
+          "answer": 2,
+          "options": [
+            "You own the copyright because you paid for the subscription",
+            "The platform's terms transfer full copyright to you automatically",
+            "No copyright vests without sufficient human authorship (US Copyright Office position) — a commercial license is use rights, not copyright, and distributors want chain of title",
+            "Copyright doesn't matter for festival films"
+          ],
+          "q": "You scored your commercial film with AI music from a paid Suno account. A distributor asks for proof of rights / chain of title. What's the trap?",
+          "why": "A commercial license is not copyright. No copyright without sufficient human authorship — the platform's license gives you a contractual right to use the output, but distributors, insurers, and festivals ask for chain of title, and an AI track produces a thin file."
+        },
+        {
+          "answer": 3,
+          "options": [
+            "Studio monitors only — that's the professional standard",
+            "Your phone only — that's what audiences use",
+            "Skip QC; the mix is fine if it sounds fine once",
+            "Three-device listen plus the silence test — the chapter's mix QC"
+          ],
+          "q": "Your mix sounds great on studio monitors but muddy on a phone. What QC does the chapter require?",
+          "why": "Mix QC: the three-device listen (monitors, headphones, phone/small speaker) plus the silence test. If it only works on one device, the mix isn't done."
+        },
+        {
+          "answer": 1,
+          "options": [
+            "Louder is always better",
+            "Balance dialogue first, then effects, then music — and leave headroom; loudness is a delivery spec, not a creative choice",
+            "Normalize everything to the same level",
+            "Mix in mono only"
+          ],
+          "q": "What's the chapter's mix-balance discipline?",
+          "why": "Dialogue-first balance: dialogue leads, effects support, music beds underneath — with headroom preserved. Loudness targets are delivery specs to hit at export, not creative choices to chase in the mix."
+        }
+      ],
+      "slug": "sound-music-audio",
+      "title": "Sound, music & audio"
+    },
+    {
+      "chapter_url": "legal/rights-and-disclosure.html",
+      "questions": [
+        {
+          "answer": 0,
+          "options": [
+            "Set the \"Altered content\" / \"AI use\" toggle in YouTube Studio — skipping risks platform labeling, removal, or YPP suspension",
+            "Nothing — YouTube doesn't require disclosure",
+            "Only disclose if someone asks in the comments",
+            "Delete the video and re-upload until it passes"
+          ],
+          "q": "You upload a photorealistic AI-generated short to YouTube. What must you do?",
+          "why": "YouTube requires the \"Altered content\"/\"AI use\" toggle for realistic AI-generated or meaningfully altered content. If skipped, the platform labels it itself — or removes it, or suspends YPP."
+        },
+        {
+          "answer": 2,
+          "options": [
+            "Yes — AI performances are eligible like any other",
+            "Only if the film discloses AI use in the credits",
+            "No — the 99th Academy Awards rules (May 2026) require acting nominations to be performances demonstrably performed by humans with consent",
+            "Only for the Best Picture category"
+          ],
+          "q": "You want an acting nomination for your fully synthetic performer at the 99th Academy Awards. What do the rules say?",
+          "why": "The 99th Academy Awards rules (approved May 2026): AI tools 'neither help nor harm' a nomination — but acting nominations require performances demonstrably performed by humans with consent."
+        },
+        {
+          "answer": 1,
+          "options": [
+            "The NO FAKES Act — it's federal law",
+            "Nothing yet — the NO FAKES Act is proposed, not law. Do not present it as law",
+            "The TAKE IT DOWN Act — it covers all digital replicas",
+            "State likeness statutes always apply nationwide"
+          ],
+          "q": "Someone claims a federal law already gives them rights against non-consensual digital replicas of themselves. True?",
+          "why": "The NO FAKES Act is proposed — not law. Do not present it as law. (The TAKE IT DOWN Act, signed 2025, is narrower: notice-and-removal for non-consensual intimate imagery.)"
+        },
+        {
+          "answer": 3,
+          "options": [
+            "No disclosure needed — it's just an ad",
+            "A handshake agreement with the actor's estate",
+            "Only platform disclosure on X",
+            "Conspicuous disclosure under NY General Business Law § 396-b(3) — $1,000 first violation, $5,000 each subsequent (confirm with counsel)"
+          ],
+          "q": "Your New York ad campaign uses a synthetic performer. What's legally required?",
+          "why": "NY General Business Law § 396-b(3): ads containing a synthetic performer (with actual knowledge) must conspicuously disclose it. Penalties: $1,000 first, $5,000 subsequent. Penalty figures are single-source — confirm with counsel."
+        },
+        {
+          "answer": 0,
+          "options": [
+            "Publish freely — EU law doesn't apply to video",
+            "Disclose AI generation: the EU AI Act's Article 50 transparency duty applies to AI-generated media that could pass for real, regardless of platform policy",
+            "Only disclose if the platform asks",
+            "Geo-block the EU and ignore it"
+          ],
+          "q": "You publish AI-generated video that could pass for real to a European audience. What does the chapter say about the EU AI Act?",
+          "why": "EU AI Act Article 50: legal transparency duty for anyone publishing AI-generated images, audio, or video that could pass for real — applies regardless of platform policy. Deployer obligations took effect August 2026. (Single-source summary — verify against the official EU text.)"
+        }
+      ],
+      "slug": "rights-and-disclosure",
+      "title": "Rights & disclosure"
+    }
+  ]
+}

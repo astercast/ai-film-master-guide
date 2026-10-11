@@ -34,4 +34,4 @@ You are generating on Wan 2.6 (Alibaba, video). Best use: Camera-first directing
 ## Pitfalls
 
 - Weakness to respect: No native audio (second pass / LipSync Studio needed).
-- Costs in models.json were read 2026-10-10 — verify live before spending real money.
+- Costs in models.json were refreshed 2026-10-11 — verify live before spending real money.

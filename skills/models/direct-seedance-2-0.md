@@ -34,4 +34,4 @@ You are generating on Seedance 2.0 (ByteDance, video). Best use: Multi-shot narr
 ## Pitfalls
 
 - Weakness to respect: Facial micro-acting weakest; drift after chained gens; tiny detail degrades; negation summons.
-- Costs in models.json were read 2026-10-10 — verify live before spending real money.
+- Costs in models.json were refreshed 2026-10-11 — verify live before spending real money.

@@ -34,4 +34,4 @@ You are generating on Seedance 2.5 (ByteDance, video). Best use: Hero multi-shot
 ## Pitfalls
 
 - Weakness to respect: Premium credit cost; 30-day unlimited promos are business-plan only.
-- Costs in models.json were read 2026-10-10 — verify live before spending real money.
+- Costs in models.json were refreshed 2026-10-11 — verify live before spending real money.

@@ -45,7 +45,7 @@ A 3–5 minute festival film at ~4 seconds per shot is 45–75 shots. At draft-t
 | Veo 3.1 Fast | ~$0.40–0.50 | Native audio; cheapest premium-quality route |
 | Runway Gen-4.5 | ~$1.44–1.50 | Fastest generation |
 | Higgsfield (Seedance 2.5) | ~$2.48 | Aggregates many models |
-| Sora 2 | ~$0.40–2.00 | Longest clips (up to 25s) |
+| Sora 2 | discontinued Mar 2026 | Do not plan new work on it |
 
 ## Rules of thumb from working filmmakers
 

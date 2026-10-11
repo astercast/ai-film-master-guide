@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Long-form pipelines — knowledge check — AI Film Master Guide</title>
+  <meta name="description" content="Test your understanding of the Long-form pipelines chapter: scenario questions with explained answers. Progress saves in your browser.">
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/docs.css">
+  <link rel="stylesheet" href="../assets/css/print.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="../index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="../index.html">Guide</a>
+        <a href="../skills.html">Skills</a>
+        <a href="../workshop.html">Workshop</a>
+        <a href="../quiz.html">Quiz</a>
+        <a href="../teardown.html">Teardowns</a>
+        <a href="../model-watch.html">Model watch</a>
+        <a href="../changelog.html">Changelog</a>
+        <a href="../skill-spec.html">Skill spec</a>
+        <a href="../api.html">API</a>
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">&#8984;K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="check-title">
+      <div class="container hero-inner">
+        <span class="hero-kicker">Knowledge check</span>
+        <h1 id="check-title">Long-form pipelines</h1>
+        <p class="lede">5 scenario questions drawn from the chapter. These test understanding, not trivia — every answer explains <em>why</em>. Your score saves in this browser.</p>
+        <p><a class="btn btn-ghost" href="../craft/longform-pipelines.html">&larr; Back to the chapter</a></p>
+      </div>
+    </section>
+    <section class="container check" data-check="longform-pipelines" aria-label="Quiz questions" style="margin-bottom:var(--space-7);">
+      <form id="check-form" novalidate>
+        <fieldset data-answer="2" data-why="The clean pass is a fiction in practice. The documented regime is 5–20x regeneration overhead — the chapter cites 41,118 assets for 20 finished minutes.">
+  <legend>1. Your budget spreadsheet for a 20-minute short assumes every second generated exactly once (the &quot;clean pass&quot;). What&#x27;s wrong?</legend>
+  <label><input type="radio" name="q0" value="0" required> <span>It&#x27;s realistic — the models are that reliable now</span></label><label><input type="radio" name="q0" value="1" required> <span>Double it to be safe</span></label><label><input type="radio" name="q0" value="2" required> <span>It&#x27;s a fiction: the documented regime is 5–20x regeneration overhead — tens of thousands of assets per finished minute</span></label><label><input type="radio" name="q0" value="3" required> <span>It only applies to dialogue-heavy films</span></label>
+  <p class="check-feedback" hidden></p>
+</fieldset>
+<fieldset data-answer="1" data-why="Two documented architectures: scene-by-scene (ONEIRIC&#x27;s video-chained per-scene folders — tight directorial control, fits solo/small teams) vs. sequence assembly (parallel teams with version logs — throughput at scale, fits crews).">
+  <legend>2. You&#x27;re a solo creator making a 20-minute short with a single strong vision. Which build architecture fits?</legend>
+  <label><input type="radio" name="q1" value="0" required> <span>Sequence assembly — parallel teams are always better</span></label><label><input type="radio" name="q1" value="1" required> <span>Scene-by-scene — one director, chained folders, tight control (the ONEIRIC pattern)</span></label><label><input type="radio" name="q1" value="2" required> <span>Generate the whole film as one prompt</span></label><label><input type="radio" name="q1" value="3" required> <span>Whichever is cheaper per credit</span></label>
+  <p class="check-feedback" hidden></p>
+</fieldset>
+<fieldset data-answer="0" data-why="Three architectures: native audio (Seedance), human-recorded then AI-converted (Koosha&#x27;s 75-min feature), decoupled TTS. At feature scale with heavy dialogue, you need a controllable pipeline — native generation doesn&#x27;t survive 75 minutes of lip-sync.">
+  <legend>3. You&#x27;re planning a 75-minute feature with heavy dialogue. Which dialogue architecture does the chapter document for this scale?</legend>
+  <label><input type="radio" name="q2" value="0" required> <span>Native audio only — it&#x27;s the simplest</span></label><label><input type="radio" name="q2" value="1" required> <span>Human-recorded dialogue, then AI-converted (the Koosha 75-minute-feature pattern) or decoupled TTS — dialogue at scale needs a controllable pipeline</span></label><label><input type="radio" name="q2" value="2" required> <span>Generate dialogue natively and accept whatever comes out</span></label><label><input type="radio" name="q2" value="3" required> <span>Skip dialogue entirely; use title cards</span></label>
+  <p class="check-feedback" hidden></p>
+</fieldset>
+<fieldset data-answer="3" data-why="Clean $1.90/finished minute is the fiction; the real envelope is ~$190–$750 at 5–20x overhead. And rates move monthly — verify live before budgeting.">
+  <legend>4. What&#x27;s the chapter&#x27;s documented cost envelope for a 20-minute film on Kling 2.5 Turbo?</legend>
+  <label><input type="radio" name="q3" value="0" required> <span>~$38 — one clean pass at $1.90/min</span></label><label><input type="radio" name="q3" value="1" required> <span>It can&#x27;t be estimated</span></label><label><input type="radio" name="q3" value="2" required> <span>~$1,900 flat regardless of overhead</span></label><label><input type="radio" name="q3" value="3" required> <span>~$190–$750 at 5–20x overhead (clean pass ~$1.90/min is the fiction) — and verify live, rates move monthly</span></label>
+  <p class="check-feedback" hidden></p>
+</fieldset>
+<fieldset data-answer="2" data-why="Honest limits: the subtle-acting ceiling (AI still can&#x27;t do restrained interior performance), cumulative drift over long runtimes, and the asset-count reality that breaks undisciplined pipelines.">
+  <legend>5. What does the chapter list as the honest limits — what still breaks at 20+ minutes?</legend>
+  <label><input type="radio" name="q4" value="0" required> <span>Nothing — long-form is a solved problem now</span></label><label><input type="radio" name="q4" value="1" required> <span>Only the cost</span></label><label><input type="radio" name="q4" value="2" required> <span>The subtle-acting ceiling, cumulative drift across scenes, and asset counts that break undisciplined pipelines</span></label><label><input type="radio" name="q4" value="3" required> <span>Only render times</span></label>
+  <p class="check-feedback" hidden></p>
+</fieldset>
+        <div class="check-actions">
+          <button type="submit" class="btn btn-gold">Check answers</button>
+          <button type="reset" class="btn btn-ghost">Clear</button>
+        </div>
+      </form>
+      <div class="check-result" role="status" hidden></div>
+      <noscript><p>These checks need JavaScript to score. The chapter itself is fully readable without it.</p></noscript>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer"><a href="../index.html">Guide</a><a href="../skills.html">Skills</a><a href="../workshop.html">Workshop</a><a href="../quiz.html">Quiz</a><a href="../teardown.html">Teardowns</a><a href="../model-watch.html">Model watch</a><a href="../checks/">Knowledge checks</a><a href="../budget.html">Budget</a><a href="../optimizer.html">Optimizer</a><a href="../anatomy.html">Anatomy</a><a href="../manifesto.html">Manifesto</a><a href="../craft-not-buttons.html">Craft, not buttons</a><a href="../recipes.html">Recipes</a><a href="../field-guides/">Field guides</a><a href="../changelog.html">Changelog</a><a href="../skill-spec.html">Skill spec</a><a href="../api.html">API</a></nav>
+    </div>
+  </footer>
+  <button type="button" class="back-to-top" aria-label="Back to top">&uarr;</button>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
+    <div class="palette-box">
+      <input id="palette-input" type="search" placeholder="Search chapters, prompts, models&hellip;" autocomplete="off" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="../assets/js/palette.js"></script>
+  <script src="../assets/js/checks.js"></script>
+</body>
+</html>

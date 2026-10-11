@@ -26,6 +26,7 @@
         <a href="../workshop.html">Workshop</a>
         <a href="../quiz.html">Quiz</a>
         <a href="../teardown.html">Teardowns</a>
+        <a href="../model-watch.html">Model watch</a>
         <a href="../changelog.html">Changelog</a>
         <a href="../skill-spec.html">Skill spec</a>
         <a href="../api.html">API</a>
@@ -48,7 +49,7 @@
     <main id="main" class="docs-main">
       <div class="progress-bar" aria-hidden="true"><span></span></div>
       <p class="crumb"><a href="../index.html">Guide</a> / Platforms</p>
-      <p class="read-time">2 min read · 423 words</p>
+      <p class="read-time">2 min read · 413 words</p>
       <article class="prose"><h1 id="ai-video-platform-field-guide">AI Video Platform Field Guide</h1>
 <p>Every major platform, honestly assessed. Strengths, weaknesses, costs, and what each is actually best at.</p>
 <h2 id="the-field">The field</h2>
@@ -56,24 +57,23 @@
 <tr><td><strong>Higgsfield</strong></td><td>All-in-one: many engines, Soul ID, Cinema Studio presets, camera moves</td><td>Preset UI hides raw controls; shared credit pool obscures per-model price</td><td>Basic 120 / Pro 600 / Max 1,800 credits/mo; tiers Free–Premium (10+ credits)</td><td>Filmmaking workflow, character-led series</td></tr>
 <tr><td><strong>Kling</strong> (direct)</td><td>Photoreal physics (water, fire, smoke); end-frame pinning; multi-reference <code>elements</code></td><td>Prompt engineering required, no hand-holding</td><td>~0.6 units/sec 720p standard (~$0.084/sec); 0.8 pro; 3.0 native 4K</td><td>Hero shots when you want raw control</td></tr>
 <tr><td><strong>Runway</strong> (Gen-3/Gen-4)</td><td>Reference-image start + Motion Brush for exact motion control; human-centric scenes</td><td>Weaker without a strong start image</td><td>Paid tiers, full commercial rights</td><td>Ads, human scenes, precise motion</td></tr>
-<tr><td><strong>Sora</strong></td><td>Epic scale, spectacle, narrative interpretation (prompts as mini-screenplays)</td><td>Access/cost; less steerable moment-to-moment</td><td>Premium tier</td><td>Vast scenes, ambitious concepts</td></tr>
+<tr><td><strong>Sora</strong> (discontinued Mar 2026)</td><td>—</td><td>—</td><td>—</td><td>Migrate to Kling 3.0 or Veo 3.1</td></tr>
 <tr><td><strong>Luma Dream Machine</strong></td><td>Cinematic experimentation, smooth motion</td><td>Consistency weaker than leaders</td><td>Varies</td><td>Dreamlike / experimental passages</td></tr>
 <tr><td><strong>Pika</strong></td><td>Lip-sync, character animation, playful effects; most permissive creatively</td><td>Less &quot;cinematic&quot; out of the box</td><td>Subscription</td><td>Dialogue, social, stylized work</td></tr>
 <tr><td><strong>Hailuo / MiniMax</strong></td><td>VFX and fluid motion</td><td>Prompt nuance</td><td>Mid tier</td><td>Action, fluid dynamics</td></tr>
 <tr><td><strong>Veo</strong></td><td>Nature/landscapes, reference-image fidelity, long coherent passages</td><td>Premium cost</td><td>Premium tier</td><td>Landscapes, documentary feel</td></tr>
 <tr><td><strong>Wan</strong></td><td>Artistic / stylized video</td><td>Less photoreal</td><td>Mid tier</td><td>Stylized sequences</td></tr>
-<tr><td><strong>Seedance</strong></td><td>Fast iteration speed</td><td>Top-end polish trails Kling/Sora</td><td>Mid tier</td><td>Drafting, volume work</td></tr>
+<tr><td><strong>Seedance</strong></td><td>Fast iteration speed</td><td>Top-end polish trails Kling</td><td>Mid tier</td><td>Drafting, volume work</td></tr>
 </tbody></table>
 <h2 id="platform-specific-prompting-notes">Platform-specific prompting notes</h2>
 <ul>
-<li><strong>Sora:</strong> write prompts like mini-screenplays — scene direction, character actions, environment in sequential order.</li>
+<li><strong>Sora (discontinued Mar 2026):</strong> historical note only — prompts-as-mini-screenplays worked for vast scenes; migrate that thinking to Kling 3.0 or Veo 3.1.</li>
 <li><strong>Runway:</strong> start with a strong reference image, then Motion Brush for movement. More predictable than text-only.</li>
 <li><strong>Kling:</strong> keep prompts concise and direct; elaborate prose underperforms. Use motion templates.</li>
 <li><strong>Pika:</strong> stack creative effects; for lip-sync feed clean audio with minimal background noise.</li>
 </ul>
 <h2 id="ownership-and-rights-verify-before-commercial-use">Ownership and rights (verify before commercial use)</h2>
 <ul>
-<li>Sora: users own generations (Opt-out of training data use on Enterprise).</li>
 <li>Runway: full commercial rights on paid tiers.</li>
 <li>Kling: commercial rights on Pro and above.</li>
 <li>Pika: full ownership on paid tiers; free tier restricts commercial use.</li>
@@ -94,7 +94,7 @@
   <footer class="site-footer">
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
-      <nav aria-label="Footer"><a href="../index.html">Guide</a><a href="../skills.html">Skills</a><a href="../workshop.html">Workshop</a><a href="../quiz.html">Quiz</a><a href="../teardown.html">Teardowns</a><a href="../budget.html">Budget</a><a href="../optimizer.html">Optimizer</a><a href="../anatomy.html">Anatomy</a><a href="../manifesto.html">Manifesto</a><a href="../craft-not-buttons.html">Craft, not buttons</a><a href="../recipes.html">Recipes</a><a href="../field-guides/">Field guides</a><a href="../changelog.html">Changelog</a><a href="../skill-spec.html">Skill spec</a><a href="../api.html">API</a></nav>
+      <nav aria-label="Footer"><a href="../index.html">Guide</a><a href="../skills.html">Skills</a><a href="../workshop.html">Workshop</a><a href="../quiz.html">Quiz</a><a href="../teardown.html">Teardowns</a><a href="../model-watch.html">Model watch</a><a href="../checks/">Knowledge checks</a><a href="../budget.html">Budget</a><a href="../optimizer.html">Optimizer</a><a href="../anatomy.html">Anatomy</a><a href="../manifesto.html">Manifesto</a><a href="../craft-not-buttons.html">Craft, not buttons</a><a href="../recipes.html">Recipes</a><a href="../field-guides/">Field guides</a><a href="../changelog.html">Changelog</a><a href="../skill-spec.html">Skill spec</a><a href="../api.html">API</a></nav>
     </div>
   </footer>
   <button type="button" class="back-to-top" aria-label="Back to top">↑</button>

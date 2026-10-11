@@ -149,7 +149,7 @@ def main():
     # Preserve hand-maintained API files this script does not generate
     # (teardowns.json + its schema are authored by hand, not from artifacts).
     preserved = {}
-    for rel in ["teardowns.json", "schema/teardown.json"]:
+    for rel in ["teardowns.json", "schema/teardown.json", "model-updates.md"]:
         p = API / rel
         if p.exists():
             preserved[rel] = p.read_bytes()
@@ -170,7 +170,7 @@ def main():
     assert len(templates) == 47, f"expected 47 prompt templates, got {len(templates)}"
     assert len(checklists) == 5, f"expected 5 checklists, got {len(checklists)}"
     assert len(glossary) >= 60, f"expected 60+ glossary terms, got {len(glossary)}"
-    assert len(model_data["models"]) == 18
+    assert len(model_data["models"]) == 21
     assert len(camera_data["lexicon"]) == 22
 
     models = {

@@ -34,4 +34,4 @@ You are generating on Wan 3.0 / 3.0 Prime (Alibaba, video). Best use: Next-gen W
 ## Pitfalls
 
 - Weakness to respect: Premium pricing; Prime 1080p = 30cr/5s.
-- Costs in models.json were read 2026-10-10 — verify live before spending real money.
+- Costs in models.json were refreshed 2026-10-11 — verify live before spending real money.

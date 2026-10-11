@@ -7,7 +7,7 @@ The decision tree for picking the right tool per shot. Festival-grade films are 
 | Shot need | Reach for | Why |
 |---|---|---|
 | Character close-up / dialogue | Higgsfield + Soul ID (Kling 3.0 engine) | Identity lock + top-tier faces + native audio |
-| Epic scale / impossible environments | Sora 2 | Best vast-scene coherence |
+| Epic scale / impossible environments | Kling 3.0 | Native 4K, best vast-scene physics (Sora discontinued Mar 2026 — see Model watch) |
 | Nature / landscapes | Veo 3.1 | Reference-image fidelity, natural texture |
 | Precise motion control | Runway + Motion Brush | Paint exactly where movement happens |
 | Fast action / fluid VFX | Hailuo 2.3 | Fluid dynamics strength |

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sound, music &amp; audio — knowledge check — AI Film Master Guide</title>
+  <meta name="description" content="Test your understanding of the Sound, music &amp; audio chapter: scenario questions with explained answers. Progress saves in your browser.">
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/docs.css">
+  <link rel="stylesheet" href="../assets/css/print.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="../index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="../index.html">Guide</a>
+        <a href="../skills.html">Skills</a>
+        <a href="../workshop.html">Workshop</a>
+        <a href="../quiz.html">Quiz</a>
+        <a href="../teardown.html">Teardowns</a>
+        <a href="../model-watch.html">Model watch</a>
+        <a href="../changelog.html">Changelog</a>
+        <a href="../skill-spec.html">Skill spec</a>
+        <a href="../api.html">API</a>
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">&#8984;K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="check-title">
+      <div class="container hero-inner">
+        <span class="hero-kicker">Knowledge check</span>
+        <h1 id="check-title">Sound, music &amp; audio</h1>
+        <p class="lede">5 scenario questions drawn from the chapter. These test understanding, not trivia — every answer explains <em>why</em>. Your score saves in this browser.</p>
+        <p><a class="btn btn-ghost" href="../craft/sound-music-audio.html">&larr; Back to the chapter</a></p>
+      </div>
+    </section>
+    <section class="container check" data-check="sound-music-audio" aria-label="Quiz questions" style="margin-bottom:var(--space-7);">
+      <form id="check-form" novalidate>
+        <fieldset data-answer="1" data-why="Treat native audio as raw material, never as the mix: keep it for ambient texture (room tone, wind, footsteps); strip dialogue, music, anything prominent — those get built deliberately on their own tracks.">
+  <legend>1. Your video model generated a clip with native audio including dialogue. What do you do with the dialogue?</legend>
+  <label><input type="radio" name="q0" value="0" required> <span>Keep it — native audio is the final mix</span></label><label><input type="radio" name="q0" value="1" required> <span>Strip the dialogue and build it deliberately on its own track; keep native audio only as ambient texture</span></label><label><input type="radio" name="q0" value="2" required> <span>Delete all native audio on principle</span></label><label><input type="radio" name="q0" value="3" required> <span>Use it only if the lip-sync is perfect</span></label>
+  <p class="check-feedback" hidden></p>
+</fieldset>
+<fieldset data-answer="1" data-why="The audio checklist: a Voice Bible written and referenced for every speaking character, and the dialogue route chosen per scene — native or decoupled, never mixed mid-scene.">
+  <legend>2. You&#x27;re casting a synthetic voice for a character across 40 shots. What&#x27;s the chapter&#x27;s discipline?</legend>
+  <label><input type="radio" name="q1" value="0" required> <span>Use a different voice per scene for variety</span></label><label><input type="radio" name="q1" value="1" required> <span>Write a Voice Bible for the character and choose the dialogue route per scene — native or decoupled, never mixed mid-scene</span></label><label><input type="radio" name="q1" value="2" required> <span>Generate the voice fresh each shot; the model remembers the character</span></label><label><input type="radio" name="q1" value="3" required> <span>Use whatever default voice the TTS platform suggests</span></label>
+  <p class="check-feedback" hidden></p>
+</fieldset>
+<fieldset data-answer="2" data-why="A commercial license is not copyright. No copyright without sufficient human authorship — the platform&#x27;s license gives you a contractual right to use the output, but distributors, insurers, and festivals ask for chain of title, and an AI track produces a thin file.">
+  <legend>3. You scored your commercial film with AI music from a paid Suno account. A distributor asks for proof of rights / chain of title. What&#x27;s the trap?</legend>
+  <label><input type="radio" name="q2" value="0" required> <span>You own the copyright because you paid for the subscription</span></label><label><input type="radio" name="q2" value="1" required> <span>The platform&#x27;s terms transfer full copyright to you automatically</span></label><label><input type="radio" name="q2" value="2" required> <span>No copyright vests without sufficient human authorship (US Copyright Office position) — a commercial license is use rights, not copyright, and distributors want chain of title</span></label><label><input type="radio" name="q2" value="3" required> <span>Copyright doesn&#x27;t matter for festival films</span></label>
+  <p class="check-feedback" hidden></p>
+</fieldset>
+<fieldset data-answer="3" data-why="Mix QC: the three-device listen (monitors, headphones, phone/small speaker) plus the silence test. If it only works on one device, the mix isn&#x27;t done.">
+  <legend>4. Your mix sounds great on studio monitors but muddy on a phone. What QC does the chapter require?</legend>
+  <label><input type="radio" name="q3" value="0" required> <span>Studio monitors only — that&#x27;s the professional standard</span></label><label><input type="radio" name="q3" value="1" required> <span>Your phone only — that&#x27;s what audiences use</span></label><label><input type="radio" name="q3" value="2" required> <span>Skip QC; the mix is fine if it sounds fine once</span></label><label><input type="radio" name="q3" value="3" required> <span>Three-device listen plus the silence test — the chapter&#x27;s mix QC</span></label>
+  <p class="check-feedback" hidden></p>
+</fieldset>
+<fieldset data-answer="1" data-why="Dialogue-first balance: dialogue leads, effects support, music beds underneath — with headroom preserved. Loudness targets are delivery specs to hit at export, not creative choices to chase in the mix.">
+  <legend>5. What&#x27;s the chapter&#x27;s mix-balance discipline?</legend>
+  <label><input type="radio" name="q4" value="0" required> <span>Louder is always better</span></label><label><input type="radio" name="q4" value="1" required> <span>Balance dialogue first, then effects, then music — and leave headroom; loudness is a delivery spec, not a creative choice</span></label><label><input type="radio" name="q4" value="2" required> <span>Normalize everything to the same level</span></label><label><input type="radio" name="q4" value="3" required> <span>Mix in mono only</span></label>
+  <p class="check-feedback" hidden></p>
+</fieldset>
+        <div class="check-actions">
+          <button type="submit" class="btn btn-gold">Check answers</button>
+          <button type="reset" class="btn btn-ghost">Clear</button>
+        </div>
+      </form>
+      <div class="check-result" role="status" hidden></div>
+      <noscript><p>These checks need JavaScript to score. The chapter itself is fully readable without it.</p></noscript>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer"><a href="../index.html">Guide</a><a href="../skills.html">Skills</a><a href="../workshop.html">Workshop</a><a href="../quiz.html">Quiz</a><a href="../teardown.html">Teardowns</a><a href="../model-watch.html">Model watch</a><a href="../checks/">Knowledge checks</a><a href="../budget.html">Budget</a><a href="../optimizer.html">Optimizer</a><a href="../anatomy.html">Anatomy</a><a href="../manifesto.html">Manifesto</a><a href="../craft-not-buttons.html">Craft, not buttons</a><a href="../recipes.html">Recipes</a><a href="../field-guides/">Field guides</a><a href="../changelog.html">Changelog</a><a href="../skill-spec.html">Skill spec</a><a href="../api.html">API</a></nav>
+    </div>
+  </footer>
+  <button type="button" class="back-to-top" aria-label="Back to top">&uarr;</button>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
+    <div class="palette-box">
+      <input id="palette-input" type="search" placeholder="Search chapters, prompts, models&hellip;" autocomplete="off" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="../assets/js/palette.js"></script>
+  <script src="../assets/js/checks.js"></script>
+</body>
+</html>

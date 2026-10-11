@@ -12,7 +12,7 @@ No Vercel. GitHub-only: a static generated site, the chapter sources, and a vers
 - **Start at `00-START-HERE.md`** — orientation + the competition standard
 - **Platform mastery** → `higgsfield/` — everything about making Higgsfield output look expensive
 - **Craft** → `craft/` — shot language, story, sound, edit, character consistency
-- **Platforms** → `platforms/` — when to use Runway, Kling, Sora, Luma, Pika, Hailuo instead — or alongside
+- **Platforms** → `platforms/` — when to use Runway, Kling, Seedance, Luma, Pika, Hailuo instead — or alongside
 - **Economics** → `economics/` — credit math, budget-friendly pro pipelines
 - **Case studies** → `case-studies/` — competition teardowns and what made them place
 - **Agents:** start at `llms.txt`, full text in `llms-full.txt`, API reference in `API.md`, data in `api/v1/`

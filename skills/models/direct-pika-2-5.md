@@ -34,4 +34,4 @@ You are generating on Pika 2.5 (Pika, video). Best use: Stylized/social content,
 ## Pitfalls
 
 - Weakness to respect: Realism trails Veo/Kling; negative-prompt dependence.
-- Costs in models.json were read 2026-10-10 — verify live before spending real money.
+- Costs in models.json were refreshed 2026-10-11 — verify live before spending real money.

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Character consistency — knowledge check — AI Film Master Guide</title>
+  <meta name="description" content="Test your understanding of the Character consistency chapter: scenario questions with explained answers. Progress saves in your browser.">
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/docs.css">
+  <link rel="stylesheet" href="../assets/css/print.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="../index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="../index.html">Guide</a>
+        <a href="../skills.html">Skills</a>
+        <a href="../workshop.html">Workshop</a>
+        <a href="../quiz.html">Quiz</a>
+        <a href="../teardown.html">Teardowns</a>
+        <a href="../model-watch.html">Model watch</a>
+        <a href="../changelog.html">Changelog</a>
+        <a href="../skill-spec.html">Skill spec</a>
+        <a href="../api.html">API</a>
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">&#8984;K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="check-title">
+      <div class="container hero-inner">
+        <span class="hero-kicker">Knowledge check</span>
+        <h1 id="check-title">Character consistency</h1>
+        <p class="lede">5 scenario questions drawn from the chapter. These test understanding, not trivia — every answer explains <em>why</em>. Your score saves in this browser.</p>
+        <p><a class="btn btn-ghost" href="../craft/character-consistency.html">&larr; Back to the chapter</a></p>
+      </div>
+    </section>
+    <section class="container check" data-check="character-consistency" aria-label="Quiz questions" style="margin-bottom:var(--space-7);">
+      <form id="check-form" novalidate>
+        <fieldset data-answer="0" data-why="The ranked identity stack: trained identity (Soul ID) is the gold standard; then character sheet as reference; then per-generation reference upload; text description alone is weakest — never rely on prose to hold a face across 50 shots.">
+  <legend>1. Rank the identity stack from most to least reliable for holding a face across 50 shots.</legend>
+  <label><input type="radio" name="q0" value="0" required> <span>Trained identity (Soul ID) &gt; character-sheet reference &gt; per-generation reference &gt; text description alone</span></label><label><input type="radio" name="q0" value="1" required> <span>Text description alone &gt; per-generation reference &gt; character sheet &gt; trained identity</span></label><label><input type="radio" name="q0" value="2" required> <span>Per-generation reference &gt; trained identity &gt; text description &gt; character sheet</span></label><label><input type="radio" name="q0" value="3" required> <span>They&#x27;re all equally reliable if the prompt is detailed</span></label>
+  <p class="check-feedback" hidden></p>
+</fieldset>
+<fieldset data-answer="2" data-why="Wardrobe lock: write the wardrobe once, in exact language, and paste it verbatim into every prompt. Props get the same treatment.">
+  <legend>2. Your character&#x27;s jacket changes shade between shots. What&#x27;s the fix?</legend>
+  <label><input type="radio" name="q1" value="0" required> <span>Describe the jacket slightly differently each time for variety</span></label><label><input type="radio" name="q1" value="1" required> <span>Let the model improvise wardrobe from the character&#x27;s personality</span></label><label><input type="radio" name="q1" value="2" required> <span>Write the wardrobe once in exact language and paste it verbatim into every prompt</span></label><label><input type="radio" name="q1" value="3" required> <span>Fix wardrobe drift in the grade</span></label>
+  <p class="check-feedback" hidden></p>
+</fieldset>
+<fieldset data-answer="1" data-why="Last-frame chaining: every clip starts from the last frame of the previous approved clip. Never fabricate a start frame.">
+  <legend>3. Shot 12 must continue shot 11&#x27;s action seamlessly. What starts the generation?</legend>
+  <label><input type="radio" name="q2" value="0" required> <span>Generate a fresh start frame for visual variety</span></label><label><input type="radio" name="q2" value="1" required> <span>Start from the last frame of the previous approved clip — never fabricate a start frame</span></label><label><input type="radio" name="q2" value="2" required> <span>Start from the first frame of the scene for consistency</span></label><label><input type="radio" name="q2" value="3" required> <span>Use text-to-video so the model invents the transition</span></label>
+  <p class="check-feedback" hidden></p>
+</fieldset>
+<fieldset data-answer="3" data-why="Rejection rules: a clip fails if the face drifts, wardrobe changes, the light flips, or the camera moves without motivation. Failed clips don&#x27;t chain — they get re-prompted.">
+  <legend>4. A clip comes back with the face drifting and the light flipped from the scene&#x27;s lock. What do you do with it?</legend>
+  <label><input type="radio" name="q3" value="0" required> <span>Chain it anyway — minor drift is invisible in motion</span></label><label><input type="radio" name="q3" value="1" required> <span>Fix it in the edit with a quick cutaway</span></label><label><input type="radio" name="q3" value="2" required> <span>Keep it for B-roll</span></label><label><input type="radio" name="q3" value="3" required> <span>Reject it: failed clips don&#x27;t chain — they get re-prompted</span></label>
+  <p class="check-feedback" hidden></p>
+</fieldset>
+<fieldset data-answer="0" data-why="World consistency: generate and approve a master still of each location first. Every shot in that location starts from it or references it. Same for lighting continuity — lock time of day and light direction per scene.">
+  <legend>5. The location looks different in every shot of your film. What&#x27;s the chapter&#x27;s system?</legend>
+  <label><input type="radio" name="q4" value="0" required> <span>Generate and approve a master still of each location first; every shot starts from it or references it</span></label><label><input type="radio" name="q4" value="1" required> <span>Describe the location fresh in each prompt for richness</span></label><label><input type="radio" name="q4" value="2" required> <span>Rely on the model&#x27;s memory of earlier clips</span></label><label><input type="radio" name="q4" value="3" required> <span>Shoot all location shots in one batch and hope</span></label>
+  <p class="check-feedback" hidden></p>
+</fieldset>
+        <div class="check-actions">
+          <button type="submit" class="btn btn-gold">Check answers</button>
+          <button type="reset" class="btn btn-ghost">Clear</button>
+        </div>
+      </form>
+      <div class="check-result" role="status" hidden></div>
+      <noscript><p>These checks need JavaScript to score. The chapter itself is fully readable without it.</p></noscript>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer"><a href="../index.html">Guide</a><a href="../skills.html">Skills</a><a href="../workshop.html">Workshop</a><a href="../quiz.html">Quiz</a><a href="../teardown.html">Teardowns</a><a href="../model-watch.html">Model watch</a><a href="../checks/">Knowledge checks</a><a href="../budget.html">Budget</a><a href="../optimizer.html">Optimizer</a><a href="../anatomy.html">Anatomy</a><a href="../manifesto.html">Manifesto</a><a href="../craft-not-buttons.html">Craft, not buttons</a><a href="../recipes.html">Recipes</a><a href="../field-guides/">Field guides</a><a href="../changelog.html">Changelog</a><a href="../skill-spec.html">Skill spec</a><a href="../api.html">API</a></nav>
+    </div>
+  </footer>
+  <button type="button" class="back-to-top" aria-label="Back to top">&uarr;</button>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
+    <div class="palette-box">
+      <input id="palette-input" type="search" placeholder="Search chapters, prompts, models&hellip;" autocomplete="off" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="../assets/js/palette.js"></script>
+  <script src="../assets/js/checks.js"></script>
+</body>
+</html>

@@ -34,4 +34,4 @@ You are generating on Kling 2.5 Turbo (Kuaishou, video). Best use: Cheap drafts,
 ## Pitfalls
 
 - Weakness to respect: No native audio; lower fidelity.
-- Costs in models.json were read 2026-10-10 — verify live before spending real money.
+- Costs in models.json were refreshed 2026-10-11 — verify live before spending real money.

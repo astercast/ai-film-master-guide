@@ -34,4 +34,4 @@ You are generating on Soul 2.0 (Higgsfield, image). Best use: Fashion/portrait/a
 ## Pitfalls
 
 - Weakness to respect: Image only; style range narrower than general models.
-- Costs in models.json were read 2026-10-10 — verify live before spending real money.
+- Costs in models.json were refreshed 2026-10-11 — verify live before spending real money.
