@@ -30,7 +30,7 @@ SECTIONS = [
 
 CHAPTER_ORDER = {
     "higgsfield": ["platform-mastery", "prompt-engineering", "soul-id-deep-dive", "competition-entry-craft"],
-    "craft": ["story-structure", "cinematic-language", "character-consistency", "directing-performance", "color-grading", "sound-music-audio", "editing-pipeline", "longform-pipelines", "failure-gallery", "ai-film-business"],
+    "craft": ["story-structure", "cinematic-language", "character-consistency", "directing-performance", "color-grading", "sound-music-audio", "editing-pipeline", "editing-ai-footage", "longform-pipelines", "failure-gallery", "ai-film-business"],
     "platforms": ["field-guide", "when-to-use-what"],
     "economics": ["credit-math"],
     "case-studies": ["competition-teardowns", "entry-craft-teardowns"],
@@ -53,6 +53,8 @@ NAV_ITEMS = [
     ("teardown.html", "Teardowns"),
     ("model-watch.html", "Model watch"),
     ("doctor.html", "Doctor"),
+    ("linter.html", "Linter"),
+    ("models/", "Models"),
     ("shots.html", "Shot list"),
     ("style-bible.html", "Style bible"),
     ("changelog.html", "Changelog"),
@@ -75,6 +77,8 @@ FOOTER_ITEMS = [
     ("shots.html", "Shot list"),
     ("style-bible.html", "Style bible"),
     ("doctor.html", "Doctor"),
+    ("linter.html", "Linter"),
+    ("models/", "Models"),
     ("anatomy.html", "Anatomy"),
     ("manifesto.html", "Manifesto"),
     ("craft-not-buttons.html", "Craft, not buttons"),
@@ -723,6 +727,72 @@ DOCTOR_TMPL = """<!DOCTYPE html>
   </footer>
   <script src="assets/js/palette.js"></script>
   <script src="assets/js/doctor.js"></script>
+</body>
+</html>
+"""
+
+LINTER_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prompt linter — AI Film Master Guide</title>
+  <meta name="description" content="Paste any prompt and get a structural analysis against the ten-layer prompt anatomy: which layers are present, what's missing, vague words flagged, and concrete fixes.">
+  {css}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        {sitenav}
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">⌘K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="lint-title">
+      <div class="container hero-inner">
+        <span class="hero-kicker">Tools</span>
+        <h1 id="lint-title">Prompt <span class="accent">linter.</span></h1>
+        <p class="lede">Paste any prompt. The linter checks it against the ten-layer anatomy — which layers are present, which are missing, what each gap costs you on screen — and flags the vague words models can't act on. Heuristic, honest about being heuristic: it checks structure, not taste.</p>
+      </div>
+    </section>
+    <section class="container" aria-labelledby="lint-input-h">
+      <h2 id="lint-input-h">Your prompt</h2>
+      <label class="visually-hidden" for="lint-input">Prompt text to analyze</label>
+      <textarea id="lint-input" rows="7" style="width:100%;" placeholder="Paste your prompt here — e.g. 'A woman walks down a street at night, cinematic…'"></textarea>
+      <p style="margin-top:var(--space-3);">
+        <button type="button" class="btn" id="lint-run">Analyze prompt</button>
+        <button type="button" class="btn btn-ghost" id="lint-sample">Try the sample</button>
+        <button type="button" class="btn btn-ghost" id="lint-clear">Clear</button>
+      </p>
+      <p class="empty-state" id="lint-error" hidden></p>
+    </section>
+    <section class="container" id="lint-results" hidden aria-label="Analysis results" style="margin-top:var(--space-6);">
+      <h2>Analysis</h2>
+      <div id="lint-score" class="card" style="margin-bottom:var(--space-5);"></div>
+      <h3>The ten layers</h3>
+      <ol id="lint-layers" class="lint-list"></ol>
+      <div id="lint-weak" class="card" style="margin-top:var(--space-5);"></div>
+      <div id="lint-fixes" style="margin-top:var(--space-5);"></div>
+      <p style="margin-top:var(--space-5);"><a class="btn btn-ghost" href="anatomy.html">Learn the anatomy →</a> <a class="btn btn-ghost" href="higgsfield/prompt-engineering.html">Prompt-engineering chapter →</a></p>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer">{footer}</nav>
+    </div>
+  </footer>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/linter.js"></script>
 </body>
 </html>
 """
@@ -2208,12 +2278,284 @@ def build_model_watch(css_links):
         refresh_date="2026-10-11"))
 
 
-CHECK_TMPL = """<!DOCTYPE html>
+# ---- Model deep dives (wave 11): one page per model + index ----
+# ---- Model deep dives (wave 11): one page per model + index ----
+MODEL_TMPL = """<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{title} — knowledge check — AI Film Master Guide</title>
+  <title>{name} — model deep dive — AI Film Master Guide</title>
+  <meta name="description" content="{name} ({platform}): cost math, prompt tips, and when to use it vs avoid it — from the guide's versioned model data.">
+  {css}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="../index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        {sitenav}
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">&#8984;K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="md-title">
+      <div class="container hero-inner">
+        <span class="hero-kicker">Model deep dive</span>
+        <h1 id="md-title">{name}</h1>
+        <p class="lede">{platform} · {mtype}</p>
+        <p><span class="mw-badge mw-badge-{status}">{badge}</span>
+        <span class="card-meta">last verified {verified}</span></p>
+      </div>
+    </section>
+    <section class="container" aria-label="Model specifications">
+      <div class="card mw-card">
+        <dl>
+          <dt>Best use</dt><dd>{best_use}</dd>
+          <dt>Cost</dt><dd>{cost}</dd>
+          <dt>Strength</dt><dd>{strength}</dd>
+          <dt>Weakness</dt><dd>{weakness}</dd>
+        </dl>
+        <p class="mw-changed"><strong>What changed:</strong> {changed}</p>
+      </div>
+    </section>
+    <section class="container" aria-labelledby="md-cost-h" style="margin-top:var(--space-6);">
+      <h2 id="md-cost-h">Cost math</h2>
+      {cost_examples}
+      <p class="calc-note">USD at $0.0392/credit (Higgsfield Plus plan, observed 2026-10-10). Verify live before budgeting — rates change.</p>
+    </section>
+    <section class="container" aria-labelledby="md-when-h" style="margin-top:var(--space-6);">
+      <h2 id="md-when-h">Use it when / avoid it when</h2>
+      <div class="card-grid">
+        <div class="card"><h3>Use it when</h3><p>{use_when}</p></div>
+        <div class="card"><h3>Avoid it when</h3><p>{avoid_when}</p></div>
+      </div>
+      <p class="calc-note">Drawn directly from the model's own best-use and weakness fields — the record's words, not ours.</p>
+    </section>
+    <section class="container" aria-labelledby="md-tips-h" style="margin-top:var(--space-6);">
+      <h2 id="md-tips-h">Prompt tips for this model</h2>
+      <ul>
+{tips}
+      </ul>
+    </section>
+    <section class="container" aria-label="Sources" style="margin-top:var(--space-6);">
+      <h2>Sources</h2>
+      {sources}
+      <p style="margin-top:var(--space-5);"><a class="btn btn-ghost" href="index.html">All model deep dives</a> <a class="btn btn-ghost" href="../model-watch.html">Model watch</a> <a class="btn btn-ghost" href="../compare.html">Compare models</a> <a class="btn btn-ghost" href="../quiz.html">Take the quiz</a></p>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer">{footer}</nav>
+    </div>
+  </footer>
+  <button type="button" class="back-to-top" aria-label="Back to top">&uarr;</button>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
+    <div class="palette-box">
+      <input id="palette-input" type="search" placeholder="Search chapters, prompts, models&hellip;" autocomplete="off" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="../assets/js/palette.js"></script>
+  <script src="../assets/js/docs.js"></script>
+</body>
+</html>
+"""
+
+MODELS_INDEX_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Model deep dives — AI Film Master Guide</title>
+  <meta name="description" content="One deep-dive page per model: cost math, prompt tips, use-when/avoid-when — all generated from the guide's versioned model data.">
+  {css}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="../index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        {sitenav}
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">&#8984;K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="mdi-title">
+      <div class="container hero-inner">
+        <span class="hero-kicker">Reference</span>
+        <h1 id="mdi-title">Model <span class="accent">deep dives.</span></h1>
+        <p class="lede">One page per model: the spec record, worked cost math, prompt tips from the guide's chapters, and honest use-when/avoid-when. Generated from <code>models.json</code> — it can't drift from the data.</p>
+      </div>
+    </section>
+    <section class="container" aria-label="All models">
+      <div class="chapter-grid">
+{cards}
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer">{footer}</nav>
+    </div>
+  </footer>
+  <button type="button" class="back-to-top" aria-label="Back to top">&uarr;</button>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
+    <div class="palette-box">
+      <input id="palette-input" type="search" placeholder="Search chapters, prompts, models&hellip;" autocomplete="off" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search the guide"></div>
+    </div>
+  </div>
+  <script src="../assets/js/palette.js"></script>
+  <script src="../assets/js/docs.js"></script>
+</body>
+</html>
+"""
+
+
+def model_slug(name):
+    s = re.sub(r"[^a-z0-9]+", "-", str(name).lower()).strip("-")
+    return s or "model"
+
+
+def model_cost_examples(m):
+    """Worked cost examples parsed from est_cost_credits. USD at $0.0392/credit."""
+    raw = str(m.get("est_cost_credits", ""))
+    usd = 0.0392
+    out = []
+    for rate in re.findall(r"([\d.]+)\s*/\s*image", raw):
+        try:
+            cr = float(rate)
+        except ValueError:
+            continue
+        per = cr * usd
+        out.append(
+            f"<li><strong>{cr:g} credits / image</strong> — one image ≈ ${per:.3f}; "
+            f"50 images ≈ ${per * 50:.2f}; 500 images ≈ ${per * 500:.2f}.</li>")
+    for label, rate in re.findall(r"([A-Za-z0-9 ]*?)\s*~?\s*([\d.]+)\s*/\s*5s", raw):
+        try:
+            cr = float(rate)
+        except ValueError:
+            continue
+        per_min_cr = cr * 12
+        per_min_usd = per_min_cr * usd
+        lab = label.strip() or "video"
+        out.append(
+            f"<li><strong>{html.escape(lab)} ≈ {cr:g} credits / 5s</strong> — "
+            f"one finished minute ≈ {per_min_cr:,.0f} credits (≈ ${per_min_usd:.2f}); "
+            f"a 3-minute short ≈ ${per_min_usd * 3:.2f} before takes.</li>")
+    if not out:
+        if "verify live" in raw.lower():
+            return ("<p>No published rate in the captured data — "
+                    "<strong>verify live</strong> on the vendor's pricing page before budgeting. "
+                    f"Recorded rate string: <code>{html.escape(raw)}</code></p>")
+        return f"<p>Rate string not machine-readable: <code>{html.escape(raw)}</code> — verify live.</p>"
+    return "<ul>\n" + "\n".join(out) + "\n</ul>"
+
+
+def model_chapter_tips(m):
+    """Chapter links chosen by what the model actually is. No invented advice."""
+    text = " ".join(str(m.get(k, "")) for k in ("best_use", "strength", "weakness", "type")).lower()
+    tips = []
+    if "native audio" in text or "dialogue" in text or "voice" in text or "tts" in text:
+        tips.append(("<strong>Direct the voice, not just the picture.</strong> "
+                     "Native-audio models live or die on voice direction — "
+                     '<a href="../craft/sound-music-audio.html">sound, music &amp; audio</a> '
+                     "covers TTS direction, Voice Bibles, and the two dialogue roads."))
+    if m.get("type") == "image":
+        tips.append(("<strong>Plates carry the look.</strong> Image models make your keyframes and "
+                     "character sheets — lock them with the "
+                     '<a href="../craft/character-consistency.html">character-consistency</a> system '
+                     "and describe them with the <a href=\"../anatomy.html\">prompt anatomy</a>."))
+    else:
+        tips.append(("<strong>One action per shot.</strong> Video models execute a single believable verb well; "
+                     "stacked actions collapse — <a href=\"../craft/directing-performance.html\">directing performance</a> "
+                     "and the <a href=\"../doctor.html\">failure doctor</a> show what breaks."))
+    if "fashion" in text or "portrait" in text or "aesthetic" in text:
+        tips.append(("<strong>Style is the brief.</strong> Aesthetic models reward precise visual language — "
+                     '<a href="../craft/cinematic-language.html">cinematic language</a> for the vocabulary.'))
+    tips.append(("<strong>Run it through the linter.</strong> "
+                 '<a href="../linter.html">Paste any prompt</a> for this model and check all ten layers before spending credits.'))
+    tips.append(("<strong>Not sure it's the right model?</strong> "
+                 '<a href="../quiz.html">Take the 5-question quiz</a> or '
+                 '<a href="../compare.html">compare it side-by-side</a> with alternatives.'))
+    return "\n".join(f"      <li>{t}</li>" for t in tips)
+
+
+def build_models(css_links):
+    """Model deep dives: one page per model + index, generated from api/v1/models.json."""
+    models = json.loads((ROOT / "api" / "v1" / "models.json").read_text())["models"]
+    out_dir = SITE / "models"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    css_sub = css_links.replace('href="assets/', 'href="../assets/')
+    seen = set()
+    pages = []
+    status_badge = {"active": "Active", "reported": "Reported — unconfirmed",
+                    "announced": "Announced — not GA", "discontinued": "Discontinued"}
+    for m in models:
+        slug = model_slug(m.get("model", "model"))
+        i = 2
+        base = slug
+        while slug in seen:
+            slug = f"{base}-{i}"
+            i += 1
+        seen.add(slug)
+        status = m.get("status", "active")
+        sources = "".join(
+            f'<li><a href="{html.escape(u)}" rel="noopener">{html.escape(u.split("/")[2])}</a></li>'
+            for u in m.get("sources", []) if u.startswith("http"))
+        sources_html = f"<ul>{sources}</ul>" if sources else "<p>Vendor page — verify live.</p>"
+        (out_dir / f"{slug}.html").write_text(MODEL_TMPL.format(
+            name=html.escape(str(m.get("model", ""))),
+            platform=html.escape(str(m.get("platform", ""))),
+            mtype=html.escape(str(m.get("type", ""))),
+            status=status, badge=status_badge.get(status, status),
+            verified=html.escape(str(m.get("last_verified", "—"))),
+            best_use=html.escape(str(m.get("best_use", ""))),
+            cost=html.escape(str(m.get("est_cost_credits", ""))),
+            strength=html.escape(str(m.get("strength", ""))),
+            weakness=html.escape(str(m.get("weakness", ""))),
+            changed=html.escape(str(m.get("what_changed", ""))),
+            cost_examples=model_cost_examples(m),
+            use_when=html.escape(str(m.get("best_use", ""))),
+            avoid_when=html.escape(str(m.get("weakness", ""))),
+            tips=model_chapter_tips(m),
+            sources=sources_html,
+            css=css_sub, sitenav=nav_html("../", ""), footer=footer_html("../")))
+        pages.append({"slug": slug, "name": str(m.get("model", "")),
+                      "platform": str(m.get("platform", "")), "status": status,
+                      "best_use": str(m.get("best_use", ""))})
+    cards = "\n".join(
+        f'<article class="card chapter-card"><h3><a href="{p["slug"]}.html">{html.escape(p["name"])}</a></h3>'
+        f'<p>{html.escape(p["platform"])} · <span class="mw-badge mw-badge-{p["status"]}">'
+        f'{status_badge.get(p["status"], p["status"])}</span></p></article>'
+        for p in pages)
+    (out_dir / "index.html").write_text(MODELS_INDEX_TMPL.format(
+        css=css_sub, sitenav=nav_html("../", ""), footer=footer_html("../"), cards=cards))
+    return pages
+
+
+CHECK_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
   <meta name="description" content="Test your understanding of the {title} chapter: scenario questions with explained answers. Progress saves in your browser.">
   {css}
 </head>
@@ -2529,6 +2871,13 @@ def main():
     (SITE / "style-bible.html").write_text(STYLEBIBLE_TMPL.format(
         css=css_links, sitenav=nav_html("", "style-bible.html"), footer=footer_html("")))
 
+    # Prompt linter (wave 11: structural analysis against the ten-layer anatomy)
+    (SITE / "linter.html").write_text(LINTER_TMPL.format(
+        css=css_links, sitenav=nav_html("", "linter.html"), footer=footer_html("")))
+
+    # Model deep dives (wave 11: one page per model + index, from models.json)
+    model_pages = build_models(css_links)
+
     # Manifesto page
     (SITE / "manifesto.html").write_text(MANIFESTO_TMPL.format(
         css=css_links, sitenav=nav_html("", "manifesto.html"), footer=footer_html("")))
@@ -2609,6 +2958,19 @@ def main():
         {"url": "model-watch.html", "title": "Model watch", "section": "Tools",
          "headings": ["Verify live before spending", "Active", "Reported", "Discontinued"],
          "text": "Every model in the guide with last-verified dates, version status, and what changed: Sora discontinued, Kling 4.0 announced, MiniMax H3 and Midjourney V1 Video added, Veo 3.1 current with no Veo 4. Generated from models.json."},
+        {"url": "linter.html", "title": "Prompt linter", "section": "Tools",
+         "headings": ["Your prompt", "Analysis", "The ten layers"],
+         "text": "Prompt linter: paste any prompt and get a structural analysis against the ten-layer prompt anatomy — layers present/missing, vague words flagged, concrete fix per gap, one-click handoff to the workshop. Heuristic: checks structure, not taste."},
+        {"url": "models/", "title": "Model deep dives", "section": "Reference",
+         "headings": [],
+         "text": "One deep-dive page per model: spec record, worked cost math, prompt tips from the guide's chapters, use-when/avoid-when. Generated from models.json."},
+    ] + [
+        {"url": f"models/{p['slug']}.html", "title": p["name"] + " — model deep dive", "section": "Reference",
+         "headings": ["Cost math", "Use it when / avoid it when", "Prompt tips for this model"],
+         "text": f"{p['name']} ({p['platform']}): {p['best_use']}"}
+        for p in model_pages
+    ])
+    search_index.extend([
         {"url": "checks/", "title": "Knowledge checks", "section": "Tools",
          "headings": ["Prompt engineering", "Directing performance", "Character consistency",
                       "Long-form pipelines", "Sound, music and audio", "Rights and disclosure"],

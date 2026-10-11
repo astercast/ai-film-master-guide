@@ -10,7 +10,7 @@ Generated static site in `site/` — rebuild with `python3 scripts/build_site.py
 after editing chapters. Open `site/index.html`.
 
 - `site/index.html` — landing: track picker (animated vs photorealistic), chapter grid, learning paths (7: first film, competition, animated, photoreal, long-form, first 60-second short, the 90-day filmmaker)
-- `site/<section>/<chapter>.html` — 23 chapters with sidebar nav, table of contents, prev/next; every chapter shows its honest read time (200 wpm from actual word count) and prints cleanly via `@media print` (`assets/css/print.css`)
+- `site/<section>/<chapter>.html` — 24 chapters with sidebar nav, table of contents, prev/next; every chapter shows its honest read time (200 wpm from actual word count) and prints cleanly via `@media print` (`assets/css/print.css`)
 - `site/teardown.html` — shot-by-shot teardown viewer: Passport Rush, ONEIRIC, the Grok Odyssey $100K winner, and Google DeepMind's Dear Upstairs Neighbors broken into shots (setup / what works / what breaks / craft lesson, labeled prompt reconstructions); data in `api/v1/teardowns.json`
 - `site/manifesto.html` — positioning: a living free reference, not a course; everything sourced; what it won't do
 - `site/field-guides/` — printable one-pagers generated from the guide's own data: model quick-reference (from `models.json`), prompt anatomy cheat sheet, consistency & dead-eyes checklist
@@ -20,6 +20,8 @@ after editing chapters. Open `site/index.html`.
 - `site/optimizer.html` — budget optimizer: runtime + dialogue share + quality bar → optimal model mix per bucket from `models.json`, with 5×/20× cost envelopes
 - `site/shots.html` — shot-list builder: per-shot type/model/seconds/takes → live cost table from `models.json`, totals with 5×/20× envelopes, localStorage lists, JSON export/import, one-click handoff to the optimizer
 - `site/doctor.html` — failure doctor: pick the symptom (face morph, dead eyes, plasticky skin…) → craft diagnosis + fix + deep link into the workshop's repair templates; 12 diagnoses in `api/v1/diagnoses.json` (+ schema)
+- `site/linter.html` — prompt linter: paste any prompt → structural analysis against the ten-layer anatomy (layers present/missing, vague words flagged, concrete fix per gap); heuristic, honest about it; one-click handoffs to the workshop and anatomy builder (`assets/js/linter.js`)
+- `site/models/` — model deep dives: one page per model (22) + index, generated from `api/v1/models.json` at build time — spec record, worked cost math (USD at $0.0392/credit), use-when/avoid-when from the model's own fields, prompt tips linking the guide's chapters
 - `site/anatomy.html` — anatomy of a prompt: interactive nine-layer annotated example + build-your-own mode
 - `site/workshop.html` — interactive prompt workshop (template × model × track, save/rate, optional style-bible prepend from `site/style-bible.html`)
 - `site/style-bible.html` — style-bible builder: describe character/world once → reusable STYLE LOCK block; named bibles in localStorage (`afg-style-bibles`), copy/save/export/import, workshop integration
@@ -36,7 +38,7 @@ Interactive in-context glossary: `assets/js/glossary.js` wraps the 79 `glossary.
 
 Chapters (source Markdown, also the canonical text):
 - `higgsfield/` — platform-mastery, prompt-engineering, soul-id-deep-dive, competition-entry-craft
-- `craft/` — story-structure, cinematic-language, character-consistency, directing-performance, color-grading, sound-music-audio, editing-pipeline, longform-pipelines, failure-gallery, ai-film-business
+- `craft/` — story-structure, cinematic-language, character-consistency, directing-performance, color-grading, sound-music-audio, editing-pipeline, editing-ai-footage, longform-pipelines, failure-gallery, ai-film-business
 - `distribution/` — release-paths
 - `legal/` — rights-and-disclosure
 - `platforms/` — field-guide, when-to-use-what

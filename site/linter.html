@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prompt linter — AI Film Master Guide</title>
+  <meta name="description" content="Paste any prompt and get a structural analysis against the ten-layer prompt anatomy: which layers are present, what's missing, vague words flagged, and concrete fixes.">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/docs.css">
+  <link rel="stylesheet" href="assets/css/print.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html">Guide</a>
+        <a href="skills.html">Skills</a>
+        <a href="workshop.html">Workshop</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="compare.html">Compare</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="teardown.html">Teardowns</a>
+        <a href="model-watch.html">Model watch</a>
+        <a href="doctor.html">Doctor</a>
+        <a href="linter.html" aria-current="page">Linter</a>
+        <a href="models/">Models</a>
+        <a href="shots.html">Shot list</a>
+        <a href="style-bible.html">Style bible</a>
+        <a href="changelog.html">Changelog</a>
+        <a href="skill-spec.html">Skill spec</a>
+        <a href="api.html">API</a>
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">⌘K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="lint-title">
+      <div class="container hero-inner">
+        <span class="hero-kicker">Tools</span>
+        <h1 id="lint-title">Prompt <span class="accent">linter.</span></h1>
+        <p class="lede">Paste any prompt. The linter checks it against the ten-layer anatomy — which layers are present, which are missing, what each gap costs you on screen — and flags the vague words models can't act on. Heuristic, honest about being heuristic: it checks structure, not taste.</p>
+      </div>
+    </section>
+    <section class="container" aria-labelledby="lint-input-h">
+      <h2 id="lint-input-h">Your prompt</h2>
+      <label class="visually-hidden" for="lint-input">Prompt text to analyze</label>
+      <textarea id="lint-input" rows="7" style="width:100%;" placeholder="Paste your prompt here — e.g. 'A woman walks down a street at night, cinematic…'"></textarea>
+      <p style="margin-top:var(--space-3);">
+        <button type="button" class="btn" id="lint-run">Analyze prompt</button>
+        <button type="button" class="btn btn-ghost" id="lint-sample">Try the sample</button>
+        <button type="button" class="btn btn-ghost" id="lint-clear">Clear</button>
+      </p>
+      <p class="empty-state" id="lint-error" hidden></p>
+    </section>
+    <section class="container" id="lint-results" hidden aria-label="Analysis results" style="margin-top:var(--space-6);">
+      <h2>Analysis</h2>
+      <div id="lint-score" class="card" style="margin-bottom:var(--space-5);"></div>
+      <h3>The ten layers</h3>
+      <ol id="lint-layers" class="lint-list"></ol>
+      <div id="lint-weak" class="card" style="margin-top:var(--space-5);"></div>
+      <div id="lint-fixes" style="margin-top:var(--space-5);"></div>
+      <p style="margin-top:var(--space-5);"><a class="btn btn-ghost" href="anatomy.html">Learn the anatomy →</a> <a class="btn btn-ghost" href="higgsfield/prompt-engineering.html">Prompt-engineering chapter →</a></p>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer"><a href="index.html">Guide</a><a href="skills.html">Skills</a><a href="workshop.html">Workshop</a><a href="quiz.html">Quiz</a><a href="compare.html">Compare</a><a href="gallery.html">Gallery</a><a href="teardown.html">Teardowns</a><a href="model-watch.html">Model watch</a><a href="checks/">Knowledge checks</a><a href="budget.html">Budget</a><a href="optimizer.html">Optimizer</a><a href="shots.html">Shot list</a><a href="style-bible.html">Style bible</a><a href="doctor.html">Doctor</a><a href="linter.html">Linter</a><a href="models/">Models</a><a href="anatomy.html">Anatomy</a><a href="manifesto.html">Manifesto</a><a href="craft-not-buttons.html">Craft, not buttons</a><a href="recipes.html">Recipes</a><a href="field-guides/">Field guides</a><a href="changelog.html">Changelog</a><a href="skill-spec.html">Skill spec</a><a href="api.html">API</a></nav>
+    </div>
+  </footer>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/linter.js"></script>
+</body>
+</html>

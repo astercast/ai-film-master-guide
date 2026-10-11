@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Model deep dives — AI Film Master Guide</title>
+  <meta name="description" content="One deep-dive page per model: cost math, prompt tips, use-when/avoid-when — all generated from the guide's versioned model data.">
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/docs.css">
+  <link rel="stylesheet" href="../assets/css/print.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="../index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="../index.html">Guide</a>
+        <a href="../skills.html">Skills</a>
+        <a href="../workshop.html">Workshop</a>
+        <a href="../quiz.html">Quiz</a>
+        <a href="../compare.html">Compare</a>
+        <a href="../gallery.html">Gallery</a>
+        <a href="../teardown.html">Teardowns</a>
+        <a href="../model-watch.html">Model watch</a>
+        <a href="../doctor.html">Doctor</a>
+        <a href="../linter.html">Linter</a>
+        <a href="../models/">Models</a>
+        <a href="../shots.html">Shot list</a>
+        <a href="../style-bible.html">Style bible</a>
+        <a href="../changelog.html">Changelog</a>
+        <a href="../skill-spec.html">Skill spec</a>
+        <a href="../api.html">API</a>
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">&#8984;K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="mdi-title">
+      <div class="container hero-inner">
+        <span class="hero-kicker">Reference</span>
+        <h1 id="mdi-title">Model <span class="accent">deep dives.</span></h1>
+        <p class="lede">One page per model: the spec record, worked cost math, prompt tips from the guide's chapters, and honest use-when/avoid-when. Generated from <code>models.json</code> — it can't drift from the data.</p>
+      </div>
+    </section>
+    <section class="container" aria-label="All models">
+      <div class="chapter-grid">
+<article class="card chapter-card"><h3><a href="soul-2-0.html">Soul 2.0</a></h3><p>Higgsfield · <span class="mw-badge mw-badge-active">Active</span></p></article>
+<article class="card chapter-card"><h3><a href="soul-cinema.html">Soul Cinema</a></h3><p>Higgsfield · <span class="mw-badge mw-badge-active">Active</span></p></article>
+<article class="card chapter-card"><h3><a href="soul-cast.html">Soul Cast</a></h3><p>Higgsfield · <span class="mw-badge mw-badge-active">Active</span></p></article>
+<article class="card chapter-card"><h3><a href="seedance-2-0.html">Seedance 2.0</a></h3><p>ByteDance · <span class="mw-badge mw-badge-active">Active</span></p></article>
+<article class="card chapter-card"><h3><a href="seedance-2-5.html">Seedance 2.5</a></h3><p>ByteDance · <span class="mw-badge mw-badge-active">Active</span></p></article>
+<article class="card chapter-card"><h3><a href="seedance-3-0.html">Seedance 3.0</a></h3><p>ByteDance · <span class="mw-badge mw-badge-reported">Reported — unconfirmed</span></p></article>
+<article class="card chapter-card"><h3><a href="kling-3-0.html">Kling 3.0</a></h3><p>Kuaishou · <span class="mw-badge mw-badge-active">Active</span></p></article>
+<article class="card chapter-card"><h3><a href="kling-2-5-turbo.html">Kling 2.5 Turbo</a></h3><p>Kuaishou · <span class="mw-badge mw-badge-active">Active</span></p></article>
+<article class="card chapter-card"><h3><a href="veo-3-1.html">Veo 3.1</a></h3><p>Google DeepMind · <span class="mw-badge mw-badge-active">Active</span></p></article>
+<article class="card chapter-card"><h3><a href="veo-3-1-fast-veo-3.html">Veo 3.1 Fast / Veo 3</a></h3><p>Google DeepMind · <span class="mw-badge mw-badge-active">Active</span></p></article>
+<article class="card chapter-card"><h3><a href="sora-2-pro-max.html">Sora 2 / Pro / Max</a></h3><p>OpenAI · <span class="mw-badge mw-badge-discontinued">Discontinued</span></p></article>
+<article class="card chapter-card"><h3><a href="wan-2-6.html">Wan 2.6</a></h3><p>Alibaba · <span class="mw-badge mw-badge-active">Active</span></p></article>
+<article class="card chapter-card"><h3><a href="wan-3-0-3-0-prime.html">Wan 3.0 / 3.0 Prime</a></h3><p>Alibaba · <span class="mw-badge mw-badge-active">Active</span></p></article>
+<article class="card chapter-card"><h3><a href="hailuo-02-2-3.html">Hailuo 02 / 2.3</a></h3><p>MiniMax · <span class="mw-badge mw-badge-active">Active</span></p></article>
+<article class="card chapter-card"><h3><a href="minimax-h3.html">MiniMax H3</a></h3><p>MiniMax · <span class="mw-badge mw-badge-active">Active</span></p></article>
+<article class="card chapter-card"><h3><a href="luma-app-ray-3-2.html">Luma App / Ray 3.2</a></h3><p>Luma · <span class="mw-badge mw-badge-active">Active</span></p></article>
+<article class="card chapter-card"><h3><a href="pika-2-5.html">Pika 2.5</a></h3><p>Pika · <span class="mw-badge mw-badge-active">Active</span></p></article>
+<article class="card chapter-card"><h3><a href="dop-lite-standard-turbo.html">DoP (Lite/Standard/Turbo)</a></h3><p>Higgsfield · <span class="mw-badge mw-badge-active">Active</span></p></article>
+<article class="card chapter-card"><h3><a href="marketing-studio-video.html">Marketing Studio video</a></h3><p>Higgsfield · <span class="mw-badge mw-badge-active">Active</span></p></article>
+<article class="card chapter-card"><h3><a href="grok-imagine-video-1-5.html">Grok Imagine Video 1.5</a></h3><p>xAI · <span class="mw-badge mw-badge-active">Active</span></p></article>
+<article class="card chapter-card"><h3><a href="midjourney-v1-video.html">Midjourney V1 Video</a></h3><p>Midjourney · <span class="mw-badge mw-badge-active">Active</span></p></article>
+<article class="card chapter-card"><h3><a href="kling-4-0.html">Kling 4.0</a></h3><p>Kuaishou · <span class="mw-badge mw-badge-announced">Announced — not GA</span></p></article>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer"><a href="../index.html">Guide</a><a href="../skills.html">Skills</a><a href="../workshop.html">Workshop</a><a href="../quiz.html">Quiz</a><a href="../compare.html">Compare</a><a href="../gallery.html">Gallery</a><a href="../teardown.html">Teardowns</a><a href="../model-watch.html">Model watch</a><a href="../checks/">Knowledge checks</a><a href="../budget.html">Budget</a><a href="../optimizer.html">Optimizer</a><a href="../shots.html">Shot list</a><a href="../style-bible.html">Style bible</a><a href="../doctor.html">Doctor</a><a href="../linter.html">Linter</a><a href="../models/">Models</a><a href="../anatomy.html">Anatomy</a><a href="../manifesto.html">Manifesto</a><a href="../craft-not-buttons.html">Craft, not buttons</a><a href="../recipes.html">Recipes</a><a href="../field-guides/">Field guides</a><a href="../changelog.html">Changelog</a><a href="../skill-spec.html">Skill spec</a><a href="../api.html">API</a></nav>
+    </div>
+  </footer>
+  <button type="button" class="back-to-top" aria-label="Back to top">&uarr;</button>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
+    <div class="palette-box">
+      <input id="palette-input" type="search" placeholder="Search chapters, prompts, models&hellip;" autocomplete="off" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search the guide"></div>
+    </div>
+  </div>
+  <script src="../assets/js/palette.js"></script>
+  <script src="../assets/js/docs.js"></script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Veo 3.1 — model deep dive — AI Film Master Guide</title>
+  <meta name="description" content="Veo 3.1 (Google DeepMind): cost math, prompt tips, and when to use it vs avoid it — from the guide's versioned model data.">
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/docs.css">
+  <link rel="stylesheet" href="../assets/css/print.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="../index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="../index.html">Guide</a>
+        <a href="../skills.html">Skills</a>
+        <a href="../workshop.html">Workshop</a>
+        <a href="../quiz.html">Quiz</a>
+        <a href="../compare.html">Compare</a>
+        <a href="../gallery.html">Gallery</a>
+        <a href="../teardown.html">Teardowns</a>
+        <a href="../model-watch.html">Model watch</a>
+        <a href="../doctor.html">Doctor</a>
+        <a href="../linter.html">Linter</a>
+        <a href="../models/">Models</a>
+        <a href="../shots.html">Shot list</a>
+        <a href="../style-bible.html">Style bible</a>
+        <a href="../changelog.html">Changelog</a>
+        <a href="../skill-spec.html">Skill spec</a>
+        <a href="../api.html">API</a>
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">&#8984;K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="md-title">
+      <div class="container hero-inner">
+        <span class="hero-kicker">Model deep dive</span>
+        <h1 id="md-title">Veo 3.1</h1>
+        <p class="lede">Google DeepMind · video</p>
+        <p><span class="mw-badge mw-badge-active">Active</span>
+        <span class="card-meta">last verified 2026-10-11</span></p>
+      </div>
+    </section>
+    <section class="container" aria-label="Model specifications">
+      <div class="card mw-card">
+        <dl>
+          <dt>Best use</dt><dd>Controlled narrative production, cinematic realism, dialogue w/ lip-sync</dd>
+          <dt>Cost</dt><dd>720p/1080p ~40/4s (~$3.14/8s); Fast ~16/4s (~$1.26/8s)</dd>
+          <dt>Strength</dt><dd>Film-grade lighting/prompt adherence, native audio + lip-sync, ingredients (3 refs), first-last frames, scene extension</dd>
+          <dt>Weakness</dt><dd>Most expensive per second; 4-8s clips; fine text issues</dd>
+        </dl>
+        <p class="mw-changed"><strong>What changed:</strong> Still the latest in the Veo line as of Oct 2026 — no Veo 4 exists (rumor explicitly debunked); Google&#x27;s new video surface is Gemini Omni Flash, launched at I/O 2026. Veo 3.1 Lite tier added March 2026; Veo 2 shut down June 2026.</p>
+      </div>
+    </section>
+    <section class="container" aria-labelledby="md-cost-h" style="margin-top:var(--space-6);">
+      <h2 id="md-cost-h">Cost math</h2>
+      <p>Rate string not machine-readable: <code>720p/1080p ~40/4s (~$3.14/8s); Fast ~16/4s (~$1.26/8s)</code> — verify live.</p>
+      <p class="calc-note">USD at $0.0392/credit (Higgsfield Plus plan, observed 2026-10-10). Verify live before budgeting — rates change.</p>
+    </section>
+    <section class="container" aria-labelledby="md-when-h" style="margin-top:var(--space-6);">
+      <h2 id="md-when-h">Use it when / avoid it when</h2>
+      <div class="card-grid">
+        <div class="card"><h3>Use it when</h3><p>Controlled narrative production, cinematic realism, dialogue w/ lip-sync</p></div>
+        <div class="card"><h3>Avoid it when</h3><p>Most expensive per second; 4-8s clips; fine text issues</p></div>
+      </div>
+      <p class="calc-note">Drawn directly from the model's own best-use and weakness fields — the record's words, not ours.</p>
+    </section>
+    <section class="container" aria-labelledby="md-tips-h" style="margin-top:var(--space-6);">
+      <h2 id="md-tips-h">Prompt tips for this model</h2>
+      <ul>
+      <li><strong>Direct the voice, not just the picture.</strong> Native-audio models live or die on voice direction — <a href="../craft/sound-music-audio.html">sound, music &amp; audio</a> covers TTS direction, Voice Bibles, and the two dialogue roads.</li>
+      <li><strong>One action per shot.</strong> Video models execute a single believable verb well; stacked actions collapse — <a href="../craft/directing-performance.html">directing performance</a> and the <a href="../doctor.html">failure doctor</a> show what breaks.</li>
+      <li><strong>Run it through the linter.</strong> <a href="../linter.html">Paste any prompt</a> for this model and check all ten layers before spending credits.</li>
+      <li><strong>Not sure it's the right model?</strong> <a href="../quiz.html">Take the 5-question quiz</a> or <a href="../compare.html">compare it side-by-side</a> with alternatives.</li>
+      </ul>
+    </section>
+    <section class="container" aria-label="Sources" style="margin-top:var(--space-6);">
+      <h2>Sources</h2>
+      <ul><li><a href="https://www.lumeflow.ai/ai-tools/veo-4-release-date/" rel="noopener">www.lumeflow.ai</a></li><li><a href="https://mer.vin/2026/09/which-ai-video-models-actually-take-a-first-and-last-frame/" rel="noopener">mer.vin</a></li></ul>
+      <p style="margin-top:var(--space-5);"><a class="btn btn-ghost" href="index.html">All model deep dives</a> <a class="btn btn-ghost" href="../model-watch.html">Model watch</a> <a class="btn btn-ghost" href="../compare.html">Compare models</a> <a class="btn btn-ghost" href="../quiz.html">Take the quiz</a></p>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer"><a href="../index.html">Guide</a><a href="../skills.html">Skills</a><a href="../workshop.html">Workshop</a><a href="../quiz.html">Quiz</a><a href="../compare.html">Compare</a><a href="../gallery.html">Gallery</a><a href="../teardown.html">Teardowns</a><a href="../model-watch.html">Model watch</a><a href="../checks/">Knowledge checks</a><a href="../budget.html">Budget</a><a href="../optimizer.html">Optimizer</a><a href="../shots.html">Shot list</a><a href="../style-bible.html">Style bible</a><a href="../doctor.html">Doctor</a><a href="../linter.html">Linter</a><a href="../models/">Models</a><a href="../anatomy.html">Anatomy</a><a href="../manifesto.html">Manifesto</a><a href="../craft-not-buttons.html">Craft, not buttons</a><a href="../recipes.html">Recipes</a><a href="../field-guides/">Field guides</a><a href="../changelog.html">Changelog</a><a href="../skill-spec.html">Skill spec</a><a href="../api.html">API</a></nav>
+    </div>
+  </footer>
+  <button type="button" class="back-to-top" aria-label="Back to top">&uarr;</button>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
+    <div class="palette-box">
+      <input id="palette-input" type="search" placeholder="Search chapters, prompts, models&hellip;" autocomplete="off" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="../assets/js/palette.js"></script>
+  <script src="../assets/js/docs.js"></script>
+</body>
+</html>
