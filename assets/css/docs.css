@@ -5,6 +5,16 @@
 .track-card { border-top: 3px solid var(--gold); }
 .track-card:first-child { border-top-color: var(--blue); }
 
+.section-lede { color: var(--ink-dim); font-size: 1.02rem; max-width: 62ch; margin-bottom: var(--space-5); }
+.path-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: var(--space-4); margin-bottom: var(--space-7); }
+.path-card { border-top: 3px solid var(--gold); }
+.path-card h3 { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-2); }
+.path-time { font-size: 0.75rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; white-space: nowrap; }
+.path-steps { margin: var(--space-3) 0 0; padding-left: 1.4em; display: grid; gap: var(--space-2); }
+.path-steps li::marker { color: var(--gold); font-weight: 800; }
+.path-steps a { color: var(--ink); font-weight: 600; }
+.path-note { font-size: 0.8rem; color: var(--muted); }
+
 .section-h {
   font-size: 0.78rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase;
   color: var(--gold); margin: var(--space-6) 0 var(--space-3);

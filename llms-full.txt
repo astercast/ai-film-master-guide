@@ -1,6 +1,6 @@
 # AI Film Master Guide — full text
 
-Static site: site/index.html. API: api/v1/. Generated 2026-10-10.
+Static site: site/index.html. API: api/v1/. Generated 2026-10-11.
 
 <!-- chapter: higgsfield/platform-mastery -->
 # Higgsfield Platform Mastery
@@ -396,6 +396,199 @@ The technical discipline of keeping people and worlds stable across shots. This 
 - [ ] Location master stills approved
 - [ ] Light direction + time of day locked per scene
 - [ ] Start frame is real (approved frame or trained identity), never invented
+
+<!-- chapter: craft/directing-performance -->
+# Directing Performance in AI Video
+
+AI models don't act. They render plausible arrangements of pixels that read as acting when the direction is specific enough — and collapse into mannequin theater when it isn't. This chapter is the directing discipline behind believable AI performance, drawn from productions that solved it in public.
+
+## The core problem
+
+Passport Rush's team documented it openly: **AI struggles with subtle character acting.** The failure has a shape:
+
+- Faces average toward neutral — micro-expressions collapse into a pleasant blank
+- Emotion labels ("she looks devastated") produce stock expressions, not felt ones
+- Dead, glassy eyes — the single fastest tell of an undirected AI performance
+- The Verge's review of Cully Hill Boys noted "occasionally weak character interactions" as a visible limit even at $2M
+
+The fix is not a better model. It's direction written the way actors need it — as *tasks*, not adjectives.
+
+## Direct, don't describe
+
+ONEIRIC's acting skill (`tig-acting-task`) replaced emotion labels with acting tasks entirely. The closing rule of that production: **direct, don't describe** — scene event, motive, goal, obstacle, tactic.
+
+| Instead of (description) | Write (direction) |
+|---|---|
+| She looks devastated | She is trying not to cry in front of him — jaw set, eyes on the door |
+| He is furious | He is deciding whether to hit him — weight shifting forward, hands opening and closing |
+| They are in love | She keeps finding reasons to stand closer; he keeps noticing and not moving away |
+| He is nervous | He is rehearsing what to say — lips moving silently, thumb rubbing the ring |
+
+Every entry on the right is a *playable tactic* — something a body can do. Models can't render "devastated." They can render a jaw set and eyes fixed on a door.
+
+## Give the eyes a job
+
+The single highest-leverage performance note in the research: **"dead, glassy eyes are never fixed with lighting — they're fixed by giving the eyes a job."**
+
+The CINEDANCE prompt architecture gives GAZE/EYELINES its own block *before* blocking. In practice:
+
+- Name the eyeline target per beat: *Mara holds on Vex's hands until "the ledger" — then snaps to his eyes*
+- Eyes move between targets; they never "look sad into the middle distance"
+- Avert, hold, search, track — eye verbs are direction, not decoration
+- In dialogue coverage, the listener's eyes do half the acting — cut to the listener
+
+If a performance feels dead, check the eyes first. Nine times out of ten there's no eyeline written.
+
+## One feeling per shot
+
+AI can't play an arc inside a single clip. It can hold one tactic for 4–8 seconds. So:
+
+- Break emotional turns into separate shots — the turn happens *in the cut*
+- The reaction shot is your best friend: AI renders listening better than it renders complex feeling
+- Moment-to-moment tactics tied to dialogue words (the `tig-acting-task` block form): each line gets its own tactic, each tactic its own shot if needed
+
+## The director's read
+
+Before generating a scene, ONEIRIC's pipeline produced a "director's read": **the one shared event every character lives through, plus each character's physical channel for it.** Everyone in the scene is experiencing the same event — but grief lives in Mara's hands, in Vex's jaw, in the kid's feet. Write the event once, then assign each character their channel. This is what keeps ensemble scenes from becoming four mannequins emoting at the camera.
+
+## Casting the face
+
+Consistent identity *reads* as good acting. A face that drifts 5% between shots reads as a bad performance even when the "acting" is fine:
+
+- Lock the face anchor; never re-run the base portrait
+- State changes (dirt, wounds, tears) are masked integrations, not re-generations
+- For recurring characters, identity systems (Soul ID and equivalents) beat per-prompt description
+
+The audience forgives a limited performance from a consistent face. It never forgives a great "take" from a stranger.
+
+## Ration the close-up
+
+Micro-acting is the weakest link in every current model. Spend close-ups at emotional peaks — that's where the audience looks hardest and where the model fails most visibly. Wides and mediums carry the rest; they read as confident filmmaking anyway.
+
+## Dialogue performance
+
+- Short lines per generation; native-audio quotes for the delivery, not the face
+- Let the voice carry the acting — don't ask the face to do what the voice already does
+- The listener's reaction shot sells the line more than the speaker's mouth
+- For long scenes: generate silent, isolate vocals, post lip-sync — the performance lives in the edit
+
+## Rehearsal is drafts
+
+Treat 720p drafts as rehearsal takes. Watch for: does the tactic read? Do the eyes have a job? Does the turn land in the cut? Re-direct with changed variables — a new tactic, a new eyeline — never the same prompt hoping. Three failed rehearsals means simplify the shot, not the actor.
+
+## When to go hybrid
+
+Some performances AI can't give you yet. The documented answer: put a real human at the emotional core and let AI handle everything around them.
+
+- **Get Me Out**: a real performer captured the emotion; AI re-skinned the world around her
+- **Dreams of Violets**: the director voice-acted every role himself, then AI-converted each character's voice — the performance was human, the timbre was synthetic
+- **Cully Hill Boys**: licensed likenesses with expressions and kinematics mapped from the performers' own photos and voice audio — the "acting" was anchored in real performers from the start
+
+Rule of thumb: if the scene's entire job is one human feeling something complicated, that's the scene to shoot for real — or to voice for real — and transform with AI.
+
+## The performance checklist
+
+- [ ] Every emotional beat rewritten as a playable tactic
+- [ ] Eyelines named per beat — every pair of eyes has a job
+- [ ] One tactic per shot; turns happen in the cut
+- [ ] Director's read written: shared event + each character's physical channel
+- [ ] Close-ups rationed to emotional peaks
+- [ ] Identity locked — no drift between "takes"
+- [ ] Dialogue: voice carries, face supports, listener sells
+- [ ] Drafts reviewed as rehearsals, re-directed with changed variables
+- [ ] The emotional core scenes assessed honestly: AI or hybrid?
+
+## Sources
+
+- ONEIRIC production brief: `tig-acting-task` skill, CINEDANCE block order, closing rules (via community transcription of the open-sourced brief — flagged as third-party)
+- Passport Rush breakdown: documented subtle-acting problem (official YouTube breakdown)
+- Cully Hill Boys: licensed likeness pipeline, expressions/kinematics from performer reference (cryptobriefing.com, archyde.com)
+- The Verge on Cully Hill Boys: "occasionally weak character interactions" (via magazine.mindplex.ai summary)
+- Companion: `craft/character-consistency.md`, `craft/long-form-pipeline.md`, skills `craft-gaze-eyelines`, `audio-direct-voiceover`
+
+<!-- chapter: craft/color-grading -->
+# Color Grading AI Footage
+
+Every AI generation arrives with its own built-in grade — the model's idea of what "cinematic" looks like, baked into the pixels. On a multi-shot production, that's 40 different colorists who never met. The colorist's job on AI footage is **unification**: bringing neighboring shots to one look.
+
+## The two places color lives
+
+**In the plate (before generation).** Lens character, palette direction, texture, time-of-day — baked into the location/character image plates. What you bake, you don't have to fix. The ONEIRIC rule: *the plate itself becomes the lens.*
+
+**In the grade (after generation).** Shot-to-shot matching, the show look, technical delivery. What the plate couldn't hold.
+
+Decide per element which place it lives. Anything the video model keeps dropping belongs in the plate. Anything that needs to move across the whole film belongs in the grade.
+
+## The unification pass
+
+Before any creative grading, unify. Pick one hero shot per scene as the reference. For every other shot:
+
+1. Match exposure and white balance to the reference (scopes, not eyes)
+2. Match contrast curve — AI generations vary wildly in black level
+3. Match saturation — see the de-plasticize stack below
+4. Only then apply the creative look
+
+Do the unification pass over the location set *before* generating where possible (the ADILIADA production did this) — it's cheaper than discovering mismatch in the grade.
+
+## The de-plasticize stack
+
+AI footage has a recognizable syndrome: over-smooth gradients, over-saturated color, waxy skin, a sheen over everything. The fix, in order:
+
+1. **Desaturate 10–20%.** AI oversaturates by default. This one move does half the work.
+2. **Add fine film grain.** 35mm grain breaks up the smooth gradients that scream synthetic. Grain is the fastest anti-plastic pass in existence.
+3. **Subtle chromatic aberration** at high-contrast edges. Real lenses have flaws; perfect edges read as rendered.
+4. **Soften, don't sharpen.** Plastic + sharp = worse. A whisper of diffusion beats any sharpening pass.
+5. **Skin last.** Skin is the hardest surface — if it's waxy, a dedicated skin-refinement pass or slight diffusion on skin tones only.
+
+Check the whole stack on a big screen. Defects invisible on a laptop appear at 4K.
+
+## Matching across models
+
+Different models have different "house grades" — Kling's contrast curve isn't Veo's. When a scene mixes models:
+
+- Unify harder: match to the reference before any creative look
+- The plate matters more: shared plates across models do more than any grade can
+- If two models won't match, re-generate the outlier rather than torturing the grade
+
+## The show look
+
+Once unified, the creative grade. For AI film, restraint wins:
+
+- One look for the film, with scene-level variations — not a new look per scene
+- Work in passes: primary (whole image) → secondaries (skin, sky, key objects) → texture (grain, halation, gate weave if period)
+- Halation and bloom flatter AI highlights, which tend to clip harshly
+- Decide the grain philosophy early: one grain for the film, applied at the end, over everything — it's the final unifier
+
+## Scopes, not eyes
+
+Grade with waveforms and vectorscopes. AI footage lies to eyes — the "cinematic" built-in grade is designed to flatter on first glance. Check:
+
+- Blacks actually reach black (AI loves milky shadows)
+- Skin tones sit on the skin-tone line (vectorscope)
+- Saturation doesn't clip in any channel
+
+## Delivery
+
+- Festival masters: 16:9 or 21:9 composed (not cropped) for the ratio, up to 4K
+- Broadcast-safe levels; -1 dBTP audio ceiling is the sound department's job, but don't crush the picture to compensate
+- Keep the pre-grade masters. When the festival asks for a revision, you re-grade — you don't re-generate.
+
+## The grading checklist
+
+- [ ] Look decided per element: plate vs grade
+- [ ] Unification pass before creative grading (reference still per scene)
+- [ ] De-plasticize stack applied: desat, grain, CA, soften
+- [ ] Skin checked on a big screen
+- [ ] Multi-model scenes matched or re-generated
+- [ ] One show look, scene variations — not a look per scene
+- [ ] Scopes verify blacks, skin line, saturation
+- [ ] Pre-grade masters archived
+
+## Sources
+
+- ONEIRIC brief: colorist-as-unification, bake-the-look-into-plates (third-party transcription — flagged)
+- ADILIADA: pre-generation unification pass over the location set
+- Companion: skills `craft-kill-ai-look`, `fix-plasticky-look`, `craft-bake-look`
 
 <!-- chapter: craft/sound-music-audio -->
 # Sound, Music & Audio

@@ -25,7 +25,7 @@ SECTIONS = [
 
 CHAPTER_ORDER = {
     "higgsfield": ["platform-mastery", "prompt-engineering", "soul-id-deep-dive", "100k-festival-playbook"],
-    "craft": ["story-structure", "cinematic-language", "character-consistency", "sound-music-audio", "editing-pipeline", "long-form-pipeline"],
+    "craft": ["story-structure", "cinematic-language", "character-consistency", "directing-performance", "color-grading", "sound-music-audio", "editing-pipeline", "long-form-pipeline"],
     "platforms": ["field-guide", "when-to-use-what"],
     "economics": ["credit-math"],
     "case-studies": ["festival-winners", "entry-craft-teardowns"],
@@ -118,13 +118,14 @@ INDEX_TMPL = """<!DOCTYPE html>
       <div class="container hero-inner">
         <span class="hero-kicker">Festival-grade AI filmmaking</span>
         <h1 id="hero-title">Make films with AI<br><span class="accent">like a studio.</span></h1>
-        <p class="lede">Fourteen chapters on Higgsfield mastery, professional craft, sound, economics, and festival playbooks — with separate tracks for animated/stylized and photorealistic production. Plus a machine-readable API for agents.</p>
+        <p class="lede">Eighteen chapters on Higgsfield mastery, professional craft, directing performance, color grading, sound, economics, long-form pipelines, and festival playbooks — with separate tracks for animated/stylized and photorealistic production. Plus a machine-readable API and 180 task skills for agents.</p>
         <div class="stat-strip">
-          <div class="stat"><div class="stat-value">14</div><div class="stat-label">Chapters</div></div>
+          <div class="stat"><div class="stat-value">18</div><div class="stat-label">Chapters</div></div>
           <div class="stat"><div class="stat-value">31</div><div class="stat-label">Prompt templates</div></div>
           <div class="stat"><div class="stat-value">22</div><div class="stat-label">Camera moves</div></div>
           <div class="stat"><div class="stat-value">18</div><div class="stat-label">Models compared</div></div>
-          <div class="stat"><div class="stat-value">60+</div><div class="stat-label">Glossary terms</div></div>
+          <div class="stat"><div class="stat-value">79</div><div class="stat-label">Glossary terms</div></div>
+          <div class="stat"><div class="stat-value">180</div><div class="stat-label">Agent skills</div></div>
         </div>
       </div>
     </section>
@@ -147,6 +148,65 @@ INDEX_TMPL = """<!DOCTYPE html>
             <a class="btn btn-sm" href="higgsfield/soul-id-deep-dive.html">Soul ID deep dive</a>
             <a class="btn btn-sm" href="craft/character-consistency.html">Character consistency</a>
           </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="container" aria-labelledby="paths-h">
+      <h2 id="paths-h">Start here: learning paths</h2>
+      <p class="section-lede">Don't read eighteen chapters in order. Pick your goal — each path is the shortest route through the guide that gets you there.</p>
+      <div class="path-grid">
+        <article class="card path-card">
+          <h3>Your first AI film <span class="path-time">a weekend</span></h3>
+          <p>Story to finished short in two days. The minimum viable path.</p>
+          <ol class="path-steps">
+            <li><a href="craft/story-structure.html">Story structure</a></li>
+            <li><a href="higgsfield/prompt-engineering.html">Prompt engineering</a></li>
+            <li><a href="platforms/when-to-use-what.html">Model selection</a></li>
+            <li><a href="economics/credit-math.html">Credit math</a></li>
+            <li><a href="craft/editing-pipeline.html">Editing pipeline</a></li>
+          </ol>
+        </article>
+        <article class="card path-card">
+          <h3>Festival entry <span class="path-time">2–4 weeks</span></h3>
+          <p>Built to place. Every chapter judges actually score.</p>
+          <ol class="path-steps">
+            <li><a href="higgsfield/100k-festival-playbook.html">Festival playbook</a></li>
+            <li><a href="craft/directing-performance.html">Directing performance</a></li>
+            <li><a href="craft/color-grading.html">Color grading</a></li>
+            <li><a href="craft/sound-music-audio.html">Sound &amp; music</a></li>
+            <li><a href="case-studies/entry-craft-teardowns.html">Entry craft teardowns</a></li>
+          </ol>
+        </article>
+        <article class="card path-card">
+          <h3>Animated / stylized <span class="path-time">1–2 weeks</span></h3>
+          <p>Cheaper, more forgiving, dedicated festival lanes.</p>
+          <ol class="path-steps">
+            <li><a href="higgsfield/prompt-engineering.html">Prompt engineering</a> <span class="path-note">animated register</span></li>
+            <li><a href="craft/cinematic-language.html">Cinematic language</a></li>
+            <li><a href="craft/character-consistency.html">Character consistency</a></li>
+            <li><a href="platforms/when-to-use-what.html">Model selection</a></li>
+          </ol>
+        </article>
+        <article class="card path-card">
+          <h3>Photorealistic drama <span class="path-time">3–6 weeks</span></h3>
+          <p>The premium lane: invisible AI, visible craft.</p>
+          <ol class="path-steps">
+            <li><a href="higgsfield/soul-id-deep-dive.html">Soul ID deep dive</a></li>
+            <li><a href="craft/character-consistency.html">Character consistency</a></li>
+            <li><a href="craft/directing-performance.html">Directing performance</a></li>
+            <li><a href="craft/color-grading.html">Color grading</a></li>
+          </ol>
+        </article>
+        <article class="card path-card">
+          <h3>Long-form: 20+ minutes <span class="path-time">ongoing</span></h3>
+          <p>Systems, not prompts. How features actually get made.</p>
+          <ol class="path-steps">
+            <li><a href="craft/long-form-pipeline.html">Long-form pipeline</a></li>
+            <li><a href="craft/directing-performance.html">Directing performance</a></li>
+            <li><a href="craft/editing-pipeline.html">Editing pipeline</a></li>
+            <li><a href="economics/credit-math.html">Credit math</a> <span class="path-note">compute envelopes</span></li>
+          </ol>
         </article>
       </div>
     </section>

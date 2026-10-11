@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Color Grading AI Footage — AI Film Master Guide</title>
+  <meta name="description" content="Every AI generation arrives with its own built-in grade — the model's idea of what &quot;cinematic&quot; looks like, baked into the pixels. On a multi-shot production, th">
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/docs.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="../index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="../index.html">Guide</a>
+        <a href="../api.html">API</a>
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">⌘K</span> Search
+      </button>
+    </div>
+  </header>
+  <div class="container docs-layout">
+    <nav class="docs-nav" aria-label="Chapters"><details open><summary>Higgsfield</summary><ul><li><a href="../higgsfield/platform-mastery.html">Higgsfield Platform Mastery</a></li><li><a href="../higgsfield/prompt-engineering.html">Higgsfield Prompt Engineering</a></li><li><a href="../higgsfield/soul-id-deep-dive.html">Soul ID Deep Dive</a></li><li><a href="../higgsfield/100k-festival-playbook.html">The $100K Festival Playbook</a></li></ul></details>
+<details open><summary>Craft</summary><ul><li><a href="../craft/story-structure.html">Story Structure for AI Short Films</a></li><li><a href="../craft/cinematic-language.html">Cinematic Language</a></li><li><a href="../craft/character-consistency.html">Character Consistency</a></li><li><a href="../craft/directing-performance.html">Directing Performance in AI Video</a></li><li><a href="../craft/color-grading.html">Color Grading AI Footage</a></li><li><a href="../craft/sound-music-audio.html">Sound, Music & Audio</a></li><li><a href="../craft/editing-pipeline.html">Editing Pipeline</a></li><li><a href="../craft/long-form-pipeline.html">The Long-Form Pipeline: Making AI Films at 20+ Minutes</a></li></ul></details>
+<details open><summary>Platforms</summary><ul><li><a href="../platforms/field-guide.html">AI Video Platform Field Guide</a></li><li><a href="../platforms/when-to-use-what.html">When to Use What</a></li></ul></details>
+<details open><summary>Economics</summary><ul><li><a href="../economics/credit-math.html">Credit Math</a></li></ul></details>
+<details open><summary>Case Studies</summary><ul><li><a href="../case-studies/festival-winners.html">Festival Winner Breakdowns</a></li><li><a href="../case-studies/entry-craft-teardowns.html">Entry Craft Teardowns: How the Winning Films Were Actually Made</a></li></ul></details>
+<details open><summary>Sources</summary><ul><li><a href="../sources/source-index.html">Source Index</a></li></ul></details></nav>
+    <main id="main" class="docs-main">
+      <p class="crumb"><a href="../index.html">Guide</a> / Craft</p>
+      <article class="prose"><h1 id="color-grading-ai-footage">Color Grading AI Footage</h1>
+<p>Every AI generation arrives with its own built-in grade — the model&#x27;s idea of what &quot;cinematic&quot; looks like, baked into the pixels. On a multi-shot production, that&#x27;s 40 different colorists who never met. The colorist&#x27;s job on AI footage is <strong>unification</strong>: bringing neighboring shots to one look.</p>
+<h2 id="the-two-places-color-lives">The two places color lives</h2>
+<p><strong>In the plate (before generation).</strong> Lens character, palette direction, texture, time-of-day — baked into the location/character image plates. What you bake, you don&#x27;t have to fix. The ONEIRIC rule: <em>the plate itself becomes the lens.</em></p>
+<p><strong>In the grade (after generation).</strong> Shot-to-shot matching, the show look, technical delivery. What the plate couldn&#x27;t hold.</p>
+<p>Decide per element which place it lives. Anything the video model keeps dropping belongs in the plate. Anything that needs to move across the whole film belongs in the grade.</p>
+<h2 id="the-unification-pass">The unification pass</h2>
+<p>Before any creative grading, unify. Pick one hero shot per scene as the reference. For every other shot:</p>
+<ol>
+<li>Match exposure and white balance to the reference (scopes, not eyes)</li>
+<li>Match contrast curve — AI generations vary wildly in black level</li>
+<li>Match saturation — see the de-plasticize stack below</li>
+<li>Only then apply the creative look</li>
+</ol>
+<p>Do the unification pass over the location set <em>before</em> generating where possible (the ADILIADA production did this) — it&#x27;s cheaper than discovering mismatch in the grade.</p>
+<h2 id="the-de-plasticize-stack">The de-plasticize stack</h2>
+<p>AI footage has a recognizable syndrome: over-smooth gradients, over-saturated color, waxy skin, a sheen over everything. The fix, in order:</p>
+<ol>
+<li><strong>Desaturate 10–20%.</strong> AI oversaturates by default. This one move does half the work.</li>
+<li><strong>Add fine film grain.</strong> 35mm grain breaks up the smooth gradients that scream synthetic. Grain is the fastest anti-plastic pass in existence.</li>
+<li><strong>Subtle chromatic aberration</strong> at high-contrast edges. Real lenses have flaws; perfect edges read as rendered.</li>
+<li><strong>Soften, don&#x27;t sharpen.</strong> Plastic + sharp = worse. A whisper of diffusion beats any sharpening pass.</li>
+<li><strong>Skin last.</strong> Skin is the hardest surface — if it&#x27;s waxy, a dedicated skin-refinement pass or slight diffusion on skin tones only.</li>
+</ol>
+<p>Check the whole stack on a big screen. Defects invisible on a laptop appear at 4K.</p>
+<h2 id="matching-across-models">Matching across models</h2>
+<p>Different models have different &quot;house grades&quot; — Kling&#x27;s contrast curve isn&#x27;t Veo&#x27;s. When a scene mixes models:</p>
+<ul>
+<li>Unify harder: match to the reference before any creative look</li>
+<li>The plate matters more: shared plates across models do more than any grade can</li>
+<li>If two models won&#x27;t match, re-generate the outlier rather than torturing the grade</li>
+</ul>
+<h2 id="the-show-look">The show look</h2>
+<p>Once unified, the creative grade. For AI film, restraint wins:</p>
+<ul>
+<li>One look for the film, with scene-level variations — not a new look per scene</li>
+<li>Work in passes: primary (whole image) → secondaries (skin, sky, key objects) → texture (grain, halation, gate weave if period)</li>
+<li>Halation and bloom flatter AI highlights, which tend to clip harshly</li>
+<li>Decide the grain philosophy early: one grain for the film, applied at the end, over everything — it&#x27;s the final unifier</li>
+</ul>
+<h2 id="scopes-not-eyes">Scopes, not eyes</h2>
+<p>Grade with waveforms and vectorscopes. AI footage lies to eyes — the &quot;cinematic&quot; built-in grade is designed to flatter on first glance. Check:</p>
+<ul>
+<li>Blacks actually reach black (AI loves milky shadows)</li>
+<li>Skin tones sit on the skin-tone line (vectorscope)</li>
+<li>Saturation doesn&#x27;t clip in any channel</li>
+</ul>
+<h2 id="delivery">Delivery</h2>
+<ul>
+<li>Festival masters: 16:9 or 21:9 composed (not cropped) for the ratio, up to 4K</li>
+<li>Broadcast-safe levels; -1 dBTP audio ceiling is the sound department&#x27;s job, but don&#x27;t crush the picture to compensate</li>
+<li>Keep the pre-grade masters. When the festival asks for a revision, you re-grade — you don&#x27;t re-generate.</li>
+</ul>
+<h2 id="the-grading-checklist">The grading checklist</h2>
+<ul class="task-list">
+<li><input type="checkbox" disabled aria-hidden="true"> Look decided per element: plate vs grade</li>
+<li><input type="checkbox" disabled aria-hidden="true"> Unification pass before creative grading (reference still per scene)</li>
+<li><input type="checkbox" disabled aria-hidden="true"> De-plasticize stack applied: desat, grain, CA, soften</li>
+<li><input type="checkbox" disabled aria-hidden="true"> Skin checked on a big screen</li>
+<li><input type="checkbox" disabled aria-hidden="true"> Multi-model scenes matched or re-generated</li>
+<li><input type="checkbox" disabled aria-hidden="true"> One show look, scene variations — not a look per scene</li>
+<li><input type="checkbox" disabled aria-hidden="true"> Scopes verify blacks, skin line, saturation</li>
+<li><input type="checkbox" disabled aria-hidden="true"> Pre-grade masters archived</li>
+</ul>
+<h2 id="sources">Sources</h2>
+<ul>
+<li>ONEIRIC brief: colorist-as-unification, bake-the-look-into-plates (third-party transcription — flagged)</li>
+<li>ADILIADA: pre-generation unification pass over the location set</li>
+<li>Companion: skills <code>craft-kill-ai-look</code>, <code>fix-plasticky-look</code>, <code>craft-bake-look</code></li>
+</ul></article>
+      <nav class="prevnext" aria-label="Next and previous chapters"><a class="btn" href="../craft/directing-performance.html" rel="prev">← Directing Performance in AI Video</a><a class="btn" href="../craft/sound-music-audio.html" rel="next">Sound, Music & Audio →</a></nav>
+    </main>
+    <aside class="docs-toc" aria-label="On this page"><p class="toc-h">On this page</p><ul><li class="toc-l2"><a href="#the-two-places-color-lives">The two places color lives</a></li><li class="toc-l2"><a href="#the-unification-pass">The unification pass</a></li><li class="toc-l2"><a href="#the-de-plasticize-stack">The de-plasticize stack</a></li><li class="toc-l2"><a href="#matching-across-models">Matching across models</a></li><li class="toc-l2"><a href="#the-show-look">The show look</a></li><li class="toc-l2"><a href="#scopes-not-eyes">Scopes, not eyes</a></li><li class="toc-l2"><a href="#delivery">Delivery</a></li><li class="toc-l2"><a href="#the-grading-checklist">The grading checklist</a></li><li class="toc-l2"><a href="#sources">Sources</a></li></ul></aside>
+  </div>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer"><a href="../index.html">Guide</a><a href="../api.html">API</a></nav>
+    </div>
+  </footer>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
+    <div class="palette-box">
+      <input id="palette-input" type="search" placeholder="Search chapters, prompts, models…" autocomplete="off" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="../assets/js/palette.js"></script>
+</body>
+</html>

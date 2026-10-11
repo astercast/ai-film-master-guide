@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "count": 173,
+  "count": 180,
   "skills": [
     {
       "id": "prompt-t1",
@@ -1039,6 +1039,48 @@
       "title": "Screen for cold viewers",
       "description": "The fine-cut test that finds what you can't see anymore.",
       "path": "skills/craft/craft-cold-screening.md"
+    },
+    {
+      "id": "performance-tactics-not-emotions",
+      "title": "Rewrite emotions as tactics",
+      "description": "Turn emotion labels into playable tactics AI can render.",
+      "path": "skills/performance/performance-tactics-not-emotions.md"
+    },
+    {
+      "id": "performance-directors-read",
+      "title": "Write the director's read",
+      "description": "One shared event + each character's physical channel, before generating.",
+      "path": "skills/performance/performance-directors-read.md"
+    },
+    {
+      "id": "performance-ration-closeups",
+      "title": "Ration close-ups",
+      "description": "Spend close-ups at emotional peaks; carry the rest in mediums and wides.",
+      "path": "skills/performance/performance-ration-closeups.md"
+    },
+    {
+      "id": "performance-hybrid-decision",
+      "title": "Decide AI vs hybrid performance",
+      "description": "Know when the emotional core needs a real human.",
+      "path": "skills/performance/performance-hybrid-decision.md"
+    },
+    {
+      "id": "grade-unify-first",
+      "title": "Unify before grading",
+      "description": "Match every shot to a per-scene reference before any creative look.",
+      "path": "skills/grading/grade-unify-first.md"
+    },
+    {
+      "id": "grade-deplasticize",
+      "title": "Run the de-plasticize stack",
+      "description": "Desaturate, grain, chromatic aberration, soften \u2014 in that order.",
+      "path": "skills/grading/grade-deplasticize.md"
+    },
+    {
+      "id": "grade-scopes-not-eyes",
+      "title": "Grade with scopes, not eyes",
+      "description": "Waveforms and vectorscopes catch what AI footage hides from eyes.",
+      "path": "skills/grading/grade-scopes-not-eyes.md"
     }
   ]
 }

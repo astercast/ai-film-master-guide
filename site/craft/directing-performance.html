@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Directing Performance in AI Video — AI Film Master Guide</title>
+  <meta name="description" content="AI models don't act. They render plausible arrangements of pixels that read as acting when the direction is specific enough — and collapse into mannequin theate">
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/docs.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="../index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="../index.html">Guide</a>
+        <a href="../api.html">API</a>
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">⌘K</span> Search
+      </button>
+    </div>
+  </header>
+  <div class="container docs-layout">
+    <nav class="docs-nav" aria-label="Chapters"><details open><summary>Higgsfield</summary><ul><li><a href="../higgsfield/platform-mastery.html">Higgsfield Platform Mastery</a></li><li><a href="../higgsfield/prompt-engineering.html">Higgsfield Prompt Engineering</a></li><li><a href="../higgsfield/soul-id-deep-dive.html">Soul ID Deep Dive</a></li><li><a href="../higgsfield/100k-festival-playbook.html">The $100K Festival Playbook</a></li></ul></details>
+<details open><summary>Craft</summary><ul><li><a href="../craft/story-structure.html">Story Structure for AI Short Films</a></li><li><a href="../craft/cinematic-language.html">Cinematic Language</a></li><li><a href="../craft/character-consistency.html">Character Consistency</a></li><li><a href="../craft/directing-performance.html">Directing Performance in AI Video</a></li><li><a href="../craft/color-grading.html">Color Grading AI Footage</a></li><li><a href="../craft/sound-music-audio.html">Sound, Music & Audio</a></li><li><a href="../craft/editing-pipeline.html">Editing Pipeline</a></li><li><a href="../craft/long-form-pipeline.html">The Long-Form Pipeline: Making AI Films at 20+ Minutes</a></li></ul></details>
+<details open><summary>Platforms</summary><ul><li><a href="../platforms/field-guide.html">AI Video Platform Field Guide</a></li><li><a href="../platforms/when-to-use-what.html">When to Use What</a></li></ul></details>
+<details open><summary>Economics</summary><ul><li><a href="../economics/credit-math.html">Credit Math</a></li></ul></details>
+<details open><summary>Case Studies</summary><ul><li><a href="../case-studies/festival-winners.html">Festival Winner Breakdowns</a></li><li><a href="../case-studies/entry-craft-teardowns.html">Entry Craft Teardowns: How the Winning Films Were Actually Made</a></li></ul></details>
+<details open><summary>Sources</summary><ul><li><a href="../sources/source-index.html">Source Index</a></li></ul></details></nav>
+    <main id="main" class="docs-main">
+      <p class="crumb"><a href="../index.html">Guide</a> / Craft</p>
+      <article class="prose"><h1 id="directing-performance-in-ai-video">Directing Performance in AI Video</h1>
+<p>AI models don&#x27;t act. They render plausible arrangements of pixels that read as acting when the direction is specific enough — and collapse into mannequin theater when it isn&#x27;t. This chapter is the directing discipline behind believable AI performance, drawn from productions that solved it in public.</p>
+<h2 id="the-core-problem">The core problem</h2>
+<p>Passport Rush&#x27;s team documented it openly: <strong>AI struggles with subtle character acting.</strong> The failure has a shape:</p>
+<ul>
+<li>Faces average toward neutral — micro-expressions collapse into a pleasant blank</li>
+<li>Emotion labels (&quot;she looks devastated&quot;) produce stock expressions, not felt ones</li>
+<li>Dead, glassy eyes — the single fastest tell of an undirected AI performance</li>
+<li>The Verge&#x27;s review of Cully Hill Boys noted &quot;occasionally weak character interactions&quot; as a visible limit even at $2M</li>
+</ul>
+<p>The fix is not a better model. It&#x27;s direction written the way actors need it — as <em>tasks</em>, not adjectives.</p>
+<h2 id="direct-don-t-describe">Direct, don&#x27;t describe</h2>
+<p>ONEIRIC&#x27;s acting skill (<code>tig-acting-task</code>) replaced emotion labels with acting tasks entirely. The closing rule of that production: <strong>direct, don&#x27;t describe</strong> — scene event, motive, goal, obstacle, tactic.</p>
+<table><thead><tr><th>Instead of (description)</th><th>Write (direction)</th></tr></thead><tbody>
+<tr><td>She looks devastated</td><td>She is trying not to cry in front of him — jaw set, eyes on the door</td></tr>
+<tr><td>He is furious</td><td>He is deciding whether to hit him — weight shifting forward, hands opening and closing</td></tr>
+<tr><td>They are in love</td><td>She keeps finding reasons to stand closer; he keeps noticing and not moving away</td></tr>
+<tr><td>He is nervous</td><td>He is rehearsing what to say — lips moving silently, thumb rubbing the ring</td></tr>
+</tbody></table>
+<p>Every entry on the right is a <em>playable tactic</em> — something a body can do. Models can&#x27;t render &quot;devastated.&quot; They can render a jaw set and eyes fixed on a door.</p>
+<h2 id="give-the-eyes-a-job">Give the eyes a job</h2>
+<p>The single highest-leverage performance note in the research: <strong>&quot;dead, glassy eyes are never fixed with lighting — they&#x27;re fixed by giving the eyes a job.&quot;</strong></p>
+<p>The CINEDANCE prompt architecture gives GAZE/EYELINES its own block <em>before</em> blocking. In practice:</p>
+<ul>
+<li>Name the eyeline target per beat: <em>Mara holds on Vex&#x27;s hands until &quot;the ledger&quot; — then snaps to his eyes</em></li>
+<li>Eyes move between targets; they never &quot;look sad into the middle distance&quot;</li>
+<li>Avert, hold, search, track — eye verbs are direction, not decoration</li>
+<li>In dialogue coverage, the listener&#x27;s eyes do half the acting — cut to the listener</li>
+</ul>
+<p>If a performance feels dead, check the eyes first. Nine times out of ten there&#x27;s no eyeline written.</p>
+<h2 id="one-feeling-per-shot">One feeling per shot</h2>
+<p>AI can&#x27;t play an arc inside a single clip. It can hold one tactic for 4–8 seconds. So:</p>
+<ul>
+<li>Break emotional turns into separate shots — the turn happens <em>in the cut</em></li>
+<li>The reaction shot is your best friend: AI renders listening better than it renders complex feeling</li>
+<li>Moment-to-moment tactics tied to dialogue words (the <code>tig-acting-task</code> block form): each line gets its own tactic, each tactic its own shot if needed</li>
+</ul>
+<h2 id="the-director-s-read">The director&#x27;s read</h2>
+<p>Before generating a scene, ONEIRIC&#x27;s pipeline produced a &quot;director&#x27;s read&quot;: <strong>the one shared event every character lives through, plus each character&#x27;s physical channel for it.</strong> Everyone in the scene is experiencing the same event — but grief lives in Mara&#x27;s hands, in Vex&#x27;s jaw, in the kid&#x27;s feet. Write the event once, then assign each character their channel. This is what keeps ensemble scenes from becoming four mannequins emoting at the camera.</p>
+<h2 id="casting-the-face">Casting the face</h2>
+<p>Consistent identity <em>reads</em> as good acting. A face that drifts 5% between shots reads as a bad performance even when the &quot;acting&quot; is fine:</p>
+<ul>
+<li>Lock the face anchor; never re-run the base portrait</li>
+<li>State changes (dirt, wounds, tears) are masked integrations, not re-generations</li>
+<li>For recurring characters, identity systems (Soul ID and equivalents) beat per-prompt description</li>
+</ul>
+<p>The audience forgives a limited performance from a consistent face. It never forgives a great &quot;take&quot; from a stranger.</p>
+<h2 id="ration-the-close-up">Ration the close-up</h2>
+<p>Micro-acting is the weakest link in every current model. Spend close-ups at emotional peaks — that&#x27;s where the audience looks hardest and where the model fails most visibly. Wides and mediums carry the rest; they read as confident filmmaking anyway.</p>
+<h2 id="dialogue-performance">Dialogue performance</h2>
+<ul>
+<li>Short lines per generation; native-audio quotes for the delivery, not the face</li>
+<li>Let the voice carry the acting — don&#x27;t ask the face to do what the voice already does</li>
+<li>The listener&#x27;s reaction shot sells the line more than the speaker&#x27;s mouth</li>
+<li>For long scenes: generate silent, isolate vocals, post lip-sync — the performance lives in the edit</li>
+</ul>
+<h2 id="rehearsal-is-drafts">Rehearsal is drafts</h2>
+<p>Treat 720p drafts as rehearsal takes. Watch for: does the tactic read? Do the eyes have a job? Does the turn land in the cut? Re-direct with changed variables — a new tactic, a new eyeline — never the same prompt hoping. Three failed rehearsals means simplify the shot, not the actor.</p>
+<h2 id="when-to-go-hybrid">When to go hybrid</h2>
+<p>Some performances AI can&#x27;t give you yet. The documented answer: put a real human at the emotional core and let AI handle everything around them.</p>
+<ul>
+<li><strong>Get Me Out</strong>: a real performer captured the emotion; AI re-skinned the world around her</li>
+<li><strong>Dreams of Violets</strong>: the director voice-acted every role himself, then AI-converted each character&#x27;s voice — the performance was human, the timbre was synthetic</li>
+<li><strong>Cully Hill Boys</strong>: licensed likenesses with expressions and kinematics mapped from the performers&#x27; own photos and voice audio — the &quot;acting&quot; was anchored in real performers from the start</li>
+</ul>
+<p>Rule of thumb: if the scene&#x27;s entire job is one human feeling something complicated, that&#x27;s the scene to shoot for real — or to voice for real — and transform with AI.</p>
+<h2 id="the-performance-checklist">The performance checklist</h2>
+<ul class="task-list">
+<li><input type="checkbox" disabled aria-hidden="true"> Every emotional beat rewritten as a playable tactic</li>
+<li><input type="checkbox" disabled aria-hidden="true"> Eyelines named per beat — every pair of eyes has a job</li>
+<li><input type="checkbox" disabled aria-hidden="true"> One tactic per shot; turns happen in the cut</li>
+<li><input type="checkbox" disabled aria-hidden="true"> Director&#x27;s read written: shared event + each character&#x27;s physical channel</li>
+<li><input type="checkbox" disabled aria-hidden="true"> Close-ups rationed to emotional peaks</li>
+<li><input type="checkbox" disabled aria-hidden="true"> Identity locked — no drift between &quot;takes&quot;</li>
+<li><input type="checkbox" disabled aria-hidden="true"> Dialogue: voice carries, face supports, listener sells</li>
+<li><input type="checkbox" disabled aria-hidden="true"> Drafts reviewed as rehearsals, re-directed with changed variables</li>
+<li><input type="checkbox" disabled aria-hidden="true"> The emotional core scenes assessed honestly: AI or hybrid?</li>
+</ul>
+<h2 id="sources">Sources</h2>
+<ul>
+<li>ONEIRIC production brief: <code>tig-acting-task</code> skill, CINEDANCE block order, closing rules (via community transcription of the open-sourced brief — flagged as third-party)</li>
+<li>Passport Rush breakdown: documented subtle-acting problem (official YouTube breakdown)</li>
+<li>Cully Hill Boys: licensed likeness pipeline, expressions/kinematics from performer reference (cryptobriefing.com, archyde.com)</li>
+<li>The Verge on Cully Hill Boys: &quot;occasionally weak character interactions&quot; (via magazine.mindplex.ai summary)</li>
+<li>Companion: <code>craft/character-consistency.md</code>, <code>craft/long-form-pipeline.md</code>, skills <code>craft-gaze-eyelines</code>, <code>audio-direct-voiceover</code></li>
+</ul></article>
+      <nav class="prevnext" aria-label="Next and previous chapters"><a class="btn" href="../craft/character-consistency.html" rel="prev">← Character Consistency</a><a class="btn" href="../craft/color-grading.html" rel="next">Color Grading AI Footage →</a></nav>
+    </main>
+    <aside class="docs-toc" aria-label="On this page"><p class="toc-h">On this page</p><ul><li class="toc-l2"><a href="#the-core-problem">The core problem</a></li><li class="toc-l2"><a href="#direct-don-t-describe">Direct, don't describe</a></li><li class="toc-l2"><a href="#give-the-eyes-a-job">Give the eyes a job</a></li><li class="toc-l2"><a href="#one-feeling-per-shot">One feeling per shot</a></li><li class="toc-l2"><a href="#the-director-s-read">The director's read</a></li><li class="toc-l2"><a href="#casting-the-face">Casting the face</a></li><li class="toc-l2"><a href="#ration-the-close-up">Ration the close-up</a></li><li class="toc-l2"><a href="#dialogue-performance">Dialogue performance</a></li><li class="toc-l2"><a href="#rehearsal-is-drafts">Rehearsal is drafts</a></li><li class="toc-l2"><a href="#when-to-go-hybrid">When to go hybrid</a></li><li class="toc-l2"><a href="#the-performance-checklist">The performance checklist</a></li><li class="toc-l2"><a href="#sources">Sources</a></li></ul></aside>
+  </div>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer"><a href="../index.html">Guide</a><a href="../api.html">API</a></nav>
+    </div>
+  </footer>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
+    <div class="palette-box">
+      <input id="palette-input" type="search" placeholder="Search chapters, prompts, models…" autocomplete="off" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="../assets/js/palette.js"></script>
+</body>
+</html>
