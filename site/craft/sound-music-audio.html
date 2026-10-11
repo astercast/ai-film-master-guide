@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sound, Music & Audio — AI Film Master Guide</title>
-  <meta name="description" content="Sound is half the picture. Amateur AI films are silent; winners are designed. (Festival rules require AI-generated music, voice, and sound — this isn't optional">
+  <meta name="description" content="Sound is half the picture. Amateur AI films are silent or slapped together; finished ones are designed. This chapter is the audio pillar: strategy, voice, music">
   <link rel="stylesheet" href="../assets/css/tokens.css">
   <link rel="stylesheet" href="../assets/css/base.css">
   <link rel="stylesheet" href="../assets/css/layout.css">
@@ -43,54 +43,85 @@
 <details open><summary>Case Studies</summary><ul><li><a href="../case-studies/competition-teardowns.html">Competition teardowns</a></li><li><a href="../case-studies/entry-craft-teardowns.html">Entry Craft Teardowns: How the Winning Films Were Actually Made</a></li></ul></details>
 <details open><summary>Distribution</summary><ul><li><a href="../distribution/release-paths.html">Distribution & Release Paths</a></li></ul></details>
 <details open><summary>Rights & Disclosure</summary><ul><li><a href="../legal/rights-and-disclosure.html">Rights, Disclosure & Legal</a></li></ul></details>
-<details open><summary>Sources</summary><ul><li><a href="../sources/source-index.html">Source Index</a></li></ul></details></nav>
+<details open><summary>Sources</summary><ul><li><a href="../sources/source-index.html">Source Index</a></li></ul></details>
+<details open><summary>Guides</summary><ul><li><a href="../guides/first-short.html">Your First 60-Second Short: A 7-Day Plan</a></li></ul></details></nav>
     <main id="main" class="docs-main">
       <div class="progress-bar" aria-hidden="true"><span></span></div>
       <p class="crumb"><a href="../index.html">Guide</a> / Craft</p>
-      <p class="read-time">2 min read · 359 words</p>
+      <p class="read-time">6 min read · 1,155 words</p>
       <article class="prose"><h1 id="sound-music-audio">Sound, Music &amp; Audio</h1>
-<p>Sound is half the picture. Amateur AI films are silent; winners are designed. (Festival rules require AI-generated music, voice, and sound — this isn&#x27;t optional.)</p>
-<h2 id="native-audio">Native audio</h2>
-<p>Some video models generate audio natively with the clip. Rules:</p>
+<p>Sound is half the picture. Amateur AI films are silent or slapped together; finished ones are designed. This chapter is the audio pillar: strategy, voice, music, sound design, and the mix.</p>
+<h2 id="the-audio-strategy-native-vs-designed">The audio strategy: native vs. designed</h2>
+<p>Some video models generate audio natively with the clip (Veo 3.1, Seedance 2.0, Kling 3.0). Treat native audio as raw material, never as the mix:</p>
 <ul>
-<li><strong>Keep it when</strong> it&#x27;s ambient texture: room tone, wind, rain, crowd murmur, footsteps.</li>
-<li><strong>Strip it when</strong> it&#x27;s dialogue, music, or anything prominent — regenerate those deliberately.</li>
+<li><strong>Keep it</strong> when it&#x27;s ambient texture: room tone, wind, rain, crowd murmur, footsteps. Native models generate believable &quot;moments&quot; — the pause before a sentence, the room the voice sits in — because picture and sound arrive as one believable event.</li>
+<li><strong>Strip it</strong> when it&#x27;s dialogue, music, or anything prominent. Those get built deliberately, on their own tracks, where you control every word and note.</li>
 <li><strong>Never</strong> let native audio be your only sound layer. It&#x27;s a bed, not a mix.</li>
 </ul>
-<h2 id="sound-design-the-layer-that-sells-reality">Sound design (the layer that sells reality)</h2>
+<p>The clip caps are short (single-digit to ~15 seconds depending on model), so any dialogue longer than a line or two is an edit anyway. Plan for that from the start.</p>
+<h2 id="voice-design-casting-a-synthetic-voice">Voice design: casting a synthetic voice</h2>
+<p>A voice is a cast member. Cast it with the same discipline you&#x27;d cast an actor:</p>
+<ul>
+<li><strong>Write a Voice Bible</strong> per character/narrator before generating: register (chest/head), timbre (rough/smooth), tempo (unhurried/clipped), manner (warm, flat, sardonic). Every generation references the same bible — this is what keeps a voice consistent across scenes.</li>
+<li><strong>Test on your actual dialogue</strong>, not a demo sentence. A voice that sounds great on a demo line can collapse on your character&#x27;s hardest scene. Test the hardest line first.</li>
+<li><strong>Generate per paragraph, comp like a session.</strong> Paragraph-level generation gives you edit points; comp the best takes the way a dialogue editor comps a real VO session. Regenerate broken lines, not whole scripts.</li>
+</ul>
+<h3 id="the-two-roads-to-a-talking-character">The two roads to a talking character</h3>
+<ul>
+<li><strong>Road A — native:</strong> the model generates picture plus synced dialogue in one pass. Best for short lines, natural delivery, ambient realism.</li>
+<li><strong>Road B — decoupled:</strong> silent clip + separately produced voice + a dedicated lip-sync pass that reshapes only the mouth. Best the moment a client or an exact script is involved — you own the voiceover, can revise lines without re-rendering picture, and keep a clean stem.</li>
+</ul>
+<p>Rule of thumb: if the words must be exact, take Road B. (See the <code>audio-lip-sync-route</code> skill for the per-scene decision procedure, and <code>craft/directing-performance.md</code> for dialogue performance direction.)</p>
+<h3 id="directing-tts-voices-through-text">Directing TTS voices through text</h3>
+<p>Most TTS models have no emotion selector — you direct delivery through the text itself:</p>
+<ul>
+<li><strong>Punctuation as direction:</strong> ellipsis for hesitation, capitalization for stress, dashes for interruptions.</li>
+<li><strong>Bracketed stage directions</strong> on current voice models: <code>[whispering]</code>, <code>[laughs]</code>, <code>[said angrily]</code>, plus environmental cues like <code>[light rain]</code> or <code>[door slams]</code>.</li>
+<li><strong>Settings that change performance:</strong> stability around 0.4–0.6 for expressive dialogue (higher goes flatter), similarity boost ~0.7–0.8 for voice clones, style exaggeration low (0–0.3) for normal dialogue.</li>
+<li><strong>Write performance arcs, not flat tones.</strong> Shift intentions across a script: open serious, build insistent, close warm. A voice that never changes intention sounds synthetic no matter how good the model is.</li>
+<li><strong>The human-in-the-loop upgrade:</strong> record the acting yourself (even roughly, even on a phone), then AI-convert the voice to the character. The acting survives; the voice matches the cast. This is the highest-quality dialogue pipeline documented in AI film to date.</li>
+</ul>
+<h2 id="ai-music-score-as-a-built-object">AI music: score as a built object</h2>
+<ul>
+<li><strong>Brief per cue, not per film.</strong> Genre, tempo, instrumentation, the cue&#x27;s emotional job, what to avoid: &quot;ambient synth, 85 BPM, rising tension, no vocals.&quot; Generate 3–5 variants per cue and comp sections like a real score.</li>
+<li><strong>Temp-track discipline:</strong> cut to a temp score first, then generate the final score to the locked cut. Never score to a moving target.</li>
+<li><strong>Keep stems when the tool offers them.</strong> Dialogue ducks under a full stereo mix badly; stems let the mix breathe.</li>
+<li><strong>No vocals unless the story needs them.</strong> Score serves the story, never shows off.</li>
+</ul>
+<h3 id="the-rights-gap-read-this-before-you-ship">The rights gap (read this before you ship)</h3>
+<p>AI-generated music sits in the murkiest rights territory in the guide. Model terms vary on who owns outputs, training-data provenance is contested, and distributor policies differ. <strong>Keep your generation receipts</strong> (prompts, dates, tool, terms version) and read <code>legal/rights-and-disclosure.md</code> before distributing anything with AI music — especially commercially. This is not legal advice; it&#x27;s the minimum professional hygiene.</p>
+<h2 id="sound-design-foley-the-layer-that-sells-reality">Sound design &amp; foley: the layer that sells reality</h2>
 <p>Every scene needs three layers:</p>
 <ol>
-<li><strong>Bed:</strong> ambient tone of the location (room, street, forest, wind) — runs under everything.</li>
-<li><strong>Foley:</strong> footsteps, cloth, object handling — the sounds that make movement feel physical.</li>
+<li><strong>Bed:</strong> the ambient tone of the location (room, street, forest, wind) — runs under everything, never drops to digital silence.</li>
+<li><strong>Foley:</strong> footsteps, cloth, object handling — the sounds that make movement feel physical. Performed or layered to picture.</li>
 <li><strong>Accents:</strong> designed hits for story beats — the turn, the reveal, the button.</li>
 </ol>
-<p>AI SFX tools can generate all three from text prompts. Describe sounds the way you describe shots: specifically and physically.</p>
-<h2 id="score">Score</h2>
+<p>AI SFX tools generate all three from text prompts. Describe sounds the way you describe shots: specifically and physically (&quot;gravel footsteps, slow, approaching&quot; beats &quot;walking sounds&quot;). Build backgrounds first, hard FX second, foley third — and use J/L cuts at transitions so no cut ever goes dry. (See the <code>audio-sfx-bed</code> skill for the full layering procedure.)</p>
+<h2 id="the-mix-balance-loudness-qc">The mix: balance, loudness, QC</h2>
 <ul>
-<li>AI music generators take prompts like: &quot;ambient synth, 85 BPM, rising tension, no vocals.&quot;</li>
-<li><strong>Temp-track discipline:</strong> cut to a temp score first, then generate the final score to the locked cut — never score to a moving target.</li>
-<li>No vocals unless the story needs them; score serves the story, never shows off.</li>
-<li>The festival requires AI-generated music with rights you hold — keep the generation receipts.</li>
-</ul>
-<h2 id="dialogue">Dialogue</h2>
-<ul>
-<li><strong>When AI dialogue works:</strong> short lines, clean delivery, minimal background noise in the reference audio.</li>
-<li><strong>When it doesn&#x27;t:</strong> long speeches, overlapping voices, emotional extremes. Write around these — visual storytelling over talk.</li>
-<li><strong>Lip-sync pipeline:</strong> generate the visual first, then sync: feed clean WAV audio into the platform&#x27;s lip-sync (Pika and Runway both offer it; clean audio in = believable sync out).</li>
-<li><strong>Rule:</strong> if the line doesn&#x27;t change the story, cut it. Festival shorts win on images.</li>
+<li><strong>Build order:</strong> dialogue first, then SFX bed, then music last. Music before SFX is the classic amateur mistake — build the world, then score it.</li>
+<li><strong>Dialogue is king.</strong> If a line matters, it sits on top: carve EQ space for it, duck music under it, never let ambience swallow it.</li>
+<li><strong>Leave headroom.</strong> Peaks below 0 dBFS, dialogue averaging in a consistent band, nothing slamming the limiter. If you&#x27;re delivering to a platform, check its loudness spec — don&#x27;t guess.</li>
+<li><strong>Listen three ways:</strong> headphones, laptop speakers, a phone. If the dialogue survives the phone, the mix works.</li>
+<li><strong>The silence test:</strong> mute the music. If the scene still plays on dialogue + SFX alone, the design is sound. If it collapses, the music was doing the acting — fix the scene, not the score.</li>
 </ul>
 <h2 id="the-audio-checklist">The audio checklist</h2>
 <ul class="task-list">
-<li><input type="checkbox" disabled aria-hidden="true"> Ambient bed under every scene</li>
+<li><input type="checkbox" disabled aria-hidden="true"> Ambient bed under every scene — no digital silence</li>
 <li><input type="checkbox" disabled aria-hidden="true"> Foley on all physical movement</li>
-<li><input type="checkbox" disabled aria-hidden="true"> Score generated to the locked cut</li>
-<li><input type="checkbox" disabled aria-hidden="true"> Dialogue minimal, clean, synced</li>
-<li><input type="checkbox" disabled aria-hidden="true"> Final mix: dialogue &gt; score &gt; bed (nothing fights the story)</li>
-<li><input type="checkbox" disabled aria-hidden="true"> All audio AI-generated with rights documented (festival requirement)</li>
-</ul></article>
+<li><input type="checkbox" disabled aria-hidden="true"> Voice Bible written and referenced for every speaking character</li>
+<li><input type="checkbox" disabled aria-hidden="true"> Dialogue route chosen per scene (native or decoupled — never mixed mid-scene)</li>
+<li><input type="checkbox" disabled aria-hidden="true"> Score built cue-by-cue to the locked cut, stems kept</li>
+<li><input type="checkbox" disabled aria-hidden="true"> Generation receipts saved for all AI music and voices</li>
+<li><input type="checkbox" disabled aria-hidden="true"> Mix QC: dialogue intelligible on laptop speakers and a phone</li>
+<li><input type="checkbox" disabled aria-hidden="true"> Legal chapter reviewed before distribution (<code>legal/rights-and-disclosure.md</code>)</li>
+</ul>
+<h2 id="sources-confidence">Sources &amp; confidence</h2>
+<p>Voice-direction mechanics (bracketed tags, stability/similarity settings, paragraph-level generation) are corroborated across multiple 2026 creator guides; model-specific tag fidelity is vendor-claimed — verify on your tool&#x27;s current version. The two-roads dialogue framework and native-audio quality markers come from hands-on editorial comparisons checked against official model docs (Sept 2026). The AI-music rights gap is documented in this guide&#x27;s legal chapter. Clip-cap figures change with model updates — verify live before planning around them.</p></article>
       <nav class="prevnext" aria-label="Next and previous chapters"><a class="btn" href="../craft/color-grading.html" rel="prev">← Color Grading AI Footage</a><a class="btn" href="../craft/editing-pipeline.html" rel="next">Editing Pipeline →</a></nav>
     </main>
-    <aside class="docs-toc" aria-label="On this page"><p class="toc-h">On this page</p><ul><li class="toc-l2"><a href="#native-audio">Native audio</a></li><li class="toc-l2"><a href="#sound-design-the-layer-that-sells-reality">Sound design (the layer that sells reality)</a></li><li class="toc-l2"><a href="#score">Score</a></li><li class="toc-l2"><a href="#dialogue">Dialogue</a></li><li class="toc-l2"><a href="#the-audio-checklist">The audio checklist</a></li></ul></aside>
+    <aside class="docs-toc" aria-label="On this page"><p class="toc-h">On this page</p><ul><li class="toc-l2"><a href="#the-audio-strategy-native-vs-designed">The audio strategy: native vs. designed</a></li><li class="toc-l2"><a href="#voice-design-casting-a-synthetic-voice">Voice design: casting a synthetic voice</a></li><li class="toc-l3"><a href="#the-two-roads-to-a-talking-character">The two roads to a talking character</a></li><li class="toc-l3"><a href="#directing-tts-voices-through-text">Directing TTS voices through text</a></li><li class="toc-l2"><a href="#ai-music-score-as-a-built-object">AI music: score as a built object</a></li><li class="toc-l3"><a href="#the-rights-gap-read-this-before-you-ship">The rights gap (read this before you ship)</a></li><li class="toc-l2"><a href="#sound-design-foley-the-layer-that-sells-reality">Sound design & foley: the layer that sells reality</a></li><li class="toc-l2"><a href="#the-mix-balance-loudness-qc">The mix: balance, loudness, QC</a></li><li class="toc-l2"><a href="#the-audio-checklist">The audio checklist</a></li><li class="toc-l2"><a href="#sources-confidence">Sources & confidence</a></li></ul></aside>
   </div>
   <footer class="site-footer">
     <div class="container footer-grid">

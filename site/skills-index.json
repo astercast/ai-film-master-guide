@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "count": 191,
+  "count": 192,
   "skills": [
     {
       "id": "prompt-t1",
@@ -799,6 +799,12 @@
       "title": "Choose the lip-sync route",
       "description": "Native quotes vs post lip-sync, decided per scene.",
       "path": "skills/audio/audio-lip-sync-route.md"
+    },
+    {
+      "id": "audio-final-mix",
+      "title": "Run the final mix pass",
+      "description": "Dialogue-first balance, loudness QC, and the three-device listen.",
+      "path": "skills/audio/audio-final-mix.md"
     },
     {
       "id": "recipe-dialogue-scene",

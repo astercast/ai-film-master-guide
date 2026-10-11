@@ -25,6 +25,7 @@ SECTIONS = [
     ("distribution", "Distribution"),
     ("legal", "Rights & Disclosure"),
     ("sources", "Sources"),
+    ("guides", "Guides"),
 ]
 
 CHAPTER_ORDER = {
@@ -36,6 +37,7 @@ CHAPTER_ORDER = {
     "distribution": ["release-paths"],
     "legal": ["rights-and-disclosure"],
     "sources": ["source-index"],
+    "guides": ["first-short"],
 }
 
 CSS = ["assets/css/tokens.css", "assets/css/base.css", "assets/css/layout.css",
@@ -166,7 +168,7 @@ INDEX_TMPL = """<!DOCTYPE html>
       <div class="container hero-inner">
         <span class="hero-kicker">Professional AI filmmaking</span>
         <h1 id="hero-title">Make films with AI<br><span class="accent">like a studio.</span></h1>
-        <p class="lede">Twenty-one chapters on Higgsfield mastery, professional craft, directing performance, color grading, sound, economics, long-form pipelines, competition-entry craft, distribution, and rights — with separate tracks for animated/stylized and photorealistic production. Plus a machine-readable API and 191 task skills for agents.</p>
+        <p class="lede">Twenty-two chapters on Higgsfield mastery, professional craft, directing performance, color grading, sound, economics, long-form pipelines, competition-entry craft, distribution, and rights — with separate tracks for animated/stylized and photorealistic production. Plus a machine-readable API and 192 task skills for agents.</p>
         <div class="btn-row">
           <a class="btn btn-gold" href="manifesto.html">Read the manifesto</a>
           <a class="btn" href="teardown.html">Shot-by-shot teardowns</a>
@@ -174,13 +176,13 @@ INDEX_TMPL = """<!DOCTYPE html>
           <a class="btn" href="craft-not-buttons.html">Craft, not buttons</a>
         </div>
         <div class="stat-strip">
-          <div class="stat"><div class="stat-value">21</div><div class="stat-label">Chapters</div></div>
+          <div class="stat"><div class="stat-value">22</div><div class="stat-label">Chapters</div></div>
           <div class="stat"><div class="stat-value">{total_read}</div><div class="stat-label">Total read time</div></div>
           <div class="stat"><div class="stat-value">31</div><div class="stat-label">Prompt templates</div></div>
           <div class="stat"><div class="stat-value">22</div><div class="stat-label">Camera moves</div></div>
           <div class="stat"><div class="stat-value">18</div><div class="stat-label">Models compared</div></div>
           <div class="stat"><div class="stat-value">79</div><div class="stat-label">Glossary terms</div></div>
-          <div class="stat"><div class="stat-value">191</div><div class="stat-label">Agent skills</div></div>
+          <div class="stat"><div class="stat-value">192</div><div class="stat-label">Agent skills</div></div>
         </div>
       </div>
     </section>
@@ -209,7 +211,7 @@ INDEX_TMPL = """<!DOCTYPE html>
 
     <section class="container" aria-labelledby="paths-h">
       <h2 id="paths-h">Start here: learning paths</h2>
-      <p class="section-lede">Don't read twenty-one chapters in order. Pick your goal — each path is the shortest route through the guide that gets you there. Tick steps off as you finish them; your progress is saved in this browser.</p>
+      <p class="section-lede">Don't read twenty-two chapters in order. Pick your goal — each path is the shortest route through the guide that gets you there. Tick steps off as you finish them; your progress is saved in this browser.</p>
       <div class="path-grid">
         <article class="card path-card" data-path="first-film">
           <h3>Your first AI film <span class="path-time">a weekend</span></h3>
@@ -271,6 +273,21 @@ INDEX_TMPL = """<!DOCTYPE html>
             <li><input type="checkbox" class="path-check" id="pc-longform-2" data-step="longform-2" aria-label="Mark complete: Directing performance"><a href="craft/directing-performance.html">Directing performance</a></li>
             <li><input type="checkbox" class="path-check" id="pc-longform-3" data-step="longform-3" aria-label="Mark complete: Editing pipeline"><a href="craft/editing-pipeline.html">Editing pipeline</a></li>
             <li><input type="checkbox" class="path-check" id="pc-longform-4" data-step="longform-4" aria-label="Mark complete: Credit math, compute envelopes"><a href="economics/credit-math.html">Credit math</a> <span class="path-note">compute envelopes</span></li>
+          </ol>
+        </article>
+        <article class="card path-card" data-path="first-short">
+          <h3>Your first 60-second short <span class="path-time">7 days</span></h3>
+          <p>Zero to one finished minute. A day-by-day production plan with checkpoints — the whole guide compressed into a shippable week.</p>
+          <div class="path-bar" aria-hidden="true"><span class="path-bar-fill"></span></div>
+          <p class="path-progress"><span data-path-progress aria-live="polite">0 of 7 complete</span><button type="button" class="btn btn-sm btn-ghost" data-path-reset="first-short">Reset</button></p>
+          <ol class="path-steps">
+            <li><input type="checkbox" class="path-check" id="pc-first-short-1" data-step="first-short-1" aria-label="Mark complete: Day 1, concept lock"><a href="guides/first-short.html">Day 1</a> <span class="path-note">concept lock</span></li>
+            <li><input type="checkbox" class="path-check" id="pc-first-short-2" data-step="first-short-2" aria-label="Mark complete: Day 2, prompt workshop"><a href="guides/first-short.html">Day 2</a> <span class="path-note">prompt workshop</span></li>
+            <li><input type="checkbox" class="path-check" id="pc-first-short-3" data-step="first-short-3" aria-label="Mark complete: Day 3, generation batches"><a href="guides/first-short.html">Day 3</a> <span class="path-note">generation batches</span></li>
+            <li><input type="checkbox" class="path-check" id="pc-first-short-4" data-step="first-short-4" aria-label="Mark complete: Day 4, selects and assembly"><a href="guides/first-short.html">Day 4</a> <span class="path-note">selects &amp; assembly</span></li>
+            <li><input type="checkbox" class="path-check" id="pc-first-short-5" data-step="first-short-5" aria-label="Mark complete: Day 5, performance fixes"><a href="guides/first-short.html">Day 5</a> <span class="path-note">performance fixes</span></li>
+            <li><input type="checkbox" class="path-check" id="pc-first-short-6" data-step="first-short-6" aria-label="Mark complete: Day 6, sound"><a href="guides/first-short.html">Day 6</a> <span class="path-note">sound</span></li>
+            <li><input type="checkbox" class="path-check" id="pc-first-short-7" data-step="first-short-7" aria-label="Mark complete: Day 7, grade and export"><a href="guides/first-short.html">Day 7</a> <span class="path-note">grade &amp; export</span></li>
           </ol>
         </article>
       </div>
@@ -402,7 +419,7 @@ SKILLS_TMPL = """<!DOCTYPE html>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Skills browser — AI Film Master Guide</title>
-  <meta name="description" content="Browse all 191 task skills: prompts, camera, models, long-form pipelines, craft techniques and more.">
+  <meta name="description" content="Browse all 192 task skills: prompts, camera, models, long-form pipelines, craft techniques and more.">
   {css}
 </head>
 <body>
@@ -970,7 +987,7 @@ MANIFESTO_TMPL = """<!DOCTYPE html>
     <section class="container" style="margin-bottom:var(--space-7);">
       <div class="prose">
         <h2>What this is</h2>
-        <p>A reference manual you keep open while you work — twenty-one chapters on craft, platforms, economics, and pipelines, plus the tools (budget calculator, prompt workshop, model quiz, teardowns) and the machine-readable API underneath. It is updated as the field moves: the changelog is dated, the model data is versioned, and corrections are printed, not buried.</p>
+        <p>A reference manual you keep open while you work — twenty-two chapters on craft, platforms, economics, and pipelines, plus the tools (budget calculator, prompt workshop, model quiz, teardowns) and the machine-readable API underneath. It is updated as the field moves: the changelog is dated, the model data is versioned, and corrections are printed, not buried.</p>
         <h2>What it costs</h2>
         <p>Nothing. Courses have their place — structure, community, and feedback from a working filmmaker are genuinely worth paying for, and this guide does not replace them. This is the other thing: the manual their graduates keep open after the cohort ends. The reference layer, free, forever, with no account.</p>
         <h2>Everything is sourced</h2>

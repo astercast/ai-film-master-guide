@@ -1,4 +1,4 @@
-/* Learning-path progress — localStorage checkmarks on the 5 learning paths.
+/* Learning-path progress — localStorage checkmarks on the 6 learning paths.
    Step ids (data-step) are stable across site rebuilds; progress persists per browser. */
 (function () {
   "use strict";
