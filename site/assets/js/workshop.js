@@ -270,6 +270,30 @@
     setTimeout(function () { els.save.textContent = "Save this prompt"; }, 1600);
   });
 
+  function loadSaveById(loadId) {
+    var s = null;
+    saves.forEach(function (x) { if (x.id === loadId) s = x; });
+    if (!s) return false;
+    els.track.value = "all";
+    renderTemplateSelect();
+    els.template.value = s.templateId;
+    renderFields();
+    /* restore model by matching the stored option label prefix */
+    for (var i = 0; i < els.model.options.length; i++) {
+      if (els.model.options[i].textContent === s.model) { els.model.selectedIndex = i; break; }
+    }
+    /* restore placeholder values */
+    els.fields.querySelectorAll("input[data-token]").forEach(function (inp) {
+      var k = inp.getAttribute("data-token");
+      if (s.vals && s.vals[k] !== undefined) inp.value = s.vals[k];
+    });
+    renderPreview();
+    var pickers = document.getElementById("ws-pickers");
+    if (pickers && pickers.scrollIntoView) pickers.scrollIntoView();
+    els.template.focus();
+    return true;
+  }
+
   els.saves.addEventListener("click", function (ev) {
     var btn = ev.target.closest("button");
     if (!btn) return;
@@ -287,27 +311,7 @@
       persistSaves(); renderSaves();
       return;
     }
-    if (loadId) {
-      var s = null;
-      saves.forEach(function (x) { if (x.id === loadId) s = x; });
-      if (!s) return;
-      els.track.value = "all";
-      renderTemplateSelect();
-      els.template.value = s.templateId;
-      renderFields();
-      /* restore model by matching the stored option label prefix */
-      for (var i = 0; i < els.model.options.length; i++) {
-        if (els.model.options[i].textContent === s.model) { els.model.selectedIndex = i; break; }
-      }
-      /* restore placeholder values */
-      els.fields.querySelectorAll("input[data-token]").forEach(function (inp) {
-        var k = inp.getAttribute("data-token");
-        if (s.vals && s.vals[k] !== undefined) inp.value = s.vals[k];
-      });
-      renderPreview();
-      document.getElementById("ws-pickers").scrollIntoView();
-      els.template.focus();
-    }
+    if (loadId) { loadSaveById(loadId); return; }
   });
 
   /* ---------- init ---------- */
@@ -346,6 +350,12 @@
     els.template.addEventListener("change", renderFields);
     renderTemplateSelect();
     renderSaves();
+
+    /* Deep link from the prompt gallery: ?save=<id> loads that saved prompt. */
+    try {
+      var sp = new URLSearchParams(window.location.search).get("save");
+      if (sp) loadSaveById(sp);
+    } catch (e) { /* ignore */ }
   }).catch(function () {
     fail("Could not load prompt-templates.json / models.json. The workshop needs the built site data.");
   });

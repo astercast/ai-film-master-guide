@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prompt gallery — AI Film Master Guide</title>
+  <meta name="description" content="Your saved workshop prompts as a browsable gallery: filter by track and model, sort by rating, open in the workshop, export and import as JSON. Stored in your browser.">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/docs.css">
+  <link rel="stylesheet" href="assets/css/print.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html">Guide</a>
+        <a href="skills.html">Skills</a>
+        <a href="workshop.html">Workshop</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="compare.html">Compare</a>
+        <a href="gallery.html" aria-current="page">Gallery</a>
+        <a href="teardown.html">Teardowns</a>
+        <a href="model-watch.html">Model watch</a>
+        <a href="changelog.html">Changelog</a>
+        <a href="skill-spec.html">Skill spec</a>
+        <a href="api.html">API</a>
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">&#8984;K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="gal-title">
+      <div class="container hero-inner">
+        <span class="hero-kicker">Workshop</span>
+        <h1 id="gal-title">Prompt <span class="accent">gallery.</span></h1>
+        <p class="lede">Every prompt you've saved and rated in the workshop, in one browsable place. Filter by track and model, sort by rating, jump back into the workshop, or take your collection with you as JSON. Everything lives in your browser — nothing leaves it.</p>
+      </div>
+    </section>
+    <section class="container" aria-labelledby="gal-h">
+      <h2 id="gal-h">Your collection</h2>
+      <div class="card" style="margin-bottom:var(--space-6);">
+        <div class="calc-grid" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr));">
+          <div class="field">
+            <label for="gal-track">Track</label>
+            <select class="input" id="gal-track"><option value="all">All tracks</option></select>
+          </div>
+          <div class="field">
+            <label for="gal-model">Model</label>
+            <select class="input" id="gal-model"><option value="all">All models</option></select>
+          </div>
+          <div class="field">
+            <label for="gal-sort">Sort</label>
+            <select class="input" id="gal-sort">
+              <option value="rating">Highest rated</option>
+              <option value="newest">Newest first</option>
+              <option value="oldest">Oldest first</option>
+            </select>
+          </div>
+        </div>
+        <div class="btn-row" style="margin-top:var(--space-4);">
+          <button type="button" class="btn btn-sm" id="gal-export">Export JSON</button>
+          <label class="btn btn-sm btn-ghost" for="gal-import" style="cursor:pointer;">Import JSON</label>
+          <input type="file" id="gal-import" accept="application/json,.json" hidden>
+        </div>
+        <p class="empty-state" id="gal-error" hidden></p>
+      </div>
+      <p class="calc-note" id="gal-count" aria-live="polite"></p>
+      <div id="gal-grid"></div>
+      <div class="empty-state" id="gal-empty" hidden>
+        <p><strong>No saved prompts yet.</strong></p>
+        <p>Build one in the workshop — fill a template's placeholders, hit "Save this prompt", rate it — and it appears here.</p>
+        <p><a class="btn" href="workshop.html">Open the workshop &rarr;</a></p>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer"><a href="index.html">Guide</a><a href="skills.html">Skills</a><a href="workshop.html">Workshop</a><a href="quiz.html">Quiz</a><a href="compare.html">Compare</a><a href="gallery.html">Gallery</a><a href="teardown.html">Teardowns</a><a href="model-watch.html">Model watch</a><a href="checks/">Knowledge checks</a><a href="budget.html">Budget</a><a href="optimizer.html">Optimizer</a><a href="anatomy.html">Anatomy</a><a href="manifesto.html">Manifesto</a><a href="craft-not-buttons.html">Craft, not buttons</a><a href="recipes.html">Recipes</a><a href="field-guides/">Field guides</a><a href="changelog.html">Changelog</a><a href="skill-spec.html">Skill spec</a><a href="api.html">API</a></nav>
+    </div>
+  </footer>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search" hidden>
+    <div class="palette-box">
+      <input type="search" id="palette-input" placeholder="Search the guide…" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/gallery.js"></script>
+</body>
+</html>

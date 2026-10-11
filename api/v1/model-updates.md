@@ -26,6 +26,12 @@ pricing before spending — this file is a snapshot, not a rate card.
 - **Seedance 3.0** (ByteDance) — **status: reported, unconfirmed**. First appeared in
   third-party indexes in early October 2026; not confirmed on ByteDance's official
   channels as of Oct 11. Verify live before planning around it.
+- **Kling 4.0** (Kuaishou) — **status: announced, not GA**. Announced Sept 28, 2026:
+  30s native clips, up to 10 keyframes, Omni Reference (15 refs), stereo audio with
+  improved lip-sync; 4K 10-bit HDR promised ("coming soon"). Kling 4.0 Flash in limited
+  early access for Ultra Yearly subscribers; full model expected Oct 2026, not GA as of
+  Oct 11. Re-verified Oct 11, 2026 — still "coming soon" on Kling's own app. Sources:
+  techtimes.com, cryptobriefing.com, pakera.pk.
 
 ## Renamed / repositioned
 

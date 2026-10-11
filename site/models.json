@@ -315,6 +315,23 @@
       ],
       "last_verified": "2026-10-11",
       "status": "active"
+    },
+    {
+      "model": "Kling 4.0",
+      "platform": "Kuaishou",
+      "type": "video",
+      "best_use": "Long-take narrative, keyframed sequences, broadcast-aspiring work — once generally available",
+      "est_cost_credits": "not published — verify live",
+      "strength": "30s native clips (longest single-pass in class), up to 10 keyframes, Omni Reference (up to 15 refs from 50 uploads), stereo audio with improved lip-sync; 4K 10-bit HDR promised",
+      "weakness": "Not generally available as of Oct 11, 2026 — Flash early access for Ultra Yearly subscribers only; 4K 10-bit listed 'coming soon'; no independent benchmark rating yet (full model not shipped)",
+      "status": "announced",
+      "what_changed": "Announced Sept 28, 2026; Kling 4.0 Flash in limited early access for Ultra Yearly subscribers; full model expected Oct 2026, not GA as of Oct 11. Verify live before planning around it.",
+      "sources": [
+        "https://www.techtimes.com/articles/328285/20260930/kling-40-promises-30-second-4k-video-broadcast-spec-coming-october-not-today.htm",
+        "https://cryptobriefing.com/kuaishou-kling-ai-video-model-hong-kong-ipo/",
+        "https://pakera.pk/kling-4-ai-video-pakistan/"
+      ],
+      "last_verified": "2026-10-11"
     }
   ],
   "unverified": [

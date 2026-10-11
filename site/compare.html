@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Model compare — AI Film Master Guide</title>
+  <meta name="description" content="Side-by-side model comparison from the guide's versioned model data: cost, best use, strengths, weaknesses, native audio, and freshness status for 2–3 models. Shareable via URL.">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/docs.css">
+  <link rel="stylesheet" href="assets/css/print.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html">Guide</a>
+        <a href="skills.html">Skills</a>
+        <a href="workshop.html">Workshop</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="compare.html" aria-current="page">Compare</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="teardown.html">Teardowns</a>
+        <a href="model-watch.html">Model watch</a>
+        <a href="changelog.html">Changelog</a>
+        <a href="skill-spec.html">Skill spec</a>
+        <a href="api.html">API</a>
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">&#8984;K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="cmp-title">
+      <div class="container hero-inner">
+        <span class="hero-kicker">Tools</span>
+        <h1 id="cmp-title">Model <span class="accent">compare.</span></h1>
+        <p class="lede">The quiz picks for you. This page lets you argue with it: put 2–3 models side by side — cost, best use, strengths, weaknesses, native audio, freshness — all rendered live from <code>models.json</code>. The URL updates as you pick, so the comparison is shareable.</p>
+      </div>
+    </section>
+    <section class="container" aria-labelledby="cmp-h">
+      <h2 id="cmp-h">Pick your contenders</h2>
+      <div class="card" style="margin-bottom:var(--space-6);">
+        <div class="calc-grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
+          <div class="field">
+            <label for="cmp-a">Model A</label>
+            <select class="input" id="cmp-a"></select>
+          </div>
+          <div class="field">
+            <label for="cmp-b">Model B</label>
+            <select class="input" id="cmp-b"></select>
+          </div>
+          <div class="field">
+            <label for="cmp-c">Model C <span class="quiz-optional">(optional)</span></label>
+            <select class="input" id="cmp-c"></select>
+          </div>
+        </div>
+      </div>
+      <p class="empty-state" id="cmp-error" hidden></p>
+      <p class="calc-note" id="cmp-note">Pick at least two models to compare.</p>
+      <div id="cmp-results" aria-live="polite"></div>
+      <p style="margin-top:var(--space-6);"><a class="btn btn-ghost" href="quiz.html">&larr; Take the model-picker quiz</a> <a class="btn btn-ghost" href="model-watch.html">Model watch</a></p>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer"><a href="index.html">Guide</a><a href="skills.html">Skills</a><a href="workshop.html">Workshop</a><a href="quiz.html">Quiz</a><a href="compare.html">Compare</a><a href="gallery.html">Gallery</a><a href="teardown.html">Teardowns</a><a href="model-watch.html">Model watch</a><a href="checks/">Knowledge checks</a><a href="budget.html">Budget</a><a href="optimizer.html">Optimizer</a><a href="anatomy.html">Anatomy</a><a href="manifesto.html">Manifesto</a><a href="craft-not-buttons.html">Craft, not buttons</a><a href="recipes.html">Recipes</a><a href="field-guides/">Field guides</a><a href="changelog.html">Changelog</a><a href="skill-spec.html">Skill spec</a><a href="api.html">API</a></nav>
+    </div>
+  </footer>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search" hidden>
+    <div class="palette-box">
+      <input type="search" id="palette-input" placeholder="Search the guide…" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/compare.js"></script>
+</body>
+</html>

@@ -30,7 +30,7 @@ SECTIONS = [
 
 CHAPTER_ORDER = {
     "higgsfield": ["platform-mastery", "prompt-engineering", "soul-id-deep-dive", "competition-entry-craft"],
-    "craft": ["story-structure", "cinematic-language", "character-consistency", "directing-performance", "color-grading", "sound-music-audio", "editing-pipeline", "longform-pipelines", "failure-gallery"],
+    "craft": ["story-structure", "cinematic-language", "character-consistency", "directing-performance", "color-grading", "sound-music-audio", "editing-pipeline", "longform-pipelines", "failure-gallery", "ai-film-business"],
     "platforms": ["field-guide", "when-to-use-what"],
     "economics": ["credit-math"],
     "case-studies": ["competition-teardowns", "entry-craft-teardowns"],
@@ -48,6 +48,8 @@ NAV_ITEMS = [
     ("skills.html", "Skills"),
     ("workshop.html", "Workshop"),
     ("quiz.html", "Quiz"),
+    ("compare.html", "Compare"),
+    ("gallery.html", "Gallery"),
     ("teardown.html", "Teardowns"),
     ("model-watch.html", "Model watch"),
     ("changelog.html", "Changelog"),
@@ -60,6 +62,8 @@ FOOTER_ITEMS = [
     ("skills.html", "Skills"),
     ("workshop.html", "Workshop"),
     ("quiz.html", "Quiz"),
+    ("compare.html", "Compare"),
+    ("gallery.html", "Gallery"),
     ("teardown.html", "Teardowns"),
     ("model-watch.html", "Model watch"),
     ("checks/", "Knowledge checks"),
@@ -173,7 +177,7 @@ INDEX_TMPL = """<!DOCTYPE html>
       <div class="container hero-inner">
         <span class="hero-kicker">Professional AI filmmaking</span>
         <h1 id="hero-title">Make films with AI<br><span class="accent">like a studio.</span></h1>
-        <p class="lede">Twenty-two chapters on Higgsfield mastery, professional craft, directing performance, color grading, sound, economics, long-form pipelines, competition-entry craft, distribution, and rights — with separate tracks for animated/stylized and photorealistic production. Plus a machine-readable API and 192 task skills for agents.</p>
+        <p class="lede">Twenty-three chapters on Higgsfield mastery, professional craft, directing performance, color grading, sound, economics, long-form pipelines, competition-entry craft, distribution, and rights — with separate tracks for animated/stylized and photorealistic production. Plus a machine-readable API and 192 task skills for agents.</p>
         <div class="btn-row">
           <a class="btn btn-gold" href="manifesto.html">Read the manifesto</a>
           <a class="btn" href="teardown.html">Shot-by-shot teardowns</a>
@@ -181,11 +185,11 @@ INDEX_TMPL = """<!DOCTYPE html>
           <a class="btn" href="craft-not-buttons.html">Craft, not buttons</a>
         </div>
         <div class="stat-strip">
-          <div class="stat"><div class="stat-value">22</div><div class="stat-label">Chapters</div></div>
+          <div class="stat"><div class="stat-value">23</div><div class="stat-label">Chapters</div></div>
           <div class="stat"><div class="stat-value">{total_read}</div><div class="stat-label">Total read time</div></div>
-          <div class="stat"><div class="stat-value">31</div><div class="stat-label">Prompt templates</div></div>
+          <div class="stat"><div class="stat-value">47</div><div class="stat-label">Prompt templates</div></div>
           <div class="stat"><div class="stat-value">22</div><div class="stat-label">Camera moves</div></div>
-          <div class="stat"><div class="stat-value">18</div><div class="stat-label">Models compared</div></div>
+          <div class="stat"><div class="stat-value">22</div><div class="stat-label">Models compared</div></div>
           <div class="stat"><div class="stat-value">79</div><div class="stat-label">Glossary terms</div></div>
           <div class="stat"><div class="stat-value">192</div><div class="stat-label">Agent skills</div></div>
         </div>
@@ -216,7 +220,7 @@ INDEX_TMPL = """<!DOCTYPE html>
 
     <section class="container" aria-labelledby="paths-h">
       <h2 id="paths-h">Start here: learning paths</h2>
-      <p class="section-lede">Don't read twenty-two chapters in order. Pick your goal — each path is the shortest route through the guide that gets you there. Tick steps off as you finish them; your progress is saved in this browser.</p>
+      <p class="section-lede">Don't read twenty-three chapters in order. Pick your goal — each path is the shortest route through the guide that gets you there. Tick steps off as you finish them; your progress is saved in this browser.</p>
       <div class="path-grid">
         <article class="card path-card" data-path="first-film">
           <h3>Your first AI film <span class="path-time">a weekend</span></h3>
@@ -827,7 +831,7 @@ QUIZ_TMPL = """<!DOCTYPE html>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Model-picker quiz — AI Film Master Guide</title>
-  <meta name="description" content="Five questions, one ranked shortlist: the model-picker quiz scores all 17 active video models in the guide's API against your use case, budget, and audio needs — with live cost math.">
+  <meta name="description" content="Five questions, one ranked shortlist: the model-picker quiz scores all 18 video models in the guide's API against your use case, budget, and audio needs — with live cost math.">
   {css}
 </head>
 <body>
@@ -916,6 +920,169 @@ QUIZ_TMPL = """<!DOCTYPE html>
   </div>
   <script src="assets/js/palette.js"></script>
   <script src="assets/js/quiz.js"></script>
+</body>
+</html>
+"""
+
+COMPARE_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Model compare — AI Film Master Guide</title>
+  <meta name="description" content="Side-by-side model comparison from the guide's versioned model data: cost, best use, strengths, weaknesses, native audio, and freshness status for 2–3 models. Shareable via URL.">
+  {css}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        {sitenav}
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">&#8984;K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="cmp-title">
+      <div class="container hero-inner">
+        <span class="hero-kicker">Tools</span>
+        <h1 id="cmp-title">Model <span class="accent">compare.</span></h1>
+        <p class="lede">The quiz picks for you. This page lets you argue with it: put 2–3 models side by side — cost, best use, strengths, weaknesses, native audio, freshness — all rendered live from <code>models.json</code>. The URL updates as you pick, so the comparison is shareable.</p>
+      </div>
+    </section>
+    <section class="container" aria-labelledby="cmp-h">
+      <h2 id="cmp-h">Pick your contenders</h2>
+      <div class="card" style="margin-bottom:var(--space-6);">
+        <div class="calc-grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
+          <div class="field">
+            <label for="cmp-a">Model A</label>
+            <select class="input" id="cmp-a"></select>
+          </div>
+          <div class="field">
+            <label for="cmp-b">Model B</label>
+            <select class="input" id="cmp-b"></select>
+          </div>
+          <div class="field">
+            <label for="cmp-c">Model C <span class="quiz-optional">(optional)</span></label>
+            <select class="input" id="cmp-c"></select>
+          </div>
+        </div>
+      </div>
+      <p class="empty-state" id="cmp-error" hidden></p>
+      <p class="calc-note" id="cmp-note">Pick at least two models to compare.</p>
+      <div id="cmp-results" aria-live="polite"></div>
+      <p style="margin-top:var(--space-6);"><a class="btn btn-ghost" href="quiz.html">&larr; Take the model-picker quiz</a> <a class="btn btn-ghost" href="model-watch.html">Model watch</a></p>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer">{footer}</nav>
+    </div>
+  </footer>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search" hidden>
+    <div class="palette-box">
+      <input type="search" id="palette-input" placeholder="Search the guide…" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/compare.js"></script>
+</body>
+</html>
+"""
+
+GALLERY_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prompt gallery — AI Film Master Guide</title>
+  <meta name="description" content="Your saved workshop prompts as a browsable gallery: filter by track and model, sort by rating, open in the workshop, export and import as JSON. Stored in your browser.">
+  {css}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        {sitenav}
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">&#8984;K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="gal-title">
+      <div class="container hero-inner">
+        <span class="hero-kicker">Workshop</span>
+        <h1 id="gal-title">Prompt <span class="accent">gallery.</span></h1>
+        <p class="lede">Every prompt you've saved and rated in the workshop, in one browsable place. Filter by track and model, sort by rating, jump back into the workshop, or take your collection with you as JSON. Everything lives in your browser — nothing leaves it.</p>
+      </div>
+    </section>
+    <section class="container" aria-labelledby="gal-h">
+      <h2 id="gal-h">Your collection</h2>
+      <div class="card" style="margin-bottom:var(--space-6);">
+        <div class="calc-grid" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr));">
+          <div class="field">
+            <label for="gal-track">Track</label>
+            <select class="input" id="gal-track"><option value="all">All tracks</option></select>
+          </div>
+          <div class="field">
+            <label for="gal-model">Model</label>
+            <select class="input" id="gal-model"><option value="all">All models</option></select>
+          </div>
+          <div class="field">
+            <label for="gal-sort">Sort</label>
+            <select class="input" id="gal-sort">
+              <option value="rating">Highest rated</option>
+              <option value="newest">Newest first</option>
+              <option value="oldest">Oldest first</option>
+            </select>
+          </div>
+        </div>
+        <div class="btn-row" style="margin-top:var(--space-4);">
+          <button type="button" class="btn btn-sm" id="gal-export">Export JSON</button>
+          <label class="btn btn-sm btn-ghost" for="gal-import" style="cursor:pointer;">Import JSON</label>
+          <input type="file" id="gal-import" accept="application/json,.json" hidden>
+        </div>
+        <p class="empty-state" id="gal-error" hidden></p>
+      </div>
+      <p class="calc-note" id="gal-count" aria-live="polite"></p>
+      <div id="gal-grid"></div>
+      <div class="empty-state" id="gal-empty" hidden>
+        <p><strong>No saved prompts yet.</strong></p>
+        <p>Build one in the workshop — fill a template's placeholders, hit "Save this prompt", rate it — and it appears here.</p>
+        <p><a class="btn" href="workshop.html">Open the workshop &rarr;</a></p>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer">{footer}</nav>
+    </div>
+  </footer>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search" hidden>
+    <div class="palette-box">
+      <input type="search" id="palette-input" placeholder="Search the guide…" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/gallery.js"></script>
 </body>
 </html>
 """
@@ -1157,7 +1324,7 @@ MANIFESTO_TMPL = """<!DOCTYPE html>
     <section class="container" style="margin-bottom:var(--space-7);">
       <div class="prose">
         <h2>What this is</h2>
-        <p>A reference manual you keep open while you work — twenty-two chapters on craft, platforms, economics, and pipelines, plus the tools (budget calculator, prompt workshop, model quiz, teardowns) and the machine-readable API underneath. It is updated as the field moves: the changelog is dated, the model data is versioned, and corrections are printed, not buried.</p>
+        <p>A reference manual you keep open while you work — twenty-three chapters on craft, platforms, economics, and pipelines, plus the tools (budget calculator, prompt workshop, model quiz, teardowns) and the machine-readable API underneath. It is updated as the field moves: the changelog is dated, the model data is versioned, and corrections are printed, not buried.</p>
         <h2>What it costs</h2>
         <p>Nothing. Courses have their place — structure, community, and feedback from a working filmmaker are genuinely worth paying for, and this guide does not replace them. This is the other thing: the manual their graduates keep open after the cohort ends. The reference layer, free, forever, with no account.</p>
         <h2>Everything is sourced</h2>
@@ -1672,6 +1839,7 @@ def build_model_watch(css_links):
     def card(m):
         status = m.get("status", "active")
         badge = {"active": "Active", "reported": "Reported — unconfirmed",
+                 "announced": "Announced — not GA",
                  "discontinued": "Discontinued"}.get(status, status)
         sources = "".join(
             f'<li><a href="{html.escape(u)}" rel="noopener">{html.escape(u.split("/")[2])}</a></li>'
@@ -1987,6 +2155,14 @@ def main():
     (SITE / "quiz.html").write_text(QUIZ_TMPL.format(
         css=css_links, sitenav=nav_html("", "quiz.html"), footer=footer_html("")))
 
+    # Model compare tool (side-by-side, shareable URLs)
+    (SITE / "compare.html").write_text(COMPARE_TMPL.format(
+        css=css_links, sitenav=nav_html("", "compare.html"), footer=footer_html("")))
+
+    # Prompt gallery (workshop saves as a browsable collection)
+    (SITE / "gallery.html").write_text(GALLERY_TMPL.format(
+        css=css_links, sitenav=nav_html("", "gallery.html"), footer=footer_html("")))
+
     # Changelog page — dated entries rebuilt from git history on every build
     (SITE / "changelog.html").write_text(CHANGELOG_TMPL.format(
         css=css_links, sitenav=nav_html("", "changelog.html"), footer=footer_html(""),
@@ -2037,7 +2213,13 @@ def main():
          "text": "Printable one-page field guides generated from the guide's own data: model quick-reference, prompt anatomy cheat sheet, consistency and dead-eyes checklist."},
         {"url": "quiz.html", "title": "Model-picker quiz", "section": "Tools",
          "headings": ["What's the job?", "Budget tier?", "What look?", "Native audio needed?", "Your footage plan"],
-         "text": "Five questions, one ranked shortlist: the model-picker quiz scores all 17 active video models against your use case, budget, and audio needs, with live cost math and a one-click handoff to the prompt workshop."},
+         "text": "Five questions, one ranked shortlist: the model-picker quiz scores all 18 video models against your use case, budget, and audio needs, with live cost math and a one-click handoff to the prompt workshop."},
+        {"url": "compare.html", "title": "Model compare", "section": "Tools",
+         "headings": ["Pick your contenders"],
+         "text": "Side-by-side model comparison from the guide's versioned model data: cost, best use, strengths, weaknesses, native audio, and freshness status for 2–3 models, with shareable URLs. Discontinued models excluded."},
+        {"url": "gallery.html", "title": "Prompt gallery", "section": "Tools",
+         "headings": ["Your collection"],
+         "text": "Your workshop-saved prompts as a browsable gallery: filter by track and model, sort by rating, open in the workshop, export and import as JSON. Stored in your browser."},
         {"url": "workshop.html", "title": "Prompt workshop", "section": "Tools",
          "headings": ["Pick your ingredients", "Fill the placeholders", "Copy your prompt", "Your saved prompts"],
          "text": "Interactive prompt workshop: pick a template, model, and track, fill the placeholders, and copy a production-ready prompt. Every template carries anatomy notes explaining why it works. Save and rate your own prompts in the browser."},

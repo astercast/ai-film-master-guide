@@ -62,6 +62,11 @@
   function whyLines(m, ans) {
     var lines = [];
     var uc = USE_CASES[ans.usecase];
+    if (m.status && m.status !== "active") {
+      var lbl = m.status === "reported" ? "reported — unconfirmed"
+        : m.status === "announced" ? "announced — not yet generally available" : m.status;
+      lines.push("Status: " + lbl + " (verified " + (m.last_verified || "—") + "). Don't plan a production around it yet.");
+    }
     if (uc && hit(hay(m), uc.keys)) lines.push("Fits your use case — " + uc.label.toLowerCase() + " is in its wheelhouse.");
     if (ans.audio === "must" && /native audio|dialog|speech|lip-sync|voice/.test(hay(m)))
       lines.push("Handles dialogue/speech natively.");
