@@ -7,6 +7,11 @@ per-model `extra_urls` in scripts/refresh/model-check-config.json),
 computes a content signature per source, and compares against the stored
 signatures from the previous run.
 
+Additionally (public, no-key only): each model may carry a `news_query` in the
+config. The checker pulls Google News RSS for that query and stores the latest
+headlines in the record's `news_headlines` for review. News is PASSIVE SIGNAL —
+it never feeds the change signature (news churn would flag everything weekly).
+
 Outputs (committed):
   api/v1/model-checks.json       — per-model freshness records + run summary
   api/v1/model-review-queue.json  — models whose sources changed since last
@@ -37,6 +42,7 @@ import sys
 import time
 import urllib.request
 import urllib.error
+import urllib.parse
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -79,6 +85,26 @@ def fetch(url, timeout, max_bytes, user_agent):
         return False, None, "", f"{type(e).__name__}: {e}"
 
 
+def parse_rss_items(rss_text, max_items):
+    """Extract (title, pubDate) pairs from a Google News RSS feed. Never raises."""
+    items = []
+    try:
+        for m in re.finditer(r"<item>(.*?)</item>", rss_text, re.S):
+            body = m.group(1)
+            tm = re.search(r"<title>(.*?)</title>", body, re.S)
+            dm = re.search(r"<pubDate>(.*?)</pubDate>", body, re.S)
+            if tm:
+                title = re.sub(r"\s+", " ", re.sub(r"<!\[CDATA\[|\]\]>", "", tm.group(1))).strip()
+                date = dm.group(1).strip() if dm else ""
+                if title:
+                    items.append({"title": title, "date": date})
+            if len(items) >= max_items:
+                break
+    except Exception:  # noqa: BLE001 — malformed RSS: just return what we have
+        pass
+    return items
+
+
 def apply_extracts(texts, extracts):
     hits = []
     for spec in extracts:
@@ -116,6 +142,8 @@ def main():
     max_bytes = defaults.get("max_bytes_per_url", 250000)
     ua = defaults.get("user_agent", "AI-Film-Guide-ModelWatch/1.0")
     delay = defaults.get("delay_between_requests_seconds", 0.5)
+    rss_template = defaults.get("news_rss_template", "")
+    news_max_items = defaults.get("news_max_items", 8)
     global_extracts = config.get("extract_global", [])
     model_cfg = config.get("models", {})
 
@@ -147,9 +175,30 @@ def main():
             "source_results": [],
             "signal_excerpt": "",
             "signals": [],
+            "news_status": "skipped",
+            "news_headlines": [],
         }
         if cfg.get("note"):
             rec["note"] = cfg["note"]
+
+        # Google News RSS: passive signal source (headlines only).
+        # Headlines refresh weekly for human/agent review but do NOT feed the
+        # change signature — news churn would flag every model every week.
+        nq = cfg.get("news_query")
+        if nq and rss_template:
+            rss_url = rss_template.replace("{query}", urllib.parse.quote(nq))
+            ok, status, rss_text, err = fetch(rss_url, timeout, max_bytes, ua)
+            if ok and rss_text:
+                headlines = parse_rss_items(rss_text, news_max_items)
+                rec["news_status"] = "ok" if headlines else "empty"
+                rec["news_headlines"] = headlines
+                # run the signal regexes over headlines too
+                hl_text = " ".join(h["title"] for h in headlines)
+                rec["signals"].extend(apply_extracts([hl_text], global_extracts))
+                time.sleep(delay)
+            else:
+                rec["news_status"] = "failed"
+                rec["news_error"] = err
 
         if not urls:
             rec["source_status"] = "no_sources"
@@ -175,20 +224,39 @@ def main():
             )
             time.sleep(delay)
 
-        model_sig = hashlib.sha256(";".join(sorted(sigs)).encode()).hexdigest() if sigs else None
-        rec["signature"] = model_sig
-
         if failed == len(urls):
             rec["source_status"] = "all_failed"
             err_count += 1
         elif failed:
             rec["source_status"] = "partial"
 
+        # Per-URL change detection (robust against URL sets shifting between runs):
+        # a URL counts as "moved" only if it has a signature in BOTH the previous
+        # and current run and they differ. URLs on the per-model
+        # exclude_from_signature list (verified-noisy rotating marketing pages) are
+        # fetched and recorded but never drive changed.
+        excluded = cfg.get("exclude_from_signature", [])
         old = prev.get(name)
-        if old is None or old.get("signature") is None:
-            rec["baseline"] = True  # first-ever (or first successful) sighting: no diff yet
-        elif model_sig and model_sig != old.get("signature"):
+        old_sigs = {}
+        if old:
+            for r in old.get("source_results", []):
+                if r.get("signature"):
+                    old_sigs[r["url"]] = r["signature"]
+        moved = []
+        for res in rec["source_results"]:
+            if not res["ok"]:
+                continue
+            if any(x in res["url"] for x in excluded):
+                res["excluded_from_signature"] = True
+                continue
+            old_sig = old_sigs.get(res["url"])
+            if old_sig is not None and old_sig != res["signature"]:
+                moved.append(res["url"])
+        if old is None:
+            rec["baseline"] = True  # first-ever sighting: no diff yet
+        elif moved:
             rec["changed"] = True
+            rec["moved_urls"] = moved
             changed_count += 1
 
         if texts:
@@ -216,13 +284,13 @@ def main():
     queue_items = []
     for rec in records:
         if rec["changed"]:
-            flagged = [r for r in rec["source_results"] if r["ok"]]
             queue_items.append({
                 "model": rec["model"],
                 "platform": rec.get("platform"),
                 "detected_at": rec["last_checked"],
                 "what_triggered": "source content signature differs from previous run",
-                "sources_changed": [r["url"] for r in flagged],
+                "sources_changed": rec.get("moved_urls", []),
+                "source_results": rec["source_results"],
                 "signal_excerpt": rec["signal_excerpt"],
                 "signals": rec["signals"],
                 "promotion": (

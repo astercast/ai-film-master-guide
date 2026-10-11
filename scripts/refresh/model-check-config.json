@@ -1,1 +1,171 @@
-{"_doc":"Per-model overrides for scripts/refresh/check_models.py. Keys match the 'model' field in api/v1/models.json. extra_urls are fetched IN ADDITION to the model's 'sources'. extract adds per-model signal regexes on top of the global ones. Entries are optional — models with no entry are checked using their models.json sources only.","defaults":{"delay_between_requests_seconds":0.5,"max_bytes_per_url":250000,"timeout_seconds":20,"user_agent":"AI-Film-Guide-ModelWatch/1.0 (weekly freshness check; contact via repo)"},"extract_global":[{"max_matches":5,"name":"price_signal","pattern":"\\$\\s?\\d{1,4}(\\.\\d{1,2})?\\s*(/\\s?(mo|month|credit|image|sec|video|generation))?"},{"max_matches":5,"name":"version_signal","pattern":"(?i)\\b(v(ersion)?\\s?\\d+\\.\\d+(\\.\\d+)?|\\d+\\.\\d+\\s?(release|update|beta|turbo|max|pro|prime|lite|standard))\\b"}],"models":{"DoP (Lite/Standard/Turbo)":{"note":"No source URLs yet. Add Higgsfield DoP page URL here when known."},"Grok Imagine Video 1.5":{"extra_urls":["https://x.ai/"]},"Hailuo 02 / 2.3":{"extra_urls":["https://hailuoai.video/"]},"Kling 2.5 Turbo":{"extra_urls":["https://klingai.com/"],"note":"No source URLs; official Kling site."},"Kling 3.0":{"extra_urls":["https://klingai.com/"]},"Kling 4.0":{"extra_urls":["https://klingai.com/"]},"Luma App / Ray 3.2":{"extra_urls":["https://lumalabs.ai/"]},"Marketing Studio video":{"note":"No source URLs yet. Add Higgsfield Marketing Studio page URL here when known."},"Midjourney V1 Video":{"extra_urls":["https://www.midjourney.com/"]},"MiniMax H3":{"extra_urls":["https://www.minimaxi.com/en"]},"Pika 2.5":{"extra_urls":["https://pika.art/"]},"Seedance 2.5":{"extra_urls":["https://seedance.com/"],"note":"No source URLs; official ByteDance/Seedance landing page."},"Sora 2 / Pro / Max":{"note":"Status discontinued per models.json. Watch sources for resurrection/rebrand; flag any change for review."},"Soul 2.0":{"note":"Higgsfield landing page is marketing copy; signals are noisy. Treat changed=true as 'page changed', not 'model changed'."},"Soul Cast":{"extra_urls":["https://higgsfield.ai/"],"note":"No source URLs in models.json; checked via Higgsfield homepage extra_url."},"Veo 3.1":{"extra_urls":["https://deepmind.google/technologies/veo/"]},"Veo 3.1 Fast / Veo 3":{"extra_urls":["https://deepmind.google/technologies/veo/"]},"Wan 2.6":{"extra_urls":["https://wan.video/"],"note":"No source URLs; official Wan (Alibaba) site."},"Wan 3.0 / 3.0 Prime":{"extra_urls":["https://wan.video/"]}}}
+{
+  "_doc": "Per-model overrides for scripts/refresh/check_models.py. Keys match the 'model' field in api/v1/models.json. extra_urls are fetched IN ADDITION to the model's 'sources' and DO feed the change signature. news_query pulls Google News RSS for passive release/discontinuation signals — headlines land in news_headlines but NEVER feed the change signature (news churn would flag everything weekly). Pricing-aggregator URLs can be added per model under extra_urls at any time (public, no-key only). Entries are optional — models with no entry are checked using their models.json sources only. exclude_from_signature lists URL substrings that are fetched and recorded but excluded from change detection (verified-noisy rotating marketing pages).",
+  "defaults": {
+    "delay_between_requests_seconds": 0.5,
+    "max_bytes_per_url": 250000,
+    "news_max_items": 8,
+    "news_rss_template": "https://news.google.com/rss/search?q={query}&hl=en-US&gl=US&ceid=US:en",
+    "timeout_seconds": 20,
+    "user_agent": "AI-Film-Guide-ModelWatch/1.0 (weekly freshness check; contact via repo)"
+  },
+  "extract_global": [
+    {
+      "max_matches": 5,
+      "name": "price_signal",
+      "pattern": "\\$\\s?\\d{1,4}(\\.\\d{1,2})?\\s*(/\\s?(mo|month|credit|image|sec|video|generation))?"
+    },
+    {
+      "max_matches": 5,
+      "name": "version_signal",
+      "pattern": "(?i)\\b(v(ersion)?\\s?\\d+\\.\\d+(\\.\\d+)?|\\d+\\.\\d+\\s?(release|update|beta|turbo|max|pro|prime|lite|standard))\\b"
+    }
+  ],
+  "models": {
+    "DoP (Lite/Standard/Turbo)": {
+      "news_query": "Higgsfield DoP AI video",
+      "note": "No source URLs yet. Add Higgsfield DoP page URL here when known."
+    },
+    "Grok Imagine Video 1.5": {
+      "extra_urls": [
+        "https://x.ai/"
+      ],
+      "news_query": "Grok Imagine video 1.5 xAI"
+    },
+    "Hailuo 02 / 2.3": {
+      "extra_urls": [
+        "https://hailuoai.video/"
+      ],
+      "news_query": "Hailuo MiniMax AI video",
+      "exclude_from_signature": [
+        "hailuoai.video"
+      ]
+    },
+    "Kling 2.5 Turbo": {
+      "extra_urls": [
+        "https://klingai.com/"
+      ],
+      "news_query": "Kling 2.5 Turbo AI video",
+      "note": "No source URLs; official Kling site."
+    },
+    "Kling 3.0": {
+      "extra_urls": [
+        "https://klingai.com/"
+      ],
+      "news_query": "Kling 3.0 AI video"
+    },
+    "Kling 4.0": {
+      "extra_urls": [
+        "https://klingai.com/"
+      ],
+      "news_query": "Kling 4.0 Kuaishou AI video"
+    },
+    "Luma App / Ray 3.2": {
+      "extra_urls": [
+        "https://lumalabs.ai/"
+      ],
+      "news_query": "Luma Ray 3.2 AI video",
+      "exclude_from_signature": [
+        "lumalabs.ai"
+      ]
+    },
+    "Marketing Studio video": {
+      "news_query": "Higgsfield Marketing Studio AI video",
+      "note": "No source URLs yet. Add Higgsfield Marketing Studio page URL here when known."
+    },
+    "Midjourney V1 Video": {
+      "extra_urls": [
+        "https://www.midjourney.com/"
+      ],
+      "news_query": "Midjourney V1 video model"
+    },
+    "MiniMax H3": {
+      "extra_urls": [
+        "https://www.minimaxi.com/en"
+      ],
+      "news_query": "MiniMax H3 Hailuo AI video",
+      "exclude_from_signature": [
+        "marktechpost.com"
+      ]
+    },
+    "Pika 2.5": {
+      "extra_urls": [
+        "https://pika.art/"
+      ],
+      "news_query": "Pika 2.5 AI video"
+    },
+    "Seedance 2.0": {
+      "news_query": "Seedance 2.0 ByteDance AI video"
+    },
+    "Seedance 2.5": {
+      "extra_urls": [
+        "https://seedance.com/"
+      ],
+      "news_query": "Seedance 2.5 ByteDance AI video",
+      "note": "No source URLs; official ByteDance/Seedance landing page."
+    },
+    "Seedance 3.0": {
+      "news_query": "Seedance 3.0 ByteDance AI video"
+    },
+    "Sora 2 / Pro / Max": {
+      "news_query": "OpenAI Sora video model",
+      "note": "Status discontinued per models.json. Watch sources for resurrection/rebrand; flag any change for review.",
+      "exclude_from_signature": [
+        "higgsfield.ai/blog/sora-api-migration-guide"
+      ]
+    },
+    "Soul 2.0": {
+      "news_query": "Higgsfield Soul 2.0 AI",
+      "note": "Higgsfield landing page is marketing copy; signals are noisy. Treat changed=true as 'page changed', not 'model changed'.",
+      "exclude_from_signature": [
+        "https://higgsfield.ai/"
+      ]
+    },
+    "Soul Cast": {
+      "extra_urls": [
+        "https://higgsfield.ai/"
+      ],
+      "news_query": "Higgsfield Soul Cast",
+      "note": "No source URLs in models.json; checked via Higgsfield homepage extra_url.",
+      "exclude_from_signature": [
+        "https://higgsfield.ai/"
+      ]
+    },
+    "Soul Cinema": {
+      "news_query": "Higgsfield Soul Cinema"
+    },
+    "Veo 3.1": {
+      "extra_urls": [
+        "https://deepmind.google/technologies/veo/"
+      ],
+      "news_query": "Google Veo 3.1 AI video",
+      "exclude_from_signature": [
+        "deepmind.google/technologies/veo/"
+      ]
+    },
+    "Veo 3.1 Fast / Veo 3": {
+      "extra_urls": [
+        "https://deepmind.google/technologies/veo/"
+      ],
+      "news_query": "Google Veo 3.1 Fast AI video",
+      "exclude_from_signature": [
+        "deepmind.google/technologies/veo/"
+      ]
+    },
+    "Wan 2.6": {
+      "extra_urls": [
+        "https://wan.video/"
+      ],
+      "news_query": "Wan 2.6 Alibaba AI video",
+      "note": "No source URLs; official Wan (Alibaba) site."
+    },
+    "Wan 3.0 / 3.0 Prime": {
+      "extra_urls": [
+        "https://wan.video/"
+      ],
+      "news_query": "Wan 3.0 Alibaba AI video",
+      "exclude_from_signature": [
+        "github.com/yzrkbys/pika-canvas/commit"
+      ]
+    }
+  }
+}
