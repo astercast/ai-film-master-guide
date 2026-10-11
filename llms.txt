@@ -27,7 +27,7 @@ Interactive in-context glossary: `assets/js/glossary.js` wraps the 79 `glossary.
 
 Chapters (source Markdown, also the canonical text):
 - `higgsfield/` — platform-mastery, prompt-engineering, soul-id-deep-dive, competition-entry-craft
-- `craft/` — story-structure, cinematic-language, character-consistency, directing-performance, color-grading, sound-music-audio, editing-pipeline, long-form-pipeline, failure-gallery
+- `craft/` — story-structure, cinematic-language, character-consistency, directing-performance, color-grading, sound-music-audio, editing-pipeline, longform-pipelines, failure-gallery
 - `distribution/` — release-paths
 - `legal/` — rights-and-disclosure
 - `platforms/` — field-guide, when-to-use-what

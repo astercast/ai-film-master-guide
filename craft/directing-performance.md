@@ -177,4 +177,4 @@ The AI take pipeline: **Idea → Generation → Iteration → Selection → Dire
 - Ken Kemp (LinkedIn): Scene Lock method
 - Sibghat Shaikh (Medium, Sept 2026): take-based pipeline
 - Val Kilmer / As Deep as the Grave (ew.com, darkhorizons.com, screendaily.com): estate-approved synthetic performance
-- Companion: `craft/character-consistency.md`, `craft/long-form-pipeline.md`, skills `craft-gaze-eyelines`, `audio-direct-voiceover`
+- Companion: `craft/character-consistency.md`, `craft/longform-pipelines.md`, skills `craft-gaze-eyelines`, `audio-direct-voiceover`

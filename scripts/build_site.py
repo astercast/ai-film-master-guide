@@ -29,7 +29,7 @@ SECTIONS = [
 
 CHAPTER_ORDER = {
     "higgsfield": ["platform-mastery", "prompt-engineering", "soul-id-deep-dive", "competition-entry-craft"],
-    "craft": ["story-structure", "cinematic-language", "character-consistency", "directing-performance", "color-grading", "sound-music-audio", "editing-pipeline", "long-form-pipeline", "failure-gallery"],
+    "craft": ["story-structure", "cinematic-language", "character-consistency", "directing-performance", "color-grading", "sound-music-audio", "editing-pipeline", "longform-pipelines", "failure-gallery"],
     "platforms": ["field-guide", "when-to-use-what"],
     "economics": ["credit-math"],
     "case-studies": ["competition-teardowns", "entry-craft-teardowns"],
@@ -60,6 +60,8 @@ FOOTER_ITEMS = [
     ("teardown.html", "Teardowns"),
     ("budget.html", "Budget"),
     ("manifesto.html", "Manifesto"),
+    ("craft-not-buttons.html", "Craft, not buttons"),
+    ("recipes.html", "Recipes"),
     ("field-guides/", "Field guides"),
     ("changelog.html", "Changelog"),
     ("skill-spec.html", "Skill spec"),
@@ -169,6 +171,7 @@ INDEX_TMPL = """<!DOCTYPE html>
           <a class="btn btn-gold" href="manifesto.html">Read the manifesto</a>
           <a class="btn" href="teardown.html">Shot-by-shot teardowns</a>
           <a class="btn" href="field-guides/">Printable field guides</a>
+          <a class="btn" href="craft-not-buttons.html">Craft, not buttons</a>
         </div>
         <div class="stat-strip">
           <div class="stat"><div class="stat-value">21</div><div class="stat-label">Chapters</div></div>
@@ -264,7 +267,7 @@ INDEX_TMPL = """<!DOCTYPE html>
           <div class="path-bar" aria-hidden="true"><span class="path-bar-fill"></span></div>
           <p class="path-progress"><span data-path-progress aria-live="polite">0 of 4 complete</span><button type="button" class="btn btn-sm btn-ghost" data-path-reset="longform">Reset</button></p>
           <ol class="path-steps">
-            <li><input type="checkbox" class="path-check" id="pc-longform-1" data-step="longform-1" aria-label="Mark complete: Long-form pipeline"><a href="craft/long-form-pipeline.html">Long-form pipeline</a></li>
+            <li><input type="checkbox" class="path-check" id="pc-longform-1" data-step="longform-1" aria-label="Mark complete: Long-form pipelines"><a href="craft/longform-pipelines.html">Long-form pipelines</a></li>
             <li><input type="checkbox" class="path-check" id="pc-longform-2" data-step="longform-2" aria-label="Mark complete: Directing performance"><a href="craft/directing-performance.html">Directing performance</a></li>
             <li><input type="checkbox" class="path-check" id="pc-longform-3" data-step="longform-3" aria-label="Mark complete: Editing pipeline"><a href="craft/editing-pipeline.html">Editing pipeline</a></li>
             <li><input type="checkbox" class="path-check" id="pc-longform-4" data-step="longform-4" aria-label="Mark complete: Credit math, compute envelopes"><a href="economics/credit-math.html">Credit math</a> <span class="path-note">compute envelopes</span></li>
@@ -975,7 +978,7 @@ MANIFESTO_TMPL = """<!DOCTYPE html>
         <h2>What it won't do</h2>
         <ul>
           <li><strong>No hype.</strong> AI will not replace filmmakers; it replaced the render farm. The guide says what the tools actually do.</li>
-          <li><strong>No tool worship.</strong> Craft over buttons. The prompting chapters teach directing; the platform chapters are comparisons, not loyalty.</li>
+          <li><strong>No tool worship.</strong> <a href="craft-not-buttons.html">Craft over buttons</a>. The prompting chapters teach directing; the platform chapters are comparisons, not loyalty.</li>
           <li><strong>No secrets.</strong> There is no "one prompt trick." There is story structure, shot discipline, and credit math — unglamorous and learnable.</li>
           <li><strong>No vendor lock-in.</strong> Eighteen models, compared honestly, weaknesses included. The quiz recommends from data, not sponsorship.</li>
           <li><strong>No invented facts.</strong> Unknowns are labeled as unknowns. If a budget, timeline, or technique couldn't be verified, it isn't in here.</li>
@@ -1002,6 +1005,69 @@ MANIFESTO_TMPL = """<!DOCTYPE html>
     </div>
   </div>
   <script src="assets/js/palette.js"></script>
+</body>
+</html>
+"""
+
+RECIPES_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shoot recipes — AI Film Master Guide</title>
+  <meta name="description" content="Twelve repeatable shoot recipes from the guide's skill library: steps, inputs, worked examples, and pitfalls for dialogue scenes, trailers, fight scenes, horror shorts and more.">
+  {css}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        {sitenav}
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">&#8984;K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="recipes-title">
+      <div class="container hero-inner">
+        <span class="hero-kicker">Repeatable workflows</span>
+        <h1 id="recipes-title">Shoot <span class="accent">recipes.</span></h1>
+        <p class="lede">The guide's recipe skills as cards: the procedure, the inputs, a worked example, and the pitfalls — for the twelve shots and sequences every AI film needs. <span id="recipes-count" aria-live="polite">{count} recipes</span></p>
+        <div class="field" style="max-width:480px;">
+          <label for="recipes-filter">Filter recipes</label>
+          <input class="input" id="recipes-filter" type="search" placeholder="e.g. dialogue, trailer, horror&hellip;" autocomplete="off">
+        </div>
+      </div>
+    </section>
+    <section class="container" aria-label="Recipes">
+      <div class="chapter-grid" id="recipes-list">
+{cards}
+      </div>
+      <div class="empty-state" id="recipes-empty" hidden><p>No recipes match that filter.</p></div>
+      <p class="calc-note" style="margin-bottom:var(--space-7);">Generated from <code>skills/recipes/*.md</code> at build time, so cards never drift from the skill files. Complexity is estimated from step and input counts. Full skill library: <a href="skills.html">skills browser</a>.</p>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide &mdash; research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer">{footer}</nav>
+    </div>
+  </footer>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
+    <div class="palette-box">
+      <input id="palette-input" type="search" placeholder="Search chapters, prompts, models&hellip;" autocomplete="off" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/recipes.js"></script>
 </body>
 </html>
 """
@@ -1230,6 +1296,103 @@ def build_field_guides(css_links):
         css=css, cards=cards, sitenav=sitenav, footer=footer))
 
 
+def parse_recipe(path):
+    """Parse a recipe skill file into card data. Returns None if not recipe-structured."""
+    text = path.read_text()
+    front = {}
+    body = text
+    if text.startswith("---"):
+        parts = text.split("---", 2)
+        if len(parts) == 3:
+            for line in parts[1].strip().splitlines():
+                if ":" in line:
+                    k, v = line.split(":", 1)
+                    front[k.strip()] = v.strip()
+            body = parts[2]
+    title = None
+    sections = {}
+    current = None
+    buf = []
+    for line in body.splitlines():
+        if line.startswith("# "):
+            title = line[2:].strip()
+            current = None
+        elif line.startswith("## "):
+            if current:
+                sections[current] = "\n".join(buf).strip()
+            current = line[3:].strip().lower()
+            buf = []
+        elif current:
+            buf.append(line)
+    if current:
+        sections[current] = "\n".join(buf).strip()
+    steps = [l for l in sections.get("procedure", "").splitlines()
+             if re.match(r"\s*\d+[.)]\s+", l)]
+    if not steps or not title:
+        return None  # not recipe-structured; skip rather than force it
+
+    def bullets(key):
+        return [re.sub(r"^\s*[-*]\s+", "", l).strip()
+                for l in sections.get(key, "").splitlines()
+                if re.match(r"\s*[-*]\s+", l)]
+
+    def clean_steps():
+        return [re.sub(r"^\s*\d+[.)]\s+", "", l).strip() for l in steps]
+
+    def inline(key):
+        return " ".join(l.strip() for l in sections.get(key, "").splitlines() if l.strip())
+
+    n_steps = len(steps)
+    n_inputs = len(bullets("inputs"))
+    score = n_steps + n_inputs
+    difficulty = "Straightforward" if score <= 6 else ("Intermediate" if score <= 10 else "Involved")
+    return {
+        "name": front.get("name", path.stem),
+        "title": title,
+        "description": front.get("description", ""),
+        "use_when": inline("use when"),
+        "inputs": bullets("inputs"),
+        "steps": clean_steps(),
+        "example": inline("worked example"),
+        "pitfalls": bullets("pitfalls"),
+        "difficulty": difficulty,
+    }
+
+
+def recipe_card(r):
+    def esc(t):
+        return html.escape(t, quote=True)
+    lis = lambda items, tag: "".join(f"<{tag}>{esc(i)}</{tag}>" for i in items)
+    search = esc(" ".join([r["title"], r["description"], r["use_when"]] + r["steps"]))
+    inputs = f"<h4>Inputs</h4><ul>{lis(r['inputs'], 'li')}</ul>" if r["inputs"] else ""
+    example = f"<h4>Worked example</h4><p>{esc(r['example'])}</p>" if r["example"] else ""
+    pitfalls = f"<h4>Pitfalls</h4><ul>{lis(r['pitfalls'], 'li')}</ul>" if r["pitfalls"] else ""
+    use = f'<p class="recipe-use"><strong>Use when:</strong> {esc(r["use_when"])}</p>' if r["use_when"] else ""
+    return f"""<article class="card recipe-card" data-search="{search}">
+  <div class="recipe-head"><h3>{esc(r["title"])}</h3><span class="badge" title="Estimated from step and input counts">{esc(r["difficulty"])}</span></div>
+  <p class="recipe-desc">{esc(r["description"])}</p>
+  {use}
+  {inputs}
+  <h4>Steps</h4><ol>{lis(r["steps"], "li")}</ol>
+  {example}
+  {pitfalls}
+  <p class="card-meta">Skill <code>{esc(r["name"])}</code> &middot; card generated from the skill file at build time</p>
+</article>"""
+
+
+def build_recipes(css_links):
+    recipes = []
+    for path in sorted((ROOT / "skills" / "recipes").glob("recipe-*.md")):
+        r = parse_recipe(path)
+        if r:
+            recipes.append(r)
+    cards = "\n".join(recipe_card(r) for r in recipes)
+    (SITE / "recipes.html").write_text(RECIPES_TMPL.format(
+        css=css_links, sitenav=nav_html("", "recipes.html"), footer=footer_html(""),
+        cards=cards, count=len(recipes)))
+    return recipes
+
+
 def main():
     shutil.rmtree(SITE, ignore_errors=True)
     chapters = {}  # section_id -> [(slug, {title, desc, path})]
@@ -1341,6 +1504,12 @@ def main():
     # Printable field guides (generated from the guide's own data)
     build_field_guides(css_links)
 
+    # Shoot recipes (generated from skills/recipes/*.md at build time)
+    build_recipes(css_links)
+
+    # Vendor-neutral craft page (static, repo root)
+    shutil.copy(ROOT / "craft-not-buttons.html", SITE / "craft-not-buttons.html")
+
     # New pages discoverable through the search palette
     search_index.extend([
         {"url": "teardown.html", "title": "Shot-by-shot teardowns", "section": "Tools",
@@ -1370,6 +1539,12 @@ def main():
         {"url": "skill-spec.html", "title": "Skill schema spec", "section": "Meta",
          "headings": ["Frontmatter", "Sections", "Full example"],
          "text": "The exact frontmatter-plus-sections format every guide skill follows, so other agent frameworks can consume or produce compatible skills: name, description, Use when, Inputs, Procedure, Worked example, API references, Pitfalls."},
+        {"url": "craft-not-buttons.html", "title": "Learn craft, not buttons", "section": "Craft",
+         "headings": ["Text-to-video: the shot", "Image-to-video: the plate", "Upscaling: the finish", "Voice and dialogue: the performance", "Editing and assembly: the film"],
+         "text": "Vendor-neutral craft decisions for AI filmmaking: what actually matters for text-to-video, image-to-video, upscaling, voice, and editing, mapped to where each decision lives in Kling, Veo, Runway, Luma, Higgsfield, and Seedance. Tools die, craft transfers."},
+        {"url": "recipes.html", "title": "Shoot recipes", "section": "Tools",
+         "headings": ["Steps", "Inputs", "Worked example", "Pitfalls"],
+         "text": "Twelve repeatable shoot recipes from the guide's skill library as visual cards: dialogue scenes, trailers, fight scenes, horror shorts, montages, music videos and more — steps, inputs, worked examples, pitfalls, generated from the skill files at build time."},
     ])
     (SITE / "search-index.json").write_text(json.dumps(search_index, ensure_ascii=False))
 

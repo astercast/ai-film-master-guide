@@ -85,7 +85,7 @@ The companion chapter lists *what placed and why*. This one is the *how* — the
 - Re-anchor references every few generations — don't wait for drift to become visible.
 - Use J/L cuts and a shared ambience bed to mask transitions; sound covers a multitude of visual sins.
 
-**Footprint.** "Oneiric" was a small team with systems; "Total Pixel Space" was a year of iteration. Both show that long-form is a marathon budgeted in *organization*, not just credits. (Full long-form pipelines get their own chapter in `craft/long-form-pipeline.md`.)
+**Footprint.** "Oneiric" was a small team with systems; "Total Pixel Space" was a year of iteration. Both show that long-form is a marathon budgeted in *organization*, not just credits. (Full long-form pipelines get their own chapter in `craft/longform-pipelines.md`.)
 
 ## 7. The floor — what kills entries
 
