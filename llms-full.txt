@@ -1515,3 +1515,43 @@ Standard indie deliverables (Tribeca Film Institute Distribution 101), **plus** 
 - Platform music terms (dev.to Oct 2026 comparisons; frankx.ai)
 - Chain of title / E&O (fromtheheartproductions.com; beverlyboy.com)
 - Companion: `distribution/release-paths.md`, `economics/credit-math.md`
+
+<!-- page: manifesto.html -->
+# Manifesto
+
+This is not a course. No cohort, no certificate, no upsell — a living reference for people making films with AI.
+
+**What this is:** twenty-one chapters on craft, platforms, economics, and pipelines, plus tools (budget calculator, prompt workshop, model quiz, teardowns) and a machine-readable API. Updated as the field moves; the changelog is dated; corrections are printed, not buried.
+
+**What it costs:** nothing. Courses have their place (structure, community, feedback); this is the other thing — the reference manual you keep open while you work.
+
+**Everything is sourced:** every claim carries a URL, a confidence flag, or an explicit unknown. This guide once repeated an unverified Cannes premiere claim for ONEIRIC; the correction is in the text.
+
+**What it won't do:** no hype; no tool worship (craft over buttons); no secrets (no "one prompt trick"); no vendor lock-in (18 models compared honestly); no invented facts.
+
+**How to use it:** 10 minutes — model quiz → prompt workshop → budget calculator. 10 hours — pick a learning path. As reference — Ctrl+K search; print any chapter or field guide.
+
+**Who it's for:** people making films with AI who want craft, not content.
+
+<!-- page: teardown.html + api/v1/teardowns.json -->
+# Shot-by-shot teardowns
+
+Three documented AI-film sequences broken into shots (setup / what works / what breaks / craft lesson). Prompt reconstructions are analytical — not the productions' actual prompts.
+
+**Passport Rush** (hybrid AI animation, Higgsfield Originals 2026): 5 shots — boards before budget (story locked in pencil before credits); Blender previs as the camera department (motion decided free, executed by AI); the subtle-acting shots (AI fails small feelings; direct tactics not emotions); consistency discipline (image references as the supply chain, 18 scenes in 3 days); the failure reel (failed generations and lighting tests published as the most instructive part).
+
+**ONEIRIC** (20-min photoreal drama, Cinema Studio 4, 2026): 5 shots — the living-room dialogue (one-room continuity harder than the space battle; color-coded Diagram Skill blocking map); the consistent-lens-look trick (anamorphic baked into the location image, not the video prompt — "the plate itself becomes the lens"); the carried-reference chain (previous scene's finished video as next reference — "a text description drifts over generations, a video reference doesn't"); giving the eyes a job (emotion words banned; eyelines named as action); Scene Lock and scheduled regeneration (approve, then photograph; iteration as a scheduled department).
+
+**The $100K cautionary case** (Grok Odyssey contest winner, Nem Perez, 2026): 3 shots — the three-eyed Cyclops (no identity lock, no QC pass; consistency is the floor); feet for hands (no exclusion block, no edge-of-frame discipline); the awkward dialogue (decoupled dialogue; attribute every line, direct delivery, or plan the edit around native audio).
+
+Sources per teardown: Passport Rush official YouTube breakdown (watch?v=reFzEtCG_m8), the film (watch?v=ZncA70OAgPw), Deykhan Ten LinkedIn pipeline post, completeaitraining.com; ONEIRIC via turapins/svvera oneiric-pipeline.md (community transcription of the open-sourced brief, flagged third-party), ONEIRIC YouTube (watch?v=g_c62JkKQZE), Higgsfield Academy full-film replay; Odyssey winner via tbsnews.net and the judging-criteria video essay.
+
+<!-- pages: field-guides/ -->
+# Field guides (printable one-pagers)
+
+Generated from the guide's own data, 2026-10-11:
+- `field-guides/models.html` — all 18 models: platform, type, best use, cost, weakness (from api/v1/models.json)
+- `field-guides/prompt-anatomy.html` — the nine-layer prompt anatomy, camera phrasing, exclusion block, per-shot discipline, failure modes and fixes (from higgsfield/prompt-engineering.md)
+- `field-guides/consistency-checklist.html` — the dead-eyes checklist (microsaccades, Duchenne, asymmetry, pupillary response) and the 12-point performance checklist (from craft/directing-performance.md)
+
+Every chapter also carries its honest read time (200 wpm from actual word count; total guide ≈ 1h 28m) and prints cleanly via the print stylesheet.

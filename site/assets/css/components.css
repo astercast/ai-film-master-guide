@@ -194,3 +194,43 @@
 .quiz-cost-na { color: var(--muted); font-style: italic; }
 .quiz-why { margin: 0 0 var(--space-4); padding-left: 1.2rem; font-size: 0.9rem; color: var(--ink-dim); }
 .quiz-why li { margin-bottom: var(--space-1); }
+
+/* Shot-by-shot teardown viewer */
+.td-tabs { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: var(--space-5) 0 var(--space-4); }
+.td-tab {
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--line-soft); border-radius: 999px;
+  background: var(--panel); color: var(--ink-dim); cursor: pointer; font: inherit;
+}
+.td-tab:hover { border-color: var(--gold); color: var(--ink); }
+.td-tab.is-active { border-color: var(--gold); color: var(--gold); background: rgba(245, 179, 1, 0.08); }
+.td-sub { color: var(--muted); font-size: 0.95rem; margin: 0 0 var(--space-2); }
+.td-context { color: var(--ink-dim); margin: 0 0 var(--space-5); max-width: 70ch; }
+.td-stepper { display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-4); }
+.td-progress { flex: 1; height: 6px; background: var(--panel-2); border-radius: 999px; overflow: hidden; }
+.td-progress span { display: block; height: 100%; background: var(--gold); border-radius: 999px; }
+.td-card {
+  background: var(--panel); border: 1px solid var(--line-soft);
+  border-radius: var(--radius-m); padding: var(--space-5);
+}
+.td-shotno { color: var(--gold); font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 var(--space-2); }
+.td-card h3 { margin: 0 0 var(--space-4); }
+.td-fields { display: grid; gap: var(--space-4); margin: 0; }
+.td-fields dt { font-weight: 700; font-size: 0.85rem; letter-spacing: 0.04em; color: var(--muted); text-transform: uppercase; margin-bottom: var(--space-1); }
+.td-fields dd { margin: 0; color: var(--ink-dim); }
+.td-lesson dd { color: var(--ink); border-left: 3px solid var(--gold); padding-left: var(--space-3); }
+.td-recon { margin-top: var(--space-4); }
+.td-recon summary { cursor: pointer; color: var(--ink-dim); }
+.td-recon-tag { font-size: 0.78rem; color: var(--muted); font-style: italic; }
+.td-recon pre { margin-top: var(--space-2); }
+.td-sources { margin-top: var(--space-4); color: var(--muted); font-size: 0.9rem; }
+.td-sources summary { cursor: pointer; }
+.td-note { color: var(--muted); font-size: 0.85rem; font-style: italic; margin-top: var(--space-5); }
+.td-error { color: var(--red); }
+
+/* Field guides index + print buttons */
+.print-btn-row { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: var(--space-4) 0; }
+.read-time { color: var(--muted); font-size: 0.9rem; }
+.card-meta { color: var(--muted); font-size: 0.82rem; margin-top: var(--space-2); }
+.fg-list { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top: var(--space-4); }
+.fg-provenance { color: var(--muted); font-size: 0.85rem; }

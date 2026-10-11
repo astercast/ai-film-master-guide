@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prompt anatomy cheat sheet — Field guide — AI Film Master Guide</title>
+  <meta name="description" content="The nine-layer prompt anatomy, camera phrasing, exclusion block, and failure fixes on one page.">
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/docs.css">
+  <link rel="stylesheet" href="../assets/css/print.css">
+</head>
+<body class="fg-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header no-print">
+    <div class="container header-bar">
+      <a class="brand" href="../index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="../index.html">Guide</a>
+        <a href="../skills.html">Skills</a>
+        <a href="../workshop.html">Workshop</a>
+        <a href="../quiz.html">Quiz</a>
+        <a href="../teardown.html">Teardowns</a>
+        <a href="../changelog.html">Changelog</a>
+        <a href="../skill-spec.html">Skill spec</a>
+        <a href="../api.html">API</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="fg-body">
+    <div class="container">
+      <p class="crumb no-print"><a href="../index.html">Guide</a> / <a href="index.html">Field guides</a></p>
+      <h1>Prompt anatomy cheat sheet</h1>
+      <p class="fg-provenance">Generated 2026-10-11 from higgsfield/prompt-engineering.md (the chapter is the authority).</p>
+      <div class="print-btn-row no-print">
+        <button type="button" class="btn btn-gold" onclick="window.print()">Print this guide</button>
+        <a class="btn" href="index.html">All field guides</a>
+      </div>
+      <h2>The anatomy of a prompt that works</h2><p>Treat the prompt as a directing system, not a description. Every generation should specify, in order:</p>
+<ol>
+<li><strong>Subject</strong> — who/what, locked identity</li>
+<li><strong>Micro-action</strong> — one believable action, not three</li>
+<li><strong>Environment</strong> — where, with subtle motion in it</li>
+<li><strong>Camera behavior</strong> — one intentional move (see below)</li>
+<li><strong>Lighting design</strong> — explicit and physical (&quot;golden-hour side light, long shadows&quot;)</li>
+<li><strong>Visual style</strong> — cinematic, anamorphic, film grain, era</li>
+<li><strong>Emotional tone</strong> — the feeling of the shot</li>
+<li><strong>Physics &amp; motion details</strong> — how things move (cloth in breeze, steam rising)</li>
+<li><strong>Rendering quality modifiers</strong> — 4K, shallow depth of field, stable architecture</li>
+</ol>
+<p>Missing layers = randomness. &quot;Slow dolly push-in&quot; beats &quot;zoom in.&quot; Explicit lighting beats &quot;nice lighting.&quot;</p><h2>Camera phrasing that the models obey</h2><ul>
+<li><strong>Push-in / reveal:</strong> &quot;the camera slowly dollies toward the subject with smooth stabilized movement&quot;</li>
+<li><strong>Pull-back / scale:</strong> &quot;the camera slowly pulls backward, gradually revealing the enormous environment surrounding the subject&quot;</li>
+<li><strong>Orbit:</strong> &quot;camera orbits 360° around the subject&quot;</li>
+<li><strong>Pan:</strong> &quot;slow camera pan across the scene&quot;</li>
+<li><strong>Stacked moves:</strong> Higgsfield&#x27;s Cinema Studio supports several moves in one shot — but one motivated move beats two unmotivated ones.</li>
+</ul>
+<p>Rule: every movement needs a purpose. Ask what the move reveals or withholds.</p><h2>The exclusion block</h2><p>Always exclude what breaks cinematic output: morphing faces, extra limbs, melting hands, warping architecture, flicker, watermark-like artifacts, text in frame (unless wanted). Put it in every prompt, not just the risky ones.</p><h2>Per-shot discipline</h2><ul>
+<li>One shot = one fully self-contained prompt. Restate the full premise every time — the model has no memory of your last clip.</li>
+<li>Don&#x27;t ask for too many actions in five seconds. One action per clip.</li>
+<li>Keep the frame uncrowded. Fewer subjects = fewer failure modes.</li>
+<li>Image-to-video (start frame first) beats text-to-video for control. Generate the still, approve it, then animate.</li>
+</ul><h2>Common failure modes and fixes</h2><table><thead><tr><th>Failure</th><th>Fix</th></tr></thead><tbody>
+<tr><td>Face morphs mid-shot</td><td>Shorter clip; Soul ID or reference image; re-generate from a locked start frame</td></tr>
+<tr><td>Melting hands</td><td>Keep hands out of frame or still; exclude &quot;deformed hands&quot;; crop in post</td></tr>
+<tr><td>Camera drift (unmotivated)</td><td>Pin an end frame; name one explicit camera move; shorten duration</td></tr>
+<tr><td>Identity drift across shots</td><td>Soul ID; same seed discipline; approved-frame library as start frames</td></tr>
+<tr><td>Flicker / texture boil</td><td>Regenerate; avoid overly busy backgrounds; stabilize in post</td></tr>
+<tr><td>Plasticky faces in wide shots</td><td>Shoot closer; composite a close-shot face in post</td></tr>
+</tbody></table><p>Full chapter: <a href="../higgsfield/prompt-engineering.html">prompt engineering</a>. Fill templates live: <a href="../workshop.html">prompt workshop</a>.</p>
+      <div class="print-btn-row no-print">
+        <button type="button" class="btn btn-gold" onclick="window.print()">Print this guide</button>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer no-print">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer"><a href="../index.html">Guide</a><a href="../skills.html">Skills</a><a href="../workshop.html">Workshop</a><a href="../quiz.html">Quiz</a><a href="../teardown.html">Teardowns</a><a href="../budget.html">Budget</a><a href="../manifesto.html">Manifesto</a><a href="../field-guides/">Field guides</a><a href="../changelog.html">Changelog</a><a href="../skill-spec.html">Skill spec</a><a href="../api.html">API</a></nav>
+    </div>
+  </footer>
+</body>
+</html>

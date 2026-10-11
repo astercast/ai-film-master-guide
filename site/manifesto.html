@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manifesto — AI Film Master Guide</title>
+  <meta name="description" content="What this guide is, what it costs, what it refuses to do, and how to use it.">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/docs.css">
+  <link rel="stylesheet" href="assets/css/print.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html">Guide</a>
+        <a href="skills.html">Skills</a>
+        <a href="workshop.html">Workshop</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="teardown.html">Teardowns</a>
+        <a href="changelog.html">Changelog</a>
+        <a href="skill-spec.html">Skill spec</a>
+        <a href="api.html">API</a>
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">⌘K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="man-title">
+      <div class="container hero-inner">
+        <span class="hero-kicker">The manifesto</span>
+        <h1 id="man-title">This is <span class="accent">not a course.</span></h1>
+        <p class="lede">No cohort. No certificate. No $2,000 upsell. This is a living reference for people making films with AI — and it has opinions.</p>
+      </div>
+    </section>
+    <section class="container" style="margin-bottom:var(--space-7);">
+      <div class="prose">
+        <h2>What this is</h2>
+        <p>A reference manual you keep open while you work — twenty-one chapters on craft, platforms, economics, and pipelines, plus the tools (budget calculator, prompt workshop, model quiz, teardowns) and the machine-readable API underneath. It is updated as the field moves: the changelog is dated, the model data is versioned, and corrections are printed, not buried.</p>
+        <h2>What it costs</h2>
+        <p>Nothing. Courses have their place — structure, community, and feedback from a working filmmaker are genuinely worth paying for, and this guide does not replace them. This is the other thing: the manual their graduates keep open after the cohort ends. The reference layer, free, forever, with no account.</p>
+        <h2>Everything is sourced</h2>
+        <p>Every claim in this guide carries a URL, a confidence flag, or an explicit unknown. When we get something wrong, we print the correction — this guide once repeated a Cannes premiere claim for ONEIRIC that didn't hold up; the correction is in the text, not in a quiet edit. Trust is the whole product. A reference that hides its mistakes is marketing.</p>
+        <h2>What it won't do</h2>
+        <ul>
+          <li><strong>No hype.</strong> AI will not replace filmmakers; it replaced the render farm. The guide says what the tools actually do.</li>
+          <li><strong>No tool worship.</strong> Craft over buttons. The prompting chapters teach directing; the platform chapters are comparisons, not loyalty.</li>
+          <li><strong>No secrets.</strong> There is no "one prompt trick." There is story structure, shot discipline, and credit math — unglamorous and learnable.</li>
+          <li><strong>No vendor lock-in.</strong> Eighteen models, compared honestly, weaknesses included. The quiz recommends from data, not sponsorship.</li>
+          <li><strong>No invented facts.</strong> Unknowns are labeled as unknowns. If a budget, timeline, or technique couldn't be verified, it isn't in here.</li>
+        </ul>
+        <h2>How to use it</h2>
+        <p><strong>Ten minutes:</strong> take the <a href="quiz.html">model quiz</a>, fill a template in the <a href="workshop.html">prompt workshop</a>, run your numbers through the <a href="budget.html">budget calculator</a>. You'll know what to shoot with, what to write, and what it costs.</p>
+        <p><strong>Ten hours:</strong> pick a <a href="index.html#paths-h">learning path</a> — first film, competition-ready craft, animated, photoreal, long-form. Tick the steps off; your progress is saved in this browser.</p>
+        <p><strong>As a reference:</strong> press Ctrl+K (or ⌘K) anywhere and search. Print any chapter or <a href="field-guides/">field guide</a> for the set.</p>
+        <h2>Who it's for</h2>
+        <p>People making films with AI who want craft, not content. If you want the fastest path to a viral clip, there are cheaper guides. If you want to direct — to learn why a shot works, what a performance needs, and what a minute of footage actually costs — this is yours.</p>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer"><a href="index.html">Guide</a><a href="skills.html">Skills</a><a href="workshop.html">Workshop</a><a href="quiz.html">Quiz</a><a href="teardown.html">Teardowns</a><a href="budget.html">Budget</a><a href="manifesto.html">Manifesto</a><a href="field-guides/">Field guides</a><a href="changelog.html">Changelog</a><a href="skill-spec.html">Skill spec</a><a href="api.html">API</a></nav>
+    </div>
+  </footer>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
+    <div class="palette-box">
+      <input id="palette-input" type="search" placeholder="Search chapters, prompts, models…" autocomplete="off" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="assets/js/palette.js"></script>
+</body>
+</html>

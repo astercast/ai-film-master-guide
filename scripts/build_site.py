@@ -39,13 +39,14 @@ CHAPTER_ORDER = {
 }
 
 CSS = ["assets/css/tokens.css", "assets/css/base.css", "assets/css/layout.css",
-       "assets/css/components.css", "assets/css/docs.css"]
+       "assets/css/components.css", "assets/css/docs.css", "assets/css/print.css"]
 
 NAV_ITEMS = [
     ("index.html", "Guide"),
     ("skills.html", "Skills"),
     ("workshop.html", "Workshop"),
     ("quiz.html", "Quiz"),
+    ("teardown.html", "Teardowns"),
     ("changelog.html", "Changelog"),
     ("skill-spec.html", "Skill spec"),
     ("api.html", "API"),
@@ -56,7 +57,10 @@ FOOTER_ITEMS = [
     ("skills.html", "Skills"),
     ("workshop.html", "Workshop"),
     ("quiz.html", "Quiz"),
+    ("teardown.html", "Teardowns"),
     ("budget.html", "Budget"),
+    ("manifesto.html", "Manifesto"),
+    ("field-guides/", "Field guides"),
     ("changelog.html", "Changelog"),
     ("skill-spec.html", "Skill spec"),
     ("api.html", "API"),
@@ -104,6 +108,7 @@ PAGE_TMPL = """<!DOCTYPE html>
     <main id="main" class="docs-main">
       <div class="progress-bar" aria-hidden="true"><span></span></div>
       <p class="crumb"><a href="../index.html">Guide</a> / {section_name}</p>
+      <p class="read-time">{read_min} min read · {words} words</p>
       <article class="prose">{body}</article>
       <nav class="prevnext" aria-label="Next and previous chapters">{prevnext}</nav>
     </main>
@@ -159,14 +164,20 @@ INDEX_TMPL = """<!DOCTYPE html>
       <div class="container hero-inner">
         <span class="hero-kicker">Professional AI filmmaking</span>
         <h1 id="hero-title">Make films with AI<br><span class="accent">like a studio.</span></h1>
-        <p class="lede">Twenty chapters on Higgsfield mastery, professional craft, directing performance, color grading, sound, economics, long-form pipelines, competition-entry craft, distribution, and rights — with separate tracks for animated/stylized and photorealistic production. Plus a machine-readable API and 191 task skills for agents.</p>
+        <p class="lede">Twenty-one chapters on Higgsfield mastery, professional craft, directing performance, color grading, sound, economics, long-form pipelines, competition-entry craft, distribution, and rights — with separate tracks for animated/stylized and photorealistic production. Plus a machine-readable API and 191 task skills for agents.</p>
+        <div class="btn-row">
+          <a class="btn btn-gold" href="manifesto.html">Read the manifesto</a>
+          <a class="btn" href="teardown.html">Shot-by-shot teardowns</a>
+          <a class="btn" href="field-guides/">Printable field guides</a>
+        </div>
         <div class="stat-strip">
-          <div class="stat"><div class="stat-value">20</div><div class="stat-label">Chapters</div></div>
+          <div class="stat"><div class="stat-value">21</div><div class="stat-label">Chapters</div></div>
+          <div class="stat"><div class="stat-value">{total_read}</div><div class="stat-label">Total read time</div></div>
           <div class="stat"><div class="stat-value">31</div><div class="stat-label">Prompt templates</div></div>
           <div class="stat"><div class="stat-value">22</div><div class="stat-label">Camera moves</div></div>
           <div class="stat"><div class="stat-value">18</div><div class="stat-label">Models compared</div></div>
           <div class="stat"><div class="stat-value">79</div><div class="stat-label">Glossary terms</div></div>
-          <div class="stat"><div class="stat-value">180</div><div class="stat-label">Agent skills</div></div>
+          <div class="stat"><div class="stat-value">191</div><div class="stat-label">Agent skills</div></div>
         </div>
       </div>
     </section>
@@ -195,7 +206,7 @@ INDEX_TMPL = """<!DOCTYPE html>
 
     <section class="container" aria-labelledby="paths-h">
       <h2 id="paths-h">Start here: learning paths</h2>
-      <p class="section-lede">Don't read twenty chapters in order. Pick your goal — each path is the shortest route through the guide that gets you there. Tick steps off as you finish them; your progress is saved in this browser.</p>
+      <p class="section-lede">Don't read twenty-one chapters in order. Pick your goal — each path is the shortest route through the guide that gets you there. Tick steps off as you finish them; your progress is saved in this browser.</p>
       <div class="path-grid">
         <article class="card path-card" data-path="first-film">
           <h3>Your first AI film <span class="path-time">a weekend</span></h3>
@@ -332,6 +343,43 @@ def chapter_desc(md):
             clean = re.sub(r"[*_`]", "", s)
             return clean[:160]
     return "AI filmmaking guide chapter."
+
+
+def word_count(md):
+    """Honest word count: strip code, images, links, and markdown syntax."""
+    t = re.sub(r"```.*?```", " ", md, flags=re.S)
+    t = re.sub(r"`[^`]*`", " ", t)
+    t = re.sub(r"!\[[^\]]*\]\([^)]*\)", " ", t)
+    t = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", t)
+    t = re.sub(r"[#>*_~|\-]", " ", t)
+    t = re.sub(r"\s+", " ", t)
+    return len([w for w in t.split(" ") if w])
+
+
+def read_minutes(md):
+    return max(1, round(word_count(md) / 200))
+
+
+def md_section(md, heading):
+    """Extract the markdown of one ## section by heading text."""
+    lines = md.split("\n")
+    buf, inside = [], False
+    for line in lines:
+        m = re.match(r"^##\s+(.*)$", line.strip())
+        if m:
+            if inside:
+                break
+            if m.group(1).strip().lower() == heading.strip().lower():
+                inside = True
+            continue
+        if inside:
+            buf.append(line)
+    return "\n".join(buf).strip()
+
+
+def fmt_total_minutes(mins):
+    h, m = divmod(mins, 60)
+    return f"{h}h {m}m" if h else f"{m}m"
 
 
 def build_nav(chapters):
@@ -826,6 +874,241 @@ SKILLSPEC_TMPL = """<!DOCTYPE html>
 </html>
 """
 
+TEARDOWN_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shot-by-shot teardowns — AI Film Master Guide</title>
+  <meta name="description" content="Learn to see: shot-by-shot teardowns of documented AI-film sequences — what each shot did, what broke, and the craft lesson.">
+  {css}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        {sitenav}
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">⌘K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="td-title">
+      <div class="container hero-inner">
+        <span class="hero-kicker">Learn to see</span>
+        <h1 id="td-title">Shot-by-shot <span class="accent">teardowns.</span></h1>
+        <p class="lede">Three documented AI-film sequences, broken into shots: what each shot did, what worked, what broke, and the craft lesson. Prompt reconstructions are analytical — they teach the thinking, not the buttons.</p>
+      </div>
+    </section>
+    <section class="container" aria-labelledby="td-app-h" style="margin-bottom:var(--space-7);">
+      <h2 id="td-app-h" class="sr-only">Teardown viewer</h2>
+      <div id="teardown-app"><p>Loading teardowns…</p></div>
+      <noscript><p>Teardowns need JavaScript. The source data is <code>api/v1/teardowns.json</code> in the repository.</p></noscript>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer">{footer}</nav>
+    </div>
+  </footer>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
+    <div class="palette-box">
+      <input id="palette-input" type="search" placeholder="Search chapters, prompts, models…" autocomplete="off" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/teardown.js"></script>
+</body>
+</html>
+"""
+
+MANIFESTO_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manifesto — AI Film Master Guide</title>
+  <meta name="description" content="What this guide is, what it costs, what it refuses to do, and how to use it.">
+  {css}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        {sitenav}
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">⌘K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="man-title">
+      <div class="container hero-inner">
+        <span class="hero-kicker">The manifesto</span>
+        <h1 id="man-title">This is <span class="accent">not a course.</span></h1>
+        <p class="lede">No cohort. No certificate. No $2,000 upsell. This is a living reference for people making films with AI — and it has opinions.</p>
+      </div>
+    </section>
+    <section class="container" style="margin-bottom:var(--space-7);">
+      <div class="prose">
+        <h2>What this is</h2>
+        <p>A reference manual you keep open while you work — twenty-one chapters on craft, platforms, economics, and pipelines, plus the tools (budget calculator, prompt workshop, model quiz, teardowns) and the machine-readable API underneath. It is updated as the field moves: the changelog is dated, the model data is versioned, and corrections are printed, not buried.</p>
+        <h2>What it costs</h2>
+        <p>Nothing. Courses have their place — structure, community, and feedback from a working filmmaker are genuinely worth paying for, and this guide does not replace them. This is the other thing: the manual their graduates keep open after the cohort ends. The reference layer, free, forever, with no account.</p>
+        <h2>Everything is sourced</h2>
+        <p>Every claim in this guide carries a URL, a confidence flag, or an explicit unknown. When we get something wrong, we print the correction — this guide once repeated a Cannes premiere claim for ONEIRIC that didn't hold up; the correction is in the text, not in a quiet edit. Trust is the whole product. A reference that hides its mistakes is marketing.</p>
+        <h2>What it won't do</h2>
+        <ul>
+          <li><strong>No hype.</strong> AI will not replace filmmakers; it replaced the render farm. The guide says what the tools actually do.</li>
+          <li><strong>No tool worship.</strong> Craft over buttons. The prompting chapters teach directing; the platform chapters are comparisons, not loyalty.</li>
+          <li><strong>No secrets.</strong> There is no "one prompt trick." There is story structure, shot discipline, and credit math — unglamorous and learnable.</li>
+          <li><strong>No vendor lock-in.</strong> Eighteen models, compared honestly, weaknesses included. The quiz recommends from data, not sponsorship.</li>
+          <li><strong>No invented facts.</strong> Unknowns are labeled as unknowns. If a budget, timeline, or technique couldn't be verified, it isn't in here.</li>
+        </ul>
+        <h2>How to use it</h2>
+        <p><strong>Ten minutes:</strong> take the <a href="quiz.html">model quiz</a>, fill a template in the <a href="workshop.html">prompt workshop</a>, run your numbers through the <a href="budget.html">budget calculator</a>. You'll know what to shoot with, what to write, and what it costs.</p>
+        <p><strong>Ten hours:</strong> pick a <a href="index.html#paths-h">learning path</a> — first film, competition-ready craft, animated, photoreal, long-form. Tick the steps off; your progress is saved in this browser.</p>
+        <p><strong>As a reference:</strong> press Ctrl+K (or ⌘K) anywhere and search. Print any chapter or <a href="field-guides/">field guide</a> for the set.</p>
+        <h2>Who it's for</h2>
+        <p>People making films with AI who want craft, not content. If you want the fastest path to a viral clip, there are cheaper guides. If you want to direct — to learn why a shot works, what a performance needs, and what a minute of footage actually costs — this is yours.</p>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer">{footer}</nav>
+    </div>
+  </footer>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
+    <div class="palette-box">
+      <input id="palette-input" type="search" placeholder="Search chapters, prompts, models…" autocomplete="off" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="assets/js/palette.js"></script>
+</body>
+</html>
+"""
+
+FIELDGUIDE_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{title} — Field guide — AI Film Master Guide</title>
+  <meta name="description" content="{desc}">
+  {css}
+</head>
+<body class="fg-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header no-print">
+    <div class="container header-bar">
+      <a class="brand" href="../index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        {sitenav}
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="fg-body">
+    <div class="container">
+      <p class="crumb no-print"><a href="../index.html">Guide</a> / <a href="index.html">Field guides</a></p>
+      <h1>{title}</h1>
+      <p class="fg-provenance">{provenance}</p>
+      <div class="print-btn-row no-print">
+        <button type="button" class="btn btn-gold" onclick="window.print()">Print this guide</button>
+        <a class="btn" href="index.html">All field guides</a>
+      </div>
+      {body}
+      <div class="print-btn-row no-print">
+        <button type="button" class="btn btn-gold" onclick="window.print()">Print this guide</button>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer no-print">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer">{footer}</nav>
+    </div>
+  </footer>
+</body>
+</html>
+"""
+
+FIELDGUIDES_INDEX_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Field guides — AI Film Master Guide</title>
+  <meta name="description" content="Printable one-page field guides: model quick-reference, prompt anatomy cheat sheet, consistency checklist.">
+  {css}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="../index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        {sitenav}
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">⌘K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="fg-title">
+      <div class="container hero-inner">
+        <span class="hero-kicker">Print-ready</span>
+        <h1 id="fg-title">Field <span class="accent">guides.</span></h1>
+        <p class="lede">One-page references, generated from the guide's own data — dense enough to be useful on set, honest enough to print. Every chapter prints cleanly too: open any chapter and use your browser's print.</p>
+      </div>
+    </section>
+    <section class="container" style="margin-bottom:var(--space-7);">
+      <div class="fg-list">
+        {cards}
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer">{footer}</nav>
+    </div>
+  </footer>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
+    <div class="palette-box">
+      <input id="palette-input" type="search" placeholder="Search chapters, prompts, models…" autocomplete="off" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="../assets/js/palette.js"></script>
+</body>
+</html>
+"""
+
 def build_toc(heads):
     items = "".join(
         f'<li class="toc-l{level}"><a href="#{anchor}">{h}</a></li>'
@@ -867,6 +1150,86 @@ def skill_spec_example():
     return front_esc, md2html.convert(body)
 
 
+def build_field_guides(css_links):
+    """Printable one-page field guides, generated from the guide's own data."""
+    fg_dir = SITE / "field-guides"
+    fg_dir.mkdir(parents=True, exist_ok=True)
+    css = css_links.replace('href="assets/', 'href="../assets/')
+    sitenav = nav_html("../", "")
+    footer = footer_html("../")
+    today = "2026-10-11"
+
+    def page(slug, title, desc, provenance, body_html):
+        (fg_dir / slug).write_text(FIELDGUIDE_TMPL.format(
+            title=title, desc=desc, provenance=provenance, body=body_html,
+            css=css, sitenav=sitenav, footer=footer))
+
+    # 1. Model quick-reference — from api/v1/models.json
+    models_doc = json.loads((ROOT / "api" / "v1" / "models.json").read_text())
+    models = models_doc["models"]
+    rows = "".join(
+        f"<tr><th scope=\"row\">{html.escape(m['model'])}</th>"
+        f"<td>{html.escape(str(m.get('platform', '')))}</td>"
+        f"<td>{html.escape(str(m.get('type', '')))}</td>"
+        f"<td>{html.escape(str(m.get('best_use', '')))}</td>"
+        f"<td>{html.escape(str(m.get('est_cost_credits', '—')))}</td>"
+        f"<td>{html.escape(str(m.get('weakness', '')))}</td></tr>"
+        for m in models)
+    cost_basis = html.escape(str(models_doc.get("cost_basis", "")))
+    unverified = ", ".join(models_doc.get("unverified", []))
+    unver_note = f"<p><strong>Cost confidence:</strong> flagged as unverified for: {html.escape(unverified)}.</p>" if unverified else ""
+    page("models.html", "Model quick-reference",
+         "One-page model reference: best use, cost, and weakness for every compared model.",
+         f"Generated {today} from api/v1/models.json (v{html.escape(str(models_doc.get('version', '')))}, observed {html.escape(str(models_doc.get('observed', '')))}).",
+         f"<h2>All {len(models)} models at a glance</h2>"
+         f"<table><thead><tr><th scope=\"col\">Model</th><th scope=\"col\">Platform</th>"
+         f"<th scope=\"col\">Type</th><th scope=\"col\">Best use</th><th scope=\"col\">Cost</th>"
+         f"<th scope=\"col\">Weakness</th></tr></thead><tbody>{rows}</tbody></table>"
+         f"<p><strong>Cost basis:</strong> {cost_basis}</p>{unver_note}"
+         f"<p>Full comparisons: <a href=\"../platforms/field-guide.html\">platform field guide</a>, "
+         f"<a href=\"../platforms/when-to-use-what.html\">when to use what</a>, <a href=\"../quiz.html\">model quiz</a>.</p>")
+
+    # 2. Prompt anatomy cheat sheet — from higgsfield/prompt-engineering.md
+    pe = (ROOT / "higgsfield" / "prompt-engineering.md").read_text()
+    anatomy = "".join(
+        f"<h2>{h}</h2>" + md2html.convert(md_section(pe, h))
+        for h in ["The anatomy of a prompt that works",
+                  "Camera phrasing that the models obey",
+                  "The exclusion block", "Per-shot discipline",
+                  "Common failure modes and fixes"])
+    page("prompt-anatomy.html", "Prompt anatomy cheat sheet",
+         "The nine-layer prompt anatomy, camera phrasing, exclusion block, and failure fixes on one page.",
+         f"Generated {today} from higgsfield/prompt-engineering.md (the chapter is the authority).",
+         anatomy + "<p>Full chapter: <a href=\"../higgsfield/prompt-engineering.html\">prompt engineering</a>. "
+         "Fill templates live: <a href=\"../workshop.html\">prompt workshop</a>.</p>")
+
+    # 3. Consistency / dead-eyes checklist — from craft/directing-performance.md
+    dp = (ROOT / "craft" / "directing-performance.md").read_text()
+    dead_eyes = md_section(dp, "The dead-eyes checklist").replace("- [ ]", "- \u2610")
+    perf = md_section(dp, "The performance checklist").replace("- [ ]", "- \u2610")
+    checklist_html = ("<h2>The dead-eyes checklist</h2>" + md2html.convert(dead_eyes)
+                       + "<h2>The performance checklist</h2>" + md2html.convert(perf))
+    page("consistency-checklist.html", "Consistency & dead-eyes checklist",
+         "The dead-eyes checklist and the full performance checklist — print for the set.",
+         f"Generated {today} from craft/directing-performance.md (the chapter is the authority).",
+         checklist_html + "<p>Full chapter: <a href=\"../craft/directing-performance.html\">directing performance</a>.</p>")
+
+    # Index
+    cards = "".join(
+        f'<article class="card"><h3><a href="{slug}">{title}</a></h3><p>{desc}</p>'
+        f'<p><a class="btn btn-sm" href="{slug}">Open &amp; print →</a></p></article>'
+        for slug, title, desc in [
+            ("models.html", "Model quick-reference",
+             "Every compared model: best use, cost, weakness. From models.json."),
+            ("prompt-anatomy.html", "Prompt anatomy cheat sheet",
+             "The nine-layer anatomy, camera phrasing, exclusion block, failure fixes."),
+            ("consistency-checklist.html", "Consistency & dead-eyes checklist",
+             "Dead-eyes markers + the 12-point performance checklist."),
+        ])
+    (fg_dir / "index.html").write_text(FIELDGUIDES_INDEX_TMPL.format(
+        css=css, cards=cards, sitenav=sitenav, footer=footer))
+
+
 def main():
     shutil.rmtree(SITE, ignore_errors=True)
     chapters = {}  # section_id -> [(slug, {title, desc, path})]
@@ -879,6 +1242,8 @@ def main():
                 "title": chapter_title(md),
                 "desc": chapter_desc(md),
                 "md": md,
+                "words": word_count(md),
+                "read_min": read_minutes(md),
             }))
 
     css_links = "\n  ".join(f'<link rel="stylesheet" href="{c}">' for c in CSS)
@@ -903,7 +1268,8 @@ def main():
             title=c["title"], desc=c["desc"].replace('"', "&quot;"),
             css=css_links.replace('href="assets/', 'href="../assets/'),
             nav=nav, section_name=section_name, body=body, toc=toc,
-            prevnext=prev_l + next_l,
+            prevnext=prev_l + next_l, read_min=c["read_min"],
+            words=f"{c['words']:,}",
             sitenav=nav_html("../", ""), footer=footer_html("../"),
         )
         out_dir = SITE / section_id
@@ -924,12 +1290,14 @@ def main():
     for section_id, section_name in SECTIONS:
         cards = "".join(
             f'<article class="card chapter-card"><h3><a href="{section_id}/{slug}.html">{c["title"]}</a></h3>'
-            f'<p>{c["desc"]}</p></article>'
+            f'<p>{c["desc"]}</p><p class="card-meta">{c["read_min"]} min read</p></article>'
             for slug, c in chapters[section_id]
         )
         grid_parts.append(f'<h3 class="section-h">{section_name}</h3><div class="chapter-grid">{cards}</div>')
+    total_read = fmt_total_minutes(sum(c["read_min"] for _, _, c in flat))
     (SITE / "index.html").write_text(INDEX_TMPL.format(
         css=css_links, chapter_grid="\n".join(grid_parts),
+        total_read=total_read,
         sitenav=nav_html("", "index.html"), footer=footer_html("")))
     (SITE / "budget.html").write_text(BUDGET_TMPL.format(
         css=css_links, sitenav=nav_html("", ""), footer=footer_html("")))
@@ -961,8 +1329,29 @@ def main():
         skill_count=len(skill_index.get("skills", [])),
         spec_frontmatter=spec_front, spec_example_body=spec_body))
 
+    # Shot-by-shot teardown viewer
+    shutil.copy(ROOT / "api" / "v1" / "teardowns.json", SITE / "teardowns.json")
+    (SITE / "teardown.html").write_text(TEARDOWN_TMPL.format(
+        css=css_links, sitenav=nav_html("", "teardown.html"), footer=footer_html("")))
+
+    # Manifesto page
+    (SITE / "manifesto.html").write_text(MANIFESTO_TMPL.format(
+        css=css_links, sitenav=nav_html("", "manifesto.html"), footer=footer_html("")))
+
+    # Printable field guides (generated from the guide's own data)
+    build_field_guides(css_links)
+
     # New pages discoverable through the search palette
     search_index.extend([
+        {"url": "teardown.html", "title": "Shot-by-shot teardowns", "section": "Tools",
+         "headings": ["Passport Rush", "ONEIRIC", "The $100K cautionary case"],
+         "text": "Learn to see: shot-by-shot teardowns of Passport Rush, ONEIRIC, and the Grok Odyssey $100K winner — what each shot did, what worked, what broke, and the craft lesson, with labeled prompt reconstructions."},
+        {"url": "manifesto.html", "title": "Manifesto", "section": "Meta",
+         "headings": ["What this is", "What it costs", "Everything is sourced", "What it won't do", "How to use it", "Who it's for"],
+         "text": "This is not a course: the guide's positioning — a living, free, sourced reference. What it costs, what it refuses to do (no hype, no tool worship, no secrets), and how to use it in 10 minutes or 10 hours."},
+        {"url": "field-guides/", "title": "Field guides", "section": "Tools",
+         "headings": ["Model quick-reference", "Prompt anatomy cheat sheet", "Consistency & dead-eyes checklist"],
+         "text": "Printable one-page field guides generated from the guide's own data: model quick-reference, prompt anatomy cheat sheet, consistency and dead-eyes checklist."},
         {"url": "quiz.html", "title": "Model-picker quiz", "section": "Tools",
          "headings": ["What's the job?", "Budget tier?", "What look?", "Native audio needed?", "Your footage plan"],
          "text": "Five questions, one ranked shortlist: the model-picker quiz scores all 18 video models against your use case, budget, and audio needs, with live cost math and a one-click handoff to the prompt workshop."},

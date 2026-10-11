@@ -1,0 +1,88 @@
+/* Print styles — AI Film Master Guide
+   Chapters print cleanly; field guides are designed as dense one-pagers.
+   Screen styles are untouched; everything here lives inside @media print. */
+
+@media print {
+  :root { color-scheme: light; }
+
+  /* Strip all navigation / interactivity chrome */
+  .site-header,
+  .docs-nav,
+  .docs-toc,
+  .site-footer,
+  .prevnext,
+  .progress-bar,
+  .back-to-top,
+  .palette,
+  .copy-btn,
+  .print-btn,
+  .no-print,
+  .hero-film .btn-row,
+  .track-grid .btn-row,
+  .path-grid,
+  .stat-strip,
+  .gloss-pop { display: none !important; }
+
+  html, body {
+    background: #fff !important;
+    color: #111 !important;
+    font-size: 11pt;
+    line-height: 1.5;
+  }
+
+  .container { max-width: none; padding: 0; margin: 0; }
+  .docs-layout { display: block; }
+  .docs-main { max-width: none; }
+
+  h1 { font-size: 20pt; margin: 0 0 12pt; color: #000; }
+  h2 { font-size: 15pt; margin: 18pt 0 6pt; color: #000; break-after: avoid; }
+  h3 { font-size: 12.5pt; margin: 14pt 0 4pt; color: #000; break-after: avoid; }
+  p, li { color: #222; orphans: 3; widows: 3; }
+  pre, table, blockquote, figure, ul, ol { break-inside: avoid; }
+  thead { display: table-header-group; }
+
+  pre, code {
+    background: #f4f4f4 !important;
+    color: #111 !important;
+    border: 1px solid #ccc;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  table { border-collapse: collapse; width: 100%; font-size: 10pt; }
+  th, td { border: 1px solid #999; padding: 4pt 6pt; color: #111; text-align: left; }
+
+  /* Glossary terms print as plain dotted-underlined text */
+  .gloss-term {
+    border: none !important;
+    background: none !important;
+    padding: 0 !important;
+    font: inherit !important;
+    color: inherit !important;
+    text-decoration: underline dotted;
+  }
+
+  /* Show destinations for external links */
+  .prose a[href^="http"]::after,
+  .fg-body a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 8.5pt;
+    color: #555;
+    word-break: break-all;
+  }
+  .prose a[href^="#"]::after { content: ""; }
+
+  /* Crumb + read-time line at top of chapter printouts */
+  .crumb { font-size: 9pt; color: #555; margin-bottom: 2pt; }
+  .read-time { font-size: 9.5pt; color: #555; margin: 0 0 14pt; }
+
+  /* ---------- Field guides: dense one-pager layout ---------- */
+  .fg-page h1 { font-size: 18pt; border-bottom: 2pt solid #000; padding-bottom: 6pt; }
+  .fg-page .fg-provenance { font-size: 8.5pt; color: #555; margin-bottom: 10pt; }
+  .fg-page h2 { font-size: 12pt; margin: 12pt 0 4pt; }
+  .fg-page p, .fg-page li { font-size: 9.5pt; line-height: 1.4; margin: 2pt 0; }
+  .fg-page ul, .fg-page ol { padding-left: 16pt; margin: 4pt 0; }
+  .fg-page table { font-size: 8.5pt; }
+  .fg-page th, .fg-page td { padding: 3pt 5pt; }
+  .fg-page .fg-cols { column-count: 2; column-gap: 18pt; }
+  .fg-page .fg-cols > * { break-inside: avoid; }
+}

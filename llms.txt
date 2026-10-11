@@ -10,7 +10,10 @@ Generated static site in `site/` — rebuild with `python3 scripts/build_site.py
 after editing chapters. Open `site/index.html`.
 
 - `site/index.html` — landing: track picker (animated vs photorealistic), chapter grid, learning paths
-- `site/<section>/<chapter>.html` — 21 chapters with sidebar nav, table of contents, prev/next
+- `site/<section>/<chapter>.html` — 21 chapters with sidebar nav, table of contents, prev/next; every chapter shows its honest read time (200 wpm from actual word count) and prints cleanly via `@media print` (`assets/css/print.css`)
+- `site/teardown.html` — shot-by-shot teardown viewer: Passport Rush, ONEIRIC, and the Grok Odyssey $100K winner broken into shots (setup / what works / what breaks / craft lesson, labeled prompt reconstructions); data in `api/v1/teardowns.json`
+- `site/manifesto.html` — positioning: a living free reference, not a course; everything sourced; what it won't do
+- `site/field-guides/` — printable one-pagers generated from the guide's own data: model quick-reference (from `models.json`), prompt anatomy cheat sheet, consistency & dead-eyes checklist
 - `site/api.html` — human-readable API docs
 - `site/skills.html` — browsable skills library with live filter
 - `site/budget.html` — interactive credit-budget calculator
@@ -47,6 +50,7 @@ research artifacts; outputs committed).
 - `api/v1/checklists.json` — pre-production, per-shot, continuity, audio, delivery checklists
 - `api/v1/glossary.json` — 79 AI film / production terms
 - `api/v1/competitions.json` — judged competitions as craft records: what they judge, production constraints, craft lessons; no prizes or deadlines
+- `api/v1/teardowns.json` — shot-by-shot teardowns (Passport Rush, ONEIRIC, Grok Odyssey $100K winner): setup, what works, what breaks, craft lesson per shot; prompt reconstructions labeled as analytical, not actual prompts
 - `api/v1/schema/` — JSON Schema (draft-07) for models, prompt templates, camera movements, competitions
 
 ## Skills (agentic task procedures)
