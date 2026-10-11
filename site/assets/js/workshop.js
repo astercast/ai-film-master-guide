@@ -351,6 +351,22 @@
     renderTemplateSelect();
     renderSaves();
 
+    /* Deep link from the failure doctor: ?template=<id> preselects that repair template. */
+    try {
+      var tp = new URLSearchParams(window.location.search).get("template");
+      if (tp) {
+        els.track.value = "repair";
+        renderTemplateSelect();
+        for (var ti = 0; ti < els.template.options.length; ti++) {
+          if (els.template.options[ti].value === tp) {
+            els.template.selectedIndex = ti;
+            renderFields();
+            break;
+          }
+        }
+      }
+    } catch (e) { /* ignore */ }
+
     /* Deep link from the prompt gallery: ?save=<id> loads that saved prompt. */
     try {
       var sp = new URLSearchParams(window.location.search).get("save");

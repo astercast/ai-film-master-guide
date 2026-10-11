@@ -1710,3 +1710,11 @@ One finished minute. That's the goal — not a masterpiece, a *finished* film. S
 
 Do a 20-minute post-mortem while it's fresh: what broke, what the fix was, what you'd prompt differently. Write it down — that's the seed of your personal playbook, and it's worth more than any tutorial. Then start film two: the same 7 days, twice as fast.
 
+
+<!-- tools: wave 9 additions -->
+# Interactive Tools (site/)
+
+- `site/doctor.html` — Failure doctor: pick the symptom (face morphing, identity drift, dead eyes, plasticky skin, stock emotion, flat acting, melting hands, flicker, camera drift, ignored prompts, audio mismatch, live synthetic-performer glitch) and get the craft diagnosis, the concrete fix, and — where one exists — a one-click deep link into the workshop's repair templates (`workshop.html?template=r1|r2|r3`). 12 diagnoses, every one sourced from the guide's chapters (`api/v1/diagnoses.json`, draft-07 schema in `api/v1/schema/diagnosis.json`).
+- `site/shots.html` — Shot-list builder: add shots (type, description, model, seconds, takes); live per-shot and total costs computed from `models.json` credit rates with 5×/20× cost envelopes; named lists in localStorage, JSON export/import, and a one-click handoff to `optimizer.html?runtime=&takes=`.
+- `skills/workflow/workflow-shot-list.md` — the repeatable costed-shot-list procedure: coverage check, shot economy, per-shot model assignment, envelope budgeting.
+- The workshop now accepts `?template=<id>` to preselect any template (used by the doctor's repair links); the optimizer accepts `?runtime=<minutes>&takes=<n>` (used by the shot-list handoff).

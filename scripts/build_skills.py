@@ -1511,6 +1511,22 @@ HAND = [
       example="Short acquired by a distributor: chain of title + E&O + AI folder delivered — no closing delays.",
       apis=[],
       pitfalls=["Missing chain-of-title documents — they can block broadcast, streaming, or sale outright."]),
+ # --- workflow: shot planning (1)
+ dict(id="workflow-shot-list", cat="workflow", title="Build the costed shot list",
+      desc="Turn a scene plan into a per-shot list with model assignments, takes, and live costs.",
+      use="Pre-production planning — before spending a single credit on generation.",
+      inputs=["Locked scene plan or script", "Target seconds per shot", "Quality bar per shot"],
+      steps=["List every shot: number, type (wide/medium/close-up/insert), one-line description.",
+             "Assign a model per shot from the guide's model data — drafts on the cheap model, hero shots on the premium one; dialogue shots need native-audio capability.",
+             "Set takes per keeper (3 = disciplined, 5 = typical, 8 = perfectionist) — takes are where the budget actually lives.",
+             "Coverage check: every scene needs its establishing wide, its dialogue coverage, and its reaction shots — the listener's eyes do half the acting.",
+             "Shot economy: merge shots that serve the same beat; AI charges per generation, so fewer, better-planned shots beat many hopeful ones.",
+             "Budget the 5× envelope, not the clean cost — rejections, re-grades, and consistency fixes multiply everything.",
+             "Hand the list to the budget optimizer for the final model-mix check before generating."],
+      example="12-shot dialogue scene: 8 dialogue shots on the native-audio model at 5 takes, 4 wides on the cheap draft model — clean cost $18, 5× envelope $90 budgeted.",
+      apis=["api/v1/models.json", "api/v1/diagnoses.json"],
+      pitfalls=["Planning shots without model assignments — the cost surprise arrives after you've generated.",
+                "Budgeting the clean cost instead of the envelope — the envelope is the real budget."]),
 ]
 
 

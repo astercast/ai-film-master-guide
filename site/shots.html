@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shot-list builder — AI Film Master Guide</title>
+  <meta name="description" content="Plan your AI shoot shot by shot: add shots with models and takes, get live per-shot and total costs from models.json, save lists in the browser, and hand off to the budget optimizer.">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/docs.css">
+  <link rel="stylesheet" href="assets/css/print.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html">Guide</a>
+        <a href="skills.html">Skills</a>
+        <a href="workshop.html">Workshop</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="compare.html">Compare</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="teardown.html">Teardowns</a>
+        <a href="model-watch.html">Model watch</a>
+        <a href="doctor.html">Doctor</a>
+        <a href="shots.html" aria-current="page">Shot list</a>
+        <a href="changelog.html">Changelog</a>
+        <a href="skill-spec.html">Skill spec</a>
+        <a href="api.html">API</a>
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">⌘K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="sh-title">
+      <div class="container hero-inner">
+        <span class="hero-kicker">Tools</span>
+        <h1 id="sh-title">Shot-list <span class="accent">builder.</span></h1>
+        <p class="lede">The pre-production planner the optimizer was missing: list every shot with its model and takes, watch the cost add up live from <code>models.json</code>, then hand the whole plan to the budget optimizer. Lists save in your browser; export the JSON and take it to set.</p>
+      </div>
+    </section>
+    <section class="container" aria-labelledby="sh-add-h">
+      <h2 id="sh-add-h">Add a shot</h2>
+      <form class="card calc-form" aria-label="Add a shot" onsubmit="return false;">
+        <div class="field">
+          <label for="sh-type">Shot type</label>
+          <select class="input" id="sh-type">
+            <option>Wide</option>
+            <option>Medium</option>
+            <option>Close-up</option>
+            <option>Extreme close-up</option>
+            <option>Insert</option>
+            <option>Over-the-shoulder</option>
+            <option>POV</option>
+            <option>Aerial / drone</option>
+            <option>Tracking</option>
+            <option>Static locked-off</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="sh-desc">Description</label>
+          <input class="input" type="text" id="sh-desc" placeholder="e.g. Mara crosses the kitchen, morning light">
+        </div>
+        <div class="field">
+          <label for="sh-model">Model</label>
+          <select class="input" id="sh-model"></select>
+        </div>
+        <div class="field">
+          <label for="sh-seconds">Seconds per take</label>
+          <input class="input" type="number" id="sh-seconds" min="1" max="60" step="1" value="4">
+        </div>
+        <div class="field">
+          <label for="sh-takes">Takes</label>
+          <input class="input" type="number" id="sh-takes" min="1" max="30" step="1" value="5">
+        </div>
+        <div class="field">
+          <button type="button" class="btn" id="sh-add">Add shot</button>
+        </div>
+      </form>
+      <p class="empty-state" id="sh-error" hidden></p>
+    </section>
+    <section class="container" aria-labelledby="sh-list-h" style="margin-top:var(--space-6);">
+      <h2 id="sh-list-h">Your shot list</h2>
+      <p class="empty-state" id="sh-empty">No shots yet — add your first shot above.</p>
+      <div class="table-scroll" id="sh-table" hidden>
+        <table>
+          <caption>Per-shot cost computed live from <code>models.json</code>.</caption>
+          <thead><tr><th scope="col">#</th><th scope="col">Shot</th><th scope="col">Model</th><th scope="col">Footage</th><th scope="col">Cost</th><th scope="col"><span class="visually-hidden">Actions</span></th></tr></thead>
+          <tbody id="sh-tbody"></tbody>
+        </table>
+      </div>
+      <div class="calc-grid" style="margin-top:var(--space-5);" id="sh-totals" hidden aria-live="polite" aria-label="Shot list totals"></div>
+      <div class="btn-row" style="margin-top:var(--space-5);">
+        <a class="btn" id="sh-to-optimizer" href="optimizer.html" hidden>Send to the budget optimizer →</a>
+        <button type="button" class="btn btn-ghost" id="sh-export">Export JSON</button>
+        <label class="btn btn-ghost" for="sh-import-file" style="cursor:pointer;">Import JSON</label>
+        <input type="file" id="sh-import-file" accept="application/json" hidden>
+        <button type="button" class="btn btn-ghost" id="sh-clear">Clear list</button>
+      </div>
+    </section>
+    <section class="container" aria-labelledby="sh-saved-h" style="margin-top:var(--space-6);">
+      <h2 id="sh-saved-h">Saved lists</h2>
+      <div class="card calc-form">
+        <div class="field">
+          <label for="sh-list-name">List name</label>
+          <input class="input" type="text" id="sh-list-name" placeholder="e.g. Neon short — v1">
+        </div>
+        <div class="field">
+          <button type="button" class="btn btn-ghost" id="sh-save-list">Save current list</button>
+        </div>
+        <div class="field">
+          <label for="sh-load-list">Load a saved list</label>
+          <select class="input" id="sh-load-list"></select>
+        </div>
+        <div class="field">
+          <button type="button" class="btn btn-ghost" id="sh-delete-list">Delete selected</button>
+        </div>
+      </div>
+      <p class="calc-note">Lists live in your browser's localStorage — nothing leaves your machine.</p>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer"><a href="index.html">Guide</a><a href="skills.html">Skills</a><a href="workshop.html">Workshop</a><a href="quiz.html">Quiz</a><a href="compare.html">Compare</a><a href="gallery.html">Gallery</a><a href="teardown.html">Teardowns</a><a href="model-watch.html">Model watch</a><a href="checks/">Knowledge checks</a><a href="budget.html">Budget</a><a href="optimizer.html">Optimizer</a><a href="shots.html">Shot list</a><a href="doctor.html">Doctor</a><a href="anatomy.html">Anatomy</a><a href="manifesto.html">Manifesto</a><a href="craft-not-buttons.html">Craft, not buttons</a><a href="recipes.html">Recipes</a><a href="field-guides/">Field guides</a><a href="changelog.html">Changelog</a><a href="skill-spec.html">Skill spec</a><a href="api.html">API</a></nav>
+    </div>
+  </footer>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/shots.js"></script>
+</body>
+</html>

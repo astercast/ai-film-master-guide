@@ -86,3 +86,10 @@
   .fg-page .fg-cols { column-count: 2; column-gap: 18pt; }
   .fg-page .fg-cols > * { break-inside: avoid; }
 }
+
+  /* Failure doctor / shot-list builder: print the results, not the pickers */
+  .doc-grid,
+  #sh-add-h, #sh-add-h + .calc-form,
+  #sh-saved-h, #sh-saved-h + .card,
+  #sh-to-optimizer, #sh-export, #sh-clear,
+  label[for="sh-import-file"] { display: none !important; }

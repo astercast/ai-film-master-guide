@@ -320,3 +320,24 @@
 .check-result { border: 1px solid var(--gold); border-radius: var(--radius-m); padding: var(--space-4) var(--space-5); margin: var(--space-5) 0; background: var(--panel); }
 .check-result p { margin: 0; }
 .check-actions { display: flex; gap: var(--space-3); flex-wrap: wrap; margin: var(--space-4) 0; }
+
+/* Failure doctor */
+.doc-grid { display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); margin: var(--space-5) 0; }
+.doc-symptom { appearance: none; border: 1px solid var(--line); border-radius: var(--radius-m); background: var(--panel); color: var(--ink); padding: var(--space-4); font: inherit; font-weight: 600; text-align: left; cursor: pointer; }
+.doc-symptom:hover { border-color: var(--gold); }
+.doc-symptom[aria-pressed="true"] { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold); }
+.doc-symptom:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.doc-card { margin: var(--space-2) 0; }
+.doc-kicker { font-family: var(--font-mono); font-size: 0.8rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 var(--space-2); }
+.doc-card h2 { margin-top: 0; }
+.doc-see, .doc-dx { color: var(--ink-dim); }
+.doc-steps { list-style: none; margin: var(--space-4) 0; padding: 0; display: grid; gap: var(--space-3); }
+.doc-steps li { display: flex; gap: var(--space-3); align-items: flex-start; }
+.doc-step-n { flex: none; width: 1.75rem; height: 1.75rem; border-radius: 50%; border: 1px solid var(--gold); color: var(--gold); font-family: var(--font-mono); font-size: 0.85rem; display: inline-flex; align-items: center; justify-content: center; }
+.doc-repair { margin: var(--space-5) 0; }
+.doc-links, .doc-sources { margin: var(--space-2) 0 var(--space-4); padding-left: var(--space-5); color: var(--ink-dim); }
+.doc-sources { font-size: 0.9rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .doc-symptom { transition: none; }
+}

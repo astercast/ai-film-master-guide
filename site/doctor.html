@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Failure doctor — AI Film Master Guide</title>
+  <meta name="description" content="Something broke in your AI footage? Pick the symptom — face morphing, dead eyes, plasticky skin, flat acting — and get the craft diagnosis, the fix, and the repair template.">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/docs.css">
+  <link rel="stylesheet" href="assets/css/print.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html">Guide</a>
+        <a href="skills.html">Skills</a>
+        <a href="workshop.html">Workshop</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="compare.html">Compare</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="teardown.html">Teardowns</a>
+        <a href="model-watch.html">Model watch</a>
+        <a href="doctor.html" aria-current="page">Doctor</a>
+        <a href="shots.html">Shot list</a>
+        <a href="changelog.html">Changelog</a>
+        <a href="skill-spec.html">Skill spec</a>
+        <a href="api.html">API</a>
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">⌘K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="doc-title">
+      <div class="container hero-inner">
+        <span class="hero-kicker">Tools</span>
+        <h1 id="doc-title">Failure <span class="accent">doctor.</span></h1>
+        <p class="lede">Something broke in your footage? Pick the symptom. The doctor gives you the diagnosis in craft terms, the fix that works, and — where one exists — the repair template loaded in the workshop. Every diagnosis is sourced from the guide's chapters.</p>
+      </div>
+    </section>
+    <section class="container" aria-labelledby="doc-pick-h">
+      <h2 id="doc-pick-h">What are you seeing?</h2>
+      <div class="doc-grid" id="doc-grid" role="group" aria-label="Failure symptoms"></div>
+      <p class="empty-state" id="doc-grid-empty">Loading diagnoses…</p>
+      <p class="empty-state" id="doc-error" hidden></p>
+    </section>
+    <section class="container" aria-label="Diagnosis" style="margin-top:var(--space-6);">
+      <div id="doc-panel" aria-live="polite">
+        <p class="calc-note">Pick a symptom above — the diagnosis appears here.</p>
+      </div>
+      <p style="margin-top:var(--space-5);"><a class="btn btn-ghost" href="craft/failure-gallery.html">Read the full failure gallery →</a></p>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer"><a href="index.html">Guide</a><a href="skills.html">Skills</a><a href="workshop.html">Workshop</a><a href="quiz.html">Quiz</a><a href="compare.html">Compare</a><a href="gallery.html">Gallery</a><a href="teardown.html">Teardowns</a><a href="model-watch.html">Model watch</a><a href="checks/">Knowledge checks</a><a href="budget.html">Budget</a><a href="optimizer.html">Optimizer</a><a href="shots.html">Shot list</a><a href="doctor.html">Doctor</a><a href="anatomy.html">Anatomy</a><a href="manifesto.html">Manifesto</a><a href="craft-not-buttons.html">Craft, not buttons</a><a href="recipes.html">Recipes</a><a href="field-guides/">Field guides</a><a href="changelog.html">Changelog</a><a href="skill-spec.html">Skill spec</a><a href="api.html">API</a></nav>
+    </div>
+  </footer>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/doctor.js"></script>
+</body>
+</html>

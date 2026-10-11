@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "count": 210,
+  "count": 212,
   "skills": [
     {
       "id": "prompt-t1",
@@ -535,6 +535,12 @@
       "title": "Direct with Midjourney V1 Video",
       "description": "Use Midjourney V1 Video well: costs, strengths, weaknesses, best use.",
       "path": "skills/models/direct-midjourney-v1-video.md"
+    },
+    {
+      "id": "direct-kling-4-0",
+      "title": "Direct with Kling 4.0",
+      "description": "Use Kling 4.0 well: costs, strengths, weaknesses, best use.",
+      "path": "skills/models/direct-kling-4-0.md"
     },
     {
       "id": "audit-pre-production-checklist",
@@ -1261,6 +1267,12 @@
       "title": "Assemble the paperwork stack",
       "description": "Chain of title + E&O + the AI-specific records no standard form covers.",
       "path": "skills/legal/legal-paperwork-stack.md"
+    },
+    {
+      "id": "workflow-shot-list",
+      "title": "Build the costed shot list",
+      "description": "Turn a scene plan into a per-shot list with model assignments, takes, and live costs.",
+      "path": "skills/workflow/workflow-shot-list.md"
     }
   ]
 }

@@ -140,6 +140,18 @@
       unpriced = videoModels.filter(function (x) { return x.cps === null; }).map(function (x) { return x.m.model; });
       videoModels = videoModels.filter(function (x) { return x.cps !== null; })
         .sort(function (a, b) { return a.cps - b.cps; });
+      /* Handoff from the shot-list builder: ?runtime=<minutes>&takes=<n> presets inputs. */
+      try {
+        var q = new URLSearchParams(window.location.search);
+        var qr = parseFloat(q.get("runtime"));
+        if (qr > 0) els.runtime.value = Math.min(120, Math.max(1, qr));
+        var qt = parseInt(q.get("takes"), 10);
+        if (qt > 0) {
+          for (var oi = 0; oi < els.takes.options.length; oi++) {
+            if (parseInt(els.takes.options[oi].value, 10) === qt) { els.takes.selectedIndex = oi; break; }
+          }
+        }
+      } catch (e) { /* ignore */ }
       compute();
     })
     .catch(function () { fail("Could not load models.json. The optimizer needs the built site data."); });

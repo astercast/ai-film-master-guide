@@ -18,6 +18,8 @@ after editing chapters. Open `site/index.html`.
 - `site/skills.html` — browsable skills library with live filter
 - `site/budget.html` — interactive credit-budget calculator
 - `site/optimizer.html` — budget optimizer: runtime + dialogue share + quality bar → optimal model mix per bucket from `models.json`, with 5×/20× cost envelopes
+- `site/shots.html` — shot-list builder: per-shot type/model/seconds/takes → live cost table from `models.json`, totals with 5×/20× envelopes, localStorage lists, JSON export/import, one-click handoff to the optimizer
+- `site/doctor.html` — failure doctor: pick the symptom (face morph, dead eyes, plasticky skin…) → craft diagnosis + fix + deep link into the workshop's repair templates; 12 diagnoses in `api/v1/diagnoses.json` (+ schema)
 - `site/anatomy.html` — anatomy of a prompt: interactive nine-layer annotated example + build-your-own mode
 - `site/workshop.html` — interactive prompt workshop (template × model × track, save/rate)
 - `site/quiz.html` — model-picker quiz: 5 questions → ranked top-3 from `models.json` with cost math, one-click handoff to the workshop
@@ -58,11 +60,12 @@ research artifacts; outputs committed).
 - `api/v1/glossary.json` — 79 AI film / production terms
 - `api/v1/competitions.json` — judged competitions as craft records: what they judge, production constraints, craft lessons; no prizes or deadlines
 - `api/v1/teardowns.json` — shot-by-shot teardowns (Passport Rush, ONEIRIC, Grok Odyssey $100K winner): setup, what works, what breaks, craft lesson per shot; prompt reconstructions labeled as analytical, not actual prompts
-- `api/v1/schema/` — JSON Schema (draft-07) for models, prompt templates, camera movements, competitions
+- `api/v1/diagnoses.json` — failure-diagnosis map for the Doctor tool: 12 symptoms → craft diagnosis, fixes, repair-template link, source chapters
+- `api/v1/schema/` — JSON Schema (draft-07) for models, prompt templates, camera movements, competitions, teardowns, diagnoses
 
 ## Skills (agentic task procedures)
 
-192 skills in `skills/` — rebuild with `python3 scripts/build_skills.py`
+212 skills in `skills/` — rebuild with `python3 scripts/build_skills.py`
 (generates from `api/v1/` data + authored procedures; outputs committed).
 `skills/index.json` is the manifest: id, title, description, path per skill.
 
@@ -70,8 +73,8 @@ For agents: load the skill whose task matches the request — skills are the
 primary interface for *doing* work; the JSON endpoints are the data layer.
 `api/v1/index.json` points here (`repository`, `skills`, `for_agents`).
 
-Categories: prompts (31), camera (22), models (18), checklists (5),
-longform (12), techniques (7), craft (20), entry (4), workflow (8),
+Categories: prompts (47), camera (22), models (21), checklists (5),
+longform (12), techniques (7), craft (20), entry (4), workflow (9),
 compare (10), fix (6), budget (3), delivery (3), audio (5), recipes (12),
 styles (8), performance (9), grading (3), distribution (2), legal (4).
 

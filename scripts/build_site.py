@@ -52,6 +52,8 @@ NAV_ITEMS = [
     ("gallery.html", "Gallery"),
     ("teardown.html", "Teardowns"),
     ("model-watch.html", "Model watch"),
+    ("doctor.html", "Doctor"),
+    ("shots.html", "Shot list"),
     ("changelog.html", "Changelog"),
     ("skill-spec.html", "Skill spec"),
     ("api.html", "API"),
@@ -69,6 +71,8 @@ FOOTER_ITEMS = [
     ("checks/", "Knowledge checks"),
     ("budget.html", "Budget"),
     ("optimizer.html", "Optimizer"),
+    ("shots.html", "Shot list"),
+    ("doctor.html", "Doctor"),
     ("anatomy.html", "Anatomy"),
     ("manifesto.html", "Manifesto"),
     ("craft-not-buttons.html", "Craft, not buttons"),
@@ -639,6 +643,189 @@ OPTIMIZER_TMPL = """<!DOCTYPE html>
   </footer>
   <script src="assets/js/palette.js"></script>
   <script src="assets/js/optimizer.js"></script>
+</body>
+</html>
+"""
+
+DOCTOR_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Failure doctor — AI Film Master Guide</title>
+  <meta name="description" content="Something broke in your AI footage? Pick the symptom — face morphing, dead eyes, plasticky skin, flat acting — and get the craft diagnosis, the fix, and the repair template.">
+  {css}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        {sitenav}
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">⌘K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="doc-title">
+      <div class="container hero-inner">
+        <span class="hero-kicker">Tools</span>
+        <h1 id="doc-title">Failure <span class="accent">doctor.</span></h1>
+        <p class="lede">Something broke in your footage? Pick the symptom. The doctor gives you the diagnosis in craft terms, the fix that works, and — where one exists — the repair template loaded in the workshop. Every diagnosis is sourced from the guide's chapters.</p>
+      </div>
+    </section>
+    <section class="container" aria-labelledby="doc-pick-h">
+      <h2 id="doc-pick-h">What are you seeing?</h2>
+      <div class="doc-grid" id="doc-grid" role="group" aria-label="Failure symptoms"></div>
+      <p class="empty-state" id="doc-grid-empty">Loading diagnoses…</p>
+      <p class="empty-state" id="doc-error" hidden></p>
+    </section>
+    <section class="container" aria-label="Diagnosis" style="margin-top:var(--space-6);">
+      <div id="doc-panel" aria-live="polite">
+        <p class="calc-note">Pick a symptom above — the diagnosis appears here.</p>
+      </div>
+      <p style="margin-top:var(--space-5);"><a class="btn btn-ghost" href="craft/failure-gallery.html">Read the full failure gallery →</a></p>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer">{footer}</nav>
+    </div>
+  </footer>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/doctor.js"></script>
+</body>
+</html>
+"""
+
+SHOTS_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shot-list builder — AI Film Master Guide</title>
+  <meta name="description" content="Plan your AI shoot shot by shot: add shots with models and takes, get live per-shot and total costs from models.json, save lists in the browser, and hand off to the budget optimizer.">
+  {css}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        {sitenav}
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">⌘K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="sh-title">
+      <div class="container hero-inner">
+        <span class="hero-kicker">Tools</span>
+        <h1 id="sh-title">Shot-list <span class="accent">builder.</span></h1>
+        <p class="lede">The pre-production planner the optimizer was missing: list every shot with its model and takes, watch the cost add up live from <code>models.json</code>, then hand the whole plan to the budget optimizer. Lists save in your browser; export the JSON and take it to set.</p>
+      </div>
+    </section>
+    <section class="container" aria-labelledby="sh-add-h">
+      <h2 id="sh-add-h">Add a shot</h2>
+      <form class="card calc-form" aria-label="Add a shot" onsubmit="return false;">
+        <div class="field">
+          <label for="sh-type">Shot type</label>
+          <select class="input" id="sh-type">
+            <option>Wide</option>
+            <option>Medium</option>
+            <option>Close-up</option>
+            <option>Extreme close-up</option>
+            <option>Insert</option>
+            <option>Over-the-shoulder</option>
+            <option>POV</option>
+            <option>Aerial / drone</option>
+            <option>Tracking</option>
+            <option>Static locked-off</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="sh-desc">Description</label>
+          <input class="input" type="text" id="sh-desc" placeholder="e.g. Mara crosses the kitchen, morning light">
+        </div>
+        <div class="field">
+          <label for="sh-model">Model</label>
+          <select class="input" id="sh-model"></select>
+        </div>
+        <div class="field">
+          <label for="sh-seconds">Seconds per take</label>
+          <input class="input" type="number" id="sh-seconds" min="1" max="60" step="1" value="4">
+        </div>
+        <div class="field">
+          <label for="sh-takes">Takes</label>
+          <input class="input" type="number" id="sh-takes" min="1" max="30" step="1" value="5">
+        </div>
+        <div class="field">
+          <button type="button" class="btn" id="sh-add">Add shot</button>
+        </div>
+      </form>
+      <p class="empty-state" id="sh-error" hidden></p>
+    </section>
+    <section class="container" aria-labelledby="sh-list-h" style="margin-top:var(--space-6);">
+      <h2 id="sh-list-h">Your shot list</h2>
+      <p class="empty-state" id="sh-empty">No shots yet — add your first shot above.</p>
+      <div class="table-scroll" id="sh-table" hidden>
+        <table>
+          <caption>Per-shot cost computed live from <code>models.json</code>.</caption>
+          <thead><tr><th scope="col">#</th><th scope="col">Shot</th><th scope="col">Model</th><th scope="col">Footage</th><th scope="col">Cost</th><th scope="col"><span class="visually-hidden">Actions</span></th></tr></thead>
+          <tbody id="sh-tbody"></tbody>
+        </table>
+      </div>
+      <div class="calc-grid" style="margin-top:var(--space-5);" id="sh-totals" hidden aria-live="polite" aria-label="Shot list totals"></div>
+      <div class="btn-row" style="margin-top:var(--space-5);">
+        <a class="btn" id="sh-to-optimizer" href="optimizer.html" hidden>Send to the budget optimizer →</a>
+        <button type="button" class="btn btn-ghost" id="sh-export">Export JSON</button>
+        <label class="btn btn-ghost" for="sh-import-file" style="cursor:pointer;">Import JSON</label>
+        <input type="file" id="sh-import-file" accept="application/json" hidden>
+        <button type="button" class="btn btn-ghost" id="sh-clear">Clear list</button>
+      </div>
+    </section>
+    <section class="container" aria-labelledby="sh-saved-h" style="margin-top:var(--space-6);">
+      <h2 id="sh-saved-h">Saved lists</h2>
+      <div class="card calc-form">
+        <div class="field">
+          <label for="sh-list-name">List name</label>
+          <input class="input" type="text" id="sh-list-name" placeholder="e.g. Neon short — v1">
+        </div>
+        <div class="field">
+          <button type="button" class="btn btn-ghost" id="sh-save-list">Save current list</button>
+        </div>
+        <div class="field">
+          <label for="sh-load-list">Load a saved list</label>
+          <select class="input" id="sh-load-list"></select>
+        </div>
+        <div class="field">
+          <button type="button" class="btn btn-ghost" id="sh-delete-list">Delete selected</button>
+        </div>
+      </div>
+      <p class="calc-note">Lists live in your browser's localStorage — nothing leaves your machine.</p>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer">{footer}</nav>
+    </div>
+  </footer>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/shots.js"></script>
 </body>
 </html>
 """
@@ -2181,6 +2368,15 @@ def main():
     (SITE / "teardown.html").write_text(TEARDOWN_TMPL.format(
         css=css_links, sitenav=nav_html("", "teardown.html"), footer=footer_html("")))
 
+    # Failure doctor (interactive troubleshooter, data-driven from diagnoses.json)
+    shutil.copy(ROOT / "api" / "v1" / "diagnoses.json", SITE / "diagnoses.json")
+    (SITE / "doctor.html").write_text(DOCTOR_TMPL.format(
+        css=css_links, sitenav=nav_html("", "doctor.html"), footer=footer_html("")))
+
+    # Shot-list builder (pre-production planner, hands off to the optimizer)
+    (SITE / "shots.html").write_text(SHOTS_TMPL.format(
+        css=css_links, sitenav=nav_html("", "shots.html"), footer=footer_html("")))
+
     # Manifesto page
     (SITE / "manifesto.html").write_text(MANIFESTO_TMPL.format(
         css=css_links, sitenav=nav_html("", "manifesto.html"), footer=footer_html("")))
@@ -2229,6 +2425,12 @@ def main():
         {"url": "optimizer.html", "title": "Budget optimizer", "section": "Tools",
          "headings": ["Your production", "Your shoot plan"],
          "text": "Budget optimizer: runtime, dialogue share, and quality bar in — an optimal model mix out. Splits the film into dialogue and non-dialogue buckets, assigns the cheapest model that satisfies the tier from models.json, with 5x and 20x cost envelopes from the long-form chapter."},
+        {"url": "doctor.html", "title": "Failure doctor", "section": "Tools",
+         "headings": ["What are you seeing?", "Diagnosis"],
+         "text": "Failure doctor: pick the symptom — face morphing, identity drift, dead eyes, plasticky skin, flat acting, melting hands, flicker — and get the craft diagnosis, the fix, and a one-click deep link into the workshop's repair templates. Every diagnosis sourced from the guide's chapters."},
+        {"url": "shots.html", "title": "Shot-list builder", "section": "Tools",
+         "headings": ["Add a shot", "Your shot list", "Saved lists"],
+         "text": "Shot-list builder: add shots with type, model, seconds, and takes; live per-shot and total costs from models.json with 5x and 20x envelopes; save lists in the browser, export JSON, and hand off to the budget optimizer."},
         {"url": "anatomy.html", "title": "Anatomy of a prompt", "section": "Tools",
          "headings": ["Prompt anatomy explorer", "Your prompt"],
          "text": "Anatomy of a prompt: the nine-layer prompt anatomy as an interactive annotated example — hover any layer to learn what it does, why it matters, and what breaks without it. Plus a build-your-own mode that assembles the layers into a production-ready prompt."},
