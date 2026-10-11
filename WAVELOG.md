@@ -41,4 +41,4 @@
 
 **Validation:** `bash scripts/validate.sh` → ALL STAGES PASS (9 passed, 0 failed), exit 0.
 
-**Commit:** `WAVE13_HASH` ([view](https://github.com/astercast/ai-film-master-guide/commit/WAVE13_HASH))
+**Commit:** `d4d3f70ae2e83ac1a1f389aeaa03fcf56efe3948` ([view](https://github.com/astercast/ai-film-master-guide/commit/d4d3f70ae2e83ac1a1f389aeaa03fcf56efe3948))
