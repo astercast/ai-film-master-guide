@@ -557,7 +557,7 @@
     {
       "id": "technique-photoreal-character",
       "title": "Direct a photoreal character piece",
-      "description": "A real script + locked POV: the festival-winning photoreal lane.",
+      "description": "A real script + locked POV: the character-first photoreal lane.",
       "path": "skills/techniques/technique-photoreal-character.md"
     },
     {
@@ -573,28 +573,28 @@
       "path": "skills/techniques/technique-entry-killer-audit.md"
     },
     {
-      "id": "festival-compliance-check",
-      "title": "Check festival compliance",
-      "description": "Verify an entry against the $1M festival's hard rules before submitting.",
-      "path": "skills/festival/festival-compliance-check.md"
+      "id": "entry-competition-compliance",
+      "title": "Check competition delivery compliance",
+      "description": "Verify an entry against competition delivery rules before submitting.",
+      "path": "skills/entry/entry-competition-compliance.md"
     },
     {
-      "id": "festival-entry-planner",
-      "title": "Plan a festival entry",
-      "description": "Turn the festival constraints into a production plan.",
-      "path": "skills/festival/festival-entry-planner.md"
+      "id": "entry-competition-planner",
+      "title": "Plan a competition entry",
+      "description": "Turn competition constraints into a production plan.",
+      "path": "skills/entry/entry-competition-planner.md"
     },
     {
-      "id": "festival-submission-package",
-      "title": "Assemble the submission package",
-      "description": "Build the watermark, packshot, and public post the festival requires.",
-      "path": "skills/festival/festival-submission-package.md"
+      "id": "entry-delivery-package",
+      "title": "Assemble the delivery package",
+      "description": "Build the watermark, packshot, and public post a competition requires.",
+      "path": "skills/entry/entry-delivery-package.md"
     },
     {
-      "id": "festival-credit-budget",
-      "title": "Budget credits for a festival entry",
-      "description": "Credit math for a 3\u20135 minute festival film.",
-      "path": "skills/festival/festival-credit-budget.md"
+      "id": "entry-credit-budget",
+      "title": "Budget credits for a competition entry",
+      "description": "Credit math for a 3\u20135 minute competition entry.",
+      "path": "skills/entry/entry-credit-budget.md"
     },
     {
       "id": "workflow-style-bible",
@@ -635,7 +635,7 @@
     {
       "id": "workflow-trailer-structure",
       "title": "Structure a trailer cut",
-      "description": "Hook / escalation / title \u2014 the 60\u201390 second festival weapon.",
+      "description": "Hook / escalation / title \u2014 the 60\u201390 second competition weapon.",
       "path": "skills/workflow/workflow-trailer-structure.md"
     },
     {
@@ -743,7 +743,7 @@
     {
       "id": "budget-short-3min",
       "title": "Budget a 3-minute short",
-      "description": "Realistic credit math for a festival-grade 3-minute film.",
+      "description": "Realistic credit math for a competition-grade 3-minute film.",
       "path": "skills/budget/budget-short-3min.md"
     },
     {
@@ -759,10 +759,10 @@
       "path": "skills/budget/budget-feature-90min.md"
     },
     {
-      "id": "deliver-festival",
-      "title": "Deliver for festivals",
-      "description": "Master a festival-ready file: spec, watermark, packshot.",
-      "path": "skills/delivery/deliver-festival.md"
+      "id": "deliver-competition",
+      "title": "Deliver for competitions",
+      "description": "Master a competition-ready file: spec, watermark, packshot.",
+      "path": "skills/delivery/deliver-competition.md"
     },
     {
       "id": "deliver-social-916",
@@ -773,7 +773,7 @@
     {
       "id": "deliver-trailer",
       "title": "Deliver a trailer master",
-      "description": "The 60\u201390s festival weapon, mastered.",
+      "description": "The 60\u201390s competition weapon, mastered.",
       "path": "skills/delivery/deliver-trailer.md"
     },
     {
@@ -833,7 +833,7 @@
     {
       "id": "recipe-trailer-cut",
       "title": "Cut a trailer",
-      "description": "The 60\u201390s festival weapon, structured.",
+      "description": "The 60\u201390s competition weapon, structured.",
       "path": "skills/recipes/recipe-trailer-cut.md"
     },
     {

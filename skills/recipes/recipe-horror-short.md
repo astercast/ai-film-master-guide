@@ -7,7 +7,7 @@ description: Dread engineering: what you don't show.
 
 ## Use when
 
-Horror/suspense festival entries.
+Horror/suspense competition entries.
 
 ## Inputs
 

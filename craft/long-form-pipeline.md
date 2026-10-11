@@ -26,9 +26,9 @@ Key mechanics:
 - Average prompt: **over 3,000 words with 10+ image references per scene** (per Higgsfield co-founder Alex Mashrabov).
 - Open-sourced: prompts, production logs, workflow docs, character cards, raw assets — via Higgsfield Academy and YouTube.
 
-### ONEIRIC — 20 min, made for the $1M festival
+### ONEIRIC — 20 min, made for Higgsfield's film competition
 
-**Correction:** earlier versions of this guide described a Cannes premiere for ONEIRIC. The research found no source connecting it to Cannes — its official description says it was made on Cinema Studio 4 *for the $1M Higgsfield Global Film Festival*. The Cannes-adjacent AI screening was *Hell Grind's*, and that was a third-party industry showcase, not an official selection.
+**Correction:** earlier versions of this guide described a Cannes premiere for ONEIRIC. The research found no source connecting it to Cannes — its official description says it was made on Cinema Studio 4 *for the Higgsfield Global Film Festival*. The Cannes-adjacent AI screening was *Hell Grind's*, and that was a third-party industry showcase, not an official selection.
 
 Four friends, four genres (Troy battle, galactic cruiser chase, griffin flight, dorm-room drama). Open-sourced: every Seedance asset and prompt, plus Claude skills for scripting (`tig-scene-engine`), acting direction (`tig-acting-task`), and shot prompting (`tig-diagram`).
 

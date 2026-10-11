@@ -1,6 +1,6 @@
-# Festival Winner Breakdowns
+# Competition teardowns
 
-Shot-by-shot lessons from films that actually won money. Every entry below was found with an attributed source — nothing invented. Items the research could not verify are flagged.
+Shot-by-shot craft lessons from films that placed in judged AI-film competitions. Every entry below was found with an attributed source — nothing invented. Items the research could not verify are flagged.
 
 ## The pattern before the films
 
@@ -22,15 +22,15 @@ Distilled: narrative cohesion + committed POV + intentional AI use + pro-grade s
 Photorealistic short: Marcel, a solitary Parisian dancer born with facial disfigurement; a woman's approach sparks connection. Tools: Grok, Nano Banana, Seedance — chosen, in his words, as the only viable way to film the screenplay without budget, cast, or crew. It started as an old screenplay experiment, never meant for festivals.
 **Why it won:** intimacy and POV — tight shots establishing point of view in a way reviewers don't associate with AI imagery; nothing read as slop. **Steal:** a real screenplay beats a prompt. Character-first photorealism is now a proven winning lane.
 
-### "GRANDMA vs WASP" — Muhannad Nassar & Simon Meyer, Higgsfield Action Contest 1st, $150,000
+### "GRANDMA vs WASP" — Muhannad Nassar & Simon Meyer, Higgsfield Action Contest winner
 Action short. The duo never met in person — async remote workflow across time zones in Higgsfield's Cinema Studio. Field: 8,752 submissions, 139 countries. Judges (Jason Zada, Buralqy, Jama Jurabaev) prioritized storytelling and directorial intent over technical polish.
-**Why it won:** proof that decentralized AI production works — two strangers, one film, no studio. **Steal:** team up across disciplines; the contest rewards directorial intent, not solo prompt heroics.
+**Why it won:** proof that decentralized AI production works — two strangers, one film, no studio. **Steal:** team up across disciplines; judges reward directorial intent, not solo prompt heroics.
 
-### "CUPID" — Nikolay Shestak, Higgsfield Action Contest 2nd, $100,000
-Tagline: "Aggression has become the norm. It's time for silence." Shestak is an established actor/filmmaker using Higgsfield for concepts that would need prohibitive traditional budgets — and planned to fund an indie superhero film with the prize.
+### "CUPID" — Nikolay Shestak, Higgsfield Action Contest finalist
+Tagline: "Aggression has become the norm. It's time for silence." Shestak is an established actor/filmmaker using Higgsfield for concepts that would need prohibitive traditional budgets.
 **Why it won:** the archetype judges love — a professional using AI for impossible scale, not novelty. **Steal:** bring a filmmaker's eye; the tool is the budget, not the idea.
 
-### "SCRATCH" — Ash & Aram Gevorkyan, Higgsfield Action Contest 3rd, $50,000
+### "SCRATCH" — Ash & Aram Gevorkyan, Higgsfield Action Contest finalist
 High-production-value action short/trailer, made in **five days** by a director/musician + 3D/VFX generalist duo. Early Higgsfield adopters with commercial music-video fluency. Audiences mistook it for a studio-backed theatrical trailer.
 **Why it won:** deep tool fluency plus trailer-form craft — sound, cutting, pacing. **Steal:** five days of fluent execution beats five weeks of hesitant prompting. Learn the tool until it's invisible.
 
@@ -55,7 +55,7 @@ Contemporary dance/performance fused with massive VFX and philosophical voiceove
 
 ## The cautionary case
 
-The Grok "Odyssey" contest's $100,000 grand prize went to a film panned for three-eyed cyclopses, size-shifting characters, and feet-for-hands. Press called it a showcase of AI filmmaking's current limits. **Lesson: a $100K prize does not forgive broken continuity. Consistency is the floor, not the ceiling.**
+A much-hyped contest winner was panned for three-eyed cyclopses, size-shifting characters, and feet-for-hands. Press called it a showcase of AI filmmaking's current limits. **Lesson: no hype forgives broken continuity. Consistency is the floor, not the ceiling.**
 
 ## What to steal — the winner's checklist
 
@@ -79,6 +79,5 @@ The Grok "Odyssey" contest's $100,000 grand prize went to a film panned for thre
 - https://www.shootonline.com/article/film-festival-showcases-what-ai-can-do-on-the-big-screen/
 - https://www.tbsnews.net/splash/100000-odyssey-groks-ai-epic-anything-historically-accurate-1546781
 - https://qazinform.com/news/aaiff-2026-winners-share-stories-behind-their-ai-generated-films-163b82
-- https://www.bottlerocketcontent.com/higgsfield-global-film-festival-1-million/
 - https://higgsfieldglobalfilmfestival.com/
 - Full research report: `~/workspace/research_notes/festival-winners-20261010-0303/report.md`

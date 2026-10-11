@@ -20,7 +20,7 @@
   var CAT_NAMES = {
     prompts: "Prompt templates", camera: "Camera moves", models: "Directing models",
     checklists: "Checklists & audits", longform: "Long-form pipeline", techniques: "Winning techniques",
-    craft: "Craft techniques", festival: "Festival", workflow: "Workflow",
+    craft: "Craft techniques", entry: "Competition entry", workflow: "Workflow",
     compare: "Model comparisons", fix: "Fix-it guides", budget: "Budgeting",
     delivery: "Delivery", audio: "Audio", recipes: "Shoot recipes",
     styles: "Style guides", performance: "Directing performance", grading: "Color grading"

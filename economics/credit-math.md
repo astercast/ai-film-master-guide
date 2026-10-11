@@ -28,7 +28,7 @@ Going direct to Kling: ~$0.084/sec at 720p standard, ~$0.112/sec pro, ~$0.42/sec
 - **Save:** establishers, B-roll, transitions, montages — Turbo is fine.
 - **Free tools that don't look free:** CapCut for color/LUTs/grain, stabilization in post instead of re-rendering, compositing fixes (face swaps from close shots) instead of regenerating wide shots.
 
-## The festival budget frame
+## The short-film budget frame
 
 A 3–5 minute festival film at ~4 seconds per shot is 45–75 shots. At draft-then-hero discipline, most shots need 2–4 generations to land. Budget for 150–300 generations and plan the credit pool before starting — or split across platforms by shot type.
 

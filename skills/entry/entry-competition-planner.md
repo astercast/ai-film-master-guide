@@ -1,9 +1,9 @@
 ---
-name: festival-entry-planner
-description: Turn the festival constraints into a production plan.
+name: entry-competition-planner
+description: Turn competition constraints into a production plan.
 ---
 
-# Plan a festival entry
+# Plan a competition entry
 
 ## Use when
 
@@ -11,7 +11,7 @@ Deciding whether and how to enter.
 
 ## Inputs
 
-- The festival record (prizes, criteria, timeline)
+- The competition record (criteria, constraints)
 - Your concept
 
 ## Procedure
@@ -23,11 +23,11 @@ Deciding whether and how to enter.
 
 ## Worked example
 
-Prizes: $500K/$200K/$100K + $100K audience + 10×$10K. Criteria-mapped plan for a 4-min authored-style drama.
+Criteria-mapped plan for a 4-min authored-style drama: directing, craft, sound, originality.
 
 ## API references
 
-- `api/v1/festivals.json`
+- `api/v1/competitions.json`
 
 ## Pitfalls
 

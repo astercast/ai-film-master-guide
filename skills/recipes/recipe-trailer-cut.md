@@ -1,6 +1,6 @@
 ---
 name: recipe-trailer-cut
-description: The 60–90s festival weapon, structured.
+description: The 60–90s competition weapon, structured.
 ---
 
 # Cut a trailer

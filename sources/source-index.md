@@ -4,7 +4,7 @@ Every source consulted, grouped by section, with what was pulled from it.
 
 ## Official documentation
 - https://higgsfield.ai/creator-hub/help-center/ai-models/how-do-i-create-and-use-a-soul-id-character — Soul ID training requirements, prompting rules, model-family compatibility
-- https://higgsfield.ai/blog/higgsfield-global-film-festival — Global Film Festival official rules, prize pool, timeline, submission requirements
+- https://higgsfield.ai/blog/higgsfield-global-film-festival — Global Film Festival official rules: production constraints and submission requirements
 
 ## Platform guides & explainers
 - https://www.thehypemagazine.com/2026/10/09/what-is-higgsfield-ai-uses-features-pricing/ — Higgsfield plans, credit yields, Cinema Studio features, Soul ID/HEX, Marketing Studio
@@ -18,11 +18,11 @@ Every source consulted, grouped by section, with what was pulled from it.
 - https://github.com/bfnel2/higgsfield-ai-prompt-skill/blob/HEAD/mnt/user-data/outputs/higgsfield/skills/higgsfield-soul/SKILL.md — Soul ID reference (mirror)
 
 ## Festival coverage & strategy
-- https://aivideosensei.com/guides/higgsfield-global-film-festival-guide — festival entry strategy, prize-tier math, jury analysis
+- https://aivideosensei.com/guides/higgsfield-global-film-festival-guide — competition-entry production guide
 - https://medium.com/@sanwsman7/i-didnt-believe-ai-could-make-a-real-film-until-i-tried-higgsfield-ai-de0b4ee68072 — festival overview, open-sourced Higgsfield films
-- https://www.linkedin.com/posts/the-ai-journal_ai-aifilmmaking-higgsfield-activity-7490768602418253824-Ofvk — $1M festival announcement coverage
+- https://www.linkedin.com/posts/the-ai-journal_ai-aifilmmaking-higgsfield-activity-7490768602418253824-Ofvk — competition announcement coverage
 - https://www.youtube.com/watch?v=babNcxpwnx0 — Action Contest winner reveal (8,752 submissions, 139 countries)
-- https://www.youtube.com/watch?v=ZoqzD_NMa4w — "CUPID" (2nd place, $100K)
+- https://www.youtube.com/watch?v=ZoqzD_NMa4w — "CUPID" (competition finalist)
 - https://kessler-prod.reta52d8.eas.morningstar.com/news/pr-newswire/20260318cn13709/the-largest-ai-film-competition-highlights-emerging-trends-in-global-ai-filmmaking — Action Contest results and jury
 
 ## Craft & prompting
@@ -43,9 +43,8 @@ Every source consulted, grouped by section, with what was pulled from it.
 - https://thinkdiffusion.studio/one-last-wish-by-edmond-yang/ — "One Last Wish" (Odyssey S2 Narrative Gold), 48-hour production
 - https://newsbywire.com/?nbw-download=pdf&nbw-post=115189 — Reply AIFF 2026 results
 - https://www.shootonline.com/article/film-festival-showcases-what-ai-can-do-on-the-big-screen/ — AIFF 2025 field and finalists
-- https://www.tbsnews.net/splash/100000-odyssey-groks-ai-epic-anything-historically-accurate-1546781 — Grok "Odyssey" $100K winner controversy (cautionary)
+- https://www.tbsnews.net/splash/100000-odyssey-groks-ai-epic-anything-historically-accurate-1546781 — Grok "Odyssey" winner controversy (cautionary: consistency is the floor)
 - https://qazinform.com/news/aaiff-2026-winners-share-stories-behind-their-ai-generated-films-163b82 — AAIFF 2026 winners (8,067 entries)
-- https://www.bottlerocketcontent.com/higgsfield-global-film-festival-1-million/ — $1M festival details
 - https://higgsfieldglobalfilmfestival.com/ — official festival site
 
 ## Credit economics (deep research, 2026-10-10)
@@ -59,4 +58,3 @@ Every source consulted, grouped by section, with what was pulled from it.
 - https://www.youtube.com/watch?v=3inS3sCunaA — resolution ladder + previs credit savings
 
 ## Pending
-- Higgsfield Global Film Festival $1M winners (announced end of Oct 2026) — check https://higgsfieldglobalfilmfestival.com/ after announcement and add the winning breakdowns here.

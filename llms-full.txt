@@ -2,7 +2,7 @@
 
 Static site: site/index.html. API: api/v1/. Generated 2026-10-11.
 
-<!-- chapter: higgsfield/platform-mastery -->
+<!-- chapter: higgsfield/platform-mastery.md -->
 # Higgsfield Platform Mastery
 
 ## The model roster (what to use when)
@@ -67,8 +67,7 @@ It isn't tied to one model — pick the best engine per shot.
 - https://www.meltflexai.com/blog/higgsfield-alternatives
 - https://github.com/ivan-meer/higgsfield-ai-prompt-skill/blob/HEAD/skills/higgsfield-models/SKILL.md
 - http://dev.to/mckennachapman/higgsfield-api-in-practice-prompt-to-editorial-photo-and-the-defaults-that-bite-f0c
-
-<!-- chapter: higgsfield/prompt-engineering -->
+<!-- chapter: higgsfield/prompt-engineering.md -->
 # Higgsfield Prompt Engineering
 
 ## The anatomy of a prompt that works
@@ -131,8 +130,7 @@ Always exclude what breaks cinematic output: morphing faces, extra limbs, meltin
 - https://github.com/servanter/ai-magic/blob/HEAD/content/blog/best-ai-video-generators-2026-sora-runway-kling-pika-comparison.mdx
 - https://medium.com/@gencaycubuk/i-tested-dozens-of-runway-prompts-this-framework-creates-cinematic-ai-videos-every-time-e171658033e1
 - http://answerbeam.blogspot.com/2026/10/how-to-generate-video-from-image-with.html
-
-<!-- chapter: higgsfield/soul-id-deep-dive -->
+<!-- chapter: higgsfield/soul-id-deep-dive.md -->
 # Soul ID Deep Dive
 
 ## What it is
@@ -182,73 +180,66 @@ Skip: single one-off shots (overkill), or when you want maximum creative variati
 - https://www.thehypemagazine.com/2026/10/09/what-is-higgsfield-ai-uses-features-pricing/
 - https://github.com/ianfr13/higgsfield-ai-prompt-skill/blob/HEAD/mnt/user-data/outputs/higgsfield/skills/higgsfield-soul/SKILL.md
 - https://github.com/mahshid1378/owner-avatar-higgsfield-ai-prompt-skill/blob/HEAD/skills/higgsfield-soul/SKILL.md
+<!-- chapter: higgsfield/competition-entry-craft.md -->
+# Competition-entry craft
 
-<!-- chapter: higgsfield/100k-festival-playbook -->
-# The $100K Festival Playbook
+Judged AI-film competitions are a production teacher, not a lottery ticket. This chapter is about what their constraints and judging criteria teach you about making professional work — whether or not you ever enter one.
 
-The "$100,000 prize" is real — it's the 3rd-place and Audience Choice tier of the **Higgsfield Global Film Festival**, a $1,000,000 competition. This chapter is the playbook for it.
+## Why competitions are worth studying
 
-## The competition
+A competition hands you three things most productions never get:
 
-| | |
-|---|---|
-| Total prize pool | $1,000,000 across 14 winners |
-| 1st place | $500,000 |
-| 2nd place | $200,000 |
-| 3rd place | $100,000 |
-| Audience Choice | $100,000 |
-| Honorable Mention ×10 | $10,000 each |
-| Runtime | 3–5 minutes |
-| Eligibility | Higgsfield subscribers, 18+, solo or teams up to 4, worldwide |
+1. **Hard constraints** — runtime limits, delivery specs, content rules. Constraints are a forcing function for craft: every decision the rules make for you is a decision you can't get wrong.
+2. **A published quality bar** — judging criteria tell you exactly what experienced eyes score: directing, craft, sound, originality. That's a checklist you can aim any film at.
+3. **A body of judged work** — winning entries are public. Shot-by-shot teardowns of what placed are the cheapest film school available (see `case-studies/competition-teardowns.md`).
 
-**Jury:** Edwin Catmull (Pixar co-founder, five-time Oscar winner) and Phedon Papamichael (two-time Oscar-nominated cinematographer, *Ford v Ferrari*) among others — an Oscar-caliber panel, not a marketing jury.
+## The constraint set that shapes production
 
-**Timeline (2026 edition):** submissions opened early August, deadline mid-September 2026; screening and shortlist through early October; jury review early-mid October; winners announced end of October 2026.
+Real competition rulebooks converge on the same production discipline. Treat each as a standing habit:
 
-## The rules that shape your production
+- **Runtime discipline.** Competitions cap entries at a few minutes. The craft lesson: a 3-minute film that lands beats a 10-minute film that drifts. Budget your runtime like your credits — every shot must earn its seconds.
+- **Delivery specs are real.** Watermarks, packshots, aspect ratios, masters. The craft lesson: professional delivery is a package, not a file. Build your delivery checklist before you lock picture (see `skills/delivery/`).
+- **Rights hygiene.** Competition rules typically require AI-generated music/voice/sound with rights held by the creator. The craft lesson: clear every asset's rights at generation time, not at delivery. Keep the receipts in your asset registry.
+- **Likeness safety.** "No real person's face or voice" is a common rule — not even your own. The craft lesson: never build a film on likeness you can't clear. Synthetic characters and Soul IDs are the safe default.
+- **Small teams, async.** Winning entries are routinely made by 2–4 people across time zones. The craft lesson: a tight team with a shared asset registry beats a large team with a group chat.
 
-- **Minimum viable submission:** final video with Higgsfield's watermark and packshot, plus a public post of the same video on Instagram, YouTube, X, or Reddit (must stay public, no login wall — a private account disqualifies you).
-- **Music, voice, and sound design must be AI-generated**, uploaded into the submission project, with rights held by the creator.
-- **No real person's face or voice** — not even your own.
-- One film gets one prize; one participant/team gets one prize across all entries. Prizes don't stack.
-- Any genre, any story.
+## What juries actually reward
 
-## Strategy notes
+Across Runway AIFF, Project Odyssey, Reply AIFF, the Higgsfield Action Contest, and MIT's hackathon, judges reward the same things: **story over spectacle, authorial intent, character/POV discipline, originality, sound design, and polish as the floor.** They punish: visible morphing/inconsistency, generic "AI slop," tech demos without narrative, and AI that pulls focus from the story.
 
-- **The honorable-mention math:** 10 shots at $10,000 is a different bet than one shot at $500,000. Ten finalists get paid — aim for the top fourteen, not just the top spot.
-- **The jury reads like a real film festival.** Catmull and Papamichael reward story, cinematography, and craft — not prompt cleverness. Direct for them, not for AI Twitter.
-- **Sound is judged.** AI-generated music/voice/sound is mandatory — a silent film or stock-music film is leaving points on the table by rule, not just taste.
-- **Higgsfield open-sourced three of its own AI films** with every prompt, camera setting, and asset published. Study those before spending a credit.
+Distilled: narrative cohesion + committed POV + intentional AI use + pro-grade sound + consistent visuals. Originality is the tiebreaker; polish is the entry ticket.
 
-## What won before: the Action Contest
+Direct for that jury — story, cinematography, craft — not for the AI-tools audience. The film that wins is the one that would work if nobody knew how it was made.
 
-Higgsfield's earlier Action Contest (8,752 submissions, 139 countries) shows what this jury DNA rewards:
+## Craft patterns from judged work
 
-- **1st ($150,000): "GRANDMA vs WASP"** — Muhannad Nassar & Simon Meyer. Never met in person; async workflow across time zones in Cinema Studio. Action short, decentralized production.
-- **2nd ($100,000): "CUPID"** — Shestak Nikolay, actor/filmmaker. Concepts that would need prohibitive traditional budgets — AI used for scale, not novelty.
-- **3rd ($50,000): "SCRATCH"** — Ash & Aram Gevorkyan, made in **five days**. Director + 3D/VFX generalist duo; production value so high audiences mistook it for a studio trailer.
-- **20 honorable mentions** at $10,000 each.
+Higgsfield's Action Contest (8,752 submissions, 139 countries) shows what experienced filmmakers do with AI:
+
+- **"GRANDMA vs WASP"** — Muhannad Nassar & Simon Meyer. The makers never met in person; fully async workflow across time zones. *Lesson:* decentralized production works when the asset pipeline is disciplined.
+- **"CUPID"** — Shestak Nikolay, actor/filmmaker. Concepts that would need prohibitive traditional budgets. *Lesson:* AI used for impossible scale, not novelty.
+- **"SCRATCH"** — Ash & Aram Gevorkyan, made in **five days**. Director + 3D/VFX generalist duo; production value audiences mistook for a studio trailer. *Lesson:* a tight team with real craft compresses schedules AI can't compress alone.
 
 Pattern: experienced filmmakers using AI for impossible scale, tight teams, real craft — not tech demos.
 
-## Submission checklist
+## Study the open-sourced winners
 
-- [ ] 3–5 minute final cut, watermark + packshot included
-- [ ] All music/voice/sound AI-generated, files in the submission project, rights cleared
-- [ ] No real faces or voices anywhere in the film
-- [ ] Public social post live (Instagram/YouTube/X/Reddit), account public
-- [ ] Submitted before the deadline in your timezone
-- [ ] Team of 4 or fewer, all 18+, active subscription
+Higgsfield open-sourced three of its own AI films with every prompt, camera setting, and asset published. Before spending a credit, study a complete production's actual prompts and settings — it's the closest thing to sitting in someone else's edit bay.
+
+## Competition-entry delivery checklist
+
+- [ ] Final cut locked to the runtime cap, master to spec (aspect, watermark/packshot if required)
+- [ ] All music/voice/sound rights cleared and documented in the asset registry
+- [ ] No uncleared likeness anywhere in the film
+- [ ] Credits and key art treated as craft, not an afterthought
+- [ ] Team roles and handoffs defined before production starts
 
 ## Sources
 - https://higgsfield.ai/blog/higgsfield-global-film-festival
 - https://aivideosensei.com/guides/higgsfield-global-film-festival-guide
 - https://medium.com/@sanwsman7/i-didnt-believe-ai-could-make-a-real-film-until-i-tried-higgsfield-ai-de0b4ee68072
-- https://www.linkedin.com/posts/the-ai-journal_ai-aifilmmaking-higgsfield-activity-7490768602418253824-Ofvk
 - https://www.youtube.com/watch?v=babNcxpwnx0 (Action Contest winner reveal)
-- https://www.youtube.com/watch?v=ZoqzD_NMa4w ("CUPID" — 2nd place, $100K)
-
-<!-- chapter: craft/story-structure -->
+- https://www.youtube.com/watch?v=ZoqzD_NMa4w ("CUPID")
+<!-- chapter: craft/story-structure.md -->
 # Story Structure for AI Short Films
 
 ## The short-film engine
@@ -261,7 +252,7 @@ A 3–5 minute AI film needs exactly three things:
 
 Most AI-film losers are tech demos with no second act: pretty shots, no turn. Judges (especially Oscar-caliber ones) punish this first.
 
-## The festival-short template
+## The judged-short template
 
 - **Cold open (0:00–0:30):** drop into the world mid-action. No setup, no title cards explaining the premise.
 - **Escalation (0:30–2:30):** the want meets the obstacle, pressure builds. Each shot raises the stakes or deepens the world.
@@ -285,8 +276,7 @@ Design scenes around what AI renders well; write away from what it doesn't.
 - [ ] The turn is a visual event, not dialogue
 - [ ] Every scene either raises stakes or deepens world — never both vaguely, never neither
 - [ ] The ending image is planned before the first shot is generated
-
-<!-- chapter: craft/cinematic-language -->
+<!-- chapter: craft/cinematic-language.md -->
 # Cinematic Language
 
 The shot vocabulary and camera grammar that make AI video read as cinema instead of a screensaver.
@@ -357,8 +347,7 @@ Note: every movement has a purpose, and the prompt asks for exactly one action p
 - https://github.com/servanter/ai-magic/blob/HEAD/content/blog/best-ai-video-generators-2026-sora-runway-kling-pika-comparison.mdx
 - https://medium.com/@gencaycubuk/i-tested-dozens-of-runway-prompts-this-framework-creates-cinematic-ai-videos-every-time-e171658033e1
 - https://www.youtube.com/watch?v=z8IaWHEYfpY
-
-<!-- chapter: craft/character-consistency -->
+<!-- chapter: craft/character-consistency.md -->
 # Character Consistency
 
 The technical discipline of keeping people and worlds stable across shots. This is where most festival entries die.
@@ -396,8 +385,7 @@ The technical discipline of keeping people and worlds stable across shots. This 
 - [ ] Location master stills approved
 - [ ] Light direction + time of day locked per scene
 - [ ] Start frame is real (approved frame or trained identity), never invented
-
-<!-- chapter: craft/directing-performance -->
+<!-- chapter: craft/directing-performance.md -->
 # Directing Performance in AI Video
 
 AI models don't act. They render plausible arrangements of pixels that read as acting when the direction is specific enough — and collapse into mannequin theater when it isn't. This chapter is the directing discipline behind believable AI performance, drawn from productions that solved it in public.
@@ -505,8 +493,7 @@ Rule of thumb: if the scene's entire job is one human feeling something complica
 - Cully Hill Boys: licensed likeness pipeline, expressions/kinematics from performer reference (cryptobriefing.com, archyde.com)
 - The Verge on Cully Hill Boys: "occasionally weak character interactions" (via magazine.mindplex.ai summary)
 - Companion: `craft/character-consistency.md`, `craft/long-form-pipeline.md`, skills `craft-gaze-eyelines`, `audio-direct-voiceover`
-
-<!-- chapter: craft/color-grading -->
+<!-- chapter: craft/color-grading.md -->
 # Color Grading AI Footage
 
 Every AI generation arrives with its own built-in grade — the model's idea of what "cinematic" looks like, baked into the pixels. On a multi-shot production, that's 40 different colorists who never met. The colorist's job on AI footage is **unification**: bringing neighboring shots to one look.
@@ -589,8 +576,7 @@ Grade with waveforms and vectorscopes. AI footage lies to eyes — the "cinemati
 - ONEIRIC brief: colorist-as-unification, bake-the-look-into-plates (third-party transcription — flagged)
 - ADILIADA: pre-generation unification pass over the location set
 - Companion: skills `craft-kill-ai-look`, `fix-plasticky-look`, `craft-bake-look`
-
-<!-- chapter: craft/sound-music-audio -->
+<!-- chapter: craft/sound-music-audio.md -->
 # Sound, Music & Audio
 
 Sound is half the picture. Amateur AI films are silent; winners are designed. (Festival rules require AI-generated music, voice, and sound — this isn't optional.)
@@ -635,8 +621,7 @@ AI SFX tools can generate all three from text prompts. Describe sounds the way y
 - [ ] Dialogue minimal, clean, synced
 - [ ] Final mix: dialogue > score > bed (nothing fights the story)
 - [ ] All audio AI-generated with rights documented (festival requirement)
-
-<!-- chapter: craft/editing-pipeline -->
+<!-- chapter: craft/editing-pipeline.md -->
 # Editing Pipeline
 
 From selects to festival-ready export.
@@ -683,8 +668,7 @@ From selects to festival-ready export.
 - [ ] Watermark + packshot embedded
 - [ ] Exported to festival spec
 - [ ] Watched fresh on multiple screens
-
-<!-- chapter: craft/long-form-pipeline -->
+<!-- chapter: craft/long-form-pipeline.md -->
 # The Long-Form Pipeline: Making AI Films at 20+ Minutes
 
 Short films are won with great prompts. Long films are won with *systems*. Everything in this chapter comes from productions that actually shipped long-form AI work — most of it open-sourced by Higgsfield — and every number carries its source. Where the research couldn't verify something, it's flagged.
@@ -713,9 +697,9 @@ Key mechanics:
 - Average prompt: **over 3,000 words with 10+ image references per scene** (per Higgsfield co-founder Alex Mashrabov).
 - Open-sourced: prompts, production logs, workflow docs, character cards, raw assets — via Higgsfield Academy and YouTube.
 
-### ONEIRIC — 20 min, made for the $1M festival
+### ONEIRIC — 20 min, made for Higgsfield's film competition
 
-**Correction:** earlier versions of this guide described a Cannes premiere for ONEIRIC. The research found no source connecting it to Cannes — its official description says it was made on Cinema Studio 4 *for the $1M Higgsfield Global Film Festival*. The Cannes-adjacent AI screening was *Hell Grind's*, and that was a third-party industry showcase, not an official selection.
+**Correction:** earlier versions of this guide described a Cannes premiere for ONEIRIC. The research found no source connecting it to Cannes — its official description says it was made on Cinema Studio 4 *for the Higgsfield Global Film Festival*. The Cannes-adjacent AI screening was *Hell Grind's*, and that was a third-party industry showcase, not an official selection.
 
 Four friends, four genres (Troy battle, galactic cruiser chase, griffin flight, dorm-room drama). Open-sourced: every Seedance asset and prompt, plus Claude skills for scripting (`tig-scene-engine`), acting direction (`tig-acting-task`), and shot prompting (`tig-diagram`).
 
@@ -820,8 +804,7 @@ Observed across productions, not prescribed: writer, director(s), asset/continui
 - Dreams of Violets: en.wikipedia.org, cryptobriefing.com, Ash Koosha LinkedIn (first-person, unaudited), pagesix.com
 - Pricing: higgsfield.ai/blog/higgsfield-api, higgsfield.ai/blog/seedance-2-5-on-higgsfield-2026, blotato.com, daily.dev
 - Companion chapters: `case-studies/entry-craft-teardowns.md`, `craft/character-consistency.md`, `craft/editing-pipeline.md`, `economics/credit-math.md`
-
-<!-- chapter: platforms/field-guide -->
+<!-- chapter: platforms/field-guide.md -->
 # AI Video Platform Field Guide
 
 Every major platform, honestly assessed. Strengths, weaknesses, costs, and what each is actually best at.
@@ -864,8 +847,7 @@ No single platform wins every shot. Festival-grade films are hybrid: pick the en
 - https://www.meltflexai.com/blog/higgsfield-alternatives
 - https://dyerbolical.com/mastering-ai-video-generation-in-2026-runway-pika-and-kling-for-professional-ads/
 - https://github.com/ivan-meer/higgsfield-ai-prompt-skill/blob/HEAD/skills/higgsfield-models/SKILL.md
-
-<!-- chapter: platforms/when-to-use-what -->
+<!-- chapter: platforms/when-to-use-what.md -->
 # When to Use What
 
 The decision tree for picking the right tool per shot. Festival-grade films are hybrid — nobody will know if you match color in post.
@@ -904,8 +886,7 @@ The decision tree for picking the right tool per shot. Festival-grade films are 
 - Using one platform for everything out of loyalty — you pay in quality somewhere.
 - Premium-rendering a shot before the edit is locked — re-edits waste the expensive generation.
 - Mixing aspect ratios across shots — pick delivery format on day one.
-
-<!-- chapter: economics/credit-math -->
+<!-- chapter: economics/credit-math.md -->
 # Credit Math
 
 Professional quality without burning the budget. The standing rule: **never spend credits on a guess.**
@@ -936,7 +917,7 @@ Going direct to Kling: ~$0.084/sec at 720p standard, ~$0.112/sec pro, ~$0.42/sec
 - **Save:** establishers, B-roll, transitions, montages — Turbo is fine.
 - **Free tools that don't look free:** CapCut for color/LUTs/grain, stabilization in post instead of re-rendering, compositing fixes (face swaps from close shots) instead of regenerating wide shots.
 
-## The festival budget frame
+## The short-film budget frame
 
 A 3–5 minute festival film at ~4 seconds per shot is 45–75 shots. At draft-then-hero discipline, most shots need 2–4 generations to land. Budget for 150–300 generations and plan the credit pool before starting — or split across platforms by shot type.
 
@@ -964,16 +945,19 @@ A 3–5 minute festival film at ~4 seconds per shot is 45–75 shots. At draft-t
 - **Audio-first:** lock voiceover/soundtrack before generating video — cheap audio prevents expensive timing-mismatch re-rolls.
 - **Cautionary:** one documented Higgsfield pilot burned ~$260,000 in credits over 4 days for ~8 usable shots — brute-force iteration without craft. The no-guess rule exists because of math like this.
 
+## Try it
+
+Run your numbers in the [interactive budget calculator](../budget.html) — runtime, shot length, model, and discipline in, cost envelope out.
+
 ## Sources
 - https://www.thehypemagazine.com/2026/10/09/what-is-higgsfield-ai-uses-features-pricing/
 - https://www.meltflexai.com/blog/higgsfield-alternatives
 - http://dev.to/mckennachapman/higgsfield-api-in-practice-prompt-to-editorial-photo-and-the-defaults-that-bite-f0c
 - https://www.youtube.com/watch?v=z8IaWHEYfpY
+<!-- chapter: case-studies/competition-teardowns.md -->
+# Competition teardowns
 
-<!-- chapter: case-studies/festival-winners -->
-# Festival Winner Breakdowns
-
-Shot-by-shot lessons from films that actually won money. Every entry below was found with an attributed source — nothing invented. Items the research could not verify are flagged.
+Shot-by-shot craft lessons from films that placed in judged AI-film competitions. Every entry below was found with an attributed source — nothing invented. Items the research could not verify are flagged.
 
 ## The pattern before the films
 
@@ -995,15 +979,15 @@ Distilled: narrative cohesion + committed POV + intentional AI use + pro-grade s
 Photorealistic short: Marcel, a solitary Parisian dancer born with facial disfigurement; a woman's approach sparks connection. Tools: Grok, Nano Banana, Seedance — chosen, in his words, as the only viable way to film the screenplay without budget, cast, or crew. It started as an old screenplay experiment, never meant for festivals.
 **Why it won:** intimacy and POV — tight shots establishing point of view in a way reviewers don't associate with AI imagery; nothing read as slop. **Steal:** a real screenplay beats a prompt. Character-first photorealism is now a proven winning lane.
 
-### "GRANDMA vs WASP" — Muhannad Nassar & Simon Meyer, Higgsfield Action Contest 1st, $150,000
+### "GRANDMA vs WASP" — Muhannad Nassar & Simon Meyer, Higgsfield Action Contest winner
 Action short. The duo never met in person — async remote workflow across time zones in Higgsfield's Cinema Studio. Field: 8,752 submissions, 139 countries. Judges (Jason Zada, Buralqy, Jama Jurabaev) prioritized storytelling and directorial intent over technical polish.
-**Why it won:** proof that decentralized AI production works — two strangers, one film, no studio. **Steal:** team up across disciplines; the contest rewards directorial intent, not solo prompt heroics.
+**Why it won:** proof that decentralized AI production works — two strangers, one film, no studio. **Steal:** team up across disciplines; judges reward directorial intent, not solo prompt heroics.
 
-### "CUPID" — Nikolay Shestak, Higgsfield Action Contest 2nd, $100,000
-Tagline: "Aggression has become the norm. It's time for silence." Shestak is an established actor/filmmaker using Higgsfield for concepts that would need prohibitive traditional budgets — and planned to fund an indie superhero film with the prize.
+### "CUPID" — Nikolay Shestak, Higgsfield Action Contest finalist
+Tagline: "Aggression has become the norm. It's time for silence." Shestak is an established actor/filmmaker using Higgsfield for concepts that would need prohibitive traditional budgets.
 **Why it won:** the archetype judges love — a professional using AI for impossible scale, not novelty. **Steal:** bring a filmmaker's eye; the tool is the budget, not the idea.
 
-### "SCRATCH" — Ash & Aram Gevorkyan, Higgsfield Action Contest 3rd, $50,000
+### "SCRATCH" — Ash & Aram Gevorkyan, Higgsfield Action Contest finalist
 High-production-value action short/trailer, made in **five days** by a director/musician + 3D/VFX generalist duo. Early Higgsfield adopters with commercial music-video fluency. Audiences mistook it for a studio-backed theatrical trailer.
 **Why it won:** deep tool fluency plus trailer-form craft — sound, cutting, pacing. **Steal:** five days of fluent execution beats five weeks of hesitant prompting. Learn the tool until it's invisible.
 
@@ -1028,7 +1012,7 @@ Contemporary dance/performance fused with massive VFX and philosophical voiceove
 
 ## The cautionary case
 
-The Grok "Odyssey" contest's $100,000 grand prize went to a film panned for three-eyed cyclopses, size-shifting characters, and feet-for-hands. Press called it a showcase of AI filmmaking's current limits. **Lesson: a $100K prize does not forgive broken continuity. Consistency is the floor, not the ceiling.**
+A much-hyped contest winner was panned for three-eyed cyclopses, size-shifting characters, and feet-for-hands. Press called it a showcase of AI filmmaking's current limits. **Lesson: no hype forgives broken continuity. Consistency is the floor, not the ceiling.**
 
 ## What to steal — the winner's checklist
 
@@ -1052,14 +1036,12 @@ The Grok "Odyssey" contest's $100,000 grand prize went to a film panned for thre
 - https://www.shootonline.com/article/film-festival-showcases-what-ai-can-do-on-the-big-screen/
 - https://www.tbsnews.net/splash/100000-odyssey-groks-ai-epic-anything-historically-accurate-1546781
 - https://qazinform.com/news/aaiff-2026-winners-share-stories-behind-their-ai-generated-films-163b82
-- https://www.bottlerocketcontent.com/higgsfield-global-film-festival-1-million/
 - https://higgsfieldglobalfilmfestival.com/
 - Full research report: `~/workspace/research_notes/festival-winners-20261010-0303/report.md`
-
-<!-- chapter: case-studies/entry-craft-teardowns -->
+<!-- chapter: case-studies/entry-craft-teardowns.md -->
 # Entry Craft Teardowns: How the Winning Films Were Actually Made
 
-The companion chapter lists *who won and why*. This one is the *how* — the production techniques behind festival-winning entries, broken into steps you can copy. Every teardown follows the same shape: **the technique**, **the craft principle**, **copy it** (actionable steps), and the **budget/time footprint** where it's documented.
+The companion chapter lists *what placed and why*. This one is the *how* — the production techniques behind judged entries, broken into steps you can copy. Every teardown follows the same shape: **the technique**, **the craft principle**, **copy it** (actionable steps), and the **budget/time footprint** where it's documented.
 
 ## 1. The async remote workflow — "GRANDMA vs WASP" ($150K, Higgsfield Action Contest)
 
@@ -1110,7 +1092,7 @@ The companion chapter lists *who won and why*. This one is the *how* — the pro
 **The craft principle.** A strong, committed art style is a *consistency strategy*. Painterly motion, rice-paper grain, and stop-motion stepping all hide the seams that photorealism exposes. Judges reward authored intent: pick a lane and commit so hard the style becomes the film's identity.
 
 **Copy it.**
-- Choose your style for what it *forgives*, not just what it looks like. Ask: "what breaks when this style drifts 5%?" If the answer is "nothing visible," it's a good festival style.
+- Choose your style for what it *forgives*, not just what it looks like. Ask: "what breaks when this style drifts 5%?" If the answer is "nothing visible," it's a good judged-category style.
 - Lock the style in one sentence and put it verbatim in every prompt ([STYLE] block discipline).
 - Add the texture in a separate pass: film grain, paper texture, brushstroke overlays in post unify generations from different models.
 - For stylized work, use the animated prompt register — no lens or DOF language (see `prompt-engineering.md`).
@@ -1133,7 +1115,7 @@ The companion chapter lists *who won and why*. This one is the *how* — the pro
 
 ## 6. The long-form discipline — "Oneiric" (20 min) and "Total Pixel Space" (9:28, Runway AIFF 2025 Grand Prix)
 
-**The technique.** "Oneiric" ran a 20-minute drama through Cinema Studio with open-sourced everything: every Seedance asset and prompt, Claude skills for scripting/acting/prompting, a color-coded Diagram Skill frame map tracking every shot, and a consistent-lens-look trick for visual unity. (Correction: earlier versions of this guide repeated a "Cannes premiere" claim for Oneiric — dedicated research found no source for it. It was made for Higgsfield's own $1M festival; the Cannes-adjacent screening was *Hell Grind's*, a third-party industry showcase, not an official selection.) "Total Pixel Space" spent over a year in production generating tens of thousands of images for a 9-minute essay film.
+**The technique.** "Oneiric" ran a 20-minute drama through Cinema Studio with open-sourced everything: every Seedance asset and prompt, Claude skills for scripting/acting/prompting, a color-coded Diagram Skill frame map tracking every shot, and a consistent-lens-look trick for visual unity. (Correction: earlier versions of this guide repeated a "Cannes premiere" claim for Oneiric — dedicated research found no source for it. It was made for Higgsfield's own film festival; the Cannes-adjacent screening was *Hell Grind's*, a third-party industry showcase, not an official selection.) "Total Pixel Space" spent over a year in production generating tens of thousands of images for a 9-minute essay film.
 
 **The craft principle.** Long-form AI filmmaking is *asset management*, not prompting. The winners built production systems — frame maps, skill libraries, lens-look rules — that let hundreds of generations cohere. Time in pre-production and systems pays back exponentially at 10+ minutes.
 
@@ -1148,7 +1130,7 @@ The companion chapter lists *who won and why*. This one is the *how* — the pro
 
 ## 7. The floor — what kills entries
 
-The cautionary case: a $100,000 grand prize went to a film with three-eyed cyclopses, size-shifting characters, and feet-for-hands. Press called it a showcase of AI filmmaking's current limits. **A big prize does not forgive broken continuity.** Across every festival in the companion chapter, judges punish the same things: visible morphing, generic AI slop, tech demos without narrative, and AI that pulls focus from the story.
+The cautionary case: a hyped contest winner had three-eyed cyclopses, size-shifting characters, and feet-for-hands. Press called it a showcase of AI filmmaking's current limits. **No hype forgives broken continuity.** Across every festival in the companion chapter, judges punish the same things: visible morphing, generic AI slop, tech demos without narrative, and AI that pulls focus from the story.
 
 **Copy it (in reverse).** Before submitting, run the entry-killer audit:
 - [ ] No morphing faces, extra limbs, or shifting wardrobe across cuts
@@ -1170,22 +1152,21 @@ The cautionary case: a $100,000 grand prize went to a film with three-eyed cyclo
 
 ## Sources
 
-- Companion chapter: `case-studies/festival-winners.md` (full winner list + sources)
-- Higgsfield $1M festival rules: https://higgsfield.ai/blog/higgsfield-global-film-festival
+- Companion chapter: `case-studies/competition-teardowns.md` (judged-work teardowns + sources)
+- Higgsfield film festival rules (production constraints): https://higgsfield.ai/blog/higgsfield-global-film-festival
 - Open-source reference projects: Hell Grind, Zephyr, Cully Hill Boys (via festival blog)
 - "Oneiric" production notes: Mashrabov LinkedIn frame-map writeup (via mega-research report)
 - "Passport Rush" hybrid pipeline: completeaitraining (via mega-research report)
 - Craft chapters: `craft/story-structure.md`, `craft/character-consistency.md`, `craft/sound-music-audio.md`, `craft/editing-pipeline.md`, `craft/cinematic-language.md`
 - Full research: `~/workspace/research_notes/ai-film-mega-research-20261010-0311/report.md`, `~/workspace/research_notes/festival-winners-20261010-0303/report.md`
-
-<!-- chapter: sources/source-index -->
+<!-- chapter: sources/source-index.md -->
 # Source Index
 
 Every source consulted, grouped by section, with what was pulled from it.
 
 ## Official documentation
 - https://higgsfield.ai/creator-hub/help-center/ai-models/how-do-i-create-and-use-a-soul-id-character — Soul ID training requirements, prompting rules, model-family compatibility
-- https://higgsfield.ai/blog/higgsfield-global-film-festival — Global Film Festival official rules, prize pool, timeline, submission requirements
+- https://higgsfield.ai/blog/higgsfield-global-film-festival — Global Film Festival official rules: production constraints and submission requirements
 
 ## Platform guides & explainers
 - https://www.thehypemagazine.com/2026/10/09/what-is-higgsfield-ai-uses-features-pricing/ — Higgsfield plans, credit yields, Cinema Studio features, Soul ID/HEX, Marketing Studio
@@ -1199,11 +1180,11 @@ Every source consulted, grouped by section, with what was pulled from it.
 - https://github.com/bfnel2/higgsfield-ai-prompt-skill/blob/HEAD/mnt/user-data/outputs/higgsfield/skills/higgsfield-soul/SKILL.md — Soul ID reference (mirror)
 
 ## Festival coverage & strategy
-- https://aivideosensei.com/guides/higgsfield-global-film-festival-guide — festival entry strategy, prize-tier math, jury analysis
+- https://aivideosensei.com/guides/higgsfield-global-film-festival-guide — competition-entry production guide
 - https://medium.com/@sanwsman7/i-didnt-believe-ai-could-make-a-real-film-until-i-tried-higgsfield-ai-de0b4ee68072 — festival overview, open-sourced Higgsfield films
-- https://www.linkedin.com/posts/the-ai-journal_ai-aifilmmaking-higgsfield-activity-7490768602418253824-Ofvk — $1M festival announcement coverage
+- https://www.linkedin.com/posts/the-ai-journal_ai-aifilmmaking-higgsfield-activity-7490768602418253824-Ofvk — competition announcement coverage
 - https://www.youtube.com/watch?v=babNcxpwnx0 — Action Contest winner reveal (8,752 submissions, 139 countries)
-- https://www.youtube.com/watch?v=ZoqzD_NMa4w — "CUPID" (2nd place, $100K)
+- https://www.youtube.com/watch?v=ZoqzD_NMa4w — "CUPID" (competition finalist)
 - https://kessler-prod.reta52d8.eas.morningstar.com/news/pr-newswire/20260318cn13709/the-largest-ai-film-competition-highlights-emerging-trends-in-global-ai-filmmaking — Action Contest results and jury
 
 ## Craft & prompting
@@ -1224,9 +1205,8 @@ Every source consulted, grouped by section, with what was pulled from it.
 - https://thinkdiffusion.studio/one-last-wish-by-edmond-yang/ — "One Last Wish" (Odyssey S2 Narrative Gold), 48-hour production
 - https://newsbywire.com/?nbw-download=pdf&nbw-post=115189 — Reply AIFF 2026 results
 - https://www.shootonline.com/article/film-festival-showcases-what-ai-can-do-on-the-big-screen/ — AIFF 2025 field and finalists
-- https://www.tbsnews.net/splash/100000-odyssey-groks-ai-epic-anything-historically-accurate-1546781 — Grok "Odyssey" $100K winner controversy (cautionary)
+- https://www.tbsnews.net/splash/100000-odyssey-groks-ai-epic-anything-historically-accurate-1546781 — Grok "Odyssey" winner controversy (cautionary: consistency is the floor)
 - https://qazinform.com/news/aaiff-2026-winners-share-stories-behind-their-ai-generated-films-163b82 — AAIFF 2026 winners (8,067 entries)
-- https://www.bottlerocketcontent.com/higgsfield-global-film-festival-1-million/ — $1M festival details
 - https://higgsfieldglobalfilmfestival.com/ — official festival site
 
 ## Credit economics (deep research, 2026-10-10)
@@ -1240,4 +1220,3 @@ Every source consulted, grouped by section, with what was pulled from it.
 - https://www.youtube.com/watch?v=3inS3sCunaA — resolution ladder + previs credit savings
 
 ## Pending
-- Higgsfield Global Film Festival $1M winners (announced end of Oct 2026) — check https://higgsfieldglobalfilmfestival.com/ after announcement and add the winning breakdowns here.

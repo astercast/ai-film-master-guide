@@ -32,4 +32,4 @@ Coastal town, dawn: drone pull-back + fishing boat detail, 12 seconds, cool grad
 
 ## Pitfalls
 
-- The 45-second travelogue opening — festivals fast-forward it.
+- The 45-second travelogue opening — judges fast-forward it.

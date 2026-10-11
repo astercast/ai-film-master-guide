@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Competition-entry craft — AI Film Master Guide</title>
+  <meta name="description" content="Judged AI-film competitions are a production teacher, not a lottery ticket. This chapter is about what their constraints and judging criteria teach you about ma">
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/docs.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="../index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="../index.html">Guide</a>
+        <a href="../skills.html">Skills</a>
+        <a href="../api.html">API</a>
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">⌘K</span> Search
+      </button>
+    </div>
+  </header>
+  <div class="container docs-layout">
+    <nav class="docs-nav" aria-label="Chapters"><details open><summary>Higgsfield</summary><ul><li><a href="../higgsfield/platform-mastery.html">Higgsfield Platform Mastery</a></li><li><a href="../higgsfield/prompt-engineering.html">Higgsfield Prompt Engineering</a></li><li><a href="../higgsfield/soul-id-deep-dive.html">Soul ID Deep Dive</a></li><li><a href="../higgsfield/competition-entry-craft.html">Competition-entry craft</a></li></ul></details>
+<details open><summary>Craft</summary><ul><li><a href="../craft/story-structure.html">Story Structure for AI Short Films</a></li><li><a href="../craft/cinematic-language.html">Cinematic Language</a></li><li><a href="../craft/character-consistency.html">Character Consistency</a></li><li><a href="../craft/directing-performance.html">Directing Performance in AI Video</a></li><li><a href="../craft/color-grading.html">Color Grading AI Footage</a></li><li><a href="../craft/sound-music-audio.html">Sound, Music & Audio</a></li><li><a href="../craft/editing-pipeline.html">Editing Pipeline</a></li><li><a href="../craft/long-form-pipeline.html">The Long-Form Pipeline: Making AI Films at 20+ Minutes</a></li></ul></details>
+<details open><summary>Platforms</summary><ul><li><a href="../platforms/field-guide.html">AI Video Platform Field Guide</a></li><li><a href="../platforms/when-to-use-what.html">When to Use What</a></li></ul></details>
+<details open><summary>Economics</summary><ul><li><a href="../economics/credit-math.html">Credit Math</a></li></ul></details>
+<details open><summary>Case Studies</summary><ul><li><a href="../case-studies/competition-teardowns.html">Competition teardowns</a></li><li><a href="../case-studies/entry-craft-teardowns.html">Entry Craft Teardowns: How the Winning Films Were Actually Made</a></li></ul></details>
+<details open><summary>Sources</summary><ul><li><a href="../sources/source-index.html">Source Index</a></li></ul></details></nav>
+    <main id="main" class="docs-main">
+      <div class="progress-bar" aria-hidden="true"><span></span></div>
+      <p class="crumb"><a href="../index.html">Guide</a> / Higgsfield</p>
+      <article class="prose"><h1 id="competition-entry-craft">Competition-entry craft</h1>
+<p>Judged AI-film competitions are a production teacher, not a lottery ticket. This chapter is about what their constraints and judging criteria teach you about making professional work — whether or not you ever enter one.</p>
+<h2 id="why-competitions-are-worth-studying">Why competitions are worth studying</h2>
+<p>A competition hands you three things most productions never get:</p>
+<ol>
+<li><strong>Hard constraints</strong> — runtime limits, delivery specs, content rules. Constraints are a forcing function for craft: every decision the rules make for you is a decision you can&#x27;t get wrong.</li>
+<li><strong>A published quality bar</strong> — judging criteria tell you exactly what experienced eyes score: directing, craft, sound, originality. That&#x27;s a checklist you can aim any film at.</li>
+<li><strong>A body of judged work</strong> — winning entries are public. Shot-by-shot teardowns of what placed are the cheapest film school available (see <code>case-studies/competition-teardowns.md</code>).</li>
+</ol>
+<h2 id="the-constraint-set-that-shapes-production">The constraint set that shapes production</h2>
+<p>Real competition rulebooks converge on the same production discipline. Treat each as a standing habit:</p>
+<ul>
+<li><strong>Runtime discipline.</strong> Competitions cap entries at a few minutes. The craft lesson: a 3-minute film that lands beats a 10-minute film that drifts. Budget your runtime like your credits — every shot must earn its seconds.</li>
+<li><strong>Delivery specs are real.</strong> Watermarks, packshots, aspect ratios, masters. The craft lesson: professional delivery is a package, not a file. Build your delivery checklist before you lock picture (see <code>skills/delivery/</code>).</li>
+<li><strong>Rights hygiene.</strong> Competition rules typically require AI-generated music/voice/sound with rights held by the creator. The craft lesson: clear every asset&#x27;s rights at generation time, not at delivery. Keep the receipts in your asset registry.</li>
+<li><strong>Likeness safety.</strong> &quot;No real person&#x27;s face or voice&quot; is a common rule — not even your own. The craft lesson: never build a film on likeness you can&#x27;t clear. Synthetic characters and Soul IDs are the safe default.</li>
+<li><strong>Small teams, async.</strong> Winning entries are routinely made by 2–4 people across time zones. The craft lesson: a tight team with a shared asset registry beats a large team with a group chat.</li>
+</ul>
+<h2 id="what-juries-actually-reward">What juries actually reward</h2>
+<p>Across Runway AIFF, Project Odyssey, Reply AIFF, the Higgsfield Action Contest, and MIT&#x27;s hackathon, judges reward the same things: <strong>story over spectacle, authorial intent, character/POV discipline, originality, sound design, and polish as the floor.</strong> They punish: visible morphing/inconsistency, generic &quot;AI slop,&quot; tech demos without narrative, and AI that pulls focus from the story.</p>
+<p>Distilled: narrative cohesion + committed POV + intentional AI use + pro-grade sound + consistent visuals. Originality is the tiebreaker; polish is the entry ticket.</p>
+<p>Direct for that jury — story, cinematography, craft — not for the AI-tools audience. The film that wins is the one that would work if nobody knew how it was made.</p>
+<h2 id="craft-patterns-from-judged-work">Craft patterns from judged work</h2>
+<p>Higgsfield&#x27;s Action Contest (8,752 submissions, 139 countries) shows what experienced filmmakers do with AI:</p>
+<ul>
+<li><strong>&quot;GRANDMA vs WASP&quot;</strong> — Muhannad Nassar &amp; Simon Meyer. The makers never met in person; fully async workflow across time zones. <em>Lesson:</em> decentralized production works when the asset pipeline is disciplined.</li>
+<li><strong>&quot;CUPID&quot;</strong> — Shestak Nikolay, actor/filmmaker. Concepts that would need prohibitive traditional budgets. <em>Lesson:</em> AI used for impossible scale, not novelty.</li>
+<li><strong>&quot;SCRATCH&quot;</strong> — Ash &amp; Aram Gevorkyan, made in <strong>five days</strong>. Director + 3D/VFX generalist duo; production value audiences mistook for a studio trailer. <em>Lesson:</em> a tight team with real craft compresses schedules AI can&#x27;t compress alone.</li>
+</ul>
+<p>Pattern: experienced filmmakers using AI for impossible scale, tight teams, real craft — not tech demos.</p>
+<h2 id="study-the-open-sourced-winners">Study the open-sourced winners</h2>
+<p>Higgsfield open-sourced three of its own AI films with every prompt, camera setting, and asset published. Before spending a credit, study a complete production&#x27;s actual prompts and settings — it&#x27;s the closest thing to sitting in someone else&#x27;s edit bay.</p>
+<h2 id="competition-entry-delivery-checklist">Competition-entry delivery checklist</h2>
+<ul class="task-list">
+<li><input type="checkbox" disabled aria-hidden="true"> Final cut locked to the runtime cap, master to spec (aspect, watermark/packshot if required)</li>
+<li><input type="checkbox" disabled aria-hidden="true"> All music/voice/sound rights cleared and documented in the asset registry</li>
+<li><input type="checkbox" disabled aria-hidden="true"> No uncleared likeness anywhere in the film</li>
+<li><input type="checkbox" disabled aria-hidden="true"> Credits and key art treated as craft, not an afterthought</li>
+<li><input type="checkbox" disabled aria-hidden="true"> Team roles and handoffs defined before production starts</li>
+</ul>
+<h2 id="sources">Sources</h2>
+<ul>
+<li>https://higgsfield.ai/blog/higgsfield-global-film-festival</li>
+<li>https://aivideosensei.com/guides/higgsfield-global-film-festival-guide</li>
+<li>https://medium.com/@sanwsman7/i-didnt-believe-ai-could-make-a-real-film-until-i-tried-higgsfield-ai-de0b4ee68072</li>
+<li>https://www.youtube.com/watch?v=babNcxpwnx0 (Action Contest winner reveal)</li>
+<li>https://www.youtube.com/watch?v=ZoqzD_NMa4w (&quot;CUPID&quot;)</li>
+</ul></article>
+      <nav class="prevnext" aria-label="Next and previous chapters"><a class="btn" href="../higgsfield/soul-id-deep-dive.html" rel="prev">← Soul ID Deep Dive</a><a class="btn" href="../craft/story-structure.html" rel="next">Story Structure for AI Short Films →</a></nav>
+    </main>
+    <aside class="docs-toc" aria-label="On this page"><p class="toc-h">On this page</p><ul><li class="toc-l2"><a href="#why-competitions-are-worth-studying">Why competitions are worth studying</a></li><li class="toc-l2"><a href="#the-constraint-set-that-shapes-production">The constraint set that shapes production</a></li><li class="toc-l2"><a href="#what-juries-actually-reward">What juries actually reward</a></li><li class="toc-l2"><a href="#craft-patterns-from-judged-work">Craft patterns from judged work</a></li><li class="toc-l2"><a href="#study-the-open-sourced-winners">Study the open-sourced winners</a></li><li class="toc-l2"><a href="#competition-entry-delivery-checklist">Competition-entry delivery checklist</a></li><li class="toc-l2"><a href="#sources">Sources</a></li></ul></aside>
+  </div>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer"><a href="../index.html">Guide</a><a href="../api.html">API</a></nav>
+    </div>
+  </footer>
+  <button type="button" class="back-to-top" aria-label="Back to top">↑</button>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
+    <div class="palette-box">
+      <input id="palette-input" type="search" placeholder="Search chapters, prompts, models…" autocomplete="off" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="../assets/js/palette.js"></script>
+  <script src="../assets/js/docs.js"></script>
+</body>
+</html>

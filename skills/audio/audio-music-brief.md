@@ -19,7 +19,7 @@ Original score on an AI budget.
 1. Brief per cue: genre, tempo, instrumentation, emotional job, what to avoid.
 2. Generate 3–5 variants per cue; comp sections like a score.
 3. Keep stems when possible — dialogues duck under full mixes badly.
-4. Festival rule: AI-generated music with rights held — document it.
+4. Competition rule: AI-generated music with rights held — document it.
 
 ## Worked example
 
@@ -27,7 +27,7 @@ Climax cue brief: 'orchestral hybrid, 110 BPM, strings + pulse, dread → triump
 
 ## API references
 
-- `api/v1/festivals.json`
+- `api/v1/competitions.json`
 
 ## Pitfalls
 

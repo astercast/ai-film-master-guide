@@ -1,6 +1,6 @@
 # Entry Craft Teardowns: How the Winning Films Were Actually Made
 
-The companion chapter lists *who won and why*. This one is the *how* — the production techniques behind festival-winning entries, broken into steps you can copy. Every teardown follows the same shape: **the technique**, **the craft principle**, **copy it** (actionable steps), and the **budget/time footprint** where it's documented.
+The companion chapter lists *what placed and why*. This one is the *how* — the production techniques behind judged entries, broken into steps you can copy. Every teardown follows the same shape: **the technique**, **the craft principle**, **copy it** (actionable steps), and the **budget/time footprint** where it's documented.
 
 ## 1. The async remote workflow — "GRANDMA vs WASP" ($150K, Higgsfield Action Contest)
 
@@ -51,7 +51,7 @@ The companion chapter lists *who won and why*. This one is the *how* — the pro
 **The craft principle.** A strong, committed art style is a *consistency strategy*. Painterly motion, rice-paper grain, and stop-motion stepping all hide the seams that photorealism exposes. Judges reward authored intent: pick a lane and commit so hard the style becomes the film's identity.
 
 **Copy it.**
-- Choose your style for what it *forgives*, not just what it looks like. Ask: "what breaks when this style drifts 5%?" If the answer is "nothing visible," it's a good festival style.
+- Choose your style for what it *forgives*, not just what it looks like. Ask: "what breaks when this style drifts 5%?" If the answer is "nothing visible," it's a good judged-category style.
 - Lock the style in one sentence and put it verbatim in every prompt ([STYLE] block discipline).
 - Add the texture in a separate pass: film grain, paper texture, brushstroke overlays in post unify generations from different models.
 - For stylized work, use the animated prompt register — no lens or DOF language (see `prompt-engineering.md`).
@@ -74,7 +74,7 @@ The companion chapter lists *who won and why*. This one is the *how* — the pro
 
 ## 6. The long-form discipline — "Oneiric" (20 min) and "Total Pixel Space" (9:28, Runway AIFF 2025 Grand Prix)
 
-**The technique.** "Oneiric" ran a 20-minute drama through Cinema Studio with open-sourced everything: every Seedance asset and prompt, Claude skills for scripting/acting/prompting, a color-coded Diagram Skill frame map tracking every shot, and a consistent-lens-look trick for visual unity. (Correction: earlier versions of this guide repeated a "Cannes premiere" claim for Oneiric — dedicated research found no source for it. It was made for Higgsfield's own $1M festival; the Cannes-adjacent screening was *Hell Grind's*, a third-party industry showcase, not an official selection.) "Total Pixel Space" spent over a year in production generating tens of thousands of images for a 9-minute essay film.
+**The technique.** "Oneiric" ran a 20-minute drama through Cinema Studio with open-sourced everything: every Seedance asset and prompt, Claude skills for scripting/acting/prompting, a color-coded Diagram Skill frame map tracking every shot, and a consistent-lens-look trick for visual unity. (Correction: earlier versions of this guide repeated a "Cannes premiere" claim for Oneiric — dedicated research found no source for it. It was made for Higgsfield's own film festival; the Cannes-adjacent screening was *Hell Grind's*, a third-party industry showcase, not an official selection.) "Total Pixel Space" spent over a year in production generating tens of thousands of images for a 9-minute essay film.
 
 **The craft principle.** Long-form AI filmmaking is *asset management*, not prompting. The winners built production systems — frame maps, skill libraries, lens-look rules — that let hundreds of generations cohere. Time in pre-production and systems pays back exponentially at 10+ minutes.
 
@@ -89,7 +89,7 @@ The companion chapter lists *who won and why*. This one is the *how* — the pro
 
 ## 7. The floor — what kills entries
 
-The cautionary case: a $100,000 grand prize went to a film with three-eyed cyclopses, size-shifting characters, and feet-for-hands. Press called it a showcase of AI filmmaking's current limits. **A big prize does not forgive broken continuity.** Across every festival in the companion chapter, judges punish the same things: visible morphing, generic AI slop, tech demos without narrative, and AI that pulls focus from the story.
+The cautionary case: a hyped contest winner had three-eyed cyclopses, size-shifting characters, and feet-for-hands. Press called it a showcase of AI filmmaking's current limits. **No hype forgives broken continuity.** Across every festival in the companion chapter, judges punish the same things: visible morphing, generic AI slop, tech demos without narrative, and AI that pulls focus from the story.
 
 **Copy it (in reverse).** Before submitting, run the entry-killer audit:
 - [ ] No morphing faces, extra limbs, or shifting wardrobe across cuts
@@ -111,8 +111,8 @@ The cautionary case: a $100,000 grand prize went to a film with three-eyed cyclo
 
 ## Sources
 
-- Companion chapter: `case-studies/festival-winners.md` (full winner list + sources)
-- Higgsfield $1M festival rules: https://higgsfield.ai/blog/higgsfield-global-film-festival
+- Companion chapter: `case-studies/competition-teardowns.md` (judged-work teardowns + sources)
+- Higgsfield film festival rules (production constraints): https://higgsfield.ai/blog/higgsfield-global-film-festival
 - Open-source reference projects: Hell Grind, Zephyr, Cully Hill Boys (via festival blog)
 - "Oneiric" production notes: Mashrabov LinkedIn frame-map writeup (via mega-research report)
 - "Passport Rush" hybrid pipeline: completeaitraining (via mega-research report)

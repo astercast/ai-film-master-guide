@@ -24,11 +24,11 @@ SECTIONS = [
 ]
 
 CHAPTER_ORDER = {
-    "higgsfield": ["platform-mastery", "prompt-engineering", "soul-id-deep-dive", "100k-festival-playbook"],
+    "higgsfield": ["platform-mastery", "prompt-engineering", "soul-id-deep-dive", "competition-entry-craft"],
     "craft": ["story-structure", "cinematic-language", "character-consistency", "directing-performance", "color-grading", "sound-music-audio", "editing-pipeline", "long-form-pipeline"],
     "platforms": ["field-guide", "when-to-use-what"],
     "economics": ["credit-math"],
-    "case-studies": ["festival-winners", "entry-craft-teardowns"],
+    "case-studies": ["competition-teardowns", "entry-craft-teardowns"],
     "sources": ["source-index"],
 }
 
@@ -97,7 +97,7 @@ INDEX_TMPL = """<!DOCTYPE html>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AI Film Master Guide — Professional AI Filmmaking</title>
-  <meta name="description" content="The master guide to professional AI filmmaking: Higgsfield mastery, pro craft, animated and photorealistic tracks, festival playbooks, and a machine-readable API.">
+  <meta name="description" content="The master guide to professional AI filmmaking: Higgsfield mastery, pro craft, animated and photorealistic tracks, competition-entry craft, and a machine-readable API.">
   {css}
 </head>
 <body>
@@ -121,9 +121,9 @@ INDEX_TMPL = """<!DOCTYPE html>
   <main id="main">
     <section class="hero hero-film" aria-labelledby="hero-title">
       <div class="container hero-inner">
-        <span class="hero-kicker">Festival-grade AI filmmaking</span>
+        <span class="hero-kicker">Professional AI filmmaking</span>
         <h1 id="hero-title">Make films with AI<br><span class="accent">like a studio.</span></h1>
-        <p class="lede">Eighteen chapters on Higgsfield mastery, professional craft, directing performance, color grading, sound, economics, long-form pipelines, and festival playbooks — with separate tracks for animated/stylized and photorealistic production. Plus a machine-readable API and 180 task skills for agents.</p>
+        <p class="lede">Eighteen chapters on Higgsfield mastery, professional craft, directing performance, color grading, sound, economics, long-form pipelines, and competition-entry craft — with separate tracks for animated/stylized and photorealistic production. Plus a machine-readable API and 180 task skills for agents.</p>
         <div class="stat-strip">
           <div class="stat"><div class="stat-value">18</div><div class="stat-label">Chapters</div></div>
           <div class="stat"><div class="stat-value">31</div><div class="stat-label">Prompt templates</div></div>
@@ -140,7 +140,7 @@ INDEX_TMPL = """<!DOCTYPE html>
       <div class="track-grid">
         <article class="card track-card">
           <h3>Animated / Stylized</h3>
-          <p>Anime, Ghibli-style, Pixar-style 3D, 2D cartoon, claymation. Cheaper, more forgiving, dedicated festival lanes — with its own prompt register (no lens or DOF language) and model shortlist.</p>
+          <p>Anime, Ghibli-style, Pixar-style 3D, 2D cartoon, claymation. Cheaper, more forgiving, dedicated judged categories — with its own prompt register (no lens or DOF language) and model shortlist.</p>
           <div class="btn-row">
             <a class="btn btn-sm" href="higgsfield/prompt-engineering.html">Prompt engineering</a>
             <a class="btn btn-sm" href="platforms/when-to-use-what.html">Model selection</a>
@@ -148,7 +148,7 @@ INDEX_TMPL = """<!DOCTYPE html>
         </article>
         <article class="card track-card">
           <h3>Photorealistic</h3>
-          <p>Premium models, identity discipline, and post-production craft to pass for real. The festival-winning lane for drama, action, and trailer-grade work.</p>
+          <p>Premium models, identity discipline, and post-production craft to pass for real. The craft lane for drama, action, and trailer-grade work.</p>
           <div class="btn-row">
             <a class="btn btn-sm" href="higgsfield/soul-id-deep-dive.html">Soul ID deep dive</a>
             <a class="btn btn-sm" href="craft/character-consistency.html">Character consistency</a>
@@ -173,10 +173,10 @@ INDEX_TMPL = """<!DOCTYPE html>
           </ol>
         </article>
         <article class="card path-card">
-          <h3>Festival entry <span class="path-time">2–4 weeks</span></h3>
-          <p>Built to place. Every chapter judges actually score.</p>
+          <h3>Competition-ready craft <span class="path-time">2–4 weeks</span></h3>
+          <p>What judged competitions teach about production. The craft bar, taught by the judging table.</p>
           <ol class="path-steps">
-            <li><a href="higgsfield/100k-festival-playbook.html">Festival playbook</a></li>
+            <li><a href="higgsfield/competition-entry-craft.html">Competition-entry craft</a></li>
             <li><a href="craft/directing-performance.html">Directing performance</a></li>
             <li><a href="craft/color-grading.html">Color grading</a></li>
             <li><a href="craft/sound-music-audio.html">Sound &amp; music</a></li>
@@ -185,7 +185,7 @@ INDEX_TMPL = """<!DOCTYPE html>
         </article>
         <article class="card path-card">
           <h3>Animated / stylized <span class="path-time">1–2 weeks</span></h3>
-          <p>Cheaper, more forgiving, dedicated festival lanes.</p>
+          <p>Cheaper, more forgiving, dedicated judged categories.</p>
           <ol class="path-steps">
             <li><a href="higgsfield/prompt-engineering.html">Prompt engineering</a> <span class="path-note">animated register</span></li>
             <li><a href="craft/cinematic-language.html">Cinematic language</a></li>

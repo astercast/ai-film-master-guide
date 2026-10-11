@@ -1,6 +1,6 @@
 ---
 name: technique-photoreal-character
-description: A real script + locked POV: the festival-winning photoreal lane.
+description: A real script + locked POV: the character-first photoreal lane.
 ---
 
 # Direct a photoreal character piece

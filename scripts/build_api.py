@@ -2,7 +2,7 @@
 """Build api/v1/*.json for the AI Film Master Guide.
 
 Usage: python3 scripts/build_api.py
-Sources: research artifacts (mega-research 2026-10-10) + hand-authored festivals.
+Sources: research artifacts (mega-research 2026-10-10) + hand-authored competitions.
 Outputs are committed so the API is static and versioned.
 """
 import json
@@ -95,37 +95,51 @@ def parse_glossary():
     return terms
 
 
-def festivals():
+def competitions():
     # Hand-authored from the verified mega-research report (2026-10-10).
-    # Winners were NOT announced at research time — status reflects that.
+    # Competitions are craft references only: what they judge, the production
+    # constraints their rules teach, and the craft lessons their judged work
+    # demonstrates. No prizes, deadlines, or promotional material.
     return [{
         "id": "higgsfield-global-film-festival-2026",
-        "name": "$1M Higgsfield Global Film Festival",
-        "status": "winners_pending",
-        "status_note": "Winners not announced at research time; expected end of October 2026. Check higgsfieldglobalfilmfestival.com.",
-        "prizes": {
-            "first": 500000, "second": 200000, "third": 100000,
-            "audience_choice": 100000, "honorable_mention_each": 10000,
-            "honorable_mention_count": 10, "currency": "USD",
-        },
-        "jury": ["Edwin Catmull", "Phedon Papamichael", "Paul W.S. Anderson"],
-        "criteria": ["directing & storytelling", "visual craft", "sound & editing", "originality & concept"],
-        "timeline": {
-            "opened": "2026-08-10T14:00:00-07:00",
-            "deadline": "2026-09-15T23:59:59Z",
-            "screening_shortlist": "2026-09-16 to 2026-10-05",
-            "jury_review": "2026-10-06 to 2026-10-11",
-            "winners_expected": "end of October 2026",
-        },
-        "rules": [
-            "Minimum 3:00 runtime (recommended max 5:00)",
-            "16:9 or 21:9 aspect ratio",
-            "All video/image generation on higgsfield.ai",
-            "No real person's face or voice as input (even your own)",
-            "Music, voice, and SFX must be AI-generated; creator holds rights",
-            "Submission must carry watermark + packshot, plus a public social post of the film",
+        "name": "Higgsfield Global Film Festival",
+        "what_it_judges": ["directing & storytelling", "visual craft",
+                           "sound & editing", "originality & concept"],
+        "production_constraints": [
+            "Short-form runtime cap (3-5 minutes) — runtime discipline",
+            "16:9 or 21:9 aspect ratio — delivery spec discipline",
+            "All video/image generation on the platform — tool-constraint fluency",
+            "No real person's face or voice as input, even your own — likeness safety",
+            "Music, voice, and SFX AI-generated; creator holds rights — rights hygiene",
+            "Submission carries watermark + packshot — delivery-package discipline",
+        ],
+        "craft_lessons": [
+            "Judges reward story over spectacle, authorial intent, POV discipline, originality, sound design; polish is the floor.",
+            "Sound is scored — a film with designed sound beats a silent film at equal visuals.",
+            "Small async teams (2-4) win when the asset pipeline is disciplined.",
+            "AI used for impossible scale beats AI used for novelty.",
         ],
         "sources": ["https://higgsfield.ai/blog/higgsfield-global-film-festival"],
+    }, {
+        "id": "runway-aiff",
+        "name": "Runway AI Film Festival",
+        "what_it_judges": ["narrative cohesion", "committed point of view",
+                           "intentional AI use", "pro-grade sound",
+                           "consistent visuals"],
+        "production_constraints": [
+            "AI must be meaningfully used in the filmmaking process",
+            "Short-form entries",
+        ],
+        "craft_lessons": [
+            "Concept-first films win: 'Total Pixel Space' (2025) made the medium the message.",
+            "Hybrid craft wins: 'Get Me Out' (2024) shot the emotion for real, used AI only for what the budget couldn't do.",
+            "A real screenplay beats a prompt: 'A Face Only a Mother Could Love' (2026) proved character-first photorealism.",
+            "Consistency is the floor — no hype forgives broken continuity.",
+        ],
+        "sources": [
+            "https://news.artnet.com/art-world/total-pixel-space-jacob-adler-a-i-film-festival-2662774",
+            "https://www.fastcompany.com/91565229/runway-ai-film-festival",
+        ],
     }]
 
 
@@ -138,7 +152,7 @@ def main():
     templates = parse_prompt_library()
     checklists = parse_checklists()
     glossary = parse_glossary()
-    fest = festivals()
+    comps = competitions()
 
     assert len(templates) == 31, f"expected 31 prompt templates, got {len(templates)}"
     assert len(checklists) == 5, f"expected 5 checklists, got {len(checklists)}"
@@ -167,7 +181,9 @@ def main():
                "templates": templates}
     checks = {"version": VERSION, "observed": OBSERVED, "checklists": checklists}
     gloss = {"version": VERSION, "observed": OBSERVED, "terms": glossary}
-    fest_doc = {"version": VERSION, "observed": OBSERVED, "festivals": fest}
+    comps_doc = {"version": VERSION, "observed": OBSERVED,
+                 "note": "Competition records teach production discipline: constraints, judging criteria, and delivery rules. No prizes, deadlines, or promotional material are tracked here — this file is about craft.",
+                 "competitions": comps}
 
     skills_index = {}
     skills_idx_path = ROOT / "skills" / "index.json"
@@ -179,7 +195,7 @@ def main():
         "version": VERSION, "observed": OBSERVED,
         "repository": "https://github.com/astercast/ai-film-master-guide",
         "for_agents": "Start at api/v1/index.json. For task procedures, read skills/index.json and load the relevant skill file — skills are the primary agentic interface for doing work, the JSON endpoints are the data layer.",
-        "provenance": "Compiled from the 2026-10-10 mega-research pass (Higgsfield pricing page read live; festival details from the official festival blog). Unverified values are listed explicitly, never invented.",
+        "provenance": "Compiled from the 2026-10-10 mega-research pass (Higgsfield pricing page read live; competition details from official sources). Unverified values are listed explicitly, never invented.",
         "skills": {
             "directory": "skills/",
             "index": "skills/index.json",
@@ -193,7 +209,7 @@ def main():
             "camera-movements": "api/v1/camera-movements.json",
             "checklists": "api/v1/checklists.json",
             "glossary": "api/v1/glossary.json",
-            "festivals": "api/v1/festivals.json",
+            "competitions": "api/v1/competitions.json",
         },
     }
 
@@ -230,12 +246,39 @@ def main():
                 "prompt_phrasing": {"type": "string"}, "when_to_use": {"type": "string"},
             },
         },
+        "competition.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "CompetitionRecord",
+            "description": "A judged AI-film competition as a craft reference: what it judges, the production constraints its rules teach, and the craft lessons its judged work demonstrates. No prizes, deadlines, or promotional material.",
+            "type": "object",
+            "required": ["version", "observed", "competitions"],
+            "properties": {
+                "version": {"type": "string"},
+                "observed": {"format": "date"},
+                "note": {"type": "string"},
+                "competitions": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": ["id", "name", "what_it_judges", "production_constraints", "craft_lessons", "sources"],
+                        "properties": {
+                            "id": {"type": "string"},
+                            "name": {"type": "string"},
+                            "what_it_judges": {"type": "array", "items": {"type": "string"}},
+                            "production_constraints": {"type": "array", "items": {"type": "string"}},
+                            "craft_lessons": {"type": "array", "items": {"type": "string"}},
+                            "sources": {"type": "array", "items": {"type": "string", "format": "uri"}},
+                        },
+                    },
+                },
+            },
+        },
     }
 
     outputs = {
         "index.json": index, "models.json": models,
         "prompt-templates.json": prompts, "camera-movements.json": cameras,
-        "checklists.json": checks, "glossary.json": gloss, "festivals.json": fest_doc,
+        "checklists.json": checks, "glossary.json": gloss, "competitions.json": comps_doc,
     }
     for name, payload in outputs.items():
         (API / name).write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n")

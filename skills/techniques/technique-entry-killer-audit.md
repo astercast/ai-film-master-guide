@@ -7,7 +7,7 @@ description: The pre-submission audit that catches what judges punish.
 
 ## Use when
 
-Before submitting to any festival.
+Before submitting to any competition.
 
 ## Inputs
 
@@ -23,7 +23,7 @@ Before submitting to any festival.
 
 ## Worked example
 
-A $100K prize once went to a film with three-eyed cyclopses — the prize didn't forgive the continuity.
+A hyped contest winner with three-eyed cyclopses — the hype didn't forgive the continuity.
 
 ## API references
 

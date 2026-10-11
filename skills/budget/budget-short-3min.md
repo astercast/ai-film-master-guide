@@ -1,6 +1,6 @@
 ---
 name: budget-short-3min
-description: Realistic credit math for a festival-grade 3-minute film.
+description: Realistic credit math for a competition-grade 3-minute film.
 ---
 
 # Budget a 3-minute short
@@ -17,7 +17,7 @@ Planning a short before generating.
 ## Procedure
 
 1. Clean pass: 180s × rate (e.g., $0.35/s 720p = $63).
-2. Apply 5–10× for festival grade: $315–$630 realistic.
+2. Apply 5–10× for competition grade: $315–$630 realistic.
 3. Reserve 20% for the post-rough-cut supervision pass.
 4. Draft at 480p/720p; heroes only at final res.
 
@@ -31,4 +31,4 @@ Seedance 720p: $63 clean → ~$500 realistic envelope with 8× overhead.
 
 ## Pitfalls
 
-- Forgetting audio costs — small, but real at festival audio standards.
+- Forgetting audio costs — small, but real at competition audio standards.

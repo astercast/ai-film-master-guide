@@ -12,7 +12,7 @@ After selects are locked.
 ## Inputs
 
 - Locked selects
-- Delivery spec (festival 4K? social 1080p?)
+- Delivery spec (competition 4K? social 1080p?)
 
 ## Procedure
 
@@ -22,7 +22,7 @@ After selects are locked.
 
 ## Worked example
 
-40 selects → 12 heroes upscaled to 4K for festival, 28 stay 1080p. Nobody can tell in the cut.
+40 selects → 12 heroes upscaled to 4K for competition, 28 stay 1080p. Nobody can tell in the cut.
 
 ## Pitfalls
 

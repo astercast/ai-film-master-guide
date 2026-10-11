@@ -4,11 +4,11 @@
   "observed": "2026-10-10",
   "repository": "https://github.com/astercast/ai-film-master-guide",
   "for_agents": "Start at api/v1/index.json. For task procedures, read skills/index.json and load the relevant skill file — skills are the primary agentic interface for doing work, the JSON endpoints are the data layer.",
-  "provenance": "Compiled from the 2026-10-10 mega-research pass (Higgsfield pricing page read live; festival details from the official festival blog). Unverified values are listed explicitly, never invented.",
+  "provenance": "Compiled from the 2026-10-10 mega-research pass (Higgsfield pricing page read live; competition details from official sources). Unverified values are listed explicitly, never invented.",
   "skills": {
     "directory": "skills/",
     "index": "skills/index.json",
-    "count": 173,
+    "count": 180,
     "usage": "Each skill is a markdown file with frontmatter (name, description), then: Use when, Inputs, Procedure, Worked example, API references, Pitfalls. Load the skill whose task matches the user's request."
   },
   "endpoints": {
@@ -18,6 +18,6 @@
     "camera-movements": "api/v1/camera-movements.json",
     "checklists": "api/v1/checklists.json",
     "glossary": "api/v1/glossary.json",
-    "festivals": "api/v1/festivals.json"
+    "competitions": "api/v1/competitions.json"
   }
 }

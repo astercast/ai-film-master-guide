@@ -1,9 +1,9 @@
 ---
-name: festival-credit-budget
-description: Credit math for a 3–5 minute festival film.
+name: entry-credit-budget
+description: Credit math for a 3–5 minute competition entry.
 ---
 
-# Budget credits for a festival entry
+# Budget credits for a competition entry
 
 ## Use when
 
@@ -18,7 +18,7 @@ Planning spend before generating.
 ## Procedure
 
 1. Clean pass = seconds × rate. 4 min at $0.35/s (720p app) = $84 clean.
-2. Multiply by 5–10× for a festival-grade entry ($420–$840).
+2. Multiply by 5–10× for a competition-grade entry ($420–$840).
 3. Reserve 20% for the generation-supervision pass after the rough cut.
 4. Draft at 480p where the creative question allows it.
 

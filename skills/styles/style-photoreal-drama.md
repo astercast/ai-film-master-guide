@@ -7,7 +7,7 @@ description: Invisible AI: intimate, POV-locked, performance-first.
 
 ## Use when
 
-Festival drama entries.
+Competition drama entries.
 
 ## Inputs
 

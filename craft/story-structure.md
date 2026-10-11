@@ -10,7 +10,7 @@ A 3–5 minute AI film needs exactly three things:
 
 Most AI-film losers are tech demos with no second act: pretty shots, no turn. Judges (especially Oscar-caliber ones) punish this first.
 
-## The festival-short template
+## The judged-short template
 
 - **Cold open (0:00–0:30):** drop into the world mid-action. No setup, no title cards explaining the premise.
 - **Escalation (0:30–2:30):** the want meets the obstacle, pressure builds. Each shot raises the stakes or deepens the world.

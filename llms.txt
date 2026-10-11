@@ -1,7 +1,7 @@
 # AI Film Master Guide
 
 The master guide to professional AI filmmaking: Higgsfield mastery, pro craft,
-animated and photorealistic tracks, festival playbooks. Static site + API.
+animated and photorealistic tracks, competition-entry craft. Static site + API.
 Private research repo. Full text: `llms-full.txt`.
 
 ## Guide (human-readable site)
@@ -9,18 +9,23 @@ Private research repo. Full text: `llms-full.txt`.
 Generated static site in `site/` — rebuild with `python3 scripts/build_site.py`
 after editing chapters. Open `site/index.html`.
 
-- `site/index.html` — landing: track picker (animated vs photorealistic), chapter grid
-- `site/<section>/<chapter>.html` — 14 chapters with sidebar nav, table of contents, prev/next
+- `site/index.html` — landing: track picker (animated vs photorealistic), chapter grid, learning paths
+- `site/<section>/<chapter>.html` — 18 chapters with sidebar nav, table of contents, prev/next
 - `site/api.html` — human-readable API docs
+- `site/skills.html` — browsable skills library with live filter
+- `site/budget.html` — interactive credit-budget calculator
 - `site/search-index.json` — client-side search index (Ctrl+K palette)
 
 Chapters (source Markdown, also the canonical text):
-- `higgsfield/` — platform-mastery, prompt-engineering, soul-id-deep-dive, 100k-festival-playbook
-- `craft/` — story-structure, cinematic-language, character-consistency, sound-music-audio, editing-pipeline
+- `higgsfield/` — platform-mastery, prompt-engineering, soul-id-deep-dive, competition-entry-craft
+- `craft/` — story-structure, cinematic-language, character-consistency, directing-performance, color-grading, sound-music-audio, editing-pipeline, long-form-pipeline
 - `platforms/` — field-guide, when-to-use-what
 - `economics/` — credit-math
-- `case-studies/` — festival-winners
+- `case-studies/` — competition-teardowns, entry-craft-teardowns
 - `sources/` — source-index
+
+Note: competitions are covered only as craft teachers (constraints, judging
+criteria, delivery discipline). No prizes, deadlines, or promotional material.
 
 ## API (static JSON, versioned)
 
@@ -33,12 +38,12 @@ research artifacts; outputs committed).
 - `api/v1/camera-movements.json` — 22-move camera lexicon with prompt phrasing and use cases
 - `api/v1/checklists.json` — pre-production, per-shot, continuity, audio, delivery checklists
 - `api/v1/glossary.json` — 79 AI film / production terms
-- `api/v1/festivals.json` — $1M festival rules, prizes, jury, criteria, timeline; winners marked pending
-- `api/v1/schema/` — JSON Schema (draft-07) for models, prompt templates, camera movements
+- `api/v1/competitions.json` — judged competitions as craft records: what they judge, production constraints, craft lessons; no prizes or deadlines
+- `api/v1/schema/` — JSON Schema (draft-07) for models, prompt templates, camera movements, competitions
 
 ## Skills (agentic task procedures)
 
-173 skills in `skills/` — rebuild with `python3 scripts/build_skills.py`
+180 skills in `skills/` — rebuild with `python3 scripts/build_skills.py`
 (generates from `api/v1/` data + authored procedures; outputs committed).
 `skills/index.json` is the manifest: id, title, description, path per skill.
 
@@ -47,21 +52,18 @@ primary interface for *doing* work; the JSON endpoints are the data layer.
 `api/v1/index.json` points here (`repository`, `skills`, `for_agents`).
 
 Categories: prompts (31), camera (22), models (18), checklists (5),
-longform (12), techniques (7), craft (20), festival (4), workflow (8),
+longform (12), techniques (7), craft (20), entry (4), workflow (8),
 compare (10), fix (6), budget (3), delivery (3), audio (4), recipes (12),
-styles (8).
+styles (8), performance (4), grading (3).
 
 ## Key facts agents should know
 
 - Higgsfield pricing (read live 2026-10-10): Starter $19/mo annual = 270 credits;
   Plus $47/mo annual = 1,200; Ultra $99/mo annual = 3,000. Verify live before budgeting.
-- $1M festival: $500K/$200K/$100K + $100K Audience Choice + 10×$10K. Jury:
-  Edwin Catmull, Phedon Papamichael, Paul W.S. Anderson. Winners not announced
-  (expected end of Oct 2026).
 - Credit costs in `models.json` are Higgsfield credits per 5s unless noted.
+- Long-form rule: 5–20× generation overhead; assets before shots; registry as production database.
 
 ## Known limitations
 
 - Some per-model costs unverified (Seedance 2.5, Soul Cinema, Luma/Pika on
   Higgsfield) — listed in `models.json` → `unverified`.
-- Festival winners pending — `festivals.json` → `status: "winners_pending"`.

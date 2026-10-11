@@ -1,13 +1,13 @@
 ---
-name: festival-compliance-check
-description: Verify an entry against the $1M festival's hard rules before submitting.
+name: entry-competition-compliance
+description: Verify an entry against competition delivery rules before submitting.
 ---
 
-# Check festival compliance
+# Check competition delivery compliance
 
 ## Use when
 
-Before starting AND before submitting a festival entry.
+Before starting AND before submitting a competition entry.
 
 ## Inputs
 
@@ -29,7 +29,7 @@ Compliance pass on a 4:12 entry: all-Seedance ✓, no real faces ✓, AI audio w
 
 ## API references
 
-- `api/v1/festivals.json`
+- `api/v1/competitions.json`
 
 ## Pitfalls
 

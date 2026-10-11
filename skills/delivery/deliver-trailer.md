@@ -1,6 +1,6 @@
 ---
 name: deliver-trailer
-description: The 60–90s festival weapon, mastered.
+description: The 60–90s competition weapon, mastered.
 ---
 
 # Deliver a trailer master
@@ -18,7 +18,7 @@ Trailer/teaser delivery.
 
 1. 60–90s, hook/escalation/title structure.
 2. Master loud: trailers play hot — hit broadcast ceilings, don't exceed.
-3. Title card on the button image; end card with festival laurels space.
+3. Title card on the button image; end card with laurels space.
 
 ## Worked example
 

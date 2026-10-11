@@ -14,7 +14,7 @@ Base path: `api/v1/`
 | `camera-movements.json` | 22 camera moves: id, move, prompt_phrasing, when_to_use |
 | `checklists.json` | Named checklists (pre-production, per-shot, continuity, audio, delivery) with item arrays |
 | `glossary.json` | 79 terms: term + definition |
-| `festivals.json` | Festival records: prizes, jury, criteria, timeline, rules, sources, status |
+| `competitions.json` | Competition craft records: what each judged competition scores, the production constraints its rules teach, craft lessons from judged work. No prizes, deadlines, or promotional material |
 | `schema/` | JSON Schema (draft-07): `model.json`, `prompt-template.json`, `camera-movement.json` |
 
 ## Model object
@@ -63,14 +63,15 @@ Placeholders use `[BRACKETS]`; keep `[STYLE]` identical across a project.
 }
 ```
 
-## Festival object
+## Competition object
 
-`status` is `"winners_pending"` until winners are announced — do not present
-winners as known. Prizes are in USD.
+Competitions are craft references, not events coverage: `what_it_judges`,
+`production_constraints` (each paired with its transferable lesson), and
+`craft_lessons` from judged work. No prizes, deadlines, or promotional material.
 
 ## Skills
 
-173 task procedures in `skills/`, indexed by `skills/index.json`
+180 task procedures in `skills/`, indexed by `skills/index.json`
 (id, title, description, path). Each skill file has frontmatter
 (`name`, `description`) followed by: Use when, Inputs, Procedure,
 Worked example, API references, Pitfalls.
@@ -83,6 +84,6 @@ the task; use the JSON endpoints as the data layer behind it.
 
 `python3 scripts/build_api.py` rebuilds `api/v1/` from the research artifacts
 under `~/workspace/research_notes/ai-film-mega-research-20261010-0311/artifacts/`
-plus the hand-authored festival record. Commit the outputs.
+plus the hand-authored competition record. Commit the outputs.
 `python3 scripts/build_skills.py` rebuilds `skills/` from `api/v1/` data plus
 authored procedures. Commit the outputs.

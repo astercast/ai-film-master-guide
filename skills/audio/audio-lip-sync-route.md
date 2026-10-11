@@ -20,7 +20,7 @@ Any dialogue scene.
 1. Short lines (<10s): native in-prompt quotes, dialogue quoted + attributed.
 2. Long scenes: generate silent, isolate vocals, post lip-sync tools.
 3. Test one line natively before committing the scene's route.
-4. Festival check: voice must be AI-generated with rights held.
+4. Competition check: voice must be AI-generated with rights held.
 
 ## Worked example
 
@@ -29,7 +29,7 @@ Scene with 14 lines: lines 1–3 native test failed → full scene routed to pos
 ## API references
 
 - `api/v1/models.json`
-- `api/v1/festivals.json`
+- `api/v1/competitions.json`
 
 ## Pitfalls
 

@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CompetitionRecord",
+  "description": "A judged AI-film competition as a craft reference: what it judges, the production constraints its rules teach, and the craft lessons its judged work demonstrates. No prizes, deadlines, or promotional material.",
+  "type": "object",
+  "required": [
+    "version",
+    "observed",
+    "competitions"
+  ],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "observed": {
+      "format": "date"
+    },
+    "note": {
+      "type": "string"
+    },
+    "competitions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "what_it_judges",
+          "production_constraints",
+          "craft_lessons",
+          "sources"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "what_it_judges": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "production_constraints": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "craft_lessons": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uri"
+            }
+          }
+        }
+      }
+    }
+  }
+}

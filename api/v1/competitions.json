@@ -1,0 +1,59 @@
+{
+  "version": "1.0.0",
+  "observed": "2026-10-10",
+  "note": "Competition records teach production discipline: constraints, judging criteria, and delivery rules. No prizes, deadlines, or promotional material are tracked here — this file is about craft.",
+  "competitions": [
+    {
+      "id": "higgsfield-global-film-festival-2026",
+      "name": "Higgsfield Global Film Festival",
+      "what_it_judges": [
+        "directing & storytelling",
+        "visual craft",
+        "sound & editing",
+        "originality & concept"
+      ],
+      "production_constraints": [
+        "Short-form runtime cap (3-5 minutes) — runtime discipline",
+        "16:9 or 21:9 aspect ratio — delivery spec discipline",
+        "All video/image generation on the platform — tool-constraint fluency",
+        "No real person's face or voice as input, even your own — likeness safety",
+        "Music, voice, and SFX AI-generated; creator holds rights — rights hygiene",
+        "Submission carries watermark + packshot — delivery-package discipline"
+      ],
+      "craft_lessons": [
+        "Judges reward story over spectacle, authorial intent, POV discipline, originality, sound design; polish is the floor.",
+        "Sound is scored — a film with designed sound beats a silent film at equal visuals.",
+        "Small async teams (2-4) win when the asset pipeline is disciplined.",
+        "AI used for impossible scale beats AI used for novelty."
+      ],
+      "sources": [
+        "https://higgsfield.ai/blog/higgsfield-global-film-festival"
+      ]
+    },
+    {
+      "id": "runway-aiff",
+      "name": "Runway AI Film Festival",
+      "what_it_judges": [
+        "narrative cohesion",
+        "committed point of view",
+        "intentional AI use",
+        "pro-grade sound",
+        "consistent visuals"
+      ],
+      "production_constraints": [
+        "AI must be meaningfully used in the filmmaking process",
+        "Short-form entries"
+      ],
+      "craft_lessons": [
+        "Concept-first films win: 'Total Pixel Space' (2025) made the medium the message.",
+        "Hybrid craft wins: 'Get Me Out' (2024) shot the emotion for real, used AI only for what the budget couldn't do.",
+        "A real screenplay beats a prompt: 'A Face Only a Mother Could Love' (2026) proved character-first photorealism.",
+        "Consistency is the floor — no hype forgives broken continuity."
+      ],
+      "sources": [
+        "https://news.artnet.com/art-world/total-pixel-space-jacob-adler-a-i-film-festival-2662774",
+        "https://www.fastcompany.com/91565229/runway-ai-film-festival"
+      ]
+    }
+  ]
+}

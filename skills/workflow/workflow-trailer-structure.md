@@ -1,6 +1,6 @@
 ---
 name: workflow-trailer-structure
-description: Hook / escalation / title — the 60–90 second festival weapon.
+description: Hook / escalation / title — the 60–90 second competition weapon.
 ---
 
 # Structure a trailer cut

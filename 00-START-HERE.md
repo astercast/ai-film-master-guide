@@ -4,11 +4,11 @@ Read this first. It sets the standard everything else in this repo is measured a
 
 ## The goal
 
-Produce AI video at the level of a **$100,000-prize AI film festival entry**. Not "good for AI video." Good, full stop — the kind of work that holds up on a big screen next to traditionally shot films.
+Produce AI video at the level of a **judged-competition entry**. Not "good for AI video." Good, full stop — the kind of work that holds up on a big screen next to traditionally shot films.
 
 ## What the judges actually reward
 
-Distilled from festival rules, judging criteria, and winner breakdowns across the research in this repo:
+Distilled from competition rules, judging criteria, and judged-work breakdowns across the research in this repo:
 
 1. **Story first.** A tight arc beats pretty pixels. Most AI-film losers are tech demos with no second act.
 2. **Intentional camera.** Every move motivated — dolly, crane, orbit, handheld — never default drift.
@@ -22,7 +22,7 @@ Distilled from festival rules, judging criteria, and winner breakdowns across th
 Story → Shot list → Character lock (Soul ID / references)
   → Prompt craft per shot → Generation (one shot at a time, quality-checked)
   → Selects → Assembly edit → Sound design → Color → VFX touch-up
-  → Export to spec → Festival submission
+  → Export to spec → Competition delivery
 ```
 
 ## What this guide is not
