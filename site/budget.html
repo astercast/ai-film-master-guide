@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Budget calculator — AI Film Master Guide</title>
+  <meta name="description" content="Estimate the compute budget for an AI film: runtime, shot length, model, and discipline in — cost envelope out.">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/docs.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html">Guide</a>
+        <a href="api.html">API</a>
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">⌘K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="budget-title">
+      <div class="container hero-inner">
+        <span class="hero-kicker">Economics</span>
+        <h1 id="budget-title">Budget <span class="accent">calculator.</span></h1>
+        <p class="lede">Runtime, shot length, model, and discipline in — a cost envelope out. Grounded in the <a href="economics/credit-math.html">credit-math</a> chapter (third-party per-clip estimates, Oct 2026).</p>
+      </div>
+    </section>
+    <section class="container" aria-labelledby="calc-h">
+      <h2 id="calc-h">Your production</h2>
+      <div class="calc-grid">
+        <form class="card calc-form" aria-label="Budget inputs" onsubmit="return false;">
+          <div class="field">
+            <label for="b-runtime">Target runtime: <output id="b-runtime-out" for="b-runtime">4 min</output></label>
+            <input type="range" id="b-runtime" min="1" max="120" step="1" value="4">
+          </div>
+          <div class="field">
+            <label for="b-shotlen">Average shot length (seconds)</label>
+            <input class="input" type="number" id="b-shotlen" min="2" max="30" step="1" value="4">
+          </div>
+          <div class="field">
+            <label for="b-model">Model / platform</label>
+            <select class="input" id="b-model"></select>
+          </div>
+          <div class="field">
+            <label for="b-takes">Takes per keeper</label>
+            <select class="input" id="b-takes">
+              <option value="3">3 — disciplined (draft-then-hero)</option>
+              <option value="5" selected>5 — typical</option>
+              <option value="8">8 — perfectionist / action-heavy</option>
+            </select>
+          </div>
+        </form>
+        <div class="card calc-results" aria-live="polite" aria-label="Budget estimate">
+          <div class="calc-stat"><div class="calc-value" id="r-shots">—</div><div class="calc-label">Shots</div></div>
+          <div class="calc-stat"><div class="calc-value" id="r-gens">—</div><div class="calc-label">Generations</div></div>
+          <div class="calc-stat highlight"><div class="calc-value" id="r-low">—</div><div class="calc-label">Envelope low</div></div>
+          <div class="calc-stat highlight"><div class="calc-value" id="r-high">—</div><div class="calc-label">Envelope high</div></div>
+          <div class="calc-stat"><div class="calc-value" id="r-rule">—</div><div class="calc-label">$80/min rule of thumb</div></div>
+          <p class="calc-note">Per-clip costs are third-party estimates (Oct 2026) — verify live before budgeting. The envelope budgets the rejects, not just the hero renders.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer"><a href="index.html">Guide</a><a href="api.html">API</a></nav>
+    </div>
+  </footer>
+  <script src="assets/js/budget.js"></script>
+</body>
+</html>

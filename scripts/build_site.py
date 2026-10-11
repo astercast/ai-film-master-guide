@@ -219,6 +219,16 @@ INDEX_TMPL = """<!DOCTYPE html>
       {chapter_grid}
     </section>
 
+    <section class="container" aria-labelledby="calc-promo-h">
+      <div class="card calc-promo">
+        <div>
+          <h2 id="calc-promo-h">Budget your film before you spend a credit</h2>
+          <p>The interactive calculator turns runtime, shot length, model, and discipline into a cost envelope — grounded in the credit-math chapter's per-clip data.</p>
+        </div>
+        <a class="btn" href="budget.html">Open the calculator</a>
+      </div>
+    </section>
+
     <section class="container" aria-labelledby="api-h">
       <h2 id="api-h">Built for agents too</h2>
       <div class="card" style="margin-bottom:var(--space-7);">
@@ -275,6 +285,87 @@ def build_nav(chapters):
         parts.append(f"<details open><summary>{section_name}</summary><ul>{items}</ul></details>")
     return "\n".join(parts)
 
+
+BUDGET_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Budget calculator — AI Film Master Guide</title>
+  <meta name="description" content="Estimate the compute budget for an AI film: runtime, shot length, model, and discipline in — cost envelope out.">
+  {css}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html">Guide</a>
+        <a href="api.html">API</a>
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">⌘K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="budget-title">
+      <div class="container hero-inner">
+        <span class="hero-kicker">Economics</span>
+        <h1 id="budget-title">Budget <span class="accent">calculator.</span></h1>
+        <p class="lede">Runtime, shot length, model, and discipline in — a cost envelope out. Grounded in the <a href="economics/credit-math.html">credit-math</a> chapter (third-party per-clip estimates, Oct 2026).</p>
+      </div>
+    </section>
+    <section class="container" aria-labelledby="calc-h">
+      <h2 id="calc-h">Your production</h2>
+      <div class="calc-grid">
+        <form class="card calc-form" aria-label="Budget inputs" onsubmit="return false;">
+          <div class="field">
+            <label for="b-runtime">Target runtime: <output id="b-runtime-out" for="b-runtime">4 min</output></label>
+            <input type="range" id="b-runtime" min="1" max="120" step="1" value="4">
+          </div>
+          <div class="field">
+            <label for="b-shotlen">Average shot length (seconds)</label>
+            <input class="input" type="number" id="b-shotlen" min="2" max="30" step="1" value="4">
+          </div>
+          <div class="field">
+            <label for="b-model">Model / platform</label>
+            <select class="input" id="b-model"></select>
+          </div>
+          <div class="field">
+            <label for="b-takes">Takes per keeper</label>
+            <select class="input" id="b-takes">
+              <option value="3">3 — disciplined (draft-then-hero)</option>
+              <option value="5" selected>5 — typical</option>
+              <option value="8">8 — perfectionist / action-heavy</option>
+            </select>
+          </div>
+        </form>
+        <div class="card calc-results" aria-live="polite" aria-label="Budget estimate">
+          <div class="calc-stat"><div class="calc-value" id="r-shots">—</div><div class="calc-label">Shots</div></div>
+          <div class="calc-stat"><div class="calc-value" id="r-gens">—</div><div class="calc-label">Generations</div></div>
+          <div class="calc-stat highlight"><div class="calc-value" id="r-low">—</div><div class="calc-label">Envelope low</div></div>
+          <div class="calc-stat highlight"><div class="calc-value" id="r-high">—</div><div class="calc-label">Envelope high</div></div>
+          <div class="calc-stat"><div class="calc-value" id="r-rule">—</div><div class="calc-label">$80/min rule of thumb</div></div>
+          <p class="calc-note">Per-clip costs are third-party estimates (Oct 2026) — verify live before budgeting. The envelope budgets the rejects, not just the hero renders.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer"><a href="index.html">Guide</a><a href="api.html">API</a></nav>
+    </div>
+  </footer>
+  <script src="assets/js/budget.js"></script>
+</body>
+</html>
+"""
 
 def build_toc(heads):
     items = "".join(
@@ -346,6 +437,7 @@ def main():
         grid_parts.append(f'<h3 class="section-h">{section_name}</h3><div class="chapter-grid">{cards}</div>')
     (SITE / "index.html").write_text(INDEX_TMPL.format(css=css_links, chapter_grid="\n".join(grid_parts)))
     (SITE / "search-index.json").write_text(json.dumps(search_index, ensure_ascii=False))
+    (SITE / "budget.html").write_text(BUDGET_TMPL.format(css=css_links))
 
     # Bundle shared assets + API docs page into site/ so it is self-contained
     shutil.copytree(ROOT / "assets", SITE / "assets", dirs_exist_ok=True)

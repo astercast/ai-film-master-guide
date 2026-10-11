@@ -56,6 +56,10 @@ A 3–5 minute festival film at ~4 seconds per shot is 45–75 shots. At draft-t
 - **Audio-first:** lock voiceover/soundtrack before generating video — cheap audio prevents expensive timing-mismatch re-rolls.
 - **Cautionary:** one documented Higgsfield pilot burned ~$260,000 in credits over 4 days for ~8 usable shots — brute-force iteration without craft. The no-guess rule exists because of math like this.
 
+## Try it
+
+Run your numbers in the [interactive budget calculator](../budget.html) — runtime, shot length, model, and discipline in, cost envelope out.
+
 ## Sources
 - https://www.thehypemagazine.com/2026/10/09/what-is-higgsfield-ai-uses-features-pricing/
 - https://www.meltflexai.com/blog/higgsfield-alternatives

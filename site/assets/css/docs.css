@@ -66,6 +66,29 @@
   .progress-bar span, .back-to-top, .copy-btn { transition: none; }
 }
 
+/* Budget calculator */
+.calc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--space-4); margin-bottom: var(--space-7); }
+.calc-form { display: grid; gap: var(--space-4); align-content: start; }
+.calc-form .field { display: grid; gap: var(--space-2); }
+.calc-form label { font-weight: 700; font-size: 0.92rem; }
+.calc-form output { color: var(--gold); font-weight: 800; }
+.calc-form input[type="range"] { width: 100%; accent-color: var(--gold); }
+.calc-results { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: var(--space-4); align-content: start; }
+.calc-stat { border-left: 3px solid var(--line); padding-left: var(--space-3); }
+.calc-stat.highlight { border-left-color: var(--gold); }
+.calc-value { font-size: 1.9rem; font-weight: 900; letter-spacing: -0.02em; }
+.calc-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px; }
+.calc-note { grid-column: 1 / -1; font-size: 0.85rem; color: var(--muted); margin: 0; }
+
+/* Calculator promo on landing */
+.calc-promo {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: var(--space-4); margin-bottom: var(--space-7);
+  border-top: 3px solid var(--gold); padding: var(--space-5) var(--space-6);
+}
+.calc-promo h2 { font-size: 1.4rem; margin-bottom: var(--space-2); }
+.calc-promo p { color: var(--ink-dim); margin: 0; max-width: 60ch; }
+
 .section-h {
   font-size: 0.78rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase;
   color: var(--gold); margin: var(--space-6) 0 var(--space-3);
