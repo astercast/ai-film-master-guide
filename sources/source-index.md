@@ -57,4 +57,31 @@ Every source consulted, grouped by section, with what was pulled from it.
 - https://www.youtube.com/watch?v=A-KZ_A50YEs — cost-per-finished-clip methodology
 - https://www.youtube.com/watch?v=3inS3sCunaA — resolution ladder + previs credit savings
 
+## 2026 field developments (wave 12 research, 2026-10-11)
+- https://www.businesswire.com/news/home/20260527634103/en/Dreams-of-Violets-to-World-Premiere-at-Tribeca-Festival-as-the-First-Feature-Length-Live-Action-Film-Completely-Generated-by-AI-Accepted-to-a-Major-Film-Festival — Fountain 0 press release: Dreams of Violets premiere, 75 min, ~$2,000, 3 months, production stack
+- https://consequence.net/2026/05/dreams-of-violets-ai-film-tribeca-festival/ — Dreams of Violets coverage: logline, Koosha brothers, Jane Rosenthal endorsement
+- https://en.wikipedia.org/wiki/Dreams_of_Violets — film page, later rental on Fountain 0 site
+- https://qazinform.com/news/astana-ai-film-festival-crowns-winners-450000-grand-prize-goes-to-latvia-2fdcad — Astana AI Film Festival: 8,067 entries, 125 countries, $2M fund, $450K Grand Prix to The First Honest Day
+- https://anewz.tv/culture/cinema/25209/astana-ai-film-festival-names-winners-in-kazakhstan/news — Astana winners, jury (Azoulay, Srinivasan)
+- https://newsbywire.com/?nbw-download=pdf&nbw-post=115189 — Reply AI Film Festival 2026: 3,000+ shorts, 76 countries, Salvatores jury, Gaudette winner
+- https://www.fastcompany.com/91565229/runway-ai-film-festival — Runway AIFF 2026, Cannes-ban single-source mention
+- https://www.youtube.com/watch?v=BM4nF0_P_gs — AI Film Festival Tirana 2026 award ceremony (single source)
+- https://www.prnewswire.com/apac/news-releases/mega-2026-awards-creators-exploring-new-forms-of-storytelling-302903484.html — MEGA 2026: Best AI Short Film The Tale of the Peony (single press-release source)
+- https://hillpost.in/2026/09/three-day-international-shimla-film-festival-2026-concludes/169911/ — Shimla IFF adds Best AI Film (Coexistence)
+- https://www.versely.studio/blog/state-of-ai-video-oct-2026 — Oct 2026 field roundup (note: its "Kling 4.0 unannounced" line was stale; announcement is multi-sourced)
+- https://blog.laozhang.ai/en/posts/seedance-2-vs-veo-3-vs-sora-2 — no Veo 4 as of Sept 30, 2026; Veo 3.1 current
+- https://www.creativeainews.com/articles/ai-video-generation-complete-landscape-2026/ — 2026 model landscape + pricing war ($0.25–$5/10s HD, entry ~$8/mo)
+- https://www.techtimes.com/articles/328285/20260930/kling-40-promises-30-second-4k-video-broadcast-spec-coming-october-not-today.htm — Kling 4.0 announced Sept 28, 2026; Flash early access; full model expected Oct, 4K 10-bit "coming soon"
+- https://www.aiaffairs.com/technology/kuaishou-kling-4-0-30-second-video-multi-reference-control/ — Kling 4.0 announcement details (via Pandaily, Sept 29)
+- https://www.curatedai.net/tools/kling-4-0.html — Kling 4.0 spec sheet: 30s, 10 keyframes, 15 refs, stereo audio
+- https://rctv.com/posts/ai-video-weekly-roundup-2026-10-05/ — Kling 4.0 not launched as of Oct 4; Artificial Analysis leaderboard notes
+- https://gizmodo.com/best-vpn/access-sora-uk — Sora shutdown timeline (announced Mar 24, app closed Apr 26, API shut Sept 24)
+- https://www.cinemadrop.com/blog/ai-generated-movie — long-form workflow documentation (trade source: tool vendor)
+- https://blog.designhero.tv/ai-filmmaking-2/ — long-form workflow: "fix everything at the still-image stage"
+- https://www.youtube.com/watch?v=qS64CyqLcMU — ComfyUI long-form pipeline tutorial (shot-by-shot I2V, 5–30s takes)
+- https://github.com/dreamofxm/makemovie — MakeMovie open-source pipeline (Apache-2.0)
+- https://vninews.com/the-iskoon-bridge-ai-generated-gujarati-film-release-november-13/ — The Iskoon Bridge (single source)
+- http://pakistanicinema.net/2026/08/02/ainak-wala-jinn-and-the-degradation-of-art-in-film/ — Ainak Wala Jinn controversy (single source)
+- https://en.wikipedia.org/wiki/Sardar_Sarvai_Papanna_(film) — Telugu AI-assisted feature, theatrical Aug 21, 2026
+
 ## Pending

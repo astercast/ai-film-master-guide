@@ -17,6 +17,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SITE = ROOT / "site"
 
 SECTIONS = [
+    ("field", "State of the Field"),
     ("higgsfield", "Higgsfield"),
     ("craft", "Craft"),
     ("platforms", "Platforms"),
@@ -29,12 +30,13 @@ SECTIONS = [
 ]
 
 CHAPTER_ORDER = {
+    "field": ["2026-developments"],
     "higgsfield": ["platform-mastery", "prompt-engineering", "soul-id-deep-dive", "competition-entry-craft"],
     "craft": ["story-structure", "cinematic-language", "character-consistency", "directing-performance", "color-grading", "sound-music-audio", "editing-pipeline", "editing-ai-footage", "longform-pipelines", "failure-gallery", "ai-film-business"],
     "platforms": ["field-guide", "when-to-use-what"],
     "economics": ["credit-math"],
     "case-studies": ["competition-teardowns", "entry-craft-teardowns"],
-    "distribution": ["release-paths"],
+    "distribution": ["release-paths", "festival-landscape-2026"],
     "legal": ["rights-and-disclosure"],
     "sources": ["source-index"],
     "guides": ["first-short"],
@@ -231,7 +233,7 @@ INDEX_TMPL = """<!DOCTYPE html>
 
     <section class="container" aria-labelledby="paths-h">
       <h2 id="paths-h">Start here: learning paths</h2>
-      <p class="section-lede">Don't read twenty-three chapters in order. Pick your goal — each path is the shortest route through the guide that gets you there. Tick steps off as you finish them; your progress is saved in this browser.</p>
+      <p class="section-lede">Don't read twenty-six chapters in order. Pick your goal — each path is the shortest route through the guide that gets you there. Tick steps off as you finish them; your progress is saved in this browser.</p>
       <div class="path-grid">
         <article class="card path-card" data-path="first-film">
           <h3>Your first AI film <span class="path-time">a weekend</span></h3>
@@ -326,7 +328,7 @@ INDEX_TMPL = """<!DOCTYPE html>
             <li><input type="checkbox" class="path-check" id="pc-filmmaker-8" data-step="filmmaker-8" aria-label="Mark complete: Week 10, the 3-minute short"><a href="craft/longform-pipelines.html">Week 10</a> <span class="path-note">milestone: 3-minute short</span></li>
             <li><input type="checkbox" class="path-check" id="pc-filmmaker-9" data-step="filmmaker-9" aria-label="Mark complete: Week 11, competition craft"><a href="higgsfield/competition-entry-craft.html">Week 11</a> <span class="path-note">competition-entry craft</span></li>
             <li><input type="checkbox" class="path-check" id="pc-filmmaker-10" data-step="filmmaker-10" aria-label="Mark complete: Week 12, distribution and rights"><a href="distribution/release-paths.html">Week 12</a> <span class="path-note"><a href="legal/rights-and-disclosure.html">rights</a> + release plan</span></li>
-            <li><input type="checkbox" class="path-check" id="pc-filmmaker-11" data-step="filmmaker-11" aria-label="Mark complete: study the teardowns"><a href="teardown.html">Study</a> <span class="path-note">shot-by-shot teardowns, all four films</span></li>
+            <li><input type="checkbox" class="path-check" id="pc-filmmaker-11" data-step="filmmaker-11" aria-label="Mark complete: study the teardowns"><a href="teardown.html">Study</a> <span class="path-note">shot-by-shot teardowns, all five films</span></li>
             <li><input type="checkbox" class="path-check" id="pc-filmmaker-12" data-step="filmmaker-12" aria-label="Mark complete: ship the entry"><a href="case-studies/entry-craft-teardowns.html">Ship</a> <span class="path-note">milestone: competition entry submitted</span></li>
           </ol>
         </article>
@@ -1746,7 +1748,7 @@ MANIFESTO_TMPL = """<!DOCTYPE html>
     <section class="container" style="margin-bottom:var(--space-7);">
       <div class="prose">
         <h2>What this is</h2>
-        <p>A reference manual you keep open while you work — twenty-three chapters on craft, platforms, economics, and pipelines, plus the tools (budget calculator, prompt workshop, model quiz, teardowns) and the machine-readable API underneath. It is updated as the field moves: the changelog is dated, the model data is versioned, and corrections are printed, not buried.</p>
+        <p>A reference manual you keep open while you work — twenty-six chapters on craft, platforms, economics, and pipelines, plus the tools (budget calculator, prompt workshop, model quiz, teardowns) and the machine-readable API underneath. It is updated as the field moves: the changelog is dated, the model data is versioned, and corrections are printed, not buried.</p>
         <h2>What it costs</h2>
         <p>Nothing. Courses have their place — structure, community, and feedback from a working filmmaker are genuinely worth paying for, and this guide does not replace them. This is the other thing: the manual their graduates keep open after the cohort ends. The reference layer, free, forever, with no account.</p>
         <h2>Everything is sourced</h2>
@@ -2929,8 +2931,8 @@ def main():
     # New pages discoverable through the search palette
     search_index.extend([
         {"url": "teardown.html", "title": "Shot-by-shot teardowns", "section": "Tools",
-         "headings": ["Passport Rush", "ONEIRIC", "The $100K cautionary case", "Dear Upstairs Neighbors"],
-         "text": "Learn to see: shot-by-shot teardowns of Passport Rush, ONEIRIC, the Grok Odyssey $100K winner, and Google DeepMind's Dear Upstairs Neighbors — what each shot did, what worked, what broke, and the craft lesson, with labeled prompt reconstructions."},
+         "headings": ["Passport Rush", "ONEIRIC", "The $100K cautionary case", "Dear Upstairs Neighbors", "Dreams of Violets"],
+         "text": "Learn to see: shot-by-shot teardowns of Passport Rush, ONEIRIC, the Grok Odyssey $100K winner, Google DeepMind's Dear Upstairs Neighbors, and Fountain 0's Dreams of Violets — what each shot did, what worked, what broke, and the craft lesson, with labeled prompt reconstructions."},
         {"url": "manifesto.html", "title": "Manifesto", "section": "Meta",
          "headings": ["What this is", "What it costs", "Everything is sourced", "What it won't do", "How to use it", "Who it's for"],
          "text": "This is not a course: the guide's positioning — a living, free, sourced reference. What it costs, what it refuses to do (no hype, no tool worship, no secrets), and how to use it in 10 minutes or 10 hours."},

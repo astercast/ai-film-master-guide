@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "observed": "2026-10-10",
+  "observed": "2026-10-11",
   "cost_basis": "Higgsfield live pricing page https://higgsfield.ai/pricing read 2026-10-10; credits per 5s unless noted; USD derived on Plus plan ($47/1200cr = $0.0392/credit). Verify live before budgeting. Model refresh 2026-10-11: versions, launches, discontinuations and 3 new entrants verified against Oct 2026 coverage; per-model last_verified/status/what_changed/sources added.",
   "models": [
     {
@@ -71,8 +71,10 @@
       "weakness": "Premium credit cost; 30-day unlimited promos are business-plan only",
       "last_verified": "2026-10-11",
       "status": "active",
-      "what_changed": "Per-second credit cost still not in captured pricing tables — verify live. Seedance 3.0 reported (unconfirmed) Oct 2026.",
-      "sources": []
+      "what_changed": "Per-second credit cost still not in captured pricing tables — verify live. Seedance 3.0 reported (unconfirmed) Oct 2026. Third-party field notes (Oct 2026) report identity holds up to ~30s on 2.5.",
+      "sources": [
+        "https://www.versely.studio/blog/state-of-ai-video-oct-2026"
+      ]
     },
     {
       "model": "Seedance 3.0",
@@ -189,10 +191,11 @@
       "weakness": "Premium pricing; Prime 1080p = 30cr/5s",
       "last_verified": "2026-10-11",
       "status": "active",
-      "what_changed": "Launched Aug 24, 2026 (closed weights). Third-party resync notes (Aug 2026) report a ~38% price cut on base 3.0 and confirm 3.0 Prime (up to 5x faster iteration) — verify live pricing.",
+      "what_changed": "Launched Aug 24, 2026 (closed weights). Third-party resync notes (Aug 2026) report a ~38% price cut on base 3.0 and confirm 3.0 Prime (up to 5x faster iteration) — verify live pricing. Oct 2026 third-party field notes rate Wan 3.0 the budget/fast-drafting pick (from ~6 credits/shot on aggregator hosts).",
       "sources": [
         "https://medium.com/@lvntblsn/what-is-wan3-0-why-30-seconds-cost-alibaba-its-open-source-crown-12f45dd461fb",
-        "https://github.com/yzrkbys/pika-canvas/commit/4c4a782b81e4cad87590bef6a492669b8e8f04ef"
+        "https://github.com/yzrkbys/pika-canvas/commit/4c4a782b81e4cad87590bef6a492669b8e8f04ef",
+        "https://www.versely.studio/blog/state-of-ai-video-oct-2026"
       ]
     },
     {

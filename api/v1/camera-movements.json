@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "observed": "2026-10-10",
+  "observed": "2026-10-11",
   "note": "One motivated move per shot. Combine at most 2-3 bracket commands in Hailuo syntax. Avoid contradictory instructions (e.g., static + orbit). Sources: Kling official camera guide, Runway prompting docs, Veo 3.1 guide, Luma 1.6 motion list, Hailuo [command] syntax, Seedance capability map, Higgsfield WAN camera blog.",
   "movements": [
     {

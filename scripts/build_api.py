@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parent.parent
 ART = Path.home() / "workspace/research_notes/ai-film-mega-research-20261010-0311/artifacts"
 API = ROOT / "api" / "v1"
 VERSION = "1.0.0"
-OBSERVED = "2026-10-10"
+OBSERVED = "2026-10-11"
 
 
 def parse_prompt_library():
@@ -147,9 +147,13 @@ def competitions():
 
 def main():
     # Preserve hand-maintained API files this script does not generate
-    # (teardowns.json + its schema are authored by hand, not from artifacts).
+    # (teardowns.json + its schema are authored by hand, not from artifacts;
+    # model-checks.json and model-review-queue.json are maintained by the
+    # model-watch refresh loop, not from artifacts).
     preserved = {}
-    for rel in ["teardowns.json", "schema/teardown.json", "model-updates.md"]:
+    for rel in ["teardowns.json", "schema/teardown.json", "model-updates.md",
+                "model-checks.json", "model-review-queue.json",
+                "diagnoses.json", "schema/diagnosis.json"]:
         p = API / rel
         if p.exists():
             preserved[rel] = p.read_bytes()
@@ -170,7 +174,7 @@ def main():
     assert len(templates) == 47, f"expected 47 prompt templates, got {len(templates)}"
     assert len(checklists) == 5, f"expected 5 checklists, got {len(checklists)}"
     assert len(glossary) >= 60, f"expected 60+ glossary terms, got {len(glossary)}"
-    assert len(model_data["models"]) == 21
+    assert len(model_data["models"]) == 22, f"expected 22 models, got {len(model_data['models'])}"
     assert len(camera_data["lexicon"]) == 22
 
     models = {

@@ -10,8 +10,8 @@ Generated static site in `site/` — rebuild with `python3 scripts/build_site.py
 after editing chapters. Open `site/index.html`.
 
 - `site/index.html` — landing: track picker (animated vs photorealistic), chapter grid, learning paths (7: first film, competition, animated, photoreal, long-form, first 60-second short, the 90-day filmmaker)
-- `site/<section>/<chapter>.html` — 24 chapters with sidebar nav, table of contents, prev/next; every chapter shows its honest read time (200 wpm from actual word count) and prints cleanly via `@media print` (`assets/css/print.css`)
-- `site/teardown.html` — shot-by-shot teardown viewer: Passport Rush, ONEIRIC, the Grok Odyssey $100K winner, and Google DeepMind's Dear Upstairs Neighbors broken into shots (setup / what works / what breaks / craft lesson, labeled prompt reconstructions); data in `api/v1/teardowns.json`
+- `site/<section>/<chapter>.html` — 26 chapters with sidebar nav, table of contents, prev/next; every chapter shows its honest read time (200 wpm from actual word count) and prints cleanly via `@media print` (`assets/css/print.css`)
+- `site/teardown.html` — shot-by-shot teardown viewer: Passport Rush, ONEIRIC, the Grok Odyssey $100K winner, Google DeepMind's Dear Upstairs Neighbors, and Fountain 0's Dreams of Violets (75-min Tribeca 2026 AI feature, $2K budget) broken into shots (setup / what works / what breaks / craft lesson, labeled prompt reconstructions); data in `api/v1/teardowns.json`
 - `site/manifesto.html` — positioning: a living free reference, not a course; everything sourced; what it won't do
 - `site/field-guides/` — printable one-pagers generated from the guide's own data: model quick-reference (from `models.json`), prompt anatomy cheat sheet, consistency & dead-eyes checklist
 - `site/api.html` — human-readable API docs
@@ -38,8 +38,9 @@ Interactive in-context glossary: `assets/js/glossary.js` wraps the 79 `glossary.
 
 Chapters (source Markdown, also the canonical text):
 - `higgsfield/` — platform-mastery, prompt-engineering, soul-id-deep-dive, competition-entry-craft
+- `field/` — 2026-developments (Tribeca's Dreams of Violets, 2026 model field, Sora shutdown, long-form workflow consensus, India/Pakistan AI cinema)
 - `craft/` — story-structure, cinematic-language, character-consistency, directing-performance, color-grading, sound-music-audio, editing-pipeline, editing-ai-footage, longform-pipelines, failure-gallery, ai-film-business
-- `distribution/` — release-paths
+- `distribution/` — release-paths, festival-landscape-2026 (Astana's $450K Grand Prix economics, Reply/Runway/Tirana/MEGA, what wins and why)
 - `legal/` — rights-and-disclosure
 - `platforms/` — field-guide, when-to-use-what
 - `economics/` — credit-math
@@ -62,7 +63,7 @@ research artifacts; outputs committed).
 - `api/v1/checklists.json` — pre-production, per-shot, continuity, audio, delivery checklists
 - `api/v1/glossary.json` — 79 AI film / production terms
 - `api/v1/competitions.json` — judged competitions as craft records: what they judge, production constraints, craft lessons; no prizes or deadlines
-- `api/v1/teardowns.json` — shot-by-shot teardowns (Passport Rush, ONEIRIC, Grok Odyssey $100K winner, Dear Upstairs Neighbors): setup, what works, what breaks, craft lesson per shot; prompt reconstructions labeled as analytical, not actual prompts
+- `api/v1/teardowns.json` — shot-by-shot teardowns (Passport Rush, ONEIRIC, Grok Odyssey $100K winner, Dear Upstairs Neighbors, Dreams of Violets): setup, what works, what breaks, craft lesson per shot; prompt reconstructions labeled as analytical, not actual prompts
 - `api/v1/diagnoses.json` — failure-diagnosis map for the Doctor tool: 12 symptoms → craft diagnosis, fixes, repair-template link, source chapters
 - `api/v1/schema/` — JSON Schema (draft-07) for models, prompt templates, camera movements, competitions, teardowns, diagnoses
 
