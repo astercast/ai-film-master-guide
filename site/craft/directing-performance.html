@@ -22,6 +22,9 @@
       <nav class="site-nav" aria-label="Primary">
         <a href="../index.html">Guide</a>
         <a href="../skills.html">Skills</a>
+        <a href="../workshop.html">Workshop</a>
+        <a href="../changelog.html">Changelog</a>
+        <a href="../skill-spec.html">Skill spec</a>
         <a href="../api.html">API</a>
       </nav>
       <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
@@ -35,6 +38,8 @@
 <details open><summary>Platforms</summary><ul><li><a href="../platforms/field-guide.html">AI Video Platform Field Guide</a></li><li><a href="../platforms/when-to-use-what.html">When to Use What</a></li></ul></details>
 <details open><summary>Economics</summary><ul><li><a href="../economics/credit-math.html">Credit Math</a></li></ul></details>
 <details open><summary>Case Studies</summary><ul><li><a href="../case-studies/competition-teardowns.html">Competition teardowns</a></li><li><a href="../case-studies/entry-craft-teardowns.html">Entry Craft Teardowns: How the Winning Films Were Actually Made</a></li></ul></details>
+<details open><summary>Distribution</summary><ul><li><a href="../distribution/release-paths.html">Distribution & Release Paths</a></li></ul></details>
+<details open><summary>Rights & Disclosure</summary><ul><li><a href="../legal/rights-and-disclosure.html">Rights, Disclosure & Legal</a></li></ul></details>
 <details open><summary>Sources</summary><ul><li><a href="../sources/source-index.html">Source Index</a></li></ul></details></nav>
     <main id="main" class="docs-main">
       <div class="progress-bar" aria-hidden="true"><span></span></div>
@@ -105,6 +110,58 @@
 <li><strong>Cully Hill Boys</strong>: licensed likenesses with expressions and kinematics mapped from the performers&#x27; own photos and voice audio — the &quot;acting&quot; was anchored in real performers from the start</li>
 </ul>
 <p>Rule of thumb: if the scene&#x27;s entire job is one human feeling something complicated, that&#x27;s the scene to shoot for real — or to voice for real — and transform with AI.</p>
+<h2 id="restraint-by-default">Restraint by default</h2>
+<p>A whisper out-acts a shout most of the time. AI models default to theatrical — eyebrow raises, forced tears, the full soap-opera register. Strip it:</p>
+<ul>
+<li><strong>Negative constraints:</strong> tell the model what <em>not</em> to do (&quot;no eyebrow raises, no wide-eyed gasps, no tears&quot;)</li>
+<li><strong>Emotional subtext instead of stated emotion:</strong> write the situation that <em>produces</em> the feeling, not the feeling</li>
+<li><strong>Environmental cues:</strong> let weather, light, and objects carry mood so the face doesn&#x27;t have to</li>
+<li><strong>Under-direct to unlock expression:</strong> deliberately leave the face under-specified and let the model find expressions itself — over-specified faces go rigid</li>
+<li><strong>Wider framing reads more real:</strong> a pushed-in over-directed close-up exposes every flaw; ration close-ups (above) and keep them minimal when they must carry the scene</li>
+</ul>
+<h2 id="two-roads-to-dialogue">Two roads to dialogue</h2>
+<p>Every talking character goes down one of two roads:</p>
+<ul>
+<li><strong>Road A — native audio:</strong> the model generates picture plus synced dialogue in one pass (Veo 3.1, Seedance 2.0/2.5, Kling 3.0). &quot;TTS optimizes the voice. Native video models optimize the <em>moment</em>&quot; — footsteps, room tone, the pause before the sentence, expression and mouth generated as one believable moment.</li>
+<li><strong>Road B — decoupled:</strong> silent clip + separately produced voice + a dedicated lip-sync pass that reshapes only the mouth (Wav2Lip lineage: audio maps to mouth shapes directly, not via phoneme→viseme tables).</li>
+</ul>
+<p><strong>Rule of thumb:</strong> the moment a client or an exact script is involved, take Road B — you own the exact voiceover, can revise lines without re-rendering picture, and keep a clean stem.</p>
+<p><strong>Model picks for dialogue</strong> (Sept 2026 hands-on comparisons; verify live): quiet natural dialogue → Seedance 2.0; longer complete audiovisual scenes → Seedance 2.5; multi-speaker dialogue, languages, explicit voice control → Kling 3.0; cinematic ambience + AV sync → Veo 3.1. Caveat: more capability ≠ more believable acting — some users find Seedance 2.0&#x27;s restraint more film-like than 2.5&#x27;s more &quot;performed&quot; emotion. Choose the model like a casting decision.</p>
+<p><strong>Dialogue prompting that works:</strong></p>
+<ul>
+<li>Veo: write the line in quotes and attribute it — <em>&quot;The girl looks up and says, &#x27;It&#x27;s real.&#x27;&quot;</em> Unattributed dialogue gets dropped or given to the wrong character.</li>
+<li>Kling 3.0: assign lines to characters explicitly, control speaking order and delivery, multiple languages per character.</li>
+<li>Native limits are real: clip caps are short (roughly 8–15 seconds depending on model), so longer dialogue is still an edit; Google&#x27;s own docs flag that natural consistent spoken audio remains in active development and incoherent speech can occur. Plan for it.</li>
+</ul>
+<h2 id="direct-tts-voices-through-text">Direct TTS voices through text</h2>
+<p>ElevenLabs models (v3/v4) have no emotion selector for most models — you direct delivery <em>through the text itself</em>:</p>
+<ul>
+<li>Ellipsis for hesitation, dashes for interruptions, capitalization for stress</li>
+<li>Bracketed stage directions: <code>[whispering]</code>, <code>[laughs]</code>, <code>[said angrily in a French accent]</code>; v4 adds natural-language audio descriptors including environmental cues (<code>[light rain]</code>, <code>[door slams]</code>)</li>
+<li>Settings that change performance: Stability 0.4–0.6 for expressive dialogue (higher = flatter), similarity boost 0.7–0.8 for clones, style exaggeration 0–0.3 for normal dialogue</li>
+<li>Write <strong>performance arcs, not flat tones</strong>: shift intentions across a script (open serious → build insistent → close warm)</li>
+<li>Test a voice on your actual dialogue before committing it to a main character; regenerate broken lines, not whole scripts</li>
+</ul>
+<h2 id="the-dead-eyes-checklist">The dead-eyes checklist</h2>
+<p>The uncanny valley has biological markers — the specific things AI faces fail. Check for them:</p>
+<ol>
+<li><strong>Microsaccades</strong> — real eyes make 1–2 involuntary movements per second; the AI &quot;predator stare&quot; is mathematical stillness</li>
+<li><strong>The Duchenne smile</strong> — real joy contracts the eye muscles (eye crinkle); the AI &quot;Pan Am smile&quot; moves the mouth only while eyes stay static, reading as deceptive</li>
+<li><strong>Fluctuating asymmetry</strong> — real faces are subtly asymmetric; generative models average toward hyper-symmetrical faces that read as artificial</li>
+<li><strong>Pupillary response</strong> — static pupils read as &quot;soul blindness&quot;</li>
+</ol>
+<p>Practical read: <strong>teach the machine to be flawed to be accepted</strong> — prompt imperfection (asymmetry, blemishes, irregular blinking) or fix it in post. Perfect symmetry is the tell.</p>
+<h2 id="hybrid-done-honestly">Hybrid, done honestly</h2>
+<p>The estate-approved precedent: <em>As Deep as the Grave</em> recreated Val Kilmer with estate permission (children Mercedes and Jack), SAG-AFTRA guidelines followed, estate compensated, voice from pre-tracheotomy recordings. And the producer&#x27;s framing is the transferable practice — he stopped short of calling it a Val Kilmer performance: <strong>&quot;Val Kilmer influenced this performance.&quot;</strong> Honest framing for synthetic performance is itself a craft standard.</p>
+<p>The cautionary case: a synthetic performer&#x27;s live interview froze and veered into 20 seconds of Cantonese — three outlets corroborated. Synthetic performance fails in public in ways human performance doesn&#x27;t. Keep synthetic performers inside edited, controlled contexts.</p>
+<h2 id="take-workflows-rehearsal-as-a-department">Take workflows: rehearsal as a department</h2>
+<p>The AI take pipeline: <strong>Idea → Generation → Iteration → Selection → Direction → Editing.</strong> If everyone can generate, the filmmaker&#x27;s most valuable skill is direction.</p>
+<ul>
+<li><strong>Hero frame first:</strong> generate the perfect still, then animate it — cast the take visually before it performs, separating the identity decision from the performance decision</li>
+<li><strong>Scene Lock:</strong> once a take is approved, lock the performance and re-render the camera around it — the instruction changes from &quot;generate this scene from over her shoulder&quot; to <strong>&quot;photograph this exact performance from over her shoulder.&quot;</strong> The model must stop reinterpreting dialogue, gestures, pauses, props, and positions after approval. This is the closest thing AI directing has to &quot;we got it, moving on&quot;</li>
+<li><strong>Scheduled regeneration, not continuous re-rolling:</strong> the generation-supervision pass happens at a fixed point after the rough cut (ONEIRIC); version logs record &quot;version, what changed, verdict&quot; (Cully: 137 entries). Iteration is a scheduled department, not a standing reaction</li>
+<li><strong>Credit discipline:</strong> price every stage with re-roll allowances, hold a credit floor until picture lock; if spend passes plan by ~15% pre-lock, stop and re-plan</li>
+</ul>
 <h2 id="the-performance-checklist">The performance checklist</h2>
 <ul class="task-list">
 <li><input type="checkbox" disabled aria-hidden="true"> Every emotional beat rewritten as a playable tactic</li>
@@ -114,7 +171,10 @@
 <li><input type="checkbox" disabled aria-hidden="true"> Close-ups rationed to emotional peaks</li>
 <li><input type="checkbox" disabled aria-hidden="true"> Identity locked — no drift between &quot;takes&quot;</li>
 <li><input type="checkbox" disabled aria-hidden="true"> Dialogue: voice carries, face supports, listener sells</li>
+<li><input type="checkbox" disabled aria-hidden="true"> Restraint pass: negative constraints, subtext, under-directed faces</li>
+<li><input type="checkbox" disabled aria-hidden="true"> Dead-eyes check: microsaccades, Duchenne, asymmetry, pupils</li>
 <li><input type="checkbox" disabled aria-hidden="true"> Drafts reviewed as rehearsals, re-directed with changed variables</li>
+<li><input type="checkbox" disabled aria-hidden="true"> Scene Lock after approval — photograph the performance, don&#x27;t regenerate it</li>
 <li><input type="checkbox" disabled aria-hidden="true"> The emotional core scenes assessed honestly: AI or hybrid?</li>
 </ul>
 <h2 id="sources">Sources</h2>
@@ -123,16 +183,24 @@
 <li>Passport Rush breakdown: documented subtle-acting problem (official YouTube breakdown)</li>
 <li>Cully Hill Boys: licensed likeness pipeline, expressions/kinematics from performer reference (cryptobriefing.com, archyde.com)</li>
 <li>The Verge on Cully Hill Boys: &quot;occasionally weak character interactions&quot; (via magazine.mindplex.ai summary)</li>
+<li>Seedance prompt skill (petercjl/story-video-studio, GitHub — read live 2026-10-11): acting formula, restraint rule, eye-work</li>
+<li>AI video voice comparison (aibibimbap.com — read live 2026-10-11): model picks for dialogue, Road A/B framing, restraint observations</li>
+<li>VentureBeat on Runway AIFF: Get Me Out pipeline (read live 2026-10-11)</li>
+<li>ElevenLabs direction mechanics (digitaltoolify, techtimes, divineworks, unite.ai — corroborated across sources)</li>
+<li>Uncanny valley essay (Fernando Andrade, Medium, Feb 2026): hyper-symmetry, dead-eyes markers</li>
+<li>Ken Kemp (LinkedIn): Scene Lock method</li>
+<li>Sibghat Shaikh (Medium, Sept 2026): take-based pipeline</li>
+<li>Val Kilmer / As Deep as the Grave (ew.com, darkhorizons.com, screendaily.com): estate-approved synthetic performance</li>
 <li>Companion: <code>craft/character-consistency.md</code>, <code>craft/long-form-pipeline.md</code>, skills <code>craft-gaze-eyelines</code>, <code>audio-direct-voiceover</code></li>
 </ul></article>
       <nav class="prevnext" aria-label="Next and previous chapters"><a class="btn" href="../craft/character-consistency.html" rel="prev">← Character Consistency</a><a class="btn" href="../craft/color-grading.html" rel="next">Color Grading AI Footage →</a></nav>
     </main>
-    <aside class="docs-toc" aria-label="On this page"><p class="toc-h">On this page</p><ul><li class="toc-l2"><a href="#the-core-problem">The core problem</a></li><li class="toc-l2"><a href="#direct-don-t-describe">Direct, don't describe</a></li><li class="toc-l2"><a href="#give-the-eyes-a-job">Give the eyes a job</a></li><li class="toc-l2"><a href="#one-feeling-per-shot">One feeling per shot</a></li><li class="toc-l2"><a href="#the-director-s-read">The director's read</a></li><li class="toc-l2"><a href="#casting-the-face">Casting the face</a></li><li class="toc-l2"><a href="#ration-the-close-up">Ration the close-up</a></li><li class="toc-l2"><a href="#dialogue-performance">Dialogue performance</a></li><li class="toc-l2"><a href="#rehearsal-is-drafts">Rehearsal is drafts</a></li><li class="toc-l2"><a href="#when-to-go-hybrid">When to go hybrid</a></li><li class="toc-l2"><a href="#the-performance-checklist">The performance checklist</a></li><li class="toc-l2"><a href="#sources">Sources</a></li></ul></aside>
+    <aside class="docs-toc" aria-label="On this page"><p class="toc-h">On this page</p><ul><li class="toc-l2"><a href="#the-core-problem">The core problem</a></li><li class="toc-l2"><a href="#direct-don-t-describe">Direct, don't describe</a></li><li class="toc-l2"><a href="#give-the-eyes-a-job">Give the eyes a job</a></li><li class="toc-l2"><a href="#one-feeling-per-shot">One feeling per shot</a></li><li class="toc-l2"><a href="#the-director-s-read">The director's read</a></li><li class="toc-l2"><a href="#casting-the-face">Casting the face</a></li><li class="toc-l2"><a href="#ration-the-close-up">Ration the close-up</a></li><li class="toc-l2"><a href="#dialogue-performance">Dialogue performance</a></li><li class="toc-l2"><a href="#rehearsal-is-drafts">Rehearsal is drafts</a></li><li class="toc-l2"><a href="#when-to-go-hybrid">When to go hybrid</a></li><li class="toc-l2"><a href="#restraint-by-default">Restraint by default</a></li><li class="toc-l2"><a href="#two-roads-to-dialogue">Two roads to dialogue</a></li><li class="toc-l2"><a href="#direct-tts-voices-through-text">Direct TTS voices through text</a></li><li class="toc-l2"><a href="#the-dead-eyes-checklist">The dead-eyes checklist</a></li><li class="toc-l2"><a href="#hybrid-done-honestly">Hybrid, done honestly</a></li><li class="toc-l2"><a href="#take-workflows-rehearsal-as-a-department">Take workflows: rehearsal as a department</a></li><li class="toc-l2"><a href="#the-performance-checklist">The performance checklist</a></li><li class="toc-l2"><a href="#sources">Sources</a></li></ul></aside>
   </div>
   <footer class="site-footer">
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
-      <nav aria-label="Footer"><a href="../index.html">Guide</a><a href="../api.html">API</a></nav>
+      <nav aria-label="Footer"><a href="../index.html">Guide</a><a href="../skills.html">Skills</a><a href="../workshop.html">Workshop</a><a href="../budget.html">Budget</a><a href="../changelog.html">Changelog</a><a href="../skill-spec.html">Skill spec</a><a href="../api.html">API</a></nav>
     </div>
   </footer>
   <button type="button" class="back-to-top" aria-label="Back to top">↑</button>

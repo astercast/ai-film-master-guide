@@ -54,3 +54,87 @@
 #palette-results .r-title { font-weight: 700; font-size: 0.95rem; }
 #palette-results .r-meta { font-size: 0.78rem; color: var(--muted); }
 #palette-results .r-snippet { font-size: 0.85rem; color: var(--ink-dim); margin-top: 2px; }
+
+/* Learning-path progress */
+.path-steps { padding-left: 0; list-style: none; }
+.path-steps .path-check {
+  accent-color: var(--gold); width: 1.05rem; height: 1.05rem;
+  margin-right: var(--space-2); flex: none; cursor: pointer;
+}
+.path-steps li { display: flex; align-items: flex-start; margin-bottom: var(--space-2); }
+.path-steps li a { line-height: 1.35; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.path-bar {
+  height: 6px; background: var(--panel-2); border-radius: 999px; overflow: hidden;
+  margin: var(--space-3) 0 var(--space-2);
+}
+.path-bar-fill { display: block; height: 100%; width: 0%; background: var(--gold); border-radius: 999px; }
+.path-progress {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-2);
+  font-size: 0.82rem; color: var(--muted); margin-bottom: var(--space-3);
+}
+
+/* Prompt workshop */
+.workshop-grid { display: grid; gap: var(--space-5); grid-template-columns: 1fr; margin-bottom: var(--space-7); }
+@media (min-width: 900px) { .workshop-grid { grid-template-columns: 1fr 1fr; } }
+.field { margin-bottom: var(--space-4); }
+.field label { display: block; font-size: 0.85rem; font-weight: 700; color: var(--ink-dim); margin-bottom: var(--space-1); text-transform: capitalize; }
+.placeholder-grid { display: grid; gap: var(--space-2) var(--space-4); grid-template-columns: 1fr; }
+@media (min-width: 700px) { .placeholder-grid { grid-template-columns: 1fr 1fr; } }
+.placeholder-grid .field { margin-bottom: 0; }
+.prompt-preview {
+  background: var(--panel-2); border: 1px solid var(--line-soft);
+  border-radius: var(--radius-m); padding: var(--space-4);
+  white-space: pre-wrap; line-height: 1.65; font-size: 0.95rem; color: var(--ink);
+}
+.prompt-preview .fill { color: var(--gold); font-weight: 700; }
+.prompt-preview mark.unfilled {
+  background: rgba(212, 160, 2, 0.18); color: var(--gold);
+  border-radius: var(--radius-s); padding: 0 2px;
+}
+.why-list { margin: 0; }
+.why-list dt { font-weight: 700; font-size: 0.85rem; color: var(--ink); margin-top: var(--space-3); }
+.why-list dd { margin: var(--space-1) 0 0; color: var(--ink-dim); font-size: 0.92rem; }
+.copy-btn.ok { border-color: var(--gold); color: var(--gold); }
+#ws-copy.ok { border-color: var(--gold); color: var(--gold); }
+.save-card { margin-bottom: var(--space-4); }
+.save-card h3 { margin-bottom: var(--space-1); }
+.save-meta { font-size: 0.8rem; color: var(--muted); }
+.save-text { font-family: ui-monospace, monospace; font-size: 0.85rem; white-space: pre-wrap; margin-top: var(--space-2); }
+.save-actions { align-items: center; }
+.stars { display: inline-flex; gap: 2px; margin-right: var(--space-2); }
+.star {
+  background: none; border: none; cursor: pointer; font-size: 1.1rem; line-height: 1;
+  color: var(--line); padding: 2px;
+}
+.star.on { color: var(--gold); }
+.star:hover { color: var(--gold); }
+.star:focus-visible, .btn:focus-visible, .path-check:focus-visible, .input:focus-visible {
+  outline: 2px solid var(--gold); outline-offset: 2px;
+}
+
+/* Changelog */
+.change-list { list-style: none; padding: 0; margin: 0 0 var(--space-7); }
+.change-list li {
+  display: grid; grid-template-columns: 7.5rem 4.5rem 1fr; gap: var(--space-3);
+  padding: var(--space-3) 0; border-bottom: 1px solid var(--line-soft); align-items: baseline;
+}
+.change-date { font-family: ui-monospace, monospace; font-size: 0.85rem; color: var(--muted); }
+.change-hash { font-family: ui-monospace, monospace; font-size: 0.85rem; color: var(--gold); }
+.change-list li p { margin: 0; }
+@media (max-width: 560px) { .change-list li { grid-template-columns: 1fr; gap: var(--space-1); } }
+
+/* Skill-spec */
+.spec-table { width: 100%; border-collapse: collapse; margin-bottom: var(--space-6); font-size: 0.92rem; }
+.spec-table th, .spec-table td { text-align: left; padding: var(--space-2) var(--space-3); border-bottom: 1px solid var(--line-soft); vertical-align: top; }
+.spec-table th { color: var(--ink); font-size: 0.85rem; }
+.spec-table td { color: var(--ink-dim); }
+.spec-table code { color: var(--gold); }
+.example-meta { font-size: 0.85rem; color: var(--muted); margin-bottom: var(--space-3); }
+
+@media (prefers-reduced-motion: reduce) {
+  .btn, .star, .copy-btn { transition: none; }
+}

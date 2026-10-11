@@ -474,6 +474,68 @@ Some performances AI can't give you yet. The documented answer: put a real human
 
 Rule of thumb: if the scene's entire job is one human feeling something complicated, that's the scene to shoot for real — or to voice for real — and transform with AI.
 
+## Restraint by default
+
+A whisper out-acts a shout most of the time. AI models default to theatrical — eyebrow raises, forced tears, the full soap-opera register. Strip it:
+
+- **Negative constraints:** tell the model what *not* to do ("no eyebrow raises, no wide-eyed gasps, no tears")
+- **Emotional subtext instead of stated emotion:** write the situation that *produces* the feeling, not the feeling
+- **Environmental cues:** let weather, light, and objects carry mood so the face doesn't have to
+- **Under-direct to unlock expression:** deliberately leave the face under-specified and let the model find expressions itself — over-specified faces go rigid
+- **Wider framing reads more real:** a pushed-in over-directed close-up exposes every flaw; ration close-ups (above) and keep them minimal when they must carry the scene
+
+## Two roads to dialogue
+
+Every talking character goes down one of two roads:
+
+- **Road A — native audio:** the model generates picture plus synced dialogue in one pass (Veo 3.1, Seedance 2.0/2.5, Kling 3.0). "TTS optimizes the voice. Native video models optimize the *moment*" — footsteps, room tone, the pause before the sentence, expression and mouth generated as one believable moment.
+- **Road B — decoupled:** silent clip + separately produced voice + a dedicated lip-sync pass that reshapes only the mouth (Wav2Lip lineage: audio maps to mouth shapes directly, not via phoneme→viseme tables).
+
+**Rule of thumb:** the moment a client or an exact script is involved, take Road B — you own the exact voiceover, can revise lines without re-rendering picture, and keep a clean stem.
+
+**Model picks for dialogue** (Sept 2026 hands-on comparisons; verify live): quiet natural dialogue → Seedance 2.0; longer complete audiovisual scenes → Seedance 2.5; multi-speaker dialogue, languages, explicit voice control → Kling 3.0; cinematic ambience + AV sync → Veo 3.1. Caveat: more capability ≠ more believable acting — some users find Seedance 2.0's restraint more film-like than 2.5's more "performed" emotion. Choose the model like a casting decision.
+
+**Dialogue prompting that works:**
+- Veo: write the line in quotes and attribute it — *"The girl looks up and says, 'It's real.'"* Unattributed dialogue gets dropped or given to the wrong character.
+- Kling 3.0: assign lines to characters explicitly, control speaking order and delivery, multiple languages per character.
+- Native limits are real: clip caps are short (roughly 8–15 seconds depending on model), so longer dialogue is still an edit; Google's own docs flag that natural consistent spoken audio remains in active development and incoherent speech can occur. Plan for it.
+
+## Direct TTS voices through text
+
+ElevenLabs models (v3/v4) have no emotion selector for most models — you direct delivery *through the text itself*:
+
+- Ellipsis for hesitation, dashes for interruptions, capitalization for stress
+- Bracketed stage directions: `[whispering]`, `[laughs]`, `[said angrily in a French accent]`; v4 adds natural-language audio descriptors including environmental cues (`[light rain]`, `[door slams]`)
+- Settings that change performance: Stability 0.4–0.6 for expressive dialogue (higher = flatter), similarity boost 0.7–0.8 for clones, style exaggeration 0–0.3 for normal dialogue
+- Write **performance arcs, not flat tones**: shift intentions across a script (open serious → build insistent → close warm)
+- Test a voice on your actual dialogue before committing it to a main character; regenerate broken lines, not whole scripts
+
+## The dead-eyes checklist
+
+The uncanny valley has biological markers — the specific things AI faces fail. Check for them:
+
+1. **Microsaccades** — real eyes make 1–2 involuntary movements per second; the AI "predator stare" is mathematical stillness
+2. **The Duchenne smile** — real joy contracts the eye muscles (eye crinkle); the AI "Pan Am smile" moves the mouth only while eyes stay static, reading as deceptive
+3. **Fluctuating asymmetry** — real faces are subtly asymmetric; generative models average toward hyper-symmetrical faces that read as artificial
+4. **Pupillary response** — static pupils read as "soul blindness"
+
+Practical read: **teach the machine to be flawed to be accepted** — prompt imperfection (asymmetry, blemishes, irregular blinking) or fix it in post. Perfect symmetry is the tell.
+
+## Hybrid, done honestly
+
+The estate-approved precedent: *As Deep as the Grave* recreated Val Kilmer with estate permission (children Mercedes and Jack), SAG-AFTRA guidelines followed, estate compensated, voice from pre-tracheotomy recordings. And the producer's framing is the transferable practice — he stopped short of calling it a Val Kilmer performance: **"Val Kilmer influenced this performance."** Honest framing for synthetic performance is itself a craft standard.
+
+The cautionary case: a synthetic performer's live interview froze and veered into 20 seconds of Cantonese — three outlets corroborated. Synthetic performance fails in public in ways human performance doesn't. Keep synthetic performers inside edited, controlled contexts.
+
+## Take workflows: rehearsal as a department
+
+The AI take pipeline: **Idea → Generation → Iteration → Selection → Direction → Editing.** If everyone can generate, the filmmaker's most valuable skill is direction.
+
+- **Hero frame first:** generate the perfect still, then animate it — cast the take visually before it performs, separating the identity decision from the performance decision
+- **Scene Lock:** once a take is approved, lock the performance and re-render the camera around it — the instruction changes from "generate this scene from over her shoulder" to **"photograph this exact performance from over her shoulder."** The model must stop reinterpreting dialogue, gestures, pauses, props, and positions after approval. This is the closest thing AI directing has to "we got it, moving on"
+- **Scheduled regeneration, not continuous re-rolling:** the generation-supervision pass happens at a fixed point after the rough cut (ONEIRIC); version logs record "version, what changed, verdict" (Cully: 137 entries). Iteration is a scheduled department, not a standing reaction
+- **Credit discipline:** price every stage with re-roll allowances, hold a credit floor until picture lock; if spend passes plan by ~15% pre-lock, stop and re-plan
+
 ## The performance checklist
 
 - [ ] Every emotional beat rewritten as a playable tactic
@@ -483,7 +545,10 @@ Rule of thumb: if the scene's entire job is one human feeling something complica
 - [ ] Close-ups rationed to emotional peaks
 - [ ] Identity locked — no drift between "takes"
 - [ ] Dialogue: voice carries, face supports, listener sells
+- [ ] Restraint pass: negative constraints, subtext, under-directed faces
+- [ ] Dead-eyes check: microsaccades, Duchenne, asymmetry, pupils
 - [ ] Drafts reviewed as rehearsals, re-directed with changed variables
+- [ ] Scene Lock after approval — photograph the performance, don't regenerate it
 - [ ] The emotional core scenes assessed honestly: AI or hybrid?
 
 ## Sources
@@ -492,6 +557,14 @@ Rule of thumb: if the scene's entire job is one human feeling something complica
 - Passport Rush breakdown: documented subtle-acting problem (official YouTube breakdown)
 - Cully Hill Boys: licensed likeness pipeline, expressions/kinematics from performer reference (cryptobriefing.com, archyde.com)
 - The Verge on Cully Hill Boys: "occasionally weak character interactions" (via magazine.mindplex.ai summary)
+- Seedance prompt skill (petercjl/story-video-studio, GitHub — read live 2026-10-11): acting formula, restraint rule, eye-work
+- AI video voice comparison (aibibimbap.com — read live 2026-10-11): model picks for dialogue, Road A/B framing, restraint observations
+- VentureBeat on Runway AIFF: Get Me Out pipeline (read live 2026-10-11)
+- ElevenLabs direction mechanics (digitaltoolify, techtimes, divineworks, unite.ai — corroborated across sources)
+- Uncanny valley essay (Fernando Andrade, Medium, Feb 2026): hyper-symmetry, dead-eyes markers
+- Ken Kemp (LinkedIn): Scene Lock method
+- Sibghat Shaikh (Medium, Sept 2026): take-based pipeline
+- Val Kilmer / As Deep as the Grave (ew.com, darkhorizons.com, screendaily.com): estate-approved synthetic performance
 - Companion: `craft/character-consistency.md`, `craft/long-form-pipeline.md`, skills `craft-gaze-eyelines`, `audio-direct-voiceover`
 <!-- chapter: craft/color-grading.md -->
 # Color Grading AI Footage
@@ -1220,3 +1293,167 @@ Every source consulted, grouped by section, with what was pulled from it.
 - https://www.youtube.com/watch?v=3inS3sCunaA — resolution ladder + previs credit savings
 
 ## Pending
+
+<!-- chapter: distribution/release-paths.md -->
+# Distribution & Release Paths
+
+The film is finished. Now it needs an audience — and AI films face a distribution landscape that's forming in real time. This chapter maps where AI films actually go, what each path demands, and what to verify before you commit. Policies and deals below were read on 2026-10-11; they change fast — re-verify before acting.
+
+## The emerging dedicated distributors
+
+AI-native distribution now exists as a category:
+
+- **Escape.AI ("Neo Cinema")** — founded by Oscar-winning VFX pioneer John Gaeta. A curated AI-cinema streaming ecosystem distributing via a Play.Works partnership to Roku, Amazon Fire TV, LG and Samsung smart TVs (claimed 400M+ addressable CTV devices). Creators get a **50% net revenue split** on syndicated CTV content, plus tipping, channel subscriptions, and digital collectibles — while retaining **100% of underlying IP**. (Company release via PR Newswire, Oct 2026)
+- **AI Era Corp (OTC: AERA)** — runs the uFilm.ai production loop (idea → 100-episode AI series script). On August 28, 2026 it signed an **online broadcast-rights licensing agreement worth ~$1.26M** for one package of AI-generated series, explicitly retaining AI training rights on every title. Management expects broadcast-rights licensing to generate "several million dollars" per year. (Company release via GlobeNewswire, Aug 2026 — figures are company-reported)
+- **iQIYI** — the major Chinese streamer's AIGC series *The Ferry Man* passed **RMB 8 million in cumulative revenue-sharing** as of September 2026; the first two installments recovered production costs within their first week. Third installment debuted October 1, 2026. (Announcement via PR Newswire, Oct 2026 — note: revenue-*sharing*, not gross revenue)
+
+**What this means:** there is now a real, if young, market for AI-native content — weighted toward series and CTV, with IP retention as the standard deal term. Company-reported figures are marketing; treat them as direction, not data.
+
+## YouTube: the default self-release
+
+*The Cully Hill Boys* (110-minute AI feature) premiered August 5, 2026 and streams **free on YouTube**, with all prompts and assets open-sourced — the current template for AI-feature release.
+
+**YouTube monetization of AI content (2026 rules):** disclosure and "inauthentic content" are separate tracks. Disclosure is a transparency requirement, not a penalty — it does not by itself limit reach or monetization. The monetization risk is the **mass-produced/repetitive content** rule: channels publishing many near-identical AI videos with weak variation can be treated as inauthentic. Reviewers assess the channel as a whole — main theme, most-viewed, newest, highest-watch-time videos, titles, thumbnails, About section. Channels using AI personas as fake experts on health, legal, finance, or politics cannot monetize. (Third-party explainers of YouTube policy — **read YouTube's own Help pages before relying on this.**)
+
+Practical read: one authored film on a real channel is fine. A channel farming fifty near-identical AI shorts is not.
+
+## Traditional indie paths still apply
+
+The standard options — limited theatrical, streaming deal, TVOD/EST, self-distribution (Vimeo OTT, own site), hybrid — all work for AI films. Evaluate distributors on: track record with similar films, minimum guarantee, deductible expenses, territories, marketing plan, reporting transparency, rights granted and term.
+
+**Distributor deliverables** for an acquired film: DCP, ProRes masters, **M&E track** (music & effects, no dialogue — for international), closed captions/subtitles, key art in multiple sizes, trailer, press kit, **chain of title documents, E&O insurance certificate**, music cue sheet, photo releases. (Tribeca Film Institute Distribution 101 — industry-standard practice.)
+
+**Honest gap:** as of October 2026, no verified report exists of a major Western streamer (Netflix/Disney+/Max) *acquiring* an AI-generated feature outright. Streamers use AI inside productions (Netflix reportedly used AI in 300 of 1,000 titles in 2026) — but they are not yet buying AI films *as* AI films. **Do not plan around a streamer acquisition that hasn't happened yet.**
+
+## Choosing your path
+
+| Path | Best for | Demands | Watch out for |
+|---|---|---|---|
+| AI-native distributor (Escape.AI etc.) | Series, CTV-friendly content | Curation gate; platform specs | Young market; verify revenue reports independently |
+| YouTube self-release | Features, building audience, open-source releases | Disclosure compliance; channel health | Mass-produced-content rule; no fake-expert personas |
+| Traditional indie (theatrical/TVOD) | Festival-placed shorts, features with press | Full deliverables stack + E&O | Distributor fit matters more than the AI angle |
+| Self-hosted (Vimeo OTT, own site) | Niche audiences, direct sales | You are the distributor: marketing, support, payments | No discovery — bring your own audience |
+
+## Release checklist
+
+- [ ] Disclosure set correctly on every platform (see `legal/rights-and-disclosure.md`)
+- [ ] Deliverables mastered: DCP/ProRes, M&E track, captions, key art, trailer, press kit
+- [ ] Chain of title + E&O in hand before any distributor conversation
+- [ ] Channel/account health checked (no inauthentic-content risk factors)
+- [ ] Release assets (prompts, behind-the-scenes) prepared if going the open-source route
+
+## Sources
+
+- Escape.AI / Reallusion partnership (PR Newswire, Oct 2026)
+- AI Era Corp broadcast-rights licensing (GlobeNewswire, Aug 2026)
+- iQIYI Ferry Man revenue-sharing (PR Newswire via ad-hoc-news.de, Oct 2026)
+- YouTube AI monetization explainers (techtrox.com, akool.com, reelnreel.com, miraflow.ai — third-party; verify against YouTube Help)
+- Tribeca Film Institute Distribution 101 (via nofilmschool.com)
+- Companion: `legal/rights-and-disclosure.md`, `economics/credit-math.md`
+
+<!-- chapter: legal/rights-and-disclosure.md -->
+# Rights, Disclosure & Legal
+
+**Not legal advice.** What follows is documented policy and law as researched on 2026-10-11, with confidence flags. Rules change fast and vary by jurisdiction — consult an entertainment attorney for your production. When a claim below is single-source, it's flagged; verify against primary sources before acting on it.
+
+## The two layers: platform policy and law
+
+Two separate layers apply simultaneously. **Platform policy** costs you distribution or your account. **Law** costs you money. Neither asks whether you used AI — both ask whether the result **looks real**.
+
+## AI disclosure: platform rules
+
+| Platform | Trigger | Where set | If skipped |
+|---|---|---|---|
+| **YouTube** | Realistic AI-generated or meaningfully altered content | "Altered content"/"AI use" toggle in YouTube Studio | Platform labels it itself, content removal, or YPP suspension |
+| **TikTok** | Realistic-looking AI scenes or people | AI-generated content switch in post settings | Removal, restriction, or team-applied label |
+| **Meta (FB/IG/Threads)** | Photorealistic AI video or realistic-sounding audio | AI-disclosure tool | Penalties; Meta may add "AI Info" label itself |
+| **X** | No disclosure switch | n/a | Deceptive synthetic media may be labeled, demoted, or removed |
+
+(Consistent across 2026 platform comparisons — **re-check each platform's Help page at upload time.**)
+
+YouTube detail: disclosure is required for synthetic/cloned voices of real people, digitally altered footage making someone appear to say or do something they didn't, and fabricated depictions of real events. **Not** required: unrealistic/fantastical content, animation, production assistance (script help, thumbnails, color correction), cloning your own voice. For sensitive topics (elections, health, major news) the label can appear on the video itself. YouTube states disclosure does not by itself limit reach or monetization.
+
+## AI disclosure: awards and festivals
+
+- **99th Academy Awards** (rules approved May 2026): AI tools "neither help nor harm" a nomination — but **acting nominations require performances demonstrably performed by humans with consent** (credited in legal billing), and **screenplay categories require human authorship**. (Reuters)
+- **Cannes 2026:** films *primarily driven by generative AI* are excluded from Palme d'Or competition — not an outright ban; AI in production/post-production is increasingly accepted, and a separate AI film festival ran alongside. (Reuters, May 2026)
+- **Human Provenance in Film** standard (launched at the Cannes market, May 2026): three **voluntary** tiers — No AI Used / Assistive AI / Generative AI. (Single-source)
+- Audience pressure is real: 72% of US viewers surveyed want AI use disclosed every time. (Single-source survey claim — treat as directional.)
+
+## AI disclosure: laws with teeth
+
+- **EU AI Act, Article 50:** legal transparency duty for anyone publishing AI-generated images, audio, or video that could pass for real. Deployer transparency obligations took effect **August 2026**. Applies regardless of platform policy. (Single-source summary — **verify against the official EU text.**)
+- **New York General Business Law § 396-b(3):** advertisements containing a synthetic performer (with actual knowledge) must **conspicuously disclose** it. Penalties: **$1,000 first violation, $5,000 each subsequent**. Signed December 2025, championed by SAG-AFTRA. (Penalty figures single-source — confirm with counsel.)
+- **TAKE IT DOWN Act** (federal, signed 2025): notice-and-removal in effect May 2026 — platforms must remove non-consensual intimate AI imagery within **48 hours** of a valid request, plus reasonable efforts against identical copies.
+- **NO FAKES Act** (federal, **proposed — not law**): would create a federal right against non-consensual digital replicas. **Do not present as law.**
+
+## Likeness & rights: the rules
+
+**The template: licensed likeness.** *The Cully Hill Boys* licensed digital likenesses of four performers (Israel Adesanya, Quinton "Rampage" Jackson, streamer N3on, Matt "MK" Kiatipis). Each signed **commercial licensing agreements**, supplied high-resolution photos, and recorded **~2 minutes of audio**; models mapped expressions, kinematics, and vocal patterns. **Biometric data deleted within 30 days.** Each performer signed off on the script. The screenplay was licensed from The Black List with generative-AI rights separated from traditional-adaptation rights.
+
+**The legal landscape (US):**
+- **No general federal right of publicity exists.** Protection depends on state law, and most state statutes predate generative AI.
+- **Tennessee ELVIS Act** (effective July 1, 2024): first state law targeting AI voice clones — protects voice *simulations*, imposes liability for knowingly distributing unauthorized voice/likeness uses, and reaches tool providers whose "primary purpose" is replicating a person's voice or image.
+- States with explicit AI/digital-replica provisions: **California** (digital-replica contract provisions; deceased personality rights), **New York, Illinois, Arkansas, Hawaii, Washington**.
+- **Deceased persons:** rights are controlled by estates — the 2026 Val Kilmer synthetic performance was made with family consent and estate compensation.
+
+**Union guardrails** (union productions only, but they set the norms): SAG-AFTRA's 2026 deal strengthened consent and compensation with new synthetics guardrails — a principle **strongly favoring human performances**, digital replicas protected from crossing picket lines, **protections for minors**, and an **articulable business reason** required to scan someone. The unions' shared rule: **software isn't a writer or performer** — AI material must be disclosed and can't take credits or replace people.
+
+**Practical read:** never generate a recognizable real person — face or voice — without a signed likeness license. Voice is separately protected (Tennessee). Deceased persons require estate clearance. Keep the license, the input-materials log, and the data-deletion record together.
+
+## Music & audio rights: the core trap
+
+**A commercial license is not copyright.** Yes, you can use AI-generated music from a paid Suno/Udio account in a commercial film — but you will **not own the copyright** to it. The US Copyright Office position: no copyright without sufficient human authorship. A platform's commercial license gives you a contractual right to *use* the output; it cannot grant the bundle of exclusive rights (reproduction, distribution, derivatives, public performance) if no copyright vests.
+
+This gap is what stops distributors, insurers, and festivals: their paperwork asks for **proof of rights / chain of title**, and an AI track produces a thin file.
+
+**Platform terms (checked October 2026 — verify live before spending):**
+
+| Tool | Cheapest commercial path | Terms |
+|---|---|---|
+| **Suno** | Pro $10/mo | Commercial rights on songs made *while subscribed*; ToS assigns rights but **disclaims warranty that copyright vests**; user indemnifies Suno. Output may not be unique across users. |
+| **Udio** | Pro $30/mo (Standard is non-commercial) | Paid users may reuse commercially — but **downloads have been disabled platform-wide since Oct 2025**, so there is currently no export mechanism. |
+| **AIVA** | €15/mo Standard (limited); **€49/mo Pro for full copyright** | Built for instrumental/film cues. |
+| **Soundraw** | ~$11/mo Creator | Royalty-free + commercial on all plans; trained on in-house music — the lowest legal-risk option. |
+| **Stable Audio** | — | Licensed training data; cleaner provenance story. |
+
+**Practical read:** generate **only while on a paid commercial tier**; keep the subscription receipt, generation dates, and download records. For maximum defensibility: compose with human-arranged tools (AIVA Pro), license royalty-free libraries (Soundraw), or commission humans. Document everything in the music cue sheet.
+
+## The paperwork stack
+
+Standard indie deliverables (Tribeca Film Institute Distribution 101), **plus** AI-specific records — no standard form exists, so build the folder yourself:
+
+**Standard stack:**
+- **Chain of title:** script rights, contributor agreements, location releases, music licenses + cue sheet, archival/trademark clearances, distribution agreements. Missing documents can block broadcast, streaming, or sale.
+- **E&O (errors & omissions) insurance:** required by most distributors before licensing; covers defamation, copyright infringement, invasion of privacy. Maintain ~3 years post-release. **AI wrinkle:** purely AI-generated material may not qualify for copyright protection — confirm with your broker that coverage maps to your actual rights.
+- Technical: DCP, ProRes masters, M&E track, captions/subtitles, key art, trailer, press kit.
+
+**AI-specific additions:**
+1. **Likeness licenses** for any real-person face/voice reference (written license, defined inputs, talent approval, data-deletion clause). No license = do not generate the person.
+2. **Platform subscription records** proving commercial-tier status *during* generation + download/generation logs.
+3. **Music license file + cue sheet** — every track's source, tier, generation date, and the platform's rights grant.
+4. **AI disclosure log:** what was disclosed, where, when (YouTube toggle, TikTok label, Meta tool).
+5. **No union performer releases needed for synthetic "performers"** — they're not performers. What you need instead is (1) above.
+6. **Bring an entertainment attorney in early** — "better now than trying to retrofit your project after the fact."
+
+## Rights checklist
+
+- [ ] Every real-person face/voice has a signed likeness license (or is not in the film)
+- [ ] All AI music generated on a paid commercial tier, receipts + cue sheet filed
+- [ ] Disclosure toggles set correctly on every platform at upload
+- [ ] Chain of title complete; E&O bound (coverage confirmed for AI-generated material)
+- [ ] AI disclosure log maintained (what, where, when)
+- [ ] Attorney reviewed before distributor conversations
+
+## Sources
+
+- Platform disclosure rules (ryla.ai 2026 comparison; builtbyfoundry.io)
+- Academy/Cannes 2026 AI rules (Reuters; filmustage)
+- EU AI Act Art. 50, NY GBL § 396-b(3), TAKE IT DOWN Act, NO FAKES Act status (SAG-AFTRA AI timeline; builtbyfoundry.io)
+- Cully Hill Boys likeness pipeline (archyde.com, webpronews.com, Variety via IMDb)
+- State likeness laws, ELVIS Act (Reed Smith entertainment/AI guide; Bloomberg Law)
+- SAG-AFTRA 2026 synthetics guardrails (sagaftra.org)
+- AI music copyright gap (hackernoon "Lost Garden"; promise.legal)
+- Platform music terms (dev.to Oct 2026 comparisons; frankx.ai)
+- Chain of title / E&O (fromtheheartproductions.com; beverlyboy.com)
+- Companion: `distribution/release-paths.md`, `economics/credit-math.md`

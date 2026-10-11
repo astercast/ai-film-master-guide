@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Changelog — AI Film Master Guide</title>
+  <meta name="description" content="What changed in the AI Film Master Guide, dated per release: new chapters, model updates, new templates, and corrections.">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/docs.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html">Guide</a>
+        <a href="skills.html">Skills</a>
+        <a href="workshop.html">Workshop</a>
+        <a href="changelog.html" aria-current="page">Changelog</a>
+        <a href="skill-spec.html">Skill spec</a>
+        <a href="api.html">API</a>
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">⌘K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="changelog-title">
+      <div class="container hero-inner">
+        <span class="hero-kicker">Freshness log</span>
+        <h1 id="changelog-title">What <span class="accent">changed.</span></h1>
+        <p class="lede">AI film tooling rots in months. This page is how the guide stays fresh — every shipped change, dated, newest first.</p>
+      </div>
+    </section>
+    <section class="container" aria-labelledby="process-h">
+      <div class="card" style="margin-bottom:var(--space-6);">
+        <h2 id="process-h">Process note</h2>
+        <p>This changelog is rebuilt from the repository's git history on every site build, so it always reflects the latest release. Each entry below is a shipped change with its commit date — not a roadmap, not a promise. When a model price, feature, or platform rule changes in the world, the corresponding chapter or API update appears here with its date, and the affected chapter links its sources.</p>
+      </div>
+      <h2>Recent changes</h2>
+      <ol class="change-list"><li><span class="change-date">2026-10-11</span> <span class="change-hash">4af1cdd</span><p>Competitive differentiators: prompt workshop, path progress, changelog, skill-spec</p></li>
+      <li><span class="change-date">2026-10-11</span> <span class="change-hash">e60840a</span><p>Round-2 research integration: performance expansion + distribution + legal chapters, 191 skills</p></li>
+      <li><span class="change-date">2026-10-11</span> <span class="change-hash">879b10a</span><p>Reframe festival coverage as competition-entry craft (user correction 2026-10-10)</p></li>
+      <li><span class="change-date">2026-10-11</span> <span class="change-hash">bc97e70</span><p>Skills browser page: browsable 180-skill library with live filter + Skills nav across site</p></li>
+      <li><span class="change-date">2026-10-11</span> <span class="change-hash">afa630d</span><p>Add interactive budget calculator page</p></li>
+      <li><span class="change-date">2026-10-11</span> <span class="change-hash">829c686</span><p>Top-tier chapter experience: progress, TOC spy, copy buttons, back-to-top</p></li>
+      <li><span class="change-date">2026-10-11</span> <span class="change-hash">d6adefe</span><p>Best-in-niche pass: learning paths + 2 new chapters + 7 skills</p></li>
+      <li><span class="change-date">2026-10-09</span> <span class="change-hash">785c9d7</span><p>Add 173-skill agentic library, point API at repo + skills</p></li>
+      <li><span class="change-date">2026-10-09</span> <span class="change-hash">73da245</span><p>Ignore __pycache__ (build artifact)</p></li>
+      <li><span class="change-date">2026-10-09</span> <span class="change-hash">f9a1304</span><p>Add long-form pipeline chapter + entry craft teardowns</p></li>
+      <li><span class="change-date">2026-10-09</span> <span class="change-hash">4117757</span><p>Remove committed __pycache__ (build artifact, not source)</p></li>
+      <li><span class="change-date">2026-10-09</span> <span class="change-hash">9a76349</span><p>Film guide v2: generated static site + v1 API</p></li>
+      <li><span class="change-date">2026-10-09</span> <span class="change-hash">3bcfa5d</span><p>chapters: festival winner case studies, credit economics deep-dive, source index finalized</p></li>
+      <li><span class="change-date">2026-10-09</span> <span class="change-hash">7903b48</span><p>chapters: story structure, character consistency, sound, editing pipeline, when-to-use-what</p></li>
+      <li><span class="change-date">2026-10-09</span> <span class="change-hash">5d355f3</span><p>chapters: higgsfield mastery, prompting, soul id, festival playbook, cinematic language, platform guide, credit math, source index</p></li></ol>
+      <p class="calc-note" style="margin-bottom:var(--space-7);">Older history lives in the repository's git log. The guide also ships <code>llms.txt</code> so agents can check freshness programmatically.</p>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer"><a href="index.html">Guide</a><a href="skills.html">Skills</a><a href="workshop.html">Workshop</a><a href="budget.html">Budget</a><a href="changelog.html">Changelog</a><a href="skill-spec.html">Skill spec</a><a href="api.html">API</a></nav>
+    </div>
+  </footer>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
+    <div class="palette-box">
+      <input id="palette-input" type="search" placeholder="Search chapters, prompts, models…" autocomplete="off" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="assets/js/palette.js"></script>
+</body>
+</html>

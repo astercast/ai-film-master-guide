@@ -10,7 +10,7 @@ Generated static site in `site/` — rebuild with `python3 scripts/build_site.py
 after editing chapters. Open `site/index.html`.
 
 - `site/index.html` — landing: track picker (animated vs photorealistic), chapter grid, learning paths
-- `site/<section>/<chapter>.html` — 18 chapters with sidebar nav, table of contents, prev/next
+- `site/<section>/<chapter>.html` — 20 chapters with sidebar nav, table of contents, prev/next
 - `site/api.html` — human-readable API docs
 - `site/skills.html` — browsable skills library with live filter
 - `site/budget.html` — interactive credit-budget calculator
@@ -19,6 +19,8 @@ after editing chapters. Open `site/index.html`.
 Chapters (source Markdown, also the canonical text):
 - `higgsfield/` — platform-mastery, prompt-engineering, soul-id-deep-dive, competition-entry-craft
 - `craft/` — story-structure, cinematic-language, character-consistency, directing-performance, color-grading, sound-music-audio, editing-pipeline, long-form-pipeline
+- `distribution/` — release-paths
+- `legal/` — rights-and-disclosure
 - `platforms/` — field-guide, when-to-use-what
 - `economics/` — credit-math
 - `case-studies/` — competition-teardowns, entry-craft-teardowns
@@ -43,7 +45,7 @@ research artifacts; outputs committed).
 
 ## Skills (agentic task procedures)
 
-180 skills in `skills/` — rebuild with `python3 scripts/build_skills.py`
+191 skills in `skills/` — rebuild with `python3 scripts/build_skills.py`
 (generates from `api/v1/` data + authored procedures; outputs committed).
 `skills/index.json` is the manifest: id, title, description, path per skill.
 
@@ -54,7 +56,7 @@ primary interface for *doing* work; the JSON endpoints are the data layer.
 Categories: prompts (31), camera (22), models (18), checklists (5),
 longform (12), techniques (7), craft (20), entry (4), workflow (8),
 compare (10), fix (6), budget (3), delivery (3), audio (4), recipes (12),
-styles (8), performance (4), grading (3).
+styles (8), performance (9), grading (3), distribution (2), legal (4).
 
 ## Key facts agents should know
 

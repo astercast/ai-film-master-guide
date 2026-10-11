@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "count": 180,
+  "count": 191,
   "skills": [
     {
       "id": "prompt-t1",
@@ -1081,6 +1081,72 @@
       "title": "Grade with scopes, not eyes",
       "description": "Waveforms and vectorscopes catch what AI footage hides from eyes.",
       "path": "skills/grading/grade-scopes-not-eyes.md"
+    },
+    {
+      "id": "performance-restraint-pass",
+      "title": "Run the restraint pass",
+      "description": "Strip theatrical over-acting: negative constraints, subtext, under-direction.",
+      "path": "skills/performance/performance-restraint-pass.md"
+    },
+    {
+      "id": "performance-dialogue-roads",
+      "title": "Choose the dialogue road",
+      "description": "Road A (native audio) vs Road B (decoupled voice + lip-sync).",
+      "path": "skills/performance/performance-dialogue-roads.md"
+    },
+    {
+      "id": "performance-direct-tts",
+      "title": "Direct TTS voices through text",
+      "description": "ElevenLabs has no emotion dial \u2014 the punctuation is the direction.",
+      "path": "skills/performance/performance-direct-tts.md"
+    },
+    {
+      "id": "performance-dead-eyes-check",
+      "title": "Run the dead-eyes checklist",
+      "description": "The four biological markers of aliveness AI faces fail.",
+      "path": "skills/performance/performance-dead-eyes-check.md"
+    },
+    {
+      "id": "performance-scene-lock",
+      "title": "Lock the scene after approval",
+      "description": "Scene Lock: photograph the approved performance, stop regenerating it.",
+      "path": "skills/performance/performance-scene-lock.md"
+    },
+    {
+      "id": "distribution-pick-path",
+      "title": "Choose the release path",
+      "description": "AI-native distributor vs YouTube vs traditional indie vs self-hosted.",
+      "path": "skills/distribution/distribution-pick-path.md"
+    },
+    {
+      "id": "distribution-youtube-release",
+      "title": "Release on YouTube safely",
+      "description": "Disclosure + monetization-safe self-release checklist.",
+      "path": "skills/distribution/distribution-youtube-release.md"
+    },
+    {
+      "id": "legal-disclosure-pass",
+      "title": "Run the disclosure pass",
+      "description": "Set every platform's AI disclosure correctly at upload.",
+      "path": "skills/legal/legal-disclosure-pass.md"
+    },
+    {
+      "id": "legal-likeness-check",
+      "title": "Verify likeness clearance",
+      "description": "Never generate a recognizable real person without a signed license.",
+      "path": "skills/legal/legal-likeness-check.md"
+    },
+    {
+      "id": "legal-music-rights",
+      "title": "Clear AI music rights properly",
+      "description": "A commercial license is not copyright \u2014 know what you actually hold.",
+      "path": "skills/legal/legal-music-rights.md"
+    },
+    {
+      "id": "legal-paperwork-stack",
+      "title": "Assemble the paperwork stack",
+      "description": "Chain of title + E&O + the AI-specific records no standard form covers.",
+      "path": "skills/legal/legal-paperwork-stack.md"
     }
   ]
 }

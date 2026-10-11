@@ -23,7 +23,8 @@
     craft: "Craft techniques", entry: "Competition entry", workflow: "Workflow",
     compare: "Model comparisons", fix: "Fix-it guides", budget: "Budgeting",
     delivery: "Delivery", audio: "Audio", recipes: "Shoot recipes",
-    styles: "Style guides", performance: "Directing performance", grading: "Color grading"
+    styles: "Style guides", performance: "Directing performance", grading: "Color grading",
+    distribution: "Distribution", legal: "Rights & disclosure"
   };
 
   function catOf(path) { return path.split("/")[1]; }

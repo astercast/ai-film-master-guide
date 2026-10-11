@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Skill schema spec — AI Film Master Guide</title>
+  <meta name="description" content="The exact frontmatter-plus-sections format every guide skill follows, so other agent frameworks can consume or produce compatible skills.">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/docs.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html">Guide</a>
+        <a href="skills.html">Skills</a>
+        <a href="workshop.html">Workshop</a>
+        <a href="changelog.html">Changelog</a>
+        <a href="skill-spec.html" aria-current="page">Skill spec</a>
+        <a href="api.html">API</a>
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">⌘K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="spec-title">
+      <div class="container hero-inner">
+        <span class="hero-kicker">Agent-native</span>
+        <h1 id="spec-title">Skill schema <span class="accent">spec.</span></h1>
+        <p class="lede">Every one of the 191 skills in <code>skills/</code> follows this exact format — YAML frontmatter plus six Markdown sections. Build to it and your skills slot straight into this library, or any agent framework that reads it.</p>
+      </div>
+    </section>
+    <section class="container" aria-labelledby="spec-body-h">
+      <h2 id="spec-body-h" class="sr-only">Specification</h2>
+      <div class="prose" style="margin-bottom:var(--space-7);">
+        <h3 id="frontmatter-h">Frontmatter</h3>
+        <p>Each skill file opens with a YAML frontmatter block carrying two required fields. <code>name</code> is the skill's machine id (lowercase, hyphens); <code>description</code> is the one-line trigger summary an agent reads when deciding whether to load the skill.</p>
+        <table class="spec-table">
+          <thead><tr><th scope="col">Field</th><th scope="col">Required</th><th scope="col">Format</th></tr></thead>
+          <tbody>
+            <tr><td><code>name</code></td><td>Yes</td><td>Lowercase slug, unique across <code>skills/</code></td></tr>
+            <tr><td><code>description</code></td><td>Yes</td><td>One sentence: what the skill does, in which track, using which source</td></tr>
+          </tbody>
+        </table>
+        <h3 id="sections-h">Sections</h3>
+        <p>After the frontmatter, the body is Markdown with an H1 title and these H2 sections, in order:</p>
+        <table class="spec-table">
+          <thead><tr><th scope="col">Section</th><th scope="col">Required</th><th scope="col">Purpose</th></tr></thead>
+          <tbody>
+            <tr><td>Use when</td><td>Yes</td><td>Trigger conditions: the situation, the anatomy at play, the models it applies to</td></tr>
+            <tr><td>Inputs</td><td>Yes</td><td>Every placeholder or artifact the procedure needs, one per bullet</td></tr>
+            <tr><td>Procedure</td><td>Yes</td><td>Numbered steps an agent can execute verbatim; templates quoted exactly, never paraphrased</td></tr>
+            <tr><td>Worked example</td><td>Yes</td><td>One filled, realistic example showing the expected output shape</td></tr>
+            <tr><td>API references</td><td>No</td><td>Versioned <code>api/v1/</code> files the skill draws on</td></tr>
+            <tr><td>Pitfalls</td><td>Yes</td><td>The known failure modes and how to avoid them</td></tr>
+          </tbody>
+        </table>
+        <h3 id="example-h">Full example</h3>
+        <p class="example-meta"><code>skills/prompts/prompt-a1.md</code> — frontmatter first, then the rendered body:</p>
+        <pre><code>name: prompt-a1
+description: Write an anime action (sakuga) prompt (animated track) using the guide&#x27;s template.</code></pre>
+      </div>
+      <article class="card" style="margin-bottom:var(--space-7);">
+        <div class="prose"><h1 id="prompt-anime-action-sakuga">Prompt: Anime action (sakuga)</h1>
+<h2 id="use-when">Use when</h2>
+<p>You are directing a shot that needs: anime action (sakuga). Anatomy: cel/sakuga/impact frames — NO lens or DOF language. Models: PixVerse (Anime), Vidu Q1, Pika.</p>
+<h2 id="inputs">Inputs</h2>
+<ul>
+<li><code>[CHARACTER]</code> — fill per the template&#x27;s anatomy</li>
+</ul>
+<h2 id="procedure">Procedure</h2>
+<ol>
+<li>Gather one value per placeholder. Keep [STYLE] identical to every other prompt in the project.</li>
+<li>Fill the template verbatim — do not paraphrase its camera language:</li>
+<li><code>Cel-animated action cut: [CHARACTER] dashes forward, speed lines and impact frames, painted background holds still. Sakuga flourish on the strike. STYLE LOCK: bold colors, expressive features, dramatic lighting, hand-dra...</code></li>
+<li>Confirm exactly ONE primary motion and ONE camera move in the final prompt.</li>
+<li>Separate identity from motion: appearance descriptors in the Identity Block, action in the Motion Block — never pronouns alone as the subject anchor.</li>
+<li>Handle audio in post (this template&#x27;s models don&#x27;t do native audio well).</li>
+<li>Generate a 720p draft first; approve the select before any 1080p/4K render.</li>
+</ol>
+<h2 id="worked-example">Worked example</h2>
+<p>Filled draft: <code>Cel-animated action cut: [CHARACTER] dashes forward, speed lines and impact frames, painted background holds still. Sakuga flourish on the strike. STYLE LOCK: bold colors, expressive features, dramatic lighting, hand-drawn anime.</code></p>
+<h2 id="api-references">API references</h2>
+<ul>
+<li><code>api/v1/prompt-templates.json</code></li>
+<li><code>api/v1/camera-movements.json</code></li>
+</ul>
+<h2 id="pitfalls">Pitfalls</h2>
+<ul>
+<li>Stacking two motions or two camera moves in one prompt — the model will split the difference and ruin both.</li>
+<li>Changing the [STYLE] line between shots — the fastest route to a recast-looking cast.</li>
+</ul></div>
+      </article>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer"><a href="index.html">Guide</a><a href="skills.html">Skills</a><a href="workshop.html">Workshop</a><a href="budget.html">Budget</a><a href="changelog.html">Changelog</a><a href="skill-spec.html">Skill spec</a><a href="api.html">API</a></nav>
+    </div>
+  </footer>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
+    <div class="palette-box">
+      <input id="palette-input" type="search" placeholder="Search chapters, prompts, models…" autocomplete="off" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="assets/js/palette.js"></script>
+</body>
+</html>
