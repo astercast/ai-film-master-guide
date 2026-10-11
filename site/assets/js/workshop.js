@@ -330,6 +330,16 @@
       els.model.appendChild(o);
     });
 
+    /* Preselect model from ?model= query param (quiz handoff). */
+    try {
+      var qp = new URLSearchParams(window.location.search).get("model");
+      if (qp) {
+        for (var qi = 0; qi < els.model.options.length; qi++) {
+          if (els.model.options[qi].value === qp) { els.model.selectedIndex = qi; break; }
+        }
+      }
+    } catch (e) { /* ignore */ }
+
     els.track.addEventListener("change", renderTemplateSelect);
     els.template.addEventListener("change", renderFields);
     renderTemplateSelect();

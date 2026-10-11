@@ -10,15 +10,21 @@ Generated static site in `site/` — rebuild with `python3 scripts/build_site.py
 after editing chapters. Open `site/index.html`.
 
 - `site/index.html` — landing: track picker (animated vs photorealistic), chapter grid, learning paths
-- `site/<section>/<chapter>.html` — 20 chapters with sidebar nav, table of contents, prev/next
+- `site/<section>/<chapter>.html` — 21 chapters with sidebar nav, table of contents, prev/next
 - `site/api.html` — human-readable API docs
 - `site/skills.html` — browsable skills library with live filter
 - `site/budget.html` — interactive credit-budget calculator
+- `site/workshop.html` — interactive prompt workshop (template × model × track, save/rate)
+- `site/quiz.html` — model-picker quiz: 5 questions → ranked top-3 from `models.json` with cost math, one-click handoff to the workshop
+- `site/changelog.html` — dated changelog rebuilt from git history
+- `site/skill-spec.html` — the skill frontmatter+sections format as a spec
 - `site/search-index.json` — client-side search index (Ctrl+K palette)
+
+Interactive in-context glossary: `assets/js/glossary.js` wraps the 79 `glossary.json` terms in chapter prose (first occurrence per page) with hover/focus/tap popover definitions.
 
 Chapters (source Markdown, also the canonical text):
 - `higgsfield/` — platform-mastery, prompt-engineering, soul-id-deep-dive, competition-entry-craft
-- `craft/` — story-structure, cinematic-language, character-consistency, directing-performance, color-grading, sound-music-audio, editing-pipeline, long-form-pipeline
+- `craft/` — story-structure, cinematic-language, character-consistency, directing-performance, color-grading, sound-music-audio, editing-pipeline, long-form-pipeline, failure-gallery
 - `distribution/` — release-paths
 - `legal/` — rights-and-disclosure
 - `platforms/` — field-guide, when-to-use-what

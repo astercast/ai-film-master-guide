@@ -138,3 +138,59 @@
 @media (prefers-reduced-motion: reduce) {
   .btn, .star, .copy-btn { transition: none; }
 }
+
+/* In-context glossary */
+.gloss-term {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: help;
+  border-bottom: 1px dotted var(--gold);
+  text-decoration: none;
+}
+.gloss-term:hover, .gloss-term:focus-visible {
+  color: var(--gold);
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+.gloss-pop {
+  position: absolute;
+  z-index: 60;
+  max-width: 300px;
+  background: var(--panel, #16161e);
+  border: 1px solid var(--gold);
+  border-radius: 8px;
+  padding: var(--space-3) var(--space-4);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--ink-dim);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.55);
+}
+.gloss-pop strong { color: var(--gold); }
+@media (prefers-reduced-motion: reduce) {
+  .gloss-term { transition: none; }
+}
+
+/* Model-picker quiz */
+.quiz-options { display: grid; gap: var(--space-2); margin-bottom: var(--space-5); }
+.quiz-opt {
+  display: flex; gap: var(--space-3); align-items: flex-start;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--line-soft); border-radius: 8px; cursor: pointer;
+}
+.quiz-opt:hover { border-color: var(--gold); }
+.quiz-opt:has(input:checked) { border-color: var(--gold); background: rgba(245, 179, 1, 0.06); }
+.quiz-opt input { margin-top: 0.25rem; accent-color: var(--gold); flex-shrink: 0; }
+.quiz-optional { font-size: 0.8rem; color: var(--muted); font-weight: normal; }
+.quiz-grid { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top: var(--space-4); }
+.quiz-card { position: relative; }
+.quiz-rank { position: absolute; top: var(--space-2); right: var(--space-4); font-size: 1.6rem; color: var(--gold); font-weight: 700; }
+.quiz-meta { color: var(--muted); font-size: 0.9rem; }
+.quiz-cost { margin: var(--space-3) 0; }
+.quiz-cost-sub { color: var(--muted); font-size: 0.85rem; }
+.quiz-cost-na { color: var(--muted); font-style: italic; }
+.quiz-why { margin: 0 0 var(--space-4); padding-left: 1.2rem; font-size: 0.9rem; color: var(--ink-dim); }
+.quiz-why li { margin-bottom: var(--space-1); }
