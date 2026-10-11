@@ -54,6 +54,7 @@ PAGE_TMPL = """<!DOCTYPE html>
       </a>
       <nav class="site-nav" aria-label="Primary">
         <a href="../index.html">Guide</a>
+        <a href="../skills.html">Skills</a>
         <a href="../api.html">API</a>
       </nav>
       <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
@@ -109,6 +110,7 @@ INDEX_TMPL = """<!DOCTYPE html>
       </a>
       <nav class="site-nav" aria-label="Primary">
         <a href="index.html" aria-current="page">Guide</a>
+        <a href="skills.html">Skills</a>
         <a href="api.html">API</a>
       </nav>
       <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
@@ -286,6 +288,62 @@ def build_nav(chapters):
     return "\n".join(parts)
 
 
+SKILLS_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Skills browser — AI Film Master Guide</title>
+  <meta name="description" content="Browse all 180 task skills: prompts, camera, models, long-form pipelines, craft techniques and more.">
+  {css}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html">Guide</a>
+        <a href="skills.html" aria-current="page">Skills</a>
+        <a href="api.html">API</a>
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">⌘K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="skills-title">
+      <div class="container hero-inner">
+        <span class="hero-kicker">For agents &amp; humans</span>
+        <h1 id="skills-title">Task <span class="accent">skills.</span></h1>
+        <p class="lede">Every procedure in the guide as a loadable skill: inputs, steps, worked examples, pitfalls. <span id="skills-count" aria-live="polite"></span></p>
+        <div class="field" style="max-width:480px;">
+          <label for="skills-filter">Filter skills</label>
+          <input class="input" id="skills-filter" type="search" placeholder="e.g. lip sync, BAF, budget…" autocomplete="off">
+        </div>
+      </div>
+    </section>
+    <section class="container" aria-label="Skills">
+      <div id="skills-list"></div>
+      <div class="empty-state" id="skills-empty" hidden><p>No skills match that filter.</p></div>
+      <p class="calc-note" style="margin-bottom:var(--space-7);">Skills live in <code>skills/</code> in the repo and are indexed by <code>skills/index.json</code>. Agents: <code>api/v1/index.json</code> points here.</p>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer"><a href="index.html">Guide</a><a href="skills.html">Skills</a><a href="api.html">API</a></nav>
+    </div>
+  </footer>
+  <script src="assets/js/skills.js"></script>
+</body>
+</html>
+"""
+
 BUDGET_TMPL = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -305,6 +363,7 @@ BUDGET_TMPL = """<!DOCTYPE html>
       </a>
       <nav class="site-nav" aria-label="Primary">
         <a href="index.html">Guide</a>
+        <a href="skills.html">Skills</a>
         <a href="api.html">API</a>
       </nav>
       <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
@@ -438,6 +497,8 @@ def main():
     (SITE / "index.html").write_text(INDEX_TMPL.format(css=css_links, chapter_grid="\n".join(grid_parts)))
     (SITE / "search-index.json").write_text(json.dumps(search_index, ensure_ascii=False))
     (SITE / "budget.html").write_text(BUDGET_TMPL.format(css=css_links))
+    (SITE / "skills.html").write_text(SKILLS_TMPL.format(css=css_links))
+    shutil.copy(ROOT / "skills" / "index.json", SITE / "skills-index.json")
 
     # Bundle shared assets + API docs page into site/ so it is self-contained
     shutil.copytree(ROOT / "assets", SITE / "assets", dirs_exist_ok=True)
