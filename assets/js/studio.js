@@ -2213,7 +2213,11 @@
     return;
   }
 
-  /* ---- browser UI --------------------------------------------------------- */
+  /* ---- browser UI ---------------------------------------------------------
+     The engine is exposed on window so sibling tools (the Green Light page)
+     can build plans without duplicating logic. init() below still guards on
+     #st-title, so loading studio.js on other pages is inert. */
+  if (typeof window !== "undefined") window.StudioEngine = StudioEngine;
   function esc(s) {
     return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];

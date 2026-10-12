@@ -1558,6 +1558,70 @@ vote in the comments — the winning choice plays out tomorrow 🗳️
 
 *The night after posting:* harvest the poll tally from the in-thread results into the arc tracker — the winning vote and the loudest minority theories become episode 2's stakes, hook, and beats. The vote wins, always.
 
+## Worked example: one episode end to end — the revenge-arc volume format (revisit #7)
+
+The interactive example above is the craft-format episode. This one is the money-format episode — the revenge arc that pays for the industry. The economics changed this cycle, so the example carries them: ByteDance launched **Dramagic** (Sept 21, 2026), a full-pipeline AI short-drama platform from script analysis to video previews, sold through BytePlus (the-decoder.com, secondary trade press); the China Netcasting Services Association counts ~128,000 short dramas published in China in Q1 2026 — three times all of the previous year — with ~95% AI-generated (via the-decoder); Tsinghua's Shen Yang puts a minute of AI video at **$90–120**, about a tenth of traditional (via the-decoder); Caixin's cover reporting has contract prices collapsing from 800–1,000 yuan/minute to **200 yuan/minute**, with a 100-minute AI drama now producible in 3–7 days for under 20,000 yuan (reported, paywalled — treat the figures as reported); Quartz/Sensor Tower put US microdrama in-app revenue at **$3B in 2025, +115% YoY**, $11B globally (multi-outlet verified). On the prestige end, Inkitt's Ironblood makes AI microdramas in 3–4 weeks for ≤$60,000 — human-written, actors brought in to train the models on expressions, a human director prompting revisions in minutes (bworldonline, Aug 2026). The format below is the solo-creator version of that pipeline: human script, AI execution, the nine gates intact.
+
+The series: **"The Wrong Heir"** — a revenge-arc mini-drama. Jia, 28, is about to be toasted at her own engagement party when she opens the ring box and finds a stranger's ring. The episode ends before she speaks. Every number below is asserted against the guide's `data/v1/pricing.json` (Seedance 2.0 tiers) and `models.json`; verify live before spending.
+
+**Concept → episode block** (as saved in the [Episode planner](../episode-planner.html), revenge-arc preset):
+
+- Format: revenge-arc · Episode 1 · Emotion: **cold fury**
+- Stake: at her engagement party, Jia opens the ring box and finds a fake — and spots the real ring on her future mother-in-law's hand
+- Hook visual (first 3s): the box clicks open on a stone she has never seen
+- Beats: (1) Hook: the box opens — wrong ring; (2) the proof: her grandmother's ring had a chipped band, this one is flawless; (3) the turn: across the room, Mrs. Chen raises her champagne — wearing the chipped band; (4) the freeze: Jia smiles at the room, raises her glass, and pockets the fake (clean composition for the episode-2 tease)
+- Cliffhanger: the toast is in ten minutes — what does she say?
+- Keyframe scenes: box-open close-up / the flawless band macro / Mrs. Chen's hand across the room / Jia's smile with the pocketed box
+
+**Bible entries (G0):** Jia — anchor: "a 28-year-old woman with a sharp black bob, jade stud earrings, wearing a crimson qipao"; voice: `avocado_v2:MAI_03` (locked); Mrs. Chen — anchor: "a 60-year-old woman with a silver-streaked chignon, heavy gold bangles, wearing an emerald silk jacket"; voice: `avocado_v2:MAI_01` (locked). One prompt-DNA block, prepended verbatim to every generation prompt in every episode: *"9:16 vertical, warm banquet-hall palette, candlelit practicals, no text, no words, no letters, no watermarks anywhere in frame."*
+
+**TTS script** (Stage 2 — spoken form):
+
+```
+Jia: Ten minutes until the toast. My hands are shaking so badly I can barely open the box.
+Jia: This is not my ring.
+Jia: My grandmother's ring had a chip on the band. She dropped it the winter I was born. This band is flawless.
+Jia: Someone switched the rings. At my own engagement party.
+Mrs. Chen: Jia, darling. Come, everyone is waiting for the toast.
+Jia: Coming, Mrs. Chen. That is a beautiful ring you are wearing tonight.
+Mrs. Chen: Oh, this old thing. A family piece.
+Jia: The chipped band. I would know it anywhere.
+Jia: She is wearing my grandmother's ring. And smiling at me.
+Jia: Ten minutes until the toast. I am going to smile back.
+Jia: Episode two — the toast. You do not want to miss it.
+```
+
+11 lines, 148 words, 745 spoken characters → ≈60–70s of dialogue: inside the revenge-arc band. One emotion (cold fury) throughout; the last line is the tease, never the resolution. Stage 3 is authoritative — the synthesized `dialogue.wav` duration is the episode's budget, and the final cut hugs it within ±10%.
+
+**Keyframe prompts** (Stage 4 — anchor verbatim + DNA + no-text): the box-open macro (the hook = the caption restated visually); the flawless band in extreme close-up; Mrs. Chen's bangled hand across the candlelit room, the chipped band catching light (the turn gets its own keyframe — never borrowed); Jia's composed smile, one hand sliding the box into her pocket.
+
+**Animation prompts** (Stage 5 — slow, small): `"slow push-in on the opening box, the wrong stone catching candlelight"`; `"macro drift along the flawless band"`; `"slow rack from Mrs. Chen's smile to her hand, the chipped band glinting"`; `"slow push-in on Jia's smile as her hand pockets the box"`. Mid-clip frames verified on-model before the cut.
+
+**Budget — real pricing-table data, both paths:**
+
+| Line | Rate (from `pricing.json`) | Cost |
+|---|---|---|
+| Voice — 745 chars, HeyGen Voice API | $30/M chars list ($15/M launch through Oct 31) | **$0.022** ($0.011 at launch) |
+| 4 keyframes — Higgsfield Soul 2.0 | 0.12 credits/image; Plus $47/1200cr = $0.0392/cr | **$0.019** |
+| Animation Path A — 4 clips × 5s, Seedance 2.0 720p | $0.08/s third-party estimate — verify live | **$1.60** |
+| Animation Path B (budget) — 4 clips × 5s, Wan 3.0 480p | $0.05/s provider-list | **$1.00** |
+| **Episode total, Path A, clean** | | **$1.64** |
+| **Episode total, Path A, at 5× drawing-cards** | | **$8.20** |
+
+Against the Studio's $50/min benchmark: 65s ≈ 1.08 minutes → benchmark $54.17. The 5× envelope ($8.20) is 15% of benchmark — the same bible-reuse math as the interactive example, in the format the market actually pays for. (A vendor piece claims $500–1,000 for a full 10-episode AI series vs $15,000–50,000 traditional — single-source, vendor-published; the per-episode math above is the checkable version of that claim.)
+
+**Caption package** (Stage 7 — from the [Hook-title generator](../hook-generator.html)):
+
+```
+Episode 1 — She opened the ring box at her own engagement party… and it was the wrong ring 💍
+#thewrongheir #aianimation #fyp #revengearc
+episode 2 — the toast. tomorrow.
+```
+
+**Quality-gate walk:** G0 — bible locked (2 anchors + verified refs + 2 locked voices); G2 — read aloud, hook in line 1, one emotion (cold fury), ends on the tease; G3 — `dialogue.wav` in the 60–150s band; G4 — 4 keyframes on-model, text-free, 9:16, dedicated turn shot; G5 — mid-clip frames verified; G6 — 1080×1920, runtime ±10% of dialogue; G7 — caption = hook + hashtags + tease; G8 — log + lesson; G9 — prompt-DNA byte-identical, anchors byte-identical.
+
+*Revisit #7 honesty line:* no new verified episode *formats* this cycle — the revenge arc stands from the planner presets. What's new is the volume economics (Dramagic, the Q1 2026 output figures, the 200-yuan/minute contract floor) and the second worked example proving the pipeline's per-episode math holds in the commercial format, not just the craft one.
+
 ## Craft judgment: where pipelines break
 
 - **The turn without a shot.** If your script has an emotional turn but your scene plan has no keyframe for it, you will "borrow" a beat shot in the edit and the turn will land flat. Dedicated turn shot, or rewrite the turn into a line that plays on a face you already have.
@@ -2826,6 +2890,15 @@ Every source consulted, grouped by section, with what was pulled from it.
 - https://www.youtube.com/watch?v=zvbBudgJi7s — Breaking & Entering podcast #533: PJ Pereira (Silverside AI founder) on taking the brunt of the AI backlash (Coke + Svedka spots)
 - Watch desk (verified Oct 11): Kling 4.0 still not GA (convly.ai, apimart.ai — API 3.0-only); Higgsfield $1M festival winners not announced (first-party site "end week of October 2026 (exact date TBC)"); no generation-model releases in 72h (EvalMap corroborates); Sora Azure retirement Oct 15 on schedule
 
+## Episode-pipeline revisit #7 research (wow wave 2, 2026-10-12)
+- https://the-decoder.com/bytedance-launches-dramagic-a-full-pipeline-ai-platform-for-producing-short-dramas-from-script-to-screen/ — ByteDance launched Dramagic (Sept 21, 2026): full-pipeline AI short-drama platform, script analysis → character creation → storyboarding → video previews, multi-user collaboration, consistency checks; sold through BytePlus (secondary trade press)
+- https://the-decoder.com/bytedance-launches-dramagic-a-full-pipeline-ai-platform-for-producing-short-dramas-from-script-to-screen/ — China Netcasting Services Association: ~128,000 short dramas published in China Q1 2026 (3x all of 2025), ~95% AI-generated; Tsinghua's Shen Yang: one minute of AI video at $90–120, ~a tenth of traditional (via the-decoder)
+- https://www.caixinglobal.com/2026-06-01/cover-story-how-ai-took-over-chinas-micro-drama-industry-in-90-days-102449814.html — Caixin cover story (reported, paywalled): Seedance 2.0 (Feb 2026) realism drove the boom; contract prices collapsing 800–1,000 yuan/min → 200 yuan/min; 100-minute AI drama in 3–7 days under 20,000 yuan; AI shows skew younger, audiences still 40+ lower-tier cities
+- https://www.mediapost.com/publications/article/413505/microdramas-drove-in-app-revenue-of-11b-worldwide.html — Quartz/Sensor Tower: microdramas $3B US in-app revenue 2025 (+115% YoY), $11B global; TikTok's PineDrama; fastest-growing entertainment format in America (multi-outlet verified)
+- https://bworldonline.com/editors-picks/2026/08/21/771426/microdramas-boom-in-a-shrinking-hollywood-as-studios-chase-a-tiktok-audience/ — Inkitt Ironblood: AI microdramas in 3–4 weeks for ≤$60K, human-written, actors brought in to train models on expressions, director prompt-revisions in minutes (Aug 2026)
+- https://medium.com/@jannelee785/traditional-vs-ai-short-drama-production-cost-time-and-team-size-breakdown-6070c4a4b004 — vendor piece: $500–1,000 per 10-episode AI series vs $15,000–50,000 traditional, 2 days vs 15, team of 1–3 (single-source, vendor-published — figures not independently verified)
+- https://yourstory.com/2026/05/china-ai-generated-short-drama-market-2026 — industry roundup: 470 AI short dramas/day in China (Jan 2026), costs cut 80–90% vs traditional (industry reports — directional)
+
 ## Pending
 
 <!-- chapter: guides/first-short.md -->
@@ -2916,6 +2989,7 @@ Do a 20-minute post-mortem while it's fresh: what broke, what the fix was, what 
 - `site/episode-planner.html` — episode planner: lock a mini-drama series (title, logline, hashtag, cast with voice IDs + anchors), plan episode blocks (one emotion, 3–5 beats, turn, cliffhanger), arc tracker with lessons; saved blocks feed one-click 'Send series to Studio' — the planner stages title/logline/cast anchors/every block's format, runtime, and beats into the Studio's series mode; localStorage (`afg-episode-series`)
 - `site/hook-generator.html` — hook-title generator: `[Episode N] + [one-line emotional stake] + [CTA]` → 5 worked caption variants, each with a why-this-hooks note
 - `site/studio.html` — Studio 2.0 — AI-film studio simulator: a standalone film (title, logline, genre/mood, runtime, draft/festival tier) or a serialized series (3–10 episodes, one of the 5 proven serialized format presets: mini-drama / POV micro-series / day-in-the-life / revenge arc / interactive — each pre-filling runtime band, beat structure, hook style, the dialogue-budget rule) in → deterministic production packet — shot list with per-shot prompts built from the 47-template library, per-shot model picks from `models.json` with cost math, budget table with 5×/20× envelopes, shooting schedule, series bible with locked prompt DNA + locked-anchor asset reuse, self-contained HTML/Markdown packet export (download, print), localStorage plans with names, duplicate, delete, continue-planning; one-click 'Send to Studio' bridge from the episode planner
+- `site/greenlight.html` — the green light — a studio meeting, playable: pitch a film concept (title, logline, genre, runtime, resolution, draft/festival ambition) → a six-layer cold read (someone to watch, something happening, a camera decision, light, place and time, a feeling) with a 0–100 score → the shot list from the real 47-template prompt library via the Studio engine → every shot priced from `data/v1/pricing.json` (per-second tiers, low/high ranges, tier + arithmetic shown per shot) → day-by-day schedule → verdict: GREEN LIGHT / CONDITIONAL / BACK TO THE ROOM. The money rule: festival ambition only unlocks flagship pricing when the read clears 55/100 — a cold read gets draft money, stated on the record. Punch-up buttons add craft layer by layer and re-run the plan (watch the money move). Hype hygiene: Veo 4 doesn't exist (SEO bait — verified Oct 2026), Kling 4.0 is announced-not-shipped, Sora discontinued — named and corrected, never priced. Markdown export, print. Takes from the cutting room walk straight in (`assets/js/greenlight.js`, engine unit-tested in `scripts/greenlight.test.js`)
 - `site/quiz.html` — model-picker quiz: 5 questions → ranked top-3 from `models.json` with cost math, one-click handoff to the workshop
 - `site/compare.html` — model compare: 2–3 models side by side (cost, best use, strengths, weaknesses, native audio, status/last-verified) from `models.json`, shareable via URL params; discontinued excluded
 - `site/gallery.html` — prompt gallery: your workshop-saved prompts (localStorage) browsable, filterable by track/model, sortable by rating, open-in-workshop deep links, JSON export/import

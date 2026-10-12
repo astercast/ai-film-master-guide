@@ -66,6 +66,7 @@ NAV_INDEX = [
         ("optimizer.html", "Optimizer"),
         ("doctor.html", "Doctor"),
         ("linter.html", "Linter"),
+        ("greenlight.html", "Green light"),
         ("recipes.html", "Recipes"),
     ]),
     ("Study", [
@@ -1489,6 +1490,7 @@ STUDIO_TMPL = """<!DOCTYPE html>
           <button type="button" class="btn btn-ghost" id="st-dl-md">Download packet (.md)</button>
           <button type="button" class="btn btn-ghost" id="st-dl-html" hidden>Download packet (.html, self-contained)</button>
           <button type="button" class="btn btn-ghost" id="st-print">Print / save PDF</button>
+          <a class="btn btn-ghost" href="greenlight.html">Take this plan to the Green Light →</a>
         </div>
         <div class="field" style="margin-top:var(--space-4);">
           <label for="st-plan-name">Plan name (for saving)</label>
@@ -1743,6 +1745,186 @@ CUTTINGROOM_TMPL = """<!DOCTYPE html>
   <script src="assets/js/palette.js"></script>
   <script src="assets/js/api-client.js"></script>
   <script src="assets/js/cutting-room.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
+</body>
+</html>
+"""
+
+GREENLIGHT_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The green light — a studio meeting, playable — AI Film Master Guide</title>
+  <meta name="description" content="The Green Light: pitch your film concept to the room. A six-layer cold read, a shot list built from the guide's real 47-template prompt library, per-shot pricing from the real pricing table, a day-by-day schedule, and a verdict — green light, conditional, or back to the room.">
+  {css}
+  <style>
+    .gl-form-grid {{ display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }}
+    .gl-form-grid .full {{ grid-column: 1 / -1; }}
+    @media (max-width: 720px) {{ .gl-form-grid {{ grid-template-columns: 1fr; }} }}
+    .gl-ambition {{ display: flex; gap: var(--space-3); flex-wrap: wrap; }}
+    .gl-kicker {{ display: block; color: var(--gold); text-transform: uppercase; letter-spacing: .08em; font-size: .8rem; margin-bottom: var(--space-2); font-family: var(--font-mono); }}
+    .gl-ambition .radio-pill {{ display: inline-flex; align-items: flex-start; gap: var(--space-2); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-2) var(--space-3); cursor: pointer; }}
+    .gl-ambition .radio-pill input {{ accent-color: var(--gold); margin-top: 3px; }}
+    .gl-ambition .radio-pill:has(input:checked) {{ border-color: var(--gold); background: color-mix(in srgb, var(--gold) 12%, transparent); }}
+    .gl-ambition .radio-pill:has(input:focus-visible) {{ outline: 2px solid var(--gold); outline-offset: 2px; }}
+    .gl-ambition .gl-hint {{ display: block; color: var(--muted); font-size: .85rem; }}
+    .gl-temp {{ margin: var(--space-4) 0; }}
+    .gl-temp-track {{ height: 10px; background: var(--panel-2); border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }}
+    .gl-temp-fill {{ height: 100%; width: 0; background: linear-gradient(90deg, var(--ember), var(--warn), var(--ok)); }}
+    @media (prefers-reduced-motion: no-preference) {{ .gl-temp-fill {{ transition: width .8s ease; }} }}
+    .gl-temp-word {{ font-family: var(--font-display); text-transform: uppercase; letter-spacing: .06em; font-size: 1.3rem; margin: var(--space-2) 0 0; }}
+    .gl-score {{ font-family: var(--font-mono); color: var(--muted); font-size: .85em; }}
+    .gl-grade strong {{ font-family: var(--font-display); text-transform: uppercase; letter-spacing: .04em; font-size: 1.25em; }}
+    .gl-layers {{ list-style: none; padding: 0; margin: var(--space-4) 0; display: grid; gap: var(--space-2); }}
+    .gl-layers li {{ border: 1px solid var(--line); border-radius: var(--radius-s); padding: var(--space-2) var(--space-3); }}
+    .gl-layers .is-on .gl-lamp {{ color: var(--ok); }}
+    .gl-layers .is-off .gl-lamp {{ color: var(--muted); }}
+    .gl-hits {{ color: var(--muted); font-size: .82rem; font-family: var(--font-mono); }}
+    .gl-hint {{ color: var(--muted); font-size: .9rem; }}
+    .gl-hype {{ border-left: 3px solid var(--warn); padding-left: var(--space-3); }}
+    .gl-punch {{ margin-top: var(--space-4); border: 1px dashed var(--line-bright); border-radius: var(--radius); padding: var(--space-4); }}
+    .gl-punch h3 {{ margin-top: 0; }}
+    .gl-shots {{ display: grid; gap: var(--space-4); grid-template-columns: minmax(0, 1fr); }}
+    @media (min-width: 58rem) {{ .gl-shots {{ grid-template-columns: 1fr 1fr; }} }}
+    .gl-shot h3 {{ margin-top: 0; }}
+    .gl-shot-n {{ font-family: var(--font-mono); color: var(--gold); font-size: .85em; }}
+    .gl-act {{ color: var(--muted); font-weight: 400; font-size: .78em; text-transform: uppercase; letter-spacing: .06em; }}
+    .gl-plat {{ color: var(--muted); font-size: .85em; }}
+    .gl-flag {{ display: inline-block; font-size: .75rem; border: 1px solid var(--warn); color: var(--warn); border-radius: 999px; padding: .1em .7em; margin-left: .4em; }}
+    .gl-why {{ color: var(--muted); font-size: .9rem; }}
+    .gl-cost {{ font-size: 1.05rem; }}
+    .gl-cost.is-unpriced {{ color: var(--warn); }}
+    .gl-math {{ display: block; font-family: var(--font-mono); font-size: .78rem; color: var(--muted); margin-top: var(--space-1); }}
+    .gl-unpriced {{ color: var(--warn); }}
+    .gl-table td:nth-child(4), .gl-table td:nth-child(5),
+    .gl-table th:nth-child(4), .gl-table th:nth-child(5) {{ text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }}
+    .gl-table td:nth-child(6) {{ max-width: 36ch; color: var(--muted); font-size: .85rem; }}
+    .gl-totals {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); padding: 0; margin: var(--space-4) 0; }}
+    @media (max-width: 720px) {{ .gl-totals {{ grid-template-columns: 1fr; }} }}
+    .gl-totals > div {{ border: 1px solid var(--line); border-radius: var(--radius-s); padding: var(--space-3); list-style: none; }}
+    .gl-totals dt {{ color: var(--muted); font-size: .82rem; text-transform: uppercase; letter-spacing: .05em; }}
+    .gl-totals dd {{ margin: var(--space-1) 0 0; font-family: var(--font-display); font-size: 1.6rem; color: var(--gold); }}
+    .gl-days {{ list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-2); }}
+    .gl-days li {{ display: flex; gap: var(--space-3); align-items: baseline; border-bottom: 1px solid var(--line-soft); padding-bottom: var(--space-2); flex-wrap: wrap; }}
+    .gl-day {{ font-family: var(--font-mono); color: var(--gold); white-space: nowrap; }}
+    .gl-basis {{ color: var(--muted); font-size: .88rem; margin-left: auto; text-align: right; }}
+    .gl-verdict {{ border: 2px solid var(--line-bright); border-radius: var(--radius); padding: var(--space-5); }}
+    .gl-verdict.is-green {{ border-color: var(--ok); }}
+    .gl-verdict.is-cond {{ border-color: var(--warn); }}
+    .gl-verdict.is-pass {{ border-color: var(--ember); }}
+    .gl-stamp {{ font-family: var(--font-display); font-size: clamp(2rem, 6vw, 3.2rem); text-transform: uppercase; letter-spacing: .04em; transform: rotate(-3deg); display: inline-block; border: 3px solid currentColor; border-radius: var(--radius-s); padding: 0 var(--space-3); margin: 0 0 var(--space-3); line-height: 1.15; }}
+    .is-green .gl-stamp {{ color: var(--ok); }}
+    .is-cond .gl-stamp {{ color: var(--warn); }}
+    .is-pass .gl-stamp {{ color: var(--ember-soft); }}
+    @media (prefers-reduced-motion: no-preference) {{
+      .gl-stamp {{ animation: gl-stamp-in .45s cubic-bezier(.2,1.4,.4,1) both; }}
+      @keyframes gl-stamp-in {{ from {{ transform: rotate(-3deg) scale(1.6); opacity: 0; }} to {{ transform: rotate(-3deg) scale(1); opacity: 1; }} }}
+    }}
+    .gl-vline {{ font-size: 1.05rem; }}
+    #gl-meeting section {{ margin-bottom: var(--space-7); }}
+    #gl-meeting .st-prompt {{ white-space: pre-wrap; word-break: break-word; background: var(--bg-raise); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-3); font-size: .92rem; }}
+    #gl-bridge {{ margin-bottom: var(--space-4); border-color: var(--gold); }}
+    @media print {{
+      .site-header, .site-footer, .skip-link, #gl-form-sec, #gl-how-sec, #gl-actions {{ display: none !important; }}
+      .hero {{ padding: var(--space-4) 0; }}
+      .gl-shot {{ break-inside: avoid; }}
+      body {{ background: #fff; color: #000; }}
+    }}
+  </style>
+</head>
+<body>
+  <div class="edge-right" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        {sitenav}
+      </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">⌘K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    {hero}
+    <section class="container" id="gl-form-sec" aria-labelledby="gl-pitch-h">
+      <h2 id="gl-pitch-h">The pitch <span class="tc" aria-hidden="true">00:00:00:00</span></h2>
+      <p class="section-lede">One concept, plain words. The room does the rest — and tells you exactly what it charged you for.</p>
+      <div class="card" id="gl-bridge" hidden></div>
+      <form class="card calc-form" aria-label="Pitch your film to the room" onsubmit="return false;">
+        <div class="gl-form-grid">
+          <div class="field">
+            <label for="gl-title">Working title</label>
+            <input class="input" type="text" id="gl-title" maxlength="80" placeholder="e.g. The Net Mender" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="gl-genre">Genre / mood</label>
+            <select class="input" id="gl-genre"></select>
+          </div>
+          <div class="field full">
+            <label for="gl-concept">The concept — what is the film?</label>
+            <textarea class="input" id="gl-concept" rows="4" placeholder="e.g. A retired lighthouse keeper rows out every dawn to relight the lamp the town switched off…"></textarea>
+          </div>
+          <div class="field">
+            <label for="gl-runtime">Target runtime</label>
+            <select class="input" id="gl-runtime">
+              <option value="30">30 seconds</option>
+              <option value="120" selected>2 minutes</option>
+              <option value="300">5 minutes</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="gl-res">Finish resolution</label>
+            <select class="input" id="gl-res">
+              <option value="720p">720p — draft-friendly</option>
+              <option value="1080p" selected>1080p — the festival standard</option>
+              <option value="4k">4K — flagship money</option>
+            </select>
+          </div>
+          <div class="field full">
+            <span class="gl-kicker" id="gl-amb-label">Ambition</span>
+            <div class="gl-ambition" role="radiogroup" aria-labelledby="gl-amb-label">
+              <label class="radio-pill"><input type="radio" name="gl-ambition" value="draft" checked> <span class="gl-pill-t"><strong>Draft</strong><span class="gl-hint">cheapest usable models</span></span></label>
+              <label class="radio-pill"><input type="radio" name="gl-ambition" value="festival"> <span class="gl-pill-t"><strong>Festival</strong><span class="gl-hint">flagship pricing — earned, not assumed</span></span></label>
+            </div>
+          </div>
+          <div class="field full">
+            <div class="btn-row">
+              <button type="button" class="btn btn-gold" id="gl-pitch" disabled>Loading the room…</button>
+              <button type="button" class="btn btn-sm btn-ghost" id="gl-weak">Weak sample</button>
+              <button type="button" class="btn btn-sm btn-ghost" id="gl-strong">Strong sample</button>
+              <button type="button" class="btn btn-sm btn-ghost" id="gl-clear">Clear</button>
+            </div>
+            <p class="calc-note">Ctrl+Enter pitches. A take from the <a href="cutting-room.html">Cutting Room</a> can walk straight in — look for the “Green light →” button on any take.</p>
+          </div>
+        </div>
+      </form>
+      <p class="empty-state" id="gl-error" role="alert" hidden></p>
+    </section>
+    <section class="container" id="gl-meeting" aria-label="The meeting" hidden></section>
+    <section class="container" id="gl-how-sec" aria-labelledby="gl-how-h">
+      <h2 id="gl-how-h">How the room works <span class="tc" aria-hidden="true">00:03:45:00</span></h2>
+      <div class="prose">
+        <p>The room reads <strong>structure, not taste</strong>. Six layers — someone to watch, something happening, a camera decision, light, place and time, a feeling — scored 0–100 from the words on the page. Then the money rule: festival ambition only unlocks flagship pricing when the read clears 55. A cold read gets draft money no matter what was asked for, and the room says so on the record.</p>
+        <p>Every shot is built from the guide's 47-template prompt library and priced from the real per-second pricing table — low/high ranges, the tier priced, the arithmetic shown per shot. Envelopes are 5× and 20× the clean number. Post (assembly, audio, grade) is human time and software you already own; it isn't modeled. Ranges, not promises — verify live before spending.</p>
+        <p>The room also does hype hygiene: Veo 4 doesn't exist (the “release date” pages are SEO bait — verified Oct 2026), Kling 4.0 is announced but not shipped, and Sora is discontinued. Name one and the room corrects the record instead of pricing the fantasy.</p>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    {footer}
+  </footer>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/api-client.js"></script>
+  <script src="assets/js/studio.js"></script>
+  <script src="assets/js/greenlight.js"></script>
   <script src="assets/js/docs.js"></script>
   <script src="assets/js/identity.js"></script>
 </body>
@@ -4334,6 +4516,18 @@ def main():
     # Studio (wave 15: flagship "plan my AI film" production-packet simulator)
     (SITE / "studio.html").write_text(STUDIO_TMPL.format(
         css=css_links, sitenav=nav_html("", ""), footer=footer_html("")))
+
+    # Green Light (wow wave 2: the studio meeting, playable — pitch in,
+    # six-layer read, real-pricing plan, verdict out)
+    (SITE / "greenlight.html").write_text(GREENLIGHT_TMPL.format(
+            hero=hero_cutroom(
+                kicker="""Interactive tool""",
+                h1="""The green <span class="accent">light.</span>""",
+                lede="""Every film starts as a pitch to a room. This is that room, playable: pitch your concept, and the room reads it cold — builds your shot list from the guide's real prompt library, prices every shot from the real pricing table, lays out the shoot day by day, then votes. A weak pitch gets a cheap plan. Punch it up and watch the money move.""",
+                deck_title="""GREEN_LIGHT — SESSION_01""",
+                clips={"v2": ['The read'], "v1": ['The pitch', 'The board', 'The money', 'The schedule'], "a1": ['The verdict']},
+                h1_id="gl-title-h",
+                extra=""""""),        css=css_links, sitenav=nav_html("", "greenlight.html"), footer=footer_html("")))
     (SITE / "404.html").write_text(FOUR_OH_FOUR_TMPL.format(
         css=css_links, sitenav=nav_html("", ""), footer=footer_html("")))
 
@@ -4441,7 +4635,10 @@ def main():
          "text": "Prompt linter: paste any prompt and get a structural analysis against the ten-layer prompt anatomy — layers present/missing, vague words flagged, concrete fix per gap, one-click handoff to the workshop. Heuristic: checks structure, not taste."},
         {"url": "cutting-room.html", "title": "The cutting room", "section": "Tools",
          "headings": ["The empty bench", "The dailies", "The shoot", "The cost desk", "The fix bay", "The take log"],
-         "text": "The cutting room, playable: type a weak prompt, roll the camera, and watch the scene get built shot by shot from the guide's real 47-template prompt library — then improve the prompt with guided fix-bay techniques quoted from real templates and watch the cut improve take by take, with real model pricing and honest cost math from the Watchtower pricing API."},
+         "text": "The cutting room, playable: type a weak prompt, roll the camera, and watch the scene get built shot by shot from the guide's real 47-template prompt library — then improve the prompt with guided fix-bay techniques quoted from real templates and watch the cut improve take by take, with real model pricing and honest cost math from the Watchtower pricing API. Any take can walk into the Green Light for a full production plan."},
+        {"url": "greenlight.html", "title": "The green light", "section": "Tools",
+         "headings": ["The pitch", "The read", "The board", "The money", "The schedule", "The verdict"],
+         "text": "The green light: a studio meeting, playable. Pitch your film concept and the room reads it cold — a six-layer analysis (someone to watch, something happening, a camera decision, light, place and time, a feeling) — then builds the shot list from the guide's real 47-template prompt library, prices every shot from the real per-second pricing table (low/high ranges, tier and arithmetic shown), lays out the shoot day by day, and votes: green light, conditional, or back to the room. Festival ambition only unlocks flagship pricing when the read clears 55/100; a cold read gets draft money, stated on the record. Punch-up buttons add craft layer by layer and re-run the plan so you can watch the money move. Takes from the Cutting Room walk straight in."},
         {"url": "prompts.html", "title": "Prompt library", "section": "Tools",
          "headings": ["Find a template", "Where to go next"],
          "text": "Prompt library: all 47 guide templates in one browsable shelf — full-text search plus filters for shot type, camera movement, lighting, and mood. Every card shows which prompt-anatomy layers the template demonstrates, the shortlisted models, matching teardown workflows, and one-click copy, remix, or Send to Studio."},

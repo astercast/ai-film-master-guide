@@ -338,6 +338,34 @@ for d in site/models.json site/prompt-templates.json site/camera-movements.json 
 done
 if [ "$STUDIO_OK" = 1 ]; then pass "studio.html + studio.js shipped in assets/js and site/, data files present"; fi
 
+# Green Light page: engine + page + real pricing table
+GL_OK=1
+for f in assets/js/greenlight.js site/greenlight.html site/assets/js/greenlight.js; do
+  if [ ! -f "$f" ]; then fail "$f missing (rebuild the site)"; GL_OK=0; fi
+done
+if [ ! -f site/data/v1/pricing.json ]; then fail "site/data/v1/pricing.json missing — the Green Light cannot price without it"; GL_OK=0; fi
+GL_OUT=$(node scripts/greenlight.test.js 2>&1)
+if echo "$GL_OUT" | tail -1 | grep -q "all pass"; then
+  GL_N=$(echo "$GL_OUT" | grep -c "^ok ")
+  pass "greenlight.test.js: $GL_N engine unit tests pass (six-layer read, pricing tiers, money rule, verdicts)"
+else
+  fail "greenlight.test.js failures:"
+  echo "$GL_OUT" | grep "^FAIL" | head -8 | sed 's/^/    /'
+  GL_OK=0
+fi
+# window.StudioEngine must be exposed for the Green Light page
+if grep -q "window.StudioEngine = StudioEngine" assets/js/studio.js; then
+  pass "studio.js exposes window.StudioEngine for the Green Light page"
+else
+  fail "studio.js does not expose window.StudioEngine"; GL_OK=0
+fi
+# Cutting Room → Green Light bridge button present (rendered by cutting-room.js)
+if grep -q "cr-greenlight" assets/js/cutting-room.js && grep -q "cr-greenlight" site/assets/js/cutting-room.js; then
+  pass "cutting-room → green-light bridge wired (button + handler)"
+else
+  fail "cutting-room → green-light bridge missing"; GL_OK=0
+fi
+
 # ---------------------------------------------------------------- stage 8 ---
 stage 8 "Agent workflows (AGENT.md examples vs real data/v1 data)"
 WF_OUT=$(node scripts/agent-workflows.test.js 2>&1)

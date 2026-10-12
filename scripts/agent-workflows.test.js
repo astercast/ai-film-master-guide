@@ -296,6 +296,42 @@ console.log("       Run: " + RunPlan.totalClips.lo + "-" + RunPlan.totalClips.hi
   " | plan total $" + RunPlan.budget.totalUsd.toFixed(2) +
   " | " + RunPlan.timelineDays + " days");
 
+/* ===== workflow 7: green-light read — GreenLight engine (asserts the AGENT.md workflow-6 numbers) ======= */
+console.log("--- workflow 7: green-light read (real engine, asserted numbers) ---");
+const GreenLight = require(path.join(ROOT, "assets", "js", "greenlight.js"));
+const pricingDoc = read("pricing.json");
+const STRONG_C = "Mara, a weathered fisherwoman in her sixties \u2014 silver braid, oilskin coat, " +
+  "mending a torn net on a fog-draped wooden dock at dawn; the camera pushes in slowly " +
+  "from medium to close-up; cold blue dawn light with a warm lantern glow from frame left; " +
+  "quiet resilience; coat hem stirring in the sea breeze.";
+const GL = GreenLight.buildMeeting(
+  { models: read("models.json").models, templates: read("prompt-templates.json").templates },
+  pricingDoc,
+  { title: "The Net Mender", logline: STRONG_C, genre: "drama",
+    runtimeSec: 30, resKey: "1080p", ambition: "festival" }, Studio);
+eq(GL.read.score, 100, "greenlight: strong concept reads 100/100");
+eq(GL.input.effTier, "festival", "greenlight: flagship pricing unlocked");
+eq(GL.verdict.level, "green", "greenlight: verdict GREEN LIGHT");
+eq(GL.shots.length, 8, "greenlight: 8 shots for 30s festival");
+eq(GL.totals.cleanLow, 66.96, "greenlight: $66.96 clean");
+eq(GL.totals.fiveLow, 334.80, "greenlight: $334.80 5x envelope");
+eq(GL.totals.twentyLow, 1339.20, "greenlight: $1,339.20 20x envelope");
+eq(GL.totalDays, 6, "greenlight: 6-day schedule");
+ok(GL.lines.some((l) => l.model === "Veo 3.1" && l.tierName === "standard-1080p"),
+  "greenlight: Veo 3.1 priced at standard-1080p (not the Fast entry)");
+const GLW = GreenLight.buildMeeting(
+  { models: read("models.json").models, templates: read("prompt-templates.json").templates },
+  pricingDoc,
+  { title: "Dog in the City", logline: "a dog in a city", genre: "action",
+    runtimeSec: 30, resKey: "1080p", ambition: "festival" }, Studio);
+eq(GLW.read.score, 33, "greenlight: weak concept reads 33/100");
+eq(GLW.input.effTier, "draft", "greenlight: money rule prices the cold read at draft");
+eq(GLW.verdict.level, "pass", "greenlight: weak verdict BACK TO THE ROOM");
+eq(GLW.totals.cleanLow, 15.15, "greenlight: weak $15.15 clean");
+ok(GLW.verdict.notes.some((x) => /festival money/.test(x)),
+  "greenlight: downgrade stated on the record");
+console.log("       Green light: strong $66.96 green / weak $15.15 pass (money rule)");
+
 /* ================================ summary ================================ */
 console.log("");
 if (failures === 0) {

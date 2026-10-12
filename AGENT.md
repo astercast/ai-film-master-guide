@@ -161,6 +161,62 @@ Input shape:
 
 Worked result for `{title, episodes: 4, minPerEpisode: 1, tier: "draft", regensPerEp: 5}` against the real data (verified by `node scripts/agent-workflows.test.js`): 4–6 clips/episode (16–24 for the run); $200 benchmark ($50/min × 4 min); generation 180s/episode × 3 takes at the cheapest video-model rate; regen reserve 20 regens at the cheapest image-model rate; 4 days at the documented pace; plan total vs benchmark in the run-budget table with every line's documented basis.
 
+## Example workflow 6 — run a green-light read on a concept
+
+The Green Light (`site/greenlight.html`, logic in `assets/js/greenlight.js`)
+is the Studio engine plus a room: it reads the concept cold, builds the
+plan, prices it from `data/v1/pricing.json`, and votes. Reproduce it:
+
+1. **Input shape** (this is the contract — `assets/js/greenlight.js`
+   `buildMeeting`):
+   ```json
+   { "title": "...", "logline": "...",
+     "genre": "drama", "runtimeSec": 30,
+     "resKey": "1080p", "ambition": "festival" }
+   ```
+   `genre` ∈ drama, horror, scifi, action, comedy, animation, commercial,
+   documentary. `runtimeSec` ∈ 30, 120, 300. `resKey` ∈ 720p, 1080p, 4k.
+   `ambition` ∈ draft, festival.
+2. **The six-layer read** (`readRoom`): keyword presence per layer —
+   someone to watch, something happening, a camera decision, light, place
+   and time, a feeling — scored 0–100 (present layers / 6). Empty,
+   keysmash, and sub-2-word concepts are unusable (honest NO FOOTAGE, not
+   a guess). Non-English is flagged, not rejected.
+3. **The money rule** (`effectiveTier`): festival ambition unlocks flagship
+   pricing only when the read scores ≥ 55. A cold read gets draft money
+   no matter what was asked for — stated in the verdict notes, never
+   silent.
+4. **Pricing** (`priceShot`): resolve each shot's model to a
+   `pricing.json` entry (exact normalized match first, longest-prefix
+   fallback — so "Veo 3.1" never resolves to the "Veo 3.1 Fast" entry);
+   festival picks the `standard` tier at the requested resolution, draft
+   picks the cheapest usable tier; fallback ladder 1080p → 720p → first
+   usable. Cost = usd_low/high × seconds × takes. Models with no
+   per-second tier (announced-but-unpriced like Kling 4.0) are unpriced,
+   stated, never invented.
+5. **Hype hygiene**: "Veo 4" → doesn't exist (verified Oct 2026 — the
+   "release date" pages are SEO bait); "Kling 4.0" → announced, not
+   shipped; "Sora" → discontinued. Named and corrected, never priced.
+6. **Verdict**: score ≥ 70 → GREEN LIGHT; 45–69 → CONDITIONAL (missing
+   layers listed as conditions); < 45 → BACK TO THE ROOM.
+
+Worked result for the strong concept ("Mara, a weathered fisherwoman…",
+genre drama, 30s, 1080p, festival ambition) against the real data
+(verified by `node scripts/agent-workflows.test.js`): read **100/100**,
+flagship pricing unlocked, **8 shots**, budget lines Kling 3.0 1080p ×1
+$3.36 + Seedance 2.0 1080p ×5 $44.40 + Veo 3.1 standard-1080p ×2 $19.20 =
+**$66.96 clean**, 5× envelope **$334.80**, 20× **$1,339.20**, 6-day
+schedule, verdict **GREEN LIGHT**. The weak concept ("a dog in a city",
+festival ambition): read **33/100**, priced at **draft** by the money
+rule, **$15.15 clean**, verdict **BACK TO THE ROOM**.
+- Punch-ups (`punchUpClauses`/`applyPunchUp`): deterministic craft
+  clauses per missing layer (camera/light/place-time/mood/action) — the
+  room adds craft, never story (no clause for a missing subject).
+- Bridge: the Cutting Room's "Green light →" button stages
+  `{v:1, kind:"greenlight", prompt, score, gradeWord}` in the
+  `afg-studio-bridge` localStorage key; the Green Light pre-fills the
+  pitch from the take's final prompt.
+
 ## Rate and expectation notes
 
 - **Static JSON.** No rate limits, no pagination — payloads are complete

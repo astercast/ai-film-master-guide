@@ -1,5 +1,115 @@
 # Wave Log — AI Film Master Guide
 
+## WOW wave 2 — "The Green Light": a studio meeting, playable (2026-10-12)
+
+**Assignment:** the ambition mandate's #1 flagship — the STUDIO. The Studio
+(3.0) already plans films; this wave builds the experience the mandate
+asked for: input a film concept → a complete production plan from the
+site's REAL data, staged as a studio green-light meeting you can play.
+Plus the episode-pipeline revisit (#7) the mandate folded in.
+
+**Shipped** (new page `greenlight.html`, in nav Index drawer + footer +
+search index + llms tools list):
+
+1. **`assets/js/greenlight.js`** (new, ~950 lines) — the whole meeting:
+   - **The read**: six-layer cold read (someone to watch, something
+     happening, a camera decision, light, place and time, a feeling),
+     0–100 from keyword presence, named-subject detection via
+     capitalization. Honest edge cases: empty/keysmash/sub-2-word →
+     NO-FOOTAGE slate; non-English flagged, not rejected.
+   - **The money rule**: festival ambition unlocks flagship pricing only
+     when the read clears 55/100 — a cold read gets draft money no
+     matter what was asked for, stated on the record, never silent.
+   - **Real cost math from `data/v1/pricing.json`** (not the Studio's
+     credit estimates): per-shot model resolution with exact-match-first
+     pricing lookup (so "Veo 3.1" never resolves to the "Veo 3.1 Fast"
+     entry — a real bug caught in testing), festival picks the
+     `standard` tier at the requested resolution, draft picks the
+     cheapest usable tier, 1080p→720p→first fallback ladder; cost =
+     usd_low/high × seconds × takes, arithmetic shown per shot.
+     Verified figures: Veo 3.1 standard-1080p $0.40/s → $3.20/8s;
+     Kling 3.0 720p $0.084/s → $0.84/10s.
+   - **Hype hygiene**: Veo 4 → "doesn't exist, SEO bait, verified Oct
+     2026"; Kling 4.0 → "announced, not shipped"; Sora → discontinued.
+     Named and corrected, never priced.
+   - **The board / money / schedule / verdict**: shot list from the real
+     47-template library via the Studio engine (`window.StudioEngine`,
+     newly exposed), per-model budget table with low/high ranges +
+     5×/20× envelopes, day-by-day schedule, verdict stamp (GREEN LIGHT /
+     CONDITIONAL / BACK TO THE ROOM) with conditions and markdown
+     export (copy/download/print).
+   - **Watch the plan improve**: punch-up buttons append deterministic
+     craft clauses per missing layer (camera, light, place/time, mood,
+     action — the room adds craft, never story; no clause for a missing
+     subject) and re-run the meeting; scores, model picks, and the
+     budget visibly move.
+   - Pricing loads live-first via the Watchtower (`/api/models-pricing`)
+     with the honest live/cached badge, static `data/v1/pricing.json`
+     fallback per the data/v1/ rule.
+2. **Cutting Room → Green Light bridge** (wow wave 1's candidate,
+   delivered): every take in the take log gets a "Green light →"
+   button — the take's final prompt + grade walk into the Green Light
+   pre-filled, with a banner. Same `afg-studio-bridge` key, `greenlight`
+   kind tag; the Studio's consumers ignore it.
+3. **`scripts/greenlight.test.js`** — 29 node unit tests against the REAL
+   data (read scoring, punch-up determinism, tier selection, the $3.20/8s
+   and $0.84/10s figures, money rule, budget reconciliation, verdicts);
+   **29/29 pass**. validate.sh stage 7 extended (greenlight tests, file
+   presence, `window.StudioEngine` exposure, bridge wiring).
+4. **Episode-pipeline revisit #7** (standing workstream, folded in per the
+   mandate): second worked example in `craft/episodic-shortform.md` —
+   "The Wrong Heir", a revenge-arc volume-format episode end to end
+   (planner block → 11-line TTS script → keyframe/animation prompts →
+   real `pricing.json` budget: $1.64 clean / $8.20 at 5× = 15% of the
+   $50/min benchmark → caption → gate walk), with the cycle's verified
+   economics (ByteDance Dramagic Sept 21 2026; China Q1 2026 ~128K short
+   dramas, 95% AI; $90–120/min; contract prices → 200 yuan/min; US $3B
+   +115% YoY; Ironblood ≤$60K/3–4 weeks). Honesty line kept: no new
+   verified episode formats this cycle. Sources in
+   `sources/source-index.md`.
+5. **AGENT.md workflow 6** — the green-light read as an agent recipe with
+   worked numbers, plus executable proof in
+   `scripts/agent-workflows.test.js` (workflow 7 block: strong $66.96
+   green / weak $15.15 pass — money rule); 74 → 88 assertions, all pass.
+
+**Bugs caught in testing:** (1) `matchEntry` longest-substring matching
+resolved "Veo 3.1" to the "Veo 3.1 Fast / Veo 3" entry — fixed with
+exact-match-first + longest-prefix fallback (mirrors the Studio's own
+`resolveModel`); (2) the money table was cramped — wrapped in the site's
+`.table-scroll` pattern with right-aligned tabular numbers; (3) the
+ambition radio pills borrowed `.radio-pill`/`.st-hint` classes that only
+exist on studio.html — defined page-local styles; (4) a floating-point
+strict-equal in my own test (9.600000000000001); (5) clipboard denial in
+headless left the copy button dead — now falls back to "use Download
+.md". Pre-existing site quirk noted: docs.js-appended TC stamps jam
+against tool-page h2 text (no margin) — the new page hardcodes its own
+stamps with spaces instead; global fix deferred.
+
+**Validation:** `bash scripts/validate.sh` → 15 passed, 1 failed — the
+failure is the stage-6 llms zero-diff check, which is the expected
+pre-commit state (regenerated `llms.txt`/`llms-full.txt` carry the new
+greenlight entry; goes green on commit, per the wow-wave-1 pattern).
+Playwright functional suite **30/30**: weak auto-pitch (stone cold,
+punch-ups, board/money/schedule/verdict, draft-money note), punch-up
+loop raises the score, strong + festival (GREEN LIGHT stamp, Veo 3.1
+standard-1080p), copy/download feedback, empty/gibberish NO-FOOTAGE,
+Veo-4 hype correction, Ctrl+Enter, reduced-motion full content, mobile
+390px zero overflow, bridge take → prefilled pitch + banner, zero
+non-environmental console errors. Headless-Chromium screenshots
+inspected: hero deck, pitch form, read (weak/strong), board cards,
+money table, schedule, verdict stamp, chapter worked example, mobile.
+Cutting Room identity intact (deck heroes, TC chrome, NO-FOOTAGE
+slates, tail-pop colophon untouched).
+
+**HUMAN-MADE self-check:** the copy has a voice ("the room adds craft,
+never story", "ranges, not promises", "one day to stop touching it")
+and the layouts are meeting-specific (temperature meter, verdict
+stamp, day-by-day schedule), not SaaS-generic. The easter egg: the
+schedule's last day is always "Lock the cut — one day to stop touching
+it."
+
+**Commit:** [recorded below after push]
+
 ## Wave 39 — addendum: Vercel data-dir fix (2026-10-12, same day)
 
 Critical production blocker fixed in the working repo (pushed as `ebe0ff8`,

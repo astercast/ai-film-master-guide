@@ -694,6 +694,7 @@
         '<span class="cr-take-s">' + t.shots.length + ' shot' + (t.shots.length === 1 ? '' : 's') + '</span>' +
         '<span class="cr-take-c">' + money(low) + (high !== low ? '–' + money(high) : '') + '/take</span>' +
         (best ? '<span class="cr-take-best">best so far</span>' : '') +
+        '<button type="button" class="btn btn-sm btn-ghost cr-greenlight" data-take="' + t.n + '">Green light &rarr;</button>' +
         '</li>';
     }).join("");
   }
@@ -808,6 +809,24 @@
   });
   els["cr-seconds"].addEventListener("change", function () { roll(true); });
   document.addEventListener("click", function (e) {
+    var g = e.target.closest ? e.target.closest(".cr-greenlight") : null;
+    if (g) {
+      var tn = parseInt(g.getAttribute("data-take"), 10);
+      var take = takes.filter(function (t) { return t.n === tn; })[0];
+      if (take) {
+        /* Cutting Room → Green Light bridge (wow wave 2): the take walks in
+           with its final prompt and grade. Same bridge key as the Studio's;
+           the kind tag keeps the payloads from colliding. */
+        try {
+          localStorage.setItem("afg-studio-bridge", JSON.stringify({
+            v: 1, kind: "greenlight",
+            prompt: take.prompt, score: take.score, gradeWord: take.gradeWord
+          }));
+        } catch (err) { /* storage unavailable — the page still opens */ }
+        window.location.href = "greenlight.html";
+      }
+      return;
+    }
     var b = e.target.closest ? e.target.closest(".cr-apply") : null;
     if (!b) return;
     var cur = els["cr-prompt"].value.trim();
