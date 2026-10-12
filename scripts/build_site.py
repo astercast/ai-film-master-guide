@@ -32,7 +32,7 @@ SECTIONS = [
 CHAPTER_ORDER = {
     "field": ["2026-developments"],
     "higgsfield": ["platform-mastery", "prompt-engineering", "soul-id-deep-dive", "competition-entry-craft"],
-    "craft": ["story-structure", "cinematic-language", "character-consistency", "directing-performance", "color-grading", "sound-music-audio", "editing-pipeline", "editing-ai-footage", "longform-pipelines", "agentic-production-office", "episodic-shortform", "documentary-ethics", "failure-gallery", "ai-film-business"],
+    "craft": ["story-structure", "cinematic-language", "character-consistency", "directing-performance", "color-grading", "sound-music-audio", "editing-pipeline", "editing-ai-footage", "longform-pipelines", "agentic-production-office", "component-based-generation", "episodic-shortform", "documentary-ethics", "failure-gallery", "ai-film-business"],
     "platforms": ["field-guide", "when-to-use-what"],
     "economics": ["credit-math"],
     "case-studies": ["competition-teardowns", "entry-craft-teardowns"],
@@ -209,7 +209,7 @@ PAGE_TMPL = """<!DOCTYPE html>
         <div class="reel-no"><small>REEL</small>{reel}</div>
         <div>
           <p class="crumb"><a href="../index.html">Guide</a> / {section_name}</p>
-          <p class="reel-meta"><span class="tc">{read_min} MIN</span> · {words} words · chapter {reel} of 29</p>
+          <p class="reel-meta"><span class="tc">{read_min} MIN</span> · {words} words · chapter {reel} of 30</p>
         </div>
       </header>
       <article class="prose">{body}</article>
@@ -299,7 +299,7 @@ INDEX_TMPL = """<!DOCTYPE html>
       <div class="container hero-inner">
         <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Professional AI filmmaking</span>
         <h1 id="hero-title">Make films with AI<br><span class="accent">like a studio.</span></h1>
-        <p class="lede">Twenty-nine chapters on Higgsfield mastery, professional craft, directing performance, color grading, sound, economics, long-form pipelines, competition-entry craft, distribution, and rights — with separate tracks for animated/stylized and photorealistic production. Plus a machine-readable API and 231 task skills for agents.</p>
+        <p class="lede">Thirty chapters on Higgsfield mastery, professional craft, directing performance, color grading, sound, economics, long-form pipelines, competition-entry craft, distribution, and rights — with separate tracks for animated/stylized and photorealistic production. Plus a machine-readable API and 232 task skills for agents.</p>
         <div class="btn-row">
           <a class="btn btn-gold" href="manifesto.html">Read the manifesto</a>
           <a class="btn" href="teardown.html">Shot-by-shot teardowns</a>
@@ -307,13 +307,13 @@ INDEX_TMPL = """<!DOCTYPE html>
           <a class="btn" href="craft-not-buttons.html">Craft, not buttons</a>
         </div>
         <div class="stat-strip">
-          <div class="stat"><div class="stat-value">29</div><div class="stat-label">Chapters</div></div>
+          <div class="stat"><div class="stat-value">30</div><div class="stat-label">Chapters</div></div>
           <div class="stat"><div class="stat-value">{total_read}</div><div class="stat-label">Total read time</div></div>
           <div class="stat"><div class="stat-value">47</div><div class="stat-label">Prompt templates</div></div>
           <div class="stat"><div class="stat-value">22</div><div class="stat-label">Camera moves</div></div>
           <div class="stat"><div class="stat-value">22</div><div class="stat-label">Models compared</div></div>
           <div class="stat"><div class="stat-value">79</div><div class="stat-label">Glossary terms</div></div>
-          <div class="stat"><div class="stat-value">231</div><div class="stat-label">Agent skills</div></div>
+          <div class="stat"><div class="stat-value">232</div><div class="stat-label">Agent skills</div></div>
         </div>
       </div>
     </section>
@@ -437,7 +437,7 @@ INDEX_TMPL = """<!DOCTYPE html>
             <li><input type="checkbox" class="path-check" id="pc-filmmaker-8" data-step="filmmaker-8" aria-label="Mark complete: Week 10, the 3-minute short"><a href="craft/longform-pipelines.html">Week 10</a> <span class="path-note">milestone: 3-minute short</span></li>
             <li><input type="checkbox" class="path-check" id="pc-filmmaker-9" data-step="filmmaker-9" aria-label="Mark complete: Week 11, competition craft"><a href="higgsfield/competition-entry-craft.html">Week 11</a> <span class="path-note">competition-entry craft</span></li>
             <li><input type="checkbox" class="path-check" id="pc-filmmaker-10" data-step="filmmaker-10" aria-label="Mark complete: Week 12, distribution and rights"><a href="distribution/release-paths.html">Week 12</a> <span class="path-note"><a href="legal/rights-and-disclosure.html">rights</a> + release plan</span></li>
-            <li><input type="checkbox" class="path-check" id="pc-filmmaker-11" data-step="filmmaker-11" aria-label="Mark complete: study the teardowns"><a href="teardown.html">Study</a> <span class="path-note">shot-by-shot teardowns, all nine films</span></li>
+            <li><input type="checkbox" class="path-check" id="pc-filmmaker-11" data-step="filmmaker-11" aria-label="Mark complete: study the teardowns"><a href="teardown.html">Study</a> <span class="path-note">shot-by-shot teardowns, all ten films</span></li>
             <li><input type="checkbox" class="path-check" id="pc-filmmaker-12" data-step="filmmaker-12" aria-label="Mark complete: ship the entry"><a href="case-studies/entry-craft-teardowns.html">Ship</a> <span class="path-note">milestone: competition entry submitted</span></li>
           </ol>
         </article>
@@ -3716,7 +3716,7 @@ FOUR_OH_FOUR_TMPL = """<!DOCTYPE html>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Missing reel — AI Film Master Guide</title>
-  <meta name="description" content="This reel is missing. The guide's other 29 chapters are intact.">
+  <meta name="description" content="This reel is missing. The guide's other 30 chapters are intact.">
   {css}
 </head>
 <body>
@@ -3744,7 +3744,7 @@ FOUR_OH_FOUR_TMPL = """<!DOCTYPE html>
         <div class="leader-frame" data-leader-frame><b>3</b><span class="lf-label">LEADER</span></div>
         <p class="kicker is-rec">Missing reel</p>
         <h1>That reel <span class="accent">is missing.</span></h1>
-        <p class="lede" style="text-align:center;color:var(--ink-dim);max-width:52ch;margin:0 auto var(--space-5);">The footage you asked for never made it to the cutting room. The other 29 chapters, the Studio, and all nine teardowns are still on the shelf.</p>
+        <p class="lede" style="text-align:center;color:var(--ink-dim);max-width:52ch;margin:0 auto var(--space-5);">The footage you asked for never made it to the cutting room. The other 30 chapters, the Studio, and all ten teardowns are still on the shelf.</p>
         <div class="end-slate" role="img" aria-label="Upside-down end slate: footage pending"><b>SLATED AT TAIL</b><span>FOOTAGE PENDING</span></div>
         <div class="btn-row" style="justify-content:center;">
           <a class="btn btn-gold" href="index.html">Back to the guide</a>
@@ -3884,7 +3884,7 @@ def main():
                 h1="""Task <span class="accent">skills.</span>""",
                 lede="""Every procedure in the guide as a loadable skill: inputs, steps, worked examples, pitfalls. <span id="skills-count" aria-live="polite"></span>""",
                 deck_title="""SKILL_LIBRARY — BIN_01""",
-                clips={"v2": ['231 skills', 'Procedures'], "v1": ['Inputs', 'Steps', 'Worked examples'], "a1": ['Agent room tone', 'Pitfalls']},
+                clips={"v2": ['232 skills', 'Procedures'], "v1": ['Inputs', 'Steps', 'Worked examples'], "a1": ['Agent room tone', 'Pitfalls']},
                 h1_id="skills-title",
                 extra="""<div class="field" style="max-width:480px;"> <label for="skills-filter">Filter skills</label> <input class="input" id="skills-filter" type="search" placeholder="e.g. lip sync, BAF, budget…" autocomplete="off"> </div>"""),        css=css_links, sitenav=nav_html("", "skills.html"), footer=footer_html("")))
     shutil.copy(ROOT / "skills" / "index.json", SITE / "skills-index.json")
@@ -3971,7 +3971,7 @@ def main():
                 h1="""Skill schema <span class="accent">spec.</span>""",
                 lede="""Every one of the {skill_count} skills in <code>skills/</code> follows this exact format — YAML frontmatter plus six Markdown sections. Build to it and your skills slot straight into this library, or any agent framework that reads it.""",
                 deck_title="""SKILL_SPEC — DOC_01""",
-                clips={"v2": ['Six sections'], "v1": ['YAML frontmatter', 'Build to it', '231 skills'], "a1": ['Spec tone', 'Machine-readable']},
+                clips={"v2": ['Six sections'], "v1": ['YAML frontmatter', 'Build to it', '232 skills'], "a1": ['Spec tone', 'Machine-readable']},
                 h1_id="spec-title",
                 extra=""""""),        css=css_links, sitenav=nav_html("", "skill-spec.html"), footer=footer_html(""),
         skill_count=len(skill_index.get("skills", [])),

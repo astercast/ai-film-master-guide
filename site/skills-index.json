@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "count": 231,
+  "count": 232,
   "skills": [
     {
       "id": "prompt-t1",
@@ -1387,6 +1387,12 @@
       "title": "Run a file-driven production office",
       "description": "Set up an agent crew as the film's production office: a SKILL.md pipeline file, a references/ folder (templates, safety memory, style lock, story notes), and a tracking/ folder \u2014 so the production survives context death.",
       "path": "skills/workflow/workflow-production-office.md"
+    },
+    {
+      "id": "workflow-component-separation",
+      "title": "Split the production into separately controllable components",
+      "description": "Architect a generation pipeline as separate character-identity, world, and action components with progressive-change workflows \u2014 so any element can be revised without regenerating the others, and late ideas land as parameter changes instead of restarts.",
+      "path": "skills/workflow/workflow-component-separation.md"
     }
   ]
 }

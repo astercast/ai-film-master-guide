@@ -10,8 +10,8 @@ Generated static site in `site/` — rebuild with `python3 scripts/build_site.py
 after editing chapters. Open `site/index.html`.
 
 - `site/index.html` — landing: track picker (animated vs photorealistic), chapter grid, learning paths (7: first film, competition, animated, photoreal, long-form, first 60-second short, the 90-day filmmaker)
-- `site/<section>/<chapter>.html` — 29 chapters with sidebar nav, table of contents, prev/next; every chapter shows its honest read time (200 wpm from actual word count) and prints cleanly via `@media print` (`assets/css/print.css`)
-- `site/teardown.html` — shot-by-shot teardown viewer: Passport Rush, ONEIRIC, the Grok Odyssey $100K winner, Google DeepMind's Dear Upstairs Neighbors, Fountain 0's Dreams of Violets (75-min Tribeca 2026 AI feature, $2K budget), Nikolay Shestak's The First Honest Day ($450K Astana 2026 Grand Prix winner; tools undisclosed — the teardown is honest about the gap), StoReel's The $150 Microdrama ('Off Campus' experiment: four AI episodes in four days, documented clip by clip), and Robert Gaudette's 'A Face Only a Mother Could Love' (8-minute solo short: $50K Runway AIFF 2026 Grand Prix + Reply AI Film Festival 2026 winner; character sheets before shot one, lip-sync in the prompt, redub for the voice; tool identity reported, not audited), and Tim Simmons' Dragon Blue (hyper-stylized AI action short, solo in two days with Claude Cowork as the production office: reference grids before video, filter-safety memory, token discipline; self-reported, skill published) broken into shots (setup / what works / what breaks / craft lesson, labeled prompt reconstructions where the stack is documented); data in `api/v1/teardowns.json`
+- `site/<section>/<chapter>.html` — 30 chapters with sidebar nav, table of contents, prev/next; every chapter shows its honest read time (200 wpm from actual word count) and prints cleanly via `@media print` (`assets/css/print.css`)
+- `site/teardown.html` — shot-by-shot teardown viewer: Passport Rush, ONEIRIC, the Grok Odyssey $100K winner, Google DeepMind's Dear Upstairs Neighbors, Fountain 0's Dreams of Violets (75-min Tribeca 2026 AI feature, $2K budget), Nikolay Shestak's The First Honest Day ($450K Astana 2026 Grand Prix winner; tools undisclosed — the teardown is honest about the gap), StoReel's The $150 Microdrama ('Off Campus' experiment: four AI episodes in four days, documented clip by clip), and Robert Gaudette's 'A Face Only a Mother Could Love' (8-minute solo short: $50K Runway AIFF 2026 Grand Prix + Reply AI Film Festival 2026 winner; character sheets before shot one, lip-sync in the prompt, redub for the voice; tool identity reported, not audited), and Tim Simmons' Dragon Blue (hyper-stylized AI action short, solo in two days with Claude Cowork as the production office: reference grids before video, filter-safety memory, token discipline; self-reported, skill published), and Svedka's 'Shake Your Bots Off' (first primarily AI-generated Super Bowl commercial, Super Bowl LX: Silverside AI rebuilt the lost Fembot mascot on component-based ComfyUI workflows — characters, world, choreography as separate controls; crowdsourced TikTok dance integrated in hours; vendor-hosted case study, corroborated by ADWEEK/TechCrunch) broken into shots (setup / what works / what breaks / craft lesson, labeled prompt reconstructions where the stack is documented); data in `api/v1/teardowns.json`
 - `site/manifesto.html` — positioning: a living free reference, not a course; everything sourced; what it won't do
 - `site/field-guides/` — printable one-pagers generated from the guide's own data: model quick-reference (from `models.json`), prompt anatomy cheat sheet, consistency & dead-eyes checklist
 - `site/api.html` — human-readable API docs + a Try-the-API console (endpoint picker, fetch, pretty-printed JSON), and pointers to `AGENT.md`
@@ -42,7 +42,7 @@ Interactive in-context glossary: `assets/js/glossary.js` wraps the 79 `glossary.
 Chapters (source Markdown, also the canonical text):
 - `higgsfield/` — platform-mastery, prompt-engineering, soul-id-deep-dive, competition-entry-craft
 - `field/` — 2026-developments (Tribeca's Dreams of Violets, 2026 model field, Sora shutdown, long-form workflow consensus, India/Pakistan AI cinema)
-- `craft/` — story-structure, cinematic-language, character-consistency, directing-performance, color-grading, sound-music-audio, editing-pipeline, editing-ai-footage, longform-pipelines, agentic-production-office, episodic-shortform, documentary-ethics, failure-gallery, ai-film-business
+- `craft/` — story-structure, cinematic-language, character-consistency, directing-performance, color-grading, sound-music-audio, editing-pipeline, editing-ai-footage, longform-pipelines, agentic-production-office, component-based-generation, episodic-shortform, documentary-ethics, failure-gallery, ai-film-business
 - `distribution/` — release-paths, festival-landscape-2026 (Astana's $450K Grand Prix economics, Reply/Runway/Tirana/MEGA, what wins and why)
 - `legal/` — rights-and-disclosure
 - `platforms/` — field-guide, when-to-use-what
@@ -66,7 +66,7 @@ research artifacts; outputs committed).
 - `api/v1/checklists.json` — pre-production, per-shot, continuity, audio, delivery checklists
 - `api/v1/glossary.json` — 79 AI film / production terms
 - `api/v1/competitions.json` — judged competitions as craft records: what they judge, production constraints, craft lessons; no prizes or deadlines
-- `api/v1/teardowns.json` — shot-by-shot teardowns (Passport Rush, ONEIRIC, Grok Odyssey $100K winner, Dear Upstairs Neighbors, Dreams of Violets, The First Honest Day, The $150 Microdrama, Gaudette's 'A Face Only a Mother Could Love', Simmons' Dragon Blue — The Production Office): setup, what works, what breaks, craft lesson per shot; prompt reconstructions labeled as analytical, not actual prompts
+- `api/v1/teardowns.json` — shot-by-shot teardowns (Passport Rush, ONEIRIC, Grok Odyssey $100K winner, Dear Upstairs Neighbors, Dreams of Violets, The First Honest Day, The $150 Microdrama, Gaudette's 'A Face Only a Mother Could Love', Simmons' Dragon Blue — The Production Office, Svedka's 'Shake Your Bots Off' — The Lost Fembot): setup, what works, what breaks, craft lesson per shot; prompt reconstructions labeled as analytical, not actual prompts
 - `api/v1/diagnoses.json` — failure-diagnosis map for the Doctor tool: 12 symptoms → craft diagnosis, fixes, repair-template link, source chapters
 - `api/v1/model-checks.json` — model-watch freshness feed: per-model last check, source-signature diffs, news headlines
 - `api/v1/model-review-queue.json` — pending model-watch review items (empty = nothing pending)
@@ -75,7 +75,7 @@ research artifacts; outputs committed).
 
 ## Skills (agentic task procedures)
 
-231 skills in `skills/` — rebuild with `python3 scripts/build_skills.py`
+232 skills in `skills/` — rebuild with `python3 scripts/build_skills.py`
 (generates from `api/v1/` data + authored procedures; outputs committed).
 `skills/index.json` is the manifest: id, title, description, path per skill.
 
@@ -84,7 +84,7 @@ primary interface for *doing* work; the JSON endpoints are the data layer.
 `api/v1/index.json` points here (`repository`, `skills`, `for_agents`).
 
 Categories: prompts (47), camera (22), models (29), checklists (5),
-longform (12), techniques (7), craft (20), entry (4), workflow (12),
+longform (12), techniques (7), craft (20), entry (4), workflow (13),
 episodes (5), compare (10), fix (6), budget (3), delivery (3), audio
 (5), recipes (12), styles (8), performance (9), grading (3),
 distribution (2), legal (4).

@@ -327,3 +327,30 @@ watch notes, mapped to the episode-production pipeline (`craft/episodic-shortfor
 
 *Next refresh: when a model in the table changes version, price, or status. The
 `model-watch.html` page renders this file's data live from `models.json`.*
+
+## Wave 39 — Teardown #10 watch desk (2026-10-11)
+
+No model-record changes this cycle (all 30 records re-verified Oct 11). Status
+desk — the two flagged revisit inputs, verified before this wave built on them:
+
+- **Kling 4.0** — still not GA as of Oct 11 (late-night re-verification:
+  convly.ai and apimart.ai both show API still 3.0-only; no GA date, no
+  pricing, no API, no benchmarks). The guide's "announced, not GA" record and
+  the episode-pipeline chapter's line both stand. Do not plan a production
+  around it.
+- **Higgsfield $1M festival winners** — not announced (first-party site still
+  "end week of October 2026 (exact date TBC)"; the Oct 12–18 window is
+  any-day territory). No teardown until the winners land and a documented
+  workflow exists — the series standard is documented productions, not
+  speculation.
+- **Drought continues**: no generation-model releases in the 72 hours before
+  this wave (EvalMap corroborates). **Sora Azure retirement** (Oct 15) on
+  schedule — the last Azure deployment retires this week; the migration
+  chapter's 12-step Sora 2 → Veo 3.1 guide (tech-insider.org) stays linked.
+- **Festival calendar**: Austin AIFF awards Oct 17; new calls — African AI
+  Film Festival (FilmFreeway, through Oct 20; free for Africa-based/student
+  filmmakers) and AFRO TV's Cue Film Fest (Christmas-themed AI shorts, Oct
+  5–Nov 20, live Dec 12 awards broadcast).
+
+*Next refresh: when a model in the table changes version, price, or status. The
+`model-watch.html` page renders this file's data live from `models.json`.*
