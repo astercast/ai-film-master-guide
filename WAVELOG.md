@@ -90,6 +90,11 @@ wave files present, local HEAD tree == remote tree (`c002871f`), fonts.css
 blob SHA matches. Push succeeded on the first attempt — no 400s this wave.
 Remote track verified pre-push: `astercast/ai-film-master-guide` (working
 repo, not `-live`).
+**Follow-up correction commit** (vercel.json maxDuration pattern): local
+`a8e44e3` (3 files: vercel.json, LIVE_CHECKLIST.md, WAVELOG.md) → pushed
+2026-10-12 as remote commit `7155200be0bb18666018471e5a925b98d62f45cc`;
+Trees API verified: 631 entries, not truncated, key files present, local
+HEAD tree == remote tree (`3852eccb`). No 400s on either push this wave.
 
 ## WOW wave 1 — "The Cutting Room, playable" (2026-10-12)
 
