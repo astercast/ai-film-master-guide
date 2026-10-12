@@ -4,6 +4,25 @@
 
 - **Episode pipeline workstream (permanent, from wave 14):** revisit every ~3 waves — new episode formats from what's working, new tools, tighter procedures, worked examples. Goal: best agent-run episode-production system anywhere. (WAVELOG entry each revisit; the research artifact lives at `~/workspace/tiktok-episode-pipeline/PIPELINE.md`.) **Last revisited: wave 23 (2026-10-11) — check pass, no changes.**
 
+## Wave 24 — Studio cost optimizer (2026-10-11)
+
+**Built:** the Studio's "Optimize cost" panel — given a Studio plan (film or series), find the cheapest way to make it. All numbers from `api/v1/models.json`; no invented prices.
+
+**Shipped:**
+
+1. **Model substitution engine** (`assets/js/studio.js`, pure engine, exported for tests): `modelRateOptions` parses every (resolution, rate) pair in each model's `est_cost_credits` — credit `N/Ms` rates win when present (the Studio's own convention), USD `$/s` rates otherwise; clause-aware res binding (`$0.13/s 2K, $0.08/s 768p` no longer cross-binds). `optimizePlan(data, plan, opts)` computes per-shot cheaper alternatives that must clear the shot's requirements: documented resolution at/above the bar (default 720p draft / 1080p festival, user-overridable), native audio when the shot needs dialogue (share slider, spread evenly and deterministically), documented max clip ≥ shot duration. **Honest floor:** models with no documented resolution (LTX-2.5, Marketing Studio video) and models below the bar (DoP, Luma, Runway at 1080p) are listed as ineligible, never assumed; inferred-resolution rates are flagged in the output.
+2. **Three budget modes** — Cheapest viable (floor), Balanced (the plan's own picks re-priced at the bar), Best rated (top documented arena/leaderboard models: Gemini Omni → FLUX 3 → MiniMax H3 → Seedance 2.5 → Grok Imagine → Kling 3.0, each with its rank note and the cross-board caveat). Side-by-side table with deltas in dollars + percent and capability notes (what you give up: res-tier drops, lost audio flags, platform changes).
+3. **"Where the money goes"** — cost by model, by episode (series), and by take-count (per-take leverage table); the single biggest decision is called out with its cheaper alternative (e.g. festival 2-min drama: Shot 3 on Seedance 2.0 at $8.47 → Vidu Q4 Preview saves $8.13 on that shot alone).
+4. **Verify-live handling** — every USD/API-billed pick gets an explicit "price may move" badge (Vidu Q4 Preview, MiniMax H3, FLUX 3 drafts, Grok, Gemini Omni) in the panel and the packet export.
+5. **Wired in** — new "Optimize cost" panel in `site/studio.html` (template lives in `scripts/build_site.py` `STUDIO_TMPL`; panel hidden from print, results are `aria-live`); results stored on the plan so the packet exports carry them: film markdown, series markdown, and the self-contained series HTML all gain a Cost optimizer section (mode table, breakdowns, biggest decision, per-shot substitution table with the explicit requirement match per shot).
+6. **11 new workflow tests** (`scripts/studio.test.js`, now 43 total): USD-rate parsing against real models.json, unpriced-model exclusion, floor honesty (nothing below the bar substitutes; undocumented-resolution models ineligible), per-shot requirement checks incl. a 30%-dialogue run, mode-math reconciliation (cheapest ≤ balanced ≤ …; savings sum = mode delta; byModel/byEpisode/take-count reconcile), verify-live badge coverage, determinism, graceful unpriced-balanced handling, series flattening, packet-export inclusion.
+
+**Worked numbers** (2-min drama, real data): festival — cheapest **$10.20** vs balanced **$169.95** vs best rated **$108.00** (floor = Vidu Q4 Preview preview pricing, badged); draft — cheapest **$5.00** vs balanced **$23.91** vs best rated **$36.00**.
+
+**Validation:** `bash scripts/validate.sh` → ALL STAGES PASS (12/12); 43 studio engine tests green; 60/60 agent-workflow tests green; link check 6,540 links, 0 broken; generator audits clean (228 skills byte-identical, llms.txt zero-diff).
+
+**Commit:** `TODO`
+
 ## Wave 23 — Festival landscape refresh: 2026 results (2026-10-11)
 
 **Research** (10 search batches + 1 official page fetch): Astana outcomes confirmed across 5+ outlets; Reply's official winners page fetched directly; Cannes stance upgraded from rumor to Reuters; Tribeca/Dreams of Violets reception gathered from 4 review/outlet sources; Hong Kong AI IFF 2027 announcement found via press-release syndication.

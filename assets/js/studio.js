@@ -759,6 +759,8 @@
     L.push("");
     L.push("**Total: " + plan.schedule.totalDays + " shooting days.**");
     L.push("");
+    var optMd = optimizeToMarkdown(plan);
+    if (optMd) { L.push(optMd); L.push(""); }
     return L.join("\n");
   }
 
@@ -869,6 +871,8 @@
     L.push("");
     b.checklist.forEach(function (c) { L.push("- [ ] " + c); });
     L.push("");
+    var optMdS = optimizeToMarkdown(plan);
+    if (optMdS) { L.push(optMdS); L.push(""); }
     return L.join("\n");
   }
 
@@ -964,10 +968,605 @@
     H.push('<ul class="check">');
     b.checklist.forEach(function (c) { H.push("<li>☐ " + escHtml(c) + "</li>"); });
     H.push("</ul>");
+    var optHtml = optimizeToHtml(plan);
+    if (optHtml) H.push(optHtml);
     H.push('<p class="meta">Every number traces back to api/v1/models.json or a template id. Same concept → same packet (deterministic).</p>');
     H.push('<p class="no-print"><button type="button" onclick="window.print()">Print / save PDF</button></p>');
     H.push("</body>");
     H.push("</html>");
+    return H.join("\n");
+  }
+
+  /* ---- Studio cost optimizer (wave 24) --------------------------------------
+     Given a built plan (film or series), find the cheapest way to make it.
+     Pure engine (no DOM): optimizePlan(data, plan, opts) ->
+       { resBar, audioShare, perShot[], modes{cheapest,balanced,bestrated},
+         byModel[], byEpisode[], byTakes[], biggest, ineligible[], unpriced[],
+         verifyLive[] }.
+     Every number comes from api/v1/models.json. The honest floor: a model
+     only substitutes when its DOCUMENTED rates clear the shot's requirements
+     (resolution at/above the bar, native audio when the shot needs dialogue,
+     documented max clip >= shot duration). Models whose strings carry no
+     resolution are listed as ineligible, never assumed.
+     opts: { resBar: 720|1080|2160 (default 720 draft / 1080 festival),
+             audioShare: 0-100 (default 0) — share of shots needing native
+             audio, spread evenly and deterministically across each group. } */
+
+  var OPT_RES_LABEL = { 360: "360p", 480: "480p", 720: "720p", 768: "768p",
+    1080: "1080p", 1440: "2K", 2160: "4K" };
+
+  function optResVal(tok) {
+    var m = /^(\d{3,4})p$/.exec(tok);
+    if (m) return parseInt(m[1], 10);
+    if (tok === "2K") return 1440;
+    if (tok === "4K") return 2160;
+    return null;
+  }
+
+  function optResLabel(v) { return OPT_RES_LABEL[v] || (v + "p"); }
+
+  /* Every (resolution, rate) pair in est_cost_credits. Credit "N/Ms" rates
+     win when present (the Studio's own convention); USD "/s" or "$N/Ms"
+     rates are used only when no credit rate parses. Each entry:
+     { res, usdps, kind: "credit"|"usd", cps, resInferred }. */
+  function modelRateOptions(m) {
+    var s = m.est_cost_credits || "";
+    var resToks = [], rt = /(\d{3,4}p|2K|4K)/g, rtm;
+    while ((rtm = rt.exec(s)) !== null) resToks.push({ tok: rtm[1], idx: rtm.index });
+    var docMax = 0;
+    resToks.forEach(function (t) {
+      var v = optResVal(t.tok);
+      if (v && v > docMax) docMax = v;
+    });
+    /* Clauses: split on ; and , so "RATE RES, RATE RES" pairs bind inside
+       their own clause ("$0.13/s 2K, $0.08/s 768p" must not cross-bind). */
+    var clauses = [], cs = /[^;,]+/g, cm;
+    while ((cm = cs.exec(s)) !== null) clauses.push({ text: cm[0], idx: cm.index });
+    function clauseAt(idx) {
+      for (var i = 0; i < clauses.length; i++) {
+        var c = clauses[i];
+        if (idx >= c.idx && idx < c.idx + c.text.length) return c;
+      }
+      return null;
+    }
+    var rates = [], tmp;
+    var rc = /~?(\d+(?:\.\d+)?)\s*\/\s*(\d+)\s*s/g;
+    while ((tmp = rc.exec(s)) !== null) {
+      var usd = /\$/.test(tmp[0]) || s.charAt(tmp.index - 1) === "$";
+      rates.push({ n: parseFloat(tmp[1]), d: parseFloat(tmp[2]), idx: tmp.index, usd: usd });
+    }
+    var ru = /\$(\d+(?:\.\d+)?)\s*\/\s*s\b/g;
+    while ((tmp = ru.exec(s)) !== null) {
+      rates.push({ n: parseFloat(tmp[1]), d: 1, idx: tmp.index, usd: true });
+    }
+    var hasCredit = rates.some(function (r) { return !r.usd; });
+    var out = [];
+    rates.forEach(function (r) {
+      if (hasCredit === r.usd) return;
+      var c = clauseAt(r.idx);
+      var inClause = c ? resToks.filter(function (t) {
+        return t.idx >= c.idx && t.idx < c.idx + c.text.length;
+      }) : [];
+      var pool = inClause.length ? inClause : resToks;
+      var best = null, bd = 1e9, bestAfter = false;
+      pool.forEach(function (t) {
+        var dd = Math.abs(t.idx - r.idx);
+        /* exact tie: prefer the token after the rate ("$0.14/s 1080p") */
+        if (dd < bd || (dd === bd && t.idx > r.idx && !bestAfter)) {
+          bd = dd; best = t; bestAfter = t.idx > r.idx;
+        }
+      });
+      var res, inferred = false;
+      if (best && bd <= 20) {
+        res = optResVal(best.tok);
+      } else if (docMax > 0) {
+        res = docMax; inferred = true;
+      } else {
+        res = null;
+      }
+      out.push({
+        res: res, resInferred: inferred,
+        usdps: r.usd ? r.n / r.d : (r.n / r.d) * USD_PER_CREDIT,
+        kind: r.usd ? "usd" : "credit",
+        cps: r.usd ? null : r.n / r.d
+      });
+    });
+    return out;
+  }
+
+  /* Cheapest documented rate at or above the bar. Null = no documented rate
+     clears the bar (the model cannot substitute — honest floor). */
+  function rateAtRes(m, bar) {
+    var best = null;
+    modelRateOptions(m).forEach(function (o) {
+      if (o.res === null || o.res < bar) return;
+      if (!best || o.usdps < best.usdps) best = o;
+    });
+    return best;
+  }
+
+  function modelDocMaxRes(m) {
+    var s = m.est_cost_credits || "", rt = /(\d{3,4}p|2K|4K)/g, rtm, mx = 0;
+    while ((rtm = rt.exec(s)) !== null) {
+      var v = optResVal(rtm[1]);
+      if (v && v > mx) mx = v;
+    }
+    return mx || null;
+  }
+
+  function optAudioCapable(m) {
+    return /native audio|dialog|speech|lip-sync|lip sync|voice/.test(hay(m));
+  }
+
+  /* Documented max clip length in seconds ("up to 20s", "4-30s", "1-15s
+     clips"). Null = undocumented (noted, never assumed against the shot). */
+  function modelMaxClipSec(m) {
+    var s = [m.est_cost_credits, m.strength, m.what_changed, m.best_use].join(" | ");
+    var mt = /up to (\d+(?:\.\d+)?)\s*s\b/i.exec(s);
+    if (mt) return parseFloat(mt[1]);
+    mt = /(\d+(?:\.\d+)?)\s*[-\u2013\u2014]\s*(\d+(?:\.\d+)?)\s*s\b/.exec(s);
+    if (mt) return parseFloat(mt[2]);
+    return null;
+  }
+
+  /* Documented leaderboard ranks, quoted from the models' own records with
+     their caveats. Order spans different boards and dates — indicative,
+     not apples-to-apples; every pick carries its rank note. */
+  var OPT_RANKS = [
+    { name: "Gemini Omni", order: 1,
+      note: "Arena text-to-video leader, 1512 pts (documented in the guide's model notes)" },
+    { name: "FLUX 3 Video", order: 2,
+      note: "Arena text-to-video #2, 1496 pts, behind Gemini Omni Flash" },
+    { name: "MiniMax H3", order: 3,
+      note: "H3 Max ranks top-3 in earlier reports — verify live" },
+    { name: "Seedance 2.5", order: 4,
+      note: "Arena image-to-video leader, Sept 21 2026 (~120 pts above Kling 3.0 Pro; single-source flag)" },
+    { name: "Grok Imagine Video 1.5", order: 5,
+      note: "Topped the image-to-video arena at launch (third-party)" },
+    { name: "Kling 3.0", order: 6,
+      note: "Artificial Analysis text-to-video #12, Sept 2026 (single-source flag; corrected from a circulating #4 claim)" }
+  ];
+
+  function rankOfModel(m) {
+    var n = normName(m.model);
+    for (var i = 0; i < OPT_RANKS.length; i++) {
+      if (normName(OPT_RANKS[i].name) === n) return OPT_RANKS[i];
+    }
+    return null;
+  }
+
+  function optEligiblePool(data, req) {
+    var pool = [];
+    (data.models || []).forEach(function (m) {
+      if (m.type !== "video" || m.status === "discontinued") return;
+      var rate = rateAtRes(m, req.res);
+      if (!rate) return;
+      if (req.audio && !optAudioCapable(m)) return;
+      var mc = modelMaxClipSec(m);
+      if (mc !== null && mc < req.maxSec) return;
+      pool.push({ m: m, rate: rate, rank: rankOfModel(m), maxClip: mc,
+        audio: optAudioCapable(m), quality: isQualityFlagged(m) });
+    });
+    return pool;
+  }
+
+  function optEntry(x, duration, takes) {
+    if (!x) return null;
+    return {
+      model: x.m.model, platform: x.m.platform,
+      usdps: x.rate.usdps, kind: x.rate.kind,
+      res: x.rate.res, resInferred: x.rate.resInferred,
+      audio: x.audio, quality: x.quality,
+      rank: x.rank ? { order: x.rank.order, note: x.rank.note } : null,
+      maxClip: x.maxClip,
+      priceMayMove: x.rate.kind === "usd",
+      cost: r2(x.rate.usdps * duration * takes)
+    };
+  }
+
+  /* What the filmmaker gives up moving from the balanced pick to the
+     cheapest viable one — facts from the records, never hand-waving. */
+  function optGiveUpNotes(bal, cheap, bar) {
+    if (!bal || !cheap) return [];
+    if (bal.model === cheap.model) return ["Same model — already the cheapest viable pick."];
+    var notes = [];
+    if (cheap.res < bal.res) {
+      notes.push("Documented rate tier drops " + optResLabel(bal.res) + " \u2192 " +
+        optResLabel(cheap.res) + " (both clear the " + optResLabel(bar) + " bar).");
+    }
+    if (bal.audio && !cheap.audio) {
+      notes.push("Loses native-audio capability in documented strengths " +
+        "(kept only because this shot needs no dialogue).");
+    }
+    if (bal.quality && !cheap.quality) {
+      notes.push("Leaves a quality-flagged model (" + bal.model + ").");
+    }
+    if (cheap.rank && (!bal.rank || cheap.rank.order < bal.rank.order)) {
+      notes.push("Ranked pick: " + cheap.rank.note + ".");
+    }
+    if (cheap.priceMayMove) {
+      notes.push("USD/API billing — price may move; verify live before budgeting.");
+    }
+    if (cheap.resInferred) {
+      notes.push("Cheapest rate's resolution is inferred from the model's documented max, not stated outright.");
+    }
+    notes.push("Platform changes: " + bal.platform + " \u2192 " + cheap.platform + ".");
+    return notes;
+  }
+
+  function optimizePlan(data, plan, opts) {
+    opts = opts || {};
+    var isSeries = plan.kind === "series";
+    var groups = [];
+    if (isSeries) {
+      plan.episodes.forEach(function (ep) {
+        groups.push({ label: "E" + ep.episode, shots: ep.shots,
+          takes: ep.tierSpec.takes, shotSec: ep.shotSec, tier: plan.bible.tier });
+      });
+    } else {
+      groups.push({ label: "", shots: plan.shots, takes: plan.tierSpec.takes,
+        shotSec: plan.shotSec, tier: plan.input.tier });
+    }
+    var bar = opts.resBar || (groups[0].tier === "festival" ? 1080 : 720);
+    var share = Math.min(100, Math.max(0, opts.audioShare || 0));
+    var byName = {};
+    (data.models || []).forEach(function (m) { byName[normName(m.model)] = m; });
+
+    var modes = {
+      cheapest: { key: "cheapest", label: "Cheapest viable", total: 0, complete: true, shots: 0 },
+      balanced: { key: "balanced", label: "Balanced (Studio defaults)", total: 0, complete: true, shots: 0 },
+      bestrated: { key: "bestrated", label: "Best rated", total: 0, complete: true, shots: 0 }
+    };
+    var perShot = [], byModel = {}, byEpisode = [];
+    var verifyLive = {}, ineligible = [], unpriced = [];
+    var biggest = null;
+
+    groups.forEach(function (g) {
+      var ep = { label: g.label || "Film", cheapest: 0, balanced: 0, bestrated: 0,
+        shots: g.shots.length, unpriced: 0 };
+      g.shots.forEach(function (s, i) {
+        var needsAudio = share > 0 &&
+          Math.floor((i + 1) * share / 100) > Math.floor(i * share / 100);
+        var req = { res: bar, audio: needsAudio, maxSec: s.duration };
+        var pool = optEligiblePool(data, req);
+        var rec = byName[normName(s.model)] || null;
+        var balRate = rec ? rateAtRes(rec, bar) : null;
+        var balMc = rec ? modelMaxClipSec(rec) : null;
+        var shortfalls = [];
+        if (rec && !balRate) {
+          shortfalls.push("no documented rate at " + optResLabel(bar) + " (documented max: " +
+            (modelDocMaxRes(rec) ? optResLabel(modelDocMaxRes(rec)) : "unstated") + ")");
+        }
+        if (rec && req.audio && !optAudioCapable(rec)) shortfalls.push("not audio-capable in documented strengths");
+        if (rec && balMc !== null && balMc < req.maxSec) {
+          shortfalls.push("documented max clip " + balMc + "s < " + req.maxSec + "s shot");
+        }
+        var bal = rec && balRate ? optEntry({ m: rec, rate: balRate, rank: rankOfModel(rec),
+          maxClip: balMc, audio: optAudioCapable(rec), quality: isQualityFlagged(rec) },
+          s.duration, g.takes) : null;
+        if (bal) bal.shortfalls = shortfalls;
+        var cheap = optEntry(pool.slice().sort(function (a, b) {
+          return a.rate.usdps - b.rate.usdps;
+        })[0] || null, s.duration, g.takes);
+        var ranked = optEntry(pool.filter(function (x) { return x.rank; })
+          .sort(function (a, b) { return a.rank.order - b.rank.order; })[0] || null,
+          s.duration, g.takes);
+
+        var row = {
+          ref: (g.label ? g.label + " \u00B7 " : "") + "Shot " + s.n,
+          duration: s.duration, takes: g.takes,
+          needsAudio: needsAudio, reqRes: bar,
+          balanced: bal, cheapest: cheap, bestrated: ranked,
+          saving: (bal && cheap) ? r2(bal.cost - cheap.cost) : null,
+          giveUp: optGiveUpNotes(bal, cheap, bar)
+        };
+        perShot.push(row);
+
+        [["cheapest", cheap], ["balanced", bal], ["bestrated", ranked]].forEach(function (pair) {
+          var mk = modes[pair[0]];
+          if (pair[1]) { mk.total = r2(mk.total + pair[1].cost); mk.shots++; }
+          else { mk.complete = false; }
+        });
+        if (bal) {
+          ep.balanced = r2(ep.balanced + bal.cost);
+          if (cheap) ep.cheapest = r2(ep.cheapest + cheap.cost);
+          if (ranked) ep.bestrated = r2(ep.bestrated + ranked.cost);
+          var bm = byModel[bal.model] || { model: bal.model, platform: bal.platform,
+            shots: 0, usd: 0, usdps: bal.usdps, kind: bal.kind };
+          bm.shots++; bm.usd = r2(bm.usd + bal.cost);
+          byModel[bal.model] = bm;
+          if (!biggest || bal.cost > biggest.cost) {
+            biggest = { ref: row.ref, model: bal.model, platform: bal.platform,
+              cost: bal.cost, duration: s.duration, takes: g.takes,
+              usdps: bal.usdps, kind: bal.kind,
+              alternative: cheap, saving: row.saving };
+          }
+        } else { ep.unpriced++; }
+        [bal, cheap, ranked].forEach(function (e) {
+          if (e && e.priceMayMove) verifyLive[e.model] = 1;
+        });
+      });
+      byEpisode.push(ep);
+    });
+
+    /* Ineligible (priced but below the bar / resolution undocumented) and
+       unpriced (no parseable rate at all) — named, never silent. */
+    (data.models || []).forEach(function (m) {
+      if (m.type !== "video" || m.status === "discontinued") return;
+      var opts_ = modelRateOptions(m);
+      if (!opts_.length) { unpriced.push(m.model); return; }
+      if (!rateAtRes(m, bar)) {
+        var mx = modelDocMaxRes(m);
+        ineligible.push({ model: m.model,
+          reason: mx ? "documented max " + optResLabel(mx) + " is below the " +
+            optResLabel(bar) + " bar" : "resolution undocumented in the rate string" });
+      }
+    });
+
+    var byModelArr = Object.keys(byModel).map(function (k) { return byModel[k]; })
+      .sort(function (a, b) { return b.usd - a.usd; });
+    var takes = groups[0].takes;
+    var perTake = takes ? r2(modes.balanced.total / takes) : 0;
+    var byTakes = [];
+    [1, 3, takes].forEach(function (t) {
+      if (byTakes.some(function (r) { return r.takes === t; })) return;
+      byTakes.push({ takes: t, usd: r2(perTake * t) });
+    });
+    byTakes.sort(function (a, b) { return a.takes - b.takes; });
+
+    return {
+      resBar: bar, audioShare: share, takes: takes,
+      shotCount: perShot.length, episodes: isSeries ? groups.length : 0,
+      modes: modes, perShot: perShot,
+      byModel: byModelArr, byEpisode: isSeries ? byEpisode : [],
+      byTakes: byTakes, perTake: perTake,
+      biggest: biggest,
+      ineligible: ineligible, unpriced: unpriced,
+      verifyLive: Object.keys(verifyLive).sort(),
+      basis: "Rates parsed from models.json est_cost_credits at $0.0392/credit; " +
+        "USD-billed models use their stated $/s. Balanced column re-prices each " +
+        "shot at the resolution bar (the packet budget above uses the Studio's " +
+        "first-quoted-rate convention)."
+    };
+  }
+
+  /* ---- optimizer packet sections ------------------------------------------
+     Appended to the markdown / HTML packet exports when plan.optimizer is set
+     by the Studio UI ("Optimize cost" panel). */
+
+  function optModeTableMd(opt) {
+    var L = [];
+    L.push("| Mode | Generation cost | Delta vs balanced | What changes |");
+    L.push("|---|---|---|---|");
+    var b = opt.modes.balanced.total, c = opt.modes.cheapest.total, r = opt.modes.bestrated.total;
+    function delta(x) {
+      if (x === null) return "n/a";
+      var d = r2(b - x);
+      return (d >= 0 ? "-" : "+") + fmtUSD(Math.abs(d)) + (b ? " (" + Math.round(Math.abs(d) / b * 100) + "%)" : "");
+    }
+    var changed = opt.perShot.filter(function (s) {
+      return s.balanced && s.cheapest && s.balanced.model !== s.cheapest.model;
+    }).length;
+    var usdPicks = opt.verifyLive.length;
+    L.push("| **Cheapest viable** (floor) | " + fmtUSD(c) + " | " + delta(c) + " | " +
+      changed + " of " + opt.shotCount + " shots change model" +
+      (usdPicks ? "; " + usdPicks + " USD-billed pick(s) — price may move" : "") + " |");
+    L.push("| **Balanced** (Studio defaults) | " + fmtUSD(b) + " | — | the plan's own per-shot picks, re-priced at the " +
+      optResLabel(opt.resBar) + " bar |");
+    L.push("| **Best rated** | " + (opt.modes.bestrated.complete ? fmtUSD(r) : "incomplete") +
+      " | " + delta(opt.modes.bestrated.complete ? r : null) +
+      " | top documented arena/leaderboard model per shot (boards differ — see rank notes) |");
+    return L;
+  }
+
+  function optimizeToMarkdown(plan) {
+    var opt = plan.optimizer;
+    if (!opt) return "";
+    var L = [];
+    L.push("## Cost optimizer");
+    L.push("");
+    L.push("_Basis:_ resolution bar " + optResLabel(opt.resBar) + " · " + opt.audioShare +
+      "% of shots need native audio (spread evenly) · " + opt.takes + " takes per keeper. " + opt.basis);
+    L.push("");
+    L.push("### Three budget modes");
+    L.push("");
+    L = L.concat(optModeTableMd(opt));
+    L.push("");
+    L.push("### Where the money goes (balanced mode)");
+    L.push("");
+    L.push("| Model | Shots | Rate | Cost |");
+    L.push("|---|---|---|---|");
+    opt.byModel.forEach(function (g) {
+      L.push("| " + g.model + " (" + g.platform + ") | " + g.shots + " | " +
+        (g.kind === "usd" ? "$" + g.usdps.toFixed(3) + "/s USD" : "$" + g.usdps.toFixed(3) + "/s") +
+        " | " + fmtUSD(g.usd) + " |");
+    });
+    if (opt.byEpisode.length) {
+      L.push("");
+      L.push("| Episode | Shots | Balanced cost |");
+      L.push("|---|---|---|");
+      opt.byEpisode.forEach(function (e) {
+        L.push("| " + e.label + " | " + e.shots + " | " + fmtUSD(e.balanced) +
+          (e.unpriced ? " (" + e.unpriced + " shot(s) unpriced)" : "") + " |");
+      });
+    }
+    L.push("");
+    L.push("Take-count leverage: each take costs " + fmtUSD(opt.perTake) + " across the plan — " +
+      opt.byTakes.map(function (t) { return t.takes + " take(s): " + fmtUSD(t.usd); }).join(" · ") + ".");
+    L.push("");
+    if (opt.biggest) {
+      var bg = opt.biggest;
+      L.push("### Biggest single decision");
+      L.push("");
+      L.push(bg.ref + " on **" + bg.model + "** (" + bg.platform + ") costs " + fmtUSD(bg.cost) +
+        " (" + bg.duration + "s × " + bg.takes + " takes @ $" + bg.usdps.toFixed(3) + "/s" +
+        (bg.kind === "usd" ? " USD — price may move" : "") + ").");
+      if (bg.alternative && bg.alternative.model !== bg.model) {
+        L.push("Cheaper alternative meeting the same requirements: **" + bg.alternative.model + "** (" +
+          bg.alternative.platform + ") at $" + bg.alternative.usdps.toFixed(3) + "/s — saves " +
+          fmtUSD(bg.saving) + " on this shot alone.");
+      } else {
+        L.push("No cheaper alternative meets this shot's requirements — it is already the floor.");
+      }
+      L.push("");
+    }
+    L.push("### Per-shot substitutions (cheapest viable)");
+    L.push("");
+    L.push("| Shot | Needs | Balanced pick | Cheapest viable | Saving | Requirement match |");
+    L.push("|---|---|---|---|---|---|");
+    opt.perShot.forEach(function (s) {
+      function cell(e) {
+        if (!e) return "—";
+        return e.model + " ($" + e.usdps.toFixed(3) + "/s" + (e.kind === "usd" ? " USD" : "") + ")" +
+          (e.priceMayMove ? " [price may move]" : "");
+      }
+      var match = s.cheapest
+        ? optResLabel(s.cheapest.res) + (s.cheapest.resInferred ? " (inferred)" : "") +
+          " ≥ " + optResLabel(s.reqRes) + "; audio " + (s.needsAudio
+            ? (s.cheapest.audio ? "✓ native" : "✗ MISSING")
+            : "not needed")
+        : "no eligible model";
+      L.push("| " + s.ref + " | " + (s.needsAudio ? "dialogue" : "—") + " | " + cell(s.balanced) +
+        " | " + cell(s.cheapest) + " | " + (s.saving !== null ? fmtUSD(s.saving) : "—") + " | " + match + " |");
+    });
+    L.push("");
+    if (opt.ineligible.length) {
+      L.push("Not eligible at the " + optResLabel(opt.resBar) + " bar (honest floor — never assumed): " +
+        opt.ineligible.map(function (x) { return x.model + " (" + x.reason + ")"; }).join("; ") + ".");
+      L.push("");
+    }
+    if (opt.unpriced.length) {
+      L.push("No published rate — verify live: " + opt.unpriced.join(", ") + ".");
+      L.push("");
+    }
+    if (opt.verifyLive.length) {
+      L.push("Price-may-move picks (USD/API billing — verify live before budgeting): " +
+        opt.verifyLive.join(", ") + ".");
+      L.push("");
+    }
+    L.push("Rank notes (best-rated mode): the documented order is Gemini Omni (Arena T2V leader, 1512 pts) → " +
+      "FLUX 3 Video (Arena T2V #2, 1496) → MiniMax H3 (top-3 in earlier reports, verify live) → " +
+      "Seedance 2.5 (Arena I2V leader Sept 2026, single-source) → Grok Imagine Video 1.5 " +
+      "(topped I2V arena at launch, third-party) → Kling 3.0 (Artificial Analysis T2V #12, Sept 2026, single-source). " +
+      "Boards and dates differ — indicative, not apples-to-apples.");
+    L.push("");
+    return L.join("\n");
+  }
+
+  function optimizeToHtml(plan) {
+    var opt = plan.optimizer;
+    if (!opt) return "";
+    var H = [];
+    H.push("<h2>Cost optimizer</h2>");
+    H.push('<p class="meta"><strong>Basis:</strong> resolution bar ' + escHtml(optResLabel(opt.resBar)) +
+      " · " + opt.audioShare + "% of shots need native audio (spread evenly) · " + opt.takes +
+      " takes per keeper. " + escHtml(opt.basis) + "</p>");
+    H.push("<h3>Three budget modes</h3>");
+    var b = opt.modes.balanced.total, c = opt.modes.cheapest.total;
+    var rOk = opt.modes.bestrated.complete, r = opt.modes.bestrated.total;
+    function dHtml(x) {
+      if (x === null) return "n/a";
+      var d = Math.round((b - x) * 100) / 100;
+      return (d >= 0 ? "−" : "+") + escHtml(fmtUSD(Math.abs(d))) +
+        (b ? " (" + Math.round(Math.abs(d) / b * 100) + "%)" : "");
+    }
+    var changed = opt.perShot.filter(function (s) {
+      return s.balanced && s.cheapest && s.balanced.model !== s.cheapest.model;
+    }).length;
+    H.push("<table><thead><tr><th scope=\"col\">Mode</th><th scope=\"col\">Generation cost</th>" +
+      "<th scope=\"col\">Delta vs balanced</th><th scope=\"col\">What changes</th></tr></thead><tbody>");
+    H.push("<tr><td><strong>Cheapest viable</strong> (floor)</td><td><strong>" + escHtml(fmtUSD(c)) +
+      "</strong></td><td>" + dHtml(c) + "</td><td>" + changed + " of " + opt.shotCount + " shots change model" +
+      (opt.verifyLive.length ? '; <span class="badge">price may move</span> on ' +
+        opt.verifyLive.length + " USD-billed pick(s)" : "") + "</td></tr>");
+    H.push("<tr><td><strong>Balanced</strong> (Studio defaults)</td><td><strong>" + escHtml(fmtUSD(b)) +
+      "</strong></td><td>—</td><td>The plan's own per-shot picks, re-priced at the " +
+      escHtml(optResLabel(opt.resBar)) + " bar.</td></tr>");
+    H.push("<tr><td><strong>Best rated</strong></td><td><strong>" + (rOk ? escHtml(fmtUSD(r)) : "incomplete") +
+      "</strong></td><td>" + dHtml(rOk ? r : null) + "</td><td>Top documented arena/leaderboard model per shot " +
+      "(boards differ — see rank notes).</td></tr>");
+    H.push("</tbody></table>");
+    H.push("<h3>Where the money goes (balanced mode)</h3>");
+    H.push("<table><thead><tr><th scope=\"col\">Model</th><th scope=\"col\">Shots</th>" +
+      "<th scope=\"col\">Rate</th><th scope=\"col\">Cost</th></tr></thead><tbody>");
+    opt.byModel.forEach(function (g) {
+      H.push("<tr><td><strong>" + escHtml(g.model) + "</strong><br><span class=\"meta\">" +
+        escHtml(g.platform) + "</span></td><td>" + g.shots + "</td><td>$" + g.usdps.toFixed(3) +
+        "/s" + (g.kind === "usd" ? " USD" : "") + "</td><td><strong>" + escHtml(fmtUSD(g.usd)) +
+        "</strong></td></tr>");
+    });
+    H.push("</tbody></table>");
+    if (opt.byEpisode.length) {
+      H.push("<table><thead><tr><th scope=\"col\">Episode</th><th scope=\"col\">Shots</th>" +
+        "<th scope=\"col\">Balanced cost</th></tr></thead><tbody>");
+      opt.byEpisode.forEach(function (e) {
+        H.push("<tr><td>" + escHtml(e.label) + "</td><td>" + e.shots + "</td><td><strong>" +
+          escHtml(fmtUSD(e.balanced)) + "</strong>" +
+          (e.unpriced ? " (" + e.unpriced + " shot(s) unpriced)" : "") + "</td></tr>");
+      });
+      H.push("</tbody></table>");
+    }
+    H.push("<p>Take-count leverage: each take costs <strong>" + escHtml(fmtUSD(opt.perTake)) +
+      "</strong> across the plan — " + opt.byTakes.map(function (t) {
+        return t.takes + " take(s): " + fmtUSD(t.usd);
+      }).join(" · ") + ".</p>");
+    if (opt.biggest) {
+      var bg = opt.biggest;
+      H.push("<h3>Biggest single decision</h3>");
+      H.push("<p>" + escHtml(bg.ref) + " on <strong>" + escHtml(bg.model) + "</strong> (" +
+        escHtml(bg.platform) + ") costs <strong>" + escHtml(fmtUSD(bg.cost)) + "</strong> (" +
+        bg.duration + "s × " + bg.takes + " takes @ $" + bg.usdps.toFixed(3) + "/s" +
+        (bg.kind === "usd" ? ' USD <span class="badge">price may move</span>' : "") + ").");
+      if (bg.alternative && bg.alternative.model !== bg.model) {
+        H.push(" Cheaper alternative meeting the same requirements: <strong>" +
+          escHtml(bg.alternative.model) + "</strong> (" + escHtml(bg.alternative.platform) +
+          ") at $" + bg.alternative.usdps.toFixed(3) + "/s — saves " +
+          escHtml(fmtUSD(bg.saving)) + " on this shot alone.</p>");
+      } else {
+        H.push(" No cheaper alternative meets this shot's requirements — it is already the floor.</p>");
+      }
+    }
+    H.push("<h3>Per-shot substitutions (cheapest viable)</h3>");
+    H.push('<div class="table-scroll"><table><caption>Requirement match is explicit per shot.</caption>' +
+      "<thead><tr><th scope=\"col\">Shot</th><th scope=\"col\">Needs</th><th scope=\"col\">Balanced pick</th>" +
+      "<th scope=\"col\">Cheapest viable</th><th scope=\"col\">Saving</th><th scope=\"col\">Requirement match</th>" +
+      "</tr></thead><tbody>");
+    opt.perShot.forEach(function (s) {
+      function cell(e) {
+        if (!e) return "—";
+        return "<strong>" + escHtml(e.model) + "</strong><br><span class=\"meta\">$" +
+          e.usdps.toFixed(3) + "/s" + (e.kind === "usd" ? " USD" : "") + "</span>" +
+          (e.priceMayMove ? ' <span class="badge">price may move</span>' : "");
+      }
+      var match = s.cheapest
+        ? escHtml(optResLabel(s.cheapest.res)) + (s.cheapest.resInferred ? " (inferred)" : "") +
+          " ≥ " + escHtml(optResLabel(s.reqRes)) + "; audio " + (s.needsAudio
+            ? (s.cheapest.audio ? "✓ native" : "✗ MISSING") : "not needed")
+        : "no eligible model";
+      H.push("<tr><td>" + escHtml(s.ref) + "</td><td>" + (s.needsAudio ? "dialogue" : "—") +
+        "</td><td>" + cell(s.balanced) + "</td><td>" + cell(s.cheapest) + "</td><td><strong>" +
+        (s.saving !== null ? escHtml(fmtUSD(s.saving)) : "—") + "</strong></td><td>" + match + "</td></tr>");
+    });
+    H.push("</tbody></table></div>");
+    if (opt.ineligible.length) {
+      H.push("<p><strong>Not eligible</strong> at the " + escHtml(optResLabel(opt.resBar)) +
+        " bar (honest floor — never assumed): " + opt.ineligible.map(function (x) {
+          return escHtml(x.model) + " (" + escHtml(x.reason) + ")";
+        }).join("; ") + ".</p>");
+    }
+    if (opt.unpriced.length) {
+      H.push("<p><strong>No published rate — verify live:</strong> " +
+        opt.unpriced.map(escHtml).join(", ") + ".</p>");
+    }
+    if (opt.verifyLive.length) {
+      H.push('<p><span class="badge">price may move</span> picks (USD/API billing — verify live before budgeting): ' +
+        opt.verifyLive.map(escHtml).join(", ") + ".</p>");
+    }
+    H.push('<p class="meta">Rank notes (best-rated mode): Gemini Omni (Arena T2V leader, 1512 pts) → ' +
+      "FLUX 3 Video (Arena T2V #2, 1496) → MiniMax H3 (top-3 in earlier reports, verify live) → " +
+      "Seedance 2.5 (Arena I2V leader Sept 2026, single-source) → Grok Imagine Video 1.5 " +
+      "(topped I2V arena at launch, third-party) → Kling 3.0 (Artificial Analysis T2V #12, Sept 2026, single-source). " +
+      "Boards and dates differ — indicative, not apples-to-apples.</p>");
     return H.join("\n");
   }
 
@@ -982,7 +1581,12 @@
     fillPrompt: fillPrompt, pickModel: pickModel,
     buildPlan: buildPlan, planToMarkdown: planToMarkdown,
     seriesBible: seriesBible, buildSeriesPlan: buildSeriesPlan,
-    seriesToMarkdown: seriesToMarkdown, seriesToHtml: seriesToHtml, fmtUSD: fmtUSD
+    seriesToMarkdown: seriesToMarkdown, seriesToHtml: seriesToHtml, fmtUSD: fmtUSD,
+    modelRateOptions: modelRateOptions, rateAtRes: rateAtRes,
+    modelDocMaxRes: modelDocMaxRes, modelMaxClipSec: modelMaxClipSec,
+    optAudioCapable: optAudioCapable, rankOfModel: rankOfModel,
+    optEligiblePool: optEligiblePool, optimizePlan: optimizePlan,
+    optimizeToMarkdown: optimizeToMarkdown, optimizeToHtml: optimizeToHtml
   };
 
   /* node unit tests (scripts/studio.test.js) */
@@ -1027,7 +1631,13 @@
       presetNote: document.getElementById("st-preset-note"),
       dlMd: document.getElementById("st-dl-md"),
       dlHtml: document.getElementById("st-dl-html"),
-      importMsg: document.getElementById("st-import-msg")
+      importMsg: document.getElementById("st-import-msg"),
+      optSec: document.getElementById("st-optimize-sec"),
+      optRes: document.getElementById("st-opt-res"),
+      optAudio: document.getElementById("st-opt-audio"),
+      optAudioOut: document.getElementById("st-opt-audio-out"),
+      optRun: document.getElementById("st-opt-run"),
+      optBody: document.getElementById("st-opt-body")
     };
   }
 
@@ -1294,6 +1904,7 @@
       "</section>";
     e.actions.hidden = false;
     e.dlHtml.hidden = true;
+    showOptimize();
     document.getElementById("st-packet-h").focus({ preventScroll: false });
     var smooth = typeof window.matchMedia === "function" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
@@ -1393,10 +2004,203 @@
       "</section>";
     e.actions.hidden = false;
     e.dlHtml.hidden = false;
+    showOptimize();
     document.getElementById("st-packet-h").focus({ preventScroll: false });
     var smooth = typeof window.matchMedia === "function" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
     e.results.scrollIntoView({ block: "start", behavior: smooth });
+  }
+
+  /* ---------------- cost optimizer panel -----------------------------------
+     "Optimize cost" — runs optimizePlan against the current packet and
+     renders the three budget modes, where-the-money-goes, the biggest
+     decision, and per-shot substitutions. Results are stored on the plan so
+     the packet exports (markdown / self-contained HTML) carry them. */
+
+  function optResLabelUi(v) {
+    return { 720: "720p", 1080: "1080p", 2160: "4K" }[v] || (v + "p");
+  }
+
+  function optEntryCell(e) {
+    if (!e) return "<span class=\"quiz-cost-na\">no eligible model</span>";
+    return "<strong>" + esc(e.model) + "</strong><br><span class=\"quiz-cost-sub\">" +
+      esc(e.platform) + " · $" + e.usdps.toFixed(3) + "/s" +
+      (e.kind === "usd" ? " USD" : "") + "</span>" +
+      (e.priceMayMove ? ' <span class="st-badge">price may move</span>' : "");
+  }
+
+  function optModeDelta(b, x) {
+    if (x === null || x === undefined) return "n/a";
+    var d = Math.round((b - x) * 100) / 100;
+    return (d >= 0 ? "−" : "+") + fmtUSD(Math.abs(d)) +
+      (b ? " (" + Math.round(Math.abs(d) / b * 100) + "%)" : "");
+  }
+
+  function renderOptBody(opt) {
+    var e = els();
+    var b = opt.modes.balanced.total, c = opt.modes.cheapest.total;
+    var rOk = opt.modes.bestrated.complete, r = opt.modes.bestrated.total;
+    var changed = opt.perShot.filter(function (s) {
+      return s.balanced && s.cheapest && s.balanced.model !== s.cheapest.model;
+    }).length;
+
+    var modeRows =
+      "<tr><td><strong>Cheapest viable</strong> <span class=\"quiz-cost-sub\">(floor)</span></td>" +
+      "<td><strong>" + fmtUSD(c) + "</strong></td><td>" + optModeDelta(b, c) + "</td>" +
+      "<td>" + changed + " of " + opt.shotCount + " shots change model" +
+      (opt.verifyLive.length ? '; <span class="st-badge">price may move</span> on ' +
+        opt.verifyLive.length + " USD-billed pick(s)" : "") + "</td></tr>" +
+      "<tr><td><strong>Balanced</strong> <span class=\"quiz-cost-sub\">(Studio defaults)</span></td>" +
+      "<td><strong>" + fmtUSD(b) + "</strong></td><td>—</td>" +
+      "<td>The plan's own per-shot picks, re-priced at the " + optResLabelUi(opt.resBar) + " bar.</td></tr>" +
+      "<tr><td><strong>Best rated</strong></td>" +
+      "<td><strong>" + (rOk ? fmtUSD(r) : "incomplete") + "</strong></td>" +
+      "<td>" + optModeDelta(b, rOk ? r : null) + "</td>" +
+      "<td>Top documented arena/leaderboard model per shot (boards differ — see rank notes).</td></tr>";
+
+    var modelRows = opt.byModel.map(function (g) {
+      return "<tr><td><strong>" + esc(g.model) + "</strong><br><span class=\"quiz-cost-sub\">" +
+        esc(g.platform) + "</span></td><td>" + g.shots + "</td>" +
+        "<td>$" + g.usdps.toFixed(3) + "/s" + (g.kind === "usd" ? " USD" : "") + "</td>" +
+        "<td><strong>" + fmtUSD(g.usd) + "</strong></td></tr>";
+    }).join("");
+
+    var epRows = opt.byEpisode.map(function (ep) {
+      return "<tr><td>" + esc(ep.label) + "</td><td>" + ep.shots + "</td>" +
+        "<td><strong>" + fmtUSD(ep.balanced) + "</strong>" +
+        (ep.unpriced ? " <span class=\"quiz-cost-na\">(" + ep.unpriced + " unpriced)</span>" : "") +
+        "</td></tr>";
+    }).join("");
+
+    var takeRows = opt.byTakes.map(function (t) {
+      return "<tr><td>" + t.takes + "</td><td><strong>" + fmtUSD(t.usd) + "</strong></td></tr>";
+    }).join("");
+
+    var big = "";
+    if (opt.biggest) {
+      var bg = opt.biggest;
+      big = "<h4>Biggest single decision</h4><p>" + esc(bg.ref) + " on <strong>" +
+        esc(bg.model) + "</strong> (" + esc(bg.platform) + ") costs <strong>" +
+        fmtUSD(bg.cost) + "</strong> (" + bg.duration + "s × " + bg.takes + " takes @ $" +
+        bg.usdps.toFixed(3) + "/s" + (bg.kind === "usd" ? " USD" : "") + ")" +
+        (bg.kind === "usd" ? ' <span class="st-badge">price may move</span>' : "") + ". ";
+      if (bg.alternative && bg.alternative.model !== bg.model) {
+        big += "Cheaper alternative meeting the same requirements: <strong>" +
+          esc(bg.alternative.model) + "</strong> (" + esc(bg.alternative.platform) +
+          ") at $" + bg.alternative.usdps.toFixed(3) + "/s — saves <strong>" +
+          fmtUSD(bg.saving) + "</strong> on this shot alone.</p>";
+      } else {
+        big += "No cheaper alternative meets this shot's requirements — it is already the floor.</p>";
+      }
+    }
+
+    var shotRows = opt.perShot.map(function (s) {
+      var match = s.cheapest
+        ? optResLabelUi(s.cheapest.res) + (s.cheapest.resInferred ? " (inferred)" : "") +
+          " ≥ " + optResLabelUi(s.reqRes) + "; audio " +
+          (s.needsAudio ? (s.cheapest.audio ? "✓ native" : "✗ MISSING") : "not needed")
+        : "no eligible model";
+      var giveUp = s.giveUp.length
+        ? "<br><span class=\"quiz-cost-sub\">Gives up: " + s.giveUp.map(esc).join(" ") + "</span>" : "";
+      return "<tr><td>" + esc(s.ref) + "<br><span class=\"quiz-cost-sub\">" +
+        (s.needsAudio ? "dialogue" : s.duration + "s") + "</span></td>" +
+        "<td>" + optEntryCell(s.balanced) +
+        (s.balanced && s.balanced.shortfalls && s.balanced.shortfalls.length
+          ? "<br><span class=\"quiz-cost-na\">" + s.balanced.shortfalls.map(esc).join("; ") + "</span>" : "") +
+        "</td>" +
+        "<td>" + optEntryCell(s.cheapest) + giveUp + "</td>" +
+        "<td><strong>" + (s.saving !== null ? fmtUSD(s.saving) : "—") + "</strong></td>" +
+        "<td>" + esc(match) + "</td></tr>";
+    }).join("");
+
+    var notes = [];
+    if (opt.ineligible.length) {
+      notes.push("<p><strong>Not eligible</strong> at the " + optResLabelUi(opt.resBar) +
+        " bar (honest floor — never assumed): " +
+        opt.ineligible.map(function (x) {
+          return esc(x.model) + " (" + esc(x.reason) + ")";
+        }).join("; ") + ".</p>");
+    }
+    if (opt.unpriced.length) {
+      notes.push("<p><strong>No published rate — verify live:</strong> " +
+        opt.unpriced.map(esc).join(", ") + ".</p>");
+    }
+    if (opt.verifyLive.length) {
+      notes.push('<p><span class="st-badge">price may move</span> picks (USD/API billing — verify live ' +
+        "before budgeting): " + opt.verifyLive.map(esc).join(", ") + ".</p>");
+    }
+
+    e.optBody.innerHTML =
+      "<h3 id=\"st-opt-h\" tabindex=\"-1\">Cost optimizer results</h3>" +
+      '<p class="calc-note"><strong>Basis:</strong> resolution bar ' +
+      optResLabelUi(opt.resBar) + " · " + opt.audioShare +
+      "% of shots need native audio (spread evenly) · " + opt.takes +
+      " takes per keeper. " + esc(opt.basis) + "</p>" +
+      "<h4>Three budget modes</h4>" +
+      '<div class="table-scroll"><table><caption>Same shots, three ways to pay for them.</caption>' +
+      "<thead><tr><th scope=\"col\">Mode</th><th scope=\"col\">Generation cost</th>" +
+      "<th scope=\"col\">Delta vs balanced</th><th scope=\"col\">What changes</th></tr></thead>" +
+      "<tbody>" + modeRows + "</tbody></table></div>" +
+      "<h4>Where the money goes (balanced mode)</h4>" +
+      '<div class="table-scroll"><table><caption>Cost by model.</caption>' +
+      "<thead><tr><th scope=\"col\">Model</th><th scope=\"col\">Shots</th>" +
+      "<th scope=\"col\">Rate</th><th scope=\"col\">Cost</th></tr></thead>" +
+      "<tbody>" + modelRows + "</tbody></table></div>" +
+      (epRows ? '<div class="table-scroll"><table><caption>Cost by episode.</caption>' +
+        "<thead><tr><th scope=\"col\">Episode</th><th scope=\"col\">Shots</th>" +
+        "<th scope=\"col\">Balanced cost</th></tr></thead>" +
+        "<tbody>" + epRows + "</tbody></table></div>" : "") +
+      '<div class="table-scroll"><table><caption>Take-count leverage.</caption>' +
+      "<thead><tr><th scope=\"col\">Takes per keeper</th><th scope=\"col\">Generation cost</th></tr></thead>" +
+      "<tbody>" + takeRows + "</tbody></table></div>" +
+      '<p class="calc-note">Each take costs <strong>' + fmtUSD(opt.perTake) +
+      "</strong> across the plan — cutting takes is the fastest lever after model choice.</p>" +
+      big +
+      "<details" + (opt.shotCount <= 30 ? " open" : "") + ">" +
+      "<summary><strong>Per-shot substitutions (" + opt.shotCount + ")</strong> — cheapest viable " +
+      "for every shot, with the explicit requirement match</summary>" +
+      '<div class="table-scroll"><table>' +
+      "<thead><tr><th scope=\"col\">Shot</th><th scope=\"col\">Balanced pick</th>" +
+      "<th scope=\"col\">Cheapest viable</th><th scope=\"col\">Saving</th>" +
+      "<th scope=\"col\">Requirement match</th></tr></thead>" +
+      "<tbody>" + shotRows + "</tbody></table></div></details>" +
+      notes.join("") +
+      '<p class="calc-note"><strong>Rank notes</strong> (best-rated mode): Gemini Omni (Arena T2V leader, 1512 pts) → ' +
+      "FLUX 3 Video (Arena T2V #2, 1496) → MiniMax H3 (top-3 in earlier reports, verify live) → " +
+      "Seedance 2.5 (Arena I2V leader Sept 2026, single-source) → Grok Imagine Video 1.5 " +
+      "(topped I2V arena at launch, third-party) → Kling 3.0 (Artificial Analysis T2V #12, Sept 2026, single-source). " +
+      "Boards and dates differ — indicative, not apples-to-apples. The packet export now carries this section.</p>";
+    document.getElementById("st-opt-h").focus({ preventScroll: false });
+  }
+
+  function showOptimize() {
+    var e = els();
+    if (!e.optSec || !CURRENT) return;
+    var tier = CURRENT.kind === "series" ? CURRENT.plan.bible.tier : CURRENT.plan.input.tier;
+    var def = tier === "festival" ? "1080" : "720";
+    for (var i = 0; i < e.optRes.options.length; i++) {
+      if (e.optRes.options[i].value === def) { e.optRes.selectedIndex = i; break; }
+    }
+    e.optBody.innerHTML = "";
+    e.optSec.hidden = false;
+  }
+
+  function runOptimizer() {
+    var e = els();
+    if (!CURRENT || !DATA) return;
+    var share = Math.min(100, Math.max(0, parseInt(e.optAudio.value, 10) || 0));
+    e.optAudioOut.textContent = share + "%";
+    try {
+      var opt = optimizePlan(DATA, CURRENT.plan,
+        { resBar: parseInt(e.optRes.value, 10), audioShare: share });
+      CURRENT.plan.optimizer = opt;
+      renderOptBody(opt);
+      announce("Cost optimizer done: cheapest viable " + fmtUSD(opt.modes.cheapest.total) +
+        " vs balanced " + fmtUSD(opt.modes.balanced.total) + ". The packet export now includes it.");
+    } catch (err) {
+      e.optBody.innerHTML = '<p class="calc-note" role="alert">Optimizer failed: ' +
+        esc(err.message) + "</p>";
+    }
   }
 
   function getPlans() {
@@ -1580,8 +2384,7 @@
       if (!CURRENT) return;
       var md = CURRENT.kind === "series"
         ? seriesToMarkdown(CURRENT.plan)
-        : planToMarkdown(CURRENT.plan);
-      function done() { announce("Production packet copied as markdown."); }
+        : planToMarkdown(CURRENT.plan);      function done() { announce("Production packet copied as markdown."); }
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(md).then(done, function () { fallbackCopy(md, done); });
       } else { fallbackCopy(md, done); }
@@ -1630,6 +2433,17 @@
     }
 
     e.print.addEventListener("click", function () { window.print(); });
+
+    /* Cost optimizer panel: resolution bar + dialogue-share controls, then run. */
+    if (e.optRun) {
+      e.optRun.addEventListener("click", runOptimizer);
+      ["input", "change"].forEach(function (ev) {
+        e.optAudio.addEventListener(ev, function () {
+          e.optAudioOut.textContent =
+            Math.min(100, Math.max(0, parseInt(e.optAudio.value, 10) || 0)) + "%";
+        });
+      });
+    }
 
     e.save.addEventListener("click", function () {
       if (!CURRENT) return;

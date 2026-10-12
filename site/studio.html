@@ -43,7 +43,7 @@
       * { scroll-behavior: auto !important; }
     }
     @media print {
-      .site-header, .site-footer, .skip-link, #st-form-sec, #st-saved-sec, #st-actions { display: none !important; }
+      .site-header, .site-footer, .skip-link, #st-form-sec, #st-saved-sec, #st-actions, #st-optimize-sec { display: none !important; }
       .hero { padding: var(--space-4) 0; }
       .st-shot { break-inside: avoid; }
       body { background: #fff; color: #000; }
@@ -179,6 +179,29 @@
           <button type="button" class="btn btn-ghost" id="st-save">Save plan in this browser</button>
         </div>
       </div>
+    </section>
+    <section class="container" aria-labelledby="st-opt-title" id="st-optimize-sec" hidden style="margin-top:var(--space-6);">
+      <h2 id="st-opt-title">Optimize cost</h2>
+      <p class="calc-note">Find the cheapest way to make this plan. Every substitution must clear the shot's requirements — resolution at or above the bar, native audio where the shot needs dialogue — or it is listed as ineligible, never assumed. All rates come from <code>models.json</code>.</p>
+      <div class="calc-grid">
+        <div class="field">
+          <label for="st-opt-res">Resolution bar — every pick must document at least this</label>
+          <select class="input" id="st-opt-res">
+            <option value="720">720p</option>
+            <option value="1080">1080p</option>
+            <option value="2160">4K</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="st-opt-audio">Shots needing native audio (dialogue) — <output id="st-opt-audio-out" for="st-opt-audio">0%</output></label>
+          <input type="range" id="st-opt-audio" min="0" max="100" step="5" value="0">
+          <p class="calc-note">Spread evenly across the shots, deterministically.</p>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button type="button" class="btn" id="st-opt-run">Run cost optimizer</button>
+      </div>
+      <div id="st-opt-body" aria-live="polite"></div>
     </section>
     <section class="container" aria-labelledby="st-sv-h" id="st-saved-sec" style="margin-top:var(--space-6);">
       <h2 id="st-sv-h">Saved plans</h2>

@@ -327,4 +327,169 @@ test("seriesToHtml: self-contained, inline CSS, closes cleanly", () => {
   assert.ok(html.trim().endsWith("</html>"));
 });
 
+/* ---- wave 24: Studio cost optimizer --------------------------------------
+   optimizePlan / rate parsing / honest floor / mode math, all against the
+   real api/v1/models.json. */
+const OPTIN = (o) => Object.assign(
+  { title: "Porch Light", logline: "A projectionist restores an abandoned cinema.",
+    genre: "drama", runtimeSec: 120, tier: "festival" }, o || {});
+function optPlan(o, oo) {
+  return S.optimizePlan(DATA, S.buildPlan(DATA, OPTIN(o)), oo || {});
+}
+
+test("optimizer: USD/s rates parse from models.json (Vidu Q4, H3, FLUX 3)", () => {
+  const byName = {};
+  models.forEach((m) => { byName[m.model] = m; });
+  const vidu = S.rateAtRes(byName["Vidu Q4 Preview"], 1080);
+  assert.ok(vidu, "Vidu Q4 should price at 1080p");
+  assert.strictEqual(vidu.kind, "usd");
+  assert.ok(Math.abs(vidu.usdps - 0.014) < 1e-9, "Vidu Q4 launch pricing $0.014/s, got " + vidu.usdps);
+  const h3 = S.rateAtRes(byName["MiniMax H3"], 1080);
+  assert.ok(h3 && h3.kind === "usd" && Math.abs(h3.usdps - 0.13) < 1e-9,
+    "MiniMax H3 2K $0.13/s expected, got " + JSON.stringify(h3));
+  const flux = S.rateAtRes(byName["FLUX 3 Video"], 1080);
+  assert.ok(flux && Math.abs(flux.usdps - 0.29) < 1e-9,
+    "FLUX 3 1080p $0.29/s expected, got " + JSON.stringify(flux));
+  const wan = S.rateAtRes(byName["Wan 2.6"], 1080);
+  assert.ok(wan && wan.kind === "credit" && Math.abs(wan.usdps - 2 * 0.0392) < 1e-9,
+    "Wan 2.6 1080p 2 credits/s expected, got " + JSON.stringify(wan));
+});
+
+test("optimizer: unpriced models have no rate (honest floor)", () => {
+  const byName = {};
+  models.forEach((m) => { byName[m.model] = m; });
+  ["Pika 2.5", "Midjourney V1 Video", "Kling 4.0", "Vidu S2", "Seedance 3.0"].forEach((n) => {
+    assert.strictEqual(S.rateAtRes(byName[n], 720), null, n + " must be unpriced");
+  });
+});
+
+test("optimizer: floor honesty — nothing below the bar substitutes", () => {
+  const opt = optPlan();
+  const belowBar = ["DoP (Lite/Standard/Turbo)", "Veo 3.1 Fast / Veo 3", "Luma App / Ray 3.2"];
+  const picked = new Set();
+  opt.perShot.forEach((s) => {
+    [s.balanced, s.cheapest, s.bestrated].forEach((e) => { if (e) picked.add(e.model); });
+  });
+  belowBar.forEach((n) => assert.ok(!picked.has(n), n + " must never substitute at the 1080p bar"));
+  /* resolution-undocumented models are ineligible, never assumed */
+  const inel = new Set(opt.ineligible.map((x) => x.model));
+  assert.ok(inel.has("LTX-2.5"), "LTX-2.5 (no documented resolution) must be ineligible");
+  assert.ok(inel.has("Marketing Studio video"), "Marketing Studio (no documented resolution) must be ineligible");
+  assert.ok(!picked.has("LTX-2.5") && !picked.has("Marketing Studio video"));
+});
+
+test("optimizer: every pick meets its shot's requirements", () => {
+  const opt = optPlan({}, { audioShare: 30 });
+  opt.perShot.forEach((s) => {
+    [s.cheapest, s.bestrated].forEach((e) => {
+      if (!e) return;
+      assert.ok(e.res >= opt.resBar,
+        s.ref + ": " + e.model + " documents " + e.res + "p, below the " + opt.resBar + "p bar");
+      if (s.needsAudio) {
+        assert.ok(e.audio, s.ref + ": dialogue shot picked non-audio model " + e.model);
+      }
+    });
+  });
+  const audioShots = opt.perShot.filter((s) => s.needsAudio);
+  assert.ok(audioShots.length > 0, "audioShare=30 should mark shots");
+  assert.ok(audioShots.every((s) => s.cheapest && s.cheapest.audio),
+    "every dialogue shot's cheapest pick must be audio-capable");
+});
+
+test("optimizer: mode math — cheapest <= balanced, bestrated >= cheapest, deltas reconcile", () => {
+  const opt = optPlan();
+  const { cheapest, balanced, bestrated } = opt.modes;
+  assert.ok(cheapest.total <= balanced.total + 1e-9,
+    "cheapest " + cheapest.total + " must not exceed balanced " + balanced.total);
+  if (bestrated.complete && cheapest.complete) {
+    assert.ok(bestrated.total + 1e-9 >= cheapest.total,
+      "best rated " + bestrated.total + " must not undercut the cheapest viable " + cheapest.total);
+  }
+  /* per-shot savings sum to the mode delta */
+  const sumSaving = opt.perShot.reduce((a, s) => a + (s.saving || 0), 0);
+  assert.ok(Math.abs(sumSaving - (balanced.total - cheapest.total)) < 0.02,
+    "savings sum " + sumSaving + " vs mode delta " + (balanced.total - cheapest.total));
+  /* byModel + byEpisode-free film: byModel sums to the balanced total */
+  const sumModel = opt.byModel.reduce((a, g) => a + g.usd, 0);
+  assert.ok(Math.abs(sumModel - balanced.total) < 0.02,
+    "byModel sum " + sumModel + " vs balanced " + balanced.total);
+  /* take-count leverage reconciles (r2 rounding: perTake is rounded, so
+     compare against the unrounded quotient with a 1-cent tolerance) */
+  assert.ok(Math.abs(opt.perTake - balanced.total / opt.takes) < 0.011,
+    "perTake must equal balanced total / takes within rounding");
+  assert.ok(opt.byTakes.every((t) => Math.abs(t.usd - opt.perTake * t.takes) < 0.011),
+    "every take-count row must equal perTake x takes within rounding");
+});
+
+test("optimizer: verify-live badges on USD-billed picks", () => {
+  const opt = optPlan();
+  const usdPicks = new Set();
+  opt.perShot.forEach((s) => {
+    [s.balanced, s.cheapest, s.bestrated].forEach((e) => {
+      if (e && e.priceMayMove) usdPicks.add(e.model);
+    });
+  });
+  assert.ok(usdPicks.size > 0, "expected at least one USD-billed pick");
+  usdPicks.forEach((n) => {
+    assert.ok(opt.verifyLive.indexOf(n) !== -1, n + " must carry the price-may-move badge");
+  });
+  const md = S.optimizeToMarkdown({ optimizer: opt });
+  assert.ok(md.includes("price may move"), "packet markdown must carry the badge text");
+});
+
+test("optimizer: deterministic — same plan + opts, byte-identical output", () => {
+  const a = JSON.stringify(optPlan());
+  const b = JSON.stringify(optPlan());
+  assert.strictEqual(a, b);
+});
+
+test("optimizer: unpriced balanced pick degrades honestly, never crashes", () => {
+  const plan = S.buildPlan(DATA, OPTIN());
+  plan.shots[0].model = null; /* simulate an unresolvable pick */
+  const opt = S.optimizePlan(DATA, plan, {});
+  assert.strictEqual(opt.modes.balanced.complete, false, "balanced must flag incomplete");
+  assert.ok(opt.perShot[0].balanced === null, "shot with no model has no balanced entry");
+  assert.ok(opt.perShot[0].cheapest !== null, "cheapest still computed for that shot");
+});
+
+test("optimizer: series plans flatten with per-episode breakdown", () => {
+  const sp = S.buildSeriesPlan(DATA, SIN({ episodes: 3 }));
+  const opt = S.optimizePlan(DATA, sp, {});
+  assert.strictEqual(opt.shotCount, sp.totalShots, "every series shot must be optimized");
+  assert.strictEqual(opt.byEpisode.length, 3, "one row per episode");
+  assert.ok(opt.perShot[0].ref.indexOf("E1") === 0, "series refs carry episode labels, got " + opt.perShot[0].ref);
+  const sumEp = opt.byEpisode.reduce((a, e) => a + e.balanced, 0);
+  assert.ok(Math.abs(sumEp - opt.modes.balanced.total) < 0.02,
+    "episode rows must sum to the balanced total");
+  const md = S.seriesToMarkdown(Object.assign({}, sp, { optimizer: opt }));
+  assert.ok(md.includes("## Cost optimizer"), "series markdown packet must carry the optimizer section");
+  assert.ok(md.includes("Three budget modes"), "series packet must carry the mode comparison");
+  const html = S.seriesToHtml(Object.assign({}, sp, { optimizer: opt }));
+  assert.ok(html.includes("Cost optimizer"), "series HTML packet must carry the optimizer section");
+  assert.ok(html.includes("Biggest single decision"), "series HTML must carry the biggest-decision callout");
+});
+
+test("optimizer: film packet markdown carries the optimizer section only when run", () => {
+  const plan = S.buildPlan(DATA, OPTIN({ tier: "draft" }));
+  const plain = S.planToMarkdown(plan);
+  assert.ok(!plain.includes("## Cost optimizer"), "packet without an optimizer run must not mention it");
+  const opt = S.optimizePlan(DATA, plan, {});
+  const withOpt = S.planToMarkdown(Object.assign({}, plan, { optimizer: opt }));
+  assert.ok(withOpt.includes("## Cost optimizer"), "film packet must carry the optimizer section after a run");
+  assert.ok(withOpt.includes("Cheapest viable"), "film packet must carry the mode comparison");
+  assert.ok(withOpt.includes("Where the money goes"), "film packet must carry the breakdown");
+  assert.ok(withOpt.includes("Biggest single decision"), "film packet must call out the biggest decision");
+});
+
+test("optimizer: biggest decision names the priciest shot with a real alternative", () => {
+  const opt = optPlan();
+  assert.ok(opt.biggest, "biggest decision must exist");
+  const maxCost = Math.max.apply(null, opt.perShot.map((s) => (s.balanced ? s.balanced.cost : -1)));
+  assert.strictEqual(opt.biggest.cost, maxCost, "biggest must be the priciest balanced shot");
+  if (opt.biggest.alternative && opt.biggest.alternative.model !== opt.biggest.model) {
+    assert.ok(Math.abs(opt.biggest.saving - (opt.biggest.cost - opt.biggest.alternative.cost)) < 0.02,
+      "biggest saving must equal cost minus alternative cost");
+  }
+});
+
 console.log(`\nstudio.test.js: ${n} tests, ${process.exitCode ? "FAILURES" : "all pass"}`);
