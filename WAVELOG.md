@@ -88,7 +88,14 @@ craft-not-buttons.html), 404, teardown deck — identity renders, no page errors
 environmental; system-font fallbacks hold the layout).
 
 **Commit:** local wave-37 commit (111 files: 9 source + WAVELOG + 102 rebuilt
-site/) → pushed 2026-10-11 as remote commit `TBD` (verified below).
+site/) → pushed 2026-10-11 as remote commit
+`047faf7ffbdc215ff53a0a1df247b1e8077b2f6d`; remote `main` HEAD matches the
+pushed SHA; all 18 key wave-37 files verified present in the remote tree via
+GitHub Trees API (568 entries, not truncated; blob SHAs match local exactly;
+remote `build_site.py` contains `hero_cutroom`, zero `hero-film` references).
+Push needed 3 attempts — the first two died on intermittent per-request 400s
+("malformed request") from the blob API at ~20–30 uploads, different file each
+time (flaky, not content-related); third attempt clean.
 
 **Standing workstream note:** the episode-pipeline revisit (#6) was due ~wave 37
 but wave 37 carried the identity wave 2 instead — revisit still pending for a
