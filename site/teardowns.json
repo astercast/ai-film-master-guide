@@ -3,50 +3,50 @@
   "observed": "2026-10-11",
   "teardowns": [
     {
-      "context": "Girl realizes pre-flight that her passport is across town and races through an absurd apocalypse to get it back. Pipeline: hand-drawn storyboards \u2192 character design in Soul 2.0 \u2192 hand-painted Photoshop refinements \u2192 Blender previs \u2192 structured video prompts \u2192 Seedance 2.5 generation. The whole production was released open \u2014 every storyboard, every Blender scene, every prompt.",
+      "context": "Girl realizes pre-flight that her passport is across town and races through an absurd apocalypse to get it back. Pipeline: hand-drawn storyboards → character design in Soul 2.0 → hand-painted Photoshop refinements → Blender previs → structured video prompts → Seedance 2.5 generation. The whole production was released open — every storyboard, every Blender scene, every prompt.",
       "id": "passport-rush",
       "shots": [
         {
           "breaks": "Nothing broke here; this is the stage that prevented breaks later.",
-          "lesson": "Storyboard everything, even if you can't draw. Boards are the cheapest generation you'll ever make \u2014 a bad board costs minutes, a bad generation costs credits.",
+          "lesson": "Storyboard everything, even if you can't draw. Boards are the cheapest generation you'll ever make — a bad board costs minutes, a bad generation costs credits.",
           "n": 1,
           "prompt_reconstruction": null,
           "setup": "Hand-drawn storyboards locked the story before a single generation was bought. Per third-party commentary on the production: what the client approved in the boards is what ends up on screen.",
           "title": "The boards before the budget",
-          "works": "Story decisions were made at the cheapest possible stage \u2014 pencil, not credits. 18 car-chase scenes were boarded before production started."
+          "works": "Story decisions were made at the cheapest possible stage — pencil, not credits. 18 car-chase scenes were boarded before production started."
         },
         {
-          "breaks": "Where previs was thin, generations drifted \u2014 unmotivated camera movement is one of the documented failure modes.",
+          "breaks": "Where previs was thin, generations drifted — unmotivated camera movement is one of the documented failure modes.",
           "lesson": "Previs is the camera department. Decide the move, the timing, and the action beat in a free tool before spending credits.",
           "n": 2,
-          "prompt_reconstruction": "Reconstruction for study, not the actual prompt \u2014 \"Watercolor-stylized 3D girl sprints left-to-right across frame, camera tracks laterally at her pace, squash-and-stretch on each stride, motion-blurred background, one continuous move, no camera shake.\"",
-          "setup": "Blender was used for camera movement, action timing, and squash-and-stretch \u2014 the motion was decided in previs, then AI animation executed it.",
+          "prompt_reconstruction": "Reconstruction for study, not the actual prompt — \"Watercolor-stylized 3D girl sprints left-to-right across frame, camera tracks laterally at her pace, squash-and-stretch on each stride, motion-blurred background, one continuous move, no camera shake.\"",
+          "setup": "Blender was used for camera movement, action timing, and squash-and-stretch — the motion was decided in previs, then AI animation executed it.",
           "title": "Blender previs as the camera department",
           "works": "One motivated camera move per shot, timed in previs. The AI model never had to invent motion grammar; it only had to execute it."
         },
         {
           "breaks": "Subtle acting collapses: micro-expressions either freeze or overshoot into caricature. The model can do broad action; it cannot do a held-back feeling without direction.",
-          "lesson": "Direct tactics, not emotions. 'She decides not to cry' beats 'she looks sad' \u2014 a playable action gives the model something physical to do. See the directing-performance chapter.",
+          "lesson": "Direct tactics, not emotions. 'She decides not to cry' beats 'she looks sad' — a playable action gives the model something physical to do. See the directing-performance chapter.",
           "n": 3,
-          "prompt_reconstruction": "Reconstruction for study, not the actual prompt \u2014 weak version: 'girl looks sad in taxi, cinematic.' Directed version: 'girl stares out taxi window, decides not to cry, jaw tightens once, looks down at her hands, holds still. Camera: slow push-in, stop on her eyes.'",
-          "setup": "The production's own breakdown dedicates a section to 'why AI struggles with subtle character acting' and 'three challenging shots' \u2014 quiet reaction beats where the character had to feel something small.",
+          "prompt_reconstruction": "Reconstruction for study, not the actual prompt — weak version: 'girl looks sad in taxi, cinematic.' Directed version: 'girl stares out taxi window, decides not to cry, jaw tightens once, looks down at her hands, holds still. Camera: slow push-in, stop on her eyes.'",
+          "setup": "The production's own breakdown dedicates a section to 'why AI struggles with subtle character acting' and 'three challenging shots' — quiet reaction beats where the character had to feel something small.",
           "title": "The subtle-acting shots (the hard ones)",
-          "works": "The team identified the failure honestly instead of cutting around it \u2014 naming the weakness is what made the breakdown valuable."
+          "works": "The team identified the failure honestly instead of cutting around it — naming the weakness is what made the breakdown valuable."
         },
         {
-          "breaks": "Early tests show missing character details \u2014 the failures the breakdown honestly includes. Reference gaps = drift.",
+          "breaks": "Early tests show missing character details — the failures the breakdown honestly includes. Reference gaps = drift.",
           "lesson": "Every shot gets its reference. Character sheets, approved stills, locked start frames: consistency is a supply chain, not a prompt trick.",
           "n": 4,
           "prompt_reconstruction": null,
           "setup": "The team kept camera angles and character details consistent across 18 scenes produced in three days, using 'carefully prepared image references' to bring stylized 3D characters into a watercolor world.",
           "title": "Consistency discipline across 18 scenes in 3 days",
-          "works": "Image references did the consistency work \u2014 the video model was never asked to remember what a character looked like; it was shown, every shot."
+          "works": "Image references did the consistency work — the video model was never asked to remember what a character looked like; it was shown, every shot."
         },
         {
-          "breaks": "Lighting tests that failed, characters that lost details \u2014 each one is a labeled failure mode with a visible fix.",
+          "breaks": "Lighting tests that failed, characters that lost details — each one is a labeled failure mode with a visible fix.",
           "lesson": "Budget for design tests and keep your failures. A production that documents what broke is worth more than a showreel that hides it. This guide's failure-gallery chapter works the same way.",
           "n": 5,
-          "setup": "The official breakdown shows failed generations, missing character details, and lighting tests \u2014 the production published its mistakes alongside its wins.",
+          "setup": "The official breakdown shows failed generations, missing character details, and lighting tests — the production published its mistakes alongside its wins.",
           "title": "The failure reel",
           "works": "The failure reel is the most instructive part of the release: it shows exactly where the pipeline's guardrails are."
         }
@@ -57,19 +57,19 @@
         "https://www.linkedin.com/posts/deykhan_we-launched-our-first-hybrid-ai-animated-activity-7510414726103851008-0KRN",
         "https://completeaitraining.com/news/higgsfield-releases-open-source-hybrid-ai-animated-short/"
       ],
-      "subtitle": "Hybrid AI animation \u00b7 Higgsfield Originals (2026)",
+      "subtitle": "Hybrid AI animation · Higgsfield Originals (2026)",
       "title": "Passport Rush"
     },
     {
-      "context": "Four friends in a dorm; three imagined worlds (a Troy battle, a galactic cruiser chase, a griffin flight over a fairytale valley). ~41,118 assets for ~20 minutes. The production brief was open-sourced (via community transcription \u2014 flagged as third-party of a first-party brief). Note: ONEIRIC has no verified Cannes premiere; the Cannes-adjacent screening was for Hell Grind, a separate work.",
+      "context": "Four friends in a dorm; three imagined worlds (a Troy battle, a galactic cruiser chase, a griffin flight over a fairytale valley). ~41,118 assets for ~20 minutes. The production brief was open-sourced (via community transcription — flagged as third-party of a first-party brief). Note: ONEIRIC has no verified Cannes premiere; the Cannes-adjacent screening was for Hell Grind, a separate work.",
       "id": "oneiric",
       "shots": [
         {
-          "breaks": "Without the diagram, eyelines and positions drifted shot to shot \u2014 the classic multi-character failure.",
+          "breaks": "Without the diagram, eyelines and positions drifted shot to shot — the classic multi-character failure.",
           "lesson": "Block dialogue like a stage play before you generate. A simple color-coded map beats a paragraph of spatial description in every prompt.",
           "n": 1,
-          "prompt_reconstruction": "Reconstruction for study, not the actual prompt \u2014 'Diagram: blue = Rudy seated left on couch, green = Mara standing right by window. Shot: MCU on the blue, Rudy looks up at the green (eyeline upper-right of frame), says his line, holds. Do not move either character's seat position.'",
-          "setup": "One-room dialogue continuity was 'the hardest technical task of the film \u2014 harder than the space battle.' Four characters talking in one room for minutes, without morphing.",
+          "prompt_reconstruction": "Reconstruction for study, not the actual prompt — 'Diagram: blue = Rudy seated left on couch, green = Mara standing right by window. Shot: MCU on the blue, Rudy looks up at the green (eyeline upper-right of frame), says his line, holds. Do not move either character's seat position.'",
+          "setup": "One-room dialogue continuity was 'the hardest technical task of the film — harder than the space battle.' Four characters talking in one room for minutes, without morphing.",
           "title": "The living-room dialogue (the hardest shot in the film)",
           "works": "The color-coded Diagram Skill: a schematic outline drawing attached as reference alongside real refs, each color bound to a character tag ('MCU on the blue', 'POV of the green'). Coverage became conversational."
         },
@@ -77,25 +77,25 @@
           "breaks": "Lens descriptions in video prompts decayed within a scene; every shot needed re-anchoring.",
           "lesson": "Put what the model drops into the asset, not the prompt. The image stage is where look is locked; the video stage is where motion happens.",
           "n": 2,
-          "prompt_reconstruction": "Reconstruction for study, not the actual prompt \u2014 image-stage: 'Living room, STRONG anamorphic look baked in: horizontal squeeze, oval elliptical bokeh in background lamps, stretched window highlights, subtle barrel edge distortion, chromatic aberration on high-contrast edges. NO lens flares. 2.39:1.' Video-stage: 'Match the reference image exactly; only animate: dust in the light beam, curtain sway.'",
-          "setup": "Asking the video model for 'anamorphic' produced optics that drifted shot to shot. The fix: generate the location IMAGE with anamorphic already baked in \u2014 horizontal squeeze, oval bokeh, stretched highlights \u2014 and let the video model read the optics off the asset.",
+          "prompt_reconstruction": "Reconstruction for study, not the actual prompt — image-stage: 'Living room, STRONG anamorphic look baked in: horizontal squeeze, oval elliptical bokeh in background lamps, stretched window highlights, subtle barrel edge distortion, chromatic aberration on high-contrast edges. NO lens flares. 2.39:1.' Video-stage: 'Match the reference image exactly; only animate: dust in the light beam, curtain sway.'",
+          "setup": "Asking the video model for 'anamorphic' produced optics that drifted shot to shot. The fix: generate the location IMAGE with anamorphic already baked in — horizontal squeeze, oval bokeh, stretched highlights — and let the video model read the optics off the asset.",
           "title": "The consistent-lens-look trick",
-          "works": "'The plate itself becomes the lens.' Lens, grade, texture, time of day \u2014 anything the video model kept dropping \u2014 moved into the image asset, not the video prompt."
+          "works": "'The plate itself becomes the lens.' Lens, grade, texture, time of day — anything the video model kept dropping — moved into the image asset, not the video prompt."
         },
         {
           "breaks": "Earlier text-only chaining accumulated drift: wardrobe, lighting, and faces slowly migrated scene to scene.",
           "lesson": "Chain finished pixels, not descriptions. The last approved frame is the best prompt for the next shot.",
           "n": 3,
-          "setup": "Each new scene was generated with the previous scene's FINISHED VIDEO as reference \u2014 not a text description of it.",
+          "setup": "Each new scene was generated with the previous scene's FINISHED VIDEO as reference — not a text description of it.",
           "title": "The carried-reference chain",
-          "works": "'A text description drifts over generations \u2014 a video reference doesn't.' The chain held look and identity across 20 minutes."
+          "works": "'A text description drifts over generations — a video reference doesn't.' The chain held look and identity across 20 minutes."
         },
         {
-          "breaks": "Emotion-word prompts produced the dead-glassy-eyes failure \u2014 mathematical stillness where micro-movement should be.",
+          "breaks": "Emotion-word prompts produced the dead-glassy-eyes failure — mathematical stillness where micro-movement should be.",
           "lesson": "Direct the eyes like blocking, not like mood. Every pair of eyes gets a job per beat. See the dead-eyes checklist.",
           "n": 4,
-          "prompt_reconstruction": "Reconstruction for study, not the actual prompt \u2014 weak: 'she looks sad, cinematic close-up.' Directed: 'Close-up: she hears the news, eyes drop to the table (beat), then lift to his face and hold \u2014 do not blink for the first two seconds. Micro-asymmetry, natural skin texture.'",
-          "setup": "The acting system banned emotion words: 'Write sad and you get a caricature or a dead face.' Instead, eye-work was named as action \u2014 a named eyeline, a glance with a target.",
+          "prompt_reconstruction": "Reconstruction for study, not the actual prompt — weak: 'she looks sad, cinematic close-up.' Directed: 'Close-up: she hears the news, eyes drop to the table (beat), then lift to his face and hold — do not blink for the first two seconds. Micro-asymmetry, natural skin texture.'",
+          "setup": "The acting system banned emotion words: 'Write sad and you get a caricature or a dead face.' Instead, eye-work was named as action — a named eyeline, a glance with a target.",
           "title": "Giving the eyes a job",
           "works": "Named eye actions (look away on the beat, hold the gaze through the line) produced the shots that read as thinking instead of posing."
         },
@@ -103,7 +103,7 @@
           "breaks": "Continuous re-rolling burned credits and produced 'almost' takes that were never approved.",
           "lesson": "Approve, then photograph. The instruction after approval changes from 'generate this scene' to 'photograph this exact performance from a new angle.'",
           "n": 5,
-          "setup": "Generation supervision happened as a scheduled pass after the rough cut \u2014 QC plus re-generation of broken shots \u2014 not as continuous re-rolling. Once a take was approved, it was locked: re-render the camera around it, never regenerate the performance.",
+          "setup": "Generation supervision happened as a scheduled pass after the rough cut — QC plus re-generation of broken shots — not as continuous re-rolling. Once a take was approved, it was locked: re-render the camera around it, never regenerate the performance.",
           "title": "Scene Lock and scheduled regeneration",
           "works": "Iteration became a department with a calendar instead of a standing reaction. Version logs recorded version, what changed, verdict."
         }
@@ -113,36 +113,36 @@
         "https://www.youtube.com/watch?v=g_c62JkKQZE",
         "https://higgsfield.ai/academy/courses/ai-animated-short/full-film-replay"
       ],
-      "subtitle": "20-minute photoreal drama \u00b7 Higgsfield / Cinema Studio 4 (2026)",
+      "subtitle": "20-minute photoreal drama · Higgsfield / Cinema Studio 4 (2026)",
       "title": "ONEIRIC"
     },
     {
-      "context": "A 5-minute film on the Phaeacians and Princess Nausicaa, made with Grok Imagine, won a $100,000 grand prize \u2014 then was panned in the press for visual inconsistencies. The coverage framed it as highlighting 'the current limitations of AI filmmaking, even with a substantial prize at stake.' The lesson the guide takes: a prize does not forgive broken continuity.",
+      "context": "A 5-minute film on the Phaeacians and Princess Nausicaa, made with Grok Imagine, won a $100,000 grand prize — then was panned in the press for visual inconsistencies. The coverage framed it as highlighting 'the current limitations of AI filmmaking, even with a substantial prize at stake.' The lesson the guide takes: a prize does not forgive broken continuity.",
       "id": "odyssey-winner",
       "shots": [
         {
           "breaks": "No identity lock on the creature design: the model's averaging produced an extra eye. No QC pass caught it before delivery.",
-          "lesson": "Consistency is the floor. A locked character sheet, checked against every generation, would have caught this in minutes. Polish is not optional at any budget \u2014 the press will find the third eye.",
+          "lesson": "Consistency is the floor. A locked character sheet, checked against every generation, would have caught this in minutes. Polish is not optional at any budget — the press will find the third eye.",
           "n": 1,
           "prompt_reconstruction": null,
-          "setup": "The film's Cyclops appears with three eyes \u2014 a character-design failure visible to every viewer, in the winning film of a six-figure contest.",
+          "setup": "The film's Cyclops appears with three eyes — a character-design failure visible to every viewer, in the winning film of a six-figure contest.",
           "title": "The three-eyed Cyclops",
-          "works": "The spectacle and ambition were real \u2014 epic scale is what the contest rewarded."
+          "works": "The spectacle and ambition were real — epic scale is what the contest rewarded."
         },
         {
           "breaks": "No exclusion block ('deformed hands, extra limbs, melting anatomy'), no hands discipline, no post crop pass.",
-          "lesson": "Put anatomy guards in every prompt, not just the risky ones \u2014 and check the edges of frame, not just the hero. See the prompt-engineering exclusion block.",
+          "lesson": "Put anatomy guards in every prompt, not just the risky ones — and check the edges of frame, not just the hero. See the prompt-engineering exclusion block.",
           "n": 2,
           "prompt_reconstruction": null,
-          "setup": "Background and mid-ground characters render with feet instead of hands \u2014 the classic anatomy failure, shipped in a prize-winning film.",
+          "setup": "Background and mid-ground characters render with feet instead of hands — the classic anatomy failure, shipped in a prize-winning film.",
           "title": "Feet for hands",
           "works": "Foreground hero shots held together; the failure is in the unguarded edges of frame."
         },
         {
-          "breaks": "Decoupled dialogue: lines generated without native-audio planning, without attributed delivery, without performance arcs \u2014 the voice carries nothing because nothing was directed.",
+          "breaks": "Decoupled dialogue: lines generated without native-audio planning, without attributed delivery, without performance arcs — the voice carries nothing because nothing was directed.",
           "lesson": "Dialogue is a department, not a checkbox. Attribute every line, direct delivery through the text, or plan the edit around native audio. See the directing-performance chapter.",
           "n": 3,
-          "setup": "The dialogue was singled out as awkward \u2014 the film's weakest non-visual element.",
+          "setup": "The dialogue was singled out as awkward — the film's weakest non-visual element.",
           "title": "The awkward dialogue",
           "works": "The story ambition (a full Odyssey episode in 5 minutes) is genuine."
         }
@@ -151,13 +151,13 @@
         "https://tbsnews.net",
         "https://www.youtube.com/watch?v=-b6kHJQ3hYg"
       ],
-      "subtitle": "Grok Odyssey contest winner \u00b7 Nem Perez (2026)",
+      "subtitle": "Grok Odyssey contest winner · Nem Perez (2026)",
       "title": "The $100K cautionary case"
     },
     {
       "id": "dear-upstairs-neighbors",
       "title": "Dear Upstairs Neighbors",
-      "subtitle": "Artist-led AI animation \u00b7 Google DeepMind (2026)",
+      "subtitle": "Artist-led AI animation · Google DeepMind (2026)",
       "context": "Six-minute animated short directed by Pixar alum Connie He, premiered at the Sundance Film Festival in January 2026. A 45-person crew of animators and Google DeepMind researchers built the film around custom fine-tuned Veo and Imagen models trained on production designer Yingzong Xin's artwork. Rough animation was made first in the animators' own tools (Maya, TVPaint) and transformed into the final expressionist style via video-to-video; no final shot was a one-click generation. Dailies, localized refinement tools, and a Veo 4K upscale finished the pipeline.",
       "sources": [
         "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/dear-upstairs-neighbors/",
@@ -171,36 +171,36 @@
         {
           "n": 1,
           "title": "Rough animation first, AI second",
-          "setup": "Animators blocked every performance in their own tools \u2014 traditional 3D in Maya, hand-drawn 2D in TVPaint \u2014 before any AI touched a frame. Timing, comedic rhythm, and acting choices were made by humans with pencils and rigs, exactly as in a conventional production.",
-          "works": "The film's comedy lands because the timing was directed, not prompted. The AI's job was transformation \u2014 turning approved rough motion into the final painterly style \u2014 so human intention survived every shot.",
+          "setup": "Animators blocked every performance in their own tools — traditional 3D in Maya, hand-drawn 2D in TVPaint — before any AI touched a frame. Timing, comedic rhythm, and acting choices were made by humans with pencils and rigs, exactly as in a conventional production.",
+          "works": "The film's comedy lands because the timing was directed, not prompted. The AI's job was transformation — turning approved rough motion into the final painterly style — so human intention survived every shot.",
           "breaks": "Early text-prompt-only attempts failed the film's core need: per third-party coverage of the production, characters moved in random, uncontrolled ways when driven by words alone. Text could not carry comedic timing, motion rhythm, or precise framing.",
-          "lesson": "Direct motion with drawings, not words. For performance-driven work, the prompt is the weakest control surface you have \u2014 rough animation is the strongest. AI works best here as a stylization layer, not an idea generator.",
+          "lesson": "Direct motion with drawings, not words. For performance-driven work, the prompt is the weakest control surface you have — rough animation is the strongest. AI works best here as a stylization layer, not an idea generator.",
           "prompt_reconstruction": null
         },
         {
           "n": 2,
           "title": "Fine-tune on the production designer's art",
           "setup": "Instead of prompting a general model toward a style, the team fine-tuned custom Veo and Imagen models on artwork made specifically for the film by production designer Yingzong Xin. A few example images taught the models new visual concepts.",
-          "works": "Consistency across shots \u2014 the historic failure point of AI animation. The models learned deep rules, not surface texture: Ada's hair silhouette never obscures her face (a 2D rule that violates 3D geometry), two-point perspective discipline, and the expressionist brushwork language.",
+          "works": "Consistency across shots — the historic failure point of AI animation. The models learned deep rules, not surface texture: Ada's hair silhouette never obscures her face (a 2D rule that violates 3D geometry), two-point perspective discipline, and the expressionist brushwork language.",
           "breaks": "General-purpose models could not hold Ada's design rules; the character's look was too specific for a base model to reproduce reliably. Prompt adjectives ('expressionist', 'painterly') were not enough to lock it.",
-          "lesson": "Style-lock via training data beats style-lock via adjectives. When the dataset is yours, two hard problems get easier at once: visual consistency and clean authorship \u2014 the output inherits your rights position instead of the internet's.",
+          "lesson": "Style-lock via training data beats style-lock via adjectives. When the dataset is yours, two hard problems get easier at once: visual consistency and clean authorship — the output inherits your rights position instead of the internet's.",
           "prompt_reconstruction": null
         },
         {
           "n": 3,
           "title": "Video-to-video with an adjustable leash",
-          "setup": "The core technical workflow: rough animated sequences fed into the fine-tuned Veo models and transformed into fully stylized footage, with an adjustable balance between firm control and improvisation \u2014 inspired by how animators already communicate shot concepts by drawing or acting out scenes.",
+          "setup": "The core technical workflow: rough animated sequences fed into the fine-tuned Veo models and transformed into fully stylized footage, with an adjustable balance between firm control and improvisation — inspired by how animators already communicate shot concepts by drawing or acting out scenes.",
           "works": "Motion and timing intent survived the transformation while the frames gained the hand-painted finish. Animators could direct the AI the way they direct assistants: show the movement, set how much freedom it gets.",
-          "breaks": "A fixed control level would have failed both ends \u2014 too rigid kills the painterly life, too loose loses the performance. The production needed the dial, and had to build tooling to get it.",
-          "lesson": "Control versus improvisation is a dial, not a switch. When evaluating any video model, ask where the control dial lives \u2014 if the only settings are 'prompt harder' and 'regenerate', you don't have a production tool.",
+          "breaks": "A fixed control level would have failed both ends — too rigid kills the painterly life, too loose loses the performance. The production needed the dial, and had to build tooling to get it.",
+          "lesson": "Control versus improvisation is a dial, not a switch. When evaluating any video model, ask where the control dial lives — if the only settings are 'prompt harder' and 'regenerate', you don't have a production tool.",
           "prompt_reconstruction": null
         },
         {
           "n": 4,
           "title": "Dailies, not one-click",
-          "setup": "Per the production accounts, none of the final shots were one-click generations. The team ran dailies, critiqued every shot through multiple feedback rounds, and built tools for localized refinement \u2014 fixing one region of a shot without regenerating the whole thing.",
+          "setup": "Per the production accounts, none of the final shots were one-click generations. The team ran dailies, critiqued every shot through multiple feedback rounds, and built tools for localized refinement — fixing one region of a shot without regenerating the whole thing.",
           "works": "Quality control scaled: a bad sleeve didn't cost a good face. Localized fixes kept iteration cheap and preserved approved work instead of gambling it on every regeneration.",
-          "breaks": "The fantasy that AI removes iteration. This production refutes it directly \u2014 the slow, repetitive, judgment-heavy part of filmmaking survived intact; only its shape changed.",
+          "breaks": "The fantasy that AI removes iteration. This production refutes it directly — the slow, repetitive, judgment-heavy part of filmmaking survived intact; only its shape changed.",
           "lesson": "Keep the review discipline. AI changes what you iterate (regions and passes instead of frames and layers), not whether you iterate. Budget dailies into every AI production plan.",
           "prompt_reconstruction": null
         },
@@ -208,9 +208,9 @@
           "n": 5,
           "title": "Upscale as finish",
           "setup": "Final shots were upscaled to 4K with Veo's upscaling, tuned to preserve the hand-painted aesthetic and rough expressionist brushwork rather than smoothing it into video-real detail.",
-          "works": "Theatrical resolution without losing the film's identity. The finish pipeline respected the style instead of fighting it \u2014 grain and brushwork survived the upscale.",
+          "works": "Theatrical resolution without losing the film's identity. The finish pipeline respected the style instead of fighting it — grain and brushwork survived the upscale.",
           "breaks": "Generic upscalers would have 'cleaned' the very texture that made the film distinctive. Finish tools chosen without style-awareness destroy the look they are meant to enhance.",
-          "lesson": "The finish is part of the style system. Test your upscale/grade chain against your style bible's texture rules before committing \u2014 resolution means nothing if the look doesn't survive it.",
+          "lesson": "The finish is part of the style system. Test your upscale/grade chain against your style bible's texture rules before committing — resolution means nothing if the look doesn't survive it.",
           "prompt_reconstruction": null
         }
       ]
@@ -219,7 +219,7 @@
       "id": "dreams-of-violets",
       "title": "Dreams of Violets",
       "subtitle": "The $2,000, 75-minute AI feature that premiered at Tribeca",
-      "context": "Fountain 0's 75-minute docudrama (written/directed/produced by Ash Koosha, co-produced by Pooya Koosha) premiered June 10, 2026 at Tribeca \u2014 the first feature-length live-action film completely generated by AI accepted to a major festival, per Fountain 0. Made in three months for ~$2,000: Kling AI for video generation, Anthropic Claude for language-related editing, Google Gemini + Nano Banana for research and imagery, and Fountain 0's own technology for blocking and frame accuracy. Every image and person AI-generated; the story is built from journalistic reports, photographs, and eyewitness accounts of the January 2026 Iranian protests \u2014 five strangers hiding in a dead-end Tehran alley at dawn, a violent soldier who discovers them, and Amir, a child in a wheelchair, watching from a window and deciding to act. Tribeca co-founder Jane Rosenthal endorsed the selection for the story's 'emotional immediacy and urgency.' No prompts, shot counts, or per-scene workflows were published \u2014 the reconstructions below are representative, built from the documented logline and stack, not the production's actual prompts.",
+      "context": "Fountain 0's 75-minute docudrama (written/directed/produced by Ash Koosha, co-produced by Pooya Koosha) premiered June 10, 2026 at Tribeca — the first feature-length live-action film completely generated by AI accepted to a major festival, per Fountain 0. Made in three months for ~$2,000: Kling AI for video generation, Anthropic Claude for language-related editing, Google Gemini + Nano Banana for research and imagery, and Fountain 0's own technology for blocking and frame accuracy. Every image and person AI-generated; the story is built from journalistic reports, photographs, and eyewitness accounts of the January 2026 Iranian protests — five strangers hiding in a dead-end Tehran alley at dawn, a violent soldier who discovers them, and Amir, a child in a wheelchair, watching from a window and deciding to act. Tribeca co-founder Jane Rosenthal endorsed the selection for the story's 'emotional immediacy and urgency.' No prompts, shot counts, or per-scene workflows were published — the reconstructions below are representative, built from the documented logline and stack, not the production's actual prompts.",
       "sources": [
         "https://www.businesswire.com/news/home/20260527634103/en/Dreams-of-Violets-to-World-Premiere-at-Tribeca-Festival-as-the-First-Feature-Length-Live-Action-Film-Completely-Generated-by-AI-Accepted-to-a-Major-Film-Festival",
         "https://consequence.net/2026/05/dreams-of-violets-ai-film-tribeca-festival/",
@@ -228,65 +228,65 @@
       "shots": [
         {
           "n": 1,
-          "title": "Dawn over Tehran \u2014 the establishing frame",
-          "setup": "The film opens on the city at dawn \u2014 the 'where' has to land before anything else. Documented stack: Gemini + Nano Banana handled research and imagery, and the story was built from journalistic photographs and eyewitness accounts \u2014 meaning reference stills came from real documentation, then went through generation.",
+          "title": "Dawn over Tehran — the establishing frame",
+          "setup": "The film opens on the city at dawn — the 'where' has to land before anything else. Documented stack: Gemini + Nano Banana handled research and imagery, and the story was built from journalistic photographs and eyewitness accounts — meaning reference stills came from real documentation, then went through generation.",
           "works": "Reference-driven realism: when the plate comes from photojournalism rather than imagination, the architecture, light, and texture arrive true. The still-image-first discipline (lock the look as a still, then animate) is what the year's long-form workflow consensus prescribes.",
-          "breaks": "Where research imagery becomes invented imagery, the film risks the uncanny valley of almost-real places \u2014 every rooftop and alleyway has to hold across dozens of shots or the 'documentary' claim frays.",
-          "lesson": "Ground invented footage in documented references. For a docudrama, the reference still IS the research \u2014 collect it like a researcher, lock it like a cinematographer.",
-          "prompt_reconstruction": "[Analytical reconstruction \u2014 actual prompts undisclosed.] Still first: dawn cityscape, Tehran rooftops, photorealistic, muted blue-grey grade, haze. Then image-to-video with one motion instruction: slow drift of morning light. Nothing else moves."
+          "breaks": "Where research imagery becomes invented imagery, the film risks the uncanny valley of almost-real places — every rooftop and alleyway has to hold across dozens of shots or the 'documentary' claim frays.",
+          "lesson": "Ground invented footage in documented references. For a docudrama, the reference still IS the research — collect it like a researcher, lock it like a cinematographer.",
+          "prompt_reconstruction": "[Analytical reconstruction — actual prompts undisclosed.] Still first: dawn cityscape, Tehran rooftops, photorealistic, muted blue-grey grade, haze. Then image-to-video with one motion instruction: slow drift of morning light. Nothing else moves."
         },
         {
           "n": 2,
-          "title": "The dead-end alley \u2014 five strangers hiding",
-          "setup": "The core location: five Iranians hiding in a dead-end alley at dawn. Five distinct identities must persist across a 75-minute runtime \u2014 the central continuity problem of the entire film. Fountain 0's own technology handled 'blocking and frame accuracy' \u2014 the documented answer to multi-character staging.",
-          "works": "Blocking-first direction: the company's proprietary blocking pass means character positions were solved before pixels were spent \u2014 the AI equivalent of rehearsing a scene. Confined space helps: one alley, one light direction, five faces to lock.",
-          "breaks": "Five AI-generated faces in close quarters for 75 minutes is where identity drift goes to thrive \u2014 a nose that shifts between scenes breaks the docudrama contract faster than any bad effect.",
-          "lesson": "At feature length, blocking is a continuity tool, not just a directing one. Lock where each body is, then lock each face to the base portrait \u2014 never re-run the anchor (see craft/character-consistency.md).",
-          "prompt_reconstruction": "[Analytical reconstruction \u2014 actual prompts undisclosed.] Reference stills: five locked character portraits as image references. Motion instruction: breathing, shifting weight, eyes toward the alley mouth. One action per clip; wardrobe and positions restated verbatim every shot."
+          "title": "The dead-end alley — five strangers hiding",
+          "setup": "The core location: five Iranians hiding in a dead-end alley at dawn. Five distinct identities must persist across a 75-minute runtime — the central continuity problem of the entire film. Fountain 0's own technology handled 'blocking and frame accuracy' — the documented answer to multi-character staging.",
+          "works": "Blocking-first direction: the company's proprietary blocking pass means character positions were solved before pixels were spent — the AI equivalent of rehearsing a scene. Confined space helps: one alley, one light direction, five faces to lock.",
+          "breaks": "Five AI-generated faces in close quarters for 75 minutes is where identity drift goes to thrive — a nose that shifts between scenes breaks the docudrama contract faster than any bad effect.",
+          "lesson": "At feature length, blocking is a continuity tool, not just a directing one. Lock where each body is, then lock each face to the base portrait — never re-run the anchor (see craft/character-consistency.md).",
+          "prompt_reconstruction": "[Analytical reconstruction — actual prompts undisclosed.] Reference stills: five locked character portraits as image references. Motion instruction: breathing, shifting weight, eyes toward the alley mouth. One action per clip; wardrobe and positions restated verbatim every shot."
         },
         {
           "n": 3,
-          "title": "The soldier at dawn \u2014 the threat",
-          "setup": "The documented logline: 'At dawn, as Iranian forces execute wounded protesters, a violent soldier discovers the five hiding in a dead-end alley.' The film's most dangerous scene \u2014 violence rendered by AI, about real deaths, in January 2026.",
-          "works": "Restraint as craft: the coverage describes the trailer as reading 'almost like an ultra-low-budget effort' \u2014 the film leans into gritty immediacy rather than polish. For depicted violence, implication outranks spectacle: sound design and reaction shots carry what the camera refuses to show.",
+          "title": "The soldier at dawn — the threat",
+          "setup": "The documented logline: 'At dawn, as Iranian forces execute wounded protesters, a violent soldier discovers the five hiding in a dead-end alley.' The film's most dangerous scene — violence rendered by AI, about real deaths, in January 2026.",
+          "works": "Restraint as craft: the coverage describes the trailer as reading 'almost like an ultra-low-budget effort' — the film leans into gritty immediacy rather than polish. For depicted violence, implication outranks spectacle: sound design and reaction shots carry what the camera refuses to show.",
           "breaks": "AI violence imagery risks both the grotesque (morphed bodies in motion) and the tasteless (spectacle where witness was intended). Every frame here is an editorial decision, not a generation accident.",
-          "lesson": "When the subject is real suffering, the camera should witness, not perform. Choose the reaction shot over the action shot \u2014 it's cheaper, safer, and more honest.",
-          "prompt_reconstruction": "[Analytical reconstruction \u2014 actual prompts undisclosed.] No explicit violence in frame: soldier silhouette against dawn light, dust, distant sound of chaos. The horror lives in the five faces watching \u2014 shot 2's locked portraits, now in fear."
+          "lesson": "When the subject is real suffering, the camera should witness, not perform. Choose the reaction shot over the action shot — it's cheaper, safer, and more honest.",
+          "prompt_reconstruction": "[Analytical reconstruction — actual prompts undisclosed.] No explicit violence in frame: soldier silhouette against dawn light, dust, distant sound of chaos. The horror lives in the five faces watching — shot 2's locked portraits, now in fear."
         },
         {
           "n": 4,
-          "title": "The discovery \u2014 the turn",
-          "setup": "The violent soldier discovers the five. This is the film's structural turn \u2014 the moment hiding becomes confrontation. Every thriller lives or dies on its turn, and an AI feature has to land it without a stunt coordinator or a second unit.",
-          "works": "The turn is carried by blocking and timing, not effects: a shadow crossing the alley mouth, five heads turning as one. Fountain 0's blocking/frame-accuracy pass earns its keep here \u2014 the turn is choreography.",
-          "breaks": "Multi-character reaction timing is AI's weak spot \u2014 five faces turning 'as one' can easily become five faces turning at five speeds, which reads as comedy where the scene needs dread.",
+          "title": "The discovery — the turn",
+          "setup": "The violent soldier discovers the five. This is the film's structural turn — the moment hiding becomes confrontation. Every thriller lives or dies on its turn, and an AI feature has to land it without a stunt coordinator or a second unit.",
+          "works": "The turn is carried by blocking and timing, not effects: a shadow crossing the alley mouth, five heads turning as one. Fountain 0's blocking/frame-accuracy pass earns its keep here — the turn is choreography.",
+          "breaks": "Multi-character reaction timing is AI's weak spot — five faces turning 'as one' can easily become five faces turning at five speeds, which reads as comedy where the scene needs dread.",
           "lesson": "Direct the turn like a stage play: one entrance, one shared reaction, no camera trickery. Simplicity is the only VFX a turn needs.",
-          "prompt_reconstruction": "[Analytical reconstruction \u2014 actual prompts undisclosed.] Static camera, alley mouth. Single motion instruction: a soldier's shadow falls across the frame; the five turn toward it. Hold the reaction two beats longer than feels comfortable."
+          "prompt_reconstruction": "[Analytical reconstruction — actual prompts undisclosed.] Static camera, alley mouth. Single motion instruction: a soldier's shadow falls across the frame; the five turn toward it. Hold the reaction two beats longer than feels comfortable."
         },
         {
           "n": 5,
-          "title": "Amir at the window \u2014 the witness",
-          "setup": "Above the alley, Amir \u2014 a child in a wheelchair \u2014 watches from a window and decides to act. The high-angle witness POV is the film's moral camera: the one character who sees everything and cannot walk away from it.",
-          "works": "POV discipline as theme: the witness shot makes the audience complicit in watching. A child in a wheelchair, framed at a window, is instantly legible \u2014 no exposition needed, which matters when your dialogue pipeline is AI-assisted. Rosenthal's 'emotional immediacy' lives in shots like this.",
-          "breaks": "A wheelchair is a continuity minefield \u2014 wheels, spokes, and small mechanical details morph under motion. And a child's face under emotional strain is the hardest portrait task in the film.",
-          "lesson": "Give the hardest character the simplest staging: stillness, one window, one face. Let the performance be a held look \u2014 the one thing AI faces can now do well.",
-          "prompt_reconstruction": "[Analytical reconstruction \u2014 actual prompts undisclosed.] High angle, interior: boy at window, dawn light on face, wheelchair static and locked as a prop reference. Motion instruction: eyes track the alley below; a decision crosses his face. Nothing else moves."
+          "title": "Amir at the window — the witness",
+          "setup": "Above the alley, Amir — a child in a wheelchair — watches from a window and decides to act. The high-angle witness POV is the film's moral camera: the one character who sees everything and cannot walk away from it.",
+          "works": "POV discipline as theme: the witness shot makes the audience complicit in watching. A child in a wheelchair, framed at a window, is instantly legible — no exposition needed, which matters when your dialogue pipeline is AI-assisted. Rosenthal's 'emotional immediacy' lives in shots like this.",
+          "breaks": "A wheelchair is a continuity minefield — wheels, spokes, and small mechanical details morph under motion. And a child's face under emotional strain is the hardest portrait task in the film.",
+          "lesson": "Give the hardest character the simplest staging: stillness, one window, one face. Let the performance be a held look — the one thing AI faces can now do well.",
+          "prompt_reconstruction": "[Analytical reconstruction — actual prompts undisclosed.] High angle, interior: boy at window, dawn light on face, wheelchair static and locked as a prop reference. Motion instruction: eyes track the alley below; a decision crosses his face. Nothing else moves."
         },
         {
           "n": 6,
-          "title": "Amir acts \u2014 the language pass",
-          "setup": "Amir decides to act. The climax of a docudrama about witness \u2014 and the moment the documented stack shows its seams: Claude handled 'language-related editing,' meaning dialogue and text beats passed through a language model before or after generation.",
-          "works": "Separating language from image is the pro move the year's workflow consensus converged on: write and edit the words with a language model, generate the pictures with a video model, marry them in the edit. Dialogue that was actually edited reads as authored \u2014 the difference between a demo and a film.",
-          "breaks": "Lip-sync on AI dialogue at feature length is unforgiving \u2014 a single mistimed line in the climax unmakes the preceding 70 minutes of earned belief.",
+          "title": "Amir acts — the language pass",
+          "setup": "Amir decides to act. The climax of a docudrama about witness — and the moment the documented stack shows its seams: Claude handled 'language-related editing,' meaning dialogue and text beats passed through a language model before or after generation.",
+          "works": "Separating language from image is the pro move the year's workflow consensus converged on: write and edit the words with a language model, generate the pictures with a video model, marry them in the edit. Dialogue that was actually edited reads as authored — the difference between a demo and a film.",
+          "breaks": "Lip-sync on AI dialogue at feature length is unforgiving — a single mistimed line in the climax unmakes the preceding 70 minutes of earned belief.",
           "lesson": "Edit the words like a writer, generate the face like a cinematographer, and never let one model's weakness touch the other's strength. The climax is where you spend your re-roll budget.",
-          "prompt_reconstruction": "[Analytical reconstruction \u2014 actual prompts undisclosed.] Close-up, Amir: dialogue recorded/edited separately (the Claude pass), lip-synced in post. Motion instruction: he turns from the window \u2014 the decision made visible in one movement."
+          "prompt_reconstruction": "[Analytical reconstruction — actual prompts undisclosed.] Close-up, Amir: dialogue recorded/edited separately (the Claude pass), lip-synced in post. Motion instruction: he turns from the window — the decision made visible in one movement."
         }
       ]
     },
     {
       "id": "first-honest-day",
       "title": "The First Honest Day",
-      "subtitle": "The $450,000 Astana Grand Prix winner \u2014 a morality tale that turned AI's hardest problem into its story engine",
-      "context": "Nikolay Shestak's AI film won the $450,000 Grand Prix at the inaugural Astana AI Film Festival (Oct 1-3, 2026), which drew 8,067 entries from 125 countries; only 25 reached the final. The film competed in the main thematic program 'The Future Worth Living In' (10 finalists). The documented premise: a person's actions are reflected in their appearance \u2014 do bad things and you become ugly; do good and you don't. Shestak is a former actor who started directing about four years ago and began making AI-assisted films two years ago; he entered because the competition's format matched work he was already pursuing, and he plans to invest the prize money in making new films.\n\nSOURCING NOTE \u2014 read before the shots: no outlet has published this film's runtime, tools, team size, budget, shot count, or prompts. One critic checked and found no outlet stating what tools made it (Temperature Zero, Oct 9, 2026). The festival requires finalists to disclose 'model(s) and pipeline' on submission \u2014 the organizers hold all 25 pipelines and have not published them. The documented finalist ecosystem (per a state portal's account, single-source \u2014 treat as reported, not audited): 80+ models in play across the competition, including Suno, Kling, Wan 2.6, GPT Image 2, ElevenLabs and Seedance 2.5; BytePlus was the technology partner, and each finalist received a one-year DRAMAGIC subscription with 60,000 credits. Those models are the COMPETITION'S ecosystem, not this film's stack \u2014 nothing documented ties them to The First Honest Day. Prompt reconstructions are omitted (null) on every shot below: with no published stack, reconstructing prompts would be invention, not teaching.",
+      "subtitle": "The $450,000 Astana Grand Prix winner — a morality tale that turned AI's hardest problem into its story engine",
+      "context": "Nikolay Shestak's AI film won the $450,000 Grand Prix at the inaugural Astana AI Film Festival (Oct 1-3, 2026), which drew 8,067 entries from 125 countries; only 25 reached the final. The film competed in the main thematic program 'The Future Worth Living In' (10 finalists). The documented premise: a person's actions are reflected in their appearance — do bad things and you become ugly; do good and you don't. Shestak is a former actor who started directing about four years ago and began making AI-assisted films two years ago; he entered because the competition's format matched work he was already pursuing, and he plans to invest the prize money in making new films.\n\nSOURCING NOTE — read before the shots: no outlet has published this film's runtime, tools, team size, budget, shot count, or prompts. One critic checked and found no outlet stating what tools made it (Temperature Zero, Oct 9, 2026). The festival requires finalists to disclose 'model(s) and pipeline' on submission — the organizers hold all 25 pipelines and have not published them. The documented finalist ecosystem (per a state portal's account, single-source — treat as reported, not audited): 80+ models in play across the competition, including Suno, Kling, Wan 2.6, GPT Image 2, ElevenLabs and Seedance 2.5; BytePlus was the technology partner, and each finalist received a one-year DRAMAGIC subscription with 60,000 credits. Those models are the COMPETITION'S ecosystem, not this film's stack — nothing documented ties them to The First Honest Day. Prompt reconstructions are omitted (null) on every shot below: with no published stack, reconstructing prompts would be invention, not teaching.",
       "sources": [
         "https://dailyguardian.eu/latvian-filmmaker-wins-e400000-grand-prix-at-kazakhstans-ai-film-festival/",
         "https://qazinform.com/news/from-actor-to-ai-filmmaker-nikolay-shestak-on-his-astana-ai-film-festival-triumph-1c1b9e",
@@ -297,56 +297,56 @@
       "shots": [
         {
           "n": 1,
-          "title": "The moral engine \u2014 the documented premise",
-          "setup": "The documented logline (Daily Guardian EU): the film explores how people's actions shape who they become \u2014 bad deeds make its characters physically uglier, good deeds change them for the better. It competed under the theme 'The Future Worth Living In' (Aju Press).",
-          "works": "One visual rule the whole film obeys. Every AI film's hardest problem is character-consistency drift \u2014 faces morphing between generations (see craft/character-consistency.md). Here the story's central mechanic IS transformation: the audience expects the face to change, so drift becomes direction. The model's weakest habit becomes the plot device.",
-          "breaks": "The rule has to stay legible frame to frame \u2014 if a character's 'ugly' reads as random noise, the moral lands as cruelty, not justice. Without continuity discipline (locked base portraits, consistent lighting), the gimmick collapses into exactly the inconsistency the guide warns about.",
+          "title": "The moral engine — the documented premise",
+          "setup": "The documented logline (Daily Guardian EU): the film explores how people's actions shape who they become — bad deeds make its characters physically uglier, good deeds change them for the better. It competed under the theme 'The Future Worth Living In' (Aju Press).",
+          "works": "One visual rule the whole film obeys. Every AI film's hardest problem is character-consistency drift — faces morphing between generations (see craft/character-consistency.md). Here the story's central mechanic IS transformation: the audience expects the face to change, so drift becomes direction. The model's weakest habit becomes the plot device.",
+          "breaks": "The rule has to stay legible frame to frame — if a character's 'ugly' reads as random noise, the moral lands as cruelty, not justice. Without continuity discipline (locked base portraits, consistent lighting), the gimmick collapses into exactly the inconsistency the guide warns about.",
           "lesson": "Build the story around ONE visual rule AI can execute. When the concept's mechanic requires visible change, generation drift stops being a bug and starts being theme. Concept-first design (craft/story-structure.md): the idea has to survive contact with the tool's actual failure modes.",
           "prompt_reconstruction": null
         },
         {
           "n": 2,
-          "title": "Why the jury picked it \u2014 the documented rubric",
-          "setup": "Daily Guardian EU reports the films were judged not only on how AI tools were used, but on artistic vision, storytelling, and overall coherence \u2014 plus how organically the technology was integrated into the creative concept. 8,067 entries narrowed to 25 finalists; this film took the $450,000 top prize.",
-          "works": "The rubric is public and concept-weighted: 'organic integration' means the AI has to serve the story, not star in it. A film about faces changing with morality passes that test by construction \u2014 the technology IS the theme. The win documents that juries are grading AI films like films.",
-          "breaks": "The exact weighting of the five criteria was never published, so 'what wins' can't be reduced to a formula. Don't over-fit your film to one festival's taste \u2014 the rubric above is a direction, not a scoring sheet.",
-          "lesson": "Judge your entry on story first, tool second \u2014 because juries now do. The guide's entry-craft teardowns (case-studies/entry-craft-teardowns.md) say the same: coherence and vision outrank render quality. Write the rubric onto a sticky note before you generate shot one.",
+          "title": "Why the jury picked it — the documented rubric",
+          "setup": "Daily Guardian EU reports the films were judged not only on how AI tools were used, but on artistic vision, storytelling, and overall coherence — plus how organically the technology was integrated into the creative concept. 8,067 entries narrowed to 25 finalists; this film took the $450,000 top prize.",
+          "works": "The rubric is public and concept-weighted: 'organic integration' means the AI has to serve the story, not star in it. A film about faces changing with morality passes that test by construction — the technology IS the theme. The win documents that juries are grading AI films like films.",
+          "breaks": "The exact weighting of the five criteria was never published, so 'what wins' can't be reduced to a formula. Don't over-fit your film to one festival's taste — the rubric above is a direction, not a scoring sheet.",
+          "lesson": "Judge your entry on story first, tool second — because juries now do. The guide's entry-craft teardowns (case-studies/entry-craft-teardowns.md) say the same: coherence and vision outrank render quality. Write the rubric onto a sticky note before you generate shot one.",
           "prompt_reconstruction": null
         },
         {
           "n": 3,
-          "title": "The director's road \u2014 two years of reps",
+          "title": "The director's road — two years of reps",
           "setup": "Qazinform's profile: Shestak began as an actor, moved into directing about four years ago, and started experimenting with AI-generated films two years ago. His acting credits include Guardians (2017) and others (filmmakers.eu listing). He said he had not expected to win, given the number and diversity of entries.",
-          "works": "An actor's instincts transferred: directing performance (craft/directing-performance.md) is about behavior, not renderers \u2014 blocking, reaction, timing. The documented timeline is the real lesson: the 'overnight success' at Astana was a two-year pipeline of AI experimentation layered on four years of directing.",
-          "breaks": "The biography is public; the day-to-day craft process is not. Nothing documented says whether he storyboards, how many iterations a shot takes, or what he edits in. The gap is the point \u2014 a great backstory is not a reproducible workflow.",
-          "lesson": "Two years of reps beat two weeks with a new model. The win belongs to a filmmaker who internalized directing BEFORE he automated it. If you can't block a scene with humans, you can't block it with generations either \u2014 learn the craft, then the tool.",
+          "works": "An actor's instincts transferred: directing performance (craft/directing-performance.md) is about behavior, not renderers — blocking, reaction, timing. The documented timeline is the real lesson: the 'overnight success' at Astana was a two-year pipeline of AI experimentation layered on four years of directing.",
+          "breaks": "The biography is public; the day-to-day craft process is not. Nothing documented says whether he storyboards, how many iterations a shot takes, or what he edits in. The gap is the point — a great backstory is not a reproducible workflow.",
+          "lesson": "Two years of reps beat two weeks with a new model. The win belongs to a filmmaker who internalized directing BEFORE he automated it. If you can't block a scene with humans, you can't block it with generations either — learn the craft, then the tool.",
           "prompt_reconstruction": null
         },
         {
           "n": 4,
-          "title": "The ecosystem around the film \u2014 documented, not the film's stack",
-          "setup": "The documented finalist ecosystem (Temperature Zero, citing a state portal \u2014 single-source, reported not audited): 80+ models in play across the competition, including Suno (music), Kling, Wan 2.6 and Seedance 2.5 (video), GPT Image 2 (stills), ElevenLabs (voice). BytePlus was the technology partner; each finalist received a one-year DRAMAGIC subscription with 60,000 credits. FLAG: none of this is documented as The First Honest Day's stack.",
-          "works": "What it honestly tells a filmmaker: the winning ecosystem was a toolbox, not a magic model. And the generation math for a festival short is real and checkable \u2014 from this guide's own 29-model database, a 60-second short (10 shots x 6s, 3 takes = 180 generated seconds): Kling 3.0 (kling-v3 std, $0.084/s) \u2248 $15.12; Seedance 2.5 (reported ~$0.231/s) \u2248 $41.58; Wan 2.6 (7 credits/5s = 252 credits; at the guide's reference $0.0392/credit \u2248 $9.88 \u2014 rate flagged verify-live). Generation for a prize-winning short is a two-figure line item, not a budget.",
-          "breaks": "These numbers are ILLUSTRATIVE \u2014 the film's actual generation bill is undocumented, and inventing one would be fabrication. The '80+ models' figure is a single state-portal account. Cost math proves a point about the field, not about this production.",
-          "lesson": "Budget generation like a producer: shots x seconds x takes x $/s from the live rate card (the Studio does this automatically). The expensive parts of a prize-winning AI short are the concept and the edit \u2014 generation is the cheapest line on the page. Don't let a tool's price tag decide your story.",
+          "title": "The ecosystem around the film — documented, not the film's stack",
+          "setup": "The documented finalist ecosystem (Temperature Zero, citing a state portal — single-source, reported not audited): 80+ models in play across the competition, including Suno (music), Kling, Wan 2.6 and Seedance 2.5 (video), GPT Image 2 (stills), ElevenLabs (voice). BytePlus was the technology partner; each finalist received a one-year DRAMAGIC subscription with 60,000 credits. FLAG: none of this is documented as The First Honest Day's stack.",
+          "works": "What it honestly tells a filmmaker: the winning ecosystem was a toolbox, not a magic model. And the generation math for a festival short is real and checkable — from this guide's own 29-model database, a 60-second short (10 shots x 6s, 3 takes = 180 generated seconds): Kling 3.0 (kling-v3 std, $0.084/s) ≈ $15.12; Seedance 2.5 (reported ~$0.231/s) ≈ $41.58; Wan 2.6 (7 credits/5s = 252 credits; at the guide's reference $0.0392/credit ≈ $9.88 — rate flagged verify-live). Generation for a prize-winning short is a two-figure line item, not a budget.",
+          "breaks": "These numbers are ILLUSTRATIVE — the film's actual generation bill is undocumented, and inventing one would be fabrication. The '80+ models' figure is a single state-portal account. Cost math proves a point about the field, not about this production.",
+          "lesson": "Budget generation like a producer: shots x seconds x takes x $/s from the live rate card (the Studio does this automatically). The expensive parts of a prize-winning AI short are the concept and the edit — generation is the cheapest line on the page. Don't let a tool's price tag decide your story.",
           "prompt_reconstruction": null
         },
         {
           "n": 5,
-          "title": "The missing dataset \u2014 the bottleneck isn't technical",
-          "setup": "The festival's own rule: 'model(s) and pipeline [are] disclosed on submission' \u2014 the organizers hold all 25 finalists' pipelines. As of Oct 9, 2026, they had not published them (Temperature Zero). The critic's argument: that dataset \u2014 which tools, how many shots, how much hand work around the generation \u2014 is worth more to the field than the trophy.",
+          "title": "The missing dataset — the bottleneck isn't technical",
+          "setup": "The festival's own rule: 'model(s) and pipeline [are] disclosed on submission' — the organizers hold all 25 finalists' pipelines. As of Oct 9, 2026, they had not published them (Temperature Zero). The critic's argument: that dataset — which tools, how many shots, how much hand work around the generation — is worth more to the field than the trophy.",
           "works": "A $2M-fund festival accidentally created the most valuable dataset in AI cinema: the disclosed pipelines of 25 finalists judged by a serious jury (former UNESCO director-general Audrey Azoulay, investor Balaji Srinivasan among them). The structural lesson: pipeline disclosure is becoming the industry's expected habit, and the first festivals to publish will teach the field.",
-          "breaks": "The dataset doesn't exist publicly. Every teardown of this film \u2014 including this one \u2014 is reconstructed from press coverage, not production data. That is the honest limit of this entry, stated here rather than hidden: the shots above are lessons drawn FROM documented facts, not a shot-by-shot of the production.",
-          "lesson": "Publish your own pipeline. When festivals don't publish theirs, your breakdown becomes the field's documentation. The teardown habit \u2014 what worked, what broke, what it cost, with sources \u2014 is the contribution. Start with your own next film; this guide's teardowns are the template.",
+          "breaks": "The dataset doesn't exist publicly. Every teardown of this film — including this one — is reconstructed from press coverage, not production data. That is the honest limit of this entry, stated here rather than hidden: the shots above are lessons drawn FROM documented facts, not a shot-by-shot of the production.",
+          "lesson": "Publish your own pipeline. When festivals don't publish theirs, your breakdown becomes the field's documentation. The teardown habit — what worked, what broke, what it cost, with sources — is the contribution. Start with your own next film; this guide's teardowns are the template.",
           "prompt_reconstruction": null
         },
         {
           "n": 6,
-          "title": "What a filmmaker can steal \u2014 the documented competition strategy",
-          "setup": "Shestak told Qazinform he entered after coming across the competition and realizing its format matched the kind of work he was already pursuing. He called the $1M prize fund unprecedented for an AI festival \u2014 'the first time in history someone gives you one million dollars in an AI festival' \u2014 and saw he had a chance. He won $450,000, and said he plans to invest the prize in making new films and developing his projects.",
-          "works": "Two documented decisions, both stealable: (1) enter competitions whose format matches work you're ALREADY making \u2014 no bespoke entries, no contortions, just a film that found its venue; (2) treat prize money as production capital \u2014 the reinvestment was announced immediately, not after the money was spent. Theme programs like 'The Future Worth Living In' reward stories about how people should live \u2014 a morality play was on-brief by design.",
-          "breaks": "The prize is an outlier \u2014 $450K is the largest AI-film prize on record, not the median. Don't budget a career on prize money; the reinvestment plan works precisely because the next film is funded by the last one, and that chain breaks without a win.",
-          "lesson": "The winning entry strategy is boring and repeatable: make the film you'd make anyway, then find the competition it fits. Read the theme, check the rubric, ship the work you already believe in. And when money comes, it goes back into the work \u2014 that's how a $450K night becomes a career instead of a story.",
+          "title": "What a filmmaker can steal — the documented competition strategy",
+          "setup": "Shestak told Qazinform he entered after coming across the competition and realizing its format matched the kind of work he was already pursuing. He called the $1M prize fund unprecedented for an AI festival — 'the first time in history someone gives you one million dollars in an AI festival' — and saw he had a chance. He won $450,000, and said he plans to invest the prize in making new films and developing his projects.",
+          "works": "Two documented decisions, both stealable: (1) enter competitions whose format matches work you're ALREADY making — no bespoke entries, no contortions, just a film that found its venue; (2) treat prize money as production capital — the reinvestment was announced immediately, not after the money was spent. Theme programs like 'The Future Worth Living In' reward stories about how people should live — a morality play was on-brief by design.",
+          "breaks": "The prize is an outlier — $450K is the largest AI-film prize on record, not the median. Don't budget a career on prize money; the reinvestment plan works precisely because the next film is funded by the last one, and that chain breaks without a win.",
+          "lesson": "The winning entry strategy is boring and repeatable: make the film you'd make anyway, then find the competition it fits. Read the theme, check the rubric, ship the work you already believe in. And when money comes, it goes back into the work — that's how a $450K night becomes a career instead of a story.",
           "prompt_reconstruction": null
         }
       ]
@@ -354,8 +354,8 @@
     {
       "id": "storeel-off-campus",
       "title": "The $150 Microdrama",
-      "subtitle": "StoReel's 'Off Campus' experiment \u2014 four AI episodes in four days, documented clip by clip, and the factory that runs the same pipeline at scale",
-      "context": "StoReel, a Chinese AI-native microdrama platform, launched Canvas \u2014 a tool that lets anyone build a microseries \u2014 and gave TheWrap early access. The result is the most honestly documented AI microdrama build of 2026: an entertainment reporter made a four-episode spoof of the hockey romance 'Off Campus' (characters Allie Hayes and Dean Di Laurentis) in four days for about $150 worth of digital credits (11,000+ StoReel credits), writing down every step, including the failures (TheWrap, June 2026). A second, complementary source documents the professional version of the same pipeline: Qidian Interactive's AI-video studio in Wuxi, visited by Sixth Tone in June 2026 \u2014 its in-house Yudian system, three-group production flow, and a shelved 8-10 million yuan, three-year project it finished with AI in two months for around 1 million yuan.\n\nSOURCING NOTE \u2014 read before the shots: TheWrap's numbers are from their own documented experiment, not a marketing claim \u2014 including the costs that didn't work (paid character regenerations). StoReel's engine identity is reported, not audited: TheWrap describes the leading AI microdrama engines as compatible with ByteDance's Seedance 2.0; a TikTok creator promo for the tool claims a Seedance 2.0 engine outright \u2014 treat the second as marketing, the first as the outlet's reporting. Qidian's figures are company statements made during a site visit, not audited books. Prompt reconstructions appear once below, explicitly labeled; everything else carries its outlet.",
+      "subtitle": "StoReel's 'Off Campus' experiment — four AI episodes in four days, documented clip by clip, and the factory that runs the same pipeline at scale",
+      "context": "StoReel, a Chinese AI-native microdrama platform, launched Canvas — a tool that lets anyone build a microseries — and gave TheWrap early access. The result is the most honestly documented AI microdrama build of 2026: an entertainment reporter made a four-episode spoof of the hockey romance 'Off Campus' (characters Allie Hayes and Dean Di Laurentis) in four days for about $150 worth of digital credits (11,000+ StoReel credits), writing down every step, including the failures (TheWrap, June 2026). A second, complementary source documents the professional version of the same pipeline: Qidian Interactive's AI-video studio in Wuxi, visited by Sixth Tone in June 2026 — its in-house Yudian system, three-group production flow, and a shelved 8-10 million yuan, three-year project it finished with AI in two months for around 1 million yuan.\n\nSOURCING NOTE — read before the shots: TheWrap's numbers are from their own documented experiment, not a marketing claim — including the costs that didn't work (paid character regenerations). StoReel's engine identity is reported, not audited: TheWrap describes the leading AI microdrama engines as compatible with ByteDance's Seedance 2.0; a TikTok creator promo for the tool claims a Seedance 2.0 engine outright — treat the second as marketing, the first as the outlet's reporting. Qidian's figures are company statements made during a site visit, not audited books. Prompt reconstructions appear once below, explicitly labeled; everything else carries its outlet.",
       "sources": [
         "https://www.thewrap.com/industry-news/tech/off-campus-ai-microdrama-see-the-results-storeel/",
         "https://www.thewrap.com/media-platforms/tv/ai-generated-microdramas-could-be-the-future-of-mobile-entertainment/",
@@ -364,65 +364,146 @@
       "shots": [
         {
           "n": 1,
-          "title": "The headline numbers \u2014 $150, four episodes, four days",
-          "setup": "Four one-minute episodes for ~$150 (11,000+ StoReel credits). The character-and-setting generation cost 288 credits \u2014 inside the 300 free credits every Canvas user gets; the extra spend came from regenerations and topping up for the clips. TheWrap's reported per-minute economics: an AI-generated series can cost as little as $50/minute of finished content, against roughly $2,000/minute for a typical live-action microseries.",
-          "works": "The per-episode math is checkable in a way no studio press release allows: ~$37.50 per minute-long episode in generation credits, four days from idea to four episodes. As a sanity check against this guide's own 29-model database (illustrative, not the same credit system \u2014 flag the mismatch): a 60-second episode at the Studio's draft tier (10 shots x 6s x 3 takes = 180 generated seconds) on Seedance 2.0 at the reported BytePlus estimate (~$0.37/s, 1080p, third-party \u2014 verify live) comes to ~$66.60. Same order of magnitude, same lesson: generation for a serialized episode is a two-figure line item, not a budget.",
-          "breaks": "The $150 is generation credits only \u2014 free labor (a reporter), no scripting cost counted, and only 4 of the 30 storyboarded episodes shipped. TheWrap itself notes finishing the show would have cost 'a few thousand dollars more' in platform credits. Treat the $50/min figure as the documented benchmark to beat, not a promise \u2014 it's one platform's rate card, one experiment.",
+          "title": "The headline numbers — $150, four episodes, four days",
+          "setup": "Four one-minute episodes for ~$150 (11,000+ StoReel credits). The character-and-setting generation cost 288 credits — inside the 300 free credits every Canvas user gets; the extra spend came from regenerations and topping up for the clips. TheWrap's reported per-minute economics: an AI-generated series can cost as little as $50/minute of finished content, against roughly $2,000/minute for a typical live-action microseries.",
+          "works": "The per-episode math is checkable in a way no studio press release allows: ~$37.50 per minute-long episode in generation credits, four days from idea to four episodes. As a sanity check against this guide's own 29-model database (illustrative, not the same credit system — flag the mismatch): a 60-second episode at the Studio's draft tier (10 shots x 6s x 3 takes = 180 generated seconds) on Seedance 2.0 at the reported BytePlus estimate (~$0.37/s, 1080p, third-party — verify live) comes to ~$66.60. Same order of magnitude, same lesson: generation for a serialized episode is a two-figure line item, not a budget.",
+          "breaks": "The $150 is generation credits only — free labor (a reporter), no scripting cost counted, and only 4 of the 30 storyboarded episodes shipped. TheWrap itself notes finishing the show would have cost 'a few thousand dollars more' in platform credits. Treat the $50/min figure as the documented benchmark to beat, not a promise — it's one platform's rate card, one experiment.",
           "lesson": "Budget generation per finished minute with a real number, not a vibe. Feed the $50/min benchmark (documented, platform-specific) into the Studio's cost optimizer as a comparison point: if your own plan's per-minute generation cost lands far above it, find out why before you generate shot one.",
           "prompt_reconstruction": null
         },
         {
           "n": 2,
           "title": "Script in five minutes, breakdown in one click",
-          "setup": "The script came from a single one-paragraph prompt asking for a 30-page, 30-episode script with a cliffhanger per 1-2 minute episode. ChatGPT refused the copyrighted recreation and returned an adaptation outline instead; Claude produced a 50-page script in about five minutes from the same prompt. StoReel's Canvas then ran a one-click breakdown: the script was divided into characters and settings, and the full 30-episode storyboard was split into 146 clips of 10-15 seconds each \u2014 the unit of generation for the whole production.",
-          "works": "The story pipeline is script-first and human-edited: before generation, TheWrap edited each character's physical attributes and details in the tool. The engine handled decomposition \u2014 script to storyboard to clip list \u2014 the boring bookkeeping that usually eats a production coordinator. One page of dialogue equals about one minute, about one episode: the genre's script unit is the episode unit (TheWrap's wider industry piece documents showrunners feeding a page of dialogue into the engine to get a minute of content).",
-          "breaks": "TheWrap did not edit the AI-generated stage directions or camera cuts before generating \u2014 they printed them straight \u2014 and the result shows in shot 7. One-click breakdown is drafting, not directing: it organizes the work, it doesn't make the decisions.",
-          "lesson": "Lock the script, then break it down by hand \u2014 one emotion, beats, a cliffhanger per episode (the episode planner's block structure is this same decomposition, done by you instead of the platform). And write the script prompt like a commission: length, episode count, episode length, cliffhanger rule \u2014 the Claude script worked because the brief was specific.",
+          "setup": "The script came from a single one-paragraph prompt asking for a 30-page, 30-episode script with a cliffhanger per 1-2 minute episode. ChatGPT refused the copyrighted recreation and returned an adaptation outline instead; Claude produced a 50-page script in about five minutes from the same prompt. StoReel's Canvas then ran a one-click breakdown: the script was divided into characters and settings, and the full 30-episode storyboard was split into 146 clips of 10-15 seconds each — the unit of generation for the whole production.",
+          "works": "The story pipeline is script-first and human-edited: before generation, TheWrap edited each character's physical attributes and details in the tool. The engine handled decomposition — script to storyboard to clip list — the boring bookkeeping that usually eats a production coordinator. One page of dialogue equals about one minute, about one episode: the genre's script unit is the episode unit (TheWrap's wider industry piece documents showrunners feeding a page of dialogue into the engine to get a minute of content).",
+          "breaks": "TheWrap did not edit the AI-generated stage directions or camera cuts before generating — they printed them straight — and the result shows in shot 7. One-click breakdown is drafting, not directing: it organizes the work, it doesn't make the decisions.",
+          "lesson": "Lock the script, then break it down by hand — one emotion, beats, a cliffhanger per episode (the episode planner's block structure is this same decomposition, done by you instead of the platform). And write the script prompt like a commission: length, episode count, episode length, cliffhanger rule — the Claude script worked because the brief was specific.",
           "prompt_reconstruction": null
         },
         {
           "n": 3,
-          "title": "The character library \u2014 continuity is an asset pipeline",
-          "setup": "Canvas's one-click breakdown produced the cast and settings as editable assets: TheWrap adjusted physical attributes and details per character before generating. StoReel auto-generated unusually specific physical descriptors for each character \u2014 perioral-region notes, iris-shape notes \u2014 the granular detail continuity lives or dies on. When Garrett Graham came out looking wrong next to the source characters, they paid to regenerate him: continuity failures are priced in credits, not reshoots. A likeness request for the real Prime Video actors was refused outright \u2014 a copyright guard against synthetic casting.",
-          "works": "Faces are generated ONCE and reused \u2014 the same principle as this guide's series bible ('face anchors never re-run') and the Studio's locked anchor plates. Qidian's studio runs the professional version: a digital prop room of characters, locations, objects, and lighting setups reused across scenes and productions, plus a 3D plug-in that positions characters and objects in space so the model gets a clear map of each shot. Consistency is a supply chain, not a prompt trick \u2014 the professional studio literally built a room for it.",
-          "breaks": "Regeneration is the hidden budget line: every wrong face costs a second generation. And the likeness refusal is a real creative constraint \u2014 you can't cast the star's face; you cast a face and lock it.",
-          "lesson": "Lock faces once; regenerate, don't re-prompt. In the prompt library this is the l2 discipline (character re-entry: identity label + three locked traits restated every scene) \u2014 the documented production used a character library, not better descriptions. If your plan has no character library, your plan has no continuity.",
+          "title": "The character library — continuity is an asset pipeline",
+          "setup": "Canvas's one-click breakdown produced the cast and settings as editable assets: TheWrap adjusted physical attributes and details per character before generating. StoReel auto-generated unusually specific physical descriptors for each character — perioral-region notes, iris-shape notes — the granular detail continuity lives or dies on. When Garrett Graham came out looking wrong next to the source characters, they paid to regenerate him: continuity failures are priced in credits, not reshoots. A likeness request for the real Prime Video actors was refused outright — a copyright guard against synthetic casting.",
+          "works": "Faces are generated ONCE and reused — the same principle as this guide's series bible ('face anchors never re-run') and the Studio's locked anchor plates. Qidian's studio runs the professional version: a digital prop room of characters, locations, objects, and lighting setups reused across scenes and productions, plus a 3D plug-in that positions characters and objects in space so the model gets a clear map of each shot. Consistency is a supply chain, not a prompt trick — the professional studio literally built a room for it.",
+          "breaks": "Regeneration is the hidden budget line: every wrong face costs a second generation. And the likeness refusal is a real creative constraint — you can't cast the star's face; you cast a face and lock it.",
+          "lesson": "Lock faces once; regenerate, don't re-prompt. In the prompt library this is the l2 discipline (character re-entry: identity label + three locked traits restated every scene) — the documented production used a character library, not better descriptions. If your plan has no character library, your plan has no continuity.",
           "prompt_reconstruction": null
         },
         {
           "n": 4,
-          "title": "The 300\u2013400-word stage direction \u2014 one prompt per clip",
+          "title": "The 300–400-word stage direction — one prompt per clip",
           "setup": "Every one of the 146 clips got its own intricate storyboard with detailed stage directions for how each AI actor should behave. Each prompt ran 300-400 words, covering how the actors move, where the camera goes, and where the dialogue lines fit between the action. Rendering a 10-second clip took roughly 10 minutes of platform time.",
-          "works": "The prompt is a director's note, not a mood word: actor movement + camera + lines in one instruction, per clip. The 10-minute render is the real schedule unit \u2014 budget time in clips, not minutes of finished content: 146 clips x ~10 minutes is the production calendar, not the 30-minute runtime. The prompt library's f3 template (tactics-driven dialogue beat: tactic + line + one physical action) is this same discipline in template form \u2014 give the model a playable action, not an emotion.",
-          "breaks": "TheWrap never edited the provided stage directions or camera cuts \u2014 and the generation shows it (see shot 7). The 300-400 words are an upper bound on instruction, not on quality: unedited direction is unedited direction.",
-          "lesson": "Write the prompt like a shot list: who moves, where, what the camera does, when the line lands. Then EDIT the generated stage directions before spending credits on the clip \u2014 the difference between this experiment and a series worth watching is the pass TheWrap skipped.",
-          "prompt_reconstruction": "Reconstruction for study, not the actual prompt \u2014 built from the documented components (actor movement + camera + line between actions) for the 'Dean ruminating on the ice' scene: 'Empty ice rink, night \u2014 cool overhead fluorescents, faint breath-fog in the air. Dean sits alone on the players' bench, elbows on knees, stick across his lap, staring down the ice. Camera: slow lateral track left-to-right, settling into a medium close-up on his face. He exhales once, looks down at his skates. Dean (quiet, low): \"I keep thinking if I skate hard enough I won't hear it.\" Hold two beats on his face. Static. No on-screen text.'"
+          "works": "The prompt is a director's note, not a mood word: actor movement + camera + lines in one instruction, per clip. The 10-minute render is the real schedule unit — budget time in clips, not minutes of finished content: 146 clips x ~10 minutes is the production calendar, not the 30-minute runtime. The prompt library's f3 template (tactics-driven dialogue beat: tactic + line + one physical action) is this same discipline in template form — give the model a playable action, not an emotion.",
+          "breaks": "TheWrap never edited the provided stage directions or camera cuts — and the generation shows it (see shot 7). The 300-400 words are an upper bound on instruction, not on quality: unedited direction is unedited direction.",
+          "lesson": "Write the prompt like a shot list: who moves, where, what the camera does, when the line lands. Then EDIT the generated stage directions before spending credits on the clip — the difference between this experiment and a series worth watching is the pass TheWrap skipped.",
+          "prompt_reconstruction": "Reconstruction for study, not the actual prompt — built from the documented components (actor movement + camera + line between actions) for the 'Dean ruminating on the ice' scene: 'Empty ice rink, night — cool overhead fluorescents, faint breath-fog in the air. Dean sits alone on the players' bench, elbows on knees, stick across his lap, staring down the ice. Camera: slow lateral track left-to-right, settling into a medium close-up on his face. He exhales once, looks down at his skates. Dean (quiet, low): \"I keep thinking if I skate hard enough I won't hear it.\" Hold two beats on his face. Static. No on-screen text.'"
         },
         {
           "n": 5,
-          "title": "The discipline of retakes \u2014 the industry calls it 'drawing cards'",
-          "setup": "TheWrap paid for regenerations whenever a character or scene missed. Sixth Tone found the same practice industrialized across Chinese AI-drama studios: it has a name \u2014 'drawing cards' \u2014 and some studios employ dedicated card operators whose job is generating shot after shot until one works. Huang, a 26-year-old at a Shanghai production company now working entirely on AI dramas, generates the same shot three to five times for one usable result; during the afternoon rush, a single attempt can take 10-20 minutes. The continuity tax is concrete: a single-seat sofa returns as a two-seater, leather upholstery becomes fabric \u2014 and for consistency-critical shots, the team feeds reference images and generates again.",
-          "works": "Retakes are the schedule, not a sign of failure: generation is near-instant, selection is the job. The pros' version adds structure \u2014 a team leader reviews throughout (Qidian's three-group flow: characters-and-settings, footage generation, editing, one to two people each), and a separate assessment model scores each project on 10+ criteria (cliffhanger strength, emotion pacing, scene efficiency, content-review risk). Nobody ships the first generation; nobody ships without a gate.",
-          "breaks": "The drift tax never goes to zero \u2014 even the veterans treat every generated result as a gamble (paraphrase of Ma Shuan, the two-decade lighting artist now at Qidian). Retake count is a function of peak load too: generation queues stretch at rush hour.",
-          "lesson": "Put 3-5 takes per shot in the Studio's takes field \u2014 that is the documented retake rate, not pessimism. For anything that must persist across shots (sofas, faces, props), attach reference images and regenerate against them; the pros use images, not adjectives, to pin continuity down.",
+          "title": "The discipline of retakes — the industry calls it 'drawing cards'",
+          "setup": "TheWrap paid for regenerations whenever a character or scene missed. Sixth Tone found the same practice industrialized across Chinese AI-drama studios: it has a name — 'drawing cards' — and some studios employ dedicated card operators whose job is generating shot after shot until one works. Huang, a 26-year-old at a Shanghai production company now working entirely on AI dramas, generates the same shot three to five times for one usable result; during the afternoon rush, a single attempt can take 10-20 minutes. The continuity tax is concrete: a single-seat sofa returns as a two-seater, leather upholstery becomes fabric — and for consistency-critical shots, the team feeds reference images and generates again.",
+          "works": "Retakes are the schedule, not a sign of failure: generation is near-instant, selection is the job. The pros' version adds structure — a team leader reviews throughout (Qidian's three-group flow: characters-and-settings, footage generation, editing, one to two people each), and a separate assessment model scores each project on 10+ criteria (cliffhanger strength, emotion pacing, scene efficiency, content-review risk). Nobody ships the first generation; nobody ships without a gate.",
+          "breaks": "The drift tax never goes to zero — even the veterans treat every generated result as a gamble (paraphrase of Ma Shuan, the two-decade lighting artist now at Qidian). Retake count is a function of peak load too: generation queues stretch at rush hour.",
+          "lesson": "Put 3-5 takes per shot in the Studio's takes field — that is the documented retake rate, not pessimism. For anything that must persist across shots (sofas, faces, props), attach reference images and regenerate against them; the pros use images, not adjectives, to pin continuity down.",
           "prompt_reconstruction": null
         },
         {
           "n": 6,
-          "title": "The business \u2014 the PUGC payout rate is published",
-          "setup": "StoReel's Canvas is a supply strategy, not just a tool: the company calls creator-made content 'professional user-generated content' (PUGC) and pays about 1,000 yuan (~$150) per minute of content it designates for a series. Roughly 20% of content is in-house, 80% comes from the PUGC ecosystem, and the goal is 100 shows per month \u2014 'we're looking to build a YouTube, not an HBO,' in co-founder Angela Yu's paraphrased telling. The catalog is already over 80 AI-original series, and StoReel reports average Day-7 retention 22% higher than comparable live-action titles, with one AI title recording a $4.63 cost per install against the typical $8-10 for live-action dramas.",
-          "works": "The format now has a published payout rate \u2014 a creator can price a series before making it: 30 episodes x 1 minute x ~$150/min = ~$4,500 of platform revenue for a full AI series. That makes the production economics above an actual business model, not a demo: $150 of generation credits against $150/min payouts is the whole pitch. The retention and CPI numbers are company-reported, but the mechanism is what matters for a filmmaker: AI drama is now a two-sided marketplace with a rate card.",
-          "breaks": "StoReel's OWN content still takes 10 days to a month on scripting and a month in production \u2014 AI collapsed the generation time, not the story time. And volume is the strategy: the ECNS-reported Q2 2026 China numbers (239,000 microdramas released, ~153,000 described as AI-generated \u2014 reported industry data, flag) describe a flood, not a filter. A rate card doesn't make every series worth making.",
-          "lesson": "Price the series with the payout math, not the generation math: what does a finished minute earn on the platform you're publishing to? Yu's reported thesis \u2014 with the tech this good, taste is the differentiator \u2014 is the whole strategy page: when generation costs collapse, the moat is story judgment, and the audience numbers above say viewers don't penalize the medium when the story lands.",
+          "title": "The business — the PUGC payout rate is published",
+          "setup": "StoReel's Canvas is a supply strategy, not just a tool: the company calls creator-made content 'professional user-generated content' (PUGC) and pays about 1,000 yuan (~$150) per minute of content it designates for a series. Roughly 20% of content is in-house, 80% comes from the PUGC ecosystem, and the goal is 100 shows per month — 'we're looking to build a YouTube, not an HBO,' in co-founder Angela Yu's paraphrased telling. The catalog is already over 80 AI-original series, and StoReel reports average Day-7 retention 22% higher than comparable live-action titles, with one AI title recording a $4.63 cost per install against the typical $8-10 for live-action dramas.",
+          "works": "The format now has a published payout rate — a creator can price a series before making it: 30 episodes x 1 minute x ~$150/min = ~$4,500 of platform revenue for a full AI series. That makes the production economics above an actual business model, not a demo: $150 of generation credits against $150/min payouts is the whole pitch. The retention and CPI numbers are company-reported, but the mechanism is what matters for a filmmaker: AI drama is now a two-sided marketplace with a rate card.",
+          "breaks": "StoReel's OWN content still takes 10 days to a month on scripting and a month in production — AI collapsed the generation time, not the story time. And volume is the strategy: the ECNS-reported Q2 2026 China numbers (239,000 microdramas released, ~153,000 described as AI-generated — reported industry data, flag) describe a flood, not a filter. A rate card doesn't make every series worth making.",
+          "lesson": "Price the series with the payout math, not the generation math: what does a finished minute earn on the platform you're publishing to? Yu's reported thesis — with the tech this good, taste is the differentiator — is the whole strategy page: when generation costs collapse, the moat is story judgment, and the audience numbers above say viewers don't penalize the medium when the story lands.",
           "prompt_reconstruction": null
         },
         {
           "n": 7,
-          "title": "The verdict \u2014 steal the pipeline, skip the fantasy",
-          "setup": "TheWrap's verdict on its own build: realistic-looking but wooden \u2014 actors took unnatural breaks between lines, stared more intently than in human conversation, some lines arrived devoid of emotion. The visual drift showed up too: two characters sitting on one side of a couch reappeared on the other, a wall went missing mid-scene, and the engine hallucinated the book's author from Steinbeck to Steinberg. Their conclusion, paraphrased: not just anyone can make something worth watching \u2014 it takes taste.",
-          "works": "The honesty is the teaching: this is the only documented build that published its failure reel alongside its receipts \u2014 the same reason this guide's failure gallery exists. The failures map exactly onto the pipeline's skipped stages: no edited stage directions (wooden acting, weird pauses), no continuity pass (vanishing wall), no proper-noun verification (Steinberg).",
-          "breaks": "What to SKIP: shipping unedited AI stage directions \u2014 the one pass TheWrap skipped is the one pass that mattered; assuming proper nouns survive generation \u2014 verify names, brands, and credits in post; treating 'AI-assisted' as 'AI-directed' \u2014 the engine stages, it doesn't direct. Qidian's version of the same warning: their three-group flow and team-leader review exist precisely because nobody ships the first generation.",
-          "lesson": "Steal the pipeline: script with a real brief \u2192 character library as continuity engine \u2192 one 300-400-word stage direction per clip \u2192 3-5 retakes per shot \u2192 human gates throughout. Skip the fantasy that generation is directing. The $150 experiment and the 1-million-yuan studio rebuild agree on one thing: the expensive part was always the story and the judgment \u2014 AI just moved the camera work into the credits column.",
+          "title": "The verdict — steal the pipeline, skip the fantasy",
+          "setup": "TheWrap's verdict on its own build: realistic-looking but wooden — actors took unnatural breaks between lines, stared more intently than in human conversation, some lines arrived devoid of emotion. The visual drift showed up too: two characters sitting on one side of a couch reappeared on the other, a wall went missing mid-scene, and the engine hallucinated the book's author from Steinbeck to Steinberg. Their conclusion, paraphrased: not just anyone can make something worth watching — it takes taste.",
+          "works": "The honesty is the teaching: this is the only documented build that published its failure reel alongside its receipts — the same reason this guide's failure gallery exists. The failures map exactly onto the pipeline's skipped stages: no edited stage directions (wooden acting, weird pauses), no continuity pass (vanishing wall), no proper-noun verification (Steinberg).",
+          "breaks": "What to SKIP: shipping unedited AI stage directions — the one pass TheWrap skipped is the one pass that mattered; assuming proper nouns survive generation — verify names, brands, and credits in post; treating 'AI-assisted' as 'AI-directed' — the engine stages, it doesn't direct. Qidian's version of the same warning: their three-group flow and team-leader review exist precisely because nobody ships the first generation.",
+          "lesson": "Steal the pipeline: script with a real brief → character library as continuity engine → one 300-400-word stage direction per clip → 3-5 retakes per shot → human gates throughout. Skip the fantasy that generation is directing. The $150 experiment and the 1-million-yuan studio rebuild agree on one thing: the expensive part was always the story and the judgment — AI just moved the camera work into the credits column.",
+          "prompt_reconstruction": null
+        }
+      ]
+    },
+    {
+      "id": "gaudette-mother-could-love",
+      "title": "The Character Sheets Came First",
+      "subtitle": "Robert Gaudette's 8-minute solo short — the $50K Runway AIFF 2026 Grand Prix and Reply AI Film Festival 2026 winner, made alone in two weeks of 17-hour days: character sheets before shot one, lip-sync in the prompt, redub for the voice",
+      "context": "Robert Gaudette, a 54-year-old nonprofit worker from Toronto with no film school background, worked in tech early in his career, tried full-time photography, then moved into the nonprofit sector; when Midjourney and other AI image tools arrived in 2022 he started generating shots with AI as a side practice that has since become his full-time work (AI Cafe interview description, recorded June 23, 2026). He conceived, wrote, and produced the 8-minute short alone — no actors, no crew — over two weeks of seventeen-hour days (corroborated by the AI Cafe description and hollywoodcgfx's October 2026 roundup; Jon Flynn's 'Brag or Bury' essay repeats the same envelope). The film took the $50,000 Grand Prix at the 2026 Runway AI Film Festival, then won the Reply AI Film Festival 2026 in Venice in September, where a jury chaired by Oscar-winner Gabriele Salvatores cited the Grok/Nano Banana/Seedance stack as the way the screenplay reached the screen (Business Wire, Sept 7, 2026). Trade coverage (Animation World Network, Aug 2026) records further wins — Best Picture at the OMNI International Film Festival, Best AI Film at the New York International Film Awards, the David Harold Blackwell Award for AI & Emerging Technology Film at The Eudaimonia Project Film Festival — and the launch of Gaudette's Toronto AI-native studio, Nolia, with producer Kirk Hipkiss.\n\nThe film follows Marcel Dupont, a Parisian man with a facial disfigurement whose mother told him every morning for thirty-eight years that he was beautiful. He moves through Paris with complete confidence while the world moves away from him; every evening he dances alone in his apartment, one hand raised for a partner who isn't there. On one Halloween night, a woman sits down beside him in the park and doesn't leave — she has been watching him for years (the creator's own synopsis, escape.ai / YouTube).\n\nSOURCING NOTE — read before the shots: the tool identity is reported, not audited, and it varies across sources — the Reply press release names Grok, Nano Banana, and Seedance; the film's escape.ai page (creator-submitted) tags CapCut, Dreamina, Gemini AI, and Runway ML. The pipeline description — character sheets first, five-field shot prompts, two-pass voice, Suno score — is the creator's own account on the film's pages: first-hand, but self-reported. Production-envelope facts (17-hour days, solo, no published budget) come from a niche blog (hollywoodcgfx) corroborated by the AI Cafe interview description; treat uncorroborated single-source color as the creator's telling. Prompt reconstruction appears once below, explicitly labeled analytical.",
+      "sources": [
+        "https://markets.financialcontent.com/bpas/article/bizwire-2026-9-7-reply-a-face-only-a-mother-could-love-by-robert-gaudette-wins-the-reply-ai-film-festival-2026-the-international-competition-exploring-the-intersection-of-cinema-and-artificial-intelligence",
+        "https://escape.ai/watch/6a3fc8c5a088e7b2ca9c9c33",
+        "https://www.youtube.com/watch?v=wytfCS-N8Sk",
+        "https://www.awn.com/news/bob-gaudette-and-kirk-hipkiss-launch-ai-film-and-tv-production-studio-nolia",
+        "https://hollywoodcgfx.com/the-latest-ai-movies-6-films-made-with-generative-ai-in-2026/",
+        "https://www.youtube.com/watch?v=UmA5FK4HvmA",
+        "https://www.linkedin.com/pulse/brag-bury-jon-flynn-gaftc",
+        "https://broadcastdialogue.com/bob-gaudette-and-kirk-hipkiss-launch-ai-native-nolia-studios-in-toronto/"
+      ],
+      "shots": [
+        {
+          "n": 1,
+          "title": "The headline numbers — 8 minutes, ~238 hours, one person",
+          "setup": "Eight finished minutes. One person. No actors, no crew. Two weeks of seventeen-hour days — about 238 hours of one person's time — for an 8-minute short (AI Cafe; hollywoodcgfx). The film collected the $50,000 Grand Prix at the 2026 Runway AI Film Festival, then the top prize at the Reply AI Film Festival 2026 in Venice, plus Best Picture (OMNI), Best AI Film (NY International Film Awards), and the Blackwell emerging-technology award (AWN). No budget has been published (hollywoodcgfx).",
+          "works": "Bounding math, explicitly illustrative: this guide's model database prices Seedance 2.5 at $0.5686 per second at 1080p (BytePlus list, re-verified Oct 2026) — 480 finished seconds generated exactly once would be ~$273. The real number is unknowable (retakes, subscriptions, multiple tools), but the order of magnitude is the lesson: generation for a festival-winning 8-minute short is a hundreds-of-dollars line item, not a budget line. The money went to time, not pixels — the same shape as the wave-27 microdrama math.",
+          "breaks": "Two hundred and thirty-eight hours in fourteen days is burnout arithmetic, not a schedule — copy the fortnight, not the days. And 'no published budget' cuts both ways: nobody can reproduce the spend, which means the only reproducible part of this production is the pipeline.",
+          "lesson": "Budget the labor, not the generation. An 8-minute AI short costs roughly one dedicated human fortnight plus subscription-class tool spend; if your plan's generation line dwarfs that, you're pricing the wrong thing.",
+          "prompt_reconstruction": null
+        },
+        {
+          "n": 2,
+          "title": "The drawer scripts — write now, generate when the tools catch up",
+          "setup": "Gaudette wrote about thirty scripts over the years and filed them away, because — in his own telling — nobody funds a short film by a nobody from Toronto (LinkedIn 'Brag or Bury', paraphrased). The winning film started as one of those: a story he had written some time ago, an experiment he began with no intention of submitting to festivals, let alone winning them (Reply press release, paraphrased).",
+          "works": "The script stockpile is the cheapest production asset in AI film: writing costs nothing, and AI removed the funding gate that used to strand a drawer full of scripts. The pipeline ran script-first — the directing happened in the 238 hours, not in a writers' room.",
+          "breaks": "A drawer script is a head start, not a production: the story still took two weeks of 17-hour days to direct, generate, and finish. The script removed the 'what' — the labor was all 'how.'",
+          "lesson": "Keep a script drawer. Write the shorts you can't afford yet; AI film makes the backlog producible. The discipline is the same as the guide's long-form rule: nothing shoots until the script is locked.",
+          "prompt_reconstruction": null
+        },
+        {
+          "n": 3,
+          "title": "Character sheets first — continuity is an asset pipeline",
+          "setup": "Before generating any shots, Gaudette generated initial AI character sheets for the cast — and says continuity held because of them: the characters and their distinctive physicality stayed coherent across the whole film (the creator's own account on the film's pages, paraphrased).",
+          "works": "This is the guide's continuity-as-asset-pipeline thesis in one sentence: Marcel's disfigurement is exactly the trait that drifts shot to shot without a locked reference — the sheet made the trait lockable. It maps onto the craft-character-sheets skill (face anchor first, base portrait never re-run) and the longform asset registry: generate identity ONCE, reuse it everywhere. The Reply release ties the image stage to Grok and Nano Banana; the escape.ai tags list Dreamina and Gemini AI — the tool name varies, the discipline doesn't.",
+          "breaks": "Sheets pin identity, not performance: emotion, gait, and gesture still vary shot to shot. And the creator's own account is the only record of the sheet discipline — reported, not audited.",
+          "lesson": "Lock faces once; regenerate, don't re-prompt — the l2 discipline (character re-entry: identity label + three locked traits restated every scene). If your plan has no character sheet, your plan has no continuity; Gaudette's film is the proof that sheets, not better prompts, hold a face.",
+          "prompt_reconstruction": null
+        },
+        {
+          "n": 4,
+          "title": "The five-field shot spec — every prompt a director's note",
+          "setup": "Every visual in the film was generated from detailed cinematic prompts crafted per shot — each one specifying character design, camera movement, colour palette, emotional register, and the visual grammar of its sequence (the creator's own account, paraphrased). The prompt is a director's note, not a mood word.",
+          "works": "The five fields are prompt anatomy made explicit: subject/design, camera, palette (the color-grading chapter), emotional register (directing-performance), visual grammar (cinematic-language). A generation prompt that carries all five gives the model nowhere to improvise the wrong thing.",
+          "breaks": "Five fields per shot times an 8-minute film is hundreds of prompts — the spec discipline IS the 238 hours. There is no shortcut version of this; the craft is the labor.",
+          "lesson": "Write every prompt like a shot list: who, what the camera does, the palette, the emotional register, the grammar. Then keep the five fields in the prompt library's anatomy.",
+          "prompt_reconstruction": "Reconstruction for study, not the actual prompt — built from the documented five fields for the dancing-alone-in-the-apartment shot: 'Marcel Dupont, middle-aged, facial disfigurement, worn sweater; alone in a small Paris apartment at night, one hand raised as if holding a dancing partner. Camera: slow push-in from wide to medium close-up, settling on his face. Palette: warm tungsten practicals against deep blue window night. Emotional register: quiet, unselfconscious joy — he does not know he is being watched. Grammar: a single unbroken take, no cuts, no on-screen text; the room stays still so the dance is the only motion.'"
+        },
+        {
+          "n": 5,
+          "title": "Two-pass voice — lip-sync in the prompt, redub for the voice",
+          "setup": "Dialogue was generated with lip-sync animation integrated directly into the generative prompts — and then redubbed for voice consistency using 11Labs. The narration was also 11Labs, tuned for tone, rhythm, and the precise deadpan warmth the script required (the creator's own account, paraphrased).",
+          "works": "The two passes separate the two jobs: the mouth performs (lip-sync in the generation prompt), the voice identifies (redub). It maps to the audio-lip-sync-route skill — Gaudette effectively ran both routes in sequence, using the first for performance and the second for identity. Voice consistency is the hard problem in long-form AI audio; the redub pass is how you solve it without re-generating the picture.",
+          "breaks": "Two passes = two failure surfaces: a redub that doesn't match the mouth is worse than a consistent voice with imperfect sync. And the narration is the film's spine — an 8-minute short carried by a narrator needs the read-aloud test from the audio chapter, not just a good voice model.",
+          "lesson": "Generate the mouth, then cast the voice. For any speaking character that recurs: in-prompt lip-sync for the performance, a dedicated voice pass for consistency. Never ship the first voice — the redub is a gate, not a fix.",
+          "prompt_reconstruction": null
+        },
+        {
+          "n": 6,
+          "title": "The worn-in score and the textured Paris",
+          "setup": "The score was generated with Suno, briefed to feel worn-in and melancholic. Sound design and ambience were assembled with AI audio tools to build a textural Paris across three worlds: Halloween night, the quiet apartment, the park at dusk. The edit was assembled in CapCut (the creator's own account + tool tags, paraphrased).",
+          "works": "The emotional realism came from the soundtrack, not the pixels: viewers forgot the film was synthetic and asked who the actors were (LinkedIn, paraphrased). Brief the music by emotional function — not genre, not era — and build one ambience bed per world. This is the audio-music-brief, audio-sfx-bed, and audio-final-mix skills in procedure form, with a documented production proving the shape.",
+          "breaks": "AI music has the same consistency problem as AI faces: a score that changes character between scenes breaks the film the same way a drifting face does. The 'worn-in' brief is a consistency strategy disguised as taste.",
+          "lesson": "Score the film like a composer would: one emotional function, one sonic identity, all the way through. Sound does the realness — budget it like a department, not an afterthought.",
+          "prompt_reconstruction": null
+        },
+        {
+          "n": 7,
+          "title": "The verdict — steal the craft, skip the sprint",
+          "setup": "Gaudette's line on the whole build: AI was present in every frame, every sound, every word, every silence — used as a collaborator, not a shortcut (the creator's framing, paraphrased). The room at Alice Tully Hall forgot the actors didn't exist (LinkedIn, paraphrased). He has since launched Nolia Studios in Toronto with producer Kirk Hipkiss — original IP, features and episodic in development (AWN; broadcastdialogue).",
+          "works": "The stealable pipeline: character sheets before shot one → five-field prompt per shot → in-prompt lip-sync, redub for voice → narration tuned like a performance → score briefed by emotional function → one ambience bed per world. The script drawer: write now, produce when the tools catch up. The sound thesis: audiences believe with their ears.",
+          "breaks": "What to SKIP: the 17-hour-day sprint as a method — that is ~238 hours of one human in 14 days; budget the fortnight, not the day. The tool lists vary across sources (Grok/Nano Banana/Seedance in the press release vs. CapCut/Dreamina/Gemini AI/Runway ML in the creator's tags) — reported, not audited; don't build a stack from a tag cloud. And the 'collaborator' framing is marketing voice — the stealable part is the pipeline, not the posture.",
+          "lesson": "Steal the craft: sheets first, five-field prompts, two-pass voice, worn-in score, textured sound, a drawer full of scripts. Skip the sprint, skip the tag-cloud stack, skip the poetry. The film won because one person directed every frame — the tools just held the camera.",
           "prompt_reconstruction": null
         }
       ]

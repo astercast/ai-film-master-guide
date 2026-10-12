@@ -27,6 +27,8 @@ A voice is a cast member. Cast it with the same discipline you'd cast an actor:
 
 Rule of thumb: if the words must be exact, take Road B. (See the `audio-lip-sync-route` skill for the per-scene decision procedure, and `craft/directing-performance.md` for dialogue performance direction.)
 
+**A documented build.** Robert Gaudette's "A Face Only a Mother Could Love" (8-minute solo short, Runway AIFF 2026 Grand Prix + Reply AI Film Festival 2026 winner) ran a two-pass voice pipeline: dialogue was generated with lip-sync animation integrated into the generation prompts, then redubbed with 11Labs for voice consistency — the mouth performs in pass one, the voice identifies in pass two. The narration was also 11Labs, tuned for tone, rhythm, and the deadpan warmth the script required (the creator's own account; reported, not audited). See the full shot-by-shot teardown ([teardown.html](../teardown.html) — "The Character Sheets Came First").
+
 ### Directing TTS voices through text
 
 Most TTS models have no emotion selector — you direct delivery through the text itself:
@@ -40,6 +42,7 @@ Most TTS models have no emotion selector — you direct delivery through the tex
 ## AI music: score as a built object
 
 - **Brief per cue, not per film.** Genre, tempo, instrumentation, the cue's emotional job, what to avoid: "ambient synth, 85 BPM, rising tension, no vocals." Generate 3–5 variants per cue and comp sections like a real score.
+- **Brief by emotional function, not genre.** Gaudette briefed the Suno score for "A Face Only a Mother Could Love" to feel worn-in and melancholic — a consistency strategy disguised as taste: one emotional function, one sonic identity, all the way through, so the score can't change character between scenes (his own account; reported, not audited).
 - **Temp-track discipline:** cut to a temp score first, then generate the final score to the locked cut. Never score to a moving target.
 - **Keep stems when the tool offers them.** Dialogue ducks under a full stereo mix badly; stems let the mix breathe.
 - **No vocals unless the story needs them.** Score serves the story, never shows off.
@@ -79,4 +82,4 @@ AI SFX tools generate all three from text prompts. Describe sounds the way you d
 
 ## Sources & confidence
 
-Voice-direction mechanics (bracketed tags, stability/similarity settings, paragraph-level generation) are corroborated across multiple 2026 creator guides; model-specific tag fidelity is vendor-claimed — verify on your tool's current version. The two-roads dialogue framework and native-audio quality markers come from hands-on editorial comparisons checked against official model docs (Sept 2026). The AI-music rights gap is documented in this guide's legal chapter. Clip-cap figures change with model updates — verify live before planning around them.
+Voice-direction mechanics (bracketed tags, stability/similarity settings, paragraph-level generation) are corroborated across multiple 2026 creator guides; model-specific tag fidelity is vendor-claimed — verify on your tool's current version. The two-roads dialogue framework and native-audio quality markers come from hands-on editorial comparisons checked against official model docs (Sept 2026). The Gaudette two-pass voice pipeline (in-prompt lip-sync, 11Labs redub) and the worn-in Suno score brief are the creator's own account on the film's escape.ai/YouTube pages — first-hand, self-reported; the tool identity varies across sources (reported, not audited). The AI-music rights gap is documented in this guide's legal chapter. Clip-cap figures change with model updates — verify live before planning around them.

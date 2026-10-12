@@ -9,6 +9,8 @@ The technical discipline of keeping people and worlds stable across shots. This 
 3. **Per-generation reference upload:** anchors one generation; drifts across many. Fine for single shots, not films.
 4. **Text description alone:** weakest. Never rely on prose to hold a face across 50 shots.
 
+**A documented build.** Robert Gaudette's "A Face Only a Mother Could Love" — the 8-minute solo short that took the $50K Runway AIFF 2026 Grand Prix and the Reply AI Film Festival 2026 prize — was built character-sheets-first: he generated initial AI character sheets for the cast before any shots, and credits them for holding the characters' distinctive physicality coherent across the film (his own account; the tool identity is reported, not audited — the Reply press release names Grok, Nano Banana, and Seedance; his escape.ai page tags Dreamina and Gemini AI). Marcel's facial disfigurement is exactly the trait that drifts shot-to-shot without a locked reference — the sheet made the trait lockable. See the full shot-by-shot teardown ([teardown.html](../teardown.html) — "The Character Sheets Came First").
+
 ## Wardrobe and props lock
 
 - Write the wardrobe once, in exact language, and paste it verbatim into every prompt: "worn brown leather jacket, white t-shirt, dark jeans, scuffed boots."

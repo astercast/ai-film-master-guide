@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "count": 229,
+  "count": 230,
   "skills": [
     {
       "id": "prompt-t1",
@@ -583,6 +583,12 @@
       "title": "Direct with FLUX 3 Video",
       "description": "Use FLUX 3 Video well: costs, strengths, weaknesses, best use.",
       "path": "skills/models/direct-flux-3-video.md"
+    },
+    {
+      "id": "direct-vivago-r1",
+      "title": "Direct with vivago R1",
+      "description": "Use vivago R1 well: costs, strengths, weaknesses, best use.",
+      "path": "skills/models/direct-vivago-r1.md"
     },
     {
       "id": "audit-pre-production-checklist",

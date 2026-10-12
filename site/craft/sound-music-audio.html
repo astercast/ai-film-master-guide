@@ -61,7 +61,7 @@
     <main id="main" class="docs-main">
       <div class="progress-bar" aria-hidden="true"><span></span></div>
       <p class="crumb"><a href="../index.html">Guide</a> / Craft</p>
-      <p class="read-time">6 min read · 1,155 words</p>
+      <p class="read-time">7 min read · 1,357 words</p>
       <article class="prose"><h1 id="sound-music-audio">Sound, Music &amp; Audio</h1>
 <p>Sound is half the picture. Amateur AI films are silent or slapped together; finished ones are designed. This chapter is the audio pillar: strategy, voice, music, sound design, and the mix.</p>
 <h2 id="the-audio-strategy-native-vs-designed">The audio strategy: native vs. designed</h2>
@@ -85,6 +85,7 @@
 <li><strong>Road B — decoupled:</strong> silent clip + separately produced voice + a dedicated lip-sync pass that reshapes only the mouth. Best the moment a client or an exact script is involved — you own the voiceover, can revise lines without re-rendering picture, and keep a clean stem.</li>
 </ul>
 <p>Rule of thumb: if the words must be exact, take Road B. (See the <code>audio-lip-sync-route</code> skill for the per-scene decision procedure, and <code>craft/directing-performance.md</code> for dialogue performance direction.)</p>
+<p><strong>A documented build.</strong> Robert Gaudette&#x27;s &quot;A Face Only a Mother Could Love&quot; (8-minute solo short, Runway AIFF 2026 Grand Prix + Reply AI Film Festival 2026 winner) ran a two-pass voice pipeline: dialogue was generated with lip-sync animation integrated into the generation prompts, then redubbed with 11Labs for voice consistency — the mouth performs in pass one, the voice identifies in pass two. The narration was also 11Labs, tuned for tone, rhythm, and the deadpan warmth the script required (the creator&#x27;s own account; reported, not audited). See the full shot-by-shot teardown (<a href="../teardown.html">teardown.html</a> — &quot;The Character Sheets Came First&quot;).</p>
 <h3 id="directing-tts-voices-through-text">Directing TTS voices through text</h3>
 <p>Most TTS models have no emotion selector — you direct delivery through the text itself:</p>
 <ul>
@@ -97,6 +98,7 @@
 <h2 id="ai-music-score-as-a-built-object">AI music: score as a built object</h2>
 <ul>
 <li><strong>Brief per cue, not per film.</strong> Genre, tempo, instrumentation, the cue&#x27;s emotional job, what to avoid: &quot;ambient synth, 85 BPM, rising tension, no vocals.&quot; Generate 3–5 variants per cue and comp sections like a real score.</li>
+<li><strong>Brief by emotional function, not genre.</strong> Gaudette briefed the Suno score for &quot;A Face Only a Mother Could Love&quot; to feel worn-in and melancholic — a consistency strategy disguised as taste: one emotional function, one sonic identity, all the way through, so the score can&#x27;t change character between scenes (his own account; reported, not audited).</li>
 <li><strong>Temp-track discipline:</strong> cut to a temp score first, then generate the final score to the locked cut. Never score to a moving target.</li>
 <li><strong>Keep stems when the tool offers them.</strong> Dialogue ducks under a full stereo mix badly; stems let the mix breathe.</li>
 <li><strong>No vocals unless the story needs them.</strong> Score serves the story, never shows off.</li>
@@ -131,7 +133,7 @@
 <li><input type="checkbox" disabled aria-hidden="true"> Legal chapter reviewed before distribution (<code>legal/rights-and-disclosure.md</code>)</li>
 </ul>
 <h2 id="sources-confidence">Sources &amp; confidence</h2>
-<p>Voice-direction mechanics (bracketed tags, stability/similarity settings, paragraph-level generation) are corroborated across multiple 2026 creator guides; model-specific tag fidelity is vendor-claimed — verify on your tool&#x27;s current version. The two-roads dialogue framework and native-audio quality markers come from hands-on editorial comparisons checked against official model docs (Sept 2026). The AI-music rights gap is documented in this guide&#x27;s legal chapter. Clip-cap figures change with model updates — verify live before planning around them.</p></article>
+<p>Voice-direction mechanics (bracketed tags, stability/similarity settings, paragraph-level generation) are corroborated across multiple 2026 creator guides; model-specific tag fidelity is vendor-claimed — verify on your tool&#x27;s current version. The two-roads dialogue framework and native-audio quality markers come from hands-on editorial comparisons checked against official model docs (Sept 2026). The Gaudette two-pass voice pipeline (in-prompt lip-sync, 11Labs redub) and the worn-in Suno score brief are the creator&#x27;s own account on the film&#x27;s escape.ai/YouTube pages — first-hand, self-reported; the tool identity varies across sources (reported, not audited). The AI-music rights gap is documented in this guide&#x27;s legal chapter. Clip-cap figures change with model updates — verify live before planning around them.</p></article>
       <nav class="prevnext" aria-label="Next and previous chapters"><a class="btn" href="../craft/color-grading.html" rel="prev">← Color Grading AI Footage</a><a class="btn" href="../craft/editing-pipeline.html" rel="next">Editing Pipeline →</a></nav><aside class="check-callout" aria-label="Knowledge check"><p><strong>Test yourself:</strong> <a href="../checks/sound-music-audio.html">take the sound music audio knowledge check</a> (5 scenario questions, answers explain why).</p></aside>
     </main>
     <aside class="docs-toc" aria-label="On this page"><p class="toc-h">On this page</p><ul><li class="toc-l2"><a href="#the-audio-strategy-native-vs-designed">The audio strategy: native vs. designed</a></li><li class="toc-l2"><a href="#voice-design-casting-a-synthetic-voice">Voice design: casting a synthetic voice</a></li><li class="toc-l3"><a href="#the-two-roads-to-a-talking-character">The two roads to a talking character</a></li><li class="toc-l3"><a href="#directing-tts-voices-through-text">Directing TTS voices through text</a></li><li class="toc-l2"><a href="#ai-music-score-as-a-built-object">AI music: score as a built object</a></li><li class="toc-l3"><a href="#the-rights-gap-read-this-before-you-ship">The rights gap (read this before you ship)</a></li><li class="toc-l2"><a href="#sound-design-foley-the-layer-that-sells-reality">Sound design & foley: the layer that sells reality</a></li><li class="toc-l2"><a href="#the-mix-balance-loudness-qc">The mix: balance, loudness, QC</a></li><li class="toc-l2"><a href="#the-audio-checklist">The audio checklist</a></li><li class="toc-l2"><a href="#sources-confidence">Sources & confidence</a></li></ul></aside>

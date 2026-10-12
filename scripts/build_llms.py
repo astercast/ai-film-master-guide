@@ -48,7 +48,7 @@ after editing chapters. Open `site/index.html`.
 # Keep blurbs in sync with build_site.py's search-index tool entries.
 TOOLS = [
     ("index.html", "landing: track picker (animated vs photorealistic), chapter grid, learning paths (7: first film, competition, animated, photoreal, long-form, first 60-second short, the 90-day filmmaker)"),
-    ("teardown.html", "shot-by-shot teardown viewer: Passport Rush, ONEIRIC, the Grok Odyssey $100K winner, Google DeepMind's Dear Upstairs Neighbors, Fountain 0's Dreams of Violets (75-min Tribeca 2026 AI feature, $2K budget), Nikolay Shestak's The First Honest Day ($450K Astana 2026 Grand Prix winner; tools undisclosed — the teardown is honest about the gap), and StoReel's The $150 Microdrama ('Off Campus' experiment: four AI episodes in four days, documented clip by clip) broken into shots (setup / what works / what breaks / craft lesson, labeled prompt reconstructions where the stack is documented); data in `api/v1/teardowns.json`"),
+    ("teardown.html", "shot-by-shot teardown viewer: Passport Rush, ONEIRIC, the Grok Odyssey $100K winner, Google DeepMind's Dear Upstairs Neighbors, Fountain 0's Dreams of Violets (75-min Tribeca 2026 AI feature, $2K budget), Nikolay Shestak's The First Honest Day ($450K Astana 2026 Grand Prix winner; tools undisclosed — the teardown is honest about the gap), StoReel's The $150 Microdrama ('Off Campus' experiment: four AI episodes in four days, documented clip by clip), and Robert Gaudette's 'A Face Only a Mother Could Love' (8-minute solo short: $50K Runway AIFF 2026 Grand Prix + Reply AI Film Festival 2026 winner; character sheets before shot one, lip-sync in the prompt, redub for the voice; tool identity reported, not audited) broken into shots (setup / what works / what breaks / craft lesson, labeled prompt reconstructions where the stack is documented); data in `api/v1/teardowns.json`"),
     ("manifesto.html", "positioning: a living free reference, not a course; everything sourced; what it won't do"),
     ("field-guides/", "printable one-pagers generated from the guide's own data: model quick-reference (from `models.json`), prompt anatomy cheat sheet, consistency & dead-eyes checklist"),
     ("api.html", "human-readable API docs + a Try-the-API console (endpoint picker, fetch, pretty-printed JSON), and pointers to `AGENT.md`"),
@@ -108,7 +108,8 @@ TRACK_ORDER = ["core", "animated", "photorealistic", "performance", "audio",
                "longform", "repair"]
 
 # Teardown display titles that differ from the raw record title.
-TEARDOWN_TITLES = {"odyssey-winner": "Grok Odyssey $100K winner"}
+TEARDOWN_TITLES = {"odyssey-winner": "Grok Odyssey $100K winner",
+                   "gaudette-mother-could-love": "Gaudette's 'A Face Only a Mother Could Love'"}
 
 
 def natkey(s):
