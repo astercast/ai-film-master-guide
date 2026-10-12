@@ -19,7 +19,7 @@
 
 **Validation:** (post-commit) `bash scripts/validate.sh` → ALL STAGES PASS (13/13); link check 0 broken (6,897 links); node --check clean (46 JS files); studio.test.js 50/50; agent-workflows.test.js 74/74; generator audits clean (skills byte-identical, prompt-templates.json == artifact parser, llms.txt zero-diff).
 
-**Commit:** local `aa83456` (27 files) → pushed 2026-10-11 as remote commit `PENDING`; [verification detail to be filled post-push].
+**Commit:** local `aa83456` (27 files) → pushed 2026-10-11 as remote commit `c5e8ac85c26d30e048eeb310c4999db7fdc4c85b`; remote `main` HEAD matches the pushed SHA; all 15 key files verified present in the remote tree via GitHub API (558 tree entries, 0 missing, not truncated; remote `api/v1/teardowns.json` blob confirmed to contain `gaudette-mother-could-love`).
 
 **Next episode-pipeline revisit:** ~wave 32.
 
