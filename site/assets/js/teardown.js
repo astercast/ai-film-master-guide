@@ -46,6 +46,13 @@
 
   function render() {
     var t = state.data.teardowns[state.film];
+    var n = state.data.teardowns.length;
+    var prevF = (state.film - 1 + n) % n, nextF = (state.film + 1) % n;
+    var filmsNav =
+      '<nav class="td-films-nav" aria-label="Teardowns">'
+      + '<button type="button" class="btn btn-sm btn-ghost" data-film="' + prevF + '">\u2190 ' + esc(state.data.teardowns[prevF].title) + '</button>'
+      + '<button type="button" class="btn btn-sm btn-ghost" data-film="' + nextF + '">' + esc(state.data.teardowns[nextF].title) + ' \u2192</button>'
+      + "</nav>";
     var sources = (t.sources || []).map(function (u) {
       return '<li><a href="' + esc(u) + '" rel="noopener">' + esc(u) + "</a></li>";
     }).join("");
@@ -71,6 +78,7 @@
           '<p><a class="btn" href="studio.html?mode=microdrama">Plan a microdrama run →</a></p></div>'
         : "")
       + "</div>"
+      + filmsNav
       + '<p class="td-note">Prompt reconstructions are analytical reconstructions for study — not the productions\u2019 actual prompts. Production facts carry their sources above.</p>';
   }
 

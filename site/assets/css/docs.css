@@ -52,6 +52,8 @@
   font-family: var(--font-display); font-weight: 600; font-size: 3.3em; float: left;
   line-height: 0.82; padding: 0.06em 0.14em 0 0; color: var(--gold);
 }
+.prose h2, .prose h3 { text-wrap: balance; }
+.prose p { text-wrap: pretty; }
 .prose h1 { font-size: var(--display-2); font-weight: 600; text-transform: uppercase; letter-spacing: 0.01em; line-height: 1; margin-bottom: var(--space-4); text-wrap: balance; }
 .prose h1::after { content: ""; display: block; width: 88px; height: 3px; background: var(--gold); margin-top: var(--space-4); border-radius: 2px; }
 .prose h2 {

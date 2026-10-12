@@ -15,7 +15,7 @@ body::after {
   opacity: 0.05; pointer-events: none;
 }
 
-h1, h2, h3 { font-family: var(--font-display); line-height: 1.08; letter-spacing: 0.005em; margin: 0 0 var(--space-3); font-weight: 600; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.08; letter-spacing: 0.005em; margin: 0 0 var(--space-3); font-weight: 600; text-wrap: balance; }
 h4, h5, h6 { font-family: var(--font-body); line-height: 1.25; margin: 0 0 var(--space-2); }
 p { margin: 0 0 var(--space-4); }
 a { color: var(--reel); text-decoration: none; text-underline-offset: 3px; }

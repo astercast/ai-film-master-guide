@@ -198,17 +198,11 @@
     return picks;
   }
 
-  function fillPrompt(tmpl, genre, tier) {
-    var fills = {
-      SUBJECT: "the protagonist",
-      "SUBJECT A": "the lead",
-      "SUBJECT B": "the co-lead",
-      ENV: genre.env,
-      LIGHT: genre.light,
-      STYLE: genre.style + ", " + (tier === "draft"
-        ? "draft pass — loose, fast, coverage first"
-        : "festival grade — color-locked, cinematic")
-    };
+  function fillPrompt(tmpl, genre, tier, overrides) {
+    var fills = slotFills(tmpl, genre, tier);
+    if (overrides) {
+      Object.keys(overrides).forEach(function (k) { fills[k] = overrides[k]; });
+    }
     var unfilled = [];
     var text = String(tmpl.prompt).replace(TOK, function (tok, inner) {
       var name = inner.split(":")[0].trim().toUpperCase();
@@ -1492,7 +1486,8 @@
     var modes = {
       cheapest: { key: "cheapest", label: "Cheapest viable", total: 0, complete: true, shots: 0 },
       balanced: { key: "balanced", label: "Balanced (Studio defaults)", total: 0, complete: true, shots: 0 },
-      bestrated: { key: "bestrated", label: "Best rated", total: 0, complete: true, shots: 0 }
+      bestrated: { key: "bestrated", label: "Best rated", total: 0, complete: true, shots: 0 },
+      draftfinal: { key: "draftfinal", label: "Draft cheap, finish flagship", total: 0, complete: true, shots: 0 }
     };
     var perShot = [], byModel = {}, byEpisode = [];
     var verifyLive = {}, ineligible = [], unpriced = [];
@@ -1500,7 +1495,7 @@
 
     groups.forEach(function (g) {
       var ep = { label: g.label || "Film", cheapest: 0, balanced: 0, bestrated: 0,
-        shots: g.shots.length, unpriced: 0 };
+        draftfinal: 0, shots: g.shots.length, unpriced: 0 };
       g.shots.forEach(function (s, i) {
         var needsAudio = share > 0 &&
           Math.floor((i + 1) * share / 100) > Math.floor(i * share / 100);
@@ -1528,6 +1523,17 @@
         var ranked = optEntry(pool.filter(function (x) { return x.rank; })
           .sort(function (a, b) { return a.rank.order - b.rank.order; })[0] || null,
           s.duration, g.takes);
+
+        /* Draft cheap, finish flagship: the first takes-1 takes run at the
+           cheapest viable rate, the keeper take at the best-rated model.
+           The Oct 2026 pricing reality (AI-video-models research mission,
+           2026-10-11): draft/turbo tiers for coverage, flagship rates for
+           the takes that ship. */
+        var splitCost = null;
+        if (cheap && ranked && g.takes >= 1) {
+          splitCost = g.takes === 1 ? ranked.cost
+            : r2((cheap.cost / g.takes) * (g.takes - 1) + (ranked.cost / g.takes));
+        }
 
         var row = {
           ref: (g.label ? g.label + " \u00B7 " : "") + "Shot " + s.n,
@@ -1847,6 +1853,303 @@
     return H.join("\n");
   }
 
+  /* ---- Studio 3.0: the Shot Refinery ---------------------------------------
+     Per-shot prompt refinement loop. The five fields are the documented
+     five-field shot spec from the Gaudette build (wave-31 teardown
+     gaudette-mother-could-love: character design, camera movement, colour
+     palette, emotional register, visual grammar) — the structure a documented
+     solo production used to keep eight minutes of AI footage coherent.
+     Refining changes WORDS only: the shot's model, duration, and take count
+     never move, so budget and schedule are byte-identical before and after.
+     Pure engine (no DOM); the browser dialog lives further below. */
+
+  var REFINERY_FIELDS = [
+    { key: "character", label: "Character design",
+      help: "Who is in frame — the lockable visual facts (face, hair, costume, distinguishing marks). Overrides the [SUBJECT] slot." },
+    { key: "camera", label: "Camera movement", kind: "movement",
+      help: "One move from the guide's camera lexicon — the documented build specs exactly one move per shot. Empty keeps the template's move." },
+    { key: "palette", label: "Colour palette",
+      help: "The grade in words — dominant hues, contrast, temperature. Overrides the [LIGHT] slot." },
+    { key: "register", label: "Emotional register",
+      help: "What the shot should feel like — one emotion, named plainly." },
+    { key: "grammar", label: "Visual grammar",
+      help: "Framing and composition — shot size, angle, where the eye lands." }
+  ];
+
+  /* The slot map fillPrompt applies, exposed so the refinery can read and
+     override the exact values the engine used. */
+  function slotFills(tmpl, genre, tier) {
+    return {
+      SUBJECT: "the protagonist",
+      "SUBJECT A": "the lead",
+      "SUBJECT B": "the co-lead",
+      ENV: genre.env,
+      LIGHT: genre.light,
+      STYLE: genre.style + ", " + (tier === "draft"
+        ? "draft pass — loose, fast, coverage first"
+        : "festival grade — color-locked, cinematic")
+    };
+  }
+
+  /* Initial field values for a shot: what the engine actually put in the
+     prompt (character, palette); blanks where the filmmaker decides. */
+  function refineryInit(shot, genre, tier) {
+    var fills = slotFills(null, genre, tier);
+    return {
+      character: fills.SUBJECT,
+      camera: "",
+      palette: fills.LIGHT,
+      register: "",
+      grammar: ""
+    };
+  }
+
+  /* Trim + validate. movements = [{id, move}] from camera-movements.json, or
+     null when the lexicon hasn't loaded (the camera check is then skipped). */
+  function validateRefineryFields(fields, movements) {
+    var ids = {};
+    (movements || []).forEach(function (m) { ids[m.id] = m.move || m.id; });
+    var out = {};
+    REFINERY_FIELDS.forEach(function (f) {
+      var v = String(fields[f.key] == null ? "" : fields[f.key]).trim();
+      if (f.kind === "movement" && v && movements && !ids[v]) {
+        throw new Error("unknown camera movement: " + v);
+      }
+      out[f.key] = v;
+    });
+    return out;
+  }
+
+  /* Rebuild the shot's prompt from its template with the filmmaker's slot
+     overrides, then append the five-field spec as an explicit direction
+     block. Deterministic: same template + fields -> same prompt. */
+  function buildRefinedPrompt(tmpl, genre, tier, fields, movements) {
+    var clean = validateRefineryFields(fields, movements);
+    var overrides = {};
+    if (clean.character) {
+      overrides.SUBJECT = clean.character;
+      overrides["SUBJECT A"] = clean.character;
+    }
+    if (clean.palette) overrides.LIGHT = clean.palette;
+    var base = fillPrompt(tmpl, genre, tier, overrides);
+    var ids = {};
+    (movements || []).forEach(function (m) { ids[m.id] = m.move || m.id; });
+    var spec = [];
+    REFINERY_FIELDS.forEach(function (f) {
+      var v = clean[f.key];
+      if (!v) return;
+      if (f.kind === "movement" && ids[v]) v = ids[v] + " (" + v + ")";
+      spec.push(f.label + ": " + v);
+    });
+    var text = base.text;
+    if (spec.length) text += "\n\nRefinement — five-field spec: " + spec.join(" · ");
+    return { text: text, unfilled: base.unfilled, fields: clean };
+  }
+
+  /* Address a shot inside a built plan. ref = { episode: null|number, index }. */
+  function findRefinedShots(plan, ref) {
+    var list = plan.shots;
+    if (ref.episode != null) {
+      var ep = (plan.episodes || []).filter(function (e) { return e.episode === ref.episode; })[0];
+      if (!ep) throw new Error("unknown episode: " + ref.episode);
+      list = ep.shots;
+    }
+    if (!list || ref.index < 0 || ref.index >= list.length) {
+      throw new Error("unknown shot index: " + ref.index);
+    }
+    return list[ref.index];
+  }
+
+  /* Write a refined prompt back into a built plan. Keeps the full round
+     history on the shot; the generated prompt is kept once as
+     shot.originalPrompt so "restore original" is always possible. */
+  function refineShotInPlan(plan, ref, newPrompt, fields) {
+    var shot = findRefinedShots(plan, ref);
+    if (!shot.originalPrompt) shot.originalPrompt = shot.prompt;
+    var clean = validateRefineryFields(fields, null);
+    var entry = {
+      round: (shot.refinements || []).length + 1,
+      at: new Date().toISOString(),
+      fields: clean,
+      prompt: String(newPrompt)
+    };
+    shot.refinements = (shot.refinements || []).concat([entry]);
+    shot.prompt = entry.prompt;
+    shot.refined = true;
+    return entry;
+  }
+
+  /* Revert a shot to its generated prompt. History stays on the shot;
+     exports only list shots currently marked refined. */
+  function revertRefinement(plan, ref) {
+    var shot = findRefinedShots(plan, ref);
+    if (!shot.originalPrompt) throw new Error("shot was never refined");
+    var entry = {
+      round: (shot.refinements || []).length + 1,
+      at: new Date().toISOString(),
+      reverted: true,
+      fields: {},
+      prompt: shot.originalPrompt
+    };
+    shot.refinements = (shot.refinements || []).concat([entry]);
+    shot.prompt = shot.originalPrompt;
+    shot.refined = false;
+    return entry;
+  }
+
+  /* Every currently-refined shot, for the packet exports. */
+  function planRefinements(plan) {
+    var out = [];
+    function walk(prefix, shots) {
+      (shots || []).forEach(function (s) {
+        if (s.refined) out.push({ ref: prefix + "Shot " + s.n, shot: s });
+      });
+    }
+    if (plan.episodes) {
+      plan.episodes.forEach(function (ep) { walk("E" + ep.episode + " · ", ep.shots); });
+    } else {
+      walk("", plan.shots);
+    }
+    return out;
+  }
+
+  function refinementsToMarkdown(plan) {
+    var refs = planRefinements(plan);
+    if (!refs.length) return "";
+    var L = ["## Shot refinements", "",
+      "Per-shot prompt refinements from the Studio's Shot Refinery. The five-field spec " +
+      "(character design, camera movement, colour palette, emotional register, visual grammar) " +
+      "is the structure of the documented Gaudette build — see the guide's Teardowns page. " +
+      "Refining changes words only: model, duration, and take counts are untouched, so the " +
+      "budget and schedule still hold.", ""];
+    refs.forEach(function (r) {
+      var s = r.shot;
+      L.push("### " + r.ref + " — refined ×" + (s.refinements || []).length);
+      L.push("");
+      (s.refinements || []).forEach(function (e) {
+        if (e.reverted) {
+          L.push("- Round " + e.round + " (" + e.at + "): reverted to the generated prompt");
+          return;
+        }
+        var bits = [];
+        REFINERY_FIELDS.forEach(function (f) {
+          if (e.fields[f.key]) bits.push(f.label + ": " + e.fields[f.key]);
+        });
+        L.push("- Round " + e.round + " (" + e.at + "): " + (bits.join("; ") || "prompt edit"));
+      });
+      L.push("");
+      L.push("Final prompt:");
+      L.push("");
+      L.push("```");
+      L.push(s.prompt);
+      L.push("```");
+      L.push("");
+    });
+    return L.join("\n");
+  }
+
+  function refinementsToHtml(plan) {
+    var refs = planRefinements(plan);
+    if (!refs.length) return "";
+    var H = ["<h2>Shot refinements</h2>",
+      "<p>Per-shot prompt refinements from the Studio's Shot Refinery (five-field spec: " +
+      "character design, camera movement, colour palette, emotional register, visual grammar — " +
+      "the structure of the documented Gaudette build). Refining changes words only: model, " +
+      "duration, and take counts are untouched, so the budget and schedule still hold.</p>"];
+    refs.forEach(function (r) {
+      var s = r.shot;
+      H.push('<div class="shot"><h3>' + escHtml(r.ref) + " — refined ×" +
+        (s.refinements || []).length + "</h3><ul>");
+      (s.refinements || []).forEach(function (e) {
+        if (e.reverted) {
+          H.push("<li>Round " + e.round + " (" + escHtml(e.at) + "): reverted to the generated prompt</li>");
+          return;
+        }
+        var bits = [];
+        REFINERY_FIELDS.forEach(function (f) {
+          if (e.fields[f.key]) bits.push(escHtml(f.label) + ": " + escHtml(e.fields[f.key]));
+        });
+        H.push("<li>Round " + e.round + " (" + escHtml(e.at) + "): " +
+          (bits.join("; ") || "prompt edit") + "</li>");
+      });
+      H.push("</ul><pre>" + escHtml(s.prompt) + "</pre></div>");
+    });
+    return H.join("\n");
+  }
+
+  /* ---- Studio 3.0: plan sharing ---------------------------------------------
+     Export a saved plan as portable JSON; import validates the shape before
+     it touches the saved-plan list. Nothing is uploaded anywhere — the file
+     is the share mechanism. */
+
+  var PLAN_SHARE_FORMAT = "afg-studio-plan";
+  var PLAN_SHARE_V = 1;
+
+  function exportPlanData(saved) {
+    return JSON.stringify({
+      format: PLAN_SHARE_FORMAT,
+      v: PLAN_SHARE_V,
+      exportedAt: new Date().toISOString(),
+      studio: "3.0",
+      name: saved.name,
+      kind: saved.kind,
+      input: saved.input,
+      plan: saved.plan
+    }, null, 2);
+  }
+
+  function importPlanData(text) {
+    var d;
+    try { d = JSON.parse(text); }
+    catch (e) { return { ok: false, error: "Not valid JSON — paste the complete exported plan." }; }
+    if (!d || d.format !== PLAN_SHARE_FORMAT) {
+      return { ok: false, error: "Not a Studio plan export (the format tag is missing)." };
+    }
+    if (d.v !== PLAN_SHARE_V) {
+      return { ok: false, error: "Unsupported plan version " + d.v + " — this Studio reads v1." };
+    }
+    var kind = d.kind === "series" ? "series"
+      : d.kind === "microdrama" ? "microdrama"
+      : d.kind === "film" ? "film" : null;
+    if (!kind) return { ok: false, error: "Unknown plan kind: " + d.kind + "." };
+    if (!d.input || typeof d.input !== "object") {
+      return { ok: false, error: "The export has no plan input." };
+    }
+    if (!d.plan || typeof d.plan !== "object") {
+      return { ok: false, error: "The export has no plan data." };
+    }
+    if (kind === "film" && !Array.isArray(d.plan.shots)) {
+      return { ok: false, error: "This film export has no shot list." };
+    }
+    if (kind === "series" && !Array.isArray(d.plan.episodes)) {
+      return { ok: false, error: "This series export has no episodes." };
+    }
+    if (kind === "microdrama" && !d.plan.budget) {
+      return { ok: false, error: "This microdrama export has no budget." };
+    }
+    return {
+      ok: true,
+      saved: {
+        name: String(d.name || "Imported plan"),
+        savedAt: new Date().toISOString(),
+        kind: kind,
+        input: d.input,
+        plan: d.plan
+      }
+    };
+  }
+
+  /* DOM addressing for a shot card (pure string, so tests can assert it). */
+  function shotRefAttrs(ref) {
+    return 'data-st3-ep="' + (ref.episode == null ? "" : ref.episode) +
+      '" data-st3-idx="' + ref.index + '"';
+  }
+
+  /* The per-shot "Refine shot" button (pure HTML, so tests can assert it). */
+  function refineButtonHtml() {
+    return '<button type="button" class="btn btn-sm btn-ghost st3-refine">Refine shot</button>';
+  }
+
   var StudioEngine = {
     USD_PER_CREDIT: USD_PER_CREDIT,
     GENRES: GENRES, RUNTIMES: RUNTIMES, TIERS: TIERS,
@@ -1855,7 +2158,17 @@
     costPerSec: costPerSec, costPerImage: costPerImage, normName: normName,
     resolveModel: resolveModel,
     shotCountFor: shotCountFor, chooseTemplates: chooseTemplates,
-    fillPrompt: fillPrompt, pickModel: pickModel,
+    slotFills: slotFills, fillPrompt: fillPrompt, pickModel: pickModel,
+    REFINERY_FIELDS: REFINERY_FIELDS, refineryInit: refineryInit,
+    validateRefineryFields: validateRefineryFields,
+    buildRefinedPrompt: buildRefinedPrompt,
+    findRefinedShots: findRefinedShots, refineShotInPlan: refineShotInPlan,
+    revertRefinement: revertRefinement, planRefinements: planRefinements,
+    refinementsToMarkdown: refinementsToMarkdown,
+    refinementsToHtml: refinementsToHtml,
+    PLAN_SHARE_FORMAT: PLAN_SHARE_FORMAT, PLAN_SHARE_V: PLAN_SHARE_V,
+    exportPlanData: exportPlanData, importPlanData: importPlanData,
+    shotRefAttrs: shotRefAttrs, refineButtonHtml: refineButtonHtml,
     buildPlan: buildPlan, planToMarkdown: planToMarkdown,
     seriesBible: seriesBible, buildSeriesPlan: buildSeriesPlan,
     seriesToMarkdown: seriesToMarkdown, seriesToHtml: seriesToHtml, fmtUSD: fmtUSD,

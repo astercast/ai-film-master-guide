@@ -210,6 +210,11 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--gold); }
 .td-progress { flex: 1; height: 6px; background: var(--panel-2); border-radius: 999px; overflow: hidden; }
 .td-progress span { display: block; height: 100%; background: linear-gradient(90deg, var(--amber-deep), var(--gold)); border-radius: 999px; transition: width var(--dur-2) var(--ease); }
 .td-card { background: var(--panel); border: 1px solid var(--line-soft); border-radius: var(--radius-l); padding: var(--space-5); }
+/* Shot-card entrance — one job: shot-to-shot continuity. Decelerates in (transform + opacity only). */
+@keyframes td-card-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes td-card-in-reduced { from { opacity: 0; } to { opacity: 1; } }
+.td-card { animation: td-card-in var(--dur-2) var(--ease); }
+.td-films-nav { display: flex; justify-content: space-between; gap: var(--space-3); margin-top: var(--space-5); flex-wrap: wrap; }
 .td-shotno { font-family: var(--font-mono); color: var(--gold); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; margin: 0 0 var(--space-2); }
 .td-card h3 { margin: 0 0 var(--space-4); }
 .td-fields { display: grid; gap: var(--space-4); margin: 0; }
@@ -369,4 +374,5 @@ details[open] { border-color: var(--line-bright); }
 @media (prefers-reduced-motion: reduce) {
   .btn, .star, .copy-btn, .card, .quiz-opt, .doc-symptom, .lint-layer, .mw-card, .stat { transition: none; }
   .gloss-term { transition: none; }
+  .td-card { animation-name: td-card-in-reduced; }
 }
