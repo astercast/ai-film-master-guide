@@ -94,7 +94,7 @@ And in the West: ***The Cully Hill Boys*** (110 minutes, August 2026, reportedly
 - **Seedance 3.0** — reported in third-party indexes, unconfirmed by ByteDance. Treat as rumor.
 - **Veo 4** — does not exist; "Veo 4" pages are SEO bait. Google's play is Gemini Omni (see the correction above).
 - **Long-form coherence research** — Google Research's four-system framework (AI Video Co-Director orchestration, CANVAS visual memory, A²RD long-horizon synthesis, VQQA artifact repair) targets coherent minutes-long video — but it's research only, no downloadable product. (AlphaSignal, Sept 2026)
-- **Cannes** — reported (single source, April 2026) to have banned AI-generated films from competition. If true, the major-festival path runs through festivals like Tribeca and Venice's orbit, not the Palme d'Or.
+- **Cannes** — Reuters (May 15, 2026): organizers have not banned AI outright; films "primarily driven by generative AI" are excluded from Palme d'Or competition. Cannes 2026 was the first festival where filmmakers openly admitted AI use (Demi Moore / Peter Jackson pragmatic, Seth Rogen opposed, del Toro demanding the generative-vs-assistive distinction); assistive AI is increasingly accepted. The major-festival path for AI-driven films still runs through Tribeca, Venice's orbit, and the dedicated AI festivals — not the Palme d'Or.
 - **Costs keep falling; taste keeps mattering.** The field's advice going into Q4: delete dead routes, draft cheap, upscale last, and spend the savings on sound and edit.
 
 ## Honest gaps in this snapshot

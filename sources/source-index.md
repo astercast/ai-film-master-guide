@@ -47,6 +47,16 @@ Every source consulted, grouped by section, with what was pulled from it.
 - https://qazinform.com/news/aaiff-2026-winners-share-stories-behind-their-ai-generated-films-163b82 — AAIFF 2026 winners (8,067 entries)
 - https://higgsfieldglobalfilmfestival.com/ — official festival site
 
+## Festival results (wave 23 refresh, 2026-10-11)
+- https://www.reply.com/en/artificial-intelligence/reply-ai-film-festival — Reply AIFF 2026 official winners (Gaudette 1st; Naghavi & Li 2nd; 2xLabs 3rd; *Website* Grand Prix + Community Award; *Centenarian Kindergarten* SDG award)
+- https://www.reuters.com/lifestyle/cannes-filmmakers-shift-towards-cautious-acceptance-ais-inevitability-2026-05-15/ — Cannes stance clarified: no outright ban; AI-driven films excluded from Palme d'Or competition (replaces the single-source ban claim)
+- https://kzk101.com/at-tribeca-an-all-ai-iran-movie-shows-films-future-or-at-least-its-messy-present/ — THR on *Dreams of Violets* Tribeca reception (warm room, distributor flinch at the AI label)
+- https://www.imdb.com/news/ni65890087/ — Variety's Gleiberman review ("dramatically numbing" / "startling portent")
+- https://www.avclub.com/dreams-of-violets-ai-snuff-film-tribeca-film-festival — A.V. Club review (hostile)
+- https://business.theeveningleader.com/theeveningleader/article/marketersmedia-2026-9-29-hong-kong-ai-international-film-festival-opens-2027-entries-with-seven-redesigned-awards — Hong Kong AI IFF 2027 announced (press release; 51% threshold dropped for "substantive creative contribution")
+- https://www.ajupress.com/view/20261006193412031 — AAIFF: Tokayev opened Oct 2; organizers plan annual
+- https://www.newsarchyuk.com/weather/astana-ai-film-festival-latvian-winner/ — AAIFF prize funder (Freedom Shapagat — single source, flagged)
+
 ## Credit economics (deep research, 2026-10-10)
 - https://higgsfield.ai/blog/best-affordable-ai-video-generators — vendor-published per-clip costs (directional)
 - https://dev.to/toryreut/everyones-generating-videos-i-calculated-what-ai-video-actually-costs-in-2026-37ag — per-clip cost calculations

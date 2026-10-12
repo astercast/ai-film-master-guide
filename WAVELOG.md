@@ -2,7 +2,32 @@
 
 ## Standing items (permanent workstreams)
 
-- **Episode pipeline workstream (permanent, from wave 14):** revisit every ~3 waves — new episode formats from what's working, new tools, tighter procedures, worked examples. Goal: best agent-run episode-production system anywhere. (WAVELOG entry each revisit; the research artifact lives at `~/workspace/tiktok-episode-pipeline/PIPELINE.md`.) **Last revisited: wave 20 (2026-10-11).**
+- **Episode pipeline workstream (permanent, from wave 14):** revisit every ~3 waves — new episode formats from what's working, new tools, tighter procedures, worked examples. Goal: best agent-run episode-production system anywhere. (WAVELOG entry each revisit; the research artifact lives at `~/workspace/tiktok-episode-pipeline/PIPELINE.md`.) **Last revisited: wave 23 (2026-10-11) — check pass, no changes.**
+
+## Wave 23 — Festival landscape refresh: 2026 results (2026-10-11)
+
+**Research** (10 search batches + 1 official page fetch): Astana outcomes confirmed across 5+ outlets; Reply's official winners page fetched directly; Cannes stance upgraded from rumor to Reuters; Tribeca/Dreams of Violets reception gathered from 4 review/outlet sources; Hong Kong AI IFF 2027 announcement found via press-release syndication.
+
+**Key findings:**
+
+1. **Astana** — winner names now documented: 2nd *SITARA* — Abhik Banerjee (India); 3rd *Looking For Perseida* — Ernest Desumbila (Spain) (qazinform). Cash awards funded by the Freedom Shapagat Corporate Foundation of Freedom Holding Corp (newsarchyuk citing Qazinform — flagged single-source). Tokayev opened the Oct 2 program (Aju Press/Akorda); organizers plan annual.
+2. **Reply AIFF 2026** — full results from reply.com (official): 1st Robert Gaudette; 2nd Alex Naghavi & Ezra Li; 3rd 2xLabs; SDG award *Centenarian Kindergarten* (2xLabs); Reply AI Studios Grand Prix *Website* (Jiaze Li); Community Award (WeShort) *Website* (Jiaze Li); special mention *The Child of the Sea* (Ibai Abad). 2xLabs placed at two festivals in a month (also Astana Best Story $50K). Gaudette double-win (Runway) still single-source — flag kept.
+3. **Cannes** — Reuters (May 15, 2026) replaces the single-source ban claim: no outright ban; films "primarily driven by generative AI" excluded from Palme d'Or competition. Frémaux's e-bike line, Academy "demonstrably performed by humans" rule, the Moore/Jackson/Favreau vs. Rogen split, del Toro's generative-vs-assistive distinction, Meta as official partner, Marché Innovation Village. WAIFF alongside (5,000 submissions — flagged single archived report).
+4. **Tribeca** — *Dreams of Violets* reception mapped as the year's best reception dataset: warm room (~80% full, applause; THR), split critics (Variety: "dramatically numbing" as drama / "startling portent" as artifact; A.V. Club hostile; The Wrap: flawed but significant snapshot), and industry flinch (distributor + festival rep backed out on learning it was AI).
+5. **2027** — Hong Kong AI International Film Festival 2027 announced (Sept 29, 2026): 19→7 redesigned awards, 51% AI threshold dropped for "substantive creative contribution," entries close Mar 1, 2027, $99/work (MarketersMedia PR — flagged). Astana plans annual → expect a 2027 second edition.
+
+**Shipped:**
+
+1. **`distribution/festival-landscape-2026.md`** rewritten around results: new "2026 scorecard" table (festival → winner → prize → craft takeaway); Astana section gains winner names, funder, annual plan; Reply section gains the full official results + the 2xLabs cross-festival placer note; Cannes section rewritten as "The Cannes line — clarified, not moved" (eligibility rule, not ban); new "Tribeca 2026 — the reception experiment" section (3 craft takeaways: the portent reading helps no one's career; the $2,000-cost story is a hook and a handicap; plan for the ethics question); new "2027 on the calendar" section (HK AI IFF + Astana annual; the "how much AI → what did you do with it" judging pattern); landscape-read section gains points 5–6; both teardowns cross-linked (`first-honest-day`, `dreams-of-violets`); 9 new sources with flag discipline kept.
+2. **`field/2026-developments.md`** — Cannes bullet synced to the Reuters version.
+3. **`sources/source-index.md`** — new "Festival results (wave 23)" subsection, 8 sources with pull-notes.
+4. **No HAND skill, no competitions.json change** (its no-prizes craft-record scope doesn't fit a results refresh), no count changes (AGENT.md/API.md/api.html untouched).
+5. **Episode pipeline revisit #3 (standing item, due):** check pass — one search batch; nothing genuinely new as a production format since wave 20 (TikTok Mini Dramas/Symphony–Seedance 2.0 integration is June 2026; IMDA–TikTok microdrama training programme (Oct 5) is institutional, not a format; aggregator tool lists add no format). Pipeline doc unchanged; next revisit ~wave 26.
+6. **Regenerated:** `api/v1/` (re-stamped), `site/` (27 chapters + search index + changelog), `llms.txt`/`llms-full.txt`.
+
+**Validation:** `bash scripts/validate.sh` → ALL STAGES PASS post-commit; 6,540 links, 0 broken; generator audits clean.
+
+**Commit:** `6856fb8b531b3849e7f50a78441d4eb28f914c59` ([view](https://github.com/astercast/ai-film-master-guide/commit/6856fb8b531b3849e7f50a78441d4eb28f914c59)) — 12 files, pushed 2026-10-11 as remote commit `[REMOTE]`; all 12 files verified present in the remote tree via GitHub API.
 
 ## Wave 22 — 6th teardown: The First Honest Day (2026-10-11)
 
