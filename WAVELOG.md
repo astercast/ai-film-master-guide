@@ -2,7 +2,39 @@
 
 ## Standing items (permanent workstreams)
 
-- **Episode pipeline workstream (permanent, from wave 14):** revisit every ~3 waves — new episode formats from what's working, new tools, tighter procedures, worked examples. Goal: best agent-run episode-production system anywhere. (WAVELOG entry each revisit; the research artifact lives at `~/workspace/tiktok-episode-pipeline/PIPELINE.md`.) **Last revisited: wave 29 (2026-10-11) — IMDA+TikTok Singapore programme rails, Douyin oversupply economics, AI-label compliance tightening, "oversupply discipline" craft judgment. Next revisit ~wave 32.**
+- **Episode pipeline workstream (permanent, from wave 14):** revisit every ~3 waves — new episode formats from what's working, new tools, tighter procedures, worked examples. Goal: best agent-run episode-production system anywhere. (WAVELOG entry each revisit; the research artifact lives at `~/workspace/tiktok-episode-pipeline/PIPELINE.md`.) **Last revisited: wave 32 (2026-10-11) — HeyGen Voice TTS tooling note, YouTube Feb-2027 monetization thresholds, Sundance+TikTok series-development discipline, TikTok's own production push, Shortical off-screen-lives technique. Next revisit ~wave 35.**
+
+## Wave 32 — EPISODE PIPELINE revisit #5 (2026-10-11)
+
+**Standing workstream:** fifth scheduled revisit (w17 = #1, w20 = #2, w23 check pass, w26 = #3, w29 = #4). Genuinely new material this cycle: a top-ranked TTS engine with real pricing, YouTube's monetization-threshold change, institutional series-development discipline going mainstream, and a new distribution mechanic from an AI-native platform.
+
+**Research** (7 search batches): TikTok mini-drama / serialized AI drama space (Oct 2026); Kling 4.0 GA status; Vidu Q4 GA status; new TTS tools; YouTube Shorts policy/monetization updates; TikTok AI-labeling enforcement detail.
+
+**What changed in `craft/episodic-shortform.md` (all sourced, no invented productions):**
+
+1. **Stage 4 voice tooling note — HeyGen Voice** (Oct 9, 2026): debuted at #1 on Artificial Analysis' independent TTS leaderboard (Elo 1,201, blind human tests); API $30/million characters list, $15/million launch price through Oct 31 (vibeleaderboard.ai — verify live); ~40 chars/sec — slow for realtime, fine for the pipeline's batch per-line synthesis. The pipeline's voice contract doesn't change: same voice ID per character, locked in the bible, verified by the duration concat. Lock the engine once; never swap mid-series — G9 discipline beats a better Elo. (Revises wave 29's "no chapter change" call — pricing + API detail now make it a documented engine option.)
+2. **YouTube's Feb 2027 monetization threshold — the other shoe of the Oct 1 originality update:** Partner Program changes (announced Aug 2026, effective Feb 1, 2027) require 10M qualified Shorts views/rolling 90 days to keep Shorts Creator Pool earnings; new applicants need 1,000 subscribers + 8,000 qualified watch hours/365 days or 20M Shorts views/90 days (billo.app, gizbot.com). Three rules are separate — (1) recommendation ranking (Oct 1 change), (2) reused-content monetization policy (unchanged), (3) Creator Pool split (unchanged) — so a channel can keep monetization and still lose its audience (readus247.com). No start date was given for the reach cut; channels switching to original get reach re-evaluated (Ritchie via marketingnewsroom.com). Pipeline position: original footage from day one, nothing to retrofit.
+3. **Institutional tier — series-development discipline going mainstream:** Sundance Collab + TikTok's Micro-Series Challenge (deadline Sept 9, 2026) asked for a logline, character bios, full synopsis, scripts for the first 30 episodes, and a 1–3 page series bible — this chapter's G0 artifacts as a submission form (creator post, LinkedIn — single-source, flagged). Caveats noted: AI was barred from the *submissions* (craft validation, not tool endorsement) and the deadline passed. Plus TikTok itself becoming a producer: casting soap-opera-style micro-dramas, "TikTok Drama" US trademark, ~$1.4B US market estimate (Business Insider March 24, 2026, via newsmissinglinkhub.com — chain flagged); TikTok-reported 2.26B short-drama downloads in 2025, +140% YoY Q1 2026 (alvinology.com).
+4. **New distribution mechanic — Shortical's "off-screen lives":** *Bound by Fire* (Oct 2026), Shortical's first fully AI-generated original micro-drama, ships AI cast members that keep living on social media between episodes (PR Newswire — company-claimed). The craft read: not a new format — the day-in-the-life format pointed at a drama's cast, keeping the audience inside the world between cliffhangers. File it as a technique to steal, not a lane to add.
+5. **AI-label scope detail:** TikTok's labeling requirement targets realistic-looking people/scenes — generic TTS narration and anime-style art are exempt; auto-labeling runs at scale via C2PA Content Credentials (usefastlane.ai, storrito.com — secondary policy summaries, not the guidelines text). Voice-led mini-dramas still turn the label on — the realistic-people trigger fires on the visuals. Plus the EU AI Act Article 50 transparency duties (apply from Aug 2, 2026; marking grace period to Dec 2026 — digitalapplied.com, single secondary, flagged).
+6. **Sources:** new wave-32 research section in `sources/source-index.md` (13 entries).
+
+**Deliberately left alone (the revisit log):**
+
+- **Kling 4.0** — full model still not GA as of Oct 11, 2026 ("coming this October" is a month, not a date — wavespeed Oct-11 evidence review, rctv.com); Flash early access only. Chapter's "announced, not GA" line and record status both still correct.
+- **Vidu Q4** — still in public preview (Oct 7, 2026 launch); third-party platforms (SelfyzAI, Enkio) announcing beta-test completion is company PR, not GA. Record unchanged, no chapter edit.
+- **No new format presets** — Sundance challenge = competition, not a format; Shortical's off-screen lives = technique, not a lane; TikTok self-production = platform news. The four formats + the honesty note stand.
+- **No new worked examples** — nothing new documents a production at rebuildable detail; the Night Bus + StoReel/Qidian builds stand.
+- **No new verified hook patterns** — the five hook formulas stand; the Hook-title generator code is untouched.
+- **Episode planner code** — untouched (no new format presets, no new runtime bands justified this cycle; the bridge and estimator stay as-is).
+- **No HAND skill** — HeyGen Voice is an engine option inside the existing Stage 3 procedure, not a new procedure; the platform-rule additions are compliance lines, not workflows.
+- **AGENT.md / API.md / models.json** — untouched (no workflow change, no endpoint change, no model-record change this wave).
+
+**Validation:** (post-commit) `bash scripts/validate.sh` → ALL STAGES PASS (13/13); link check 0 broken; studio.test.js 50/50; agent-workflows.test.js 74/74; generator audits clean (skills byte-identical, prompt-templates.json == artifact parser, llms.txt zero-diff).
+
+**Commit:** local `___` (___ files) → pushed 2026-10-11 as remote commit `___`; remote `main` HEAD matches the pushed SHA; all key files verified present in the remote tree via GitHub API (___ tree entries, 0 missing, not truncated; `site/craft/episodic-shortform.html` confirmed to contain the new HeyGen Voice note).
+
+**Next episode-pipeline revisit:** ~wave 35.
 
 ## Wave 31 — 8th teardown: "The Character Sheets Came First" (2026-10-11)
 
