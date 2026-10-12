@@ -4,6 +4,22 @@
 
 - **Episode pipeline workstream (permanent, from wave 14):** revisit every ~3 waves — new episode formats from what's working, new tools, tighter procedures, worked examples. Goal: best agent-run episode-production system anywhere. (WAVELOG entry each revisit; the research artifact lives at `~/workspace/tiktok-episode-pipeline/PIPELINE.md`.) **Last revisited: wave 20 (2026-10-11).**
 
+## Wave 22 — 6th teardown: The First Honest Day (2026-10-11)
+
+**Research:** *The First Honest Day* — Nikolay Shestak's $450,000 Grand Prix winner at the inaugural Astana AI Film Festival (Oct 1–3, 2026; 8,067 entries from 125 countries, 25 finalists, theme "The Future Worth Living In"). Documented facts: the premise (actions reflected in appearance — bad deeds uglify, good deeds beautify), the director's road (former actor → directing ~4 years → AI films ~2 years), the judging rubric (artistic vision, storytelling, coherence, how AI tools were used, organic integration of tech into concept), and the festival ecosystem (BytePlus tech partner, DRAMAGIC 60,000 credits per finalist, 80+ models in play incl. Suno/Kling/Wan 2.6/GPT Image 2/ElevenLabs/Seedance 2.5 — single-source state-portal account). **No outlet states what tools made the film** (verified: Temperature Zero Oct 9, 2026); runtime, team size, budget, shot count, and prompts are all undocumented; the organizers hold all 25 disclosed pipelines but haven't published them.
+
+**Decision:** kept *The First Honest Day* as the teardown target rather than swapping to an alternative — the alternatives (SITARA, The Last Span) are equally undocumented on tools, and the thin documentation IS the teachable point. The teardown is honest about the gap by design: the context carries an explicit sourcing note, every shot's `prompt_reconstruction` is null (with the reason stated — reconstruction without a published stack would be invention), and the festival-ecosystem models are flagged as the competition's ecosystem, NOT the film's stack.
+
+**Shipped:**
+
+1. **New teardown `first-honest-day`** in `api/v1/teardowns.json` (6 shots): (1) the moral engine — one visual rule AI can execute, turning consistency drift into theme (ties craft/story-structure.md, craft/character-consistency.md); (2) the documented jury rubric — organic integration of tech into concept; (3) the director's road — two years of AI reps on four years of directing (craft/directing-performance.md); (4) the documented ecosystem with REAL cost math from the 29-model database (60s short, 10×6s shots, 3 takes = 180s: Kling 3.0 ≈ $15.12, Seedance 2.5 ≈ $41.58, Wan 2.6 ≈ $9.88 at the guide's reference $0.0392/credit — explicitly illustrative, not the film's bill); (5) the missing dataset — the organizers' unpublished 25 pipelines as the field's real bottleneck; (6) what a filmmaker can steal — enter competitions that fit work you're already making, reinvest prize money into the work. Sources: 5 real outlets (Qazinform ×2, Daily Guardian EU, Aju Press, Temperature Zero); one brief director quote (16 words, under the quote budget).
+2. **Studio hook: skipped — the data doesn't support it.** No Studio preset or case reference was added because no model stack is documented for the film; a preset would require inventing model picks. Stated here and in the teardown's sourcing note rather than hidden.
+3. **No HAND skill:** nothing new procedural — the teardown's lessons are chapter ties, not a new workflow.
+4. **Count updates:** AGENT.md, API.md, api.html 5→6; `build_site.py` learning-path "all six films" + search-index headings/text; `build_llms.py` viewer blurb. No sitemap exists in this repo — nothing to regenerate (search-index.json is the discoverability layer, regenerated).
+5. **Regenerated:** `api/v1/` (re-stamped; manifest counts n_teardowns=6 dynamically), `site/` (27 chapters, search index, site/teardowns.json copy), `llms.txt`/`llms-full.txt` (teardown names dynamic). `scripts/wave22_teardown_append.py` kept as the append recipe.
+
+**Validation:** `bash scripts/validate.sh` → ALL STAGES PASS; link check 0 broken; schema validates the new entry (null prompt_reconstructions permitted by schema).
+
 ## Wave 21 — Q4 2026 model data refresh (2026-10-11)
 
 **Research:** all 27 model records re-verified against live Oct 2026 coverage (15 search batches). 27 → **29 models**; no status changes; pricing updates sourced or flagged verify-live; nothing invented.

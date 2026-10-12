@@ -4,7 +4,7 @@
   "observed": "2026-10-11",
   "meta": {
     "version": "1.1.0",
-    "generated": "2026-10-12T01:13:44Z",
+    "generated": "2026-10-12T01:24:42Z",
     "base": "api/v1/",
     "auth": "none",
     "notes": "Static files on any static host — no auth, no keys, no rate limits. Breaking changes ship as a new v2/ path, never a silent shape change. Date-only fields are YYYY-MM-DD; timestamps are ISO-8601 UTC."
@@ -15,7 +15,7 @@
   "skills": {
     "directory": "skills/",
     "index": "skills/index.json",
-    "count": 226,
+    "count": 228,
     "usage": "Each skill is a markdown file with frontmatter (name, description), then: Use when, Inputs, Procedure, Worked example, API references, Pitfalls. Load the skill whose task matches the user's request."
   },
   "endpoints": {
@@ -23,7 +23,7 @@
       "path": "api/v1/index.json",
       "description": "Manifest: every endpoint with description, schema URL, updated timestamp, record counts, and deprecation notes. Start here.",
       "schema": "api/v1/schema/index.json",
-      "updated": "2026-10-12T01:13:44Z",
+      "updated": "2026-10-12T01:24:42Z",
       "records": 11,
       "notes": "Self-describing; meta.version is the manifest version."
     },
@@ -31,7 +31,7 @@
       "path": "api/v1/models.json",
       "description": "Model records: platform, type, credit costs, strengths, weaknesses, best use, per-model last_verified, status (active/reported/announced/discontinued), what_changed, sources; explicit unverified list.",
       "schema": "api/v1/schema/model.json",
-      "updated": "2026-10-12T01:13:44Z",
+      "updated": "2026-10-12T01:24:42Z",
       "records": 29,
       "notes": "DEPRECATION: Sora carries status='discontinued' (service shut Mar-Sep 2026; API closed 2026-09-24). Discontinued models are excluded from the Studio and compare-tool pools but kept here for the historical record."
     },
@@ -39,7 +39,7 @@
       "path": "api/v1/prompt-templates.json",
       "description": "Prompt templates: id, title, track, prompt, anatomy, use, models. Stable ids; [BRACKETS] placeholders.",
       "schema": "api/v1/schema/prompt-template.json",
-      "updated": "2026-10-12T01:13:44Z",
+      "updated": "2026-10-12T01:24:42Z",
       "records": 47,
       "notes": "15 core (t1-t15), 8 animated (a1-a8), 8 photorealistic (p1-p8), 5 performance, 4 audio, 4 longform, 3 repair."
     },
@@ -47,7 +47,7 @@
       "path": "api/v1/camera-movements.json",
       "description": "Camera lexicon: id, move, prompt_phrasing, when_to_use.",
       "schema": "api/v1/schema/camera-movement.json",
-      "updated": "2026-10-12T01:13:44Z",
+      "updated": "2026-10-12T01:24:42Z",
       "records": 22,
       "notes": ""
     },
@@ -55,7 +55,7 @@
       "path": "api/v1/checklists.json",
       "description": "Production checklists (pre-production, per-shot, continuity, audio, delivery) with item arrays.",
       "schema": "api/v1/schema/checklist.json",
-      "updated": "2026-10-12T01:13:44Z",
+      "updated": "2026-10-12T01:24:42Z",
       "records": 5,
       "notes": ""
     },
@@ -63,7 +63,7 @@
       "path": "api/v1/glossary.json",
       "description": "AI film / production terms: term + definition.",
       "schema": "api/v1/schema/glossary.json",
-      "updated": "2026-10-12T01:13:44Z",
+      "updated": "2026-10-12T01:24:42Z",
       "records": 79,
       "notes": ""
     },
@@ -71,7 +71,7 @@
       "path": "api/v1/competitions.json",
       "description": "Judged competitions as craft records: what each judges, the production constraints its rules teach, craft lessons from judged work. No prizes, deadlines, or promotional material.",
       "schema": "api/v1/schema/competition.json",
-      "updated": "2026-10-12T01:13:44Z",
+      "updated": "2026-10-12T01:24:42Z",
       "records": 2,
       "notes": ""
     },
@@ -79,15 +79,15 @@
       "path": "api/v1/teardowns.json",
       "description": "Shot-by-shot teardowns: setup, what works, what breaks, craft lesson per shot; prompt reconstructions are analytical, not actual prompts.",
       "schema": "api/v1/schema/teardown.json",
-      "updated": "2026-10-12T01:13:44Z",
-      "records": 5,
+      "updated": "2026-10-12T01:24:42Z",
+      "records": 6,
       "notes": ""
     },
     "diagnoses": {
       "path": "api/v1/diagnoses.json",
       "description": "Failure-diagnosis map for the Doctor tool: symptom -> craft diagnosis, fixes, repair-template link, source chapters.",
       "schema": "api/v1/schema/diagnosis.json",
-      "updated": "2026-10-12T01:13:44Z",
+      "updated": "2026-10-12T01:24:42Z",
       "records": 12,
       "notes": ""
     },
@@ -95,7 +95,7 @@
       "path": "api/v1/model-checks.json",
       "description": "Model-watch freshness feed: per-model last check time, source-signature diffs, news headlines. Maintained by the model-watch refresh loop.",
       "schema": "api/v1/schema/model-checks.json",
-      "updated": "2026-10-12T01:13:44Z",
+      "updated": "2026-10-12T01:24:42Z",
       "records": 22,
       "notes": "A 'changed' flag is a review signal, not a confirmed model change — check the review queue before treating it as fact."
     },
@@ -103,8 +103,8 @@
       "path": "api/v1/model-review-queue.json",
       "description": "Pending model-watch review items: changed source signatures awaiting human promotion. Empty array = nothing pending.",
       "schema": "api/v1/schema/model-review-queue.json",
-      "updated": "2026-10-12T01:13:44Z",
-      "records": 0,
+      "updated": "2026-10-12T01:24:42Z",
+      "records": 5,
       "notes": ""
     }
   },
@@ -112,7 +112,7 @@
     "model-updates": {
       "path": "api/v1/model-updates.md",
       "description": "Human-readable changelog of model record updates, with dates and sources.",
-      "updated": "2026-10-12T01:13:44Z",
+      "updated": "2026-10-12T01:24:42Z",
       "records": null,
       "notes": "Markdown, not JSON — no schema."
     }

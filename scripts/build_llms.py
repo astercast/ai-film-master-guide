@@ -48,7 +48,7 @@ after editing chapters. Open `site/index.html`.
 # Keep blurbs in sync with build_site.py's search-index tool entries.
 TOOLS = [
     ("index.html", "landing: track picker (animated vs photorealistic), chapter grid, learning paths (7: first film, competition, animated, photoreal, long-form, first 60-second short, the 90-day filmmaker)"),
-    ("teardown.html", "shot-by-shot teardown viewer: Passport Rush, ONEIRIC, the Grok Odyssey $100K winner, Google DeepMind's Dear Upstairs Neighbors, and Fountain 0's Dreams of Violets (75-min Tribeca 2026 AI feature, $2K budget) broken into shots (setup / what works / what breaks / craft lesson, labeled prompt reconstructions); data in `api/v1/teardowns.json`"),
+    ("teardown.html", "shot-by-shot teardown viewer: Passport Rush, ONEIRIC, the Grok Odyssey $100K winner, Google DeepMind's Dear Upstairs Neighbors, Fountain 0's Dreams of Violets (75-min Tribeca 2026 AI feature, $2K budget), and Nikolay Shestak's The First Honest Day ($450K Astana 2026 Grand Prix winner; tools undisclosed — the teardown is honest about the gap) broken into shots (setup / what works / what breaks / craft lesson, labeled prompt reconstructions where the stack is documented); data in `api/v1/teardowns.json`"),
     ("manifesto.html", "positioning: a living free reference, not a course; everything sourced; what it won't do"),
     ("field-guides/", "printable one-pagers generated from the guide's own data: model quick-reference (from `models.json`), prompt anatomy cheat sheet, consistency & dead-eyes checklist"),
     ("api.html", "human-readable API docs + a Try-the-API console (endpoint picker, fetch, pretty-printed JSON), and pointers to `AGENT.md`"),
