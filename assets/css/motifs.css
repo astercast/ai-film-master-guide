@@ -1,0 +1,280 @@
+/* ============================================================
+   Motifs — "The Cutting Room" signature layer (wave 36)
+   Sprocket strips, timecode rulers, playheads, clip blocks,
+   leader countdowns, reel framing. All motion reduced-motion
+   gated; all text-on-texture holds WCAG AA.
+   ============================================================ */
+
+/* ——— Sprocket-hole divider strip ——— */
+.sprocket-strip {
+  height: 30px; background-color: #050403;
+  background-image: var(--sprocket);
+  background-size: 26px 30px; background-position: center; background-repeat: repeat-x;
+  border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft);
+}
+.sprocket-strip.slim { height: 18px; background-size: 20px 18px;
+  background-image: radial-gradient(circle, #3a2f20 2.6px, transparent 3.2px); }
+
+/* ——— Cutting-room hero: the timeline moment ——— */
+.hero-cutroom {
+  position: relative; overflow: clip;
+  border-bottom: 1px solid var(--line-soft);
+  background:
+    radial-gradient(1100px 460px at 50% -14%, rgba(245, 179, 1, 0.16), transparent 62%),
+    radial-gradient(760px 380px at 90% 10%, rgba(230, 36, 41, 0.09), transparent 55%),
+    radial-gradient(140% 90% at 50% 112%, transparent 55%, rgba(0, 0, 0, 0.55) 100%),
+    var(--bg-soft);
+}
+.hero-cutroom::before, .hero-cutroom::after {
+  content: ""; position: absolute; left: 0; right: 0; height: 30px;
+  background-color: #050403; background-image: var(--sprocket);
+  background-size: 26px 30px; background-position: center; background-repeat: repeat-x;
+  z-index: 3;
+}
+.hero-cutroom::before { top: 0; border-bottom: 1px solid var(--line-soft); }
+.hero-cutroom::after { bottom: 0; border-top: 1px solid var(--line-soft); }
+
+/* The timeline deck: ruler + tracks + playhead + leader frame */
+.tl-deck {
+  position: relative; z-index: 1;
+  max-width: 1280px; margin-inline: auto;
+  padding: calc(var(--space-8) + 30px) var(--space-5) 0;
+}
+.tl-chrome {
+  display: flex; align-items: center; gap: var(--space-4);
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--muted);
+  margin-bottom: var(--space-2);
+}
+.tl-tc-live { color: var(--gold); font-variant-numeric: tabular-nums; font-weight: 600; }
+.tl-rec { display: inline-flex; align-items: center; gap: 8px; color: var(--ember-soft); font-weight: 700; }
+.tl-rec i { width: 10px; height: 10px; border-radius: 50%; background: var(--ember); box-shadow: var(--glow-rec); }
+.tl-title { margin-left: auto; color: var(--muted); }
+
+.tl-ruler {
+  position: relative; height: 26px;
+  border-bottom: 1px solid var(--line-soft);
+  background-image: var(--ruler);
+  background-size: 100% 9px; background-repeat: repeat-x; background-position: bottom;
+  font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em; color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.tl-ruler span { position: absolute; top: 2px; transform: translateX(-50%); }
+.tl-ruler span:first-child { transform: none; }
+.tl-ruler span:last-child { transform: translateX(-100%); }
+
+.tl-tracks { position: relative; padding: var(--space-3) 0 var(--space-2); }
+.tl-track {
+  position: relative; height: 44px; margin-bottom: 8px;
+  background: rgba(255, 255, 255, 0.018);
+  border: 1px solid var(--line-soft); border-radius: var(--radius-s);
+  overflow: hidden;
+}
+.tl-track:last-child { margin-bottom: 0; }
+.tl-track-label {
+  position: absolute; left: 8px; top: 50%; transform: translateY(-50%);
+  font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.18em;
+  color: var(--muted); z-index: 2; text-transform: uppercase;
+  background: rgba(9, 8, 7, 0.72); padding: 2px 6px; border-radius: 3px;
+}
+.clip {
+  position: absolute; top: 6px; bottom: 6px; border-radius: 4px;
+  border: 1px solid var(--line-bright);
+  background: linear-gradient(180deg, var(--panel-3), var(--panel-2));
+  display: flex; align-items: center; padding: 0 10px; overflow: hidden;
+  font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em;
+  color: var(--ink-dim); text-transform: uppercase; white-space: nowrap;
+}
+.clip.is-gold { border-color: var(--amber-deep); background: linear-gradient(180deg, #2c2210, #1d1710); color: var(--tungsten); }
+.clip.is-rec { border-color: var(--ember); background: linear-gradient(180deg, #2a1214, #1a0e10); color: var(--ember-soft); }
+.clip.is-blue { border-color: #2c5a78; background: linear-gradient(180deg, #101d26, #0d161e); color: var(--reel); }
+
+/* The playhead — sweeps the deck. Frame-advance steps when moving. */
+.tl-playhead {
+  position: absolute; top: 0; bottom: 0; left: 34%; width: 2px; z-index: 4;
+  background: var(--ember);
+  box-shadow: 0 0 14px rgba(230, 36, 41, 0.8);
+  pointer-events: none;
+}
+.tl-playhead::before {
+  content: ""; position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
+  border: 7px solid transparent; border-top: 10px solid var(--ember);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .tl-playhead { animation: playhead-sweep 16s linear infinite; }
+  .tl-rec i { animation: rec-blink 1.6s ease-in-out infinite; }
+}
+@keyframes playhead-sweep { from { left: 4%; } to { left: 96%; } }
+@keyframes rec-blink { 50% { opacity: 0.35; } }
+
+/* Leader-countdown frame: the 3-2-1 that opens the cut */
+.leader-frame {
+  position: absolute; right: var(--space-5); top: calc(var(--space-7) + 30px);
+  width: 120px; height: 120px; border-radius: 50%; z-index: 2;
+  border: 1px solid var(--line-bright);
+  display: grid; place-items: center; overflow: hidden;
+  background: radial-gradient(circle, transparent 58%, rgba(245, 179, 1, 0.08) 59%, transparent 70%);
+  pointer-events: none;
+}
+.leader-frame::before, .leader-frame::after {
+  content: ""; position: absolute; background: rgba(245, 179, 1, 0.35);
+}
+.leader-frame::before { left: 50%; top: 6%; bottom: 6%; width: 1px; }
+.leader-frame::after { top: 50%; left: 6%; right: 6%; height: 1px; }
+.leader-frame b {
+  font-family: var(--font-display); font-weight: 800; font-stretch: 62%;
+  font-size: 3.4rem; color: var(--gold); line-height: 1; z-index: 1;
+}
+.leader-frame .lf-label {
+  position: absolute; bottom: 8px; font-family: var(--font-mono); font-size: 0.55rem;
+  letter-spacing: 0.3em; color: var(--muted); text-transform: uppercase;
+}
+@media (max-width: 900px) { .leader-frame { display: none; } }
+
+/* ——— Timecode-stamped section headers ——— */
+.tc-head { display: flex; align-items: baseline; gap: var(--space-3); flex-wrap: wrap; }
+.tc-head .tc {
+  font-size: 0.72rem; border: 1px solid var(--line-bright); border-radius: 4px;
+  padding: 2px 8px; background: var(--bg-raise); color: var(--gold);
+}
+
+/* ——— Reel head: the chapter slate (chapter template) ——— */
+.reel-head {
+  border: 1px solid var(--line-soft); border-radius: var(--radius-l);
+  background:
+    linear-gradient(180deg, rgba(245, 179, 1, 0.05), transparent 40%),
+    var(--panel);
+  padding: var(--space-4) var(--space-5); margin-bottom: var(--space-5);
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-5);
+  position: relative; overflow: hidden;
+}
+.reel-head::before {
+  content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 34px;
+  background-color: #050403; background-image: var(--sprocket-sm);
+  background-size: 20px 24px; background-position: center; background-repeat: repeat-y;
+  border-right: 1px solid var(--line-soft);
+}
+.reel-head > * { margin-left: 34px; }
+.reel-no {
+  font-family: var(--font-display); font-weight: 800; font-stretch: 62%;
+  font-size: 2.6rem; line-height: 1; color: var(--ink); letter-spacing: 0.02em;
+}
+.reel-no small { display: block; font-family: var(--font-mono); font-weight: 600; font-stretch: 100%; font-size: 0.62rem; letter-spacing: 0.3em; color: var(--gold); margin-bottom: 4px; }
+.reel-meta { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.reel-meta .tc { color: var(--gold); }
+.reel-head .crumb { margin: 0; }
+
+/* ——— Teardown viewer: the timeline ——— */
+.td-timeline {
+  border: 1px solid var(--line-soft); border-radius: var(--radius-l);
+  background: var(--panel); padding: var(--space-4) var(--space-5) var(--space-5);
+  margin-bottom: var(--space-4);
+}
+.td-timeline .tl-ruler { margin-bottom: var(--space-3); }
+.td-clips { display: flex; gap: 6px; }
+.td-clip {
+  flex: 1 1 0; min-width: 0; appearance: none; cursor: pointer;
+  border: 1px solid var(--line-bright); border-radius: 4px;
+  background: linear-gradient(180deg, var(--panel-3), var(--panel-2));
+  color: var(--ink-dim); font-family: var(--font-mono); font-size: 0.68rem;
+  font-variant-numeric: tabular-nums;
+  padding: var(--space-2) 2px; text-align: center;
+  transition: border-color var(--dur-1) var(--ease), color var(--dur-1) var(--ease), transform var(--dur-1) var(--ease);
+}
+.td-clip:hover { border-color: var(--gold); color: var(--ink); transform: translateY(-2px); }
+.td-clip.is-active {
+  border-color: var(--ember); color: #fff;
+  background: linear-gradient(180deg, #3a1518, #220d0f);
+  box-shadow: 0 0 0 1px var(--ember), var(--glow-rec);
+}
+.td-clip .td-clip-tc { display: block; font-size: 0.58rem; color: var(--muted); margin-top: 2px; }
+.td-clip.is-active .td-clip-tc { color: var(--ember-soft); }
+.td-viewer-head {
+  display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap;
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--muted);
+  border-bottom: 1px solid var(--line-soft); padding-bottom: var(--space-3); margin-bottom: var(--space-4);
+}
+.td-viewer-head .rec-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--ember); box-shadow: var(--glow-rec); }
+@media (prefers-reduced-motion: no-preference) {
+  .td-viewer-head .rec-dot { animation: rec-blink 1.6s ease-in-out infinite; }
+}
+
+/* ——— Empty state: NO FOOTAGE slate ——— */
+.empty-state {
+  text-align: center; padding: var(--space-8) var(--space-5); color: var(--muted);
+  border: 1px dashed var(--line-bright); border-radius: var(--radius-l);
+  background:
+    linear-gradient(180deg, rgba(245, 179, 1, 0.03), transparent 50%),
+    rgba(255, 255, 255, 0.008);
+}
+.empty-state .es-slate {
+  display: inline-block; font-family: var(--font-display); font-weight: 800; font-stretch: 62%;
+  font-size: 1.6rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-dim);
+  border: 1px solid var(--line-bright); border-radius: var(--radius-s);
+  padding: var(--space-2) var(--space-4); margin-bottom: var(--space-3);
+  background: repeating-linear-gradient(-45deg, transparent 0 10px, rgba(245, 179, 1, 0.05) 10px 20px);
+}
+
+/* ——— 404: MISSING REEL ——— */
+.missing-reel { text-align: center; padding-block: var(--space-9); max-width: 640px; margin-inline: auto; }
+.missing-reel .leader-frame { position: static; margin: 0 auto var(--space-5); width: 170px; height: 170px; }
+.missing-reel .leader-frame b { font-size: 4.6rem; }
+.missing-reel h1 {
+  font-family: var(--font-display); font-weight: 800; font-stretch: 62%;
+  font-size: clamp(2.6rem, 7vw, 4.4rem); text-transform: uppercase; line-height: 0.95;
+  margin-bottom: var(--space-4);
+}
+.missing-reel h1 .accent { color: var(--ember); }
+
+/* ——— Reading progress as a playhead ——— */
+.progress-bar { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: var(--z-progress); pointer-events: none; background: rgba(255, 255, 255, 0.05); }
+.progress-bar span { display: block; height: 100%; background: linear-gradient(90deg, var(--amber-deep), var(--gold), var(--tungsten)); transform: scaleX(0); transform-origin: 0 50%; box-shadow: 0 0 12px rgba(245, 179, 1, 0.5); }
+.progress-tc {
+  position: fixed; top: 8px; right: var(--space-4); z-index: var(--z-progress);
+  font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.1em;
+  color: var(--gold); font-variant-numeric: tabular-nums; pointer-events: none;
+  background: rgba(9, 8, 7, 0.8); border: 1px solid var(--line-soft); border-radius: 4px;
+  padding: 2px 8px; opacity: 0; transition: opacity var(--dur-2) var(--ease);
+}
+.progress-tc.show { opacity: 1; }
+
+/* ——— Header timecode ticker ——— */
+.hdr-tc {
+  font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500;
+  letter-spacing: 0.1em; color: var(--gold); font-variant-numeric: tabular-nums;
+  border: 1px solid var(--line-soft); border-radius: 4px; padding: 4px 10px;
+  background: var(--bg-raise); white-space: nowrap;
+}
+.hdr-tc .hdr-rec { color: var(--ember); font-weight: 700; }
+@media (max-width: 1100px) { .hdr-tc { display: none; } }
+
+/* ——— Stat strip: slate cards ——— */
+.stat-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--space-3); margin-top: var(--space-6); }
+.stat {
+  position: relative; background: var(--panel); border: 1px solid var(--line-soft);
+  border-radius: var(--radius-m); padding: var(--space-4); overflow: hidden;
+  transition: border-color var(--dur-2) var(--ease), transform var(--dur-2) var(--ease);
+}
+.stat::before {
+  content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 5px;
+  background: var(--gold); opacity: 0.7;
+}
+.stat::after {
+  /* mini timecode ruler along the card's top */
+  content: ""; position: absolute; top: 0; left: 5px; right: 0; height: 8px;
+  background-image: var(--ruler); background-size: 100% 5px; background-repeat: repeat-x; background-position: top;
+  opacity: 0.5;
+}
+.stat:hover { border-color: var(--line-bright); transform: translateY(-2px); }
+.stat-value { font-family: var(--font-display); font-weight: 800; font-stretch: 62%; font-size: 2.4rem; line-height: 1; letter-spacing: 0.01em; }
+.stat-value .unit { font-size: 1rem; color: var(--muted); font-weight: 500; font-stretch: 100%; }
+.stat-label { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-top: var(--space-2); }
+
+/* ——— Reduced-motion: every signature motion degrades to a static frame ——— */
+@media (prefers-reduced-motion: reduce) {
+  .tl-playhead { left: 34%; animation: none; }
+  .tl-rec i, .td-viewer-head .rec-dot, .hero-kicker .rec { animation: none; opacity: 1; }
+  .leader-frame b { animation: none; }
+  .td-clip, .stat { transition: none; }
+}

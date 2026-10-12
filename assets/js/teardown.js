@@ -27,6 +27,27 @@
     return '<div role="tablist" aria-label="Films" class="td-tabs">' + items + "</div>";
   }
 
+  function pad2(n) { return (n < 10 ? "0" : "") + n; }
+  function shotTc(i) { return "00:00:" + pad2((i * 8) % 60) + ":00"; }
+
+  function renderClips(film, active) {
+    var items = film.shots.map(function (s, i) {
+      return '<button type="button" class="td-clip' + (i === active ? " is-active" : "") + '"'
+        + ' data-shot="' + i + '" aria-label="Go to shot ' + (i + 1) + ": " + esc(s.title) + '"'
+        + (i === active ? ' aria-current="true"' : "") + ">"
+        + "S" + pad2(i + 1)
+        + '<span class="td-clip-tc" aria-hidden="true">' + shotTc(i) + "</span></button>";
+    }).join("");
+    var ruler = '<div class="tl-ruler" aria-hidden="true">'
+      + '<span style="left:0%">00:00:00:00</span>'
+      + '<span style="left:25%">00:00:15:00</span>'
+      + '<span style="left:50%">00:00:30:00</span>'
+      + '<span style="left:75%">00:00:45:00</span>'
+      + '<span style="left:100%">00:01:00:00</span></div>';
+    return '<div class="td-timeline">' + ruler
+      + '<div class="td-clips" role="group" aria-label="Shots on the timeline">' + items + "</div></div>";
+  }
+
   function shotCard(film, i) {
     var s = film.shots[i];
     var recon = s.prompt_reconstruction
@@ -34,6 +55,10 @@
         + "<pre><code>" + esc(s.prompt_reconstruction) + "</code></pre></details>"
       : "";
     return '<article class="td-card" aria-live="polite">'
+      + '<div class="td-viewer-head"><span class="rec-dot" aria-hidden="true"></span>'
+      + "<span>Shot " + (i + 1) + " / " + film.shots.length + "</span>"
+      + '<span class="tc" aria-hidden="true">' + shotTc(i) + "</span>"
+      + '<span style="margin-left:auto">' + esc(film.title) + "</span></div>"
       + '<p class="td-shotno">Shot ' + (i + 1) + " of " + film.shots.length + "</p>"
       + "<h3>" + esc(s.title) + "</h3>"
       + '<dl class="td-fields">'
@@ -62,6 +87,7 @@
       + '<div id="td-panel" role="tabpanel" aria-labelledby="td-tab-' + state.film + '" class="td-panel">'
       + '<p class="td-sub">' + esc(t.subtitle) + "</p>"
       + '<p class="td-context">' + esc(t.context) + "</p>"
+      + renderClips(t, state.shot)
       + '<div class="td-stepper">'
       + '<button type="button" class="btn btn-sm td-prev" data-d="-1" aria-label="Previous shot"' + (state.shot === 0 ? " disabled" : "") + ">← Prev</button>"
       + '<div class="td-progress" role="progressbar" aria-valuemin="1" aria-valuemax="' + t.shots.length + '" aria-valuenow="' + (state.shot + 1) + '" aria-label="Shot progress"><span style="width:' + pct + '%"></span></div>'
@@ -91,6 +117,13 @@
   app.addEventListener("click", function (e) {
     var tab = e.target.closest("[data-film]");
     if (tab) { selectFilm(parseInt(tab.getAttribute("data-film"), 10)); return; }
+    var clip = e.target.closest("[data-shot]");
+    if (clip) {
+      var n = parseInt(clip.getAttribute("data-shot"), 10);
+      var t = state.data.teardowns[state.film];
+      if (n >= 0 && n < t.shots.length) { state.shot = n; render(); }
+      return;
+    }
     var step = e.target.closest("[data-d]");
     if (step && !step.disabled) {
       var t = state.data.teardowns[state.film];
@@ -110,7 +143,7 @@
       else if (e.key === "End") { e.preventDefault(); selectFilm(n - 1); }
       return;
     }
-    if (e.target.closest(".td-stepper") || e.target.closest(".td-card")) {
+    if (e.target.closest(".td-stepper") || e.target.closest(".td-card") || e.target.closest(".td-clips")) {
       if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
         var t = state.data.teardowns[state.film];
         var d = e.key === "ArrowRight" ? 1 : -1;

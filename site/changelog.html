@@ -7,15 +7,17 @@
   <meta name="description" content="What changed in the AI Film Master Guide, dated per release: new chapters, model updates, new templates, and corrections.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="assets/css/tokens.css">
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/layout.css">
   <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/motifs.css">
   <link rel="stylesheet" href="assets/css/docs.css">
   <link rel="stylesheet" href="assets/css/print.css">
 </head>
 <body>
+  <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container header-bar">
@@ -42,6 +44,7 @@
         <a href="skill-spec.html">Skill spec</a>
         <a href="api.html">API</a>
       </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
       <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
         <span aria-hidden="true">⌘K</span> Search
       </button>
@@ -62,7 +65,8 @@
         <p>This changelog is rebuilt from the repository's git history on every site build, so it always reflects the latest release. Each entry below is a shipped change with its commit date — not a roadmap, not a promise. When a model price, feature, or platform rule changes in the world, the corresponding chapter or API update appears here with its date, and the affected chapter links its sources.</p>
       </div>
       <h2>Recent changes</h2>
-      <ol class="change-list"><li><span class="change-date">2026-10-12</span> <span class="change-hash">d10a300</span><p>Wave 34: Studio 3.0 — Shot Refinery + plan sharing + draft-cheap/finish-flagship optimizer mode</p></li>
+      <ol class="change-list"><li><span class="change-date">2026-10-12</span> <span class="change-hash">8b89d84</span><p>MERGE waves 33/34/35: fold WAVELOG entries, documentary-ethics chapter build, st3 styles into STUDIO_TMPL</p></li>
+      <li><span class="change-date">2026-10-12</span> <span class="change-hash">d10a300</span><p>Wave 34: Studio 3.0 — Shot Refinery + plan sharing + draft-cheap/finish-flagship optimizer mode</p></li>
       <li><span class="change-date">2026-10-12</span> <span class="change-hash">f6563d7</span><p>Wave 33: WAVELOG remote commit hash + verification detail</p></li>
       <li><span class="change-date">2026-10-12</span> <span class="change-hash">46ff995</span><p>Wave 35: WAVELOG fragment — fill commit SHAs + remote-push behavior note</p></li>
       <li><span class="change-date">2026-10-12</span> <span class="change-hash">e4f16d2</span><p>Wave 33: 9th teardown — Dragon Blue &#x27;The Production Office&#x27; + new agentic-production-office craft chapter &amp; HAND skill</p></li>
@@ -75,8 +79,7 @@
       <li><span class="change-date">2026-10-12</span> <span class="change-hash">8f5571f</span><p>Wave 30: WAVELOG remote commit hash + verification detail</p></li>
       <li><span class="change-date">2026-10-12</span> <span class="change-hash">55fb868</span><p>Wave 30: late-Q4 model field sweep — Vidu Q4 pricing correction, 15 record updates, +vivago R1 (30 models)</p></li>
       <li><span class="change-date">2026-10-12</span> <span class="change-hash">8ca2577</span><p>Wave 29: WAVELOG remote commit hash + verification detail</p></li>
-      <li><span class="change-date">2026-10-12</span> <span class="change-hash">fe3acc3</span><p>Wave 29: episode-pipeline revisit #4 — IMDA+TikTok programme rails, Douyin oversupply economics, AI-label compliance, oversupply-discipline craft judgment</p></li>
-      <li><span class="change-date">2026-10-12</span> <span class="change-hash">fb57cd6</span><p>Wave 28: WAVELOG remote commit hash + verification detail</p></li></ol>
+      <li><span class="change-date">2026-10-12</span> <span class="change-hash">fe3acc3</span><p>Wave 29: episode-pipeline revisit #4 — IMDA+TikTok programme rails, Douyin oversupply economics, AI-label compliance, oversupply-discipline craft judgment</p></li></ol>
       <p class="calc-note" style="margin-bottom:var(--space-7);">Older history lives in the repository's git log. The guide also ships <code>llms.txt</code> so agents can check freshness programmatically.</p>
     </section>
   </main>
@@ -84,6 +87,7 @@
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer"><a href="index.html">Guide</a><a href="skills.html">Skills</a><a href="workshop.html">Workshop</a><a href="quiz.html">Quiz</a><a href="compare.html">Compare</a><a href="gallery.html">Gallery</a><a href="teardown.html">Teardowns</a><a href="model-watch.html">Model watch</a><a href="checks/">Knowledge checks</a><a href="budget.html">Budget</a><a href="optimizer.html">Optimizer</a><a href="shots.html">Shot list</a><a href="style-bible.html">Style bible</a><a href="doctor.html">Doctor</a><a href="linter.html">Linter</a><a href="prompts.html">Prompts</a><a href="models/">Models</a><a href="anatomy.html">Anatomy</a><a href="manifesto.html">Manifesto</a><a href="craft-not-buttons.html">Craft, not buttons</a><a href="recipes.html">Recipes</a><a href="field-guides/">Field guides</a><a href="changelog.html">Changelog</a><a href="skill-spec.html">Skill spec</a><a href="api.html">API</a></nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>

@@ -43,7 +43,7 @@ CHAPTER_ORDER = {
 }
 
 CSS = ["assets/css/tokens.css", "assets/css/base.css", "assets/css/layout.css",
-       "assets/css/components.css", "assets/css/docs.css", "assets/css/print.css"]
+       "assets/css/components.css", "assets/css/motifs.css", "assets/css/docs.css", "assets/css/print.css"]
 
 NAV_ITEMS = [
     ("index.html", "Guide"),
@@ -115,6 +115,7 @@ PAGE_TMPL = """<!DOCTYPE html>
   {css}
 </head>
 <body>
+  <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container header-bar">
@@ -125,6 +126,7 @@ PAGE_TMPL = """<!DOCTYPE html>
       <nav class="site-nav" aria-label="Primary">
         {sitenav}
       </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
       <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
         <span aria-hidden="true">⌘K</span> Search
       </button>
@@ -134,8 +136,14 @@ PAGE_TMPL = """<!DOCTYPE html>
     <nav class="docs-nav" aria-label="Chapters">{nav}</nav>
     <main id="main" class="docs-main">
       <div class="progress-bar" aria-hidden="true"><span></span></div>
-      <p class="crumb"><a href="../index.html">Guide</a> / {section_name}</p>
-      <p class="read-time">{read_min} min read · {words} words</p>
+      <div class="progress-tc" aria-hidden="true">00:00:00:00</div>
+      <header class="reel-head">
+        <div class="reel-no"><small>REEL</small>{reel}</div>
+        <div>
+          <p class="crumb"><a href="../index.html">Guide</a> / {section_name}</p>
+          <p class="reel-meta"><span class="tc">{read_min} MIN</span> · {words} words · chapter {reel} of 29</p>
+        </div>
+      </header>
       <article class="prose">{body}</article>
       <nav class="prevnext" aria-label="Next and previous chapters">{prevnext}</nav>{check}
     </main>
@@ -145,6 +153,7 @@ PAGE_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <button type="button" class="back-to-top" aria-label="Back to top">↑</button>
@@ -171,6 +180,7 @@ INDEX_TMPL = """<!DOCTYPE html>
   {css}
 </head>
 <body>
+  <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container header-bar">
@@ -181,18 +191,46 @@ INDEX_TMPL = """<!DOCTYPE html>
       <nav class="site-nav" aria-label="Primary">
         {sitenav}
       </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
       <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
         <span aria-hidden="true">⌘K</span> Search
       </button>
     </div>
   </header>
   <main id="main">
-    <section class="hero hero-film" aria-labelledby="hero-title">
-      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
+    <section class="hero hero-cutroom" aria-labelledby="hero-title">
+      <div class="tl-deck" aria-hidden="true">
+        <div class="tl-chrome">
+          <span class="tl-rec"><i></i>REC</span>
+          <span class="tl-tc-live" data-tl-tc>00:00:04:00</span>
+          <span class="tl-title">AI_FILM_MASTER_GUIDE — ASSEMBLY_01</span>
+        </div>
+        <div class="tl-ruler">
+          <span style="left:0%">00:00:00:00</span><span style="left:20%">00:00:12:00</span><span style="left:40%">00:00:24:00</span><span style="left:60%">00:00:36:00</span><span style="left:80%">00:00:48:00</span><span style="left:100%">00:01:00:00</span>
+        </div>
+        <div class="tl-tracks">
+          <div class="tl-track"><span class="tl-track-label">V2</span>
+            <span class="clip is-blue" style="left:8%;width:20%">B-roll selects</span>
+            <span class="clip is-blue" style="left:33%;width:16%">Cutaways</span>
+            <span class="clip is-blue" style="left:64%;width:24%">Teardown frames</span>
+          </div>
+          <div class="tl-track"><span class="tl-track-label">V1</span>
+            <span class="clip is-gold" style="left:2%;width:30%">Opening — the hook</span>
+            <span class="clip is-gold" style="left:36%;width:26%">Craft chapters</span>
+            <span class="clip is-gold" style="left:66%;width:28%">Teardowns</span>
+          </div>
+          <div class="tl-track"><span class="tl-track-label">A1</span>
+            <span class="clip is-rec" style="left:10%;width:44%">Voiceover — tungsten room tone</span>
+            <span class="clip" style="left:58%;width:30%">Score — low strings</span>
+          </div>
+          <div class="tl-playhead"></div>
+        </div>
+        <div class="leader-frame" data-leader-frame><b>3</b><span class="lf-label">LEADER</span></div>
+      </div>
       <div class="container hero-inner">
         <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Professional AI filmmaking</span>
         <h1 id="hero-title">Make films with AI<br><span class="accent">like a studio.</span></h1>
-        <p class="lede">Twenty-three chapters on Higgsfield mastery, professional craft, directing performance, color grading, sound, economics, long-form pipelines, competition-entry craft, distribution, and rights — with separate tracks for animated/stylized and photorealistic production. Plus a machine-readable API and 192 task skills for agents.</p>
+        <p class="lede">Twenty-nine chapters on Higgsfield mastery, professional craft, directing performance, color grading, sound, economics, long-form pipelines, competition-entry craft, distribution, and rights — with separate tracks for animated/stylized and photorealistic production. Plus a machine-readable API and 231 task skills for agents.</p>
         <div class="btn-row">
           <a class="btn btn-gold" href="manifesto.html">Read the manifesto</a>
           <a class="btn" href="teardown.html">Shot-by-shot teardowns</a>
@@ -200,13 +238,13 @@ INDEX_TMPL = """<!DOCTYPE html>
           <a class="btn" href="craft-not-buttons.html">Craft, not buttons</a>
         </div>
         <div class="stat-strip">
-          <div class="stat"><div class="stat-value">23</div><div class="stat-label">Chapters</div></div>
+          <div class="stat"><div class="stat-value">29</div><div class="stat-label">Chapters</div></div>
           <div class="stat"><div class="stat-value">{total_read}</div><div class="stat-label">Total read time</div></div>
           <div class="stat"><div class="stat-value">47</div><div class="stat-label">Prompt templates</div></div>
           <div class="stat"><div class="stat-value">22</div><div class="stat-label">Camera moves</div></div>
           <div class="stat"><div class="stat-value">22</div><div class="stat-label">Models compared</div></div>
           <div class="stat"><div class="stat-value">79</div><div class="stat-label">Glossary terms</div></div>
-          <div class="stat"><div class="stat-value">192</div><div class="stat-label">Agent skills</div></div>
+          <div class="stat"><div class="stat-value">231</div><div class="stat-label">Agent skills</div></div>
         </div>
       </div>
     </section>
@@ -384,6 +422,7 @@ INDEX_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
@@ -394,6 +433,7 @@ INDEX_TMPL = """<!DOCTYPE html>
   </div>
   <script src="assets/js/palette.js"></script>
   <script src="assets/js/paths.js"></script>
+  <script src="assets/js/identity.js"></script>
 </body>
 </html>
 """
@@ -477,6 +517,7 @@ SKILLS_TMPL = """<!DOCTYPE html>
   {css}
 </head>
 <body>
+  <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container header-bar">
@@ -487,6 +528,7 @@ SKILLS_TMPL = """<!DOCTYPE html>
       <nav class="site-nav" aria-label="Primary">
         {sitenav}
       </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
       <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
         <span aria-hidden="true">⌘K</span> Search
       </button>
@@ -515,6 +557,7 @@ SKILLS_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <script src="assets/js/skills.js"></script>
@@ -532,6 +575,7 @@ BUDGET_TMPL = """<!DOCTYPE html>
   {css}
 </head>
 <body>
+  <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container header-bar">
@@ -542,6 +586,7 @@ BUDGET_TMPL = """<!DOCTYPE html>
       <nav class="site-nav" aria-label="Primary">
         {sitenav}
       </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
       <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
         <span aria-hidden="true">⌘K</span> Search
       </button>
@@ -597,6 +642,7 @@ BUDGET_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <script src="assets/js/budget.js"></script>
@@ -614,6 +660,7 @@ OPTIMIZER_TMPL = """<!DOCTYPE html>
   {css}
 </head>
 <body>
+  <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container header-bar">
@@ -624,6 +671,7 @@ OPTIMIZER_TMPL = """<!DOCTYPE html>
       <nav class="site-nav" aria-label="Primary">
         {sitenav}
       </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
       <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
         <span aria-hidden="true">⌘K</span> Search
       </button>
@@ -683,6 +731,7 @@ OPTIMIZER_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <script src="assets/js/palette.js"></script>
@@ -701,6 +750,7 @@ DOCTOR_TMPL = """<!DOCTYPE html>
   {css}
 </head>
 <body>
+  <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container header-bar">
@@ -711,6 +761,7 @@ DOCTOR_TMPL = """<!DOCTYPE html>
       <nav class="site-nav" aria-label="Primary">
         {sitenav}
       </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
       <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
         <span aria-hidden="true">⌘K</span> Search
       </button>
@@ -742,6 +793,7 @@ DOCTOR_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <script src="assets/js/palette.js"></script>
@@ -779,6 +831,7 @@ EPISODEPLANNER_TMPL = """<!DOCTYPE html>
   </style>
 </head>
 <body>
+  <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container header-bar">
@@ -789,6 +842,7 @@ EPISODEPLANNER_TMPL = """<!DOCTYPE html>
       <nav class="site-nav" aria-label="Primary">
         {sitenav}
       </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
       <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
         <span aria-hidden="true">⌘K</span> Search
       </button>
@@ -929,6 +983,7 @@ EPISODEPLANNER_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <script src="assets/js/palette.js"></script>
@@ -953,6 +1008,7 @@ HOOKGEN_TMPL = """<!DOCTYPE html>
   </style>
 </head>
 <body>
+  <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container header-bar">
@@ -963,6 +1019,7 @@ HOOKGEN_TMPL = """<!DOCTYPE html>
       <nav class="site-nav" aria-label="Primary">
         {sitenav}
       </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
       <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
         <span aria-hidden="true">⌘K</span> Search
       </button>
@@ -1021,6 +1078,7 @@ HOOKGEN_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <script src="assets/js/palette.js"></script>
@@ -1140,6 +1198,7 @@ STUDIO_TMPL = """<!DOCTYPE html>
   </style>
 </head>
 <body>
+  <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container header-bar">
@@ -1150,14 +1209,41 @@ STUDIO_TMPL = """<!DOCTYPE html>
       <nav class="site-nav" aria-label="Primary">
         {sitenav}
       </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
       <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
         <span aria-hidden="true">⌘K</span> Search
       </button>
     </div>
   </header>
   <main id="main">
-    <section class="hero hero-film" aria-labelledby="st-title-h">
-      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>★</b></div>
+    <section class="hero hero-cutroom" aria-labelledby="st-title-h">
+      <div class="tl-deck" aria-hidden="true">
+        <div class="tl-chrome">
+          <span class="tl-rec"><i></i>REC</span>
+          <span class="tl-tc-live" data-tl-tc>00:00:04:00</span>
+          <span class="tl-title">STUDIO_03 — PRODUCTION_PACKET</span>
+        </div>
+        <div class="tl-ruler">
+          <span style="left:0%">00:00:00:00</span><span style="left:20%">00:00:12:00</span><span style="left:40%">00:00:24:00</span><span style="left:60%">00:00:36:00</span><span style="left:80%">00:00:48:00</span><span style="left:100%">00:01:00:00</span>
+        </div>
+        <div class="tl-tracks">
+          <div class="tl-track"><span class="tl-track-label">V2</span>
+            <span class="clip is-blue" style="left:6%;width:22%">Reference frames</span>
+            <span class="clip is-blue" style="left:34%;width:20%">Style selects</span>
+          </div>
+          <div class="tl-track"><span class="tl-track-label">V1</span>
+            <span class="clip is-gold" style="left:2%;width:28%">Shot list</span>
+            <span class="clip is-gold" style="left:34%;width:24%">Budget pass</span>
+            <span class="clip is-gold" style="left:62%;width:30%">Schedule + bible</span>
+          </div>
+          <div class="tl-track"><span class="tl-track-label">A1</span>
+            <span class="clip is-rec" style="left:8%;width:40%">Plan narration</span>
+            <span class="clip " style="left:52%;width:34%">Score — low strings</span>
+          </div>
+          <div class="tl-playhead"></div>
+        </div>
+        <div class="leader-frame" data-leader-frame><b>3</b><span class="lf-label">LEADER</span></div>
+      </div>
       <div class="container hero-inner">
         <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Tools · Flagship</span>
         <h1 id="st-title-h">The Studio<span class="accent">.</span></h1>
@@ -1306,10 +1392,12 @@ STUDIO_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <script src="assets/js/palette.js"></script>
   <script src="assets/js/studio.js"></script>
+  <script src="assets/js/identity.js"></script>
 </body>
 </html>
 """
@@ -1324,6 +1412,7 @@ LINTER_TMPL = """<!DOCTYPE html>
   {css}
 </head>
 <body>
+  <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container header-bar">
@@ -1334,6 +1423,7 @@ LINTER_TMPL = """<!DOCTYPE html>
       <nav class="site-nav" aria-label="Primary">
         {sitenav}
       </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
       <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
         <span aria-hidden="true">⌘K</span> Search
       </button>
@@ -1373,6 +1463,7 @@ LINTER_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <script src="assets/js/palette.js"></script>
@@ -1391,6 +1482,7 @@ SHOTS_TMPL = """<!DOCTYPE html>
   {css}
 </head>
 <body>
+  <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container header-bar">
@@ -1401,6 +1493,7 @@ SHOTS_TMPL = """<!DOCTYPE html>
       <nav class="site-nav" aria-label="Primary">
         {sitenav}
       </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
       <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
         <span aria-hidden="true">⌘K</span> Search
       </button>
@@ -1499,6 +1592,7 @@ SHOTS_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <script src="assets/js/palette.js"></script>
@@ -1521,6 +1615,7 @@ STYLEBIBLE_TMPL = """<!DOCTYPE html>
   </style>
 </head>
 <body>
+  <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container header-bar">
@@ -1531,6 +1626,7 @@ STYLEBIBLE_TMPL = """<!DOCTYPE html>
       <nav class="site-nav" aria-label="Primary">
         {sitenav}
       </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
       <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
         <span aria-hidden="true">&#8984;K</span> Search
       </button>
@@ -1621,6 +1717,7 @@ STYLEBIBLE_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <script src="assets/js/palette.js"></script>
@@ -1639,6 +1736,7 @@ ANATOMY_TMPL = """<!DOCTYPE html>
   {css}
 </head>
 <body>
+  <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container header-bar">
@@ -1649,6 +1747,7 @@ ANATOMY_TMPL = """<!DOCTYPE html>
       <nav class="site-nav" aria-label="Primary">
         {sitenav}
       </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
       <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
         <span aria-hidden="true">⌘K</span> Search
       </button>
@@ -1696,6 +1795,7 @@ ANATOMY_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <script src="assets/js/palette.js"></script>
@@ -1743,6 +1843,7 @@ PROMPTS_TMPL = """<!DOCTYPE html>
   </style>
 </head>
 <body>
+  <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container header-bar">
@@ -1753,6 +1854,7 @@ PROMPTS_TMPL = """<!DOCTYPE html>
       <nav class="site-nav" aria-label="Primary">
         {sitenav}
       </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
       <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
         <span aria-hidden="true">⌘K</span> Search
       </button>
@@ -1861,6 +1963,7 @@ PROMPTS_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
@@ -1885,6 +1988,7 @@ WORKSHOP_TMPL = """<!DOCTYPE html>
   {css}
 </head>
 <body>
+  <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container header-bar">
@@ -1895,6 +1999,7 @@ WORKSHOP_TMPL = """<!DOCTYPE html>
       <nav class="site-nav" aria-label="Primary">
         {sitenav}
       </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
       <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
         <span aria-hidden="true">⌘K</span> Search
       </button>
@@ -1975,6 +2080,7 @@ WORKSHOP_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
@@ -1999,6 +2105,7 @@ QUIZ_TMPL = """<!DOCTYPE html>
   {css}
 </head>
 <body>
+  <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container header-bar">
@@ -2009,6 +2116,7 @@ QUIZ_TMPL = """<!DOCTYPE html>
       <nav class="site-nav" aria-label="Primary">
         {sitenav}
       </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
       <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
         <span aria-hidden="true">⌘K</span> Search
       </button>
@@ -2075,6 +2183,7 @@ QUIZ_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
@@ -2099,6 +2208,7 @@ COMPARE_TMPL = """<!DOCTYPE html>
   {css}
 </head>
 <body>
+  <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container header-bar">
@@ -2109,6 +2219,7 @@ COMPARE_TMPL = """<!DOCTYPE html>
       <nav class="site-nav" aria-label="Primary">
         {sitenav}
       </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
       <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
         <span aria-hidden="true">&#8984;K</span> Search
       </button>
@@ -2151,6 +2262,7 @@ COMPARE_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search" hidden>
@@ -2175,6 +2287,7 @@ GALLERY_TMPL = """<!DOCTYPE html>
   {css}
 </head>
 <body>
+  <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container header-bar">
@@ -2185,6 +2298,7 @@ GALLERY_TMPL = """<!DOCTYPE html>
       <nav class="site-nav" aria-label="Primary">
         {sitenav}
       </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
       <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
         <span aria-hidden="true">&#8984;K</span> Search
       </button>
@@ -2240,6 +2354,7 @@ GALLERY_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search" hidden>
@@ -2264,6 +2379,7 @@ CHANGELOG_TMPL = """<!DOCTYPE html>
   {css}
 </head>
 <body>
+  <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container header-bar">
@@ -2274,6 +2390,7 @@ CHANGELOG_TMPL = """<!DOCTYPE html>
       <nav class="site-nav" aria-label="Primary">
         {sitenav}
       </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
       <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
         <span aria-hidden="true">⌘K</span> Search
       </button>
@@ -2302,6 +2419,7 @@ CHANGELOG_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
@@ -2325,6 +2443,7 @@ SKILLSPEC_TMPL = """<!DOCTYPE html>
   {css}
 </head>
 <body>
+  <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container header-bar">
@@ -2335,6 +2454,7 @@ SKILLSPEC_TMPL = """<!DOCTYPE html>
       <nav class="site-nav" aria-label="Primary">
         {sitenav}
       </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
       <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
         <span aria-hidden="true">⌘K</span> Search
       </button>
@@ -2387,6 +2507,7 @@ SKILLSPEC_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
@@ -2410,6 +2531,7 @@ TEARDOWN_TMPL = """<!DOCTYPE html>
   {css}
 </head>
 <body>
+  <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container header-bar">
@@ -2420,14 +2542,42 @@ TEARDOWN_TMPL = """<!DOCTYPE html>
       <nav class="site-nav" aria-label="Primary">
         {sitenav}
       </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
       <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
         <span aria-hidden="true">⌘K</span> Search
       </button>
     </div>
   </header>
   <main id="main">
-    <section class="hero hero-film" aria-labelledby="td-title">
-      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
+    <section class="hero hero-cutroom" aria-labelledby="td-title">
+      <div class="tl-deck" aria-hidden="true">
+        <div class="tl-chrome">
+          <span class="tl-rec"><i></i>REC</span>
+          <span class="tl-tc-live" data-tl-tc>00:00:04:00</span>
+          <span class="tl-title">TEARDOWNS — SHOT_BY_SHOT</span>
+        </div>
+        <div class="tl-ruler">
+          <span style="left:0%">00:00:00:00</span><span style="left:20%">00:00:12:00</span><span style="left:40%">00:00:24:00</span><span style="left:60%">00:00:36:00</span><span style="left:80%">00:00:48:00</span><span style="left:100%">00:01:00:00</span>
+        </div>
+        <div class="tl-tracks">
+          <div class="tl-track"><span class="tl-track-label">V2</span>
+            <span class="clip is-blue" style="left:8%;width:20%">Selects</span>
+            <span class="clip is-blue" style="left:33%;width:16%">Cutaways</span>
+            <span class="clip is-blue" style="left:64%;width:24%">Alt takes</span>
+          </div>
+          <div class="tl-track"><span class="tl-track-label">V1</span>
+            <span class="clip is-gold" style="left:2%;width:30%">Dragon Blue — the take</span>
+            <span class="clip is-gold" style="left:36%;width:26%">Gaudette — selects</span>
+            <span class="clip is-gold" style="left:66%;width:28%">StoReel — assembly</span>
+          </div>
+          <div class="tl-track"><span class="tl-track-label">A1</span>
+            <span class="clip is-rec" style="left:10%;width:44%">Director commentary</span>
+            <span class="clip " style="left:58%;width:30%">Room tone</span>
+          </div>
+          <div class="tl-playhead"></div>
+        </div>
+        <div class="leader-frame" data-leader-frame><b>3</b><span class="lf-label">LEADER</span></div>
+      </div>
       <div class="container hero-inner">
         <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Learn to see</span>
         <h1 id="td-title">Shot-by-shot <span class="accent">teardowns.</span></h1>
@@ -2444,6 +2594,7 @@ TEARDOWN_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
@@ -2454,6 +2605,7 @@ TEARDOWN_TMPL = """<!DOCTYPE html>
   </div>
   <script src="assets/js/palette.js"></script>
   <script src="assets/js/teardown.js"></script>
+  <script src="assets/js/identity.js"></script>
 </body>
 </html>
 """
@@ -2468,6 +2620,7 @@ MANIFESTO_TMPL = """<!DOCTYPE html>
   {css}
 </head>
 <body>
+  <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container header-bar">
@@ -2478,6 +2631,7 @@ MANIFESTO_TMPL = """<!DOCTYPE html>
       <nav class="site-nav" aria-label="Primary">
         {sitenav}
       </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
       <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
         <span aria-hidden="true">⌘K</span> Search
       </button>
@@ -2521,6 +2675,7 @@ MANIFESTO_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
@@ -2544,6 +2699,7 @@ RECIPES_TMPL = """<!DOCTYPE html>
   {css}
 </head>
 <body>
+  <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container header-bar">
@@ -2554,6 +2710,7 @@ RECIPES_TMPL = """<!DOCTYPE html>
       <nav class="site-nav" aria-label="Primary">
         {sitenav}
       </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
       <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
         <span aria-hidden="true">&#8984;K</span> Search
       </button>
@@ -2584,6 +2741,7 @@ RECIPES_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide &mdash; research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
@@ -2639,6 +2797,7 @@ FIELDGUIDE_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
 </body>
@@ -2655,6 +2814,7 @@ FIELDGUIDES_INDEX_TMPL = """<!DOCTYPE html>
   {css}
 </head>
 <body>
+  <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container header-bar">
@@ -2665,6 +2825,7 @@ FIELDGUIDES_INDEX_TMPL = """<!DOCTYPE html>
       <nav class="site-nav" aria-label="Primary">
         {sitenav}
       </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
       <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
         <span aria-hidden="true">⌘K</span> Search
       </button>
@@ -2689,6 +2850,7 @@ FIELDGUIDES_INDEX_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
@@ -2931,6 +3093,7 @@ MODELWATCH_TMPL = """<!DOCTYPE html>
   {css}
 </head>
 <body>
+  <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container header-bar">
@@ -2941,6 +3104,7 @@ MODELWATCH_TMPL = """<!DOCTYPE html>
       <nav class="site-nav" aria-label="Primary">
         {sitenav}
       </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
       <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
         <span aria-hidden="true">&#8984;K</span> Search
       </button>
@@ -2976,6 +3140,7 @@ MODELWATCH_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <button type="button" class="back-to-top" aria-label="Back to top">&uarr;</button>
@@ -3059,6 +3224,7 @@ MODEL_TMPL = """<!DOCTYPE html>
   {css}
 </head>
 <body>
+  <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container header-bar">
@@ -3069,6 +3235,7 @@ MODEL_TMPL = """<!DOCTYPE html>
       <nav class="site-nav" aria-label="Primary">
         {sitenav}
       </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
       <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
         <span aria-hidden="true">&#8984;K</span> Search
       </button>
@@ -3125,6 +3292,7 @@ MODEL_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <button type="button" class="back-to-top" aria-label="Back to top">&uarr;</button>
@@ -3150,6 +3318,7 @@ MODELS_INDEX_TMPL = """<!DOCTYPE html>
   {css}
 </head>
 <body>
+  <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container header-bar">
@@ -3160,6 +3329,7 @@ MODELS_INDEX_TMPL = """<!DOCTYPE html>
       <nav class="site-nav" aria-label="Primary">
         {sitenav}
       </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
       <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
         <span aria-hidden="true">&#8984;K</span> Search
       </button>
@@ -3184,6 +3354,7 @@ MODELS_INDEX_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <button type="button" class="back-to-top" aria-label="Back to top">&uarr;</button>
@@ -3331,6 +3502,7 @@ CHECK_TMPL = """<!DOCTYPE html>
   {css}
 </head>
 <body>
+  <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container header-bar">
@@ -3341,6 +3513,7 @@ CHECK_TMPL = """<!DOCTYPE html>
       <nav class="site-nav" aria-label="Primary">
         {sitenav}
       </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
       <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
         <span aria-hidden="true">&#8984;K</span> Search
       </button>
@@ -3372,6 +3545,7 @@ CHECK_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <button type="button" class="back-to-top" aria-label="Back to top">&uarr;</button>
@@ -3397,6 +3571,7 @@ CHECKS_INDEX_TMPL = """<!DOCTYPE html>
   {css}
 </head>
 <body>
+  <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container header-bar">
@@ -3407,6 +3582,7 @@ CHECKS_INDEX_TMPL = """<!DOCTYPE html>
       <nav class="site-nav" aria-label="Primary">
         {sitenav}
       </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
       <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
         <span aria-hidden="true">&#8984;K</span> Search
       </button>
@@ -3433,6 +3609,7 @@ CHECKS_INDEX_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <button type="button" class="back-to-top" aria-label="Back to top">&uarr;</button>
@@ -3511,6 +3688,68 @@ def check_html(section_id, slug):
     )
 
 
+FOUR_OH_FOUR_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Missing reel — AI Film Master Guide</title>
+  <meta name="description" content="This reel is missing. The guide's other 29 chapters are intact.">
+  {css}
+</head>
+<body>
+  <div class="edge-right" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        {sitenav}
+      </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">⌘K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <div class="sprocket-strip" aria-hidden="true"></div>
+    <section class="container">
+      <div class="missing-reel">
+        <div class="leader-frame" data-leader-frame><b>3</b><span class="lf-label">LEADER</span></div>
+        <p class="kicker is-rec">Missing reel</p>
+        <h1>That reel <span class="accent">is missing.</span></h1>
+        <p class="lede" style="text-align:center;color:var(--ink-dim);max-width:52ch;margin:0 auto var(--space-5);">The footage you asked for never made it to the cutting room. The other 29 chapters, the Studio, and all nine teardowns are still on the shelf.</p>
+        <div class="btn-row" style="justify-content:center;">
+          <a class="btn btn-gold" href="index.html">Back to the guide</a>
+          <a class="btn" href="studio.html">Open the Studio</a>
+        </div>
+      </div>
+    </section>
+    <div class="sprocket-strip" aria-hidden="true"></div>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+    </div>
+  </footer>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
+    <div class="palette-box">
+      <input id="palette-input" type="search" placeholder="Search chapters, prompts, models…" autocomplete="off" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/identity.js"></script>
+</body>
+</html>
+"""
+
 def main():
     shutil.rmtree(SITE, ignore_errors=True)
     chapters = {}  # section_id -> [(slug, {title, desc, path})]
@@ -3530,7 +3769,7 @@ def main():
     font_links = (
         '<link rel="preconnect" href="https://fonts.googleapis.com">\n  '
         '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n  '
-        '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap">\n  '
+        '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap">\n  '
     )
     css_links = font_links + "\n  ".join(f'<link rel="stylesheet" href="{c}">' for c in CSS)
 
@@ -3555,7 +3794,7 @@ def main():
             css=css_links.replace('href="assets/', 'href="../assets/'),
             nav=nav, section_name=section_name, body=body, toc=toc,
             prevnext=prev_l + next_l, check=check_html(section_id, slug), read_min=c["read_min"],
-            words=f"{c['words']:,}",
+            words=f"{c['words']:,}", reel=f"{idx + 1:02d}",
             sitenav=nav_html("../", ""), footer=footer_html("../"),
         )
         out_dir = SITE / section_id
@@ -3573,13 +3812,13 @@ def main():
 
     # Landing
     grid_parts = []
-    for section_id, section_name in SECTIONS:
+    for s_idx, (section_id, section_name) in enumerate(SECTIONS):
         cards = "".join(
             f'<article class="card chapter-card"><h3><a href="{section_id}/{slug}.html">{c["title"]}</a></h3>'
             f'<p>{c["desc"]}</p><p class="card-meta">{c["read_min"]} min read</p></article>'
             for slug, c in chapters[section_id]
         )
-        grid_parts.append(f'<h3 class="section-h">{section_name}</h3><div class="chapter-grid">{cards}</div>')
+        grid_parts.append(f'<h3 class="section-h">{section_name} <span class="tc">00:{s_idx * 5:02d}:00:00</span></h3><div class="chapter-grid">{cards}</div>')
     total_read = fmt_total_minutes(sum(c["read_min"] for _, _, c in flat))
     (SITE / "index.html").write_text(INDEX_TMPL.format(
         css=css_links, chapter_grid="\n".join(grid_parts),
@@ -3670,6 +3909,8 @@ def main():
 
     # Studio (wave 15: flagship "plan my AI film" production-packet simulator)
     (SITE / "studio.html").write_text(STUDIO_TMPL.format(
+        css=css_links, sitenav=nav_html("", ""), footer=footer_html("")))
+    (SITE / "404.html").write_text(FOUR_OH_FOUR_TMPL.format(
         css=css_links, sitenav=nav_html("", ""), footer=footer_html("")))
 
     # Model deep dives (wave 11: one page per model + index, from models.json)

@@ -3,8 +3,29 @@
   "use strict";
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* Reading progress bar */
+  function pad(n) { return (n < 10 ? "0" : "") + n; }
+  function tcFromSeconds(total) {
+    var s = Math.floor(total) % 60;
+    var m = Math.floor(total / 60) % 60;
+    var h = Math.floor(total / 3600);
+    return pad(h) + ":" + pad(m) + ":" + pad(s) + ":00";
+  }
+
+  /* Timecode-stamped section headers — the cutting-room signature.
+     Each h2 gets the next mark on the reel: 45 seconds apart, from 00:00:45:00. */
+  var h2s = document.querySelectorAll(".prose h2");
+  Array.prototype.forEach.call(h2s, function (h, i) {
+    if (h.querySelector(".tc")) return;
+    var stamp = document.createElement("span");
+    stamp.className = "tc";
+    stamp.setAttribute("aria-hidden", "true");
+    stamp.textContent = tcFromSeconds((i + 1) * 45);
+    h.appendChild(stamp);
+  });
+
+  /* Reading progress bar + playhead timecode readout */
   var progress = document.querySelector(".progress-bar span");
+  var progressTc = document.querySelector(".progress-tc");
   if (progress) {
     var ticking = false;
     var update = function () {
@@ -12,6 +33,11 @@
       var max = h.scrollHeight - h.clientHeight;
       var p = max > 0 ? h.scrollTop / max : 0;
       progress.style.transform = "scaleX(" + p.toFixed(4) + ")";
+      if (progressTc) {
+        /* The chapter is the reel: map scroll progress to a 10-minute reel. */
+        progressTc.textContent = tcFromSeconds(p * 600);
+        progressTc.classList.toggle("show", p > 0.005 && p < 0.995);
+      }
       ticking = false;
     };
     window.addEventListener("scroll", function () {

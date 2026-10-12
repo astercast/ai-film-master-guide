@@ -7,11 +7,12 @@
   <meta name="description" content="Studio 2.0: the AI-film studio simulator. A standalone film (title, logline, genre/mood, runtime, quality tier) or a serialized series (3–10 episodes, one of the 5 proven serialized formats) in — a deterministic production packet out: shot list with per-shot prompts from the 47-template library, per-shot model picks with real cost math, budget table with 5×/20× envelopes, shooting schedule, series bible with locked prompt DNA, self-contained HTML packet export. Or plan a microdrama run: clip budget, $50/min benchmark, 3–5× retake budget, regen reserve, timeline — all from the documented $150-microdrama figures.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="assets/css/tokens.css">
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/layout.css">
   <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/motifs.css">
   <link rel="stylesheet" href="assets/css/docs.css">
   <link rel="stylesheet" href="assets/css/print.css">
   <style>
@@ -117,6 +118,7 @@
   </style>
 </head>
 <body>
+  <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container header-bar">
@@ -143,14 +145,41 @@
         <a href="skill-spec.html">Skill spec</a>
         <a href="api.html">API</a>
       </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
       <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
         <span aria-hidden="true">⌘K</span> Search
       </button>
     </div>
   </header>
   <main id="main">
-    <section class="hero hero-film" aria-labelledby="st-title-h">
-      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>★</b></div>
+    <section class="hero hero-cutroom" aria-labelledby="st-title-h">
+      <div class="tl-deck" aria-hidden="true">
+        <div class="tl-chrome">
+          <span class="tl-rec"><i></i>REC</span>
+          <span class="tl-tc-live" data-tl-tc>00:00:04:00</span>
+          <span class="tl-title">STUDIO_03 — PRODUCTION_PACKET</span>
+        </div>
+        <div class="tl-ruler">
+          <span style="left:0%">00:00:00:00</span><span style="left:20%">00:00:12:00</span><span style="left:40%">00:00:24:00</span><span style="left:60%">00:00:36:00</span><span style="left:80%">00:00:48:00</span><span style="left:100%">00:01:00:00</span>
+        </div>
+        <div class="tl-tracks">
+          <div class="tl-track"><span class="tl-track-label">V2</span>
+            <span class="clip is-blue" style="left:6%;width:22%">Reference frames</span>
+            <span class="clip is-blue" style="left:34%;width:20%">Style selects</span>
+          </div>
+          <div class="tl-track"><span class="tl-track-label">V1</span>
+            <span class="clip is-gold" style="left:2%;width:28%">Shot list</span>
+            <span class="clip is-gold" style="left:34%;width:24%">Budget pass</span>
+            <span class="clip is-gold" style="left:62%;width:30%">Schedule + bible</span>
+          </div>
+          <div class="tl-track"><span class="tl-track-label">A1</span>
+            <span class="clip is-rec" style="left:8%;width:40%">Plan narration</span>
+            <span class="clip " style="left:52%;width:34%">Score — low strings</span>
+          </div>
+          <div class="tl-playhead"></div>
+        </div>
+        <div class="leader-frame" data-leader-frame><b>3</b><span class="lf-label">LEADER</span></div>
+      </div>
       <div class="container hero-inner">
         <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Tools · Flagship</span>
         <h1 id="st-title-h">The Studio<span class="accent">.</span></h1>
@@ -299,9 +328,11 @@
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer"><a href="index.html">Guide</a><a href="skills.html">Skills</a><a href="workshop.html">Workshop</a><a href="quiz.html">Quiz</a><a href="compare.html">Compare</a><a href="gallery.html">Gallery</a><a href="teardown.html">Teardowns</a><a href="model-watch.html">Model watch</a><a href="checks/">Knowledge checks</a><a href="budget.html">Budget</a><a href="optimizer.html">Optimizer</a><a href="shots.html">Shot list</a><a href="style-bible.html">Style bible</a><a href="doctor.html">Doctor</a><a href="linter.html">Linter</a><a href="prompts.html">Prompts</a><a href="models/">Models</a><a href="anatomy.html">Anatomy</a><a href="manifesto.html">Manifesto</a><a href="craft-not-buttons.html">Craft, not buttons</a><a href="recipes.html">Recipes</a><a href="field-guides/">Field guides</a><a href="changelog.html">Changelog</a><a href="skill-spec.html">Skill spec</a><a href="api.html">API</a></nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <script src="assets/js/palette.js"></script>
   <script src="assets/js/studio.js"></script>
+  <script src="assets/js/identity.js"></script>
 </body>
 </html>

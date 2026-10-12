@@ -2,11 +2,12 @@
    Components — buttons, cards, inputs, dialogs, tool widgets
    ============================================================ */
 
-/* ——— Buttons ——— */
+/* ——— Buttons: cutting-room transport chrome ——— */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
   border: 1px solid var(--line-bright); background: var(--panel-2); color: var(--ink);
-  font-family: var(--font-display); font-weight: 500; font-size: 0.92rem; letter-spacing: 0.06em; text-transform: uppercase;
+  font-family: var(--font-display); font-weight: 650; font-stretch: 75%;
+  font-size: 0.92rem; letter-spacing: 0.06em; text-transform: uppercase;
   padding: var(--space-2) var(--space-4); border-radius: var(--radius-m); cursor: pointer; text-decoration: none;
   transition: background var(--dur-1) var(--ease), border-color var(--dur-1) var(--ease),
               transform var(--dur-1) var(--ease), box-shadow var(--dur-2) var(--ease);
@@ -69,7 +70,7 @@ label.field-label, .field label { display: block; font-family: var(--font-mono);
 input[type="range"] { accent-color: var(--gold); }
 input[type="checkbox"], input[type="radio"] { accent-color: var(--gold); }
 
-.empty-state { text-align: center; padding: var(--space-8) var(--space-5); color: var(--muted); border: 1px dashed var(--line-bright); border-radius: var(--radius-l); background: rgba(255, 255, 255, 0.01); }
+/* (empty-state lives in motifs.css — the NO FOOTAGE slate) */
 
 /* ——— Command palette ——— */
 .palette {

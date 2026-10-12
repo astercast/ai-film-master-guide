@@ -2,7 +2,81 @@
 
 ## Standing items (permanent workstreams)
 
-- **Episode pipeline workstream (permanent, from wave 14):** revisit every ~3 waves — new episode formats from what's working, new tools, tighter procedures, worked examples. Goal: best agent-run episode-production system anywhere. (WAVELOG entry each revisit; the research artifact lives at `~/workspace/tiktok-episode-pipeline/PIPELINE.md`.) **Last revisited: wave 32 (2026-10-11) — HeyGen Voice TTS tooling note, YouTube Feb-2027 monetization thresholds, Sundance+TikTok series-development discipline, TikTok's own production push, Shortical off-screen-lives technique. Next revisit ~wave 36 (wave 35 shipped the documentary-ethics chapter instead).**
+- **Episode pipeline workstream (permanent, from wave 14):** revisit every ~3 waves — new episode formats from what's working, new tools, tighter procedures, worked examples. Goal: best agent-run episode-production system anywhere. (WAVELOG entry each revisit; the research artifact lives at `~/workspace/tiktok-episode-pipeline/PIPELINE.md`.) **Last revisited: wave 32 (2026-10-11) — HeyGen Voice TTS tooling note, YouTube Feb-2027 monetization thresholds, Sundance+TikTok series-development discipline, TikTok's own production push, Shortical off-screen-lives technique. Next revisit ~wave 37 (wave 36 was the Cutting Room identity rework).**
+
+## Wave 36 — "The Cutting Room" visual identity rework (wave 1) (2026-10-11)
+
+**Assignment:** the user's top-priority directive — a massive visual-identity overhaul
+at award-winning standard ("this could win Site of the Day"), per
+`~/workspace/design-identity-brief.md`. Scope: the core design system — typography,
+color/texture, motifs, motion language — applied to the homepage + chapter template +
+Studio + teardown viewer (the highest-traffic page types). Content, tools, data, and
+API surfaces untouched. Generator-owns-output split respected throughout: all CSS
+work in root `assets/` (the source), templates in `scripts/build_site.py`, `site/`
+rebuilt by the generator; wave-33 lesson honored (never edited `site/assets/*`
+directly). Techniques borrowed from the `web-craft` research reports
+(view-timeline-free CSS playhead, motion-token system, variable-font width axes,
+scroll-driven progress, static-first reduced-motion variants) as *techniques* —
+the identity is original, not a copy.
+
+**Typography (the biggest single change).**
+- Display: **Archivo variable** (wdth 62–125, wght 100–900) replaces Oswald —
+  condensed industrial leader typography; heroes and headings set at
+  `font-stretch: 62%`, weight 800, uppercase. Distinctive, not the safe choice.
+- Long craft chapters: **Newsreader variable** (optical sizing) — warm readable
+  serif for `.prose` (body stays Inter for tool UI; JetBrains Mono stays for
+  timecode). Drop cap now sets in Archivo condensed.
+- Fluid display scale on a 1.333 ratio; `text-wrap: balance` on headlines
+  (Baseline), `pretty` on prose (progressive enhancement).
+
+**Color/texture.** Deepened blacks (`--bg #090807`), tungsten + REC-red accents
+kept, ember-deep added for AA-safe text-on-red. Grain kept at whisper level;
+sprocket-strip token (`--sprocket`) tuned once and reused for every film edge.
+Selection is now REC red (`#c81e23`, white text, 5.73:1 — AA). Scrollbars carry a
+sprocket-dotted thumb. Focus ring sharpened (2px tungsten + halo).
+
+**Signature motifs (shipped).**
+- **Editing-timeline heroes** (homepage, Studio, teardown viewer): a real
+  cutting-room deck — REC indicator, live timecode readout, timecode ruler,
+  three clip-block tracks (V2/V1/A1), and a playhead that sweeps the deck
+  (pure CSS, 16s loop; reduced-motion: static frame).
+- **Leader-countdown frame**: a 3→2→1 leader circle in every new hero that ticks
+  once on load with frame-advance steps, then rests on "ROLLING" (reduced-motion:
+  static "READY"). New `assets/js/identity.js` drives it plus the header
+  timecode ticker and hero TC readout.
+- **Sprocket-hole page edges** on ≥1440px viewports; sprocket dividers top/bottom
+  of heroes and above the footer; a `.sprocket-strip` divider component.
+- **Timecode-stamped section headers**: every chapter `h2` gets a TC stamp
+  (docs.js, 45s apart along the reel, aria-hidden); homepage section headers
+  carry reel TCs; stat cards are slate cards with ruler ticks.
+- **REEL framing for chapters**: new `.reel-head` slate on every chapter page —
+  REEL number (01–29 across the flat chapter order), breadcrumb, read-time and
+  word count as TC-styled metadata; reading progress bar gained a live
+  playhead-timecode readout.
+- **Teardown viewer as a timeline**: clip-strip of per-shot clip buttons with TC
+  labels above the stepper (click/keyboard-jumpable), and each shot card opens
+  with a viewer head (REC dot, shot n/N, TC, film title).
+- **Custom details**: brand mark rebuilt as a 35mm film frame (sprockets +
+  "AF" in the gate); footer tail-leader sprocket strip + timecode colophon;
+  empty states restyled as "NO FOOTAGE" slates; new **404 page** ("That reel is
+  missing") with leader frame and sprocket strips.
+
+**Motion language.** Playhead sweeps, leader-countdown ticks, frame-advance
+`steps()`; entrances decelerate with 55ms sibling stagger; every motion element
+reduced-motion-gated to a real static final state (not just killed).
+Mobile-first; contrast re-verified on every new texture (muted 7.47:1,
+selection 5.73:1).
+
+**Also fixed (stale homepage stats, same diff):** 23→29 chapters, 192→231 skills,
+"Twenty-three chapters" lede. Teach-craft framing untouched.
+
+**Validation:** `bash scripts/validate.sh` → **13/13 green, ALL STAGES PASS**;
+0 broken relative links across 7,324 checked; studio.test.js 70 pass;
+agent-workflows 74 pass; generator-owns-output audits clean (skills byte-identical,
+llms.txt zero-diff).
+
+**Wave 2 (later):** extend the identity to remaining page types (tools, data
+views, docs), full custom-details audit — per the brief's sequencing.
 
 ## Wave 35 — New deep craft chapter: "Documentary Ethics for AI Footage" (2026-10-11)
 
