@@ -70,17 +70,24 @@ chrome/puppeteer profiles → renderer crashes; freed ~110M of dead profiles
 chrome-headless-shell for screenshots (no virtual-time-budget per the
 scroll-animation hang lesson).
 
-**Also folded in (urgent deploy lesson, 2026-10-12):** Vercel rejects
-`"runtime": "nodejs22.x"` ("Function Runtimes must have a valid version") —
-all 5 first-deployed live repos failed validation. `vercel.json` functions
-runtime → `nodejs20.x` (JSON re-validated, parses OK); `LIVE_CHECKLIST.md`
-updated (header + known-good section) with the lesson line. Git identity:
+**Also folded in (deploy lesson, 2026-10-12 — corrected twice same night):**
+first attempt set the `functions` runtime to `nodejs20.x` (Vercel had
+rejected `nodejs22.x`); correction 1: ANY `runtime` value fails validation
+for Node — `runtime` is only for community/unsupported runtimes (npm package
+name like `vercel-php@0.5.2`); correction 2: empty `{}` ALSO fails ("Function
+must contain at least one property"). Final state: `functions` lists the 5
+routes as explicit paths (never broad globs — keeps static files under
+`api/` like `api/v1/trends.flat.js` from deploying as functions), each with
+`{"maxDuration": 10}` (matches the 10s Hobby execution limit), no `runtime`
+key anywhere. `LIVE_CHECKLIST.md` carries the exact rule. Git identity:
 repo-local `mikey@hatch.local` override removed per the 2026-10-12 hard rule
 — commits now use the global `astercast` / noreply address.
 
-**Commit:** local `PENDING` → pushed 2026-10-12 as remote commit `PENDING`;
-remote `main` HEAD matched the pushed SHA; GitHub Trees API verified: tree
-not truncated, key wave files present, local HEAD tree == remote tree.
+**Commit:** local `36d148b` (121 files) → pushed 2026-10-12 as remote commit
+`234a62f1c4a4c4221c68043cd2def605ba929a0d`; remote `main` HEAD matched the
+pushed SHA; GitHub Trees API verified: 631 entries, not truncated, all 12 key
+wave files present, local HEAD tree == remote tree (`c002871f`), fonts.css
+blob SHA matches. Push succeeded on the first attempt — no 400s this wave.
 Remote track verified pre-push: `astercast/ai-film-master-guide` (working
 repo, not `-live`).
 
