@@ -20,6 +20,8 @@
 
 **Validation:** `bash scripts/validate.sh` → ALL STAGES PASS (13/13, run post-commit); link check 0 broken; studio.test.js 43/43 (4 new assertions inside the series-packet optimizer test); agent-workflows.test.js 60/60; generator audits clean (skills byte-identical, prompt-templates.json == artifact parser, llms.txt zero-diff).
 
+**Commit:** local `33e6d1b` → pushed 2026-10-11 as remote commit `3c6b00d1abc106b5837f9a5633680d900ac39b73`; 27 files; all 15 key files verified present in the remote tree via GitHub API (553 tree entries, 0 missing; remote `api/v1/teardowns.json` blob confirmed to contain `storeel-off-campus`).
+
 **Next episode-pipeline revisit:** ~wave 29.
 
 ## Wave 26 — EPISODE PIPELINE revisit #3 (2026-10-11)
