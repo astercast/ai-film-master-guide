@@ -36,7 +36,7 @@
 
 **Validation:** (post-commit) `bash scripts/validate.sh` → ALL STAGES PASS (13/13); link check 0 broken; studio.test.js 50/50; agent-workflows.test.js 74/74; generator audits clean (skills byte-identical, prompt-templates.json == artifact parser, llms.txt zero-diff).
 
-**Commit:** local `<hash>` → pushed 2026-10-11 as remote commit `<rhash>`; remote `main` HEAD matches the pushed SHA; key files verified present in the remote tree via GitHub API.
+**Commit:** local `fe3acc3` → pushed 2026-10-11 as remote commit `dbf6e825dea9fdc316d423057932be1647f3ff77`; remote `main` HEAD matches the pushed SHA; all 12 key files verified present in the remote tree via GitHub API (554 tree entries, 0 missing).
 
 **Next episode-pipeline revisit:** ~wave 32.
 
