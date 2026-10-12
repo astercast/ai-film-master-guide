@@ -33,6 +33,8 @@
 
 **Validation:** `bash scripts/validate.sh` → ALL STAGES PASS (13/13, run post-commit); 6,783 relative links, 0 broken; studio.test.js 43/43; agent-workflows.test.js 60/60; generator audits clean (skills byte-identical, prompt-templates.json == artifact parser, llms.txt zero-diff).
 
+**Commit:** `3384b5e531246297e2ceca80ace3ede284a2a6f4` ([view](https://github.com/astercast/ai-film-master-guide/commit/2b4db53fd7cda5a5dfd70e4b171600279b4734dc)) — 18 files, pushed 2026-10-11 as remote commit `2b4db53fd7cda5a5dfd70e4b171600279b4734dc`; all 8 new/changed key files verified present in the remote tree via GitHub API (490 tree entries, 0 missing; blob SHAs match local).
+
 **Next revisit:** ~wave 29.
 
 ## Wave 25 — Prompt library explorer (2026-10-11)
