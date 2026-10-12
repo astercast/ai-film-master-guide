@@ -198,17 +198,11 @@
     return picks;
   }
 
-  function fillPrompt(tmpl, genre, tier) {
-    var fills = {
-      SUBJECT: "the protagonist",
-      "SUBJECT A": "the lead",
-      "SUBJECT B": "the co-lead",
-      ENV: genre.env,
-      LIGHT: genre.light,
-      STYLE: genre.style + ", " + (tier === "draft"
-        ? "draft pass — loose, fast, coverage first"
-        : "festival grade — color-locked, cinematic")
-    };
+  function fillPrompt(tmpl, genre, tier, overrides) {
+    var fills = slotFills(tmpl, genre, tier);
+    if (overrides) {
+      Object.keys(overrides).forEach(function (k) { fills[k] = overrides[k]; });
+    }
     var unfilled = [];
     var text = String(tmpl.prompt).replace(TOK, function (tok, inner) {
       var name = inner.split(":")[0].trim().toUpperCase();
@@ -991,6 +985,8 @@
       }
       L.push("");
     });
+    var refMd = refinementsToMarkdown(plan);
+    if (refMd) { L.push(refMd); L.push(""); }
     L.push("## Model picks");
     L.push("");
     plan.modelPicks.forEach(function (p) {
@@ -1107,6 +1103,8 @@
         L.push("");
       });
     });
+    var refMdS = refinementsToMarkdown(plan);
+    if (refMdS) { L.push(refMdS); L.push(""); }
     L.push("## Budget");
     L.push("");
     L.push("| Line item | Math | Cost |");
@@ -1191,7 +1189,7 @@
       plan.runtimeSec + "s · " + escHtml(b.genreLabel) + " · " + escHtml(b.tierLabel) +
       " tier · " + plan.totalShots + " total shots · seed <code>" + escHtml(plan.seed) +
       "</code></p>");
-    H.push('<p class="meta">Planned by Studio 2.0 (AI Film Master Guide). Rates are third-party estimates at $0.0392/credit — verify live before spending.</p>');
+    H.push('<p class="meta">Planned by Studio 3.0 (AI Film Master Guide). Rates are third-party estimates at $0.0392/credit — verify live before spending.</p>');
     H.push("<h2>Series bible — locked before generation</h2>");
     H.push("<p>The prompt DNA below is prepended verbatim to every shot prompt in every episode. It never changes mid-series.</p>");
     H.push("<pre>" + escHtml(b.dnaLines.join("\n")) + "</pre>");
@@ -1218,6 +1216,8 @@
       H.push("<li><strong>Turn:</strong> " + escHtml(a.turn) + "</li>");
       H.push("<li><strong>Cliffhanger:</strong> " + escHtml(a.cliff) + "</li></ul></div>");
     });
+    var refHtml = refinementsToHtml(plan);
+    if (refHtml) H.push(refHtml);
     H.push("<h2>Budget</h2>");
     H.push("<table><thead><tr><th scope=\"col\">Line item</th><th scope=\"col\">Math</th><th scope=\"col\">Cost</th></tr></thead><tbody>");
     plan.budget.lines.forEach(function (l) {
@@ -1492,7 +1492,8 @@
     var modes = {
       cheapest: { key: "cheapest", label: "Cheapest viable", total: 0, complete: true, shots: 0 },
       balanced: { key: "balanced", label: "Balanced (Studio defaults)", total: 0, complete: true, shots: 0 },
-      bestrated: { key: "bestrated", label: "Best rated", total: 0, complete: true, shots: 0 }
+      bestrated: { key: "bestrated", label: "Best rated", total: 0, complete: true, shots: 0 },
+      draftfinal: { key: "draftfinal", label: "Draft cheap, finish flagship", total: 0, complete: true, shots: 0 }
     };
     var perShot = [], byModel = {}, byEpisode = [];
     var verifyLive = {}, ineligible = [], unpriced = [];
@@ -1500,7 +1501,7 @@
 
     groups.forEach(function (g) {
       var ep = { label: g.label || "Film", cheapest: 0, balanced: 0, bestrated: 0,
-        shots: g.shots.length, unpriced: 0 };
+        draftfinal: 0, shots: g.shots.length, unpriced: 0 };
       g.shots.forEach(function (s, i) {
         var needsAudio = share > 0 &&
           Math.floor((i + 1) * share / 100) > Math.floor(i * share / 100);
@@ -1529,6 +1530,17 @@
           .sort(function (a, b) { return a.rank.order - b.rank.order; })[0] || null,
           s.duration, g.takes);
 
+        /* Draft cheap, finish flagship: the first takes-1 takes run at the
+           cheapest viable rate, the keeper take at the best-rated model.
+           The Oct 2026 pricing reality (AI-video-models research mission,
+           2026-10-11): draft/turbo tiers for coverage, flagship rates for
+           the takes that ship. */
+        var splitCost = null;
+        if (cheap && ranked && g.takes >= 1) {
+          splitCost = g.takes === 1 ? ranked.cost
+            : r2((cheap.cost / g.takes) * (g.takes - 1) + (ranked.cost / g.takes));
+        }
+
         var row = {
           ref: (g.label ? g.label + " \u00B7 " : "") + "Shot " + s.n,
           duration: s.duration, takes: g.takes,
@@ -1544,10 +1556,17 @@
           if (pair[1]) { mk.total = r2(mk.total + pair[1].cost); mk.shots++; }
           else { mk.complete = false; }
         });
+        if (splitCost !== null) {
+          modes.draftfinal.total = r2(modes.draftfinal.total + splitCost);
+          modes.draftfinal.shots++;
+        } else {
+          modes.draftfinal.complete = false;
+        }
         if (bal) {
           ep.balanced = r2(ep.balanced + bal.cost);
           if (cheap) ep.cheapest = r2(ep.cheapest + cheap.cost);
           if (ranked) ep.bestrated = r2(ep.bestrated + ranked.cost);
+          if (splitCost !== null) ep.draftfinal = r2(ep.draftfinal + splitCost);
           var bm = byModel[bal.model] || { model: bal.model, platform: bal.platform,
             shots: 0, usd: 0, usdps: bal.usdps, kind: bal.kind };
           bm.shots++; bm.usd = r2(bm.usd + bal.cost);
@@ -1633,6 +1652,11 @@
     L.push("| **Best rated** | " + (opt.modes.bestrated.complete ? fmtUSD(r) : "incomplete") +
       " | " + delta(opt.modes.bestrated.complete ? r : null) +
       " | top documented arena/leaderboard model per shot (boards differ — see rank notes) |");
+    var df = opt.modes.draftfinal;
+    L.push("| **Draft cheap, finish flagship** | " + (df.complete ? fmtUSD(df.total) : "incomplete") +
+      " | " + delta(df.complete ? df.total : null) +
+      " | coverage takes at the cheapest viable rate, the keeper take at the best-rated model — " +
+      "the Oct 2026 pricing reality (draft tiers for drafts, flagship rates for finals) |");
     return L;
   }
 
@@ -1645,7 +1669,7 @@
     L.push("_Basis:_ resolution bar " + optResLabel(opt.resBar) + " · " + opt.audioShare +
       "% of shots need native audio (spread evenly) · " + opt.takes + " takes per keeper. " + opt.basis);
     L.push("");
-    L.push("### Three budget modes");
+    L.push("### Four budget modes");
     L.push("");
     L = L.concat(optModeTableMd(opt));
     L.push("");
@@ -1738,9 +1762,10 @@
     H.push('<p class="meta"><strong>Basis:</strong> resolution bar ' + escHtml(optResLabel(opt.resBar)) +
       " · " + opt.audioShare + "% of shots need native audio (spread evenly) · " + opt.takes +
       " takes per keeper. " + escHtml(opt.basis) + "</p>");
-    H.push("<h3>Three budget modes</h3>");
+    H.push("<h3>Four budget modes</h3>");
     var b = opt.modes.balanced.total, c = opt.modes.cheapest.total;
     var rOk = opt.modes.bestrated.complete, r = opt.modes.bestrated.total;
+    var dfOk = opt.modes.draftfinal.complete, dfT = opt.modes.draftfinal.total;
     function dHtml(x) {
       if (x === null) return "n/a";
       var d = Math.round((b - x) * 100) / 100;
@@ -1762,6 +1787,10 @@
     H.push("<tr><td><strong>Best rated</strong></td><td><strong>" + (rOk ? escHtml(fmtUSD(r)) : "incomplete") +
       "</strong></td><td>" + dHtml(rOk ? r : null) + "</td><td>Top documented arena/leaderboard model per shot " +
       "(boards differ — see rank notes).</td></tr>");
+    H.push("<tr><td><strong>Draft cheap, finish flagship</strong></td><td><strong>" +
+      (dfOk ? escHtml(fmtUSD(dfT)) : "incomplete") +
+      "</strong></td><td>" + dHtml(dfOk ? dfT : null) + "</td><td>Coverage takes at the cheapest viable rate, " +
+      "the keeper take at the best-rated model — the Oct 2026 pricing reality.</td></tr>");
     H.push("</tbody></table>");
     H.push("<h3>Where the money goes (balanced mode)</h3>");
     H.push("<table><thead><tr><th scope=\"col\">Model</th><th scope=\"col\">Shots</th>" +
@@ -1847,6 +1876,303 @@
     return H.join("\n");
   }
 
+  /* ---- Studio 3.0: the Shot Refinery ---------------------------------------
+     Per-shot prompt refinement loop. The five fields are the documented
+     five-field shot spec from the Gaudette build (wave-31 teardown
+     gaudette-mother-could-love: character design, camera movement, colour
+     palette, emotional register, visual grammar) — the structure a documented
+     solo production used to keep eight minutes of AI footage coherent.
+     Refining changes WORDS only: the shot's model, duration, and take count
+     never move, so budget and schedule are byte-identical before and after.
+     Pure engine (no DOM); the browser dialog lives further below. */
+
+  var REFINERY_FIELDS = [
+    { key: "character", label: "Character design",
+      help: "Who is in frame — the lockable visual facts (face, hair, costume, distinguishing marks). Overrides the [SUBJECT] slot." },
+    { key: "camera", label: "Camera movement", kind: "movement",
+      help: "One move from the guide's camera lexicon — the documented build specs exactly one move per shot. Empty keeps the template's move." },
+    { key: "palette", label: "Colour palette",
+      help: "The grade in words — dominant hues, contrast, temperature. Overrides the [LIGHT] slot." },
+    { key: "register", label: "Emotional register",
+      help: "What the shot should feel like — one emotion, named plainly." },
+    { key: "grammar", label: "Visual grammar",
+      help: "Framing and composition — shot size, angle, where the eye lands." }
+  ];
+
+  /* The slot map fillPrompt applies, exposed so the refinery can read and
+     override the exact values the engine used. */
+  function slotFills(tmpl, genre, tier) {
+    return {
+      SUBJECT: "the protagonist",
+      "SUBJECT A": "the lead",
+      "SUBJECT B": "the co-lead",
+      ENV: genre.env,
+      LIGHT: genre.light,
+      STYLE: genre.style + ", " + (tier === "draft"
+        ? "draft pass — loose, fast, coverage first"
+        : "festival grade — color-locked, cinematic")
+    };
+  }
+
+  /* Initial field values for a shot: what the engine actually put in the
+     prompt (character, palette); blanks where the filmmaker decides. */
+  function refineryInit(shot, genre, tier) {
+    var fills = slotFills(null, genre, tier);
+    return {
+      character: fills.SUBJECT,
+      camera: "",
+      palette: fills.LIGHT,
+      register: "",
+      grammar: ""
+    };
+  }
+
+  /* Trim + validate. movements = [{id, move}] from camera-movements.json, or
+     null when the lexicon hasn't loaded (the camera check is then skipped). */
+  function validateRefineryFields(fields, movements) {
+    var ids = {};
+    (movements || []).forEach(function (m) { ids[m.id] = m.move || m.id; });
+    var out = {};
+    REFINERY_FIELDS.forEach(function (f) {
+      var v = String(fields[f.key] == null ? "" : fields[f.key]).trim();
+      if (f.kind === "movement" && v && movements && !ids[v]) {
+        throw new Error("unknown camera movement: " + v);
+      }
+      out[f.key] = v;
+    });
+    return out;
+  }
+
+  /* Rebuild the shot's prompt from its template with the filmmaker's slot
+     overrides, then append the five-field spec as an explicit direction
+     block. Deterministic: same template + fields -> same prompt. */
+  function buildRefinedPrompt(tmpl, genre, tier, fields, movements) {
+    var clean = validateRefineryFields(fields, movements);
+    var overrides = {};
+    if (clean.character) {
+      overrides.SUBJECT = clean.character;
+      overrides["SUBJECT A"] = clean.character;
+    }
+    if (clean.palette) overrides.LIGHT = clean.palette;
+    var base = fillPrompt(tmpl, genre, tier, overrides);
+    var ids = {};
+    (movements || []).forEach(function (m) { ids[m.id] = m.move || m.id; });
+    var spec = [];
+    REFINERY_FIELDS.forEach(function (f) {
+      var v = clean[f.key];
+      if (!v) return;
+      if (f.kind === "movement" && ids[v]) v = ids[v] + " (" + v + ")";
+      spec.push(f.label + ": " + v);
+    });
+    var text = base.text;
+    if (spec.length) text += "\n\nRefinement — five-field spec: " + spec.join(" · ");
+    return { text: text, unfilled: base.unfilled, fields: clean };
+  }
+
+  /* Address a shot inside a built plan. ref = { episode: null|number, index }. */
+  function findRefinedShots(plan, ref) {
+    var list = plan.shots;
+    if (ref.episode != null) {
+      var ep = (plan.episodes || []).filter(function (e) { return e.episode === ref.episode; })[0];
+      if (!ep) throw new Error("unknown episode: " + ref.episode);
+      list = ep.shots;
+    }
+    if (!list || ref.index < 0 || ref.index >= list.length) {
+      throw new Error("unknown shot index: " + ref.index);
+    }
+    return list[ref.index];
+  }
+
+  /* Write a refined prompt back into a built plan. Keeps the full round
+     history on the shot; the generated prompt is kept once as
+     shot.originalPrompt so "restore original" is always possible. */
+  function refineShotInPlan(plan, ref, newPrompt, fields) {
+    var shot = findRefinedShots(plan, ref);
+    if (!shot.originalPrompt) shot.originalPrompt = shot.prompt;
+    var clean = validateRefineryFields(fields, null);
+    var entry = {
+      round: (shot.refinements || []).length + 1,
+      at: new Date().toISOString(),
+      fields: clean,
+      prompt: String(newPrompt)
+    };
+    shot.refinements = (shot.refinements || []).concat([entry]);
+    shot.prompt = entry.prompt;
+    shot.refined = true;
+    return entry;
+  }
+
+  /* Revert a shot to its generated prompt. History stays on the shot;
+     exports only list shots currently marked refined. */
+  function revertRefinement(plan, ref) {
+    var shot = findRefinedShots(plan, ref);
+    if (!shot.originalPrompt) throw new Error("shot was never refined");
+    var entry = {
+      round: (shot.refinements || []).length + 1,
+      at: new Date().toISOString(),
+      reverted: true,
+      fields: {},
+      prompt: shot.originalPrompt
+    };
+    shot.refinements = (shot.refinements || []).concat([entry]);
+    shot.prompt = shot.originalPrompt;
+    shot.refined = false;
+    return entry;
+  }
+
+  /* Every currently-refined shot, for the packet exports. */
+  function planRefinements(plan) {
+    var out = [];
+    function walk(prefix, shots) {
+      (shots || []).forEach(function (s) {
+        if (s.refined) out.push({ ref: prefix + "Shot " + s.n, shot: s });
+      });
+    }
+    if (plan.episodes) {
+      plan.episodes.forEach(function (ep) { walk("E" + ep.episode + " · ", ep.shots); });
+    } else {
+      walk("", plan.shots);
+    }
+    return out;
+  }
+
+  function refinementsToMarkdown(plan) {
+    var refs = planRefinements(plan);
+    if (!refs.length) return "";
+    var L = ["## Shot refinements", "",
+      "Per-shot prompt refinements from the Studio's Shot Refinery. The five-field spec " +
+      "(character design, camera movement, colour palette, emotional register, visual grammar) " +
+      "is the structure of the documented Gaudette build — see the guide's Teardowns page. " +
+      "Refining changes words only: model, duration, and take counts are untouched, so the " +
+      "budget and schedule still hold.", ""];
+    refs.forEach(function (r) {
+      var s = r.shot;
+      L.push("### " + r.ref + " — refined ×" + (s.refinements || []).length);
+      L.push("");
+      (s.refinements || []).forEach(function (e) {
+        if (e.reverted) {
+          L.push("- Round " + e.round + " (" + e.at + "): reverted to the generated prompt");
+          return;
+        }
+        var bits = [];
+        REFINERY_FIELDS.forEach(function (f) {
+          if (e.fields[f.key]) bits.push(f.label + ": " + e.fields[f.key]);
+        });
+        L.push("- Round " + e.round + " (" + e.at + "): " + (bits.join("; ") || "prompt edit"));
+      });
+      L.push("");
+      L.push("Final prompt:");
+      L.push("");
+      L.push("```");
+      L.push(s.prompt);
+      L.push("```");
+      L.push("");
+    });
+    return L.join("\n");
+  }
+
+  function refinementsToHtml(plan) {
+    var refs = planRefinements(plan);
+    if (!refs.length) return "";
+    var H = ["<h2>Shot refinements</h2>",
+      "<p>Per-shot prompt refinements from the Studio's Shot Refinery (five-field spec: " +
+      "character design, camera movement, colour palette, emotional register, visual grammar — " +
+      "the structure of the documented Gaudette build). Refining changes words only: model, " +
+      "duration, and take counts are untouched, so the budget and schedule still hold.</p>"];
+    refs.forEach(function (r) {
+      var s = r.shot;
+      H.push('<div class="shot"><h3>' + escHtml(r.ref) + " — refined ×" +
+        (s.refinements || []).length + "</h3><ul>");
+      (s.refinements || []).forEach(function (e) {
+        if (e.reverted) {
+          H.push("<li>Round " + e.round + " (" + escHtml(e.at) + "): reverted to the generated prompt</li>");
+          return;
+        }
+        var bits = [];
+        REFINERY_FIELDS.forEach(function (f) {
+          if (e.fields[f.key]) bits.push(escHtml(f.label) + ": " + escHtml(e.fields[f.key]));
+        });
+        H.push("<li>Round " + e.round + " (" + escHtml(e.at) + "): " +
+          (bits.join("; ") || "prompt edit") + "</li>");
+      });
+      H.push("</ul><pre>" + escHtml(s.prompt) + "</pre></div>");
+    });
+    return H.join("\n");
+  }
+
+  /* ---- Studio 3.0: plan sharing ---------------------------------------------
+     Export a saved plan as portable JSON; import validates the shape before
+     it touches the saved-plan list. Nothing is uploaded anywhere — the file
+     is the share mechanism. */
+
+  var PLAN_SHARE_FORMAT = "afg-studio-plan";
+  var PLAN_SHARE_V = 1;
+
+  function exportPlanData(saved) {
+    return JSON.stringify({
+      format: PLAN_SHARE_FORMAT,
+      v: PLAN_SHARE_V,
+      exportedAt: new Date().toISOString(),
+      studio: "3.0",
+      name: saved.name,
+      kind: saved.kind,
+      input: saved.input,
+      plan: saved.plan
+    }, null, 2);
+  }
+
+  function importPlanData(text) {
+    var d;
+    try { d = JSON.parse(text); }
+    catch (e) { return { ok: false, error: "Not valid JSON — paste the complete exported plan." }; }
+    if (!d || d.format !== PLAN_SHARE_FORMAT) {
+      return { ok: false, error: "Not a Studio plan export (the format tag is missing)." };
+    }
+    if (d.v !== PLAN_SHARE_V) {
+      return { ok: false, error: "Unsupported plan version " + d.v + " — this Studio reads v1." };
+    }
+    var kind = d.kind === "series" ? "series"
+      : d.kind === "microdrama" ? "microdrama"
+      : d.kind === "film" ? "film" : null;
+    if (!kind) return { ok: false, error: "Unknown plan kind: " + d.kind + "." };
+    if (!d.input || typeof d.input !== "object") {
+      return { ok: false, error: "The export has no plan input." };
+    }
+    if (!d.plan || typeof d.plan !== "object") {
+      return { ok: false, error: "The export has no plan data." };
+    }
+    if (kind === "film" && !Array.isArray(d.plan.shots)) {
+      return { ok: false, error: "This film export has no shot list." };
+    }
+    if (kind === "series" && !Array.isArray(d.plan.episodes)) {
+      return { ok: false, error: "This series export has no episodes." };
+    }
+    if (kind === "microdrama" && !d.plan.budget) {
+      return { ok: false, error: "This microdrama export has no budget." };
+    }
+    return {
+      ok: true,
+      saved: {
+        name: String(d.name || "Imported plan"),
+        savedAt: new Date().toISOString(),
+        kind: kind,
+        input: d.input,
+        plan: d.plan
+      }
+    };
+  }
+
+  /* DOM addressing for a shot card (pure string, so tests can assert it). */
+  function shotRefAttrs(ref) {
+    return 'data-st3-ep="' + (ref.episode == null ? "" : ref.episode) +
+      '" data-st3-idx="' + ref.index + '"';
+  }
+
+  /* The per-shot "Refine shot" button (pure HTML, so tests can assert it). */
+  function refineButtonHtml() {
+    return '<button type="button" class="btn btn-sm btn-ghost st3-refine">Refine shot</button>';
+  }
+
   var StudioEngine = {
     USD_PER_CREDIT: USD_PER_CREDIT,
     GENRES: GENRES, RUNTIMES: RUNTIMES, TIERS: TIERS,
@@ -1855,7 +2181,17 @@
     costPerSec: costPerSec, costPerImage: costPerImage, normName: normName,
     resolveModel: resolveModel,
     shotCountFor: shotCountFor, chooseTemplates: chooseTemplates,
-    fillPrompt: fillPrompt, pickModel: pickModel,
+    slotFills: slotFills, fillPrompt: fillPrompt, pickModel: pickModel,
+    REFINERY_FIELDS: REFINERY_FIELDS, refineryInit: refineryInit,
+    validateRefineryFields: validateRefineryFields,
+    buildRefinedPrompt: buildRefinedPrompt,
+    findRefinedShots: findRefinedShots, refineShotInPlan: refineShotInPlan,
+    revertRefinement: revertRefinement, planRefinements: planRefinements,
+    refinementsToMarkdown: refinementsToMarkdown,
+    refinementsToHtml: refinementsToHtml,
+    PLAN_SHARE_FORMAT: PLAN_SHARE_FORMAT, PLAN_SHARE_V: PLAN_SHARE_V,
+    exportPlanData: exportPlanData, importPlanData: importPlanData,
+    shotRefAttrs: shotRefAttrs, refineButtonHtml: refineButtonHtml,
     buildPlan: buildPlan, planToMarkdown: planToMarkdown,
     seriesBible: seriesBible, buildSeriesPlan: buildSeriesPlan,
     seriesToMarkdown: seriesToMarkdown, seriesToHtml: seriesToHtml, fmtUSD: fmtUSD,
@@ -2152,7 +2488,8 @@
     e.error.focus();
   }
 
-  function shotCard(s) {
+  function shotCard(s, ref) {
+    ref = ref || { episode: null, index: 0 };
     var unfilled = s.unfilled.length
       ? '<p class="st-note"><strong>Fill before generating:</strong> ' +
         s.unfilled.map(esc).join(", ") + "</p>"
@@ -2160,7 +2497,10 @@
     var fallback = s.modelFallback
       ? ' <span class="st-badge">fallback pick — template\u2019s models unresolved in models.json</span>'
       : "";
-    return '<article class="card st-shot" aria-label="Shot ' + s.n + '">' +
+    var rbadge = s.refined
+      ? ' <span class="st-badge" data-st3-rbadge="1">refined ×' + (s.refinements || []).length + "</span>"
+      : "";
+    return '<article class="card st-shot" ' + shotRefAttrs(ref) + ' aria-label="Shot ' + s.n + '">' +
       "<h4>Shot " + s.n + " — " + esc(s.act) + " · " + esc(s.templateTitle) +
       ' <span class="st-tid">(' + esc(s.templateId) + ")</span></h4>" +
       '<p class="st-meta">' + s.duration + "s · " +
@@ -2171,7 +2511,8 @@
       ' <span class="st-track">(' + esc(s.track) + " track)</span></p>" +
       '<pre class="st-prompt" tabindex="0">' + esc(s.prompt) + "</pre>" +
       unfilled +
-      '<p><a class="btn btn-sm btn-ghost" href="workshop.html?template=' +
+      '<p>' + refineButtonHtml() + rbadge +
+      ' <a class="btn btn-sm btn-ghost" href="workshop.html?template=' +
       encodeURIComponent(s.templateId) + '">Refine in the workshop</a></p>' +
       "</article>";
   }
@@ -2179,7 +2520,9 @@
   function render(plan) {
     var e = els();
     var inp = plan.input;
-    var shotsHtml = plan.shots.map(shotCard).join("");
+    var shotsHtml = '<div class="st3-shots">' + plan.shots.map(function (s, i) {
+      return shotCard(s, { episode: null, index: i });
+    }).join("") + "</div>";
 
     var picksRows = plan.modelPicks.map(function (p) {
       return "<tr><td><strong>" + esc(p.model) + "</strong><br><span class=\"quiz-cost-sub\">" +
@@ -2245,6 +2588,7 @@
       " shooting days.</strong> Stills before generation, generation before assembly — " +
       "the long-form chapter's assets-before-shots rule.</p>" +
       "</section>";
+    afterPacketRender();
     e.actions.hidden = false;
     e.dlHtml.hidden = true;
     showOptimize();
@@ -2284,7 +2628,9 @@
         "<strong>Hook:</strong> " + esc(a.hook) + "<br>" +
         "<strong>Turn:</strong> " + esc(a.turn) + "<br>" +
         "<strong>Cliffhanger:</strong> " + esc(a.cliff) + "</div>";
-      var shotsHtml = ep.shots.map(shotCard).join("");
+      var shotsHtml = '<div class="st3-shots">' + ep.shots.map(function (s, i) {
+        return shotCard(s, { episode: ep.episode, index: i });
+      }).join("") + "</div>";
       return "<section aria-label=\"Episode " + ep.episode + "\">" +
         "<h3>Episode " + ep.episode + " — " + ep.shotCount + " shots × " +
         ep.shotSec + "s, " + ep.tierSpec.takes + " takes/keeper</h3>" + arcHtml +
@@ -2345,6 +2691,7 @@
       "<th scope=\"col\">Basis</th></tr></thead><tbody>" + schedRows + "</tbody></table></div>" +
       "<h3>Series consistency checklist</h3>" + checklistHtml +
       "</section>";
+    afterPacketRender();
     e.actions.hidden = false;
     e.dlHtml.hidden = false;
     showOptimize();
@@ -2356,7 +2703,7 @@
 
   /* ---------------- cost optimizer panel -----------------------------------
      "Optimize cost" — runs optimizePlan against the current packet and
-     renders the three budget modes, where-the-money-goes, the biggest
+     renders the four budget modes, where-the-money-goes, the biggest
      decision, and per-shot substitutions. Results are stored on the plan so
      the packet exports (markdown / self-contained HTML) carry them. */
 
@@ -2383,6 +2730,7 @@
     var e = els();
     var b = opt.modes.balanced.total, c = opt.modes.cheapest.total;
     var rOk = opt.modes.bestrated.complete, r = opt.modes.bestrated.total;
+    var dfOk = opt.modes.draftfinal.complete, dfT = opt.modes.draftfinal.total;
     var changed = opt.perShot.filter(function (s) {
       return s.balanced && s.cheapest && s.balanced.model !== s.cheapest.model;
     }).length;
@@ -2399,7 +2747,11 @@
       "<tr><td><strong>Best rated</strong></td>" +
       "<td><strong>" + (rOk ? fmtUSD(r) : "incomplete") + "</strong></td>" +
       "<td>" + optModeDelta(b, rOk ? r : null) + "</td>" +
-      "<td>Top documented arena/leaderboard model per shot (boards differ — see rank notes).</td></tr>";
+      "<td>Top documented arena/leaderboard model per shot (boards differ — see rank notes).</td></tr>" +
+      "<tr><td><strong>Draft cheap, finish flagship</strong></td>" +
+      "<td><strong>" + (dfOk ? fmtUSD(dfT) : "incomplete") + "</strong></td>" +
+      "<td>" + optModeDelta(b, dfOk ? dfT : null) + "</td>" +
+      "<td>Coverage takes at the cheapest viable rate, the keeper take at the best-rated model.</td></tr>";
 
     var modelRows = opt.byModel.map(function (g) {
       return "<tr><td><strong>" + esc(g.model) + "</strong><br><span class=\"quiz-cost-sub\">" +
@@ -2479,7 +2831,7 @@
       optResLabelUi(opt.resBar) + " · " + opt.audioShare +
       "% of shots need native audio (spread evenly) · " + opt.takes +
       " takes per keeper. " + esc(opt.basis) + "</p>" +
-      "<h4>Three budget modes</h4>" +
+      "<h4>Four budget modes</h4>" +
       '<div class="table-scroll"><table><caption>Same shots, three ways to pay for them.</caption>' +
       "<thead><tr><th scope=\"col\">Mode</th><th scope=\"col\">Generation cost</th>" +
       "<th scope=\"col\">Delta vs balanced</th><th scope=\"col\">What changes</th></tr></thead>" +
@@ -2628,6 +2980,7 @@
         '<span class="log-meta">' + planMeta(p) + "</span><br>" +
         '<button type="button" class="btn btn-sm btn-ghost" data-load="' + i + '">Continue planning</button> ' +
         '<button type="button" class="btn btn-sm btn-ghost" data-dup="' + i + '">Duplicate</button> ' +
+        '<button type="button" class="btn btn-sm btn-ghost" data-share="' + i + '">Share</button> ' +
         '<button type="button" class="btn btn-sm btn-ghost" data-del="' + i + '">Delete</button></li>';
     }).join("");
     function byAttr(sel) { return e.saved.querySelectorAll("[" + sel + "]"); }
@@ -2813,6 +3166,7 @@
       "retakes per usable shot (“drawing cards”). Full teardown: " +
       "`storeel-off-campus` — <a href=\"teardown.html\">read it shot by shot →</a>.</p>" +
       "</section>";
+    afterPacketRender();
     e.actions.hidden = false;
     e.dlHtml.hidden = true;
     e.optSec.hidden = true;
@@ -2822,9 +3176,493 @@
     e.results.scrollIntoView({ block: "start", behavior: smooth });
   }
 
+  /* ---------------- Studio 3.0: Refinery + sharing UI ---------------------------
+     Per-shot refinement dialog, packet wayfinding nav, scroll progress,
+     plan share/import. Progressive enhancement throughout: every piece
+     feature-detects and honors prefers-reduced-motion. Injected styles are
+     namespaced .st3-*, built only from the site's token variables — no new
+     visual language. A final rebuild may move them into STUDIO_TMPL. */
+
+  var ST3_MOVEMENTS = null;
+  var ST3_STYLES_DONE = false;
+  var ST3_DLG_REF = null;
+  var ST3_DLG_INVOKER = null;
+  var ST3_SHARE_NAME = "studio-plan";
+
+  function st3ReducedMotion() {
+    return typeof window.matchMedia === "function" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }
+
+  function st3EnsureStyles() {
+    if (ST3_STYLES_DONE) return;
+    ST3_STYLES_DONE = true;
+    var css = [
+      "/* Studio 3.0 — injected styles; candidate for STUDIO_TMPL on final rebuild. */",
+      "dialog.st3-dialog{border:1px solid var(--line);border-radius:var(--radius);",
+      " background:var(--bg);color:inherit;padding:0;width:min(46rem,94vw)}",
+      "dialog.st3-dialog::backdrop{background:rgba(0,0,0,.6)}",
+      ".st3-dlg-wrap{display:flex;flex-direction:column;max-height:92vh}",
+      ".st3-dlg-head{padding:var(--space-4) var(--space-5) 0}",
+      ".st3-dlg-head h3{margin:0 0 var(--space-2)}",
+      ".st3-dlg-body{padding:var(--space-2) var(--space-5);overflow:auto}",
+      ".st3-dlg-body h4{margin:var(--space-4) 0 var(--space-2)}",
+      ".st3-dlg-foot{padding:var(--space-4) var(--space-5);border-top:1px solid var(--line);",
+      " display:flex;gap:var(--space-3);flex-wrap:wrap}",
+      ".st3-field{margin:0 0 var(--space-4)}",
+      ".st3-field>label{display:block;font-weight:600;margin-bottom:var(--space-1)}",
+      ".st3-field .st-hint{display:block;font-weight:400;color:var(--muted);font-size:.85rem}",
+      ".st3-field textarea,.st3-field select,.st3-field input[type=text]{width:100%;font:inherit;",
+      " color:inherit;background:var(--bg-raise);border:1px solid var(--line);",
+      " border-radius:var(--radius-s);padding:var(--space-2) var(--space-3)}",
+      ".st3-preview{background:var(--bg-raise);border:1px solid var(--line);",
+      " border-radius:var(--radius-s);padding:var(--space-3);white-space:pre-wrap;",
+      " word-break:break-word;font-size:.92rem;max-height:16rem;overflow:auto;margin:0}",
+      ".st3-history{list-style:none;padding:0;margin:0}",
+      ".st3-history li{border-top:1px solid var(--line);padding:var(--space-2) 0;font-size:.9rem}",
+      "nav.st3-pnav{position:sticky;top:0;z-index:20;background:var(--bg);",
+      " border-bottom:1px solid var(--line);padding:var(--space-2) 0;margin-bottom:var(--space-4)}",
+      "nav.st3-pnav ul{list-style:none;display:flex;gap:var(--space-1);margin:0;padding:0;",
+      " overflow-x:auto;scrollbar-width:thin}",
+      "nav.st3-pnav a{display:inline-block;padding:var(--space-1) var(--space-3);white-space:nowrap;",
+      " border:1px solid var(--line);border-radius:999px;font-size:.85rem;text-decoration:none;color:inherit}",
+      "nav.st3-pnav a[aria-current=\"true\"]{border-color:var(--gold);color:var(--gold)}",
+      ".st3-progress{position:fixed;top:0;left:0;z-index:60;height:3px;width:100%;",
+      " background:var(--gold);transform:scaleX(0);transform-origin:0 50%;pointer-events:none}",
+      "@supports (animation-timeline:scroll()){",
+      " .st3-progress{animation:st3-progressbar linear both;animation-timeline:scroll()}",
+      " @keyframes st3-progressbar{to{transform:scaleX(1)}}}",
+      "@media (prefers-reduced-motion:reduce){.st3-progress{display:none}}",
+      ".st3-shots{container-type:inline-size;display:grid;gap:var(--space-4);",
+      " grid-template-columns:minmax(0,1fr)}",
+      ".st3-shots .st-shot{margin-bottom:0}",
+      "@container (min-width:58rem){.st3-shots{grid-template-columns:1fr 1fr}}",
+      ".st3-share-json{width:100%;min-height:9rem;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;",
+      " font-size:.8rem;background:var(--bg-raise);color:inherit;border:1px solid var(--line);",
+      " border-radius:var(--radius-s);padding:var(--space-3)}",
+      ".st3-err{color:#e5484d;font-weight:600}"
+    ].join("\n");
+    var st = document.createElement("style");
+    st.setAttribute("data-st3", "injected");
+    st.textContent = css;
+    document.head.appendChild(st);
+  }
+
+  /* Packet wayfinding: sticky section nav built from the rendered h3s, with
+     scroll-spy. Rebuilt on every packet render (innerHTML is replaced). */
+  function st3PacketNav() {
+    var res = document.getElementById("st-results");
+    if (!res) return;
+    var heads = res.querySelectorAll("h3");
+    if (heads.length < 2) return;
+    var ul = document.createElement("ul");
+    var links = {};
+    Array.prototype.forEach.call(heads, function (h, i) {
+      if (!h.id) h.id = "st3-sec-" + i;
+      var label = h.textContent.trim().replace(/\s+/g, " ");
+      if (label.length > 34) label = label.slice(0, 32) + "…";
+      var li = document.createElement("li");
+      var a = document.createElement("a");
+      a.href = "#" + h.id;
+      a.textContent = label;
+      a.setAttribute("data-st3-sec", h.id);
+      li.appendChild(a);
+      ul.appendChild(li);
+      links[h.id] = a;
+    });
+    var nav = document.createElement("nav");
+    nav.className = "st3-pnav";
+    nav.setAttribute("aria-label", "Packet sections");
+    nav.appendChild(ul);
+    res.insertBefore(nav, res.firstChild);
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (!en.isIntersecting) return;
+          Object.keys(links).forEach(function (k) { links[k].removeAttribute("aria-current"); });
+          var a = links[en.target.id];
+          if (a) a.setAttribute("aria-current", "true");
+        });
+      }, { rootMargin: "-30% 0px -60% 0px" });
+      Array.prototype.forEach.call(heads, function (h) { io.observe(h); });
+    }
+  }
+
+  function afterPacketRender() {
+    st3EnsureStyles();
+    st3PacketNav();
+  }
+
+  /* ---------------- the Refinery dialog ------------------------------------ */
+
+  function st3FieldHtml(f) {
+    var label = '<label for="st3-f-' + f.key + '">' + esc(f.label) +
+      '<span class="st-hint">' + esc(f.help) + "</span></label>";
+    var control;
+    if (f.kind === "movement") {
+      if (ST3_MOVEMENTS && ST3_MOVEMENTS.length) {
+        var opts = '<option value="">Keep the template\u2019s move</option>' +
+          ST3_MOVEMENTS.map(function (m) {
+            return '<option value="' + esc(m.id) + '">' + esc(m.move || m.id) + "</option>";
+          }).join("");
+        control = '<select id="st3-f-' + f.key + '" data-st3-field="' + f.key + '">' + opts + "</select>";
+      } else {
+        control = '<input type="text" id="st3-f-' + f.key + '" data-st3-field="' + f.key + '"' +
+          ' placeholder="Camera lexicon still loading — describe the move in words">';
+      }
+    } else {
+      control = '<textarea id="st3-f-' + f.key + '" data-st3-field="' + f.key + '" rows="2"></textarea>';
+    }
+    return '<div class="st3-field">' + label + control + "</div>";
+  }
+
+  function st3BuildDialogs() {
+    if (document.getElementById("st3-dialog")) return;
+    var dlg = document.createElement("dialog");
+    dlg.className = "st3-dialog";
+    dlg.id = "st3-dialog";
+    dlg.setAttribute("aria-labelledby", "st3-dlg-title");
+    dlg.innerHTML =
+      '<div class="st3-dlg-wrap">' +
+      '<div class="st3-dlg-head">' +
+      '<h3 id="st3-dlg-title">Refine shot</h3>' +
+      '<p class="st-note" id="st3-dlg-sub"></p>' +
+      '<p class="st-note">Five-field spec — the structure of the documented Gaudette build ' +
+      '(<a href="teardown.html">Teardowns</a>). Refining changes words only: the shot\u2019s ' +
+      "model, duration, and take count never move.</p>" +
+      "</div>" +
+      '<div class="st3-dlg-body">' +
+      '<div id="st3-fields"></div>' +
+      "<h4>Preview</h4>" +
+      '<pre class="st3-preview" id="st3-preview" tabindex="0" aria-live="polite"></pre>' +
+      "<h4>Refinement history</h4>" +
+      '<ul class="st3-history" id="st3-history"></ul>' +
+      "</div>" +
+      '<div class="st3-dlg-foot">' +
+      '<button type="button" class="btn btn-sm btn-ghost" id="st3-preview-btn">Preview</button>' +
+      '<button type="button" class="btn btn-sm" id="st3-use-btn">Use this version</button>' +
+      '<button type="button" class="btn btn-sm btn-ghost" id="st3-restore-btn">Restore original</button>' +
+      '<button type="button" class="btn btn-sm btn-ghost" id="st3-close-btn">Close</button>' +
+      "</div>" +
+      "</div>";
+    document.body.appendChild(dlg);
+    dlg.addEventListener("close", function () {
+      if (ST3_DLG_INVOKER && document.contains(ST3_DLG_INVOKER)) ST3_DLG_INVOKER.focus();
+      ST3_DLG_INVOKER = null;
+      ST3_DLG_REF = null;
+    });
+    document.getElementById("st3-preview-btn").addEventListener("click", st3Preview);
+    document.getElementById("st3-use-btn").addEventListener("click", st3Use);
+    document.getElementById("st3-restore-btn").addEventListener("click", st3Restore);
+    document.getElementById("st3-close-btn").addEventListener("click", function () { dlg.close(); });
+    document.getElementById("st3-fields").addEventListener("input", st3Preview);
+
+    var share = document.createElement("dialog");
+    share.className = "st3-dialog";
+    share.id = "st3-share";
+    share.setAttribute("aria-labelledby", "st3-share-title");
+    share.innerHTML =
+      '<div class="st3-dlg-wrap">' +
+      '<div class="st3-dlg-head">' +
+      '<h3 id="st3-share-title">Share plan</h3>' +
+      '<p class="st-note">The export is the plan\u2019s full data — anyone with this file and the ' +
+      "Studio can import it. Nothing leaves your browser unless you send the file.</p>" +
+      "</div>" +
+      '<div class="st3-dlg-body">' +
+      '<div class="st3-field"><label for="st3-share-json">Plan JSON</label>' +
+      '<textarea class="st3-share-json" id="st3-share-json" readonly></textarea></div>' +
+      '<p class="st3-err" id="st3-share-err" role="alert" hidden></p>' +
+      "<h4>Import a plan</h4>" +
+      '<div class="st3-field"><label for="st3-import-file">From a .json file</label>' +
+      '<input type="file" id="st3-import-file" accept=".json,application/json"></div>' +
+      '<div class="st3-field"><label for="st3-import-text">Or paste plan JSON</label>' +
+      '<textarea class="st3-share-json" id="st3-import-text" rows="4"></textarea></div>' +
+      "</div>" +
+      '<div class="st3-dlg-foot">' +
+      '<button type="button" class="btn btn-sm" id="st3-share-dl">Download .json</button>' +
+      '<button type="button" class="btn btn-sm btn-ghost" id="st3-share-copy">Copy JSON</button>' +
+      '<button type="button" class="btn btn-sm" id="st3-import-btn">Import plan</button>' +
+      '<button type="button" class="btn btn-sm btn-ghost" id="st3-share-close">Close</button>' +
+      "</div>" +
+      "</div>";
+    document.body.appendChild(share);
+    document.getElementById("st3-share-dl").addEventListener("click", function () {
+      var ta = document.getElementById("st3-share-json");
+      var blob = new Blob([ta.value], { type: "application/json" });
+      var a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = ST3_SHARE_NAME + ".json";
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 800);
+      announce("Plan downloaded as " + ST3_SHARE_NAME + ".json.");
+    });
+    document.getElementById("st3-share-copy").addEventListener("click", function () {
+      var ta = document.getElementById("st3-share-json");
+      ta.select();
+      var done = function () { announce("Plan JSON copied to the clipboard."); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(ta.value).then(done, function () {
+          try { document.execCommand("copy"); done(); }
+          catch (e) { announce("Copy failed — select the text manually."); }
+        });
+      } else {
+        try { document.execCommand("copy"); done(); }
+        catch (e) { announce("Copy failed — select the text manually."); }
+      }
+    });
+    document.getElementById("st3-import-file").addEventListener("change", function (ev) {
+      var f = ev.target.files && ev.target.files[0];
+      if (!f) return;
+      var rd = new FileReader();
+      rd.onload = function () { st3DoImport(String(rd.result || "")); };
+      rd.readAsText(f);
+      ev.target.value = "";
+    });
+    document.getElementById("st3-import-btn").addEventListener("click", function () {
+      st3DoImport(document.getElementById("st3-import-text").value);
+    });
+    document.getElementById("st3-share-close").addEventListener("click", function () { share.close(); });
+  }
+
+  function st3ReadFields() {
+    var out = {};
+    StudioEngine.REFINERY_FIELDS.forEach(function (f) {
+      var el = document.querySelector('#st3-dialog [data-st3-field="' + f.key + '"]');
+      out[f.key] = el ? el.value : "";
+    });
+    return out;
+  }
+
+  function openRefinery(ref, invoker) {
+    if (!CURRENT || !CURRENT.plan) return;
+    var plan = CURRENT.plan;
+    var shot;
+    try { shot = StudioEngine.findRefinedShots(plan, ref); }
+    catch (e) { announce("Shot not found."); return; }
+    var tmpl = null;
+    if (DATA && DATA.templates) {
+      tmpl = DATA.templates.filter(function (t) { return t.id === shot.templateId; })[0] || null;
+    }
+    if (!tmpl) { announce("Template data unavailable — reload the page and try again."); return; }
+    var genreKey = (CURRENT.input && CURRENT.input.genre) || "drama";
+    var genre = StudioEngine.GENRES[genreKey] || StudioEngine.GENRES.drama;
+    var tier = (CURRENT.input && CURRENT.input.tier) || "draft";
+    var init = StudioEngine.refineryInit(shot, genre, tier);
+    if (shot.refined && shot.refinements && shot.refinements.length) {
+      var last = shot.refinements[shot.refinements.length - 1];
+      if (!last.reverted) {
+        Object.keys(init).forEach(function (k) { if (last.fields[k]) init[k] = last.fields[k]; });
+      }
+    }
+    ST3_DLG_REF = { ref: ref, shot: shot, tmpl: tmpl, genre: genre, tier: tier };
+    ST3_DLG_INVOKER = invoker || null;
+    document.getElementById("st3-dlg-title").textContent =
+      "Refine " + (ref.episode == null ? "shot " : "episode " + ref.episode + " · shot ") + shot.n;
+    document.getElementById("st3-dlg-sub").textContent =
+      shot.templateTitle + " (" + shot.templateId + ") · " + shot.duration + "s · " +
+      (shot.model || "unpriced — verify live");
+    document.getElementById("st3-fields").innerHTML =
+      StudioEngine.REFINERY_FIELDS.map(st3FieldHtml).join("");
+    Object.keys(init).forEach(function (k) {
+      var el = document.querySelector('#st3-dialog [data-st3-field="' + k + '"]');
+      if (el) el.value = init[k];
+    });
+    st3RenderHistory(shot);
+    st3Preview();
+    var dlg = document.getElementById("st3-dialog");
+    if (!dlg.open) dlg.showModal();
+    var first = document.querySelector('#st3-dialog [data-st3-field="character"]');
+    if (first) first.focus();
+  }
+
+  function st3Preview() {
+    if (!ST3_DLG_REF) return;
+    var r = ST3_DLG_REF;
+    var pre = document.getElementById("st3-preview");
+    try {
+      var out = StudioEngine.buildRefinedPrompt(r.tmpl, r.genre, r.tier, st3ReadFields(), ST3_MOVEMENTS);
+      pre.textContent = out.text;
+    } catch (e) {
+      pre.textContent = "Can\u2019t preview: " + e.message;
+    }
+  }
+
+  function st3Use() {
+    var r = ST3_DLG_REF;
+    if (!r || !CURRENT || !CURRENT.plan) return;
+    var out;
+    try {
+      out = StudioEngine.buildRefinedPrompt(r.tmpl, r.genre, r.tier, st3ReadFields(), ST3_MOVEMENTS);
+    } catch (e) {
+      announce("Refinement rejected: " + e.message);
+      return;
+    }
+    var entry = StudioEngine.refineShotInPlan(CURRENT.plan, r.ref, out.text, out.fields);
+    st3UpdateShotCard(r.ref, r.shot);
+    st3RenderHistory(r.shot);
+    announce("Shot refined (round " + entry.round + ") — words only; budget and schedule unchanged. " +
+      "Save the plan to keep it.");
+  }
+
+  function st3Restore() {
+    var r = ST3_DLG_REF;
+    if (!r || !CURRENT || !CURRENT.plan) return;
+    try {
+      var entry = StudioEngine.revertRefinement(CURRENT.plan, r.ref);
+      st3UpdateShotCard(r.ref, r.shot);
+      st3RenderHistory(r.shot);
+      st3Preview();
+      announce("Restored the generated prompt (round " + entry.round + " logged).");
+    } catch (e) {
+      announce("Nothing to restore — this shot is still on its generated prompt.");
+    }
+  }
+
+  function st3RenderHistory(shot) {
+    var ul = document.getElementById("st3-history");
+    var rounds = shot.refinements || [];
+    if (!rounds.length) {
+      ul.innerHTML = '<li class="st-note">No refinements yet — the preview above starts from the generated prompt.</li>';
+      return;
+    }
+    ul.innerHTML = rounds.map(function (e) {
+      if (e.reverted) {
+        return "<li><strong>Round " + e.round + "</strong> — reverted to the generated prompt.</li>";
+      }
+      var bits = [];
+      StudioEngine.REFINERY_FIELDS.forEach(function (f) {
+        if (e.fields[f.key]) bits.push("<strong>" + esc(f.label) + ":</strong> " + esc(e.fields[f.key]));
+      });
+      return "<li><strong>Round " + e.round + "</strong> <span class=\"st-track\">" + esc(e.at) + "</span><br>" +
+        (bits.join("<br>") || "prompt edit") + "</li>";
+    }).join("");
+  }
+
+  /* Surgical card update after a refinement — no full re-render, no scroll
+     jump. Wrapped in a view transition when the browser offers one and the
+     user hasn't asked for reduced motion. */
+  function st3UpdateShotCard(ref, shot) {
+    var ep = ref.episode == null ? "" : String(ref.episode);
+    var art = document.querySelector(
+      'article.st-shot[data-st3-ep="' + ep + '"][data-st3-idx="' + ref.index + '"]');
+    if (!art) return;
+    var render = function () {
+      var pre = art.querySelector(".st-prompt");
+      if (pre) pre.textContent = shot.prompt;
+      var badge = art.querySelector("[data-st3-rbadge]");
+      var n = (shot.refinements || []).length;
+      if (shot.refined && n) {
+        if (!badge) {
+          badge = document.createElement("span");
+          badge.className = "st-badge";
+          badge.setAttribute("data-st3-rbadge", "1");
+          var btn = art.querySelector(".st3-refine");
+          if (btn && btn.parentNode) btn.parentNode.insertBefore(badge, btn.nextSibling);
+          else art.appendChild(badge);
+        }
+        badge.textContent = "refined ×" + n;
+      } else if (badge) {
+        badge.remove();
+      }
+    };
+    if (!st3ReducedMotion() && typeof document.startViewTransition === "function") {
+      document.startViewTransition(render);
+    } else {
+      render();
+    }
+  }
+
+  /* ---------------- plan sharing UI ---------------------------------------- */
+
+  function openShare(p) {
+    st3EnsureStyles();
+    var dlg = document.getElementById("st3-share");
+    if (!dlg) return;
+    ST3_SHARE_NAME = String(p.name || "studio-plan").toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "") || "studio-plan";
+    document.getElementById("st3-share-json").value = StudioEngine.exportPlanData(p);
+    document.getElementById("st3-import-text").value = "";
+    var err = document.getElementById("st3-share-err");
+    err.hidden = true;
+    err.textContent = "";
+    if (!dlg.open) dlg.showModal();
+  }
+
+  function st3DoImport(text) {
+    var err = document.getElementById("st3-share-err");
+    var res = StudioEngine.importPlanData(text);
+    if (!res.ok) {
+      err.hidden = false;
+      err.textContent = res.error;
+      return;
+    }
+    err.hidden = true;
+    var plans = getPlans();
+    plans.push(res.saved);
+    try {
+      localStorage.setItem(SAVE_KEY, JSON.stringify(plans));
+    } catch (e) {
+      err.hidden = false;
+      err.textContent = "Could not save — browser storage is unavailable.";
+      return;
+    }
+    renderSaved();
+    document.getElementById("st3-share").close();
+    loadPlan(res.saved);
+    announce("Plan imported as \u201c" + res.saved.name + "\u201d — continue planning.");
+  }
+
+  function st3Init() {
+    st3EnsureStyles();
+    /* Camera lexicon for the refinery's movement picker (progressive
+       enhancement — the dialog falls back to a text field). */
+    fetch("camera-movements.json").then(function (r) {
+      if (!r.ok) throw new Error("movements");
+      return r.json();
+    }).then(function (d) {
+      ST3_MOVEMENTS = d.movements || [];
+    }).catch(function () { ST3_MOVEMENTS = null; });
+    /* Scroll progress hairline (CSS scroll-driven; display:none under
+       reduced motion or without animation-timeline support). */
+    var prog = document.createElement("div");
+    prog.className = "st3-progress";
+    prog.setAttribute("aria-hidden", "true");
+    document.body.appendChild(prog);
+    st3BuildDialogs();
+    /* One delegated listener for every Refine button, present and future. */
+    var res = document.getElementById("st-results");
+    if (res) {
+      res.addEventListener("click", function (ev) {
+        var btn = ev.target.closest ? ev.target.closest(".st3-refine") : null;
+        if (!btn) return;
+        var art = btn.closest ? btn.closest("article.st-shot") : null;
+        if (!art) return;
+        var epRaw = art.getAttribute("data-st3-ep");
+        var idxRaw = art.getAttribute("data-st3-idx");
+        if (idxRaw === null) return;
+        openRefinery({
+          episode: (epRaw === null || epRaw === "") ? null : parseInt(epRaw, 10),
+          index: parseInt(idxRaw, 10)
+        }, btn);
+      });
+    }
+    /* Delegated Share buttons in the saved-plan list. */
+    var saved = document.getElementById("st-saved");
+    if (saved) {
+      saved.addEventListener("click", function (ev) {
+        var btn = ev.target.closest ? ev.target.closest("[data-share]") : null;
+        if (!btn) return;
+        var p = getPlans()[parseInt(btn.getAttribute("data-share"), 10)];
+        if (p) openShare(p);
+      });
+    }
+  }
+
   function init() {
     var e = els();
     if (!e.title) return;
+    st3Init();
 
     /* Genre options from the engine's own map — one source of truth. */
     Object.keys(GENRES).forEach(function (k) {

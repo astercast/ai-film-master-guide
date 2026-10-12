@@ -113,7 +113,14 @@ chapter resolves to an existing file
 `directing-performance.md`, `sound-music-audio.md`); the file is new so no generator
 owns it. Merge worker runs the full suite after folding the fragment.
 
-**Commit:** local [SHA] (3 files: craft/documentary-ethics.md,
-MERGE-fragment-w35-sources.md, WAVELOG-fragment-w35.md) → pushed 2026-10-11 as
-remote commit [SHA]; remote `main` HEAD matches; `git add` was scoped to wave-35
-files only (not `git add -A`) so waves 33/34's uncommitted work stays in their lanes.
+**Commit:** local `bfc11c285c6ec2226f47f38b7667027c0ddd0e6b` (3 files:
+craft/documentary-ethics.md, MERGE-fragment-w35-sources.md, WAVELOG-fragment-w35.md)
+→ pushed 2026-10-11 as remote commit `0d0fb532e9fddf47a295b1d0dae1bed67c92c927`;
+remote `main` HEAD matches the pushed SHA; all 3 files verified present in the
+remote tree via GitHub Trees API (561 entries, not truncated; blob SHAs match local,
+content byte-identical). CORRECTION to the lane rule: `git add` was scoped to wave-35
+files for the local commit, but gh-push.py pushes the WORKING TREE's tracked files
+(per its docstring), so remote commit 0d0fb53 also carries waves 33/34's in-progress
+working-tree files (teardowns.json, agentic-production-office.md, their build_script
+and css edits). This is the tool's designed behavior in a parallel-wave environment —
+their files stay owned by their lanes; they push their own finishing commits.

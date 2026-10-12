@@ -24,7 +24,7 @@
 
 **Validation:** (post-commit) `bash scripts/validate.sh` → ALL STAGES PASS (13/13); link check 0 broken; node --check clean (teardown.js re-verified after the nav edit); studio.test.js 50/50; agent-workflows.test.js 74/74; generator audits clean (skills byte-identical incl. new HAND skill, prompt-templates.json == artifact parser, llms.txt zero-diff). Teardown viewer smoke-tested in node with a DOM shim: 9 tabs, Dragon Blue tab present, films-nav renders, shot card + sources intact.
 
-**Commit:** local `__LOCAL__` → pushed 2026-10-11 as remote commit `__REMOTE__`; remote `main` HEAD matches the pushed SHA; key files verified present in the remote tree via GitHub API.
+**Commit:** local `e4f16d2` (65 files) → pushed 2026-10-11 as remote commit `15b174e18ea37b158f2e5d90fbcb0018f69f6550`; remote `main` HEAD matches the pushed SHA; key files verified present in the remote tree via GitHub API.
 
 **Next episode-pipeline revisit:** ~wave 35.
 
