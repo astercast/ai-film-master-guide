@@ -29,7 +29,7 @@ You are generating on Midjourney V1 Video (Midjourney, video). Best use: Stylize
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

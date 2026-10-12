@@ -29,7 +29,7 @@ You are generating on Kling 3.0 (Kuaishou, video). Best use: Motion-heavy cinema
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

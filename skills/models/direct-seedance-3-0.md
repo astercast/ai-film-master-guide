@@ -29,7 +29,7 @@ You are generating on Seedance 3.0 (ByteDance, video). Best use: Flagship narrat
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

@@ -110,9 +110,9 @@ chk "cron no-store" bash -c "curl -s -D - -o /dev/null '$BASE/api/cron/watchtowe
 
 echo "== 7. static fallback present =="
 for f in model-checks.json pricing.json models.json; do
-  chk "static /api/v1/$f" curl -sf "$BASE/api/v1/$f"
+  chk "static /data/v1/$f" curl -sf "$BASE/data/v1/$f"
 done
-chk "static schema envelope.json" curl -sf "$BASE/api/v1/schema/envelope.json"
+chk "static schema envelope.json" curl -sf "$BASE/data/v1/schema/envelope.json"
 
 echo "== 8. authorized cron run (bounded, hits real sources) =="
 chk "cron 200 with secret" bash -c "curl -sf -m 90 -H '$AUTH_HEADER' '$BASE/api/cron/watchtower' | tee /tmp/watchtower-cron-out.json | python3 -c '$JSON_OK'"

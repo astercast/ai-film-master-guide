@@ -27,7 +27,7 @@ Banana-peel gag: 3 held anticipation frames, flail pop, settle — fingerprints 
 
 ## API references
 
-- `api/v1/prompt-templates.json`
+- `data/v1/prompt-templates.json`
 
 ## Pitfalls
 

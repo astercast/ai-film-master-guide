@@ -32,9 +32,9 @@ Horror, 120s, draft: 20 shots x 6s, Kling 3.0 @ 1.4 credits/s -> 504 credits = $
 
 ## API references
 
-- `api/v1/index.json`
-- `api/v1/models.json`
-- `api/v1/prompt-templates.json`
+- `data/v1/index.json`
+- `data/v1/models.json`
+- `data/v1/prompt-templates.json`
 
 ## Pitfalls
 

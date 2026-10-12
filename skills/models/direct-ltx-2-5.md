@@ -29,7 +29,7 @@ You are generating on LTX-2.5 (Lightricks, video). Best use: 4K fast-drafting an
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

@@ -28,7 +28,7 @@ Any scene with synced dialogue.
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

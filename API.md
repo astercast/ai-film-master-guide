@@ -2,11 +2,11 @@
 
 Version **1.1.0** · Observed **2026-10-11** · Static JSON, no auth, no rate limits.
 
-Base path: `api/v1/`
+Base path: `data/v1/`
 
 ## Shared API conventions (all sites)
-- Base: `api/v1/` relative to the site root. Works on any static host; no auth, no keys, no rate limits.
-- Manifest: `api/v1/index.json` lists every endpoint with its schema URL, `updated` timestamp, and notes. Start here.
+- Base: `data/v1/` relative to the site root. Works on any static host; no auth, no keys, no rate limits.
+- Manifest: `data/v1/index.json` lists every endpoint with its schema URL, `updated` timestamp, and notes. Start here.
 - Timestamps: ISO-8601 UTC (`2026-10-11T00:00:00Z`). Date-only fields are `YYYY-MM-DD`.
 - Versions: `meta.version` semver on the manifest; breaking changes get a new `v2/` path, never a silent shape change.
 - Errors: static files can't return error bodies. A missing endpoint means a wrong path — re-read `index.json`. Empty results are `[]`, never `null`. Every record carries its provenance (`source`, `observed`/`updated`).
@@ -39,7 +39,7 @@ serverless functions under `/api/` (spec:
 `~/workspace/server-program/ARCHITECTURE.md`, "film-watchtower"). Every
 response uses the §1.1 envelope (`ok`/`data`/`meta`, `request_id` per
 invocation). The frontend (`assets/js/api-client.js`) calls the function
-first with a 7s timeout and falls back to the static `api/v1/` file above —
+first with a 7s timeout and falls back to the static `data/v1/` file above —
 the badge next to each widget reads `live`, `waking server…`, or
 `cached · updated HH:MM`, and the page never renders an error state for a
 backend problem.
@@ -116,7 +116,7 @@ Competitions are craft references, not events coverage: `what_it_judges`,
 (`name`, `description`) followed by: Use when, Inputs, Procedure,
 Worked example, API references, Pitfalls.
 
-Agents: `api/v1/index.json` carries `repository`, `skills` (directory,
+Agents: `data/v1/index.json` carries `repository`, `skills` (directory,
 index, count, usage), and `for_agents` routing. Load the skill matching
 the task; use the JSON endpoints as the data layer behind it.
 Repo-level operator's manual: `AGENT.md` — base URL pattern, key endpoints
@@ -124,12 +124,12 @@ with example requests, and five end-to-end workflows (Studio planning,
 prompt linting, model price tracking, mini-drama series setup,
 microdrama run economics), all
 executable via `node scripts/agent-workflows.test.js` against the real
-`api/v1` data.
+`data/v1` data.
 
 ## Regenerating
 
-`python3 scripts/build_api.py` rebuilds `api/v1/` from the research artifacts
+`python3 scripts/build_api.py` rebuilds `data/v1/` from the research artifacts
 under `~/workspace/research_notes/ai-film-mega-research-20261010-0311/artifacts/`
 plus the hand-authored competition record. Commit the outputs.
-`python3 scripts/build_skills.py` rebuilds `skills/` from `api/v1/` data plus
+`python3 scripts/build_skills.py` rebuilds `skills/` from `data/v1/` data plus
 authored procedures. Commit the outputs.

@@ -31,7 +31,7 @@ Shake Your Bots Off (reference production): Fembot/BroBot redesigned on paper by
 
 ## API references
 
-- `api/v1/teardowns.json`
+- `data/v1/teardowns.json`
 
 ## Pitfalls
 

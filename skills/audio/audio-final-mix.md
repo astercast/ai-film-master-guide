@@ -30,7 +30,7 @@ Picture is locked and all stems exist (dialogue, SFX bed, score).
 
 ## API references
 
-- `api/v1/checklists.json`
+- `data/v1/checklists.json`
 
 ## Pitfalls
 

@@ -27,7 +27,7 @@ Seedance 720p: $63 clean → ~$500 realistic envelope with 8× overhead.
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

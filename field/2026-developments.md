@@ -1,6 +1,6 @@
 # 2026: The Year AI Film Went Long-Form
 
-The state of the field as of October 2026. This chapter is a dated snapshot, not doctrine: model versions, prices, and festival rules move fast. Every claim below carries its source; single-sourced items are flagged. For the machine-readable model data, see `api/v1/models.json` (per-model `last_verified`, `status`, `what_changed`, `sources`).
+The state of the field as of October 2026. This chapter is a dated snapshot, not doctrine: model versions, prices, and festival rules move fast. Every claim below carries its source; single-sourced items are flagged. For the machine-readable model data, see `data/v1/models.json` (per-model `last_verified`, `status`, `what_changed`, `sources`).
 
 ## The headline: a fully AI-generated feature premiered at a major festival
 
@@ -15,7 +15,7 @@ The documented production stack (businesswire.com and consequence.net, May 27, 2
 
 The headline numbers: made in three months for **~$2,000** (Fountain 0 executive chairman Tom Rogers cited "incredibly efficient cost management techniques"). Tribeca co-founder Jane Rosenthal endorsed the selection on the strength of "the emotional immediacy and urgency of the story itself." Ash Koosha addressed the ethics directly: a film about people who actually died "raises difficult questions," he said — his answer was that silence and forgetting were worse, and "the dead deserve to be witnessed." The film later became rentable on Fountain 0's own site (Wikipedia, *Dreams of Violets*).
 
-What this actually proves: a feature can now be *produced* for the price of a used laptop — but the film was still human-directed end to end (written, directed, produced by the Koosha brothers, with a language-editing pass). It is a production-cost revolution, not an authorship one. A shot-by-shot teardown of its documented craft is in `api/v1/teardowns.json` ("Dreams of Violets").
+What this actually proves: a feature can now be *produced* for the price of a used laptop — but the film was still human-directed end to end (written, directed, produced by the Koosha brothers, with a language-editing pass). It is a production-cost revolution, not an authorship one. A shot-by-shot teardown of its documented craft is in `data/v1/teardowns.json` ("Dreams of Violets").
 
 ## The 2026 model field: 4K + native audio is the baseline
 

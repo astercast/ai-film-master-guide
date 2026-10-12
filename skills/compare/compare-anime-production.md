@@ -25,8 +25,8 @@ Sakuga fight cut: PixVerse Anime, speed lines + impact frames in-prompt, bold st
 
 ## API references
 
-- `api/v1/models.json`
-- `api/v1/prompt-templates.json`
+- `data/v1/models.json`
+- `data/v1/prompt-templates.json`
 
 ## Pitfalls
 

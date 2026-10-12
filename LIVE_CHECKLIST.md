@@ -40,8 +40,10 @@ Secrets live only in Vercel, never in either repo.
   function files): **42/42 pass** — envelope schema, roster, 400/401/404
   gates, static fallback presence, rate limiting, vercel.json lint.
 - Frontend fallback contract verified: every `/api/*` call falls back to
-  static `api/v1/*.json` (force-cache), badge states `live|waking|cached|none`;
+  static `data/v1/*.json` (force-cache), badge states `live|waking|cached|none`;
   no error state without the API.
+- Vercel never serves static files under `api/` — all static data lives in
+  `data/v1/`; only real function handlers under `api/` (2026-10-12).
 - `vercel.json` in live repo: valid JSON, `outputDirectory: "."`,
   `functions` lists the 5 routes as explicit paths with
   `{"maxDuration": 10}`, crons + headers carried over from the working
@@ -58,5 +60,6 @@ Secrets live only in Vercel, never in either repo.
 
 - Vercel project itself not yet created; import the -live repo (not this one).
 - `CRON_SECRET` not yet generated; `GITHUB_REPO_TOKEN` pending user's call.
-- `api/v1/trends.flat.json` does not exist — no consumer currently calls
-  `/api/trends` (only an example in api-client.js comments); not a blocker.
+- Static data fallback paths: frontend `fetchWithFallback` static paths now
+  point at `/data/v1/*.json` (Vercel never serves `api/` statics);
+  `tests/api.test.sh` §7 and `tests/local-server.js` updated to match.

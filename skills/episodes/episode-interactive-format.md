@@ -29,7 +29,7 @@ Ep 3 of 'The Impossible Door': Lena finds a door that wasn't there. Decision bea
 
 ## API references
 
-- `api/v1/checklists.json`
+- `data/v1/checklists.json`
 
 ## Pitfalls
 

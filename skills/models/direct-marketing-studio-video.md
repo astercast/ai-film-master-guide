@@ -29,7 +29,7 @@ You are generating on Marketing Studio video (Higgsfield, video). Best use: Talk
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

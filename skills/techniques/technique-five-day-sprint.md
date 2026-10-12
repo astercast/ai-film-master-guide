@@ -28,7 +28,7 @@ SCRATCH: director/musician + 3D/VFX generalist, five days, mistaken for a theatr
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

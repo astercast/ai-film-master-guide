@@ -39,7 +39,7 @@ One Vercel project containing a static frontend plus serverless functions:
 - **Shared lib** `site/lib/` (from repo-root `server/lib/`): envelope,
   fetchx, ratelimit, cronauth, github — zero npm dependencies, `nodejs22.x`.
 - **1 daily cron** — `/api/cron/watchtower` at `0 14 * * *` UTC (see §8).
-- **Static fallback data** — `site/api/v1/*.json` (models, pricing,
+- **Static fallback data** — `site/data/v1/*.json` (models, pricing,
   model-checks, review queue, …). The frontend calls `/api/*` first and
   falls back to these files; the site never renders an error state because
   the backend was cold or down (ARCHITECTURE.md §3).
@@ -69,7 +69,7 @@ One Vercel project containing a static frontend plus serverless functions:
 3. Environment Variables (Production):
    - `CRON_SECRET` = `<random 32+ bytes>`
    - `GITHUB_REPO` = `astercast/ai-film-master-guide`
-   - `REPO_STATIC_PREFIX` = `site/api/v1`
+   - `REPO_STATIC_PREFIX` = `site/data/v1`
    - `GITHUB_REPO_TOKEN` = `<fine-grained PAT, contents:write, this repo only>`
      — or omit it deliberately (see §2.3); do not leave a placeholder value.
 4. **Build machine: Standard.** Project → Settings → Build & Deployment →
@@ -103,7 +103,7 @@ One Vercel project containing a static frontend plus serverless functions:
 | `CRON_SECRET` | yes | Vercel → Project → Settings → Environment Variables (Production) | Rotate any time: update Vercel, no code change. The cron 401s fail closed on a wrong value. |
 | `GITHUB_REPO_TOKEN` | no (pending §14.1 decision) | same as above | Fine-grained PAT, `contents:write`, this repo only. Without it the cron degrades gracefully to read-only (`{committed:false, reason:'no-token'}`). Never commit the token to the repo. |
 | `GITHUB_REPO` | yes (used by cron when committing) | same as above | `astercast/ai-film-master-guide`. Only read when `GITHUB_REPO_TOKEN` is set. |
-| `REPO_STATIC_PREFIX` | yes (used by cron when committing) | same as above | `site/api/v1` — where the cron writes refreshed check JSON. |
+| `REPO_STATIC_PREFIX` | yes (used by cron when committing) | same as above | `site/data/v1` — where the cron writes refreshed check JSON. |
 
 ## 5. Hobby limits table
 
@@ -163,7 +163,7 @@ upgrade without the user's explicit word.
 - Add the domain in the Vercel dashboard → Domains; the `/api/*` paths move
   with the domain automatically.
 - If a domain is assigned later, sweep absolute URLs: `llms.txt`,
-  `sitemap.xml`, and the `$id` in `api/v1/schema/envelope.json` (currently
+  `sitemap.xml`, and the `$id` in `data/v1/schema/envelope.json` (currently
   the planned `ai-film-master-guide.vercel.app` hostname) — spec §14.4.
 
 ## 9. Rollback
@@ -215,20 +215,20 @@ if inputs won't load.
   double-fetch: higgsfield.ai, deepmind.google/technologies/veo/,
   higgsfield.ai/blog/*, marktechpost.com, lumalabs.ai, hailuoai.video, the
   yzrkbys GitHub commit page). Fetched and recorded, never driving `changed`.
-- **The checker never auto-mutates `api/v1/models.json`.** A signature diff
+- **The checker never auto-mutates `data/v1/models.json`.** A signature diff
   is a *review signal*, not a confirmed fact. Weekly routine: run
   `refresh.sh` → check `logs/refresh.log` + `model-review-queue.json`
   `pending` count → verify each flagged URL by hand → on confirmation edit the
   research artifact
   (`~/workspace/research_notes/ai-film-mega-research-20261010-0311/artifacts/artifact-3-model-comparison.json`
-  — generator-owns-output: `api/v1/models.json` is REGENERATED from it and a
+  — generator-owns-output: `data/v1/models.json` is REGENERATED from it and a
   direct edit is wiped), run `build_api.py` + `build_skills.py` + `build_site.py`
   + `build_llms.py`, commit, push.
-- **Generator gotcha (fixed 2026-10-11):** `build_api.py` wipes `api/v1/`
+- **Generator gotcha (fixed 2026-10-11):** `build_api.py` wipes `data/v1/`
   and restores only its `preserved` list — `pricing.json`,
   `schema/envelope.json`, `model-checks.json`, `model-review-queue.json`,
   `diagnoses.json` + schemas are all on that list now. Any new
-  hand-maintained `api/v1/` file must be added there or the next rebuild
+  hand-maintained `data/v1/` file must be added there or the next rebuild
   deletes it.
 - **Build gotcha (fixed Wave B):** `build_site.py` wipes `site/` first —
   the Watchtower function sources live at repo-root `server/api/` +

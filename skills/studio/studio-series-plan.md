@@ -7,7 +7,7 @@ description: Plan 3-10 episodes in one pass: pick one of the 4 serialized format
 
 ## Use when
 
-Pre-production for a serialized short-form series — every number traces to api/v1 data.
+Pre-production for a serialized short-form series — every number traces to data/v1 data.
 
 ## Inputs
 
@@ -31,13 +31,13 @@ Pre-production for a serialized short-form series — every number traces to api
 
 ## Worked example
 
-Mini-drama, 5 episodes x 90s, draft: 15 shots/episode -> 75 shots; bible locks Mara's anchor once; budget lines show per-episode subtotals + one bible-plates line; 5x/20x envelopes on the total. All rates from api/v1/models.json.
+Mini-drama, 5 episodes x 90s, draft: 15 shots/episode -> 75 shots; bible locks Mara's anchor once; budget lines show per-episode subtotals + one bible-plates line; 5x/20x envelopes on the total. All rates from data/v1/models.json.
 
 ## API references
 
-- `api/v1/models.json`
-- `api/v1/prompt-templates.json`
-- `api/v1/checklists.json`
+- `data/v1/models.json`
+- `data/v1/prompt-templates.json`
+- `data/v1/checklists.json`
 
 ## Pitfalls
 

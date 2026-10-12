@@ -685,7 +685,7 @@ SKILLS_TMPL = """<!DOCTYPE html>
     <section class="container" aria-label="Skills">
       <div id="skills-list"></div>
       <div class="empty-state" id="skills-empty" hidden><span class="es-slate">No footage</span><p>No skills match that filter.</p></div>
-      <p class="calc-note" style="margin-bottom:var(--space-7);">Skills live in <code>skills/</code> in the repo and are indexed by <code>skills/index.json</code>. Agents: <code>api/v1/index.json</code> points here.</p>
+      <p class="calc-note" style="margin-bottom:var(--space-7);">Skills live in <code>skills/</code> in the repo and are indexed by <code>skills/index.json</code>. Agents: <code>data/v1/index.json</code> points here.</p>
     </section>
   </main>
   <footer class="site-footer">
@@ -2323,7 +2323,7 @@ WORKSHOP_TMPL = """<!DOCTYPE html>
       <p class="section-lede">Saved in this browser only — never sent anywhere. Rate your keepers; the highest-rated float to the top.</p>
       <div id="ws-saves"></div>
       <div class="empty-state" id="ws-saves-empty" hidden><span class="es-slate">No footage</span><p>No saved prompts yet. Fill a template above and hit &ldquo;Save this prompt&rdquo;.</p></div>
-      <p class="calc-note" style="margin-bottom:var(--space-7);">Templates and models come from <code>prompt-templates.json</code> and <code>models.json</code> — the same versioned API the guide publishes under <code>api/v1/</code>.</p>
+      <p class="calc-note" style="margin-bottom:var(--space-7);">Templates and models come from <code>prompt-templates.json</code> and <code>models.json</code> — the same versioned API the guide publishes under <code>data/v1/</code>.</p>
     </section>
   </main>
   <footer class="site-footer">
@@ -2715,7 +2715,7 @@ SKILLSPEC_TMPL = """<!DOCTYPE html>
             <tr><td>Inputs</td><td>Yes</td><td>Every placeholder or artifact the procedure needs, one per bullet</td></tr>
             <tr><td>Procedure</td><td>Yes</td><td>Numbered steps an agent can execute verbatim; templates quoted exactly, never paraphrased</td></tr>
             <tr><td>Worked example</td><td>Yes</td><td>One filled, realistic example showing the expected output shape</td></tr>
-            <tr><td>API references</td><td>No</td><td>Versioned <code>api/v1/</code> files the skill draws on</td></tr>
+            <tr><td>API references</td><td>No</td><td>Versioned <code>data/v1/</code> files the skill draws on</td></tr>
             <tr><td>Pitfalls</td><td>Yes</td><td>The known failure modes and how to avoid them</td></tr>
           </tbody>
         </table>
@@ -2815,7 +2815,7 @@ TEARDOWN_TMPL = """<!DOCTYPE html>
     <section class="container" aria-labelledby="td-app-h" style="margin-bottom:var(--space-7);">
       <h2 id="td-app-h" class="sr-only">Teardown viewer</h2>
       <div id="teardown-app"><p>Loading teardowns…</p></div>
-      <noscript><p>Teardowns need JavaScript. The source data is <code>api/v1/teardowns.json</code> in the repository.</p></noscript>
+      <noscript><p>Teardowns need JavaScript. The source data is <code>data/v1/teardowns.json</code> in the repository.</p></noscript>
     </section>
   </main>
   <footer class="site-footer">
@@ -3135,8 +3135,8 @@ def build_field_guides(css_links):
             title=title, desc=desc, provenance=provenance, body=body_html,
             css=css, sitenav=sitenav, footer=footer))
 
-    # 1. Model quick-reference — from api/v1/models.json
-    models_doc = json.loads((ROOT / "api" / "v1" / "models.json").read_text())
+    # 1. Model quick-reference — from data/v1/models.json
+    models_doc = json.loads((ROOT / "data" / "v1" / "models.json").read_text())
     models = models_doc["models"]
     rows = "".join(
         f"<tr><th scope=\"row\">{html.escape(m['model'])}</th>"
@@ -3152,7 +3152,7 @@ def build_field_guides(css_links):
     unver_note = f"<p><strong>Cost confidence:</strong> flagged as unverified for: {html.escape(unverified)}.</p>" if unverified else ""
     page("models.html", "Model quick-reference",
          "One-page model reference: best use, cost, and weakness for every compared model.",
-         f"Generated {today} from api/v1/models.json (v{html.escape(str(models_doc.get('version', '')))}, observed {html.escape(str(models_doc.get('observed', '')))}).",
+         f"Generated {today} from data/v1/models.json (v{html.escape(str(models_doc.get('version', '')))}, observed {html.escape(str(models_doc.get('observed', '')))}).",
          f"<h2>All {len(models)} models at a glance</h2>"
          f"<table><thead><tr><th scope=\"col\">Model</th><th scope=\"col\">Platform</th>"
          f"<th scope=\"col\">Type</th><th scope=\"col\">Best use</th><th scope=\"col\">Cost</th>"
@@ -3356,7 +3356,7 @@ MODELWATCH_TMPL = """<!DOCTYPE html>
         <h2 class="mw-freshness-h">Watchtower freshness <span class="api-badge" id="mw-api-badge" data-api-state="none" role="status" tabindex="0"></span></h2>
         <p class="card-meta" id="mw-freshness-line">{freshness_line}</p>
       </div>
-      <p class="card-meta">{total} models · <a href="../api/v1/model-updates.md">changelog</a> · <a href="../api/v1/models.json">raw JSON</a> · <a href="../api/v1/model-checks.json">check feed</a></p>
+      <p class="card-meta">{total} models · <a href="../data/v1/model-updates.md">changelog</a> · <a href="../data/v1/models.json">raw JSON</a> · <a href="../data/v1/model-checks.json">check feed</a></p>
       <div class="mw-grid" id="mw-grid">
 {cards}
       </div>
@@ -3402,13 +3402,13 @@ MODELWATCH_TMPL = """<!DOCTYPE html>
 """
 
 def build_model_watch(css_links):
-    """Model freshness page, generated from api/v1/models.json."""
-    doc = json.loads((ROOT / "api" / "v1" / "models.json").read_text())
+    """Model freshness page, generated from data/v1/models.json."""
+    doc = json.loads((ROOT / "data" / "v1" / "models.json").read_text())
     models = doc["models"]
     # Pre-rendered freshness line: the last published check feed. The live
     # layer (model-watch.js) overwrites it from /api/models-status when the
     # function answers, or re-renders it from the same static file on fallback.
-    checks = json.loads((ROOT / "api" / "v1" / "model-checks.json").read_text())
+    checks = json.loads((ROOT / "data" / "v1" / "model-checks.json").read_text())
     ck_when = str(checks.get("checked_at", "")).replace("T", " ").replace("+00:00", " UTC")
     ck_sum = checks.get("summary", {})
     freshness_line = (
@@ -3682,8 +3682,8 @@ def model_chapter_tips(m):
 
 
 def build_models(css_links):
-    """Model deep dives: one page per model + index, generated from api/v1/models.json."""
-    models = json.loads((ROOT / "api" / "v1" / "models.json").read_text())["models"]
+    """Model deep dives: one page per model + index, generated from data/v1/models.json."""
+    models = json.loads((ROOT / "data" / "v1" / "models.json").read_text())["models"]
     out_dir = SITE / "models"
     out_dir.mkdir(parents=True, exist_ok=True)
     css_sub = css_links.replace('href="assets/', 'href="../assets/')
@@ -4076,7 +4076,7 @@ def main():
 
     # Landing — the homepage is a cut, not a catalog: one hero, one action,
     # everything else revealed progressively (bins, path accordion, workbench).
-    models_data = json.loads((ROOT / "api" / "v1" / "models.json").read_text())
+    models_data = json.loads((ROOT / "data" / "v1" / "models.json").read_text())
     model_count = len(models_data["models"])
     chapter_count = len(flat)
     skill_count = json.loads((ROOT / "skills" / "index.json").read_text())["count"]
@@ -4157,10 +4157,10 @@ def main():
                 h1_id="skills-title",
                 extra="""<div class="field" style="max-width:480px;"> <label for="skills-filter">Filter skills</label> <input class="input" id="skills-filter" type="search" placeholder="e.g. lip sync, BAF, budget…" autocomplete="off"> </div>"""),        css=css_links, sitenav=nav_html("", "skills.html"), footer=footer_html("")))
     shutil.copy(ROOT / "skills" / "index.json", SITE / "skills-index.json")
-    shutil.copy(ROOT / "api" / "v1" / "prompt-templates.json", SITE / "prompt-templates.json")
-    shutil.copy(ROOT / "api" / "v1" / "models.json", SITE / "models.json")
-    shutil.copy(ROOT / "api" / "v1" / "glossary.json", SITE / "glossary.json")
-    shutil.copy(ROOT / "api" / "v1" / "camera-movements.json", SITE / "camera-movements.json")
+    shutil.copy(ROOT / "data" / "v1" / "prompt-templates.json", SITE / "prompt-templates.json")
+    shutil.copy(ROOT / "data" / "v1" / "models.json", SITE / "models.json")
+    shutil.copy(ROOT / "data" / "v1" / "glossary.json", SITE / "glossary.json")
+    shutil.copy(ROOT / "data" / "v1" / "camera-movements.json", SITE / "camera-movements.json")
 
     # Prompt workshop page (data above is what it loads)
     (SITE / "workshop.html").write_text(WORKSHOP_TMPL.format(
@@ -4247,12 +4247,12 @@ def main():
         spec_frontmatter=spec_front, spec_example_body=spec_body))
 
     # Shot-by-shot teardown viewer
-    shutil.copy(ROOT / "api" / "v1" / "teardowns.json", SITE / "teardowns.json")
+    shutil.copy(ROOT / "data" / "v1" / "teardowns.json", SITE / "teardowns.json")
     (SITE / "teardown.html").write_text(TEARDOWN_TMPL.format(
         css=css_links, sitenav=nav_html("", "teardown.html"), footer=footer_html("")))
 
     # Failure doctor (interactive troubleshooter, data-driven from diagnoses.json)
-    shutil.copy(ROOT / "api" / "v1" / "diagnoses.json", SITE / "diagnoses.json")
+    shutil.copy(ROOT / "data" / "v1" / "diagnoses.json", SITE / "diagnoses.json")
     (SITE / "doctor.html").write_text(DOCTOR_TMPL.format(
             hero=hero_cutroom(
                 kicker="""Tools""",
@@ -4357,7 +4357,7 @@ def main():
     # Shoot recipes (generated from skills/recipes/*.md at build time)
     build_recipes(css_links)
 
-    # Model freshness page (generated from api/v1/models.json)
+    # Model freshness page (generated from data/v1/models.json)
     build_model_watch(css_links)
 
     # Knowledge checks (generated from scripts/checks.json)
@@ -4468,10 +4468,10 @@ def main():
 
     # Bundle shared assets + API docs page into site/ so it is self-contained
     shutil.copytree(ROOT / "assets", SITE / "assets", dirs_exist_ok=True)
-    shutil.copytree(ROOT / "api", SITE / "api", dirs_exist_ok=True)
+    shutil.copytree(ROOT / "data", SITE / "data", dirs_exist_ok=True)
     # Wave B: the Watchtower functions + lib live at ROOT/server/ and are
     # copied into site/ so a rebuild (which wipes SITE first) can never
-    # orphan them. site/api/v1/* above is the static fallback they serve.
+    # orphan them. site/data/v1/* above is the static fallback they serve.
     shutil.copytree(ROOT / "server" / "api", SITE / "api", dirs_exist_ok=True)
     shutil.copytree(ROOT / "server" / "lib", SITE / "lib", dirs_exist_ok=True)
     shutil.copy(ROOT / "api.html", SITE / "api.html")

@@ -29,7 +29,7 @@ You are generating on Hailuo 02 / 2.3 (MiniMax, video). Best use: Emotional clos
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

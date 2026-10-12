@@ -27,7 +27,7 @@ Chases, pursuits, escapes.
 
 ## API references
 
-- `api/v1/prompt-templates.json`
+- `data/v1/prompt-templates.json`
 
 ## Pitfalls
 

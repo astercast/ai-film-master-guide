@@ -29,7 +29,7 @@ You are generating on Grok Imagine Video 1.5 (xAI, video). Best use: Cheap high-
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

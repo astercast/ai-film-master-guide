@@ -29,7 +29,7 @@ You are generating on Soul 2.0 (Higgsfield, image). Best use: Fashion/portrait/a
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

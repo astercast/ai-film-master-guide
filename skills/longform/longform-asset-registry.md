@@ -30,7 +30,7 @@ Starting any production longer than ~3 minutes. Nothing shoots until the registr
 
 ## API references
 
-- `api/v1/checklists.json`
+- `data/v1/checklists.json`
 
 ## Pitfalls
 

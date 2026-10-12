@@ -25,7 +25,7 @@ Blocking test for 12 shots at Turbo rates: full scene validated for the price of
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

@@ -29,7 +29,7 @@ You are generating on Wan 2.6 (Alibaba, video). Best use: Camera-first directing
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

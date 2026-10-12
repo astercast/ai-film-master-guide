@@ -16,7 +16,7 @@ var rl = require('../lib/ratelimit.js');
 var SERVICE = 'film-watchtower';
 var VERSION = '1.0.0';
 
-var PRICING = require('./v1/pricing.json');
+var PRICING = require('../data/v1/pricing.json');
 
 var MAX_SECONDS = 86400; // 24h of footage per call — sanity bound
 var MAX_CLIPS = 1000;

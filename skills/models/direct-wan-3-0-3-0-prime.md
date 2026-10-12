@@ -29,7 +29,7 @@ You are generating on Wan 3.0 / 3.0 Prime (Alibaba, video). Best use: Next-gen W
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

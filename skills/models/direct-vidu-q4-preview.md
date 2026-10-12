@@ -29,7 +29,7 @@ You are generating on Vidu Q4 Preview (Vidu / Shengshu Technology, video). Best 
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

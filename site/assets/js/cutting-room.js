@@ -4,7 +4,7 @@
    a shot-by-shot breakdown built from the REAL prompt library
    (prompt-templates.json, 47 templates), and the cost desk runs REAL math
    on the REAL pricing table (Watchtower /api/models-pricing, static
-   fallback to api/v1/pricing.json, built-in estimates last).
+   fallback to data/v1/pricing.json, built-in estimates last).
    Guided fix-bay suggestions quote real library technique (placeholder
    hints and craft lines from actual templates, cited by id). Heuristic
    throughout — honest about it, like the linter. */
@@ -838,7 +838,7 @@
       }
       var badge = els["cr-badge"];
       if (window.ApiClient && typeof fetch === "function") {
-        window.ApiClient.fetchWithFallback("/api/models-pricing", "api/v1/pricing.json", { badgeEl: badge })
+        window.ApiClient.fetchWithFallback("/api/models-pricing", "data/v1/pricing.json", { badgeEl: badge })
           .then(function (res) {
             if ((res.source === "live" || res.source === "static") && res.data) {
               var next = normalizePricing(res.data);

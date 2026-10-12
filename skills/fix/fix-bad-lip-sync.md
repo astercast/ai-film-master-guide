@@ -27,7 +27,7 @@ Talking shots where mouths don't match words.
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

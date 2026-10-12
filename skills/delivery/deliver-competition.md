@@ -27,8 +27,8 @@ Final delivery to a competition.
 
 ## API references
 
-- `api/v1/competitions.json`
-- `api/v1/checklists.json`
+- `data/v1/competitions.json`
+- `data/v1/checklists.json`
 
 ## Pitfalls
 

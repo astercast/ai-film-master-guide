@@ -26,7 +26,7 @@ Disciplined indie feature at 720p: low tens of thousands retail compute; team an
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

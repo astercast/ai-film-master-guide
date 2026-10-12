@@ -29,7 +29,7 @@ You are generating on Vidu S2 (Vidu, video). Best use: Real-time interactive cha
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

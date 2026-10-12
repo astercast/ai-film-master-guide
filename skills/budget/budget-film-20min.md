@@ -27,7 +27,7 @@ ONEIRIC-scale discipline at 720p: ~$2k all-in is achievable; undisciplined: $8k+
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

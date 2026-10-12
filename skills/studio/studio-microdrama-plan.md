@@ -7,7 +7,7 @@ description: Plan a serialized AI-microdrama run's economics from the documented
 
 ## Use when
 
-Pre-production budgeting for a microdrama run (1-40 episodes) — before committing to a shot packet. Every number traces to the storeel-off-campus teardown or api/v1/models.json.
+Pre-production budgeting for a microdrama run (1-40 episodes) — before committing to a shot packet. Every number traces to the storeel-off-campus teardown or data/v1/models.json.
 
 ## Inputs
 
@@ -28,12 +28,12 @@ Pre-production budgeting for a microdrama run (1-40 episodes) — before committ
 
 ## Worked example
 
-4 episodes x 1 min, draft, 5 regens/ep -> 4-6 clips/episode (16-24 for the run); $200 benchmark; generation 180s/ep x 3x at the cheapest video rate; regen reserve 20 regens at the cheapest image rate; 4 days at documented pace. All rates from api/v1/models.json.
+4 episodes x 1 min, draft, 5 regens/ep -> 4-6 clips/episode (16-24 for the run); $200 benchmark; generation 180s/ep x 3x at the cheapest video rate; regen reserve 20 regens at the cheapest image rate; 4 days at documented pace. All rates from data/v1/models.json.
 
 ## API references
 
-- `api/v1/models.json`
-- `api/v1/teardowns.json`
+- `data/v1/models.json`
+- `data/v1/teardowns.json`
 
 ## Pitfalls
 

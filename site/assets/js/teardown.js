@@ -1,5 +1,5 @@
 /* Shot-by-shot teardown viewer — "learn to see".
-   Data: teardowns.json (built from api/v1/teardowns.json).
+   Data: teardowns.json (built from data/v1/teardowns.json).
    Prompt reconstructions are analytical, not the productions' real prompts. */
 (function () {
   "use strict";

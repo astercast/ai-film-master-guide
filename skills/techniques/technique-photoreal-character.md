@@ -27,7 +27,7 @@ A Face Only a Mother Could Love: old screenplay + tight POV discipline — doubl
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

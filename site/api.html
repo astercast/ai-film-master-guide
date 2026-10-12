@@ -78,7 +78,7 @@
       <div class="container hero-inner">
         <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Machine-readable</span>
         <h1 id="api-title">The <span class="accent">API.</span></h1>
-        <p class="lede">Versioned static JSON for agents and tools, generated from the research artifacts. Start at <code>api/v1/index.json</code>; full reference lives in <code>API.md</code> at the repo root; the operator's manual is <code>AGENT.md</code>.</p>
+        <p class="lede">Versioned static JSON for agents and tools, generated from the research artifacts. Start at <code>data/v1/index.json</code>; full reference lives in <code>API.md</code> at the repo root; the operator's manual is <code>AGENT.md</code>.</p>
       </div>
     </section>
 
@@ -86,7 +86,7 @@
       <section aria-labelledby="try-h">
         <h2 id="try-h">Try the API<span class="tc" aria-hidden="true">00:00:45:00</span></h2>
         <div class="card" style="margin-bottom:var(--space-6);">
-          <p style="color:var(--ink-dim);margin-top:0;">Pick an endpoint and fetch it live — the console reads the same <code>api/v1/</code> files this page documents. Static JSON: no auth, no keys, no rate limits.</p>
+          <p style="color:var(--ink-dim);margin-top:0;">Pick an endpoint and fetch it live — the console reads the same <code>data/v1/</code> files this page documents. Static JSON: no auth, no keys, no rate limits.</p>
           <form id="api-console" class="api-console">
             <div class="field">
               <label for="api-endpoint">Endpoint</label>
@@ -102,26 +102,26 @@
       <section aria-labelledby="endpoints-h">
         <h2 id="endpoints-h">Endpoints<span class="tc" aria-hidden="true">00:01:30:00</span></h2>
         <div class="chapter-grid" style="margin-bottom:var(--space-6);">
-          <article class="card chapter-card"><h3><code>api/v1/index.json</code></h3><p>Manifest: every endpoint with description, schema URL, updated timestamp, record counts, and deprecation notes. Start here.</p></article>
-          <article class="card chapter-card"><h3><code>api/v1/models.json</code></h3><p>29 models with platform, type, credit costs, strengths, weaknesses, best use — plus per-model last-verified dates, status, and an explicit unverified list. Sora is <code>discontinued</code>.</p></article>
-          <article class="card chapter-card"><h3><code>api/v1/prompt-templates.json</code></h3><p>47 templates (15 core, 8 animated, 8 photorealistic, 5 performance, 4 audio, 4 longform, 3 repair) with anatomy, use, and model notes.</p></article>
-          <article class="card chapter-card"><h3><code>api/v1/camera-movements.json</code></h3><p>22-move camera lexicon with exact prompt phrasing and use cases.</p></article>
-          <article class="card chapter-card"><h3><code>api/v1/checklists.json</code></h3><p>Pre-production, per-shot, continuity, audio, and delivery checklists.</p></article>
-          <article class="card chapter-card"><h3><code>api/v1/glossary.json</code></h3><p>79 AI film and production terms.</p></article>
-          <article class="card chapter-card"><h3><code>api/v1/competitions.json</code></h3><p>Judged competitions as craft records: what they judge, production constraints, craft lessons. No prizes or deadlines.</p></article>
-          <article class="card chapter-card"><h3><code>api/v1/teardowns.json</code></h3><p>10 shot-by-shot teardowns; prompt reconstructions are analytical, not actual prompts.</p></article>
-          <article class="card chapter-card"><h3><code>api/v1/diagnoses.json</code></h3><p>12 failure diagnoses: symptom → craft diagnosis, fixes, repair-template link.</p></article>
-          <article class="card chapter-card"><h3><code>api/v1/model-checks.json</code></h3><p>Model-watch freshness feed: per-model last check, source-signature diffs, news headlines.</p></article>
-          <article class="card chapter-card"><h3><code>api/v1/model-review-queue.json</code></h3><p>Pending model-watch review items. Empty array = nothing pending.</p></article>
-          <article class="card chapter-card"><h3><code>api/v1/pricing.json</code></h3><p>Curated pricing table: 30 models with per-tier USD rates (per second / per clip / per image), basis and confidence per tier.</p></article>
-          <article class="card chapter-card"><h3><code>api/v1/schema/</code></h3><p>JSON Schema (draft-07) for every endpoint: index, model, prompt-template, camera-movement, checklist, glossary, competition, teardown, diagnosis, model-checks, model-review-queue.</p></article>
+          <article class="card chapter-card"><h3><code>data/v1/index.json</code></h3><p>Manifest: every endpoint with description, schema URL, updated timestamp, record counts, and deprecation notes. Start here.</p></article>
+          <article class="card chapter-card"><h3><code>data/v1/models.json</code></h3><p>29 models with platform, type, credit costs, strengths, weaknesses, best use — plus per-model last-verified dates, status, and an explicit unverified list. Sora is <code>discontinued</code>.</p></article>
+          <article class="card chapter-card"><h3><code>data/v1/prompt-templates.json</code></h3><p>47 templates (15 core, 8 animated, 8 photorealistic, 5 performance, 4 audio, 4 longform, 3 repair) with anatomy, use, and model notes.</p></article>
+          <article class="card chapter-card"><h3><code>data/v1/camera-movements.json</code></h3><p>22-move camera lexicon with exact prompt phrasing and use cases.</p></article>
+          <article class="card chapter-card"><h3><code>data/v1/checklists.json</code></h3><p>Pre-production, per-shot, continuity, audio, and delivery checklists.</p></article>
+          <article class="card chapter-card"><h3><code>data/v1/glossary.json</code></h3><p>79 AI film and production terms.</p></article>
+          <article class="card chapter-card"><h3><code>data/v1/competitions.json</code></h3><p>Judged competitions as craft records: what they judge, production constraints, craft lessons. No prizes or deadlines.</p></article>
+          <article class="card chapter-card"><h3><code>data/v1/teardowns.json</code></h3><p>10 shot-by-shot teardowns; prompt reconstructions are analytical, not actual prompts.</p></article>
+          <article class="card chapter-card"><h3><code>data/v1/diagnoses.json</code></h3><p>12 failure diagnoses: symptom → craft diagnosis, fixes, repair-template link.</p></article>
+          <article class="card chapter-card"><h3><code>data/v1/model-checks.json</code></h3><p>Model-watch freshness feed: per-model last check, source-signature diffs, news headlines.</p></article>
+          <article class="card chapter-card"><h3><code>data/v1/model-review-queue.json</code></h3><p>Pending model-watch review items. Empty array = nothing pending.</p></article>
+          <article class="card chapter-card"><h3><code>data/v1/pricing.json</code></h3><p>Curated pricing table: 30 models with per-tier USD rates (per second / per clip / per image), basis and confidence per tier.</p></article>
+          <article class="card chapter-card"><h3><code>data/v1/schema/</code></h3><p>JSON Schema (draft-07) for every endpoint: index, model, prompt-template, camera-movement, checklist, glossary, competition, teardown, diagnosis, model-checks, model-review-queue.</p></article>
         </div>
       </section>
 
       <section aria-labelledby="live-h">
         <h2 id="live-h">Live functions — The Watchtower<span class="tc" aria-hidden="true">00:01:30:00</span></h2>
         <div class="card" style="margin-bottom:var(--space-6);">
-          <p style="color:var(--ink-dim);margin-top:0;">On the deployed site the same data is served live by five Vercel serverless functions (zero npm dependencies). The frontend calls the function first with a 7&nbsp;second timeout and falls back to the static <code>api/v1/</code> file — the badge next to each widget reads <code>live</code>, <code>waking&nbsp;server…</code>, or <code>cached&nbsp;·&nbsp;updated&nbsp;HH:MM</code>. Full reference in <code>API.md</code>; deploy runbook in <code>GO_LIVE.md</code>.</p>
+          <p style="color:var(--ink-dim);margin-top:0;">On the deployed site the same data is served live by five Vercel serverless functions (zero npm dependencies). The frontend calls the function first with a 7&nbsp;second timeout and falls back to the static <code>data/v1/</code> file — the badge next to each widget reads <code>live</code>, <code>waking&nbsp;server…</code>, or <code>cached&nbsp;·&nbsp;updated&nbsp;HH:MM</code>. Full reference in <code>API.md</code>; deploy runbook in <code>GO_LIVE.md</code>.</p>
           <ul style="color:var(--ink-dim);margin:0;padding-left:var(--space-5);">
             <li><code>GET /api/health</code> — status, function roster, data-freshness SLAs.</li>
             <li><code>GET /api/models-status</code> — 22-model freshness join; honestly degraded when sources failed.</li>
@@ -177,17 +177,17 @@
     var code = document.getElementById("api-output-code");
 
     var FALLBACK = [
-      ["index", "api/v1/index.json"],
-      ["models", "api/v1/models.json"],
-      ["prompt-templates", "api/v1/prompt-templates.json"],
-      ["camera-movements", "api/v1/camera-movements.json"],
-      ["checklists", "api/v1/checklists.json"],
-      ["glossary", "api/v1/glossary.json"],
-      ["competitions", "api/v1/competitions.json"],
-      ["teardowns", "api/v1/teardowns.json"],
-      ["diagnoses", "api/v1/diagnoses.json"],
-      ["model-checks", "api/v1/model-checks.json"],
-      ["model-review-queue", "api/v1/model-review-queue.json"]
+      ["index", "data/v1/index.json"],
+      ["models", "data/v1/models.json"],
+      ["prompt-templates", "data/v1/prompt-templates.json"],
+      ["camera-movements", "data/v1/camera-movements.json"],
+      ["checklists", "data/v1/checklists.json"],
+      ["glossary", "data/v1/glossary.json"],
+      ["competitions", "data/v1/competitions.json"],
+      ["teardowns", "data/v1/teardowns.json"],
+      ["diagnoses", "data/v1/diagnoses.json"],
+      ["model-checks", "data/v1/model-checks.json"],
+      ["model-review-queue", "data/v1/model-review-queue.json"]
     ];
 
     function setOptions(list) {
@@ -219,7 +219,7 @@
 
     setOptions(FALLBACK);
 
-    fetch("api/v1/index.json").then(function (r) {
+    fetch("data/v1/index.json").then(function (r) {
       if (!r.ok) throw new Error("HTTP " + r.status);
       return r.json();
     }).then(function (man) {
@@ -252,7 +252,7 @@
         code.textContent = "Fetch failed: " + (err && err.message ? err.message : err);
         status.textContent = "Could not load " + url + ". The console needs the site served over HTTP " +
           "(e.g. run `python3 -m http.server` inside site/) — browsers block fetch from file://. " +
-          "The same files live in the repo at api/v1/.";
+          "The same files live in the repo at data/v1/.";
       });
     });
   })();

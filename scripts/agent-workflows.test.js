@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /* Wave 18 — executable proof of the AGENT.md example workflows.
  *
- * Reads the REAL local api/v1/*.json (plus the linter's layer data from
+ * Reads the REAL local data/v1/*.json (plus the linter's layer data from
  * assets/js/linter.js) and runs the three core AGENT.md workflows:
  *  1. plan a 2-minute AI horror short — Studio recipe via API data
  *     (models -> templates -> budget math)
@@ -15,7 +15,7 @@ const fs = require("fs");
 const path = require("path");
 
 const ROOT = path.join(__dirname, "..");
-const API = path.join(ROOT, "api", "v1");
+const API = path.join(ROOT, "data", "v1");
 const read = (f) => JSON.parse(fs.readFileSync(path.join(API, f), "utf8"));
 
 let failures = 0;
@@ -299,7 +299,7 @@ console.log("       Run: " + RunPlan.totalClips.lo + "-" + RunPlan.totalClips.hi
 /* ================================ summary ================================ */
 console.log("");
 if (failures === 0) {
-  console.log("agent-workflows.test.js: all workflows executed against real api/v1 data — ALL PASS");
+  console.log("agent-workflows.test.js: all workflows executed against real data/v1 data — ALL PASS");
 } else {
   console.log("agent-workflows.test.js: " + failures + " FAILURES");
   process.exit(1);

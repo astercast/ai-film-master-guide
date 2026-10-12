@@ -26,8 +26,8 @@ Watch commercial: macro orbit + focus pull from crystal to dial, Wan 2.6, warm r
 
 ## API references
 
-- `api/v1/models.json`
-- `api/v1/prompt-templates.json`
+- `data/v1/models.json`
+- `data/v1/prompt-templates.json`
 
 ## Pitfalls
 

@@ -28,7 +28,7 @@ Two-hander kitchen drama: 14 setups, all coverage, zero visible artifacts — ju
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

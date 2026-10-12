@@ -26,7 +26,7 @@ Testimonial: MCU, warm studio bokeh, static, 8-second lines, quoted dialogue.
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

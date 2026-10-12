@@ -27,7 +27,7 @@ Le Drip: living oil paintings — dense brushstrokes hide every seam photorealis
 
 ## API references
 
-- `api/v1/prompt-templates.json`
+- `data/v1/prompt-templates.json`
 
 ## Pitfalls
 

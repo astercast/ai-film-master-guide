@@ -28,7 +28,7 @@ Bad: 'Mara as before, now angry.' Good: full re-description of Mara, the kitchen
 
 ## API references
 
-- `api/v1/prompt-templates.json`
+- `data/v1/prompt-templates.json`
 
 ## Pitfalls
 

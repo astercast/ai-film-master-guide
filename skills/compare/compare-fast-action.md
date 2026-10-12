@@ -27,7 +27,7 @@ Alley chase: Kling 3.0 tracking shots, 3s each, 5 variations per setup.
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

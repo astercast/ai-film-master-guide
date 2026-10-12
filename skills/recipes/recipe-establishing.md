@@ -28,7 +28,7 @@ Coastal town, dawn: drone pull-back + fishing boat detail, 12 seconds, cool grad
 
 ## API references
 
-- `api/v1/prompt-templates.json`
+- `data/v1/prompt-templates.json`
 
 ## Pitfalls
 

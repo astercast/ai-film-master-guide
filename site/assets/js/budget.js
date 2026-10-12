@@ -1,6 +1,6 @@
 /* Interactive budget calculator — The Watchtower edition.
    Rate table loads from /api/models-pricing (live) with fallback to the
-   static api/v1/pricing.json; a small built-in estimate table covers the
+   static data/v1/pricing.json; a small built-in estimate table covers the
    case where neither can be read, so the calculator never goes blank.
    Every option names its rate basis; the provenance line under the results
    always says where the numbers came from. */
@@ -214,7 +214,7 @@
   calc();
 
   if (window.ApiClient && typeof fetch === "function") {
-    window.ApiClient.fetchWithFallback("/api/models-pricing", "api/v1/pricing.json", { badgeEl: els.badge })
+    window.ApiClient.fetchWithFallback("/api/models-pricing", "data/v1/pricing.json", { badgeEl: els.badge })
       .then(function (res) {
         if ((res.source !== "live" && res.source !== "static") || !res.data) return;
         var next = pricingTable(res.data);

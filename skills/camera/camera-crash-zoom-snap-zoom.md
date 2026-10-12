@@ -29,7 +29,7 @@ Use when the shot needs what this move does: Comedy beats; shock reveals; high-e
 
 ## API references
 
-- `api/v1/camera-movements.json`
+- `data/v1/camera-movements.json`
 
 ## Pitfalls
 

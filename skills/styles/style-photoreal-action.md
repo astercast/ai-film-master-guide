@@ -28,7 +28,7 @@ Rooftop chase: 30 shots, geography wide first, impacts designed in audio.
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

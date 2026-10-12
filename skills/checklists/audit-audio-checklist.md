@@ -34,7 +34,7 @@ Per-shot audit on a dialogue close-up: one subject ✓, one action ✓, one came
 
 ## API references
 
-- `api/v1/checklists.json`
+- `data/v1/checklists.json`
 
 ## Pitfalls
 

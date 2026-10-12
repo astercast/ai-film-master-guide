@@ -28,8 +28,8 @@ Scene with 14 lines: lines 1–3 native test failed → full scene routed to pos
 
 ## API references
 
-- `api/v1/models.json`
-- `api/v1/competitions.json`
+- `data/v1/models.json`
+- `data/v1/competitions.json`
 
 ## Pitfalls
 

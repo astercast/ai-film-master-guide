@@ -28,7 +28,7 @@ Checklist: watermarked master ✓, packshot 1920×1080 ✓, YouTube public post 
 
 ## API references
 
-- `api/v1/competitions.json`
+- `data/v1/competitions.json`
 
 ## Pitfalls
 

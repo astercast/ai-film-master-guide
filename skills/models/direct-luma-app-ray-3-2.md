@@ -29,7 +29,7 @@ You are generating on Luma App / Ray 3.2 (Luma, video). Best use: Action/sports/
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

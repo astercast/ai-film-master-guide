@@ -1,6 +1,6 @@
 /* Studio math unit tests — run with: node scripts/studio.test.js
    Exercises the pure engine exported by assets/js/studio.js against the
-   REAL site data (api/v1/models.json + api/v1/prompt-templates.json). */
+   REAL site data (data/v1/models.json + data/v1/prompt-templates.json). */
 "use strict";
 
 const assert = require("assert");
@@ -9,8 +9,8 @@ const fs = require("fs");
 
 const ROOT = path.resolve(__dirname, "..");
 const S = require(path.join(ROOT, "assets/js/studio.js"));
-const models = JSON.parse(fs.readFileSync(path.join(ROOT, "api/v1/models.json"), "utf8")).models;
-const templates = JSON.parse(fs.readFileSync(path.join(ROOT, "api/v1/prompt-templates.json"), "utf8")).templates;
+const models = JSON.parse(fs.readFileSync(path.join(ROOT, "data/v1/models.json"), "utf8")).models;
+const templates = JSON.parse(fs.readFileSync(path.join(ROOT, "data/v1/prompt-templates.json"), "utf8")).templates;
 const DATA = { models, templates, modelsObserved: "test" };
 const TIDS = new Set(templates.map((t) => t.id));
 
@@ -329,7 +329,7 @@ test("seriesToHtml: self-contained, inline CSS, closes cleanly", () => {
 
 /* ---- wave 24: Studio cost optimizer --------------------------------------
    optimizePlan / rate parsing / honest floor / mode math, all against the
-   real api/v1/models.json. */
+   real data/v1/models.json. */
 const OPTIN = (o) => Object.assign(
   { title: "Porch Light", logline: "A projectionist restores an abandoned cinema.",
     genre: "drama", runtimeSec: 120, tier: "festival" }, o || {});
@@ -606,7 +606,7 @@ test("microdrama: markdown plan carries the honesty framing", () => {
 
 
 /* ---------------- Studio 3.0: Shot Refinery ---------------- */
-const MOVEMENTS = JSON.parse(fs.readFileSync(path.join(ROOT, "api/v1/camera-movements.json"), "utf8")).movements;
+const MOVEMENTS = JSON.parse(fs.readFileSync(path.join(ROOT, "data/v1/camera-movements.json"), "utf8")).movements;
 const T2 = templates.find((t) => t.id === "t2");
 const GEN_DRAMA = S.GENRES.drama;
 const F5 = (o) => Object.assign(

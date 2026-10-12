@@ -28,7 +28,7 @@ When episode blocks are saved and you want per-episode shot budgets, the locked 
 
 ## API references
 
-- `api/v1/checklists.json`
+- `data/v1/checklists.json`
 
 ## Pitfalls
 

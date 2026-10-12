@@ -29,7 +29,7 @@ Compliance pass on a 4:12 entry: all-Seedance ✓, no real faces ✓, AI audio w
 
 ## API references
 
-- `api/v1/competitions.json`
+- `data/v1/competitions.json`
 
 ## Pitfalls
 

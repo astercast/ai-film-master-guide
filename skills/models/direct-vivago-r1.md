@@ -29,7 +29,7 @@ You are generating on vivago R1 (HiDream.ai, suite). Best use: Long-form AI vide
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

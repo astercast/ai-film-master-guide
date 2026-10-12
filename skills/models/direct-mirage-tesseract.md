@@ -29,7 +29,7 @@ You are generating on Mirage Tesseract (Mirage (formerly Captions), suite). Best
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

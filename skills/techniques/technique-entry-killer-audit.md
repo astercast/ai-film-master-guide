@@ -27,7 +27,7 @@ A hyped contest winner with three-eyed cyclopses — the hype didn't forgive the
 
 ## API references
 
-- `api/v1/checklists.json`
+- `data/v1/checklists.json`
 
 ## Pitfalls
 

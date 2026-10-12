@@ -29,7 +29,7 @@ You are generating on PixVerse V6 (AIsphere, video). Best use: Cinematic short-f
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

@@ -29,7 +29,7 @@ You are generating on Kling 4.0 (Kuaishou, video). Best use: Long-take narrative
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

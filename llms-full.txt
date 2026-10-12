@@ -1,6 +1,6 @@
 # AI Film Master Guide — full text
 
-Static site: site/index.html. API: api/v1/. Generated 2026-10-11.
+Static site: site/index.html. API: data/v1/. Generated 2026-10-11.
 
 <!-- chapter: higgsfield/platform-mastery.md -->
 # Higgsfield Platform Mastery
@@ -246,7 +246,7 @@ Higgsfield open-sourced three of its own AI films with every prompt, camera sett
 <!-- chapter: field/2026-developments.md -->
 # 2026: The Year AI Film Went Long-Form
 
-The state of the field as of October 2026. This chapter is a dated snapshot, not doctrine: model versions, prices, and festival rules move fast. Every claim below carries its source; single-sourced items are flagged. For the machine-readable model data, see `api/v1/models.json` (per-model `last_verified`, `status`, `what_changed`, `sources`).
+The state of the field as of October 2026. This chapter is a dated snapshot, not doctrine: model versions, prices, and festival rules move fast. Every claim below carries its source; single-sourced items are flagged. For the machine-readable model data, see `data/v1/models.json` (per-model `last_verified`, `status`, `what_changed`, `sources`).
 
 ## The headline: a fully AI-generated feature premiered at a major festival
 
@@ -261,7 +261,7 @@ The documented production stack (businesswire.com and consequence.net, May 27, 2
 
 The headline numbers: made in three months for **~$2,000** (Fountain 0 executive chairman Tom Rogers cited "incredibly efficient cost management techniques"). Tribeca co-founder Jane Rosenthal endorsed the selection on the strength of "the emotional immediacy and urgency of the story itself." Ash Koosha addressed the ethics directly: a film about people who actually died "raises difficult questions," he said — his answer was that silence and forgetting were worse, and "the dead deserve to be witnessed." The film later became rentable on Fountain 0's own site (Wikipedia, *Dreams of Violets*).
 
-What this actually proves: a feature can now be *produced* for the price of a used laptop — but the film was still human-directed end to end (written, directed, produced by the Koosha brothers, with a language-editing pass). It is a production-cost revolution, not an authorship one. A shot-by-shot teardown of its documented craft is in `api/v1/teardowns.json` ("Dreams of Violets").
+What this actually proves: a feature can now be *produced* for the price of a used laptop — but the film was still human-directed end to end (written, directed, produced by the Koosha brothers, with a language-editing pass). It is a production-cost revolution, not an authorship one. A shot-by-shot teardown of its documented craft is in `data/v1/teardowns.json` ("Dreams of Violets").
 
 ## The 2026 model field: 4K + native audio is the baseline
 
@@ -1122,7 +1122,7 @@ AI features have a specific structural grammar, and the failures are structural 
 - Passport Rush: official breakdown video (youtube.com), Deykhan Ten LinkedIn pipeline list, completeaitraining.com
 - Hell Grind: technode.com (verified live), newkerala.com, walaw.press (Cannes correction), suggest.com (tabloid-grade — flagged)
 - Dreams of Violets: en.wikipedia.org, cryptobriefing.com, Ash Koosha LinkedIn (first-person, unaudited), pagesix.com
-- Pricing: higgsfield.ai/blog/higgsfield-api, higgsfield.ai/blog/seedance-2-5-on-higgsfield-2026, blotato.com, daily.dev; per-model credit rates from `api/v1/models.json` (observed 2026-10-10)
+- Pricing: higgsfield.ai/blog/higgsfield-api, higgsfield.ai/blog/seedance-2-5-on-higgsfield-2026, blotato.com, daily.dev; per-model credit rates from `data/v1/models.json` (observed 2026-10-10)
 - Companion chapters: `case-studies/competition-teardowns.md`, `craft/character-consistency.md`, `craft/directing-performance.md`, `craft/editing-pipeline.md`, `craft/failure-gallery.md`, `economics/credit-math.md`
 
 <!-- chapter: craft/agentic-production-office.md -->
@@ -1485,7 +1485,7 @@ Run every episode through all nine before it ships. A gate fails → fix at that
 
 ## Worked example: one episode end to end — the interactive format (wave 38)
 
-Everything above, walked once, with real numbers. The series: **"The Seventh Floor"** — an interactive mini-drama. Lena, a night-shift nurse, finds a door in her apartment hallway that was not there yesterday. The episode ends on the decision — knock or walk away — and the TikTok comment poll decides. Every number below is asserted against the guide's `api/v1/models.json` (last_verified 2026-10-11); verify live before spending.
+Everything above, walked once, with real numbers. The series: **"The Seventh Floor"** — an interactive mini-drama. Lena, a night-shift nurse, finds a door in her apartment hallway that was not there yesterday. The episode ends on the decision — knock or walk away — and the TikTok comment poll decides. Every number below is asserted against the guide's `data/v1/models.json` (last_verified 2026-10-11); verify live before spending.
 
 **Concept → episode block** (as saved in the [Episode planner](../episode-planner.html), interactive preset):
 
@@ -1593,7 +1593,7 @@ vote in the comments — the winning choice plays out tomorrow 🗳️
 - Worked reference implementation: `~/workspace/tiktok-episode-pipeline/WORKED-EXAMPLE-5-EPISODE.md` ("The Night Bus" — 5-episode mini-drama, concept → blocks → bridge → Studio packet; 50 shots, $20.48 clean / $102.40 at 5× / $409.60 at 20×, seed b272deb1; numbers asserted in `scripts/agent-workflows.test.js` workflow 5)
 - Companion: `craft/longform-pipelines.md`, `craft/story-structure.md`, `craft/sound-music-audio.md`, `craft/editing-ai-footage.md`
 - Companion tools: [Episode planner](../episode-planner.html) and [Hook-title generator](../hook-generator.html) (Tools). The planner (wave 38) enforces the one-emotion rule at save time — it scans the block for a second emotion word and refuses the save, naming the word and the field — offers per-format cliffhanger templates with the cast name slotted in, and drafts the hook-title caption straight from the block. The hook generator now ships a sixth variant, the vote hook, for interactive episodes.
-- Documented production (wave 27, Oct 2026): StoReel Canvas "Off Campus" experiment — 4 one-minute AI episodes in 4 days for ~$150 (11,000+ credits; AI series ~$50/min vs live-action ~$2,000/min); 300–400-word stage-direction prompts per 10–15s clip; 146 clips for a 30-episode storyboard; character library with paid regenerations; PUGC economics — ~$150/min creator payouts, 100 shows/month goal, Day-7 retention +22% vs live action (thewrap.com/industry-news/tech/off-campus-ai-microdrama-see-the-results-storeel/, thewrap.com/media-platforms/tv/ai-generated-microdramas-could-be-the-future-of-mobile-entertainment/); full shot-by-shot teardown in `api/v1/teardowns.json` (`storeel-off-campus`)
+- Documented production (wave 27, Oct 2026): StoReel Canvas "Off Campus" experiment — 4 one-minute AI episodes in 4 days for ~$150 (11,000+ credits; AI series ~$50/min vs live-action ~$2,000/min); 300–400-word stage-direction prompts per 10–15s clip; 146 clips for a 30-episode storyboard; character library with paid regenerations; PUGC economics — ~$150/min creator payouts, 100 shows/month goal, Day-7 retention +22% vs live action (thewrap.com/industry-news/tech/off-campus-ai-microdrama-see-the-results-storeel/, thewrap.com/media-platforms/tv/ai-generated-microdramas-could-be-the-future-of-mobile-entertainment/); full shot-by-shot teardown in `data/v1/teardowns.json` (`storeel-off-campus`)
 - Studio corroboration (Sixth Tone, June 2026): Qidian Interactive / Yudian — three-group flow (characters+settings / generation / edit, 1–2 people each), digital prop room (characters, locations, objects, lighting reused across productions), 3D character-positioning plug-in, "drawing cards" retake discipline (3–5 attempts per usable shot), 4–5 dramas/day × 30–44 episodes; 1M-yuan AI rebuild of a shelved 8–10M-yuan 3-year project in 2 months (sixthtone.com/news/1018935)
 
 <!-- chapter: craft/documentary-ethics.md -->
@@ -1874,7 +1874,7 @@ Before you quote a client, sell a license, or plan a release, compute what your 
 
 As of October 2026, rough per-finished-minute costs run from ~$1.90/min (Kling Turbo, clean single-take math) to ~$23.50/min (Veo 3.1) — before the 5–20× overhead envelope that real productions hit. A 20-minute short can cost anywhere from a few hundred dollars to several thousand depending on the model mix. **Your cost floor is the single most important business number you have.** Every pricing decision below starts from it.
 
-**Source:** `economics/credit-math.md`, `craft/longform-pipelines.md`, `api/v1/models.json` (cost basis: Higgsfield live pricing, Oct 10 2026; verify live).
+**Source:** `economics/credit-math.md`, `craft/longform-pipelines.md`, `data/v1/models.json` (cost basis: Higgsfield live pricing, Oct 10 2026; verify live).
 
 ## What actually pays (documented, Oct 2026)
 
@@ -2048,7 +2048,7 @@ The cash awards were funded by the Freedom Shapagat Corporate Foundation of Free
 
 **What the money means:** $450,000 is two orders of magnitude above the documented cost of producing an AI feature (*Dreams of Violets*: ~$2,000; long-form workflows measure cost per finished minute in the low hundreds of dollars). A Grand Prix doesn't just reward a film — at AI production costs, it funds the winner's next several films. The special-category prizes ($50K) are similarly life-changing money relative to production cost. This is the structural fact of AI film in 2026: festivals pay like traditional film while the medium costs like software. Enter accordingly — with the entry craft this guide teaches (`higgsfield/competition-entry-craft.md`).
 
-**Honest gap:** the press coverage documents the winners, not their workflows — what tools made *The First Honest Day* win is not in the sources found. Don't cite its craft; cite its economics. (Shot-by-shot teardown in this guide: `api/v1/teardowns.json` → `first-honest-day`.)
+**Honest gap:** the press coverage documents the winners, not their workflows — what tools made *The First Honest Day* win is not in the sources found. Don't cite its craft; cite its economics. (Shot-by-shot teardown in this guide: `data/v1/teardowns.json` → `first-honest-day`.)
 
 ## Reply AI Film Festival — Venice's orbit
 
@@ -2092,8 +2092,8 @@ The 6th MEGA festival (XJTLU/AFCT, Suzhou International Expo Centre, announced S
 ## Also on the 2026 map
 
 - **12th International Film Festival of Shimla** (Sept 2026) added a Best AI Film category: winner *Coexistence*. (hillpost.in, Sept 2026)
-- **Higgsfield Global Film Festival** — the platform-native circuit; covered as a craft reference in `higgsfield/competition-entry-craft.md` and `api/v1/competitions.json`.
-- **Project Odyssey** — Grok's competition circuit (the $100K "Odyssey" winner is teardown #3 in `api/v1/teardowns.json`, including its cautionary consistency failures).
+- **Higgsfield Global Film Festival** — the platform-native circuit; covered as a craft reference in `higgsfield/competition-entry-craft.md` and `data/v1/competitions.json`.
+- **Project Odyssey** — Grok's competition circuit (the $100K "Odyssey" winner is teardown #3 in `data/v1/teardowns.json`, including its cautionary consistency failures).
 
 ## The Cannes line — clarified, not moved
 
@@ -2117,7 +2117,7 @@ On June 10, 2026, Tribeca premiered *Dreams of Violets* — Ash Koosha's 75-minu
 2. **The $2,000-cost story is a press hook and a handicap.** It got the film covered; it also made buyers and festivals nervous. Lead with the story, disclose the process, and have your ethics answer ready before the premiere — Koosha's ("the dead deserve to be witnessed") worked in the room.
 3. **Plan for the ethics question.** AI dramatizations of real suffering draw a specific, fierce criticism (see the A.V. Club review). That's a reception risk to prepare for, not an afterthought.
 
-(Shot-by-shot teardown in this guide: `api/v1/teardowns.json` → `dreams-of-violets`.)
+(Shot-by-shot teardown in this guide: `data/v1/teardowns.json` → `dreams-of-violets`.)
 
 ## 2027 on the calendar
 
@@ -2898,7 +2898,7 @@ Do a 20-minute post-mortem while it's fresh: what broke, what the fix was, what 
 <!-- tools: generated from build_llms.py TOOLS -->
 # Interactive Tools (site/)
 
-- `site/teardown.html` — shot-by-shot teardown viewer: Passport Rush, ONEIRIC, the Grok Odyssey $100K winner, Google DeepMind's Dear Upstairs Neighbors, Fountain 0's Dreams of Violets (75-min Tribeca 2026 AI feature, $2K budget), Nikolay Shestak's The First Honest Day ($450K Astana 2026 Grand Prix winner; tools undisclosed — the teardown is honest about the gap), StoReel's The $150 Microdrama ('Off Campus' experiment: four AI episodes in four days, documented clip by clip), and Robert Gaudette's 'A Face Only a Mother Could Love' (8-minute solo short: $50K Runway AIFF 2026 Grand Prix + Reply AI Film Festival 2026 winner; character sheets before shot one, lip-sync in the prompt, redub for the voice; tool identity reported, not audited), and Tim Simmons' Dragon Blue (hyper-stylized AI action short, solo in two days with Claude Cowork as the production office: reference grids before video, filter-safety memory, token discipline; self-reported, skill published), and Svedka's 'Shake Your Bots Off' (first primarily AI-generated Super Bowl commercial, Super Bowl LX: Silverside AI rebuilt the lost Fembot mascot on component-based ComfyUI workflows — characters, world, choreography as separate controls; crowdsourced TikTok dance integrated in hours; vendor-hosted case study, corroborated by ADWEEK/TechCrunch) broken into shots (setup / what works / what breaks / craft lesson, labeled prompt reconstructions where the stack is documented); data in `api/v1/teardowns.json`
+- `site/teardown.html` — shot-by-shot teardown viewer: Passport Rush, ONEIRIC, the Grok Odyssey $100K winner, Google DeepMind's Dear Upstairs Neighbors, Fountain 0's Dreams of Violets (75-min Tribeca 2026 AI feature, $2K budget), Nikolay Shestak's The First Honest Day ($450K Astana 2026 Grand Prix winner; tools undisclosed — the teardown is honest about the gap), StoReel's The $150 Microdrama ('Off Campus' experiment: four AI episodes in four days, documented clip by clip), and Robert Gaudette's 'A Face Only a Mother Could Love' (8-minute solo short: $50K Runway AIFF 2026 Grand Prix + Reply AI Film Festival 2026 winner; character sheets before shot one, lip-sync in the prompt, redub for the voice; tool identity reported, not audited), and Tim Simmons' Dragon Blue (hyper-stylized AI action short, solo in two days with Claude Cowork as the production office: reference grids before video, filter-safety memory, token discipline; self-reported, skill published), and Svedka's 'Shake Your Bots Off' (first primarily AI-generated Super Bowl commercial, Super Bowl LX: Silverside AI rebuilt the lost Fembot mascot on component-based ComfyUI workflows — characters, world, choreography as separate controls; crowdsourced TikTok dance integrated in hours; vendor-hosted case study, corroborated by ADWEEK/TechCrunch) broken into shots (setup / what works / what breaks / craft lesson, labeled prompt reconstructions where the stack is documented); data in `data/v1/teardowns.json`
 - `site/manifesto.html` — positioning: a living free reference, not a course; everything sourced; what it won't do
 - `site/field-guides/` — printable one-pagers generated from the guide's own data: model quick-reference (from `models.json`), prompt anatomy cheat sheet, consistency & dead-eyes checklist
 - `site/api.html` — human-readable API docs + a Try-the-API console (endpoint picker, fetch, pretty-printed JSON), and pointers to `AGENT.md`
@@ -2906,10 +2906,10 @@ Do a 20-minute post-mortem while it's fresh: what broke, what the fix was, what 
 - `site/budget.html` — interactive credit-budget calculator
 - `site/optimizer.html` — budget optimizer: runtime + dialogue share + quality bar → optimal model mix per bucket from `models.json`, with 5×/20× cost envelopes
 - `site/shots.html` — shot-list builder: per-shot type/model/seconds/takes → live cost table from `models.json`, totals with 5×/20× envelopes, localStorage lists, JSON export/import, one-click handoff to the optimizer
-- `site/doctor.html` — failure doctor: pick the symptom (face morph, dead eyes, plasticky skin…) → craft diagnosis + fix + deep link into the workshop's repair templates; 12 diagnoses in `api/v1/diagnoses.json` (+ schema)
+- `site/doctor.html` — failure doctor: pick the symptom (face morph, dead eyes, plasticky skin…) → craft diagnosis + fix + deep link into the workshop's repair templates; 12 diagnoses in `data/v1/diagnoses.json` (+ schema)
 - `site/linter.html` — prompt linter: paste any prompt → structural analysis against the ten-layer anatomy (layers present/missing, vague words flagged, concrete fix per gap); heuristic, honest about it; one-click handoffs to the workshop and anatomy builder (`assets/js/linter.js`)
-- `site/cutting-room.html` — the cutting room, playable: type a weak prompt, roll the camera — a shot-by-shot shoot built from the real 47-template prompt library (`api/v1/prompt-templates.json`), real ten-layer analysis, guided fix-bay techniques quoted from real templates (cited by id), real cost math from the Watchtower pricing API with static fallback; take-by-take improvement loop (`assets/js/cutting-room.js`)
-- `site/models/` — model deep dives: one page per model (31) + index, generated from `api/v1/models.json` at build time — spec record, worked cost math (USD at $0.0392/credit), use-when/avoid-when from the model's own fields, prompt tips linking the guide's chapters
+- `site/cutting-room.html` — the cutting room, playable: type a weak prompt, roll the camera — a shot-by-shot shoot built from the real 47-template prompt library (`data/v1/prompt-templates.json`), real ten-layer analysis, guided fix-bay techniques quoted from real templates (cited by id), real cost math from the Watchtower pricing API with static fallback; take-by-take improvement loop (`assets/js/cutting-room.js`)
+- `site/models/` — model deep dives: one page per model (31) + index, generated from `data/v1/models.json` at build time — spec record, worked cost math (USD at $0.0392/credit), use-when/avoid-when from the model's own fields, prompt tips linking the guide's chapters
 - `site/anatomy.html` — anatomy of a prompt: interactive nine-layer annotated example + build-your-own mode
 - `site/workshop.html` — interactive prompt workshop (template × model × track, save/rate, optional style-bible prepend from `site/style-bible.html`)
 - `site/style-bible.html` — style-bible builder: describe character/world once → reusable STYLE LOCK block; named bibles in localStorage (`afg-style-bibles`), copy/save/export/import, workshop integration

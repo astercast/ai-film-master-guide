@@ -28,7 +28,7 @@ Client explainer: Road B — voice recorded first, lip-sync pass on silent hero 
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

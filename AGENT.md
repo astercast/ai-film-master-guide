@@ -8,11 +8,11 @@ reference. This file is the operator's manual.
 
 ## Base URL pattern
 
-Base: **`api/v1/`** relative to the repo root or the deployed site root.
+Base: **`data/v1/`** relative to the repo root or the deployed site root.
 Static files — **no auth, no keys, no rate limits**. Works on any static host.
 
-- Start at **`api/v1/index.json`** — the self-describing manifest: every
-  endpoint with its description, schema URL (`api/v1/schema/*.json`),
+- Start at **`data/v1/index.json`** — the self-describing manifest: every
+  endpoint with its description, schema URL (`data/v1/schema/*.json`),
   `updated` timestamp, record counts, and deprecation notes.
 - For task procedures: **`skills/index.json`** → load the skill file whose
   task matches the request. Each skill is: Use when, Inputs, Procedure,
@@ -24,30 +24,30 @@ Static files — **no auth, no keys, no rate limits**. Works on any static host.
 
 | Endpoint | Contents | Count |
 |---|---|---|
-| `api/v1/index.json` | Manifest — start here | 11 endpoints |
-| `api/v1/models.json` | 30 models: platform, type, credit cost, strengths/weaknesses/best use, `last_verified`, `status`, `what_changed`, `sources`, `unverified` list | 30 |
-| `api/v1/prompt-templates.json` | 47 templates: id, title, track, prompt, anatomy, use, models | 47 |
-| `api/v1/camera-movements.json` | 22-move camera lexicon: id, move, prompt_phrasing, when_to_use | 22 |
-| `api/v1/checklists.json` | 5 checklists: pre-production, per-shot, continuity, audio, delivery | 5 |
-| `api/v1/glossary.json` | AI film / production terms | 79 |
-| `api/v1/competitions.json` | 2 judged competitions as craft records (no prizes/deadlines) | 2 |
-| `api/v1/teardowns.json` | 10 shot-by-shot teardowns; prompt reconstructions are analytical | 8 |
-| `api/v1/diagnoses.json` | 12 failure diagnoses: symptom → diagnosis, fixes, repair template | 12 |
-| `api/v1/model-checks.json` | Model-watch freshness feed: per-model last check, source diffs, headlines | 22 checked |
-| `api/v1/model-review-queue.json` | Pending model-watch review items (empty = nothing pending) | 0 pending |
-| `api/v1/model-updates.md` | Human-readable model changelog (Markdown, no schema) | — |
+| `data/v1/index.json` | Manifest — start here | 11 endpoints |
+| `data/v1/models.json` | 30 models: platform, type, credit cost, strengths/weaknesses/best use, `last_verified`, `status`, `what_changed`, `sources`, `unverified` list | 30 |
+| `data/v1/prompt-templates.json` | 47 templates: id, title, track, prompt, anatomy, use, models | 47 |
+| `data/v1/camera-movements.json` | 22-move camera lexicon: id, move, prompt_phrasing, when_to_use | 22 |
+| `data/v1/checklists.json` | 5 checklists: pre-production, per-shot, continuity, audio, delivery | 5 |
+| `data/v1/glossary.json` | AI film / production terms | 79 |
+| `data/v1/competitions.json` | 2 judged competitions as craft records (no prizes/deadlines) | 2 |
+| `data/v1/teardowns.json` | 10 shot-by-shot teardowns; prompt reconstructions are analytical | 8 |
+| `data/v1/diagnoses.json` | 12 failure diagnoses: symptom → diagnosis, fixes, repair template | 12 |
+| `data/v1/model-checks.json` | Model-watch freshness feed: per-model last check, source diffs, headlines | 22 checked |
+| `data/v1/model-review-queue.json` | Pending model-watch review items (empty = nothing pending) | 0 pending |
+| `data/v1/model-updates.md` | Human-readable model changelog (Markdown, no schema) | — |
 
 Example requests (Node; swap `fs` for `fetch` in a browser):
 
 ```js
-const models = JSON.parse(require("fs").readFileSync("api/v1/models.json", "utf8"));
+const models = JSON.parse(require("fs").readFileSync("data/v1/models.json", "utf8"));
 // cheapest active video model, excluding discontinued (the Studio does this too):
 const priced = models.models
   .filter(m => m.type === "video" && m.status !== "discontinued")
   .map(m => ({ m, cps: parseFloat(m.est_cost_credits) / 5 })) // "N / 5s" pattern
   .filter(x => !isNaN(x.cps)).sort((a, b) => a.cps - b.cps);
 // horror templates = core + photorealistic tracks:
-const tpl = JSON.parse(require("fs").readFileSync("api/v1/prompt-templates.json", "utf8"));
+const tpl = JSON.parse(require("fs").readFileSync("data/v1/prompt-templates.json", "utf8"));
 const horror = tpl.templates.filter(t => ["core", "photorealistic"].includes(t.track));
 ```
 
@@ -141,7 +141,7 @@ The Studio's microdrama mode (`site/studio.html`, `assets/js/studio.js`
 `buildMicrodramaPlan`) is an **economics planner**, not a shot packet: it
 turns a run shape into a clip budget, a benchmark comparison, and a
 timeline from the documented $150-microdrama figures
-(`api/v1/teardowns.json`, id `storeel-off-campus`).
+(`data/v1/teardowns.json`, id `storeel-off-campus`).
 
 Input shape:
 

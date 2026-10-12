@@ -26,7 +26,7 @@ Emotional peak close-up: Hailuo, soft window light, slow push-in, ONE micro-expr
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

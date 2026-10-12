@@ -29,7 +29,7 @@ Use when the shot needs what this move does: Dialogue coverage; grounding the vi
 
 ## API references
 
-- `api/v1/camera-movements.json`
+- `data/v1/camera-movements.json`
 
 ## Pitfalls
 

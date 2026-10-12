@@ -29,7 +29,7 @@ You are generating on Pika 2.5 (Pika, video). Best use: Stylized/social content,
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

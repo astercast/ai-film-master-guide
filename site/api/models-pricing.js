@@ -1,8 +1,8 @@
 'use strict';
 /* GET /api/models-pricing — film-watchtower v1.0.0 (ARCHITECTURE.md §7.1).
  * Real pricing data endpoint. Serves the curated pricing table
- * (api/v1/pricing.json at the repo root — curated from models.json's verified
- * research by the wave engine; copied to site/api/v1/ at build time — the
+ * (data/v1/pricing.json at the repo root — curated from models.json's verified
+ * research by the wave engine; copied to site/data/v1/ at build time — the
  * watchtower cron flags pricing-page changes for review but never auto-edits
  * rates: fetched pages are unreliable signals).
  *
@@ -10,7 +10,7 @@
  *         type, status, pricing_status, tiers: [{tier, unit, usd_low,
  *         usd_high, basis, confidence}], updated_at, source_urls[], note}]}
  *
- * Static fallback: /api/v1/pricing.json itself (same file, §3).
+ * Static fallback: /data/v1/pricing.json itself (same file, §3).
  * Query: ?model_id= filters to one model (unknown id -> 404 NOT_FOUND).
  */
 var env = require('../lib/envelope.js');
@@ -19,7 +19,7 @@ var rl = require('../lib/ratelimit.js');
 var SERVICE = 'film-watchtower';
 var VERSION = '1.0.0';
 
-var PRICING = require('./v1/pricing.json');
+var PRICING = require('../data/v1/pricing.json');
 
 function findModel(id) {
   var want = String(id).toLowerCase();

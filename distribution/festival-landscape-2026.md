@@ -33,7 +33,7 @@ The cash awards were funded by the Freedom Shapagat Corporate Foundation of Free
 
 **What the money means:** $450,000 is two orders of magnitude above the documented cost of producing an AI feature (*Dreams of Violets*: ~$2,000; long-form workflows measure cost per finished minute in the low hundreds of dollars). A Grand Prix doesn't just reward a film — at AI production costs, it funds the winner's next several films. The special-category prizes ($50K) are similarly life-changing money relative to production cost. This is the structural fact of AI film in 2026: festivals pay like traditional film while the medium costs like software. Enter accordingly — with the entry craft this guide teaches (`higgsfield/competition-entry-craft.md`).
 
-**Honest gap:** the press coverage documents the winners, not their workflows — what tools made *The First Honest Day* win is not in the sources found. Don't cite its craft; cite its economics. (Shot-by-shot teardown in this guide: `api/v1/teardowns.json` → `first-honest-day`.)
+**Honest gap:** the press coverage documents the winners, not their workflows — what tools made *The First Honest Day* win is not in the sources found. Don't cite its craft; cite its economics. (Shot-by-shot teardown in this guide: `data/v1/teardowns.json` → `first-honest-day`.)
 
 ## Reply AI Film Festival — Venice's orbit
 
@@ -77,8 +77,8 @@ The 6th MEGA festival (XJTLU/AFCT, Suzhou International Expo Centre, announced S
 ## Also on the 2026 map
 
 - **12th International Film Festival of Shimla** (Sept 2026) added a Best AI Film category: winner *Coexistence*. (hillpost.in, Sept 2026)
-- **Higgsfield Global Film Festival** — the platform-native circuit; covered as a craft reference in `higgsfield/competition-entry-craft.md` and `api/v1/competitions.json`.
-- **Project Odyssey** — Grok's competition circuit (the $100K "Odyssey" winner is teardown #3 in `api/v1/teardowns.json`, including its cautionary consistency failures).
+- **Higgsfield Global Film Festival** — the platform-native circuit; covered as a craft reference in `higgsfield/competition-entry-craft.md` and `data/v1/competitions.json`.
+- **Project Odyssey** — Grok's competition circuit (the $100K "Odyssey" winner is teardown #3 in `data/v1/teardowns.json`, including its cautionary consistency failures).
 
 ## The Cannes line — clarified, not moved
 
@@ -102,7 +102,7 @@ On June 10, 2026, Tribeca premiered *Dreams of Violets* — Ash Koosha's 75-minu
 2. **The $2,000-cost story is a press hook and a handicap.** It got the film covered; it also made buyers and festivals nervous. Lead with the story, disclose the process, and have your ethics answer ready before the premiere — Koosha's ("the dead deserve to be witnessed") worked in the room.
 3. **Plan for the ethics question.** AI dramatizations of real suffering draw a specific, fierce criticism (see the A.V. Club review). That's a reception risk to prepare for, not an afterthought.
 
-(Shot-by-shot teardown in this guide: `api/v1/teardowns.json` → `dreams-of-violets`.)
+(Shot-by-shot teardown in this guide: `data/v1/teardowns.json` → `dreams-of-violets`.)
 
 ## 2027 on the calendar
 

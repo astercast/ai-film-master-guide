@@ -37,8 +37,8 @@ Close-up of [SUBJECT B] reacting, shallow depth of field, neon reflections. Stat
 
 ## API references
 
-- `api/v1/prompt-templates.json`
-- `api/v1/camera-movements.json`
+- `data/v1/prompt-templates.json`
+- `data/v1/camera-movements.json`
 
 ## Pitfalls
 

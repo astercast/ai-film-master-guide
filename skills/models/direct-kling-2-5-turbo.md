@@ -29,7 +29,7 @@ You are generating on Kling 2.5 Turbo (Kuaishou, video). Best use: Cheap drafts,
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

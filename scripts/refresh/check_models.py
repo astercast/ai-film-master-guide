@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Weekly AI-video-model freshness checker (Model Watch).
 
-Reads api/v1/models.json, fetches each model's official source URLs
+Reads data/v1/models.json, fetches each model's official source URLs
 (changelog/pricing/announcement pages from the model's `sources`, plus any
 per-model `extra_urls` in scripts/refresh/model-check-config.json),
 computes a content signature per source, and compares against the stored
@@ -13,8 +13,8 @@ headlines in the record's `news_headlines` for review. News is PASSIVE SIGNAL �
 it never feeds the change signature (news churn would flag everything weekly).
 
 Outputs (committed):
-  api/v1/model-checks.json       — per-model freshness records + run summary
-  api/v1/model-review-queue.json  — models whose sources changed since last
+  data/v1/model-checks.json       — per-model freshness records + run summary
+  data/v1/model-review-queue.json  — models whose sources changed since last
                                     run, awaiting HUMAN/AGENT review.
 
 Promotion workflow (models.json is NEVER mutated by this script — fetched
@@ -23,7 +23,7 @@ pages are unreliable signals, so price/status changes always need a person):
      (signature diff, signal excerpts, source URLs).
   2. An agent (or human) opens the flagged source URLs, verifies what really
      changed (price? version? discontinuation? noise?), and — only when
-     confirmed — edits api/v1/models.json (last_verified, status,
+     confirmed — edits data/v1/models.json (last_verified, status,
      est_cost_credits, what_changed, sources).
   3. Re-run `python3 scripts/build_api.py`, inspect the git diff, commit,
      push. The next weekly check then establishes a new baseline.
@@ -47,10 +47,10 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent.parent
-MODELS_JSON = ROOT / "api" / "v1" / "models.json"
+MODELS_JSON = ROOT / "data" / "v1" / "models.json"
 CONFIG_JSON = Path(__file__).resolve().parent / "model-check-config.json"
-CHECKS_JSON = ROOT / "api" / "v1" / "model-checks.json"
-QUEUE_JSON = ROOT / "api" / "v1" / "model-review-queue.json"
+CHECKS_JSON = ROOT / "data" / "v1" / "model-checks.json"
+QUEUE_JSON = ROOT / "data" / "v1" / "model-review-queue.json"
 
 
 def now_iso():
@@ -295,7 +295,7 @@ def main():
                 "signals": rec["signals"],
                 "promotion": (
                     "Agent: verify the flagged URLs, confirm price/version/status change, "
-                    "then update api/v1/models.json (last_verified, status, "
+                    "then update data/v1/models.json (last_verified, status, "
                     "est_cost_credits, what_changed, sources), re-run scripts/build_api.py, "
                     "commit, push. This script never edits models.json."
                 ),

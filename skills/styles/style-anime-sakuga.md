@@ -27,8 +27,8 @@ Dash attack: speed lines + 3 impact frames, background frozen mid-pan.
 
 ## API references
 
-- `api/v1/prompt-templates.json`
-- `api/v1/models.json`
+- `data/v1/prompt-templates.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

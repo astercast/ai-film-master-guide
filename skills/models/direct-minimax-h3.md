@@ -29,7 +29,7 @@ You are generating on MiniMax H3 (MiniMax, video). Best use: Native-audio dialog
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

@@ -27,7 +27,7 @@ Climax cue brief: 'orchestral hybrid, 110 BPM, strings + pulse, dread → triump
 
 ## API references
 
-- `api/v1/competitions.json`
+- `data/v1/competitions.json`
 
 ## Pitfalls
 

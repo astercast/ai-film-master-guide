@@ -29,7 +29,7 @@ You are generating on Seedance 2.5 (ByteDance, video). Best use: Hero multi-shot
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

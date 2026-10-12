@@ -27,7 +27,7 @@ Fish's final day: every frame a painting, strokes flowing with the current.
 
 ## API references
 
-- `api/v1/prompt-templates.json`
+- `data/v1/prompt-templates.json`
 
 ## Pitfalls
 

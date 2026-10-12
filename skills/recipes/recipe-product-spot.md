@@ -28,8 +28,8 @@ Watch spot: macro orbit + crystal-to-dial focus pull → wrist lifestyle → log
 
 ## API references
 
-- `api/v1/prompt-templates.json`
-- `api/v1/models.json`
+- `data/v1/prompt-templates.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

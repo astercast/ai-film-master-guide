@@ -108,5 +108,5 @@ AI features have a specific structural grammar, and the failures are structural 
 - Passport Rush: official breakdown video (youtube.com), Deykhan Ten LinkedIn pipeline list, completeaitraining.com
 - Hell Grind: technode.com (verified live), newkerala.com, walaw.press (Cannes correction), suggest.com (tabloid-grade — flagged)
 - Dreams of Violets: en.wikipedia.org, cryptobriefing.com, Ash Koosha LinkedIn (first-person, unaudited), pagesix.com
-- Pricing: higgsfield.ai/blog/higgsfield-api, higgsfield.ai/blog/seedance-2-5-on-higgsfield-2026, blotato.com, daily.dev; per-model credit rates from `api/v1/models.json` (observed 2026-10-10)
+- Pricing: higgsfield.ai/blog/higgsfield-api, higgsfield.ai/blog/seedance-2-5-on-higgsfield-2026, blotato.com, daily.dev; per-model credit rates from `data/v1/models.json` (observed 2026-10-10)
 - Companion chapters: `case-studies/competition-teardowns.md`, `craft/character-consistency.md`, `craft/directing-performance.md`, `craft/editing-pipeline.md`, `craft/failure-gallery.md`, `economics/credit-math.md`

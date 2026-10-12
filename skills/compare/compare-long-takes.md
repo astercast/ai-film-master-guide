@@ -27,7 +27,7 @@ Oners, walk-and-talks, sustained reveals.
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

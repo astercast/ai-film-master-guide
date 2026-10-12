@@ -27,7 +27,7 @@ All generation until the select is locked.
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

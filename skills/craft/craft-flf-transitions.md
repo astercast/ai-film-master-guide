@@ -27,7 +27,7 @@ Coffee cup → crater: matched circular shape, FLF interpolation, 3 seconds.
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

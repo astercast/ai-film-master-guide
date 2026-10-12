@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build api/v1/*.json for the AI Film Master Guide.
+"""Build data/v1/*.json for the AI Film Master Guide.
 
 Usage: python3 scripts/build_api.py
 Sources: research artifacts (mega-research 2026-10-10) + hand-authored competitions.
@@ -12,7 +12,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 ART = Path.home() / "workspace/research_notes/ai-film-mega-research-20261010-0311/artifacts"
-API = ROOT / "api" / "v1"
+API = ROOT / "data" / "v1"
 VERSION = "1.0.0"
 MANIFEST_VERSION = "1.1.0"  # index.json is the manifest; additive enrichment only
 OBSERVED = "2026-10-11"
@@ -235,85 +235,85 @@ def main():
                 "records": records, "notes": notes}
 
     endpoints = {
-        "index": ep("api/v1/index.json",
+        "index": ep("data/v1/index.json",
                     "Manifest: every endpoint with description, schema URL, "
                     "updated timestamp, record counts, and deprecation notes. "
                     "Start here.",
-                    "api/v1/schema/index.json", 0,
+                    "data/v1/schema/index.json", 0,
                     "Self-describing; meta.version is the manifest version."),
-        "models": ep("api/v1/models.json",
+        "models": ep("data/v1/models.json",
                      "Model records: platform, type, credit costs, strengths, "
                      "weaknesses, best use, per-model last_verified, status "
                      "(active/reported/announced/discontinued), what_changed, "
                      "sources; explicit unverified list.",
-                     "api/v1/schema/model.json", len(model_data["models"]),
+                     "data/v1/schema/model.json", len(model_data["models"]),
                      "DEPRECATION: Sora carries status='discontinued' (service "
                      "shut Mar-Sep 2026; API closed 2026-09-24). Discontinued "
                      "models are excluded from the Studio and compare-tool "
                      "pools but kept here for the historical record."),
-        "prompt-templates": ep("api/v1/prompt-templates.json",
+        "prompt-templates": ep("data/v1/prompt-templates.json",
                                "Prompt templates: id, title, track, prompt, "
                                "anatomy, use, models. Stable ids; [BRACKETS] "
                                "placeholders.",
-                               "api/v1/schema/prompt-template.json",
+                               "data/v1/schema/prompt-template.json",
                                len(templates),
                                "15 core (t1-t15), 8 animated (a1-a8), 8 "
                                "photorealistic (p1-p8), 5 performance, "
                                "4 audio, 4 longform, 3 repair."),
-        "camera-movements": ep("api/v1/camera-movements.json",
+        "camera-movements": ep("data/v1/camera-movements.json",
                                "Camera lexicon: id, move, prompt_phrasing, "
                                "when_to_use.",
-                               "api/v1/schema/camera-movement.json",
+                               "data/v1/schema/camera-movement.json",
                                len(cameras["movements"])),
-        "checklists": ep("api/v1/checklists.json",
+        "checklists": ep("data/v1/checklists.json",
                          "Production checklists (pre-production, per-shot, "
                          "continuity, audio, delivery) with item arrays.",
-                         "api/v1/schema/checklist.json",
+                         "data/v1/schema/checklist.json",
                          len(checklists)),
-        "glossary": ep("api/v1/glossary.json",
+        "glossary": ep("data/v1/glossary.json",
                        "AI film / production terms: term + definition.",
-                       "api/v1/schema/glossary.json",
+                       "data/v1/schema/glossary.json",
                        len(glossary)),
-        "competitions": ep("api/v1/competitions.json",
+        "competitions": ep("data/v1/competitions.json",
                            "Judged competitions as craft records: what each "
                            "judges, the production constraints its rules "
                            "teach, craft lessons from judged work. No prizes, "
                            "deadlines, or promotional material.",
-                           "api/v1/schema/competition.json",
+                           "data/v1/schema/competition.json",
                            len(comps)),
-        "teardowns": ep("api/v1/teardowns.json",
+        "teardowns": ep("data/v1/teardowns.json",
                         "Shot-by-shot teardowns: setup, what works, what "
                         "breaks, craft lesson per shot; prompt reconstructions "
                         "are analytical, not actual prompts.",
-                        "api/v1/schema/teardown.json",
+                        "data/v1/schema/teardown.json",
                         n_teardowns),
-        "diagnoses": ep("api/v1/diagnoses.json",
+        "diagnoses": ep("data/v1/diagnoses.json",
                         "Failure-diagnosis map for the Doctor tool: symptom -> "
                         "craft diagnosis, fixes, repair-template link, source "
                         "chapters.",
-                        "api/v1/schema/diagnosis.json",
+                        "data/v1/schema/diagnosis.json",
                         n_diagnoses),
-        "model-checks": ep("api/v1/model-checks.json",
+        "model-checks": ep("data/v1/model-checks.json",
                            "Model-watch freshness feed: per-model last check "
                            "time, source-signature diffs, news headlines. "
                            "Maintained by the model-watch refresh loop.",
-                           "api/v1/schema/model-checks.json",
+                           "data/v1/schema/model-checks.json",
                            n_checked,
                            "A 'changed' flag is a review signal, not a "
                            "confirmed model change — check the review queue "
                            "before treating it as fact."),
-        "model-review-queue": ep("api/v1/model-review-queue.json",
+        "model-review-queue": ep("data/v1/model-review-queue.json",
                                  "Pending model-watch review items: changed "
                                  "source signatures awaiting human promotion. "
                                  "Empty array = nothing pending.",
-                                 "api/v1/schema/model-review-queue.json",
+                                 "data/v1/schema/model-review-queue.json",
                                  n_pending),
     }
     # Fix the self-referential records count now that the map is complete.
     endpoints["index"]["records"] = len(endpoints)
 
     documents = {
-        "model-updates": {"path": "api/v1/model-updates.md",
+        "model-updates": {"path": "data/v1/model-updates.md",
                           "description": "Human-readable changelog of model "
                                          "record updates, with dates and "
                                          "sources.",
@@ -327,7 +327,7 @@ def main():
         "meta": {
             "version": MANIFEST_VERSION,
             "generated": generated_at,
-            "base": "api/v1/",
+            "base": "data/v1/",
             "auth": "none",
             "notes": "Static files on any static host — no auth, no keys, "
                      "no rate limits. Breaking changes ship as a new v2/ "
@@ -335,7 +335,7 @@ def main():
                      "are YYYY-MM-DD; timestamps are ISO-8601 UTC.",
         },
         "repository": "https://github.com/astercast/ai-film-master-guide",
-        "for_agents": "Start at api/v1/index.json. For task procedures, read skills/index.json and load the relevant skill file — skills are the primary agentic interface for doing work, the JSON endpoints are the data layer. Repo-level agent guide: AGENT.md.",
+        "for_agents": "Start at data/v1/index.json. For task procedures, read skills/index.json and load the relevant skill file — skills are the primary agentic interface for doing work, the JSON endpoints are the data layer. Repo-level agent guide: AGENT.md.",
         "provenance": "Compiled from the 2026-10-10 mega-research pass (Higgsfield pricing page read live; competition details from official sources). Unverified values are listed explicitly, never invented.",
         "skills": {
             "directory": "skills/",

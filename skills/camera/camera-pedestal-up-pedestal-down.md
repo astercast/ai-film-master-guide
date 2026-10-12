@@ -29,7 +29,7 @@ Use when the shot needs what this move does: Vertical reveals without the swing 
 
 ## API references
 
-- `api/v1/camera-movements.json`
+- `data/v1/camera-movements.json`
 
 ## Pitfalls
 

@@ -28,7 +28,7 @@ Before committing to a long-form production.
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

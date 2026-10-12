@@ -3,7 +3,7 @@
 
 Generator owns these files (wave 15): hand edits will be clobbered by the
 validator, which regenerates and diffs. Every number is computed from
-CHAPTER_ORDER, api/v1/*.json, skills/, or the chapter sources themselves;
+CHAPTER_ORDER, data/v1/*.json, skills/, or the chapter sources themselves;
 the remaining prose lives as constants in THIS file so drift is visible in
 git, not silent in the text files.
 
@@ -48,7 +48,7 @@ after editing chapters. Open `site/index.html`.
 # Keep blurbs in sync with build_site.py's search-index tool entries.
 TOOLS = [
     ("index.html", "landing: track picker (animated vs photorealistic), chapter grid, learning paths (7: first film, competition, animated, photoreal, long-form, first 60-second short, the 90-day filmmaker)"),
-    ("teardown.html", "shot-by-shot teardown viewer: Passport Rush, ONEIRIC, the Grok Odyssey $100K winner, Google DeepMind's Dear Upstairs Neighbors, Fountain 0's Dreams of Violets (75-min Tribeca 2026 AI feature, $2K budget), Nikolay Shestak's The First Honest Day ($450K Astana 2026 Grand Prix winner; tools undisclosed — the teardown is honest about the gap), StoReel's The $150 Microdrama ('Off Campus' experiment: four AI episodes in four days, documented clip by clip), and Robert Gaudette's 'A Face Only a Mother Could Love' (8-minute solo short: $50K Runway AIFF 2026 Grand Prix + Reply AI Film Festival 2026 winner; character sheets before shot one, lip-sync in the prompt, redub for the voice; tool identity reported, not audited), and Tim Simmons' Dragon Blue (hyper-stylized AI action short, solo in two days with Claude Cowork as the production office: reference grids before video, filter-safety memory, token discipline; self-reported, skill published), and Svedka's 'Shake Your Bots Off' (first primarily AI-generated Super Bowl commercial, Super Bowl LX: Silverside AI rebuilt the lost Fembot mascot on component-based ComfyUI workflows — characters, world, choreography as separate controls; crowdsourced TikTok dance integrated in hours; vendor-hosted case study, corroborated by ADWEEK/TechCrunch) broken into shots (setup / what works / what breaks / craft lesson, labeled prompt reconstructions where the stack is documented); data in `api/v1/teardowns.json`"),
+    ("teardown.html", "shot-by-shot teardown viewer: Passport Rush, ONEIRIC, the Grok Odyssey $100K winner, Google DeepMind's Dear Upstairs Neighbors, Fountain 0's Dreams of Violets (75-min Tribeca 2026 AI feature, $2K budget), Nikolay Shestak's The First Honest Day ($450K Astana 2026 Grand Prix winner; tools undisclosed — the teardown is honest about the gap), StoReel's The $150 Microdrama ('Off Campus' experiment: four AI episodes in four days, documented clip by clip), and Robert Gaudette's 'A Face Only a Mother Could Love' (8-minute solo short: $50K Runway AIFF 2026 Grand Prix + Reply AI Film Festival 2026 winner; character sheets before shot one, lip-sync in the prompt, redub for the voice; tool identity reported, not audited), and Tim Simmons' Dragon Blue (hyper-stylized AI action short, solo in two days with Claude Cowork as the production office: reference grids before video, filter-safety memory, token discipline; self-reported, skill published), and Svedka's 'Shake Your Bots Off' (first primarily AI-generated Super Bowl commercial, Super Bowl LX: Silverside AI rebuilt the lost Fembot mascot on component-based ComfyUI workflows — characters, world, choreography as separate controls; crowdsourced TikTok dance integrated in hours; vendor-hosted case study, corroborated by ADWEEK/TechCrunch) broken into shots (setup / what works / what breaks / craft lesson, labeled prompt reconstructions where the stack is documented); data in `data/v1/teardowns.json`"),
     ("manifesto.html", "positioning: a living free reference, not a course; everything sourced; what it won't do"),
     ("field-guides/", "printable one-pagers generated from the guide's own data: model quick-reference (from `models.json`), prompt anatomy cheat sheet, consistency & dead-eyes checklist"),
     ("api.html", "human-readable API docs + a Try-the-API console (endpoint picker, fetch, pretty-printed JSON), and pointers to `AGENT.md`"),
@@ -56,10 +56,10 @@ TOOLS = [
     ("budget.html", "interactive credit-budget calculator"),
     ("optimizer.html", "budget optimizer: runtime + dialogue share + quality bar → optimal model mix per bucket from `models.json`, with 5×/20× cost envelopes"),
     ("shots.html", "shot-list builder: per-shot type/model/seconds/takes → live cost table from `models.json`, totals with 5×/20× envelopes, localStorage lists, JSON export/import, one-click handoff to the optimizer"),
-    ("doctor.html", "failure doctor: pick the symptom (face morph, dead eyes, plasticky skin…) → craft diagnosis + fix + deep link into the workshop's repair templates; 12 diagnoses in `api/v1/diagnoses.json` (+ schema)"),
+    ("doctor.html", "failure doctor: pick the symptom (face morph, dead eyes, plasticky skin…) → craft diagnosis + fix + deep link into the workshop's repair templates; 12 diagnoses in `data/v1/diagnoses.json` (+ schema)"),
     ("linter.html", "prompt linter: paste any prompt → structural analysis against the ten-layer anatomy (layers present/missing, vague words flagged, concrete fix per gap); heuristic, honest about it; one-click handoffs to the workshop and anatomy builder (`assets/js/linter.js`)"),
-    ("cutting-room.html", "the cutting room, playable: type a weak prompt, roll the camera — a shot-by-shot shoot built from the real 47-template prompt library (`api/v1/prompt-templates.json`), real ten-layer analysis, guided fix-bay techniques quoted from real templates (cited by id), real cost math from the Watchtower pricing API with static fallback; take-by-take improvement loop (`assets/js/cutting-room.js`)"),
-    ("models/", "model deep dives: one page per model ({n_models}) + index, generated from `api/v1/models.json` at build time — spec record, worked cost math (USD at $0.0392/credit), use-when/avoid-when from the model's own fields, prompt tips linking the guide's chapters"),
+    ("cutting-room.html", "the cutting room, playable: type a weak prompt, roll the camera — a shot-by-shot shoot built from the real 47-template prompt library (`data/v1/prompt-templates.json`), real ten-layer analysis, guided fix-bay techniques quoted from real templates (cited by id), real cost math from the Watchtower pricing API with static fallback; take-by-take improvement loop (`assets/js/cutting-room.js`)"),
+    ("models/", "model deep dives: one page per model ({n_models}) + index, generated from `data/v1/models.json` at build time — spec record, worked cost math (USD at $0.0392/credit), use-when/avoid-when from the model's own fields, prompt tips linking the guide's chapters"),
     ("anatomy.html", "anatomy of a prompt: interactive nine-layer annotated example + build-your-own mode"),
     ("workshop.html", "interactive prompt workshop (template × model × track, save/rate, optional style-bible prepend from `site/style-bible.html`)"),
     ("style-bible.html", "style-bible builder: describe character/world once → reusable STYLE LOCK block; named bibles in localStorage (`afg-style-bibles`), copy/save/export/import, workshop integration"),
@@ -85,7 +85,7 @@ SECTION_NOTES = {
 
 MODELS_NOTE = ("Refreshed 2026-10-11: Sora discontinued, Kling 4.0 announced, "
                "MiniMax H3 / Midjourney V1 Video / Seedance 3.0 (reported) added. "
-               "See `api/v1/model-updates.md`")
+               "See `data/v1/model-updates.md`")
 
 KEY_FACTS = """## Key facts agents should know
 
@@ -129,12 +129,12 @@ def chapters():
 
 
 def build_llms_txt():
-    models = jload("api/v1/models.json")
-    templates = jload("api/v1/prompt-templates.json")["templates"]
-    camera = jload("api/v1/camera-movements.json")["movements"]
-    glossary = jload("api/v1/glossary.json")
-    diagnoses = jload("api/v1/diagnoses.json")["diagnoses"]
-    teardowns = jload("api/v1/teardowns.json")["teardowns"]
+    models = jload("data/v1/models.json")
+    templates = jload("data/v1/prompt-templates.json")["templates"]
+    camera = jload("data/v1/camera-movements.json")["movements"]
+    glossary = jload("data/v1/glossary.json")
+    diagnoses = jload("data/v1/diagnoses.json")["diagnoses"]
+    teardowns = jload("data/v1/teardowns.json")["teardowns"]
     n_models = len(models["models"])
     n_skills = sum(1 for _ in (ROOT / "skills").rglob("*.md"))
     n_terms = len(glossary["terms"]) if isinstance(glossary, dict) else len(glossary)
@@ -167,7 +167,7 @@ def build_llms_txt():
     out.append("")
     out.append("## API (static JSON, versioned)")
     out.append("")
-    out.append("Base: `api/v1/` — rebuild with `python3 scripts/build_api.py` (reads the")
+    out.append("Base: `data/v1/` — rebuild with `python3 scripts/build_api.py` (reads the")
     out.append("research artifacts; outputs committed).")
     out.append("")
 
@@ -182,32 +182,32 @@ def build_llms_txt():
 
     teardown_names = ", ".join(TEARDOWN_TITLES.get(t["id"], t["title"]) for t in teardowns)
 
-    out.append("- `api/v1/index.json` — manifest: every endpoint with description, schema URL, `updated` timestamp, record counts, deprecation notes; `meta.version` 1.1.0; repo-level agent guide at `AGENT.md`")
-    out.append(f"- `api/v1/models.json` — {n_models} models: platform, type, credit costs, strengths, weaknesses, best use, "
+    out.append("- `data/v1/index.json` — manifest: every endpoint with description, schema URL, `updated` timestamp, record counts, deprecation notes; `meta.version` 1.1.0; repo-level agent guide at `AGENT.md`")
+    out.append(f"- `data/v1/models.json` — {n_models} models: platform, type, credit costs, strengths, weaknesses, best use, "
                "plus per-model `last_verified`, `status` (active/reported/announced/discontinued), `what_changed`, `sources`; "
                f"explicit `unverified` list. {MODELS_NOTE}")
-    out.append(f"- `api/v1/prompt-templates.json` — {len(templates)} templates: " + ", ".join(track_bits) + "; anatomy, use, models")
-    out.append(f"- `api/v1/camera-movements.json` — {len(camera)}-move camera lexicon with prompt phrasing and use cases")
-    out.append("- `api/v1/checklists.json` — pre-production, per-shot, continuity, audio, delivery checklists")
-    out.append(f"- `api/v1/glossary.json` — {n_terms} AI film / production terms")
-    out.append("- `api/v1/competitions.json` — judged competitions as craft records: what they judge, production constraints, craft lessons; no prizes or deadlines")
-    out.append(f"- `api/v1/teardowns.json` — shot-by-shot teardowns ({teardown_names}): setup, what works, what breaks, craft lesson per shot; "
+    out.append(f"- `data/v1/prompt-templates.json` — {len(templates)} templates: " + ", ".join(track_bits) + "; anatomy, use, models")
+    out.append(f"- `data/v1/camera-movements.json` — {len(camera)}-move camera lexicon with prompt phrasing and use cases")
+    out.append("- `data/v1/checklists.json` — pre-production, per-shot, continuity, audio, delivery checklists")
+    out.append(f"- `data/v1/glossary.json` — {n_terms} AI film / production terms")
+    out.append("- `data/v1/competitions.json` — judged competitions as craft records: what they judge, production constraints, craft lessons; no prizes or deadlines")
+    out.append(f"- `data/v1/teardowns.json` — shot-by-shot teardowns ({teardown_names}): setup, what works, what breaks, craft lesson per shot; "
                "prompt reconstructions labeled as analytical, not actual prompts")
-    out.append(f"- `api/v1/diagnoses.json` — failure-diagnosis map for the Doctor tool: {len(diagnoses)} symptoms → craft diagnosis, fixes, repair-template link, source chapters")
-    out.append("- `api/v1/model-checks.json` — model-watch freshness feed: per-model last check, source-signature diffs, news headlines")
-    out.append("- `api/v1/model-review-queue.json` — pending model-watch review items (empty = nothing pending)")
-    out.append("- `api/v1/schema/` — JSON Schema (draft-07) for EVERY endpoint: index, model, prompt-template, camera-movement, checklist, glossary, competition, teardown, diagnosis, model-checks, model-review-queue")
+    out.append(f"- `data/v1/diagnoses.json` — failure-diagnosis map for the Doctor tool: {len(diagnoses)} symptoms → craft diagnosis, fixes, repair-template link, source chapters")
+    out.append("- `data/v1/model-checks.json` — model-watch freshness feed: per-model last check, source-signature diffs, news headlines")
+    out.append("- `data/v1/model-review-queue.json` — pending model-watch review items (empty = nothing pending)")
+    out.append("- `data/v1/schema/` — JSON Schema (draft-07) for EVERY endpoint: index, model, prompt-template, camera-movement, checklist, glossary, competition, teardown, diagnosis, model-checks, model-review-queue")
     out.append("- `AGENT.md` — how an agent uses this repo: base URL pattern, example requests, five end-to-end workflows (Studio planning, prompt linting, model price tracking, mini-drama series setup, microdrama run economics) — executable via `node scripts/agent-workflows.test.js`")
     out.append("")
     out.append("## Skills (agentic task procedures)")
     out.append("")
     out.append(f"{n_skills} skills in `skills/` — rebuild with `python3 scripts/build_skills.py`")
-    out.append("(generates from `api/v1/` data + authored procedures; outputs committed).")
+    out.append("(generates from `data/v1/` data + authored procedures; outputs committed).")
     out.append("`skills/index.json` is the manifest: id, title, description, path per skill.")
     out.append("")
     out.append("For agents: load the skill whose task matches the request — skills are the")
     out.append("primary interface for *doing* work; the JSON endpoints are the data layer.")
-    out.append("`api/v1/index.json` points here (`repository`, `skills`, `for_agents`).")
+    out.append("`data/v1/index.json` points here (`repository`, `skills`, `for_agents`).")
     out.append("")
     cats = textwrap.fill("Categories: " + ", ".join(
         f"{c} ({sum(1 for _ in (ROOT / 'skills' / c).rglob('*.md'))})"
@@ -223,9 +223,9 @@ def build_llms_txt():
 
 
 def build_llms_full():
-    n_models = len(jload("api/v1/models.json")["models"])
+    n_models = len(jload("data/v1/models.json")["models"])
     out = ["# AI Film Master Guide — full text", "",
-           f"Static site: site/index.html. API: api/v1/. Generated {FRESHNESS_DATE}.", ""]
+           f"Static site: site/index.html. API: data/v1/. Generated {FRESHNESS_DATE}.", ""]
     for sec, slug in chapters():
         name = f"{sec}/{slug}.md"
         text = (ROOT / name).read_text().rstrip("\n")

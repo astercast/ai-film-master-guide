@@ -30,8 +30,8 @@ Filled draft:
 
 ## API references
 
-- `api/v1/prompt-templates.json`
-- `api/v1/camera-movements.json`
+- `data/v1/prompt-templates.json`
+- `data/v1/camera-movements.json`
 
 ## Pitfalls
 

@@ -10,7 +10,7 @@ Before you quote a client, sell a license, or plan a release, compute what your 
 
 As of October 2026, rough per-finished-minute costs run from ~$1.90/min (Kling Turbo, clean single-take math) to ~$23.50/min (Veo 3.1) — before the 5–20× overhead envelope that real productions hit. A 20-minute short can cost anywhere from a few hundred dollars to several thousand depending on the model mix. **Your cost floor is the single most important business number you have.** Every pricing decision below starts from it.
 
-**Source:** `economics/credit-math.md`, `craft/longform-pipelines.md`, `api/v1/models.json` (cost basis: Higgsfield live pricing, Oct 10 2026; verify live).
+**Source:** `economics/credit-math.md`, `craft/longform-pipelines.md`, `data/v1/models.json` (cost basis: Higgsfield live pricing, Oct 10 2026; verify live).
 
 ## What actually pays (documented, Oct 2026)
 

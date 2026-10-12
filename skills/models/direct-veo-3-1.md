@@ -29,7 +29,7 @@ You are generating on Veo 3.1 (Google DeepMind, video). Best use: Controlled nar
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

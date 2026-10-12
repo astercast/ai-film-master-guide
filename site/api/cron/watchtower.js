@@ -33,8 +33,8 @@ var github = require('../../lib/github.js');
 var SERVICE = 'film-watchtower';
 var VERSION = '1.0.0';
 
-var CHECKS_PATH = 'api/v1/model-checks.json';
-var QUEUE_PATH = 'api/v1/model-review-queue.json';
+var CHECKS_PATH = 'data/v1/model-checks.json';
+var QUEUE_PATH = 'data/v1/model-review-queue.json';
 var MAX_URLS_PER_RUN = 8;
 var RUN_BUDGET_MS = 7000;
 var DOMAIN_GAP_MS = 5000; // max 1 request/5s per provider domain (§7.1)
@@ -64,8 +64,8 @@ function sleep(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
 
 function loadBundle(path) {
   try {
-    // cron/ -> ../v1/...  (site/api/v1)
-    var j = path === CHECKS_PATH ? require('../v1/model-checks.json') : require('../v1/model-review-queue.json');
+    // api/cron/ -> ../../data/v1/... (repo-root data dir)
+    var j = path === CHECKS_PATH ? require('../../data/v1/model-checks.json') : require('../../data/v1/model-review-queue.json');
     return { ok: true, json: j, from: 'bundle' };
   } catch (e) {
     return { ok: false, error: String((e && e.message) || e) };

@@ -29,7 +29,7 @@ You are generating on Soul Cast (Higgsfield, image). Best use: Consistent cinema
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

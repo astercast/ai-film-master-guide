@@ -32,7 +32,7 @@ Dragon Blue (reference production): SKILL.md two-stage workflow; Nano Banana Pro
 
 ## API references
 
-- `api/v1/teardowns.json`
+- `data/v1/teardowns.json`
 
 ## Pitfalls
 

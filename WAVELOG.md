@@ -63,7 +63,7 @@ artifact → `build_api.py` (assert 30→31) → `build_skills.py` (auto-created
 already correctly tracked (status: discontinued, verified 2026-10-11).
 Production stages and skill levels: covered by the pipeline docs + 7 learning
 paths — no gaps found. Also fixed a latent doc bug in GO_LIVE.md: it told
-editors to hand-edit `api/v1/models.json`, which `build_api.py` regenerates
+editors to hand-edit `data/v1/models.json`, which `build_api.py` regenerates
 from the artifact (the edit would be silently wiped). Corrected to
 artifact-first.
 

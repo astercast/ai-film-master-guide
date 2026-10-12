@@ -29,7 +29,7 @@ Title 'Night Shift', hashtag #nightshift, cast: Rin the night-shift barista, voi
 
 ## API references
 
-- `api/v1/checklists.json`
+- `data/v1/checklists.json`
 
 ## Pitfalls
 

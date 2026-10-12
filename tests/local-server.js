@@ -11,7 +11,7 @@
  * Routes:
  *   /api/health | /api/models-status | /api/models-pricing | /api/calc-cost
  *   /api/cron/watchtower  -> site/api/cron/watchtower.js
- *   /api/v1/...           -> static files from site/api/v1/...
+ *   /data/v1/...          -> static files from site/data/v1/...
  */
 var http = require('http');
 var fs = require('fs');
@@ -50,9 +50,9 @@ var server = http.createServer(async function (nodeReq, nodeRes) {
   var pathname = parsed.pathname || '/';
 
   // Static fallback files.
-  if (pathname.indexOf('/api/v1/') === 0) {
-    var rel = pathname.replace('/api/v1/', '');
-    var fp = path.join(SITE, 'api', 'v1', rel.split('/').filter(function (p) { return p && p !== '..'; }).join('/'));
+  if (pathname.indexOf('/data/v1/') === 0) {
+    var rel = pathname.replace('/data/v1/', '');
+    var fp = path.join(SITE, 'data', 'v1', rel.split('/').filter(function (p) { return p && p !== '..'; }).join('/'));
     fs.readFile(fp, function (err, data) {
       if (err) { nodeRes.statusCode = 404; nodeRes.end('not found'); return; }
       nodeRes.statusCode = 200;

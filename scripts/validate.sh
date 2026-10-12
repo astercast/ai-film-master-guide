@@ -4,12 +4,12 @@
 # Stages:
 #   1. JS syntax ......... node --check every .js shipped to the browser
 #   2. JSON parse ........ every JSON file under api/, site/, skills/, scripts/
-#   3. JSON Schema ....... draft-07 validation of EVERY api/v1 endpoint
-#                         against api/v1/schema/ (schemas self-checked too)
+#   3. JSON Schema ....... draft-07 validation of EVERY data/v1 endpoint
+#                         against data/v1/schema/ (schemas self-checked too)
 #   4. Relative links .... every href/src in every HTML page resolves on disk
 #   5. Generator audit ... skills/** matches build_skills.py output exactly
 #                         (no hand edits); prompt-templates.json matches the
-#                         artifact parser; api/v1 preserve list covers every
+#                         artifact parser; data/v1 preserve list covers every
 #                         non-generated file
 #   6. llms.txt freshness build_llms.py regenerates llms.txt + llms-full.txt;
 #                         git diff must be clean (the generator owns them)
@@ -18,7 +18,7 @@
 #                         exist in both assets/js and the built site/
 #   8. Agent workflows .. node scripts/agent-workflows.test.js — the three
 #                         AGENT.md example workflows executed against the
-#                         real local api/v1 JSON files
+#                         real local data/v1 JSON files
 #
 # Exit code: 0 only if every stage passes. Anything failing is a real issue
 # to fix, not cosmetic churn.
@@ -68,7 +68,7 @@ from pathlib import Path
 from jsonschema import Draft7Validator
 
 ROOT = Path(".")
-SCH = ROOT / "api" / "v1" / "schema"
+SCH = ROOT / "data" / "v1" / "schema"
 failures = []
 
 def schema(name):
@@ -77,7 +77,7 @@ def schema(name):
     return Draft7Validator(s)
 
 def doc(name):
-    return json.loads((ROOT / "api" / "v1" / name).read_text())
+    return json.loads((ROOT / "data" / "v1" / name).read_text())
 
 # per-record schemas
 checks = [
@@ -186,16 +186,16 @@ import json, sys
 sys.path.insert(0, "scripts")
 import build_api  # noqa: F401  (main() only runs under __main__)
 parsed = build_api.parse_prompt_library()
-committed = json.loads(open("api/v1/prompt-templates.json").read())["templates"]
+committed = json.loads(open("data/v1/prompt-templates.json").read())["templates"]
 if parsed == committed:
     print(f"  ok: prompt-templates.json matches artifact-1 parser output ({len(parsed)} templates)")
 else:
-    print("  FAIL: api/v1/prompt-templates.json != artifact-1 parser output")
+    print("  FAIL: data/v1/prompt-templates.json != artifact-1 parser output")
     sys.exit(1)
 EOF
 [ $? -eq 0 ] && pass "prompt-templates.json == parser output" || FAIL=$((FAIL+1))
 
-# 5c. api/v1: every file must be either generator-written or in the preserve list
+# 5c. data/v1: every file must be either generator-written or in the preserve list
 python3 - <<'EOF'
 import re, sys
 from pathlib import Path
@@ -214,21 +214,21 @@ generated = {"index.json", "models.json", "prompt-templates.json",
              "schema/index.json"}
 
 unaccounted = []
-for f in sorted((ROOT / "api" / "v1").rglob("*")):
+for f in sorted((ROOT / "data" / "v1").rglob("*")):
     if f.is_file() and not str(f).endswith(".pyc"):
-        rel = str(f.relative_to(ROOT / "api" / "v1"))
+        rel = str(f.relative_to(ROOT / "data" / "v1"))
         if rel not in preserved and rel not in generated:
             unaccounted.append(rel)
 
 if unaccounted:
-    print("  FAIL: api/v1 files with no generator and no preserve entry:")
+    print("  FAIL: data/v1 files with no generator and no preserve entry:")
     for u in unaccounted:
         print("   -", u)
     print("  (add to build_api.py's preserve list or the outputs dict)")
     sys.exit(1)
-print(f"  ok: all api/v1 files accounted for ({len(preserved)} preserved, {len(generated)} generated)")
+print(f"  ok: all data/v1 files accounted for ({len(preserved)} preserved, {len(generated)} generated)")
 EOF
-[ $? -eq 0 ] && pass "api/v1 preserve list covers every non-generated file" || FAIL=$((FAIL+1))
+[ $? -eq 0 ] && pass "data/v1 preserve list covers every non-generated file" || FAIL=$((FAIL+1))
 
 # 5d. every skills/*.md id must come from the generator (api data ids or HAND)
 python3 - <<'EOF'
@@ -239,10 +239,10 @@ ROOT = Path(".")
 def slug(s):
     return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
 
-t = json.loads((ROOT / "api/v1/prompt-templates.json").read_text())
-c = json.loads((ROOT / "api/v1/camera-movements.json").read_text())
-m = json.loads((ROOT / "api/v1/models.json").read_text())
-ch = json.loads((ROOT / "api/v1/checklists.json").read_text())
+t = json.loads((ROOT / "data/v1/prompt-templates.json").read_text())
+c = json.loads((ROOT / "data/v1/camera-movements.json").read_text())
+m = json.loads((ROOT / "data/v1/models.json").read_text())
+ch = json.loads((ROOT / "data/v1/checklists.json").read_text())
 expected = ({f"prompt-{x['id']}" for x in t["templates"]} |
             {f"camera-{x['id']}" for x in c["movements"]} |
             {f"direct-{slug(x['model'])}" for x in m["models"] if x.get("status") != "discontinued"} |
@@ -275,13 +275,13 @@ import json, sys
 from pathlib import Path
 
 ROOT = Path(".")
-t = json.loads((ROOT / "api/v1/prompt-templates.json").read_text())["templates"]
+t = json.loads((ROOT / "data/v1/prompt-templates.json").read_text())["templates"]
 f = json.loads((ROOT / "prompts-facets.json").read_text())
 tids = [x["id"] for x in t]
 fids = list(f["facets"].keys())
 voc = f["vocab"]
-mov = {m["id"] for m in json.loads((ROOT / "api/v1/camera-movements.json").read_text())["movements"]} | {"varies", "none"}
-tds = {x["id"] for x in json.loads((ROOT / "api/v1/teardowns.json").read_text())["teardowns"]}
+mov = {m["id"] for m in json.loads((ROOT / "data/v1/camera-movements.json").read_text())["movements"]} | {"varies", "none"}
+tds = {x["id"] for x in json.loads((ROOT / "data/v1/teardowns.json").read_text())["teardowns"]}
 layers = set(voc["layers"])
 errors = []
 if sorted(fids) != sorted(tids):
@@ -339,7 +339,7 @@ done
 if [ "$STUDIO_OK" = 1 ]; then pass "studio.html + studio.js shipped in assets/js and site/, data files present"; fi
 
 # ---------------------------------------------------------------- stage 8 ---
-stage 8 "Agent workflows (AGENT.md examples vs real api/v1 data)"
+stage 8 "Agent workflows (AGENT.md examples vs real data/v1 data)"
 WF_OUT=$(node scripts/agent-workflows.test.js 2>&1)
 if echo "$WF_OUT" | tail -1 | grep -q "ALL PASS"; then
   WF_N=$(echo "$WF_OUT" | grep -c "^ok   -")

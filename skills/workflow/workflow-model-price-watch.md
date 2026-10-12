@@ -26,10 +26,10 @@ Kling 3.0: '720p ~7/5s', status active, last_verified 2026-10-11; check record l
 
 ## API references
 
-- `api/v1/models.json`
-- `api/v1/model-checks.json`
-- `api/v1/model-review-queue.json`
-- `api/v1/model-updates.md`
+- `data/v1/models.json`
+- `data/v1/model-checks.json`
+- `data/v1/model-review-queue.json`
+- `data/v1/model-updates.md`
 
 ## Pitfalls
 

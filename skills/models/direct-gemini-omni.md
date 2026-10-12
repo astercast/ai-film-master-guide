@@ -29,7 +29,7 @@ You are generating on Gemini Omni (Google DeepMind, video). Best use: Conversati
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

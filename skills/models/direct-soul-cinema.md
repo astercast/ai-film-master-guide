@@ -29,7 +29,7 @@ You are generating on Soul Cinema (Higgsfield, image). Best use: Cinematic keyfr
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

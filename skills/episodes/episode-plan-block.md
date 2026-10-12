@@ -29,7 +29,7 @@ Ep 1 (mini-drama): emotion dread, 4 beats x 12s = 48s... too short for the 60-15
 
 ## API references
 
-- `api/v1/checklists.json`
+- `data/v1/checklists.json`
 
 ## Pitfalls
 

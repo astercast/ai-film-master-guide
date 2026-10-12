@@ -26,7 +26,7 @@ Character reaction beat: PixVerse 3D, squash-and-stretch surprise take, warm key
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

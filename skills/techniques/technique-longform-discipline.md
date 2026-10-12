@@ -27,7 +27,7 @@ Any multi-scene short where consistency matters.
 
 ## API references
 
-- `api/v1/checklists.json`
+- `data/v1/checklists.json`
 
 ## Pitfalls
 

@@ -27,7 +27,7 @@ Criteria-mapped plan for a 4-min authored-style drama: directing, craft, sound, 
 
 ## API references
 
-- `api/v1/competitions.json`
+- `data/v1/competitions.json`
 
 ## Pitfalls
 

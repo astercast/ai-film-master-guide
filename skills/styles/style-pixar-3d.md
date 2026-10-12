@@ -26,7 +26,7 @@ Surprise take: squash, stretch, eye-pop — 2 seconds, whole joke landed.
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

@@ -28,7 +28,7 @@ Breaking a script into generatable units.
 
 ## API references
 
-- `api/v1/prompt-templates.json`
+- `data/v1/prompt-templates.json`
 
 ## Pitfalls
 

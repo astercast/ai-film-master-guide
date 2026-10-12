@@ -26,7 +26,7 @@ Revenge arc for a design-theft story: 60-150s band, 15s/beat x 4 beats = 60s in-
 
 ## API references
 
-- `api/v1/checklists.json`
+- `data/v1/checklists.json`
 
 ## Pitfalls
 

@@ -29,7 +29,7 @@ You are generating on FLUX 3 Video (Black Forest Labs, video). Best use: Dialogu
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

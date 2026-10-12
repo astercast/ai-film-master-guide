@@ -29,7 +29,7 @@ You are generating on DoP (Lite/Standard/Turbo) (Higgsfield, video). Best use: Q
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

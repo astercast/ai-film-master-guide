@@ -8,7 +8,7 @@
  *                 source_urls[]}
  * status: stable | changed | error | unwatched
  *
- * Static fallback: /api/v1/model-checks.json (§3).
+ * Static fallback: /data/v1/model-checks.json (§3).
  * SLA 24h (§8 data_freshness in /api/health).
  */
 var env = require('../lib/envelope.js');
@@ -17,8 +17,8 @@ var rl = require('../lib/ratelimit.js');
 var SERVICE = 'film-watchtower';
 var VERSION = '1.0.0';
 
-var CHECKS = require('./v1/model-checks.json');
-var PRICING = require('./v1/pricing.json');
+var CHECKS = require('../data/v1/model-checks.json');
+var PRICING = require('../data/v1/pricing.json');
 
 var NAME_TO_ID = {};
 PRICING.entries.forEach(function (e) { NAME_TO_ID[e.model] = e.model_id; });

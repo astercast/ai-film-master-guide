@@ -2,7 +2,7 @@
    The page is pre-rendered from the last published data, so it is fully
    usable with JavaScript disabled. This script live-updates the freshness
    panel and per-card check flags from /api/models-status, falling back to
-   the static api/v1/model-checks.json. It never replaces content with an
+   the static data/v1/model-checks.json. It never replaces content with an
    error state: on total failure the pre-rendered content simply stays. */
 (function () {
   "use strict";
@@ -41,7 +41,7 @@
       errors: s.with_errors || 0, unwatched: s.no_sources || 0, perModel: per };
   }
 
-  // Static fallback (api/v1/model-checks.json) → same normalized shape.
+  // Static fallback (data/v1/model-checks.json) → same normalized shape.
   function fromStatic(doc) {
     var per = {};
     (doc.models || []).forEach(function (m) {
@@ -93,7 +93,7 @@
     });
   }
 
-  window.ApiClient.fetchWithFallback("/api/models-status", "api/v1/model-checks.json", { badgeEl: badge })
+  window.ApiClient.fetchWithFallback("/api/models-status", "data/v1/model-checks.json", { badgeEl: badge })
     .then(function (res) {
       if (res.source === "live" && res.data) render(fromLive(res.data), true, res.degraded, res.note);
       else if (res.source === "static" && res.data) render(fromStatic(res.data), false, false, null);

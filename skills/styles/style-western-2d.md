@@ -27,7 +27,7 @@ Two-character argument: held poses, snap takes, mouth shapes on punchlines.
 
 ## API references
 
-- `api/v1/prompt-templates.json`
+- `data/v1/prompt-templates.json`
 
 ## Pitfalls
 

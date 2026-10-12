@@ -29,7 +29,7 @@ You are generating on Runway Gen-4.5 (Runway, video). Best use: 4K with camera c
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

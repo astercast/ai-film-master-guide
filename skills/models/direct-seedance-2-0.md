@@ -29,7 +29,7 @@ You are generating on Seedance 2.0 (ByteDance, video). Best use: Multi-shot narr
 
 ## API references
 
-- `api/v1/models.json`
+- `data/v1/models.json`
 
 ## Pitfalls
 

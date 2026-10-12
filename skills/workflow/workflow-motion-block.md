@@ -26,7 +26,7 @@ MOTION: Mara crosses the kitchen in three strides, sets the ledger down. Slow do
 
 ## API references
 
-- `api/v1/camera-movements.json`
+- `data/v1/camera-movements.json`
 
 ## Pitfalls
 

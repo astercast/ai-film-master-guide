@@ -31,8 +31,8 @@ Pre-production planning — before spending a single credit on generation.
 
 ## API references
 
-- `api/v1/models.json`
-- `api/v1/diagnoses.json`
+- `data/v1/models.json`
+- `data/v1/diagnoses.json`
 
 ## Pitfalls
 
