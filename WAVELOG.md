@@ -117,7 +117,13 @@ and the page's best moment is a quiet one: come back tomorrow and the
 first panel already knows what you missed. AI-ism scan on all new copy:
 clean. No TODOs, no dead code.
 
-**Commit:** (recorded in the follow-up commit, per the standing pattern.)
+**Commit:** local `be18816` (44 files) → pushed 2026-10-12 as remote commit
+`15a2935617fe08fa98a492a1a44b346731ea45ba`; remote `main` HEAD matched the
+pushed SHA; GitHub Trees API verified: 653 entries, not truncated, all 13
+key wave files present, local HEAD tree == remote tree (`edbaa02c`). Push
+succeeded on the first attempt — no 400s this wave. Remote track verified
+pre-push: `astercast/ai-film-master-guide` (working repo, not `-live`).
+Post-commit `validate.sh`: **18/18, ALL STAGES PASS**.
 
 ## WOW wave 2 — "The Green Light": a studio meeting, playable (2026-10-12)
 
