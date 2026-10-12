@@ -1,6 +1,6 @@
 {
   "format": "model-history/1.0",
-  "generated_at": "2026-10-12T00:00:00Z",
+  "generated_at": "2026-10-12T23:00:05Z",
   "method": "Hand-authored event log. Every event traces to a fact recorded in models.json (what_changed), data/v1/model-updates.md, or this wave's own pricing-table changes. Price events carry a before/after pair only where the record documents both numbers; otherwise the fields are null and the summary says why. The pricing baseline below is the pricing table as curated on 2026-10-11 \u2014 the drift engine diffs the live table against it, so a rate that moves from here on is caught mechanically, not by memory.",
   "pricing_baseline": {
     "at": "2026-10-11T00:00:00Z",
@@ -936,6 +936,127 @@
       "summary": "FLUX 3's QHD, UHD, and video-to-video tiers added to the pricing table. They had been documented in the model record since the September 10 listing but never made it into the table the budget tools read \u2014 exactly the kind of silent gap the Watchtower diff now catches.",
       "confidence": "reported",
       "source": "Watchtower 2.0 pricing-coverage audit (2026-10-12)"
+    },
+    {
+      "id": "2026-10-12-gemini-omni-watch",
+      "date": "2026-10-12",
+      "model_id": "gemini-omni",
+      "model": "Gemini Omni",
+      "kind": "coverage",
+      "summary": "Automated source watch added: the Gemini API pricing page and the DeepMind Gemini model page. Omni had been tracked since its I/O 2026 unveiling with no watch at all; a token-billed rate now has a primary source to diff against.",
+      "status_after": "active",
+      "confidence": "reported",
+      "source": "Watchtower 2.1 check run (2026-10-12)"
+    },
+    {
+      "id": "2026-10-12-ltx-2-5-watch",
+      "date": "2026-10-12",
+      "model_id": "ltx-2-5",
+      "model": "LTX-2.5",
+      "kind": "coverage",
+      "summary": "Automated source watch added on Lightricks' official GitHub releases page. ltx.io refuses non-browser HTTP clients (connection dropped on repeated probes), so the releases page is the watchable official surface: fetched and recorded every run, excluded from the change signature because GitHub page chrome churns without a release.",
+      "status_after": "active",
+      "confidence": "reported",
+      "source": "Watchtower 2.1 check run (2026-10-12)"
+    },
+    {
+      "id": "2026-10-12-vidu-s2-watch",
+      "date": "2026-10-12",
+      "model_id": "vidu-s2",
+      "model": "Vidu S2",
+      "kind": "coverage",
+      "summary": "Automated source watch added: Vidu's official pricing page and API platform. S2's per-clip rate was never officially published; the watch exists to catch the first rate card.",
+      "status_after": "active",
+      "confidence": "reported",
+      "source": "Watchtower 2.1 check run (2026-10-12)"
+    },
+    {
+      "id": "2026-10-12-mirage-tesseract-watch",
+      "date": "2026-10-12",
+      "model_id": "mirage-tesseract",
+      "model": "Mirage Tesseract",
+      "kind": "coverage",
+      "summary": "Automated source watch added: the official Tesseract product page at mirage.app. A free local engine has no rate card to diff; the watch tracks scope changes \u2014 export limits, account requirements, agent integrations.",
+      "status_after": "active",
+      "confidence": "reported",
+      "source": "Watchtower 2.1 check run (2026-10-12)"
+    },
+    {
+      "id": "2026-10-12-runway-gen-4-5-watch",
+      "date": "2026-10-12",
+      "model_id": "runway-gen-4-5",
+      "model": "Runway Gen-4.5",
+      "kind": "coverage",
+      "summary": "Automated source watch added: Runway's official pricing page, where the Gen-4.5 credit rate and plan credit bundles are published.",
+      "status_after": "active",
+      "confidence": "reported",
+      "source": "Watchtower 2.1 check run (2026-10-12)"
+    },
+    {
+      "id": "2026-10-12-vidu-q4-preview-watch",
+      "date": "2026-10-12",
+      "model_id": "vidu-q4-preview",
+      "model": "Vidu Q4 Preview",
+      "kind": "coverage",
+      "summary": "Automated source watch added: Vidu's official pricing page and API platform, on top of the launch sources. The preview's promotional rates run through Nov 30; the watch is pointed at the rate card for the final pricing.",
+      "status_after": "active",
+      "confidence": "reported",
+      "source": "Watchtower 2.1 check run (2026-10-12)"
+    },
+    {
+      "id": "2026-10-12-flux-3-video-watch",
+      "date": "2026-10-12",
+      "model_id": "flux-3-video",
+      "model": "FLUX 3 Video",
+      "kind": "coverage",
+      "summary": "Automated source watch extended: BFL's official pricing page added alongside the bfl.ai homepage watch, giving the per-second tiers a primary source to diff against.",
+      "status_after": "active",
+      "confidence": "reported",
+      "source": "Watchtower 2.1 check run (2026-10-12)"
+    },
+    {
+      "id": "2026-10-12-vivago-r1-watch",
+      "date": "2026-10-12",
+      "model_id": "vivago-r1",
+      "model": "vivago R1",
+      "kind": "coverage",
+      "summary": "Automated source watch added: vivago's official pricing page. The record opened with no published rate; the watch is there to catch the first one.",
+      "status_after": "active",
+      "confidence": "reported",
+      "source": "Watchtower 2.1 check run (2026-10-12)"
+    },
+    {
+      "id": "2026-10-12-pixverse-v6-watch",
+      "date": "2026-10-12",
+      "model_id": "pixverse-v6",
+      "model": "PixVerse V6",
+      "kind": "coverage",
+      "summary": "Automated source watch added: the official PixVerse API docs and homepage. The guide's V6 rates are gateway-reported (third-party estimates); the docs are where a first-party rate card would land.",
+      "status_after": "active",
+      "confidence": "reported",
+      "source": "Watchtower 2.1 check run (2026-10-12)"
+    },
+    {
+      "id": "2026-10-12-dop-watch",
+      "date": "2026-10-12",
+      "model_id": "dop",
+      "model": "DoP (Lite/Standard/Turbo)",
+      "kind": "coverage",
+      "summary": "Automated source watch added: Higgsfield's help-center DoP guide. DoP had a full record and no sources at all \u2014 the last of the guide's models in that state alongside Marketing Studio. Tier and preset changes now have an official page to diff against.",
+      "status_after": "active",
+      "confidence": "reported",
+      "source": "Watchtower 2.1 check run (2026-10-12)"
+    },
+    {
+      "id": "2026-10-12-marketing-studio-video-watch",
+      "date": "2026-10-12",
+      "model_id": "marketing-studio-video",
+      "model": "Marketing Studio video",
+      "kind": "coverage",
+      "summary": "Automated source watch added: Higgsfield's official API rate post and the platform pricing page. The record's per-clip credit costs are third-party; a republished rate table is now a review signal instead of a rumor.",
+      "status_after": "active",
+      "confidence": "reported",
+      "source": "Watchtower 2.1 check run (2026-10-12)"
     }
   ]
 }

@@ -59,9 +59,9 @@ for p in models-status models-pricing models-changes; do
 done
 
 echo "== 3. models-status payload shape =="
-chk "models-status 22 models, status enum" bash -c "curl -sf '$BASE/api/models-status' | python3 -c \"
+chk "models-status 31 models, status enum" bash -c "curl -sf '$BASE/api/models-status' | python3 -c \"
 import json,sys; e=json.load(sys.stdin); ms=e['data']['models']
-assert len(ms)==22, len(ms)
+assert len(ms)==31, len(ms)
 assert all(m['status'] in ('stable','changed','error','unwatched') for m in ms)
 assert all(m['id'] and m['name'] and isinstance(m['source_urls'],list) for m in ms)\""
 
@@ -84,7 +84,7 @@ import json,sys; e=json.load(sys.stdin); d=e['data']
 ids=[x['id'] for x in d['events']]
 assert '2026-10-07-vidu-q4-rate-card' in ids, ids
 assert '2026-09-28-kling-40-announced' not in ids
-assert d['counts']['total']==len(d['events']) and d['counts']['total']==9, d['counts']
+assert d['counts']['total']==len(d['events']) and d['counts']['total']==20, d['counts']
 assert d['since']=='2026-10-01' and d['baseline_at'].startswith('2026-10-11')\""
 chk "models-changes future window empty" bash -c "curl -sf '$BASE/api/models-changes?since=2999-01-01' | python3 -c \"
 import json,sys; e=json.load(sys.stdin); assert e['data']['counts']['total']==0 and e['data']['events']==[]\""
@@ -94,9 +94,9 @@ import json,sys; e=json.load(sys.stdin); pc=e['data']['price_changes']
 assert len(pc)==5, pc
 assert any(c['kind']=='model-added' and c['model_id']=='pixverse-v6' for c in pc)
 assert sum(1 for c in pc if c['kind']=='tier-added')==4\""
-chk "models-changes drift summary 31 models, 2 alerts" bash -c "curl -sf '$BASE/api/models-changes' | python3 -c \"
+chk "models-changes drift summary 31 models, 16 alerts, 0 unwatched" bash -c "curl -sf '$BASE/api/models-changes' | python3 -c \"
 import json,sys; e=json.load(sys.stdin); s=e['data']['drift_summary']
-assert s['models_total']==31 and s['alert']==2 and s['unwatched']==11, s
+assert s['models_total']==31 and s['alert']==16 and s['unwatched']==0, s
 assert len(e['data']['drift_alerts'])==s['alert']+s['watch']\""
 chk "models-changes ?model_id= filter" bash -c "curl -sf '$BASE/api/models-changes?since=2025-01-01&model_id=kling-3-0' | python3 -c \"
 import json,sys; e=json.load(sys.stdin)

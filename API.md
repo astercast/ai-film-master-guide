@@ -26,9 +26,9 @@ Base path: `data/v1/`
 | `competitions.json` | Competition craft records: what each judged competition scores, the production constraints its rules teach, craft lessons from judged work. No prizes, deadlines, or promotional material | 2 |
 | `teardowns.json` | 10 shot-by-shot teardowns; prompt reconstructions are analytical, not actual prompts | 8 |
 | `diagnoses.json` | 12 failure diagnoses: symptom → craft diagnosis, fixes, repair-template link, source chapters | 12 |
-| `model-checks.json` | Model-watch freshness feed: per-model last check, source-signature diffs, news headlines | 22 |
-| `model-review-queue.json` | Pending model-watch review items (empty = nothing pending) | 0 |
-| `model-history.json` | Watchtower 2.0 event log: dated `release`/`status`/`price`/`tier`/`verification`/`coverage` events per model (price events carry `before_usd`/`after_usd` only where the record documents both), plus `pricing_baseline` — the pricing table as curated 2026-10-11, which the drift engine diffs the live table against | 28 |
+| `model-checks.json` | Model-watch freshness feed: per-model last check, source-signature diffs, news headlines | 31 |
+| `model-review-queue.json` | Pending model-watch review items (empty = nothing pending) | 13 |
+| `model-history.json` | Watchtower 2.0 event log: dated `release`/`status`/`price`/`tier`/`verification`/`coverage` events per model (price events carry `before_usd`/`after_usd` only where the record documents both), plus `pricing_baseline` — the pricing table as curated 2026-10-11, which the drift engine diffs the live table against | 39 |
 | `pricing.json` | Curated pricing table: 31 models with per-tier USD rates (`unit`: `second`/`clip`/`image`), `usd_low`/`usd_high`, `basis` + `confidence` per tier; `status` live/unpublished/discontinued | 31 |
 | `model-updates.md` | Human-readable model changelog (Markdown document, no schema) | — |
 | `schema/` | JSON Schema (draft-07) for every endpoint: `index`, `model`, `prompt-template`, `camera-movement`, `checklist`, `glossary`, `competition`, `teardown`, `diagnosis`, `model-checks`, `model-review-queue`, `model-history` | 12 |
@@ -48,7 +48,7 @@ backend problem.
 | Function | Method | What it returns |
 |---|---|---|
 | `/api/health` | GET | `status:"ok"`, the function roster, per-file data-freshness SLAs. Never 5xx. |
-| `/api/models-status` | GET | 22-model freshness join (`model-checks.json` × `pricing.json`): per-model `status` (`stable`/`changed`/`error`/`unwatched`), `last_checked`, `change_summary`; honestly `degraded` when sources failed. Watchtower 2.0 adds per-model `drift_severity` + `drift_alerts` and a top-level `drift_summary` (all 31 models, computed by `server/lib/drift.js`). |
+| `/api/models-status` | GET | 31-model freshness join (`model-checks.json` × `pricing.json`): per-model `status` (`stable`/`changed`/`error`/`unwatched`), `last_checked`, `change_summary`; honestly `degraded` when sources failed. Watchtower 2.0 adds per-model `drift_severity` + `drift_alerts` and a top-level `drift_summary` (all 31 models, computed by `server/lib/drift.js`). |
 | `/api/models-changes` | GET | Watchtower 2.0 “what changed” endpoint: `events` from `model-history.json` in the `?since=YYYY-MM-DD` window (default: the baseline date; invalid date → 400 `BAD_INPUT`), `price_changes` — the mechanical diff of the live pricing table against the 2026-10-11 baseline, and `drift_alerts` — models needing review or on watch right now. `?model_id=` restricts all three (unknown id → 404 `NOT_FOUND`). |
 | `/api/models-pricing` | GET | The curated pricing table (`?model_id=` filters; unknown id → 404 `NOT_FOUND`). |
 | `/api/calc-cost` | POST | `{model_id, seconds, resolution_tier, clips=1}` → `{cost_low, cost_high, currency:"USD", breakdown[], pricing_as_of, note}`. Full validation: 400 `BAD_INPUT` (bad body/seconds/clips/tier, human messages for image/per-clip/discontinued models), 404 for unknown model. Compute bucket 20/min, no-store. |

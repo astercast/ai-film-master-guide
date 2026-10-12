@@ -22,8 +22,11 @@
   ],
   "models": {
     "DoP (Lite/Standard/Turbo)": {
+      "extra_urls": [
+        "https://higgsfield.ai/creator-hub/help-center/ai-models/how-do-i-use-dop"
+      ],
       "news_query": "Higgsfield DoP AI video",
-      "note": "No source URLs yet. Add Higgsfield DoP page URL here when known."
+      "note": "Watched since 2026-10-12 (Watchtower 2.1) via Higgsfield's own help-center DoP guide: tier names, durations, and preset changes land there first. DoP has no public rate card; credit costs live in the app, so this watch tracks the model's shape, not its price."
     },
     "Grok Imagine Video 1.5": {
       "extra_urls": [
@@ -45,19 +48,30 @@
         "https://klingai.com/"
       ],
       "news_query": "Kling 2.5 Turbo AI video",
-      "note": "No source URLs; official Kling site."
+      "note": "No source URLs; official Kling site. klingai.com excluded from the signature from 2026-10-12 (Watchtower 2.1): its rotating homepage flagged all three Kling models in one run \u2014 verified-noisy. Still fetched and recorded every run.",
+      "exclude_from_signature": [
+        "klingai.com"
+      ]
     },
     "Kling 3.0": {
       "extra_urls": [
         "https://klingai.com/"
       ],
-      "news_query": "Kling 3.0 AI video"
+      "news_query": "Kling 3.0 AI video",
+      "exclude_from_signature": [
+        "klingai.com"
+      ],
+      "note": "klingai.com excluded from the signature from 2026-10-12 (Watchtower 2.1): the homepage's rotating marketing copy moved once and flagged all three Kling models in a single run \u2014 verified-noisy, same treatment as hailuoai.video and lumalabs.ai. Still fetched and recorded every run."
     },
     "Kling 4.0": {
       "extra_urls": [
         "https://klingai.com/"
       ],
-      "news_query": "Kling 4.0 Kuaishou AI video"
+      "news_query": "Kling 4.0 Kuaishou AI video",
+      "exclude_from_signature": [
+        "klingai.com"
+      ],
+      "note": "klingai.com excluded from the signature from 2026-10-12 (Watchtower 2.1): its rotating homepage flagged all three Kling models in one run \u2014 verified-noisy. Still fetched and recorded every run; GA signal comes from the remaining sources and the news feed."
     },
     "Luma App / Ray 3.2": {
       "extra_urls": [
@@ -69,8 +83,12 @@
       ]
     },
     "Marketing Studio video": {
+      "extra_urls": [
+        "https://higgsfield.ai/blog/higgsfield-api",
+        "https://higgsfield.ai/pricing"
+      ],
       "news_query": "Higgsfield Marketing Studio AI video",
-      "note": "No source URLs yet. Add Higgsfield Marketing Studio page URL here when known."
+      "note": "Watched since 2026-10-12 (Watchtower 2.1) via Higgsfield's official API post (its rate table carries the Marketing Studio lines) and the platform pricing page. The record's per-clip credit costs are still third-party; a signature move here means Higgsfield republished rates or plans, not that the credit math is confirmed."
     },
     "Midjourney V1 Video": {
       "extra_urls": [
@@ -169,17 +187,86 @@
     },
     "Vidu Q4 Preview": {
       "extra_urls": [
-        "https://www.vidu.com/"
+        "https://www.vidu.com/pricing",
+        "https://platform.vidu.com"
       ],
       "news_query": "Vidu Q4 Preview Shengshu",
-      "note": "Wave 30 (2026-10-11) correction: $0.014/s was the launch-headline promotional off-peak floor, not the list rate. Official rate card: $0.045/s at 540p, $0.12/s at 1080p, $0.39/s at 4K; I2V/ref-to-video 30% off through Nov 30. Watch for the final rate card."
+      "exclude_from_signature": [
+        "platform.vidu.com"
+      ],
+      "note": "Wave 30 (2026-10-11) correction: $0.014/s was the launch-headline promotional off-peak floor, not the list rate. Official rate card: $0.045/s at 540p, $0.12/s at 1080p, $0.39/s at 4K; I2V/ref-to-video 30% off through Nov 30. Watch for the final rate card. Pricing page added 2026-10-12 (Watchtower 2.1); the API platform landing is fetched for reachability but excluded from the signature (app chrome, not a rate card)."
     },
     "FLUX 3 Video": {
       "extra_urls": [
-        "https://bfl.ai/"
+        "https://bfl.ai/",
+        "https://bfl.ai/pricing"
       ],
       "news_query": "FLUX 3 Video Black Forest Labs",
-      "note": "Added wave 21 (2026-10-11). Watch for native 2K/4K and open-weights delivery."
+      "note": "Added wave 21 (2026-10-11). Watch for native 2K/4K and open-weights delivery. Pricing page added 2026-10-12 (Watchtower 2.1): BFL publishes per-second rates there, so the pricing table now has a primary source to diff against."
+    },
+    "Gemini Omni": {
+      "extra_urls": [
+        "https://ai.google.dev/gemini-api/docs/pricing",
+        "https://deepmind.google/models/gemini/"
+      ],
+      "news_query": "Gemini Omni Google AI video model",
+      "exclude_from_signature": [
+        "deepmind.google/models/gemini/"
+      ],
+      "note": "Watched since 2026-10-12 (Watchtower 2.1). The Gemini API pricing page is the primary source: Omni Flash is token-billed, so a rate move shows there before any blog post. The DeepMind model page is fetched for reachability but excluded from the signature (marketing copy rotates)."
+    },
+    "LTX-2.5": {
+      "extra_urls": [
+        "https://github.com/Lightricks/LTX-Video/releases"
+      ],
+      "news_query": "LTX-2.5 Lightricks video model",
+      "exclude_from_signature": [
+        "github.com/Lightricks/LTX-Video/releases"
+      ],
+      "note": "Watched since 2026-10-12 (Watchtower 2.1). ltx.io refuses non-browser HTTP clients (connection dropped on repeated probes), so the watch runs on Lightricks' official GitHub releases page instead: fetched and recorded every run, excluded from the signature because GitHub page chrome (relative dates, reaction counts) churns without a release. New-version signal comes from the news feed and the sources below until ltx.io accepts the checker."
+    },
+    "Vidu S2": {
+      "extra_urls": [
+        "https://www.vidu.com/pricing",
+        "https://platform.vidu.com"
+      ],
+      "news_query": "Vidu S2 Shengshu real-time AI video",
+      "exclude_from_signature": [
+        "platform.vidu.com"
+      ],
+      "note": "Watched since 2026-10-12 (Watchtower 2.1) on Vidu's official pricing page; the API platform landing is fetched for reachability but excluded from the signature (app chrome, not a rate card). S2's per-clip pricing was never officially published, so this watch catches the day it is."
+    },
+    "Mirage Tesseract": {
+      "extra_urls": [
+        "https://mirage.app/tesseract"
+      ],
+      "news_query": "Mirage Tesseract video creative suite",
+      "note": "Watched since 2026-10-12 (Watchtower 2.1) on the official Tesseract product page. Tesseract is a free local engine with no rate card; this watch tracks scope changes (export limits, account requirements, agent integrations), not price."
+    },
+    "Runway Gen-4.5": {
+      "extra_urls": [
+        "https://runwayml.com/pricing"
+      ],
+      "news_query": "Runway Gen-4.5 AI video",
+      "note": "Watched since 2026-10-12 (Watchtower 2.1) on Runway's official pricing page: plan credit bundles and the Gen-4.5 credit rate are published there, so a signature move is worth a manual rate check. Runway shipped no new model in 2026; the watch also catches the day that changes."
+    },
+    "vivago R1": {
+      "extra_urls": [
+        "https://vivago.ai/pricing"
+      ],
+      "news_query": "vivago R1 HiDream AI video",
+      "note": "Watched since 2026-10-12 (Watchtower 2.1) on vivago's official pricing page. The R1 record opened with no published rate; this watch exists to catch the first one."
+    },
+    "PixVerse V6": {
+      "extra_urls": [
+        "https://docs.platform.pixverse.ai",
+        "https://pixverse.ai"
+      ],
+      "news_query": "PixVerse V6 AIsphere AI video",
+      "exclude_from_signature": [
+        "https://pixverse.ai"
+      ],
+      "note": "Watched since 2026-10-12 (Watchtower 2.1) on the official PixVerse API docs: the guide's V6 rates are gateway-reported, so the docs are where a first-party rate card would land. The marketing homepage is fetched for reachability but excluded from the signature (rotating hero copy)."
     }
   }
 }

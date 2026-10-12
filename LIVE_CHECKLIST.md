@@ -12,7 +12,7 @@ Snapshot built 2026-10-11 from working-repo commit `ddddbe8`'s tree
 | route | source in live repo | notes |
 |---|---|---|
 | `GET /api/health` | `api/health.js` | roster, freshness SLAs; never 5xx |
-| `GET /api/models-status` | `api/models-status.js` | 22 models, status enum |
+| `GET /api/models-status` | `api/models-status.js` | 31 models, status enum |
 | `GET /api/models-pricing` | `api/models-pricing.js` | 31-model pricing, `?model_id=` filter |
 | `GET /api/models-changes` | `api/models-changes.js` | Watchtower 2.0: events since `?since=`, pricing diff vs the 2026-10-11 baseline, drift alerts (`lib/drift.js`) |
 | `POST /api/calc-cost` | `api/calc-cost.js` | full 400/404 validation |

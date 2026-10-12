@@ -1,5 +1,90 @@
 # Wave Log — AI Film Master Guide
 
+## Watchtower 2.1 — close the watch gap (2026-10-12)
+
+**Assignment:** Watchtower 2.0 shipped the drift engine but left 11 of 31
+models with no automated source watch — 9 had no check record at all, and
+DoP + Marketing Studio video had records with zero sources behind them,
+all surfaced honestly as "unwatched" on the drift board. 2.1 closes that
+gap as far as the real world allows: every one of the 11 had a genuine,
+checkable official source. **Unwatched: 11 → 0.**
+
+**Sources added** (all in `scripts/refresh/model-check-config.json` as
+`extra_urls`, every one probed live with the checker's own fetch path
+before being written down):
+
+| Model | Official source(s) added |
+|---|---|
+| Gemini Omni | Gemini API pricing page (Omni Flash is token-billed — the rate lives there); DeepMind Gemini model page (signature-excluded, marketing) |
+| LTX-2.5 | Lightricks' GitHub releases page — ltx.io drops non-browser HTTP clients on repeated probes, so the releases feed is the watchable official surface (fetched/recorded, signature-excluded: GitHub chrome churns) |
+| Vidu S2 | vidu.com/pricing + platform.vidu.com (platform excluded from signature: app chrome) |
+| Vidu Q4 Preview | vidu.com/pricing + platform.vidu.com (same exclusion) — pointed at the rate card for when the promo pricing ends Nov 30 |
+| Mirage Tesseract | mirage.app/tesseract product page (a free local engine — the watch tracks scope, not price) |
+| Runway Gen-4.5 | runwayml.com/pricing (credit rate + plan bundles are published there) |
+| FLUX 3 Video | bfl.ai/pricing, alongside the existing bfl.ai watch |
+| vivago R1 | vivago.ai/pricing (record opened with no published rate; the watch catches the first) |
+| PixVerse V6 | docs.platform.pixverse.ai + pixverse.ai (homepage signature-excluded: rotating hero) |
+| DoP | Higgsfield's help-center DoP guide — tier/preset changes land there first |
+| Marketing Studio video | Higgsfield's official API rate post + higgsfield.ai/pricing |
+
+**The run.** `check_models.py` over all 31 models (2026-10-12T23:00Z):
+`changed=8`, `with_errors=0` (no model lost every source), `no_sources=0`.
+The board's new line reads: *"31 models tracked · 16 need review · 3 on
+watch · 0 without an automated source watch · 6 without a published
+rate."* The 16 alerts are the watch working on its first full day — 8
+moved sources (all queued for human review, none auto-promoted) and 8
+more models carrying a failed third-party source (13 records are
+`partial` in total; the header's `with_errors` counts only
+all-sources-failed, so the drift engine still reads the records, not
+the header). DoP and Marketing Studio came back clean on their first
+checks; PixVerse's first check is stable — its Watch severity is only
+its own pricing record being one of the 5 baseline diffs.
+
+**Two calibrations from the same run.** (1) klingai.com's rotating
+homepage moved once and flagged all three Kling models simultaneously —
+verified-noisy, so it joins hailuoai.video and lumalabs.ai on the
+signature-exclusion list from the next run (still fetched and recorded
+every run; this run's flags stand in the feed). (2) The review queue's
+five standing hand-authored watches were being silently overwritten by
+every checker run (the queue file's own generator shape predates them);
+`check_models.py` now preserves standing items (a `status`, no
+`detected_at`) and appends its changed-source items — queue is 13
+pending (5 standing + 8 new), and a crash in the run's final print loop
+over the merged queue was found and fixed in the process.
+
+**Records.** 11 `coverage` events appended to `model-history.json`
+(28 → 39), one per newly watched model, each naming its source;
+`model-updates.md` gained the 2.1 changelog section; the drift board,
+since-panel, and event log on the model-watch page were rebuilt from
+the new feed. Docs updated wherever the counts live: AGENT.md (table +
+workflow 3 worked example rewritten for the Oct 12 feed), API.md,
+api.html, GO_LIVE.md, LIVE_CHECKLIST.md (22 → 31 models, 28 → 39
+events, queue 5 → 13 — API.md's queue count had been stale at 0 and is
+now the real 13).
+
+**Validation:** `scripts/watchtower.test.js` **15/15** (pins updated to
+the Oct 12 records: 0 unwatched, 16 alerts with the exact id set,
+PixVerse stable/watch, DoP stable/ok, Kling 3.0 alert via the flagged
+homepage). `tests/api.test.sh` **55/55** (models-status 22 → 31 models;
+October event window 9 → 20; drift summary 16 alerts / 0 unwatched).
+`bash scripts/validate.sh` **18 passed, 0 failed — ALL STAGES PASS**
+(schemas, generator audit, llms zero-diff, link check). Playwright spot
+check of the rebuilt board: live-JS and static-fallback paths render
+the identical drift line and 19 rows; zero page errors (the two /api
+404 resource logs on the plain static server are the designed fallback
+trigger). Screenshot inspected: cutting-room board, REVIEW/WATCH chips,
+honest per-model wording throughout. AI-ism scan on new copy: clean.
+No TODOs, no dead code.
+
+**Left open:** the 8 changed-source queue items and 8 failed-source
+records await a human/agent review pass (the standing promotion
+workflow) — this wave deliberately does not promote any of them.
+klingai.com's exclusion takes effect on the next weekly run. If ltx.io
+ever accepts non-browser clients, LTX-2.5's watch should move from the
+GitHub releases page to the pricing page.
+
+**Commit:** (recorded below after push)
+
 ## Watchtower 2.0 — model status with a memory (2026-10-12)
 
 **Assignment:** this rotation's flagship — Watchtower 2.0: live model-status

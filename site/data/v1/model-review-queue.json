@@ -1,8 +1,8 @@
 {
   "format": "model-review-queue/1.0",
-  "generated_at": "2026-10-12T01:16:09+00:00",
-  "note": "Changed=true means a source page's content signature moved since the last check. This is a review signal, not a confirmed model change (landing pages are marketing copy; diffs may be noise). Promote via the per-item promotion step — never auto-mutate models.json.",
-  "pending": 5,
+  "generated_at": "2026-10-12T23:00:05+00:00",
+  "note": "Changed=true means a source page's content signature moved since the last check. This is a review signal, not a confirmed model change (landing pages are marketing copy; diffs may be noise). Promote via the per-item promotion step — never auto-mutate models.json. Items with a `status` and no `detected_at` are standing hand-authored watches, preserved across runs by the checker.",
+  "pending": 13,
   "items": [
     {
       "model": "Seedance 3.0",
@@ -46,6 +46,574 @@
       "watch": [
         "higgsfield soul cinema pricing"
       ]
+    },
+    {
+      "model": "Seedance 3.0",
+      "platform": "ByteDance",
+      "detected_at": "2026-10-12T22:49:14+00:00",
+      "what_triggered": "source content signature differs from previous run",
+      "sources_changed": [
+        "https://alltopstartups.com/directory/listing/seedance-3-0-bring-your-ideas-to-life-with-video-generation-with-synchronized-audio/"
+      ],
+      "source_results": [
+        {
+          "url": "https://alltopstartups.com/directory/listing/seedance-3-0-bring-your-ideas-to-life-with-video-generation-with-synchronized-audio/",
+          "ok": true,
+          "http_status": 200,
+          "signature": "a83c38334d9ab634b512b5b6e4c70baa557c7ea25eb7183c3826f795ba021f2c",
+          "chars": 1766,
+          "error": null
+        },
+        {
+          "url": "https://www.urbansplatter.com/2026/10/when-text-to-video-hits-its-limits-why-reference-driven-ai-filmmaking-deserves-a-closer-look/",
+          "ok": true,
+          "http_status": 200,
+          "signature": "ec20caf0b841f0da5c95594705e6fd5c757fc3c65302c287b177cf366ea5ddfd",
+          "chars": 28780,
+          "error": null
+        },
+        {
+          "url": "https://medium.com/@ruben_25479/seedance-3-status-availability-and-how-to-prepare-for-the-video-model-update-7ea7df120ae7",
+          "ok": false,
+          "http_status": 403,
+          "signature": null,
+          "chars": 0,
+          "error": "HTTPError 403"
+        },
+        {
+          "url": "https://www.breakread.com/bytedance-ai-real-time-world-model/",
+          "ok": true,
+          "http_status": 200,
+          "signature": "1795896a940bff22aef2ab7360a95423c5c9858a885913e9e50c70c703beacc5",
+          "chars": 9715,
+          "error": null
+        },
+        {
+          "url": "https://www.versely.studio/blog/state-of-ai-video-oct-2026",
+          "ok": true,
+          "http_status": 200,
+          "signature": "59931bf31d52ff0fa712142118c02d200f24c9a3cdb170d375e27f04f3bbddee",
+          "chars": 12499,
+          "error": null
+        }
+      ],
+      "signal_excerpt": "Seedance 3.0: Bring your ideas to life with video generation with synchronized audio - AllTopStartups Directory Skip to content AllTopStartups Directory Top startups directory Home Listings Blog Submit Startup Home Listings Blog Submit Startup AI Seedance 3.0: Bring your ideas to life with video generation with synchronized audio AI Added on October 6, 2026 Details Seedance 3.0 gives creators a fl",
+      "signals": [
+        {
+          "name": "price_signal",
+          "matches": [
+            "$29.6",
+            "$0.10",
+            "$0.40",
+            "$0.80",
+            "$0.65"
+          ]
+        },
+        {
+          "name": "version_signal",
+          "matches": [
+            "3.0 Standard",
+            "3.0 Prime",
+            "3.0 Beta",
+            "3.0 beta"
+          ]
+        }
+      ],
+      "promotion": "Agent: verify the flagged URLs, confirm price/version/status change, then update data/v1/models.json (last_verified, status, est_cost_credits, what_changed, sources), re-run scripts/build_api.py, commit, push. This script never edits models.json."
+    },
+    {
+      "model": "Kling 3.0",
+      "platform": "Kuaishou",
+      "detected_at": "2026-10-12T22:49:39+00:00",
+      "what_triggered": "source content signature differs from previous run",
+      "sources_changed": [
+        "https://klingai.com/"
+      ],
+      "source_results": [
+        {
+          "url": "https://www.techtimes.com/articles/328285/20260930/kling-40-promises-30-second-4k-video-broadcast-spec-coming-october-not-today.htm",
+          "ok": true,
+          "http_status": 200,
+          "signature": "b4367cf34698d83d4e274aad8a582ed6ba21221a05d884d2e28af5c41d628432",
+          "chars": 5888,
+          "error": null
+        },
+        {
+          "url": "https://pakera.pk/kling-4-ai-video-pakistan/",
+          "ok": false,
+          "http_status": null,
+          "signature": null,
+          "chars": 0,
+          "error": "URLError: timed out"
+        },
+        {
+          "url": "https://github.com/vericontext/vibeframe/blob/HEAD/.agents/references/providers/kling.md",
+          "ok": true,
+          "http_status": 200,
+          "signature": "4cd15bcc508fe6f0472cc6c849c8b65bb6aa45a5137e864d6e12e987ee25b2c7",
+          "chars": 2847,
+          "error": null
+        },
+        {
+          "url": "https://synthesys.io/blog/seedance-vs-kling/",
+          "ok": true,
+          "http_status": 200,
+          "signature": "81ad8dfb9898eac84f99a3e7b844258a63b0e211886ef8deb03ea850043739c1",
+          "chars": 21139,
+          "error": null
+        },
+        {
+          "url": "https://www.usefastlane.ai/models/kling-3-0",
+          "ok": true,
+          "http_status": 200,
+          "signature": "4a1b8b561345e32d7b75b8238ab261b7be2dcd632c2b4cb4eede5221bcdb154d",
+          "chars": 6745,
+          "error": null
+        },
+        {
+          "url": "https://klingai.com/",
+          "ok": true,
+          "http_status": 200,
+          "signature": "287b9be9830a32779fd5636656f22af9971d62204786fee8b508d7292a9aa5a6",
+          "chars": 6677,
+          "error": null
+        }
+      ],
+      "signal_excerpt": "Kling 4.0 Promises 30-Second 4K Video: Broadcast Spec Is Coming in October, Not Today function extractHostname(t){return(t.indexOf(\"//\")>-1?t.split(\"/\")[2]:t.split(\"/\")[0]).split(\":\")[0].split(\"?\")[0]};dfpSlots.pginfo={\"refresh_time\":\"30\",\"max_refresh\":\"100\",\"desktop\":\"right1|1|1|0,right2|1|0|1,right3|1|1|1,right4|1|0|1,bottom|1|0|1,oop1|0|0|0,oop2|0|0|0,oop3|0|0|0,mgid-2025|0|0|0\",\"tablet\":\"top|1",
+      "signals": [
+        {
+          "name": "price_signal",
+          "matches": [
+            "$0.37",
+            "$0.57",
+            "$0.14",
+            "$0.16",
+            "$30"
+          ]
+        },
+        {
+          "name": "version_signal",
+          "matches": [
+            "3.0 Turbo",
+            "3.0 Pro"
+          ]
+        }
+      ],
+      "promotion": "Agent: verify the flagged URLs, confirm price/version/status change, then update data/v1/models.json (last_verified, status, est_cost_credits, what_changed, sources), re-run scripts/build_api.py, commit, push. This script never edits models.json."
+    },
+    {
+      "model": "Kling 2.5 Turbo",
+      "platform": "Kuaishou",
+      "detected_at": "2026-10-12T22:50:28+00:00",
+      "what_triggered": "source content signature differs from previous run",
+      "sources_changed": [
+        "https://klingai.com/"
+      ],
+      "source_results": [
+        {
+          "url": "https://github.com/vericontext/vibeframe/blob/HEAD/.agents/references/providers/kling.md",
+          "ok": true,
+          "http_status": 200,
+          "signature": "041029f0b0f5c8a9a13236dc37209f3359835c4d8d6aa1e7ffa437a53af09bae",
+          "chars": 2856,
+          "error": null
+        },
+        {
+          "url": "https://klingai.com/",
+          "ok": true,
+          "http_status": 200,
+          "signature": "287b9be9830a32779fd5636656f22af9971d62204786fee8b508d7292a9aa5a6",
+          "chars": 6677,
+          "error": null
+        }
+      ],
+      "signal_excerpt": "vibeframe/.agents/references/providers/kling.md at dc6dc19dce29cde6db432c56172f5b9648ea63a9 · vericontext/vibeframe · GitHub Skip to content Navigation Menu Sign in Appearance settings Platform AI CODE CREATION GitHub Copilot Write better code with AI GitHub Copilot app Direct agents from issue to merge MCP Registry Integrate external tools DEVELOPER WORKFLOWS Actions Automate any workflow Codespa",
+      "signals": [],
+      "promotion": "Agent: verify the flagged URLs, confirm price/version/status change, then update data/v1/models.json (last_verified, status, est_cost_credits, what_changed, sources), re-run scripts/build_api.py, commit, push. This script never edits models.json."
+    },
+    {
+      "model": "Hailuo 02 / 2.3",
+      "platform": "MiniMax",
+      "detected_at": "2026-10-12T22:52:13+00:00",
+      "what_triggered": "source content signature differs from previous run",
+      "sources_changed": [
+        "https://www.abnewswire.com/pressreleases/hailuo-video-agent-review-oneclick-video-creation-with-visible-ai-reasoning_839110.html"
+      ],
+      "source_results": [
+        {
+          "url": "https://www.abnewswire.com/pressreleases/hailuo-video-agent-review-oneclick-video-creation-with-visible-ai-reasoning_839110.html",
+          "ok": true,
+          "http_status": 200,
+          "signature": "d2467c28f349bce5410f03c7c5c90103cf1832ebee765733a463a502f040aa79",
+          "chars": 10909,
+          "error": null
+        },
+        {
+          "url": "https://magichour.ai/blog/hailuo-23-pricing",
+          "ok": true,
+          "http_status": 200,
+          "signature": "d08467c29544dc2ff87aa6fbe8e7a6425003695739279313b4540343b201f02d",
+          "chars": 17072,
+          "error": null
+        },
+        {
+          "url": "https://recatools.com/ai-directory/hailuo-video/",
+          "ok": true,
+          "http_status": 200,
+          "signature": "69ade6745b4618112fa1cfe89e1724e3086707fde718df22e64f2295548bca39",
+          "chars": 9138,
+          "error": null
+        },
+        {
+          "url": "https://minimax-ai.chat/hailuo/",
+          "ok": true,
+          "http_status": 200,
+          "signature": "edf20e74e362ddea9e91d82664470025c76d40c4b082216c60dbe155b8badae6",
+          "chars": 6941,
+          "error": null
+        },
+        {
+          "url": "https://hailuoai.video/",
+          "ok": true,
+          "http_status": 200,
+          "signature": "27a4f822ad049bf860378620fac101b5895a31ac3ddd32bbb94fbd5a16f63094",
+          "chars": 45137,
+          "error": null,
+          "excluded_from_signature": true
+        }
+      ],
+      "signal_excerpt": "Hailuo Video Agent review: one-click video creation with visible AI reasoning | ABNewswire Login Create Free Account Contact Us Home Newsroom Front Page Arts Business Education Finance Health Lifestyle Tech Travel Other Automotive Agriculture & Farming Books & Literature Building & Construction Celebrity Computers & Software Employment Energy & Environment Family & Parenting Fashion & Beauty Finan",
+      "signals": [
+        {
+          "name": "price_signal",
+          "matches": [
+            "$0.28",
+            "$0.19",
+            "$0.32",
+            "$0.33",
+            "$0.56"
+          ]
+        }
+      ],
+      "promotion": "Agent: verify the flagged URLs, confirm price/version/status change, then update data/v1/models.json (last_verified, status, est_cost_credits, what_changed, sources), re-run scripts/build_api.py, commit, push. This script never edits models.json."
+    },
+    {
+      "model": "Luma App / Ray 3.2",
+      "platform": "Luma",
+      "detected_at": "2026-10-12T22:53:26+00:00",
+      "what_triggered": "source content signature differs from previous run",
+      "sources_changed": [
+        "https://magichour.ai/blog/kling-vs-pika-vs-luma"
+      ],
+      "source_results": [
+        {
+          "url": "https://magichour.ai/blog/kling-vs-pika-vs-luma",
+          "ok": true,
+          "http_status": 200,
+          "signature": "14932b9ccc2c6f9511f074bfcbffb84771cc737dabc381adfab7d9d1fd315d91",
+          "chars": 22496,
+          "error": null
+        },
+        {
+          "url": "https://thetoolsverse.com/tools/luma-dream-machine-ai-video-generator",
+          "ok": true,
+          "http_status": 200,
+          "signature": "36e2061c055f3c1847f6201b541f8b05a7138aab9aec751250bc9fe5da2a0ebc",
+          "chars": 21495,
+          "error": null
+        },
+        {
+          "url": "https://www.techtimes.com:443/articles/327054/20260909/adobe-embeds-five-competing-ai-video-models-premiere-killing-round-trip-export.htm",
+          "ok": false,
+          "http_status": null,
+          "signature": null,
+          "chars": 0,
+          "error": "URLError: timed out"
+        },
+        {
+          "url": "https://mivicai.com/luma-ray-3-2-powerful-cinematic-video-creation/",
+          "ok": false,
+          "http_status": null,
+          "signature": null,
+          "chars": 0,
+          "error": "URLError: timed out"
+        },
+        {
+          "url": "https://whatsnew.fyi/product/comfyui/releases/v0.39.0",
+          "ok": false,
+          "http_status": null,
+          "signature": null,
+          "chars": 0,
+          "error": "URLError: timed out"
+        },
+        {
+          "url": "https://lumalabs.ai/",
+          "ok": false,
+          "http_status": null,
+          "signature": null,
+          "chars": 0,
+          "error": "URLError: timed out"
+        }
+      ],
+      "signal_excerpt": "Kling vs Pika vs Luma Dream Machine (2026) Magic Hour AI video AI image AI audio Pricing Developers Toggle Sidebar Back to Blog Blog Videos Kling vs Pika vs Luma (2026): models, workflows &amp; cost Runbo Li · CEO of Magic Hour · Apr 27, 2026 · 5 min read AI Summary: ChatGPT Claude Gemini Perplexity Contents Create with Magic Hour Make videos and images with AI. Try Magic Hour Quick answer Choose ",
+      "signals": [
+        {
+          "name": "price_signal",
+          "matches": [
+            "$10/mo",
+            "$35",
+            "$8",
+            "$9",
+            "$10"
+          ]
+        }
+      ],
+      "promotion": "Agent: verify the flagged URLs, confirm price/version/status change, then update data/v1/models.json (last_verified, status, est_cost_credits, what_changed, sources), re-run scripts/build_api.py, commit, push. This script never edits models.json."
+    },
+    {
+      "model": "Pika 2.5",
+      "platform": "Pika",
+      "detected_at": "2026-10-12T22:55:04+00:00",
+      "what_triggered": "source content signature differs from previous run",
+      "sources_changed": [
+        "https://magichour.ai/blog/pika-labs-pricing"
+      ],
+      "source_results": [
+        {
+          "url": "https://magichour.ai/blog/pika-labs-pricing",
+          "ok": true,
+          "http_status": 200,
+          "signature": "ac87269fcc16671d5c6d9ac72246ef03cf7c6a65e543263335acbbea2808394c",
+          "chars": 15210,
+          "error": null
+        },
+        {
+          "url": "https://alphasignal.ai/news/pika-rebuilds-into-a-full-creative-studio-routing-across-seven-ai-tools",
+          "ok": true,
+          "http_status": 200,
+          "signature": "08edf017e51b9f1e57b563ad2bf75025fc515359bd02faa717871db21487f464",
+          "chars": 9257,
+          "error": null
+        },
+        {
+          "url": "https://magichour.ai/blog/ai-video-api-magic-hour-vs-runway-vs-pika",
+          "ok": true,
+          "http_status": 200,
+          "signature": "1a2e9c6ca492a7b1379662b4d54f96dd0168bb019a7041b7fbda92705c406d14",
+          "chars": 79262,
+          "error": null
+        },
+        {
+          "url": "https://pika.art/",
+          "ok": true,
+          "http_status": 200,
+          "signature": "68d3f302224ad8d21fb4ecd8d0f4f277258674e75d76c25862517a1957dfd810",
+          "chars": 5779,
+          "error": null
+        }
+      ],
+      "signal_excerpt": "Pika pricing (2026): free plan, credits &amp; costs Magic Hour AI video AI image AI audio Pricing Developers Toggle Sidebar Back to Blog Blog Guides Pika pricing (2026): free plan, credits &amp; video costs Runbo Li · CEO of Magic Hour · Mar 13, 2026 · 6 min read AI Summary: ChatGPT Claude Gemini Perplexity Contents Create with Magic Hour Make videos and images with AI. Try Magic Hour Quick answer",
+      "signals": [
+        {
+          "name": "price_signal",
+          "matches": [
+            "$10/mo",
+            "$35/mo",
+            "$28",
+            "$0",
+            "$10"
+          ]
+        },
+        {
+          "name": "version_signal",
+          "matches": [
+            "v2.5"
+          ]
+        }
+      ],
+      "promotion": "Agent: verify the flagged URLs, confirm price/version/status change, then update data/v1/models.json (last_verified, status, est_cost_credits, what_changed, sources), re-run scripts/build_api.py, commit, push. This script never edits models.json."
+    },
+    {
+      "model": "Midjourney V1 Video",
+      "platform": "Midjourney",
+      "detected_at": "2026-10-12T22:56:19+00:00",
+      "what_triggered": "source content signature differs from previous run",
+      "sources_changed": [
+        "https://www.cometapi.com/midjourney-unveils-v1-video/"
+      ],
+      "source_results": [
+        {
+          "url": "https://www.cometapi.com/midjourney-unveils-v1-video/",
+          "ok": true,
+          "http_status": 200,
+          "signature": "dc5509a9d06da0111a5fcb5b57190801bc4efa70dc8dd9905fb9262b59842f5d",
+          "chars": 11349,
+          "error": null
+        },
+        {
+          "url": "https://www.krea.ai/blog/is-midjourney-free-pricing-video-and-free-alternatives-in-2026",
+          "ok": true,
+          "http_status": 200,
+          "signature": "81a079c6b0de86e23a061e6ab24cfe6239cc8dfe5d15c4c7017992128df7c8f8",
+          "chars": 20081,
+          "error": null
+        },
+        {
+          "url": "https://www.outlookbusiness.com/deeptech/artificial-intelligence/midjourney-launches-v1-ai-video-model-generating-5second-clips-from-images",
+          "ok": true,
+          "http_status": 200,
+          "signature": "93a129562017778ebd7389169b631121e7e735b8e78462bddfcee27c0fda3184",
+          "chars": 7507,
+          "error": null
+        },
+        {
+          "url": "https://www.midjourney.com/",
+          "ok": false,
+          "http_status": 403,
+          "signature": null,
+          "chars": 0,
+          "error": "HTTPError 403"
+        }
+      ],
+      "signal_excerpt": "Midjourney Unveils V1 Video: First AI Video Generation Model - CometAPI Claude Haiku 5.5 and Nano Banana 2.1 are now live on CometAPI → Models Solutions Choose your path For individuals Build, learn, and create with simple usage-based access. For business Scale teams, billing, governance, and model workflows. Explore solutions All solutions Retail &amp; e-commerce Financial services Customer servi",
+      "signals": [
+        {
+          "name": "price_signal",
+          "matches": [
+            "$10/mo",
+            "$4",
+            "$96",
+            "$8/mo",
+            "$60"
+          ]
+        },
+        {
+          "name": "version_signal",
+          "matches": [
+            "3.0 Prime",
+            "v2.6",
+            "V2.6"
+          ]
+        }
+      ],
+      "promotion": "Agent: verify the flagged URLs, confirm price/version/status change, then update data/v1/models.json (last_verified, status, est_cost_credits, what_changed, sources), re-run scripts/build_api.py, commit, push. This script never edits models.json."
+    },
+    {
+      "model": "Kling 4.0",
+      "platform": "Kuaishou",
+      "detected_at": "2026-10-12T22:56:29+00:00",
+      "what_triggered": "source content signature differs from previous run",
+      "sources_changed": [
+        "https://cryptobriefing.com/kuaishou-kling-ai-video-model-hong-kong-ipo/",
+        "https://pakera.pk/kling-4-ai-video-pakistan/",
+        "https://klingai.com/"
+      ],
+      "source_results": [
+        {
+          "url": "https://www.techtimes.com/articles/328285/20260930/kling-40-promises-30-second-4k-video-broadcast-spec-coming-october-not-today.htm",
+          "ok": true,
+          "http_status": 200,
+          "signature": "b4367cf34698d83d4e274aad8a582ed6ba21221a05d884d2e28af5c41d628432",
+          "chars": 5888,
+          "error": null
+        },
+        {
+          "url": "https://cryptobriefing.com/kuaishou-kling-ai-video-model-hong-kong-ipo/",
+          "ok": true,
+          "http_status": 200,
+          "signature": "f6942a6f704850220f20c740f6b5f5030fcd635c1a124536d01f60d36b33b017",
+          "chars": 46749,
+          "error": null
+        },
+        {
+          "url": "https://pakera.pk/kling-4-ai-video-pakistan/",
+          "ok": true,
+          "http_status": 200,
+          "signature": "dc6a472adb23e75f556de16a8de4ed9cade4bc44a22a09d34aa1cb70b768aca7",
+          "chars": 10205,
+          "error": null
+        },
+        {
+          "url": "https://medium.com/@gptproto.team/what-is-kling-4-0-preview-leaks-release-status-what-to-use-now-5d9afa268132",
+          "ok": false,
+          "http_status": 403,
+          "signature": null,
+          "chars": 0,
+          "error": "HTTPError 403"
+        },
+        {
+          "url": "https://wavespeed.ai/blog/ai-news/kling-4-0-release-date/",
+          "ok": true,
+          "http_status": 200,
+          "signature": "41f5821ca2eddcb27b4f9f48e99d60e5afbfd18dd3e687ebe84f0da0f75e6f2e",
+          "chars": 9861,
+          "error": null
+        },
+        {
+          "url": "https://rctv.com/posts/ai-video-weekly-roundup-2026-10-05/",
+          "ok": true,
+          "http_status": 200,
+          "signature": "bb1b210420dca6d76d5e6bcd5869f0ea773a482bb8423e7c1d712c7a2e448f23",
+          "chars": 12216,
+          "error": null
+        },
+        {
+          "url": "https://www.orcarouter.ai/blog/kling-4-0-release-date",
+          "ok": true,
+          "http_status": 200,
+          "signature": "60e5546d0d66866c4e6b5f102df189d15c04d47b09857d00aae15f18fce6d07a",
+          "chars": 16273,
+          "error": null
+        },
+        {
+          "url": "https://apimart.ai/model/kling-4-0",
+          "ok": true,
+          "http_status": 200,
+          "signature": "fc55ce30dee2958b716943a228185071561187daf7087cf579f70469976e838c",
+          "chars": 136708,
+          "error": null
+        },
+        {
+          "url": "https://finance.biggo.com/news/d4992938-39a9-4515-84b2-c35e4e2bdc27",
+          "ok": true,
+          "http_status": 200,
+          "signature": "85fec5ba7bbf921483e9492a0252d1521eeeee3413e7e503497422d93abb4a55",
+          "chars": 13639,
+          "error": null
+        },
+        {
+          "url": "https://klingai.com/",
+          "ok": true,
+          "http_status": 200,
+          "signature": "287b9be9830a32779fd5636656f22af9971d62204786fee8b508d7292a9aa5a6",
+          "chars": 6677,
+          "error": null
+        }
+      ],
+      "signal_excerpt": "Kling 4.0 Promises 30-Second 4K Video: Broadcast Spec Is Coming in October, Not Today function extractHostname(t){return(t.indexOf(\"//\")>-1?t.split(\"/\")[2]:t.split(\"/\")[0]).split(\":\")[0].split(\"?\")[0]};dfpSlots.pginfo={\"refresh_time\":\"30\",\"max_refresh\":\"100\",\"desktop\":\"right1|1|1|0,right2|1|0|1,right3|1|1|1,right4|1|0|1,bottom|1|0|1,oop1|0|0|0,oop2|0|0|0,oop3|0|0|0,mgid-2025|0|0|0\",\"tablet\":\"top|1",
+      "signals": [
+        {
+          "name": "price_signal",
+          "matches": [
+            "$500",
+            "$240",
+            "$2.8",
+            "$3",
+            "$18"
+          ]
+        },
+        {
+          "name": "version_signal",
+          "matches": [
+            "v2.2.0",
+            "4.0 Release",
+            "4.0 release",
+            "4.0 update",
+            "V1.5"
+          ]
+        }
+      ],
+      "promotion": "Agent: verify the flagged URLs, confirm price/version/status change, then update data/v1/models.json (last_verified, status, est_cost_credits, what_changed, sources), re-run scripts/build_api.py, commit, push. This script never edits models.json."
     }
   ]
 }

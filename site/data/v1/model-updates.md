@@ -1,9 +1,43 @@
-# Model updates — 2026-10-11
+# Model updates — 2026-10-12
 
 The AI video space moved fast in 2026. This is the guide's standing model refresh:
 every entry in `models.json` was re-verified against October 2026 coverage, and each
 now carries `last_verified`, `status`, `what_changed`, and `sources`. Verify live
 pricing before spending — this file is a snapshot, not a rate card.
+
+## 2026-10-12 — Watchtower 2.1: every model is watched now
+
+No model facts changed in this pass. What changed is the watching itself:
+**11 of the 31 tracked models had no automated source check** — nine had no
+check record at all, and two (Higgsfield's DoP and Marketing Studio video)
+had records with zero sources behind them. All 11 now have real checks
+against official pages, verified live on 2026-10-12:
+
+- **Gemini Omni** — the Gemini API pricing page (Omni Flash is token-billed;
+  the rate lives there) plus the DeepMind Gemini model page.
+- **LTX-2.5** — Lightricks' GitHub releases page. ltx.io drops non-browser
+  HTTP clients, so the releases feed is the watchable official surface.
+- **Vidu S2** and **Vidu Q4 Preview** — Vidu's official pricing page and API
+  platform. S2 never published a per-clip rate; the watch catches the first.
+- **Mirage Tesseract** — the product page at mirage.app/tesseract (a free
+  local engine: the watch tracks scope, not price).
+- **Runway Gen-4.5** — Runway's pricing page, where the credit rate and
+  plan bundles are published.
+- **FLUX 3 Video** — BFL's pricing page, added to the existing bfl.ai watch.
+- **vivago R1** — vivago's pricing page; the record opened with no rate.
+- **PixVerse V6** — the official PixVerse API docs (the guide's V6 rates are
+  gateway-reported; a first-party card would land there).
+- **DoP** — Higgsfield's help-center DoP guide. **Marketing Studio video** —
+  Higgsfield's official API rate post and pricing page.
+
+The first full run (2026-10-12, all 31 models) also did what a watch is for:
+**8 models flagged a moved source** and **8 more carry a failed source** —
+every one queued for human review, none auto-promoted. Two calibrations
+came out of the same run: klingai.com's rotating homepage flagged all three
+Kling models at once, so it is excluded from the change signature from the
+next run (still fetched and recorded, like hailuoai.video before it); and
+the review queue now keeps its five standing hand-authored watches across
+checker runs instead of being overwritten.
 
 ## 2026-10-11 — Wave 30: Late-Q4 field sweep
 

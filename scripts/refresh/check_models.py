@@ -15,7 +15,9 @@ it never feeds the change signature (news churn would flag everything weekly).
 Outputs (committed):
   data/v1/model-checks.json       — per-model freshness records + run summary
   data/v1/model-review-queue.json  — models whose sources changed since last
-                                    run, awaiting HUMAN/AGENT review.
+                                    run, awaiting HUMAN/AGENT review. Standing
+                                    hand-authored watch items in the queue are
+                                    preserved across runs, never overwritten.
 
 Promotion workflow (models.json is NEVER mutated by this script — fetched
 pages are unreliable signals, so price/status changes always need a person):
@@ -301,13 +303,28 @@ def main():
                 ),
             })
 
+    # Standing hand-authored watch items (carrying a `status`, no
+    # `detected_at`) survive every run: the checker appends its own
+    # changed-source items, it never deletes a human's standing watch.
+    standing = []
+    if QUEUE_JSON.exists():
+        try:
+            for it in json.loads(QUEUE_JSON.read_text()).get("items", []):
+                if "detected_at" not in it:
+                    standing.append(it)
+        except Exception:  # noqa: BLE001 — unreadable old queue: regenerate fresh
+            standing = []
+    queue_items = standing + queue_items
+
     queue_doc = {
         "format": "model-review-queue/1.0",
         "generated_at": now_iso(),
         "note": "Changed=true means a source page's content signature moved since the "
                 "last check. This is a review signal, not a confirmed model change "
                 "(landing pages are marketing copy; diffs may be noise). Promote via "
-                "the per-item promotion step — never auto-mutate models.json.",
+                "the per-item promotion step — never auto-mutate models.json. Items "
+                "with a `status` and no `detected_at` are standing hand-authored "
+                "watches, preserved across runs by the checker.",
         "pending": len(queue_items),
         "items": queue_items,
     }
@@ -317,7 +334,8 @@ def main():
           f"| with_errors={err_count} | no_sources={no_source_count}")
     if changed_count:
         for it in queue_items:
-            print(f"  REVIEW: {it['model']} — {it['what_triggered']}")
+            if "what_triggered" in it:  # standing hand-authored items carry no trigger
+                print(f"  REVIEW: {it['model']} — {it['what_triggered']}")
     print(f"[model-watch] wrote {CHECKS_JSON.name}, {QUEUE_JSON.name}")
     return 0
 

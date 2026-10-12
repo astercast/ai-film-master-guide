@@ -121,33 +121,48 @@ ok('pricing coverage is complete: 31 of 31 models have a pricing record', () => 
 });
 
 /* --- drift on the real data --------------------------------------------- */
-ok('computeDrift: 31 models, 11 unwatched, 6 unpublished, 2 alerts in the Oct 11 records', () => {
-  // The check feed's header summary claims 0 errors, but the per-model
-  // records show Wan 3.0 and Grok Imagine 1.5 each with a failed source
-  // (status "partial"), and DoP + Marketing Studio with no sources at
-  // all. Drift reads the records, not the header — hence 2 alerts and
-  // 11 unwatched (9 models absent from the feed + 2 with no sources).
+ok('computeDrift: 31 models, 0 unwatched, 6 unpublished, 16 alerts in the Oct 12 records', () => {
+  // Watchtower 2.1 (2026-10-12) put all 31 models under automated watch:
+  // the 9 models absent from the Oct 11 feed gained records, and DoP +
+  // Marketing Studio — records with zero sources — gained official ones.
+  // The first full run flagged 8 moved sources and 8 more models carry a
+  // failed source (status "partial"); the feed header's with_errors counts
+  // only all-sources-failed models (0), so drift reads the records, not
+  // the header — hence 16 alerts and 0 unwatched.
   const d = drift.computeDrift({ modelsDoc: models, checksDoc: checks,
     pricingDoc: pricing, historyDoc: history, nowMs: NOW });
   assert.strictEqual(d.summary.models_total, 31);
-  assert.strictEqual(d.summary.unwatched, 11, JSON.stringify(d.summary));
+  assert.strictEqual(d.summary.unwatched, 0, JSON.stringify(d.summary));
   assert.strictEqual(d.summary.pricing_unpublished, 6, JSON.stringify(d.summary));
-  assert.strictEqual(d.summary.alert, 2, JSON.stringify(d.per_model.filter((r) => r.severity === 'alert')));
+  assert.strictEqual(d.summary.alert, 16, JSON.stringify(d.per_model.filter((r) => r.severity === 'alert')));
   assert.strictEqual(d.summary.price_changes_vs_baseline, 5);
   const alertIds = d.per_model.filter((r) => r.severity === 'alert').map((r) => r.model_id).sort();
-  assert.deepStrictEqual(alertIds, ['grok-imagine-1-5', 'wan-3-0']);
+  assert.deepStrictEqual(alertIds, ['flux-3-video', 'gemini-omni', 'grok-imagine-1-5',
+    'hailuo-2-3', 'kling-2-5-turbo', 'kling-3-0', 'kling-4-0', 'luma-ray-3-2',
+    'midjourney-v1-video', 'minimax-h3', 'pika-2-5', 'seedance-3-0',
+    'vidu-q4-preview', 'vidu-s2', 'wan-2-6', 'wan-3-0']);
 });
 
-ok('computeDrift: spot severities — PixVerse watch (unwatched), Sora ok, Soul Cinema watch (unpublished)', () => {
+ok('computeDrift: spot severities — PixVerse watched (price moved), Sora ok, Soul Cinema watch (unpublished)', () => {
   const d = drift.computeDrift({ modelsDoc: models, checksDoc: checks,
     pricingDoc: pricing, historyDoc: history, nowMs: NOW });
   const byId = Object.fromEntries(d.per_model.map((r) => [r.model_id, r]));
+  // PixVerse V6 was the Oct 11 feed's emblematic unwatched model; its
+  // first check is stable, and its severity is watch only because its
+  // pricing record is itself one of the 5 baseline diffs.
+  assert.strictEqual(byId['pixverse-v6'].check_status, 'stable');
   assert.strictEqual(byId['pixverse-v6'].severity, 'watch');
-  assert.strictEqual(byId['pixverse-v6'].check_status, 'unwatched');
+  // The two zero-source records of the Oct 11 feed are watched and clean.
+  assert.strictEqual(byId['dop'].check_status, 'stable');
+  assert.strictEqual(byId['dop'].severity, 'ok');
+  assert.strictEqual(byId['marketing-studio-video'].check_status, 'stable');
   assert.strictEqual(byId['sora-2'].severity, 'ok');
   assert.strictEqual(byId['soul-cinema'].severity, 'watch');
   assert(byId['soul-cinema'].alerts.some((a) => a.includes('No published USD rate')));
-  assert.strictEqual(byId['kling-3-0'].severity, 'ok');
+  // Kling 3.0's klingai.com signature moved in the Oct 12 run (the
+  // homepage has since been excluded as verified-noisy for future runs).
+  assert.strictEqual(byId['kling-3-0'].severity, 'alert');
+  assert.strictEqual(byId['kling-3-0'].check_status, 'changed');
   assert.strictEqual(byId['kling-3-0'].latest_event.kind, 'tier');
 });
 

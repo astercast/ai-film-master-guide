@@ -33,9 +33,9 @@ Static files — **no auth, no keys, no rate limits**. Works on any static host.
 | `data/v1/competitions.json` | 2 judged competitions as craft records (no prizes/deadlines) | 2 |
 | `data/v1/teardowns.json` | 10 shot-by-shot teardowns; prompt reconstructions are analytical | 8 |
 | `data/v1/diagnoses.json` | 12 failure diagnoses: symptom → diagnosis, fixes, repair template | 12 |
-| `data/v1/model-checks.json` | Model-watch freshness feed: per-model last check, source diffs, headlines | 22 checked |
-| `data/v1/model-history.json` | Watchtower 2.0 event log: dated status/price/tier/release/verification/coverage events + the 2026-10-11 pricing baseline the drift engine diffs against | 28 events |
-| `data/v1/model-review-queue.json` | Pending model-watch review items (empty = nothing pending) | 5 pending |
+| `data/v1/model-checks.json` | Model-watch freshness feed: per-model last check, source diffs, headlines | 31 checked |
+| `data/v1/model-history.json` | Watchtower 2.0 event log: dated status/price/tier/release/verification/coverage events + the 2026-10-11 pricing baseline the drift engine diffs against | 39 events |
+| `data/v1/model-review-queue.json` | Pending model-watch review items (empty = nothing pending) | 13 pending |
 | `data/v1/model-updates.md` | Human-readable model changelog (Markdown, no schema) | — |
 
 Example requests (Node; swap `fs` for `fetch` in a browser):
@@ -114,21 +114,30 @@ covers 0. The test script proves both against the real layer data.
    implementation, unit-tested in `scripts/watchtower.test.js`.)
 3. `model-checks.json` → the model's check record: `last_checked`,
    `changed`, `source_status`, plus fresh `news_headlines`. Read the
-   per-model records, not the header summary — the Oct 11 feed's header
-   claims 0 errors while Wan 3.0 and Grok Imagine 1.5 each carry a
-   failed source (`source_status: "partial"`), which the drift engine
-   correctly surfaces as alerts.
+   per-model records, not the header summary — the Oct 12 feed's header
+   reports `with_errors: 0`, but that counter only counts models whose
+   *every* source failed; 13 models carry at least one failed source
+   (`source_status: "partial"`), which the drift engine correctly
+   surfaces as alerts. Since Watchtower 2.1 (2026-10-12) every one of
+   the 31 models has a check record — there is no unwatched model left.
 4. `model-review-queue.json` → `pending` items: changed source signatures
-   awaiting human promotion. A `changed: true` flag is a **review signal**,
-   not a confirmed model change — never auto-mutate on it.
+   awaiting human promotion, plus standing hand-authored watch items
+   (a `status`, no `detected_at` — the checker preserves those across
+   runs). A `changed: true` flag is a **review signal**, not a confirmed
+   model change — never auto-mutate on it.
 
 Worked result for Kling 3.0 (real data): `est_cost_credits` "720p ~7/5s",
 `status: "active"`, `last_verified: "2026-10-11"`; check record
-`last_checked: "2026-10-11T22:21:51+00:00"`, `changed: false`;
-review queue `pending: 5` — five standing watch items (Seedance 3.0
-confirmation, Kling 4.0 GA, the Wan 2.7 gap, MiniMax H3 weights, Soul
-Cinema pricing), none of them a Kling 3.0 change. Latest history
-event: `2026-06-17-kling-30-turbo-ga` (tier). Drift severity: `ok`.
+`last_checked: "2026-10-12T22:49:39+00:00"`, `changed: true` — the
+klingai.com homepage signature moved. That page is a rotating marketing
+surface (it flagged all three Kling models in the same run), so it is
+excluded from the signature from the next run; the flag stands in this
+feed as a review signal, not a Kling 3.0 change. Review queue
+`pending: 13` — five standing watch items (Seedance 3.0 confirmation,
+Kling 4.0 GA, the Wan 2.7 gap, MiniMax H3 weights, Soul Cinema pricing)
+plus eight changed-source items from the Oct 12 run. Latest history
+event: `2026-06-17-kling-30-turbo-ga` (tier). Drift severity: `alert`
+(the flagged check; the record itself is unchanged).
 Worked pricing result for Vidu Q4 Preview: history event
 `2026-10-07-vidu-q4-rate-card` — the $0.014/s launch headline was a
 promotional off-peak floor; the official card lists $0.045/s at 540p
