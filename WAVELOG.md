@@ -1,5 +1,24 @@
 # Wave Log — AI Film Master Guide
 
+## Wave 39 — addendum: Vercel data-dir fix (2026-10-12, same day)
+
+Critical production blocker fixed in the working repo (pushed as `ebe0ff8`,
+remote `679a6276957c0dee533408c23e225119868cf7bd`, trees match):
+Vercel never serves static files from under `api/`, so every frontend fetch
+of `api/v1/*.json` 404s in production. Fix: `git mv api/v1 data/v1`
+(25 files); generators retargeted (`build_api.py` root + manifest paths,
+`build_site.py` reads + `site/data/` copy, `build_skills.py`,
+`build_llms.py`, `check_models.py`); frontend `fetchWithFallback` static
+paths → `data/v1/` (live `/api/*` function routes untouched);
+`server/api/*.js` data requires → `../data/v1/` (cron: `../../`),
+Vercel file tracing bundles them; `tests/local-server.js` + `tests/api.test.sh`
+retargeted; docs swept (`api.html`, `API.md`, `AGENT.md`, `README.md`,
+`GO_LIVE.md`, chapter sources, envelope `$id`); `LIVE_CHECKLIST.md` now
+carries the standing rule. Verified: all `/data/v1/*` fetch 200, old
+`/api/v1/*` 404s, functions serve real data via the harness,
+`validate.sh` 13/13. Note for the next "-live" sync: this is exactly the
+layout the -live fix expects, so a future sync can't regress it.
+
 ## Wave 39 — EXTREME MAKEOVER: the landing cut (2026-10-12)
 
 **Assignment:** the user's verdict on the live sites — "a lot at once when someone
