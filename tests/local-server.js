@@ -9,7 +9,7 @@
  *
  * Usage: PORT=31234 CRON_SECRET=test-secret node tests/local-server.js
  * Routes:
- *   /api/health | /api/models-status | /api/models-pricing | /api/calc-cost
+ *   /api/health | /api/models-status | /api/models-pricing | /api/models-changes | /api/calc-cost
  *   /api/cron/watchtower  -> site/api/cron/watchtower.js
  *   /data/v1/...          -> static files from site/data/v1/...
  */
@@ -24,6 +24,7 @@ var ROUTES = {
   '/api/health': 'site/api/health.js',
   '/api/models-status': 'site/api/models-status.js',
   '/api/models-pricing': 'site/api/models-pricing.js',
+  '/api/models-changes': 'site/api/models-changes.js',
   '/api/calc-cost': 'site/api/calc-cost.js',
   '/api/cron/watchtower': 'site/api/cron/watchtower.js'
 };

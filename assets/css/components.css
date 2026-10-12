@@ -430,6 +430,96 @@ details:not(.nav-idx):not(.bin):not(.path-row)[open] { border-color: var(--line-
   color: var(--ember-soft);
 }
 
+/* ——— Watchtower 2.0: since-visit panel, drift board, pricing diff, log ———
+   The since-visit panel is the page's second hero: a slate, not a card.
+   The grease-pencil edge and the oversized kind counts carry the delight;
+   everything else stays quiet so the numbers read first. */
+.wt-since {
+  border: 1px solid var(--line-bright); border-radius: var(--radius-l);
+  background: linear-gradient(180deg, var(--panel-2), var(--panel));
+  padding: var(--space-5) var(--space-6); margin-bottom: var(--space-5);
+  box-shadow: var(--shadow-1); position: relative; overflow: hidden;
+}
+.wt-since::before {
+  content: ""; position: absolute; inset: 0 auto 0 0; width: 4px;
+  background: var(--gold);
+}
+.wt-since-h { font-size: var(--display-3); margin: 0 0 var(--space-2); }
+.wt-since-line { color: var(--ink-dim); max-width: 68ch; margin: 0 0 var(--space-4); }
+.wt-events { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+.wt-event {
+  display: flex; gap: var(--space-3); align-items: baseline; flex-wrap: wrap;
+  padding: var(--space-2) var(--space-3); border: 1px solid var(--line-soft);
+  border-radius: var(--radius-s); background: rgba(9, 8, 7, 0.35);
+  font-size: var(--text-sm);
+}
+.wt-event-body { flex: 1 1 420px; color: var(--ink-dim); }
+.wt-event-body strong { color: var(--ink); }
+.wt-event-date { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); white-space: nowrap; }
+.wt-kind, .wt-sev {
+  font-family: var(--font-mono); font-size: 0.68rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em; border-radius: var(--radius-s);
+  padding: 2px 8px; border: 1px solid var(--line-bright); color: var(--muted);
+  white-space: nowrap;
+}
+.wt-kind-price { color: var(--gold); border-color: var(--gold); }
+.wt-kind-status { color: var(--ember-soft); border-color: var(--ember); }
+.wt-kind-release { color: var(--ok); border-color: var(--ok); }
+.wt-kind-tier { color: var(--reel); border-color: var(--reel); }
+.wt-kind-coverage { color: var(--tungsten); border-color: var(--tungsten); }
+.wt-kind-verification { color: var(--muted); border-color: var(--muted); }
+.wt-reset { margin-top: var(--space-4); }
+
+.wt-drift { margin-bottom: var(--space-5); }
+.wt-drift-list { list-style: none; margin: var(--space-3) 0 0; padding: 0; display: grid; gap: var(--space-2); }
+.wt-drift-row {
+  display: flex; gap: var(--space-3); align-items: baseline; flex-wrap: wrap;
+  padding: var(--space-2) var(--space-3); border-left: 3px solid var(--line-bright);
+  background: var(--panel); font-size: var(--text-sm); color: var(--ink-dim);
+}
+.wt-drift-row strong { color: var(--ink); }
+.wt-drift-row.is-alert { border-left-color: var(--ember); }
+.wt-drift-row.is-watch { border-left-color: var(--gold); }
+.wt-drift-row.is-ok { border-left-color: var(--ok); }
+.wt-sev-alert { color: var(--ember-soft); border-color: var(--ember); }
+.wt-sev-watch { color: var(--gold); border-color: var(--gold); }
+.wt-drift-body { flex: 1 1 420px; }
+
+.wt-price { margin-bottom: var(--space-5); }
+.wt-price .num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+.wt-history { margin-bottom: var(--space-6); }
+.wt-history .wt-events { gap: var(--space-2); }
+.wt-more { margin-top: var(--space-3); }
+.wt-more > summary {
+  cursor: pointer; font-family: var(--font-mono); font-size: var(--text-sm);
+  color: var(--reel); padding: var(--space-2) 0;
+}
+.wt-more > summary:focus-visible { outline: 2px solid var(--tungsten); outline-offset: 2px; }
+.wt-more .wt-events { margin-top: var(--space-2); }
+
+.mw-drift-chip {
+  display: inline-block; margin-top: var(--space-3); margin-right: var(--space-2);
+  font-family: var(--font-mono); font-size: 0.68rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  padding: 2px 8px; border-radius: 999px;
+  border: 1px solid var(--line-bright); color: var(--muted);
+}
+.mw-drift-chip.is-price { color: var(--gold); border-color: var(--gold); }
+.mw-drift-chip.is-status { color: var(--ember-soft); border-color: var(--ember); }
+.mw-drift-chip.is-release { color: var(--ok); border-color: var(--ok); }
+.mw-drift-chip.is-watch { color: var(--warn); border-color: var(--warn); }
+
+/* docs.js appends its TC stamp directly after heading content; on this
+   page the stamp would jam against the badge and the heading text. */
+.wt-since-h .tc, .mw-freshness-h .tc,
+.wt-drift h2 .tc, .wt-price h2 .tc, .wt-history h2 .tc { margin-left: var(--space-3); }
+
+@media (max-width: 640px) {
+  .wt-since { padding: var(--space-4); }
+  .wt-event-date { width: 100%; }
+}
+
 
 /* ——— The Cutting Room, playable (wow wave 1) ——— */
 /* Motion: transform/opacity only. Reduced motion gets the full content

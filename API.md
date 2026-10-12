@@ -17,8 +17,8 @@ Base path: `data/v1/`
 
 | Endpoint | Contents | Records |
 |---|---|---|
-| `index.json` | Manifest: version, endpoints (description, schema URL, updated, counts, notes), documents, skills pointer | 11 |
-| `models.json` | 30 models with platform, type, credit cost, strengths, weaknesses, best use; per-model `last_verified`, `status`, `what_changed`, `sources`; `cost_basis` note; explicit `unverified` list. Sora = `discontinued` (service shut Mar–Sep 2026) | 30 |
+| `index.json` | Manifest: version, endpoints (description, schema URL, updated, counts, notes), documents, skills pointer | 12 |
+| `models.json` | 31 models with platform, type, credit cost, strengths, weaknesses, best use; per-model `last_verified`, `status`, `what_changed`, `sources`; `cost_basis` note; explicit `unverified` list. Sora = `discontinued` (service shut Mar–Sep 2026) | 30 |
 | `prompt-templates.json` | 47 templates: id, title, track (`core`/`animated`/`photorealistic`/`performance`/`audio`/`longform`/`repair`), prompt, anatomy, use, models | 47 |
 | `camera-movements.json` | 22 camera moves: id, move, prompt_phrasing, when_to_use | 22 |
 | `checklists.json` | Named checklists (pre-production, per-shot, continuity, audio, delivery) with item arrays | 5 |
@@ -28,13 +28,14 @@ Base path: `data/v1/`
 | `diagnoses.json` | 12 failure diagnoses: symptom → craft diagnosis, fixes, repair-template link, source chapters | 12 |
 | `model-checks.json` | Model-watch freshness feed: per-model last check, source-signature diffs, news headlines | 22 |
 | `model-review-queue.json` | Pending model-watch review items (empty = nothing pending) | 0 |
-| `pricing.json` | Curated pricing table: 30 models with per-tier USD rates (`unit`: `second`/`clip`/`image`), `usd_low`/`usd_high`, `basis` + `confidence` per tier; `status` live/unpublished/discontinued | 30 |
+| `model-history.json` | Watchtower 2.0 event log: dated `release`/`status`/`price`/`tier`/`verification`/`coverage` events per model (price events carry `before_usd`/`after_usd` only where the record documents both), plus `pricing_baseline` — the pricing table as curated 2026-10-11, which the drift engine diffs the live table against | 28 |
+| `pricing.json` | Curated pricing table: 31 models with per-tier USD rates (`unit`: `second`/`clip`/`image`), `usd_low`/`usd_high`, `basis` + `confidence` per tier; `status` live/unpublished/discontinued | 31 |
 | `model-updates.md` | Human-readable model changelog (Markdown document, no schema) | — |
-| `schema/` | JSON Schema (draft-07) for every endpoint: `index`, `model`, `prompt-template`, `camera-movement`, `checklist`, `glossary`, `competition`, `teardown`, `diagnosis`, `model-checks`, `model-review-queue` | 11 |
+| `schema/` | JSON Schema (draft-07) for every endpoint: `index`, `model`, `prompt-template`, `camera-movement`, `checklist`, `glossary`, `competition`, `teardown`, `diagnosis`, `model-checks`, `model-review-queue`, `model-history` | 12 |
 
 ## Live functions — The Watchtower (Vercel serverless, zero npm deps)
 
-On the deployed site the same data is also served live by five
+On the deployed site the same data is also served live by six
 serverless functions under `/api/` (spec:
 `~/workspace/server-program/ARCHITECTURE.md`, "film-watchtower"). Every
 response uses the §1.1 envelope (`ok`/`data`/`meta`, `request_id` per
@@ -47,10 +48,11 @@ backend problem.
 | Function | Method | What it returns |
 |---|---|---|
 | `/api/health` | GET | `status:"ok"`, the function roster, per-file data-freshness SLAs. Never 5xx. |
-| `/api/models-status` | GET | 22-model freshness join (`model-checks.json` × `pricing.json`): per-model `status` (`stable`/`changed`/`error`/`unwatched`), `last_checked`, `change_summary`; honestly `degraded` when sources failed. |
+| `/api/models-status` | GET | 22-model freshness join (`model-checks.json` × `pricing.json`): per-model `status` (`stable`/`changed`/`error`/`unwatched`), `last_checked`, `change_summary`; honestly `degraded` when sources failed. Watchtower 2.0 adds per-model `drift_severity` + `drift_alerts` and a top-level `drift_summary` (all 31 models, computed by `server/lib/drift.js`). |
+| `/api/models-changes` | GET | Watchtower 2.0 “what changed” endpoint: `events` from `model-history.json` in the `?since=YYYY-MM-DD` window (default: the baseline date; invalid date → 400 `BAD_INPUT`), `price_changes` — the mechanical diff of the live pricing table against the 2026-10-11 baseline, and `drift_alerts` — models needing review or on watch right now. `?model_id=` restricts all three (unknown id → 404 `NOT_FOUND`). |
 | `/api/models-pricing` | GET | The curated pricing table (`?model_id=` filters; unknown id → 404 `NOT_FOUND`). |
 | `/api/calc-cost` | POST | `{model_id, seconds, resolution_tier, clips=1}` → `{cost_low, cost_high, currency:"USD", breakdown[], pricing_as_of, note}`. Full validation: 400 `BAD_INPUT` (bad body/seconds/clips/tier, human messages for image/per-clip/discontinued models), 404 for unknown model. Compute bucket 20/min, no-store. |
-| `/api/cron/watchtower` | GET | Daily incremental freshness refresh (Vercel Cron `0 14 * * *` UTC). Bearer `CRON_SECRET`, fail closed (401 without). Flags changed models into the review queue; never auto-edits `models.json`/`pricing.json`. Commits back only when `GITHUB_REPO_TOKEN` is set. |
+| `/api/cron/watchtower` | GET | Daily incremental freshness refresh (Vercel Cron `0 14 * * *` UTC). Bearer `CRON_SECRET`, fail closed (401 without). Flags changed models into the review queue; never auto-edits `models.json`/`pricing.json`. Commits back only when `GITHUB_REPO_TOKEN` is set. Watchtower 2.0: the response also carries a `drift` summary (models needing review/watch + pricing-diff count). |
 
 Error codes: `BAD_INPUT` 400, `UNAUTHORIZED` 401, `NOT_FOUND` 404,
 `RATE_LIMITED` 429 (with `Retry-After`), `UPSTREAM_UNAVAILABLE` 502,

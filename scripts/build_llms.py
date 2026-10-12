@@ -70,7 +70,7 @@ TOOLS = [
     ("quiz.html", "model-picker quiz: 5 questions → ranked top-3 from `models.json` with cost math, one-click handoff to the workshop"),
     ("compare.html", "model compare: 2–3 models side by side (cost, best use, strengths, weaknesses, native audio, status/last-verified) from `models.json`, shareable via URL params; discontinued excluded"),
     ("gallery.html", "prompt gallery: your workshop-saved prompts (localStorage) browsable, filterable by track/model, sortable by rating, open-in-workshop deep links, JSON export/import"),
-    ("model-watch.html", "model freshness page: all {n_models} models with last-verified dates, status (active/reported/announced/discontinued), what changed, sources; \"verify live before spending\" banner; generated from `models.json` at build time"),
+    ("model-watch.html", "the Watchtower 2.0 — model status with a memory: all {n_models} models with last-verified dates, status, what changed, sources; a since-your-last-visit panel (the browser remembers your last visit in localStorage; live from `/api/models-changes`, recomputed locally from the static files when the function is down), a drift board (flagged checks, failed checks, unwatched models, unpublished rates — severity per model from the drift engine in `server/lib/drift.js`, mirrored in `assets/js/watchtower-lib.js`), pricing changes diffed mechanically against the 2026-10-11 baseline in `data/v1/model-history.json`, and the full dated event log; \"verify live before spending\" banner; generated from `models.json` + `model-checks.json` + `pricing.json` + `model-history.json` at build time"),
     ("checks/", "knowledge checks: 6 scenario-based quizzes (5 questions each) for prompt engineering, directing performance, character consistency, long-form pipelines, sound/music/audio, rights & disclosure; answers explain why, progress in localStorage (`assets/js/checks.js`, data in `scripts/checks.json`)"),
     ("changelog.html", "dated changelog rebuilt from git history"),
     ("skill-spec.html", "the skill frontmatter+sections format as a spec"),
@@ -197,7 +197,8 @@ def build_llms_txt():
     out.append(f"- `data/v1/diagnoses.json` — failure-diagnosis map for the Doctor tool: {len(diagnoses)} symptoms → craft diagnosis, fixes, repair-template link, source chapters")
     out.append("- `data/v1/model-checks.json` — model-watch freshness feed: per-model last check, source-signature diffs, news headlines")
     out.append("- `data/v1/model-review-queue.json` — pending model-watch review items (empty = nothing pending)")
-    out.append("- `data/v1/schema/` — JSON Schema (draft-07) for EVERY endpoint: index, model, prompt-template, camera-movement, checklist, glossary, competition, teardown, diagnosis, model-checks, model-review-queue")
+    out.append("- `data/v1/model-history.json` — Watchtower 2.0 event log: dated status/price/tier/release/verification/coverage events per model + the 2026-10-11 pricing baseline the drift engine diffs the live pricing table against")
+    out.append("- `data/v1/schema/` — JSON Schema (draft-07) for EVERY endpoint: index, model, prompt-template, camera-movement, checklist, glossary, competition, teardown, diagnosis, model-checks, model-review-queue, model-history")
     out.append("- `AGENT.md` — how an agent uses this repo: base URL pattern, example requests, five end-to-end workflows (Studio planning, prompt linting, model price tracking, mini-drama series setup, microdrama run economics) — executable via `node scripts/agent-workflows.test.js`")
     out.append("")
     out.append("## Skills (agentic task procedures)")

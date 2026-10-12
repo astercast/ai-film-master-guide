@@ -3501,7 +3501,7 @@ MODELWATCH_TMPL = """<!DOCTYPE html>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Model watch — AI Film Master Guide</title>
-  <meta name="description" content="Every video and image model in the guide, with last-verified dates, version status, and what changed. Generated from models.json so it never drifts.">
+  <meta name="description" content="The Watchtower: every AI film model the guide tracks — live status, drift alerts, pricing changes diffed against a dated baseline, and what changed since your last visit.">
   {css}
 </head>
 <body>
@@ -3538,7 +3538,46 @@ MODELWATCH_TMPL = """<!DOCTYPE html>
         <h2 class="mw-freshness-h">Watchtower freshness <span class="api-badge" id="mw-api-badge" data-api-state="none" role="status" tabindex="0"></span></h2>
         <p class="card-meta" id="mw-freshness-line">{freshness_line}</p>
       </div>
-      <p class="card-meta">{total} models · <a href="../data/v1/model-updates.md">changelog</a> · <a href="../data/v1/models.json">raw JSON</a> · <a href="../data/v1/model-checks.json">check feed</a></p>
+      <div class="wt-since" id="wt-since">
+        <h2 class="wt-since-h"><span id="wt-since-title">{since_title}</span> <span class="api-badge" id="wt-api-badge" data-api-state="none" role="status" tabindex="0"></span></h2>
+        <p class="wt-since-line" id="wt-since-line">{since_line}</p>
+        <ul class="wt-events" id="wt-since-list">
+{since_events}
+        </ul>
+        <button type="button" class="btn btn-sm btn-ghost wt-reset" id="wt-reset-visit">Mark all as seen — reset my baseline to today</button>
+      </div>
+      <div class="wt-drift" id="wt-drift">
+        <h2>Drift board <span class="tc" aria-hidden="true">TC 00:00:30:00</span></h2>
+        <p class="card-meta" id="wt-drift-line">{drift_line}</p>
+        <ul class="wt-drift-list" id="wt-drift-list">
+{drift_rows}
+        </ul>
+      </div>
+      <div class="wt-price" id="wt-pricing">
+        <h2>Pricing changes <span class="tc" aria-hidden="true">TC 00:00:45:00</span></h2>
+        <p class="card-meta" id="wt-price-line">{price_line}</p>
+        <div class="table-scroll"><table>
+          <thead><tr><th>Model</th><th>What moved</th><th class="num">Was</th><th class="num">Now</th></tr></thead>
+          <tbody id="wt-price-body">
+{price_rows}
+          </tbody>
+        </table></div>
+      </div>
+      <div class="wt-history" id="wt-history">
+        <h2>The log — every change on record <span class="tc" aria-hidden="true">TC 00:01:00:00</span></h2>
+        <p class="card-meta">{history_count} events, newest first. Every entry traces to a source the guide recorded — a vendor announcement, an official rate card, a re-verification pass. Nothing here is inferred from a scraped page diff.</p>
+        <ul class="wt-events">
+{history_recent}
+        </ul>
+        <details class="wt-more">
+          <summary>Earlier events — the full log</summary>
+          <ul class="wt-events">
+{history_more}
+          </ul>
+        </details>
+      </div>
+      <h2>Every model, on the record</h2>
+      <p class="card-meta">{total} models · <a href="../data/v1/model-updates.md">changelog</a> · <a href="../data/v1/models.json">raw JSON</a> · <a href="../data/v1/model-checks.json">check feed</a> · <a href="../data/v1/model-history.json">event log</a></p>
       <div class="mw-grid" id="mw-grid">
 {cards}
       </div>
@@ -3563,6 +3602,7 @@ MODELWATCH_TMPL = """<!DOCTYPE html>
   <script src="assets/js/docs.js"></script>
   <script src="assets/js/identity.js"></script>
   <script src="assets/js/api-client.js"></script>
+  <script src="assets/js/watchtower-lib.js"></script>
   <script src="assets/js/model-watch.js"></script>
   <script>
   (function () {{
@@ -3584,13 +3624,26 @@ MODELWATCH_TMPL = """<!DOCTYPE html>
 """
 
 def build_model_watch(css_links):
-    """Model freshness page, generated from data/v1/models.json."""
+    """Model freshness page — Watchtower 2.0.
+
+    Generated from models.json + model-checks.json + pricing.json +
+    model-history.json. The build-time reference date is the history
+    file's generated_at, so a rebuild is reproducible: staleness, the
+    30-day since window, and the pricing diff never depend on the wall
+    clock. The Python drift rules below mirror server/lib/drift.js;
+    scripts/watchtower.test.js holds the JS pair to identical output,
+    and the pre-rendered panels here are checked against the same data.
+    """
+    import datetime as _dt
+
     doc = json.loads((ROOT / "data" / "v1" / "models.json").read_text())
     models = doc["models"]
     # Pre-rendered freshness line: the last published check feed. The live
     # layer (model-watch.js) overwrites it from /api/models-status when the
     # function answers, or re-renders it from the same static file on fallback.
     checks = json.loads((ROOT / "data" / "v1" / "model-checks.json").read_text())
+    pricing = json.loads((ROOT / "data" / "v1" / "pricing.json").read_text())
+    history = json.loads((ROOT / "data" / "v1" / "model-history.json").read_text())
     ck_when = str(checks.get("checked_at", "")).replace("T", " ").replace("+00:00", " UTC")
     ck_sum = checks.get("summary", {})
     freshness_line = (
@@ -3602,6 +3655,196 @@ def build_model_watch(css_links):
             errors=ck_sum.get("with_errors", 0),
             unwatched=ck_sum.get("no_sources", 0)))
 
+    ref_day = _dt.date.fromisoformat(str(history.get("generated_at", "2026-10-12"))[:10])
+    checks_by_name = {r["model"]: r for r in checks.get("models", [])}
+    pricing_by_name = {e["model"]: e for e in pricing.get("entries", [])}
+    pricing_by_id = {e["model_id"]: e for e in pricing.get("entries", [])}
+
+    def check_status(rec):
+        if rec is None:
+            return "unwatched"
+        if rec.get("changed"):
+            return "changed"
+        srcs = rec.get("source_results") or []
+        if not srcs:
+            return "unwatched"
+        if rec.get("source_status") == "error" or any(not s.get("ok") for s in srcs):
+            return "error"
+        return "stable"
+
+    def diff_pricing(baseline_entries, current_entries):
+        base = {e["model_id"]: e for e in baseline_entries}
+        cur = {e["model_id"]: e for e in current_entries}
+        out = []
+        for mid, c in cur.items():
+            b = base.get(mid)
+            if b is None:
+                lows = [t["usd_low"] for t in c.get("tiers", [])]
+                highs = [t["usd_high"] for t in c.get("tiers", [])]
+                out.append({"model_id": mid, "model": c["model"], "tier": None,
+                            "kind": "model-added", "before_low": None, "before_high": None,
+                            "after_low": min(lows) if lows else None,
+                            "after_high": max(highs) if highs else None, "pct": None})
+                continue
+            bt = {(t["tier"], t["unit"]): t for t in b.get("tiers", [])}
+            ct = {(t["tier"], t["unit"]): t for t in c.get("tiers", [])}
+            for k, t in ct.items():
+                o = bt.get(k)
+                if o is None:
+                    out.append({"model_id": mid, "model": c["model"], "tier": t["tier"],
+                                "kind": "tier-added", "before_low": None, "before_high": None,
+                                "after_low": t["usd_low"], "after_high": t["usd_high"], "pct": None})
+                elif o["usd_low"] != t["usd_low"] or o["usd_high"] != t["usd_high"]:
+                    bmid = (o["usd_low"] + o["usd_high"]) / 2
+                    cmid = (t["usd_low"] + t["usd_high"]) / 2
+                    out.append({"model_id": mid, "model": c["model"], "tier": t["tier"],
+                                "kind": "price-up" if cmid > bmid else "price-down",
+                                "before_low": o["usd_low"], "before_high": o["usd_high"],
+                                "after_low": t["usd_low"], "after_high": t["usd_high"],
+                                "pct": round((cmid - bmid) / bmid * 100, 2) if bmid > 0 else None})
+            for k, t in bt.items():
+                if k not in ct:
+                    out.append({"model_id": mid, "model": c["model"], "tier": t["tier"],
+                                "kind": "tier-removed", "before_low": t["usd_low"],
+                                "before_high": t["usd_high"], "after_low": None,
+                                "after_high": None, "pct": None})
+        for mid, b in base.items():
+            if mid not in cur:
+                out.append({"model_id": mid, "model": b["model"], "tier": None,
+                            "kind": "model-removed", "before_low": None, "before_high": None,
+                            "after_low": None, "after_high": None, "pct": None})
+        out.sort(key=lambda c: (c["model_id"], c["tier"] or ""))
+        return out
+
+    price_changes = diff_pricing(history["pricing_baseline"]["entries"], pricing.get("entries", []))
+    moved_ids = {c["model_id"] for c in price_changes}
+    baseline_day = str(history["pricing_baseline"]["at"])[:10]
+
+    def money(v):
+        if v is None:
+            return "—"
+        return "$" + (f"{v:.4f}".rstrip("0").rstrip(".") if v < 0.1 and v != 0 else f"{v:.2f}")
+
+    def money_range(lo, hi):
+        if lo is None:
+            return "—"
+        return money(lo) if lo == hi else f"{money(lo)}–{money(hi)}"
+
+    def fmt_day(iso):
+        d = _dt.date.fromisoformat(str(iso)[:10])
+        return d.strftime("%b ") + str(d.day) + d.strftime(", %Y")
+
+    latest_event = {}
+    for e in history.get("events", []):
+        if not e.get("model_id"):
+            continue
+        prev = latest_event.get(e["model_id"])
+        if prev is None or e["date"] > prev["date"]:
+            latest_event[e["model_id"]] = e
+
+    # --- drift (mirrors drift.js computeDrift) ---
+    drift_rows = []
+    n_alert = n_watch = n_unwatched = n_unpub = 0
+    for m in models:
+        entry = pricing_by_name.get(m["model"])
+        mid = entry["model_id"] if entry else re.sub(r"[^a-z0-9]+", "-", m["model"].lower()).strip("-")
+        cs = check_status(checks_by_name.get(m["model"]))
+        pstat = entry["pricing_status"] if entry else "missing"
+        try:
+            stale = (ref_day - _dt.date.fromisoformat(str(m.get("last_verified"))[:10])).days
+        except Exception:
+            stale = None
+        alerts = []
+        if cs == "changed":
+            alerts.append("Source check flagged a change — queued for review. This record still shows the last verified data.")
+        elif cs == "error":
+            alerts.append("The last automated source check failed — this record shows the last verified data.")
+        elif cs == "unwatched":
+            alerts.append("No automated source watch yet — verified by hand on the wave cadence.")
+            n_unwatched += 1
+        if pstat == "unpublished" and m.get("status") != "discontinued":
+            alerts.append("No published USD rate — verify live before budgeting.")
+            n_unpub += 1
+        if pstat == "missing":
+            alerts.append("No pricing record — verify live before budgeting.")
+        if stale is not None and stale > 14:
+            alerts.append(f"Record last verified {stale} days ago — re-check before a paid shoot.")
+        if mid in moved_ids:
+            alerts.append(f"Pricing table moved against the {baseline_day} baseline — see the pricing changes.")
+        severity = "alert" if cs in ("changed", "error") else ("watch" if alerts else "ok")
+        if severity == "alert":
+            n_alert += 1
+        elif severity == "watch":
+            n_watch += 1
+        if severity != "ok":
+            drift_rows.append(
+                f'<li class="wt-drift-row is-{severity}">'
+                f'<span class="wt-sev wt-sev-{severity}">{"Review" if severity == "alert" else "Watch"}</span>'
+                f'<span class="wt-drift-body"><strong>{html.escape(m["model"])}</strong> — '
+                f'{html.escape(" ".join(alerts))}</span></li>')
+        m["_drift"] = {"mid": mid, "check": cs, "pricing": pstat,
+                       "latest": latest_event.get(mid)}
+    drift_line = (f"{len(models)} models tracked · {n_alert} need review · {n_watch} on watch · "
+                  f"{n_unwatched} without an automated source watch · {n_unpub} without a published rate.")
+    if not drift_rows:
+        drift_rows = ['<li class="wt-drift-row is-ok">Nothing needs a human today. '
+                      'Every watched source answered, every record is inside its verification window.</li>']
+
+    # --- since-visit panel: pre-rendered with a 30-day window ---
+    since_day = ref_day - _dt.timedelta(days=30)
+    win = [e for e in history.get("events", []) if e["date"] >= since_day.isoformat()]
+    win.sort(key=lambda e: (e["date"], e["id"]), reverse=True)
+    kind_counts = {}
+    for e in win:
+        kind_counts[e["kind"]] = kind_counts.get(e["kind"], 0) + 1
+    label = {"price": "price changes", "status": "status changes", "release": "releases",
+             "tier": "tier changes", "coverage": "coverage fixes", "verification": "verifications"}
+    parts = [f"{kind_counts[k]} {label[k]}" for k in
+             ("price", "status", "release", "tier", "coverage", "verification") if kind_counts.get(k)]
+    since_title = "Changed in the last 30 days"
+    since_line = ("The pre-rendered window is the last 30 days. With JavaScript on, this panel "
+                  "re-renders for the exact date of your last visit — the Watchtower remembers "
+                  "it in this browser, nowhere else. In the window: " + " · ".join(parts) + ".")
+
+    def event_row(e):
+        return (f'<li class="wt-event wt-event-{e["kind"]}">'
+                f'<span class="wt-kind wt-kind-{e["kind"]}">{e["kind"]}</span>'
+                f'<span class="wt-event-body"><strong>{html.escape(e["model"])}</strong> — '
+                f'{html.escape(e["summary"])}</span>'
+                f'<time class="wt-event-date" datetime="{e["date"]}">{fmt_day(e["date"])}</time></li>')
+
+    since_events = "\n".join(event_row(e) for e in win[:8]) or \
+        '<li class="wt-event wt-event-none">No events in this window.</li>'
+
+    # --- pricing changes table (the mechanical diff) ---
+    price_line = (f"Diffed mechanically against the pricing baseline of {fmt_day(baseline_day)}. "
+                  "The event log below records the documented changes the baseline already "
+                  "contains — the Vidu Q4 rate-card correction, the FLUX 3 QHD/UHD listing, "
+                  "the Grok Lite rollout.")
+    price_rows = []
+    for c in price_changes:
+        was = "not in the table" if c["kind"] in ("tier-added", "model-added") else money_range(c["before_low"], c["before_high"])
+        now = "removed" if c["kind"] in ("tier-removed", "model-removed") else money_range(c["after_low"], c["after_high"])
+        if c["kind"] == "model-added":
+            what = "Model added to the pricing table"
+        elif c["kind"] == "model-removed":
+            what = "Model removed from the pricing table"
+        elif c["kind"] == "tier-added":
+            what = f"Tier added: {c['tier']}"
+        elif c["kind"] == "tier-removed":
+            what = f"Tier removed: {c['tier']}"
+        else:
+            what = c["tier"] + (f" {'+' if (c['pct'] or 0) > 0 else ''}{c['pct']}%" if c["pct"] is not None else "")
+        price_rows.append(f'<tr><td><strong>{html.escape(c["model"])}</strong></td><td>{html.escape(what)}</td>'
+                          f'<td class="num">{html.escape(was)}</td><td class="num">{html.escape(now)}</td></tr>')
+    if not price_rows:
+        price_rows = [f'<tr><td colspan="4">No movement against the {fmt_day(baseline_day)} baseline. '
+                      'Every tier in the live table matches the baseline to the cent.</td></tr>']
+
+    # --- full history timeline ---
+    all_events = sorted(history.get("events", []), key=lambda e: (e["date"], e["id"]), reverse=True)
+    history_recent = "\n".join(event_row(e) for e in all_events[:10])
+    history_more = "\n".join(event_row(e) for e in all_events[10:])
 
     def card(m):
         status = m.get("status", "active")
@@ -3612,6 +3855,19 @@ def build_model_watch(css_links):
             f'<li><a href="{html.escape(u)}" rel="noopener">{html.escape(u.split("/")[2])}</a></li>'
             for u in m.get("sources", []) if u.startswith("http"))
         sources_html = f"<ul>{sources}</ul>" if sources else "<p>Vendor page — verify live.</p>"
+        # Watchtower 2.0 drift chips: the model's latest logged event first,
+        # then the two standing cautions (unwatched, rate unpublished).
+        chips = ""
+        d = m.get("_drift", {})
+        lev = d.get("latest")
+        if lev:
+            cls = {"price": "is-price", "status": "is-status", "release": "is-release"}.get(lev["kind"], "is-watch")
+            chips += (f'<span class="mw-drift-chip {cls}">{html.escape(fmt_day(lev["date"]))} · '
+                      f'{html.escape(lev["kind"])}</span>')
+        if d.get("check") == "unwatched":
+            chips += '<span class="mw-drift-chip is-watch">No automated watch</span>'
+        elif d.get("pricing") == "unpublished" and status != "discontinued":
+            chips += '<span class="mw-drift-chip is-watch">Rate unpublished</span>'
         return (
             f'<article class="mw-card{" is-discontinued" if status == "discontinued" else ""}" data-status="{status}">\n'
             f'  <span class="mw-badge mw-badge-{status}">{badge}</span>\n'
@@ -3627,7 +3883,7 @@ def build_model_watch(css_links):
             f'  </dl>\n'
             f'  <p class="mw-changed"><strong>What changed:</strong> {html.escape(str(m.get("what_changed", "")))}</p>\n'
             f'  <div class="mw-sources"><strong>Sources</strong>{sources_html}</div>\n'
-            f'  <p class="mw-verified">last verified {html.escape(str(m.get("last_verified", "—")))}</p>\n'
+            f'  <p class="mw-verified">last verified {html.escape(str(m.get("last_verified", "—")))}</p>{chips}\n'
             f'</article>'
         )
 
@@ -3638,7 +3894,7 @@ def build_model_watch(css_links):
             hero=hero_cutroom(
                 kicker="""Trust, dated""",
                 h1="""Model <span class="accent">watch.</span>""",
-                lede="""Every model in the guide's API — what it is, what it costs, what changed, and when we last checked. Generated from <code>models.json</code> at build time, so this page can never drift from the data.""",
+                lede="""The Watchtower, second cut: every model the guide tracks — live status, drift alerts, pricing diffed against a dated baseline, and a panel that answers one question first: what changed since you were last here?""",
                 deck_title="""MODEL_WATCH — FEED_01""",
                 clips={"v2": ['Last checked'], "v1": ['What it is', 'What it costs', 'What changed'], "a1": ['Watch beep', 'Never drifts']},
                 h1_id="mw-title",
@@ -3646,7 +3902,12 @@ def build_model_watch(css_links):
         cards="\n".join(card(m) for m in models),
         total=len(models), n_active=counts.get("active", 0),
         n_reported=counts.get("reported", 0), n_discontinued=counts.get("discontinued", 0),
-        freshness_line=freshness_line))
+        freshness_line=freshness_line,
+        since_title=since_title, since_line=since_line, since_events=since_events,
+        drift_line=drift_line, drift_rows="\n".join(drift_rows),
+        price_line=price_line, price_rows="\n".join(price_rows),
+        history_count=len(all_events), history_recent=history_recent,
+        history_more=history_more))
 
 
 # ---- Model deep dives (wave 11): one page per model + index ----
@@ -4628,8 +4889,8 @@ def main():
     ])
     search_index.extend([
         {"url": "model-watch.html", "title": "Model watch", "section": "Tools",
-         "headings": ["Verify live before spending", "Active", "Reported", "Discontinued"],
-         "text": "Every model in the guide with last-verified dates, version status, and what changed: Sora discontinued, Kling 4.0 announced, MiniMax H3 and Midjourney V1 Video added, Veo 3.1 current with no Veo 4. Generated from models.json."},
+         "headings": ["Since your last visit", "Drift board", "Pricing changes", "The log"],
+         "text": "The Watchtower 2.0: every model in the guide with live status, drift alerts, pricing changes diffed against the 2026-10-11 baseline, and what changed since your last visit: Sora discontinued, Kling 4.0 announced, the Vidu Q4 rate-card correction, PixVerse V6 added. Generated from models.json, model-checks.json, pricing.json, and model-history.json."},
         {"url": "linter.html", "title": "Prompt linter", "section": "Tools",
          "headings": ["Your prompt", "Analysis", "The ten layers"],
          "text": "Prompt linter: paste any prompt and get a structural analysis against the ten-layer prompt anatomy — layers present/missing, vague words flagged, concrete fix per gap, one-click handoff to the workshop. Heuristic: checks structure, not taste."},

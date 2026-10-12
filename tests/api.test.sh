@@ -48,11 +48,11 @@ chk "health envelope ok" bash -c "curl -sf '$BASE/api/health' | python3 -c '$JSO
 chk "health schema" bash -c "curl -sf '$BASE/api/health' | $VAL"
 chk "health functions == roster" bash -c "curl -sf '$BASE/api/health' | python3 -c \"
 import json,sys; e=json.load(sys.stdin)
-assert e['data']['functions'] == ['health','models-status','models-pricing','calc-cost','cron/watchtower'], e['data']['functions']\""
+assert e['data']['functions'] == ['health','models-status','models-pricing','models-changes','calc-cost','cron/watchtower'], e['data']['functions']\""
 chk "health cache s-maxage=60" bash -c "curl -sf -D - -o /dev/null '$BASE/api/health' | grep -qi 'cache-control: public, s-maxage=60'"
 
 echo "== 2. roster endpoints: envelope ok:true =="
-for p in models-status models-pricing; do
+for p in models-status models-pricing models-changes; do
   chk "envelope $p" bash -c "curl -sf '$BASE/api/$p' | python3 -c '$JSON_OK'"
   chk "schema $p" bash -c "curl -sf '$BASE/api/$p' | $VAL"
   chk "cache $p s-maxage=600" bash -c "curl -sf -D - -o /dev/null '$BASE/api/$p' | grep -qi 'cache-control: public, s-maxage=600'"
@@ -66,9 +66,9 @@ assert all(m['status'] in ('stable','changed','error','unwatched') for m in ms)
 assert all(m['id'] and m['name'] and isinstance(m['source_urls'],list) for m in ms)\""
 
 echo "== 4. models-pricing payload shape =="
-chk "models-pricing 30 models" bash -c "curl -sf '$BASE/api/models-pricing' | python3 -c \"
+chk "models-pricing 31 models" bash -c "curl -sf '$BASE/api/models-pricing' | python3 -c \"
 import json,sys; e=json.load(sys.stdin); ms=e['data']['models']
-assert len(ms)==30, len(ms)
+assert len(ms)==31, len(ms)
 veo=[m for m in ms if m['model_id']=='veo-3-1'][0]
 assert any(t['tier']=='standard-720p' and t['usd_low']==0.4 for t in veo['tiers'])
 assert e['data']['currency']=='USD'\""
@@ -77,6 +77,40 @@ import json,sys; e=json.load(sys.stdin); assert e['ok'] is True and len(e['data'
 chk "models-pricing ?model_id=bogus -> 404 NOT_FOUND" bash -c "curl -s '$BASE/api/models-pricing?model_id=bogus' | python3 -c \"
 import json,sys; e=json.load(sys.stdin); assert e['ok'] is False and e['error']['code']=='NOT_FOUND'\" && \
   [ "$(curl -s -o /dev/null -w '%{http_code}' "$BASE/api/models-pricing?model_id=bogus")" = 404 ]"
+
+echo "== 4b. models-changes (Watchtower 2.0) =="
+chk "models-changes since window holds October events" bash -c "curl -sf '$BASE/api/models-changes?since=2026-10-01' | python3 -c \"
+import json,sys; e=json.load(sys.stdin); d=e['data']
+ids=[x['id'] for x in d['events']]
+assert '2026-10-07-vidu-q4-rate-card' in ids, ids
+assert '2026-09-28-kling-40-announced' not in ids
+assert d['counts']['total']==len(d['events']) and d['counts']['total']==9, d['counts']
+assert d['since']=='2026-10-01' and d['baseline_at'].startswith('2026-10-11')\""
+chk "models-changes future window empty" bash -c "curl -sf '$BASE/api/models-changes?since=2999-01-01' | python3 -c \"
+import json,sys; e=json.load(sys.stdin); assert e['data']['counts']['total']==0 and e['data']['events']==[]\""
+chk "models-changes bad since -> 400 BAD_INPUT" bash -c "[ \"\$(curl -s -o /dev/null -w '%{http_code}' '$BASE/api/models-changes?since=banana')\" = 400 ]"
+chk "models-changes price diff == 5 coverage changes" bash -c "curl -sf '$BASE/api/models-changes' | python3 -c \"
+import json,sys; e=json.load(sys.stdin); pc=e['data']['price_changes']
+assert len(pc)==5, pc
+assert any(c['kind']=='model-added' and c['model_id']=='pixverse-v6' for c in pc)
+assert sum(1 for c in pc if c['kind']=='tier-added')==4\""
+chk "models-changes drift summary 31 models, 2 alerts" bash -c "curl -sf '$BASE/api/models-changes' | python3 -c \"
+import json,sys; e=json.load(sys.stdin); s=e['data']['drift_summary']
+assert s['models_total']==31 and s['alert']==2 and s['unwatched']==11, s
+assert len(e['data']['drift_alerts'])==s['alert']+s['watch']\""
+chk "models-changes ?model_id= filter" bash -c "curl -sf '$BASE/api/models-changes?since=2025-01-01&model_id=kling-3-0' | python3 -c \"
+import json,sys; e=json.load(sys.stdin)
+assert all(x['model_id']=='kling-3-0' for x in e['data']['events']) and len(e['data']['events'])>=1\""
+chk "models-changes ?model_id=bogus -> 404 NOT_FOUND" bash -c "[ \"\$(curl -s -o /dev/null -w '%{http_code}' '$BASE/api/models-changes?model_id=bogus')\" = 404 ]"
+chk "models-status carries drift fields" bash -c "curl -sf '$BASE/api/models-status' | python3 -c \"
+import json,sys; e=json.load(sys.stdin); d=e['data']
+assert d['drift_summary']['models_total']==31
+assert all('drift_severity' in m and 'drift_alerts' in m for m in d['models'])\""
+chk "health freshness resolves (Watchtower 2.0 path fix)" bash -c "curl -sf '$BASE/api/health' | python3 -c \"
+import json,sys; e=json.load(sys.stdin); d=e['data']
+assert d['checks']['static_fallback_present'] is True, d['checks']
+assert d['data_freshness']['model-history.json']['generated_at'] is not None
+assert d['data_freshness']['pricing.json']['within_sla'] is True\""
 
 echo "== 5. calc-cost =="
 chk "calc-cost valid POST" bash -c "curl -sf -X POST -H 'Content-Type: application/json' -d '{\"model_id\":\"hailuo-2-3\",\"seconds\":6,\"resolution_tier\":\"1080p\",\"clips\":2}' '$BASE/api/calc-cost' | python3 -c \"
@@ -109,7 +143,7 @@ chk "cron 401 bad secret" bash -c "[ \"\$(curl -s -o /dev/null -w '%{http_code}'
 chk "cron no-store" bash -c "curl -s -D - -o /dev/null '$BASE/api/cron/watchtower' | grep -qi 'cache-control: no-store'"
 
 echo "== 7. static fallback present =="
-for f in model-checks.json pricing.json models.json; do
+for f in model-checks.json pricing.json models.json model-history.json; do
   chk "static /data/v1/$f" curl -sf "$BASE/data/v1/$f"
 done
 chk "static schema envelope.json" curl -sf "$BASE/data/v1/schema/envelope.json"
@@ -120,6 +154,7 @@ chk "cron schema" bash -c "$VAL < /tmp/watchtower-cron-out.json"
 chk "cron payload shape" bash -c "python3 -c \"
 import json; e=json.load(open('/tmp/watchtower-cron-out.json')); d=e['data']
 assert isinstance(d['checked'],int) and isinstance(d['models_changed'],list) and 'sources_ok' in d
+assert isinstance(d.get('drift'),dict) and d['drift']['summary']['models_total']==31
 assert isinstance(e['meta']['upstream'],list)\""
 
 echo "== 9. vercel.json lint =="
@@ -131,9 +166,12 @@ for c in v['crons']:
     f=c['schedule'].split()
     assert f[0]!='*' and '*/' not in f[0] and '*/' not in f[1], c
     print('schedule:', c['schedule'], 'path:', c['path'])"
-chk "runtime nodejs22.x" python3 -c "
+chk "functions: explicit paths, maxDuration only, no runtime key" python3 -c "
 import json; v=json.load(open('vercel.json'))
-assert v['functions']['api/**/*.js']['runtime']=='nodejs22.x'"
+f=v['functions']
+assert set(f)=={'api/health.js','api/models-status.js','api/models-pricing.js','api/models-changes.js','api/calc-cost.js','api/cron/watchtower.js'}, f
+assert all(e=={'maxDuration':10} for e in f.values()), f
+assert 'runtime' not in json.dumps(v)"
 chk "outputDirectory site" python3 -c "
 import json; v=json.load(open('vercel.json')); assert v['outputDirectory']=='site'"
 

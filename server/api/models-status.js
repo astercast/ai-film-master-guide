@@ -1,11 +1,15 @@
 'use strict';
-/* GET /api/models-status — film-watchtower v1.0.0 (ARCHITECTURE.md §7.1).
- * Live per-model release/status watch. Reads the watchtower's committed
- * state (model-checks.json — refreshed daily by /api/cron/watchtower),
- * joins model_id from pricing.json, and wraps it in the §1.1 envelope.
+/* GET /api/models-status — film-watchtower v2.0.0 (ARCHITECTURE.md §7.1,
+ * Watchtower 2.0). Live per-model release/status watch. Reads the
+ * watchtower's committed state (model-checks.json — refreshed daily by
+ * /api/cron/watchtower), joins model_id from pricing.json, and wraps it
+ * in the §1.1 envelope.
  *
  * data.models[]: {id, name, provider, status, last_checked, change_summary,
- *                 source_urls[]}
+ *                 source_urls[]} — the v1 shape, unchanged. Watchtower 2.0
+ * adds per-model `drift_severity` + `drift_alerts` (server/lib/drift.js)
+ * and a top-level `drift_summary`, computed against models.json,
+ * pricing.json, and the model-history event log.
  * status: stable | changed | error | unwatched
  *
  * Static fallback: /data/v1/model-checks.json (§3).
@@ -15,10 +19,14 @@ var env = require('../lib/envelope.js');
 var rl = require('../lib/ratelimit.js');
 
 var SERVICE = 'film-watchtower';
-var VERSION = '1.0.0';
+var VERSION = '2.0.0';
+
+var drift = require('../lib/drift.js');
 
 var CHECKS = require('../data/v1/model-checks.json');
 var PRICING = require('../data/v1/pricing.json');
+var MODELS = require('../data/v1/models.json');
+var HISTORY = require('../data/v1/model-history.json');
 
 var NAME_TO_ID = {};
 PRICING.entries.forEach(function (e) { NAME_TO_ID[e.model] = e.model_id; });
@@ -45,7 +53,14 @@ function changeSummary(rec) {
 }
 
 function buildPayload() {
+  var d = drift.computeDrift({
+    modelsDoc: MODELS, checksDoc: CHECKS, pricingDoc: PRICING,
+    historyDoc: HISTORY, nowMs: Date.now()
+  });
+  var driftByName = {};
+  d.per_model.forEach(function (r) { driftByName[r.name] = r; });
   var models = CHECKS.models.map(function (rec) {
+    var dr = driftByName[rec.model] || null;
     return {
       id: NAME_TO_ID[rec.model] || slugify(rec.model + '-' + rec.platform),
       name: rec.model,
@@ -54,13 +69,16 @@ function buildPayload() {
       status: statusOf(rec),
       last_checked: rec.last_checked || null,
       change_summary: changeSummary(rec),
-      source_urls: (rec.source_results || []).map(function (s) { return s.url; })
+      source_urls: (rec.source_results || []).map(function (s) { return s.url; }),
+      drift_severity: dr ? dr.severity : 'ok',
+      drift_alerts: dr ? dr.alerts : []
     };
   });
   return {
     models: models,
     checked_at: CHECKS.checked_at || null,
     summary: CHECKS.summary || null,
+    drift_summary: d.summary,
     stale: false
   };
 }

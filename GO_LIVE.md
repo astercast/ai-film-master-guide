@@ -25,19 +25,23 @@ One Vercel project containing a static frontend plus serverless functions:
 - **Static frontend** — `site/` (built by `python3 scripts/build_site.py`,
   timed 0.6s; `outputDirectory: site`). The Cutting Room identity, all
   chapters, tools, and the pre-rendered model-watch / budget pages.
-- **5 functions** under `site/api/` (sources live at repo-root `server/api/`,
+- **6 functions** under `site/api/` (sources live at repo-root `server/api/`,
   copied into `site/` at build time — `build_site.py` wipes `site/` first,
   so function sources must never live only under `site/`):
   - `GET /api/health` — service status, function roster, data-freshness SLAs
   - `GET /api/models-status` — 22-model freshness join (model-checks × pricing)
-  - `GET /api/models-pricing` — the curated 30-model pricing table
+  - `GET /api/models-pricing` — the curated 31-model pricing table
     (`?model_id=` filter; unknown id → 404)
+  - `GET /api/models-changes` — Watchtower 2.0: events since `?since=`,
+    the mechanical pricing diff against the 2026-10-11 baseline stored in
+    `model-history.json`, and per-model drift alerts (`server/lib/drift.js`)
   - `POST /api/calc-cost` — `{model_id, seconds, resolution_tier, clips}`
     → `{cost_low, cost_high, breakdown[]}`; full 400/404 validation
   - `GET /api/cron/watchtower` — daily incremental freshness refresh
     (Bearer `CRON_SECRET`; see §8)
 - **Shared lib** `site/lib/` (from repo-root `server/lib/`): envelope,
-  fetchx, ratelimit, cronauth, github — zero npm dependencies, `nodejs22.x`.
+  fetchx, ratelimit, cronauth, github, drift (Watchtower 2.0's pure
+  pricing-diff / events-window / drift engine) — zero npm dependencies.
 - **1 daily cron** — `/api/cron/watchtower` at `0 14 * * *` UTC (see §8).
 - **Static fallback data** — `site/data/v1/*.json` (models, pricing,
   model-checks, review queue, …). The frontend calls `/api/*` first and
@@ -77,7 +81,7 @@ One Vercel project containing a static frontend plus serverless functions:
    billed **$38.64** (invoice 1ZU1WJJS-0012). Turbo buys nothing on a static
    site; builds take under a second.
 5. **Deploy.** Open `/api/health` — assert `"status":"ok"` and the `functions`
-   list equals `["health","models-status","models-pricing","calc-cost",
+   list equals `["health","models-status","models-pricing","models-changes","calc-cost",
    "cron/watchtower"]`.
 6. Dashboard → **Cron Jobs** — assert `/api/cron/watchtower` is listed at
    `0 14 * * *`. Trigger it once manually (Functions → ⋯ → Test) with
@@ -88,7 +92,9 @@ One Vercel project containing a static frontend plus serverless functions:
    - `GET /api/health` → 200, `ok:true`
    - `GET /api/models-status` → 200, 22 models, statuses in
      `stable|changed|error|unwatched`
-   - `GET /api/models-pricing` → 200, 30 models; `?model_id=bogus` → 404
+   - `GET /api/models-pricing` → 200, 31 models; `?model_id=bogus` → 404
+  - `GET /api/models-changes?since=2026-10-01` → 200, October events +
+    5 pricing-diff rows; `?since=banana` → 400
    - `POST /api/calc-cost` with `{}` → 400 `BAD_INPUT`
    - `GET /api/cron/watchtower` without secret → 401
 8. **Disable test** (§12.3): block `/api/*` (or stop the functions) → reload

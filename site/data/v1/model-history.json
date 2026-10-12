@@ -1,0 +1,941 @@
+{
+  "format": "model-history/1.0",
+  "generated_at": "2026-10-12T00:00:00Z",
+  "method": "Hand-authored event log. Every event traces to a fact recorded in models.json (what_changed), data/v1/model-updates.md, or this wave's own pricing-table changes. Price events carry a before/after pair only where the record documents both numbers; otherwise the fields are null and the summary says why. The pricing baseline below is the pricing table as curated on 2026-10-11 \u2014 the drift engine diffs the live table against it, so a rate that moves from here on is caught mechanically, not by memory.",
+  "pricing_baseline": {
+    "at": "2026-10-11T00:00:00Z",
+    "label": "Pricing table as curated 2026-10-11 (Watchtower Wave A)",
+    "entries": [
+      {
+        "model_id": "soul-2-0",
+        "model": "Soul 2.0",
+        "pricing_status": "live",
+        "tiers": [
+          {
+            "tier": "image",
+            "unit": "image",
+            "usd_low": 0.0047,
+            "usd_high": 0.0047
+          }
+        ]
+      },
+      {
+        "model_id": "soul-cast",
+        "model": "Soul Cast",
+        "pricing_status": "live",
+        "tiers": [
+          {
+            "tier": "image",
+            "unit": "image",
+            "usd_low": 0.0049,
+            "usd_high": 0.0049
+          }
+        ]
+      },
+      {
+        "model_id": "soul-cinema",
+        "model": "Soul Cinema",
+        "pricing_status": "unpublished",
+        "tiers": []
+      },
+      {
+        "model_id": "dop",
+        "model": "DoP (Lite/Standard/Turbo)",
+        "pricing_status": "live",
+        "tiers": [
+          {
+            "tier": "lite-720p",
+            "unit": "second",
+            "usd_low": 0.0392,
+            "usd_high": 0.0392
+          },
+          {
+            "tier": "turbo-720p",
+            "unit": "second",
+            "usd_low": 0.0653,
+            "usd_high": 0.0653
+          },
+          {
+            "tier": "standard-720p",
+            "unit": "second",
+            "usd_low": 0.0915,
+            "usd_high": 0.0915
+          }
+        ]
+      },
+      {
+        "model_id": "marketing-studio-video",
+        "model": "Marketing Studio video",
+        "pricing_status": "live",
+        "tiers": [
+          {
+            "tier": "video",
+            "unit": "second",
+            "usd_low": 0.196,
+            "usd_high": 0.196
+          }
+        ]
+      },
+      {
+        "model_id": "seedance-2-0",
+        "model": "Seedance 2.0",
+        "pricing_status": "live",
+        "tiers": [
+          {
+            "tier": "720p",
+            "unit": "second",
+            "usd_low": 0.08,
+            "usd_high": 0.08
+          },
+          {
+            "tier": "1080p",
+            "unit": "second",
+            "usd_low": 0.37,
+            "usd_high": 0.37
+          }
+        ]
+      },
+      {
+        "model_id": "seedance-2-5",
+        "model": "Seedance 2.5",
+        "pricing_status": "live",
+        "tiers": [
+          {
+            "tier": "480p",
+            "unit": "second",
+            "usd_low": 0.1028,
+            "usd_high": 0.1028
+          },
+          {
+            "tier": "720p",
+            "unit": "second",
+            "usd_low": 0.231,
+            "usd_high": 0.2311
+          },
+          {
+            "tier": "1080p",
+            "unit": "second",
+            "usd_low": 0.5686,
+            "usd_high": 0.5686
+          }
+        ]
+      },
+      {
+        "model_id": "seedance-3-0",
+        "model": "Seedance 3.0",
+        "pricing_status": "unpublished",
+        "tiers": []
+      },
+      {
+        "model_id": "kling-3-0",
+        "model": "Kling 3.0",
+        "pricing_status": "live",
+        "tiers": [
+          {
+            "tier": "720p",
+            "unit": "second",
+            "usd_low": 0.084,
+            "usd_high": 0.168
+          },
+          {
+            "tier": "1080p",
+            "unit": "second",
+            "usd_low": 0.14,
+            "usd_high": 0.14
+          },
+          {
+            "tier": "4k",
+            "unit": "second",
+            "usd_low": 0.42,
+            "usd_high": 0.42
+          }
+        ]
+      },
+      {
+        "model_id": "kling-2-5-turbo",
+        "model": "Kling 2.5 Turbo",
+        "pricing_status": "live",
+        "tiers": [
+          {
+            "tier": "720p",
+            "unit": "second",
+            "usd_low": 0.042,
+            "usd_high": 0.042
+          },
+          {
+            "tier": "1080p",
+            "unit": "second",
+            "usd_low": 0.07,
+            "usd_high": 0.07
+          }
+        ]
+      },
+      {
+        "model_id": "kling-4-0",
+        "model": "Kling 4.0",
+        "pricing_status": "unpublished",
+        "tiers": []
+      },
+      {
+        "model_id": "veo-3-1",
+        "model": "Veo 3.1",
+        "pricing_status": "live",
+        "tiers": [
+          {
+            "tier": "standard-720p",
+            "unit": "second",
+            "usd_low": 0.4,
+            "usd_high": 0.4
+          },
+          {
+            "tier": "standard-1080p",
+            "unit": "second",
+            "usd_low": 0.4,
+            "usd_high": 0.4
+          },
+          {
+            "tier": "standard-4k",
+            "unit": "second",
+            "usd_low": 0.6,
+            "usd_high": 0.6
+          },
+          {
+            "tier": "fast-720p",
+            "unit": "second",
+            "usd_low": 0.15,
+            "usd_high": 0.15
+          },
+          {
+            "tier": "fast-1080p",
+            "unit": "second",
+            "usd_low": 0.15,
+            "usd_high": 0.15
+          },
+          {
+            "tier": "fast-4k",
+            "unit": "second",
+            "usd_low": 0.35,
+            "usd_high": 0.35
+          },
+          {
+            "tier": "lite-720p",
+            "unit": "second",
+            "usd_low": 0.05,
+            "usd_high": 0.05
+          },
+          {
+            "tier": "lite-1080p",
+            "unit": "second",
+            "usd_low": 0.08,
+            "usd_high": 0.08
+          },
+          {
+            "tier": "app-720p-1080p",
+            "unit": "second",
+            "usd_low": 0.392,
+            "usd_high": 0.392
+          }
+        ]
+      },
+      {
+        "model_id": "veo-3-1-fast",
+        "model": "Veo 3.1 Fast / Veo 3",
+        "pricing_status": "live",
+        "tiers": [
+          {
+            "tier": "fast-4s",
+            "unit": "second",
+            "usd_low": 0.1568,
+            "usd_high": 0.1568
+          },
+          {
+            "tier": "veo-3-720p",
+            "unit": "second",
+            "usd_low": 0.2842,
+            "usd_high": 0.2842
+          },
+          {
+            "tier": "veo-3-fast",
+            "unit": "second",
+            "usd_low": 0.1078,
+            "usd_high": 0.1078
+          }
+        ]
+      },
+      {
+        "model_id": "gemini-omni",
+        "model": "Gemini Omni",
+        "pricing_status": "live",
+        "tiers": [
+          {
+            "tier": "360p-draft",
+            "unit": "second",
+            "usd_low": 0.03,
+            "usd_high": 0.03
+          },
+          {
+            "tier": "720p",
+            "unit": "second",
+            "usd_low": 0.1,
+            "usd_high": 0.1
+          },
+          {
+            "tier": "1080p",
+            "unit": "second",
+            "usd_low": 0.15,
+            "usd_high": 0.15
+          },
+          {
+            "tier": "4k",
+            "unit": "second",
+            "usd_low": 0.3,
+            "usd_high": 0.3
+          }
+        ]
+      },
+      {
+        "model_id": "sora-2",
+        "model": "Sora 2 / Pro / Max",
+        "pricing_status": "discontinued",
+        "tiers": []
+      },
+      {
+        "model_id": "wan-2-6",
+        "model": "Wan 2.6",
+        "pricing_status": "live",
+        "tiers": [
+          {
+            "tier": "480p",
+            "unit": "second",
+            "usd_low": 0.0392,
+            "usd_high": 0.0392
+          },
+          {
+            "tier": "720p",
+            "unit": "second",
+            "usd_low": 0.0549,
+            "usd_high": 0.0549
+          },
+          {
+            "tier": "1080p",
+            "unit": "second",
+            "usd_low": 0.0784,
+            "usd_high": 0.0784
+          }
+        ]
+      },
+      {
+        "model_id": "wan-3-0",
+        "model": "Wan 3.0 / 3.0 Prime",
+        "pricing_status": "live",
+        "tiers": [
+          {
+            "tier": "480p",
+            "unit": "second",
+            "usd_low": 0.0392,
+            "usd_high": 0.0392
+          },
+          {
+            "tier": "720p",
+            "unit": "second",
+            "usd_low": 0.0686,
+            "usd_high": 0.0686
+          },
+          {
+            "tier": "1080p",
+            "unit": "second",
+            "usd_low": 0.1372,
+            "usd_high": 0.1372
+          },
+          {
+            "tier": "prime-480p",
+            "unit": "second",
+            "usd_low": 0.0588,
+            "usd_high": 0.0588
+          },
+          {
+            "tier": "prime-720p",
+            "unit": "second",
+            "usd_low": 0.1176,
+            "usd_high": 0.1176
+          },
+          {
+            "tier": "prime-1080p",
+            "unit": "second",
+            "usd_low": 0.2352,
+            "usd_high": 0.2352
+          },
+          {
+            "tier": "api-480p",
+            "unit": "second",
+            "usd_low": 0.05,
+            "usd_high": 0.05
+          }
+        ]
+      },
+      {
+        "model_id": "hailuo-2-3",
+        "model": "Hailuo 02 / 2.3",
+        "pricing_status": "live",
+        "tiers": [
+          {
+            "tier": "768p",
+            "unit": "second",
+            "usd_low": 0.0467,
+            "usd_high": 0.056
+          },
+          {
+            "tier": "1080p",
+            "unit": "second",
+            "usd_low": 0.0817,
+            "usd_high": 0.0817
+          },
+          {
+            "tier": "fast-768p",
+            "unit": "second",
+            "usd_low": 0.0317,
+            "usd_high": 0.032
+          }
+        ]
+      },
+      {
+        "model_id": "minimax-h3",
+        "model": "MiniMax H3",
+        "pricing_status": "live",
+        "tiers": [
+          {
+            "tier": "2k",
+            "unit": "second",
+            "usd_low": 0.13,
+            "usd_high": 0.13
+          },
+          {
+            "tier": "768p",
+            "unit": "second",
+            "usd_low": 0.08,
+            "usd_high": 0.08
+          },
+          {
+            "tier": "480p",
+            "unit": "second",
+            "usd_low": 0.038,
+            "usd_high": 0.05
+          },
+          {
+            "tier": "max-turbo-768p",
+            "unit": "second",
+            "usd_low": 0.04,
+            "usd_high": 0.04
+          },
+          {
+            "tier": "max-turbo-480p",
+            "unit": "second",
+            "usd_low": 0.025,
+            "usd_high": 0.025
+          }
+        ]
+      },
+      {
+        "model_id": "luma-ray-3-2",
+        "model": "Luma App / Ray 3.2",
+        "pricing_status": "live",
+        "tiers": [
+          {
+            "tier": "360p",
+            "unit": "second",
+            "usd_low": 0.012,
+            "usd_high": 0.012
+          },
+          {
+            "tier": "720p",
+            "unit": "second",
+            "usd_low": 0.09,
+            "usd_high": 0.09
+          },
+          {
+            "tier": "1080p",
+            "unit": "second",
+            "usd_low": 0.24,
+            "usd_high": 0.36
+          }
+        ]
+      },
+      {
+        "model_id": "pika-2-5",
+        "model": "Pika 2.5",
+        "pricing_status": "unpublished",
+        "tiers": []
+      },
+      {
+        "model_id": "grok-imagine-1-5",
+        "model": "Grok Imagine Video 1.5",
+        "pricing_status": "live",
+        "tiers": [
+          {
+            "tier": "lite-480p",
+            "unit": "second",
+            "usd_low": 0.02,
+            "usd_high": 0.02
+          },
+          {
+            "tier": "lite-720p",
+            "unit": "second",
+            "usd_low": 0.03,
+            "usd_high": 0.03
+          },
+          {
+            "tier": "lite-1080p",
+            "unit": "second",
+            "usd_low": 0.14,
+            "usd_high": 0.14
+          },
+          {
+            "tier": "flagship-480p",
+            "unit": "second",
+            "usd_low": 0.08,
+            "usd_high": 0.08
+          },
+          {
+            "tier": "flagship-720p",
+            "unit": "second",
+            "usd_low": 0.14,
+            "usd_high": 0.14
+          },
+          {
+            "tier": "flagship-1080p",
+            "unit": "second",
+            "usd_low": 0.25,
+            "usd_high": 0.25
+          }
+        ]
+      },
+      {
+        "model_id": "midjourney-v1-video",
+        "model": "Midjourney V1 Video",
+        "pricing_status": "unpublished",
+        "tiers": []
+      },
+      {
+        "model_id": "runway-gen-4-5",
+        "model": "Runway Gen-4.5",
+        "pricing_status": "live",
+        "tiers": [
+          {
+            "tier": "api",
+            "unit": "second",
+            "usd_low": 0.12,
+            "usd_high": 0.12
+          }
+        ]
+      },
+      {
+        "model_id": "vidu-q4-preview",
+        "model": "Vidu Q4 Preview",
+        "pricing_status": "live",
+        "tiers": [
+          {
+            "tier": "540p",
+            "unit": "second",
+            "usd_low": 0.045,
+            "usd_high": 0.045
+          },
+          {
+            "tier": "1080p",
+            "unit": "second",
+            "usd_low": 0.12,
+            "usd_high": 0.12
+          },
+          {
+            "tier": "4k",
+            "unit": "second",
+            "usd_low": 0.39,
+            "usd_high": 0.39
+          }
+        ]
+      },
+      {
+        "model_id": "vidu-s2",
+        "model": "Vidu S2",
+        "pricing_status": "live",
+        "tiers": [
+          {
+            "tier": "clip",
+            "unit": "clip",
+            "usd_low": 0.05,
+            "usd_high": 0.05
+          }
+        ]
+      },
+      {
+        "model_id": "flux-3-video",
+        "model": "FLUX 3 Video",
+        "pricing_status": "live",
+        "tiers": [
+          {
+            "tier": "720p-draft",
+            "unit": "second",
+            "usd_low": 0.06,
+            "usd_high": 0.06
+          },
+          {
+            "tier": "720p",
+            "unit": "second",
+            "usd_low": 0.17,
+            "usd_high": 0.17
+          },
+          {
+            "tier": "1080p",
+            "unit": "second",
+            "usd_low": 0.29,
+            "usd_high": 0.29
+          }
+        ]
+      },
+      {
+        "model_id": "ltx-2-5",
+        "model": "LTX-2.5",
+        "pricing_status": "live",
+        "tiers": [
+          {
+            "tier": "fast",
+            "unit": "second",
+            "usd_low": 0.003,
+            "usd_high": 0.003
+          }
+        ]
+      },
+      {
+        "model_id": "mirage-tesseract",
+        "model": "Mirage Tesseract",
+        "pricing_status": "live",
+        "tiers": [
+          {
+            "tier": "local",
+            "unit": "unlimited",
+            "usd_low": 0,
+            "usd_high": 0
+          }
+        ]
+      },
+      {
+        "model_id": "vivago-r1",
+        "model": "vivago R1",
+        "pricing_status": "unpublished",
+        "tiers": []
+      }
+    ]
+  },
+  "events": [
+    {
+      "id": "2025-06-18-midjourney-v1-launch",
+      "date": "2025-06-18",
+      "model_id": "midjourney-v1-video",
+      "model": "Midjourney V1 Video",
+      "kind": "release",
+      "summary": "Midjourney V1 Video launched: image-to-video only, 5s clips extendable to 21s, no native audio. Still the current Midjourney video model \u2014 no V2 announced as of Oct 2026.",
+      "status_after": "active",
+      "confidence": "reported",
+      "source": "models.json what_changed (re-verified 2026-10-11)"
+    },
+    {
+      "id": "2026-03-04-soul-cinema-preview",
+      "date": "2026-03-04",
+      "model_id": "soul-cinema",
+      "model": "Soul Cinema",
+      "kind": "release",
+      "summary": "Soul Cinema launched as a preview: one-click cinematic stills for image-to-video pipelines. Per-image pricing was not published at launch and still is not \u2014 the record stays verify-live.",
+      "status_after": "active",
+      "confidence": "reported",
+      "source": "models.json what_changed (re-verified 2026-10-11)"
+    },
+    {
+      "id": "2026-03-30-pixverse-v6-launch",
+      "date": "2026-03-30",
+      "model_id": "pixverse-v6",
+      "model": "PixVerse V6",
+      "kind": "release",
+      "summary": "PixVerse V6 launched with native audio in the same pass, 1\u201315s clips at up to 1080p, and 20+ prompt-driven camera controls. Sibling C1 followed on April 7 for action and VFX work.",
+      "status_after": "active",
+      "confidence": "reported",
+      "source": "models.json what_changed (added 2026-10-12)"
+    },
+    {
+      "id": "2026-04-26-sora-apps-close",
+      "date": "2026-04-26",
+      "model_id": "sora-2",
+      "model": "Sora 2 / Pro / Max",
+      "kind": "status",
+      "summary": "OpenAI closed the Sora apps and website. The API kept running for five more months \u2014 a staged shutdown, not a single date. New work should not have been planned on it from this day.",
+      "status_before": "active",
+      "status_after": "discontinued",
+      "confidence": "reported",
+      "source": "models.json what_changed (re-verified 2026-10-11)"
+    },
+    {
+      "id": "2026-06-16-grok-15-ga",
+      "date": "2026-06-16",
+      "model_id": "grok-imagine-1-5",
+      "model": "Grok Imagine Video 1.5",
+      "kind": "release",
+      "summary": "Grok Imagine Video 1.5 went GA with native audio in one pass. A July 31 update added 1080p, text-to-video, voice reference, and 7-reference scene control.",
+      "status_after": "active",
+      "confidence": "reported",
+      "source": "models.json what_changed (re-verified 2026-10-11)"
+    },
+    {
+      "id": "2026-06-17-kling-30-turbo-ga",
+      "date": "2026-06-17",
+      "model_id": "kling-3-0",
+      "model": "Kling 3.0",
+      "kind": "tier",
+      "summary": "Kling 3.0 Turbo went GA with audio always on: $0.112/s at 720p, $0.14/s at 1080p on the API ladder.",
+      "confidence": "third-party-mirror",
+      "source": "models.json what_changed (re-verified 2026-10-11)"
+    },
+    {
+      "id": "2026-07-31-minimax-h3-release",
+      "date": "2026-07-31",
+      "model_id": "minimax-h3",
+      "model": "MiniMax H3",
+      "kind": "release",
+      "summary": "MiniMax H3 (alias Hailuo 3.0) released as the new flagship: omni-modal context, 2K clips of 4\u201315s, native stereo audio. Hailuo 02 / 2.3 became the legacy generation the same day. Open weights were announced 'in the coming days' \u2014 no public repo confirmed as of Oct 11.",
+      "status_after": "active",
+      "confidence": "official",
+      "source": "models.json what_changed (re-verified 2026-10-11)"
+    },
+    {
+      "id": "2026-08-04-flux-3-ga",
+      "date": "2026-08-04",
+      "model_id": "flux-3-video",
+      "model": "FLUX 3 Video",
+      "kind": "release",
+      "summary": "FLUX 3 Video reached the public (announced July 23): Black Forest Labs' first video model, up to 20s single takes at native 1080p with multilingual audio and lip-sync.",
+      "status_after": "active",
+      "confidence": "reported",
+      "source": "models.json what_changed (re-verified 2026-10-11)"
+    },
+    {
+      "id": "2026-08-20-flux-3-upscale",
+      "date": "2026-08-20",
+      "model_id": "flux-3-video",
+      "model": "FLUX 3 Video",
+      "kind": "tier",
+      "summary": "FLUX Video Upscale shipped: 1.5\u20133x upscaling to 4K for clips up to 20s.",
+      "confidence": "reported",
+      "source": "data/v1/model-updates.md, wave 30 (2026-10-11)"
+    },
+    {
+      "id": "2026-08-24-wan-30-release",
+      "date": "2026-08-24",
+      "model_id": "wan-3-0",
+      "model": "Wan 3.0 / 3.0 Prime",
+      "kind": "release",
+      "summary": "Wan 3.0 formally released (public beta since August 6): native 30-second generations at 30fps \u2014 not stitched clips \u2014 with native audio. Alibaba Cloud Model Studio list: $0.05/s at 480p, $0.10/s at 720p, $0.20/s at 1080p. Third-party resync notes the same month report a ~38% cut on base 3.0 since launch; no absolute launch card was published, so the guide records the cut as reported, not as a rate.",
+      "status_after": "active",
+      "confidence": "reported",
+      "source": "models.json what_changed (re-verified 2026-10-11)"
+    },
+    {
+      "id": "2026-08-27-omni-11-ga",
+      "date": "2026-08-27",
+      "model_id": "gemini-omni",
+      "model": "Gemini Omni",
+      "kind": "release",
+      "summary": "gemini-omni-1.1-flash went GA: scene extension to 40s in 10s steps, first/last-frame interpolation, a 360p\u20134K ladder, and stateful multi-turn editing. In the Gemini app, Omni 1.1 Flash replaces Veo 3.1; the Veo API continues separately.",
+      "status_after": "active",
+      "confidence": "reported",
+      "source": "models.json what_changed (re-verified 2026-10-11)"
+    },
+    {
+      "id": "2026-09-09-minimax-h3-tiers",
+      "date": "2026-09-09",
+      "model_id": "minimax-h3",
+      "model": "MiniMax H3",
+      "kind": "tier",
+      "summary": "H3 Max gained native 1080p and a Turbo tier, per Krea's September 9 changelog. Single secondary source \u2014 the guide's H3 figures stay unchanged until a second confirmation lands.",
+      "confidence": "reported",
+      "source": "models.json what_changed (re-verified 2026-10-11)"
+    },
+    {
+      "id": "2026-09-10-flux-3-qhd-uhd",
+      "date": "2026-09-10",
+      "model_id": "flux-3-video",
+      "model": "FLUX 3 Video",
+      "kind": "price",
+      "summary": "Black Forest Labs listed QHD at $0.40/s and UHD at $0.80/s, with video-to-video at $0.65/s (QHD) and $0.95/s (UHD). These tiers were documented in the guide's model record but missing from its pricing table until Watchtower 2.0 added them.",
+      "tier": "qhd",
+      "before_usd": null,
+      "after_usd": 0.4,
+      "unit": "second",
+      "confidence": "reported",
+      "source": "models.json what_changed (re-verified 2026-10-11)"
+    },
+    {
+      "id": "2026-09-15-vidu-s2-details",
+      "date": "2026-09-15",
+      "model_id": "vidu-s2",
+      "model": "Vidu S2",
+      "kind": "release",
+      "summary": "Vidu S2 official details confirmed: S2-Avatar runs real-time at 720p (up from S1's 540p) with mid-session reference-image swaps and live-stream editing. A different product class from rendered clips \u2014 budget it differently.",
+      "status_after": "active",
+      "confidence": "official",
+      "source": "data/v1/model-updates.md, wave 30 (2026-10-11)"
+    },
+    {
+      "id": "2026-09-22-mirage-launch",
+      "date": "2026-09-22",
+      "model_id": "mirage-tesseract",
+      "model": "Mirage Tesseract",
+      "kind": "release",
+      "summary": "Mirage Tesseract launched: an agent-driven editing and motion-graphics suite, not a generation model. The local engine is free; it lives in the guide's edit/post lane.",
+      "status_after": "active",
+      "confidence": "reported",
+      "source": "data/v1/model-updates.md, wave 30 (2026-10-11)"
+    },
+    {
+      "id": "2026-09-24-sora-api-shutdown",
+      "date": "2026-09-24",
+      "model_id": "sora-2",
+      "model": "Sora 2 / Pro / Max",
+      "kind": "status",
+      "summary": "The Sora 2 API and /v1/videos shut down, completing the discontinuation that began with the April app closures. Routes return 410 \u2014 they do not come back. The record stays in the guide for the historical record only.",
+      "status_before": "active",
+      "status_after": "discontinued",
+      "confidence": "reported",
+      "source": "models.json what_changed (re-verified 2026-10-11)"
+    },
+    {
+      "id": "2026-09-28-kling-40-announced",
+      "date": "2026-09-28",
+      "model_id": "kling-4-0",
+      "model": "Kling 4.0",
+      "kind": "status",
+      "summary": "Kling 4.0 announced: Flash early access for Ultra Yearly subscribers, full release promised 'this October' \u2014 a month, not a date. No GA model ID, no API pricing, no independent benchmarks as of Oct 11. Status stays announced; do not plan shoots on it.",
+      "status_after": "announced",
+      "confidence": "reported",
+      "source": "models.json what_changed (re-verified 2026-10-11)"
+    },
+    {
+      "id": "2026-09-30-omni-preview-deprecated",
+      "date": "2026-09-30",
+      "model_id": "gemini-omni",
+      "model": "Gemini Omni",
+      "kind": "status",
+      "summary": "The gemini-omni-flash-preview endpoint was deprecated and now 404s with no fallback. Anything still calling the preview ID is broken; the GA 1.1 Flash ID is the live one.",
+      "confidence": "reported",
+      "source": "models.json what_changed (re-verified 2026-10-11)"
+    },
+    {
+      "id": "2026-09-30-grok-lite-venice",
+      "date": "2026-09-30",
+      "model_id": "grok-imagine-1-5",
+      "model": "Grok Imagine Video 1.5",
+      "kind": "tier",
+      "summary": "Grok Imagine Video 1.5 Lite listed on Venice at a $0.04/clip entry point, ahead of the tier's full API rollout in early October.",
+      "confidence": "reported",
+      "source": "models.json what_changed (re-verified 2026-10-11)"
+    },
+    {
+      "id": "2026-10-05-luma-legacy-retired",
+      "date": "2026-10-05",
+      "model_id": "luma-ray-3-2",
+      "model": "Luma App / Ray 3.2",
+      "kind": "status",
+      "summary": "Luma's legacy models (Ray 3, Ray 2, Ray 2 Flash, Ray 2 Relaxed, Ray 3 Reference, Ray 3 Refiner) hit their retirement deadline on the legacy API. Ray 3.2 on the Luma Agents API is the migration target; ComfyUI v0.39.0 deprecated its Ray 2 nodes in the same window.",
+      "confidence": "reported",
+      "source": "models.json what_changed (re-verified 2026-10-11)"
+    },
+    {
+      "id": "2026-10-06-seedance-25-rates-reread",
+      "date": "2026-10-06",
+      "model_id": "seedance-2-5",
+      "model": "Seedance 2.5",
+      "kind": "verification",
+      "summary": "BytePlus official rates re-read and confirmed \u2014 no change: $0.1028/s at 480p, $0.2311/s at 720p, $0.5686/s at 1080p. A confirmation is recorded as an event because budgets were built on these numbers; if they move, this is the baseline they move from.",
+      "confidence": "official",
+      "source": "data/v1/model-updates.md, wave 30 (2026-10-11)"
+    },
+    {
+      "id": "2026-10-07-vidu-q4-launch",
+      "date": "2026-10-07",
+      "model_id": "vidu-q4-preview",
+      "model": "Vidu Q4 Preview",
+      "kind": "release",
+      "summary": "Vidu Q4 Preview launched: cinematic 4K 10-bit, up to 15 image references, 16s maximum clips, image-to-video and reference-to-video only (no text-to-video).",
+      "status_after": "active",
+      "confidence": "official",
+      "source": "data/v1/model-updates.md, wave 21 (2026-10-11)"
+    },
+    {
+      "id": "2026-10-07-vidu-q4-rate-card",
+      "date": "2026-10-07",
+      "model_id": "vidu-q4-preview",
+      "model": "Vidu Q4 Preview",
+      "kind": "price",
+      "summary": "The $0.014/s launch headline was a promotional off-peak floor, not a list rate. The official October 7 rate card lists $0.045/s at 540p, $0.12/s at 1080p, and $0.39/s at 4K, with image-to-video and reference-to-video at a 30% discount through November 30. The guide budgets from the list rates.",
+      "tier": "540p",
+      "before_usd": 0.014,
+      "after_usd": 0.045,
+      "unit": "second",
+      "pct": 221.4,
+      "confidence": "official",
+      "source": "data/v1/model-updates.md, wave 30 headline correction (2026-10-11)"
+    },
+    {
+      "id": "2026-10-09-vivago-r1-global",
+      "date": "2026-10-09",
+      "model_id": "vivago-r1",
+      "model": "vivago R1",
+      "kind": "release",
+      "summary": "vivago R1 made available globally: a conversational production agent (script, storyboard, generation, edit in one run, up to 5-minute videos). Single-source launch coverage and no published rate card \u2014 verify live before planning around it.",
+      "status_after": "active",
+      "confidence": "reported",
+      "source": "data/v1/model-updates.md, wave 30 (2026-10-11)"
+    },
+    {
+      "id": "2026-10-11-full-reverification",
+      "date": "2026-10-11",
+      "model_id": null,
+      "model": "All models",
+      "kind": "verification",
+      "summary": "Every record in the guide re-verified against October 2026 coverage. The automated check feed covered 22 models and flagged 0 changes and 0 errors. 'Veo 4' was re-verified as search bait for the third time: no announcement, no model card, no API ID exists.",
+      "confidence": "official",
+      "source": "data/v1/model-checks.json checked 2026-10-11; data/v1/model-updates.md"
+    },
+    {
+      "id": "2026-10-12-pixverse-coverage",
+      "date": "2026-10-12",
+      "model_id": "pixverse-v6",
+      "model": "PixVerse V6",
+      "kind": "coverage",
+      "summary": "PixVerse V6 added to the guide. A completeness audit found it was the most conspicuous uncovered model in the field: launched March 30, 2026, with an Artificial Analysis image-to-video Elo of 1,343 (April 2026) \u2014 and no record here. Now tracked like everything else.",
+      "status_after": "active",
+      "confidence": "reported",
+      "source": "models.json (added 2026-10-12)"
+    },
+    {
+      "id": "2026-10-12-pixverse-pricing",
+      "date": "2026-10-12",
+      "model_id": "pixverse-v6",
+      "model": "PixVerse V6",
+      "kind": "price",
+      "summary": "PixVerse V6 pricing record added, closing the last gap in the pricing table (30 of 31 models covered became 31 of 31). Gateway-reported rates: about $0.09/s at 720p with audio, $0.18\u20130.23/s at 1080p. Third-party figures \u2014 verify live before budgeting.",
+      "tier": "720p",
+      "before_usd": null,
+      "after_usd": 0.09,
+      "unit": "second",
+      "confidence": "third-party-estimate",
+      "source": "models.json est_cost_credits (verified 2026-10-12)"
+    },
+    {
+      "id": "2026-10-12-flux-tiers-tabled",
+      "date": "2026-10-12",
+      "model_id": "flux-3-video",
+      "model": "FLUX 3 Video",
+      "kind": "coverage",
+      "summary": "FLUX 3's QHD, UHD, and video-to-video tiers added to the pricing table. They had been documented in the model record since the September 10 listing but never made it into the table the budget tools read \u2014 exactly the kind of silent gap the Watchtower diff now catches.",
+      "confidence": "reported",
+      "source": "Watchtower 2.0 pricing-coverage audit (2026-10-12)"
+    }
+  ]
+}

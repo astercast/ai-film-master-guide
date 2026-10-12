@@ -161,7 +161,8 @@ def main():
                 "model-checks.json", "model-review-queue.json",
                 "diagnoses.json", "schema/diagnosis.json",
                 "schema/model-checks.json", "schema/model-review-queue.json",
-                "pricing.json", "schema/envelope.json"]:
+                "pricing.json", "schema/envelope.json",
+                "model-history.json", "schema/model-history.json"]:
         p = API / rel
         if p.exists():
             preserved[rel] = p.read_bytes()
@@ -221,13 +222,15 @@ def main():
     # hand-maintained; read the preserved bytes, not the artifacts).
     preserved_docs = {}
     for rel in ["teardowns.json", "diagnoses.json",
-                "model-checks.json", "model-review-queue.json"]:
+                "model-checks.json", "model-review-queue.json",
+                "model-history.json"]:
         if rel in preserved:
             preserved_docs[rel] = json.loads(preserved[rel].decode("utf-8"))
     n_teardowns = len(preserved_docs.get("teardowns.json", {}).get("teardowns", []))
     n_diagnoses = len(preserved_docs.get("diagnoses.json", {}).get("diagnoses", []))
     n_checked = preserved_docs.get("model-checks.json", {}).get("summary", {}).get("models_total", 0)
     n_pending = preserved_docs.get("model-review-queue.json", {}).get("pending", 0)
+    n_events = len(preserved_docs.get("model-history.json", {}).get("events", []))
 
     def ep(path, description, schema, records, notes=""):
         return {"path": path, "description": description,
@@ -302,6 +305,18 @@ def main():
                            "A 'changed' flag is a review signal, not a "
                            "confirmed model change — check the review queue "
                            "before treating it as fact."),
+        "model-history": ep("data/v1/model-history.json",
+                           "Watchtower 2.0 event log: dated status, price, "
+                           "tier, release, verification, and coverage events "
+                           "for every tracked model, plus the pricing "
+                           "baseline the drift engine diffs the live pricing "
+                           "table against. Hand-authored — every event "
+                           "traces to models.json or model-updates.md.",
+                           "data/v1/schema/model-history.json",
+                           n_events,
+                           "Price events carry before/after only where the "
+                           "record documents both numbers. The baseline is "
+                           "the pricing table as curated 2026-10-11."),
         "model-review-queue": ep("data/v1/model-review-queue.json",
                                  "Pending model-watch review items: changed "
                                  "source signatures awaiting human promotion. "

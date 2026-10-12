@@ -29,6 +29,7 @@ var env = require('../../lib/envelope.js');
 var fetchx = require('../../lib/fetchx.js');
 var cronauth = require('../../lib/cronauth.js');
 var github = require('../../lib/github.js');
+var drift = require('../../lib/drift.js');
 
 var SERVICE = 'film-watchtower';
 var VERSION = '1.0.0';
@@ -228,9 +229,23 @@ module.exports = async function (req, res) {
       commitNote = 'Commit skipped: ' + [c1.reason, c2.reason].filter(Boolean).join('; ');
     }
 
+    // Watchtower 2.0: report the drift picture alongside the check run —
+    // how many models currently need a human's eyes, and whether the
+    // pricing table moved against the history baseline this run can see.
+    var driftView = null;
+    try {
+      var modelsDoc = require('../../data/v1/models.json');
+      var pricingDoc = require('../../data/v1/pricing.json');
+      var historyDoc = require('../../data/v1/model-history.json');
+      var dv = drift.computeDrift({ modelsDoc: modelsDoc, checksDoc: checks,
+        pricingDoc: pricingDoc, historyDoc: historyDoc, nowMs: Date.now() });
+      driftView = { summary: dv.summary, price_changes: dv.price_changes.length };
+    } catch (e) { driftView = null; }
+
     var data = {
       checked: checked,
       changed: changedModels.length > 0,
+      drift: driftView,
       committed: committed,
       commit_sha: commitSha,
       models_changed: changedModels,

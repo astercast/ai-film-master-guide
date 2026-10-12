@@ -98,7 +98,8 @@ for fname, sname in [("competitions.json", "competition.json"),
                      ("glossary.json", "glossary.json"),
                      ("index.json", "index.json"),
                      ("model-checks.json", "model-checks.json"),
-                     ("model-review-queue.json", "model-review-queue.json")]:
+                     ("model-review-queue.json", "model-review-queue.json"),
+                     ("model-history.json", "model-history.json")]:
     for e in schema(sname).iter_errors(doc(fname)):
         failures.append(f"{fname}: {e.message}")
 
@@ -109,7 +110,7 @@ if failures:
     if len(failures) > 20:
         print(f"   ... and {len(failures)-20} more")
     sys.exit(1)
-print("  ok: all 11 endpoints validate against their draft-07 schemas")
+print("  ok: all 12 endpoints validate against their draft-07 schemas")
 EOF
 [ $? -eq 0 ] && pass "schema validation clean" || FAIL=$((FAIL+1))
 
@@ -359,6 +360,30 @@ if grep -q "window.StudioEngine = StudioEngine" assets/js/studio.js; then
 else
   fail "studio.js does not expose window.StudioEngine"; GL_OK=0
 fi
+# Watchtower 2.0: drift engine (server + browser mirror), changes endpoint,
+# history data + page panels.
+WT_OK=1
+for f in server/lib/drift.js server/api/models-changes.js assets/js/watchtower-lib.js \
+         assets/js/model-watch.js data/v1/model-history.json data/v1/schema/model-history.json \
+         site/assets/js/watchtower-lib.js site/api/models-changes.js site/lib/drift.js \
+         site/data/v1/model-history.json; do
+  if [ ! -f "$f" ]; then fail "$f missing (Watchtower 2.0 incomplete)"; WT_OK=0; fi
+done
+WT_OUT=$(node scripts/watchtower.test.js 2>&1)
+if echo "$WT_OUT" | tail -1 | grep -q "all pass"; then
+  WT_N=$(echo "$WT_OUT" | grep -c "^ok ")
+  pass "watchtower.test.js: $WT_N drift-engine tests pass (pricing diff, events window, drift severities, browser-mirror equivalence)"
+else
+  fail "watchtower.test.js failures:"
+  echo "$WT_OUT" | tail -6 | sed 's/^/    /'
+  WT_OK=0
+fi
+if grep -q "wt-since" site/model-watch.html && grep -q "wt-drift-list" site/model-watch.html && grep -q "model-history" site/model-watch.html; then
+  pass "model-watch.html carries the Watchtower 2.0 panels (since-visit, drift board, event log)"
+else
+  fail "model-watch.html missing Watchtower 2.0 panels"; WT_OK=0
+fi
+
 # Cutting Room → Green Light bridge button present (rendered by cutting-room.js)
 if grep -q "cr-greenlight" assets/js/cutting-room.js && grep -q "cr-greenlight" site/assets/js/cutting-room.js; then
   pass "cutting-room → green-light bridge wired (button + handler)"

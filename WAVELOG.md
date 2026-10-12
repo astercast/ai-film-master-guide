@@ -1,5 +1,124 @@
 # Wave Log — AI Film Master Guide
 
+## Watchtower 2.0 — model status with a memory (2026-10-12)
+
+**Assignment:** this rotation's flagship — Watchtower 2.0: live model-status
+checks with drift alerts, pricing-change detection, and a "what changed
+since your last visit" view for the models the site tracks. Watchtower 1.0
+(Waves A/B) could say what the guide believed and when it last checked.
+It could not say what *moved*. 2.0 is the memory layer.
+
+**Shipped:**
+
+1. **`data/v1/model-history.json`** (new, hand-authored, preserved across
+   `build_api.py` rebuilds; draft-07 schema alongside) — 28 dated events
+   (12 releases, 5 status changes, 4 tier changes, 3 price changes, 2
+   verifications, 2 coverage fixes), every one traced to a fact already in
+   `models.json` `what_changed` or `model-updates.md`. Price events carry a
+   before/after pair only where the record documents both numbers (the
+   Vidu Q4 correction: $0.014/s promo floor → $0.045/s list at 540p,
+   +221.4%, arithmetic pinned by test). The file also stores the
+   **pricing baseline**: the pricing table as curated 2026-10-11,
+   copied mechanically from the pre-wave `pricing.json`.
+2. **`server/lib/drift.js`** (new, pure functions, no I/O) — the drift
+   engine: `diffPricing` (tier added/removed, price up/down with pct on
+   the range midpoint, model added/removed), `eventsSince`/`countKinds`,
+   and `computeDrift` (per-model severity `alert|watch|ok` with
+   plain-language reasons: flagged check, failed check, unwatched,
+   unpublished rate, stale record, moved price). Mirrored for the browser
+   as `assets/js/watchtower-lib.js`; the test suite runs both copies
+   against the real data and fails if they diverge.
+3. **`GET /api/models-changes`** (new, 6th function, ≤12 budget) —
+   `events` in the `?since=` window (default: the baseline date; junk
+   date → 400 `BAD_INPUT`), `price_changes` from the mechanical diff,
+   `drift_alerts` + `drift_summary` for all 31 models; `?model_id=`
+   restricts all three (unknown → 404). `models-status` upgraded to
+   v2.0.0 (v1 fields untouched; per-model `drift_severity`/`drift_alerts`
+   + `drift_summary` added). The daily cron's response now carries the
+   same drift summary. `vercel.json` gains the route as an explicit path
+   with `{"maxDuration": 10}`, no `runtime` key; `LIVE_CHECKLIST.md` and
+   `GO_LIVE.md` updated (incl. the JSONP/static-`.js` and
+   generator-emits-to-`data/v1/` rules spelled out).
+4. **The model-watch page, rebuilt around the question "what moved?"** —
+   cutting-room identity intact (deck hero, TC chrome, tail-pop colophon):
+   a **since-your-last-visit panel** (pre-rendered with a 30-day window;
+   with JS it re-renders for the visitor's actual last visit, kept in
+   `localStorage` under `afg-watchtower-last-visit` and advanced only
+   after the panel renders; a reset button re-baselines); a **drift
+   board** (18 rows today: 2 Review, 16 Watch); a **pricing-changes
+   table** showing the live diff; the **full 28-event log** (first 10
+   open, the rest behind a native disclosure); per-card drift chips
+   (latest event, "No automated watch", "Rate unpublished"). Live path:
+   `/api/models-changes` + `/api/models-status`; fallback path recomputes
+   the identical shapes from the four static files — no error states,
+   honest badges throughout.
+5. **Two real bugs found and fixed.** (a) `/api/health` has loaded its
+   data files from `./v1/…` since Wave A — a path that resolves nowhere —
+   so health reported `degraded` with null freshness for its entire
+   life. Paths corrected to `../data/v1/…`; a regression check in
+   `api.test.sh` now asserts freshness actually resolves. (b) The check
+   feed's header summary claims 0 errors while its own per-model records
+   show Wan 3.0 and Grok Imagine 1.5 with a failed source each
+   (`source_status: "partial"`), plus DoP and Marketing Studio with no
+   sources at all. Drift reads the records, not the header: the true
+   picture is 2 alerts and 11 unwatched (not 9), and AGENT.md's workflow
+   3 now warns agents about the discrepancy.
+6. **Completeness audit (the pricing table).** Two conspicuous gaps:
+   **PixVerse V6** — added to the guide in wave 39 — had no pricing
+   record at all (30 of 31 covered); **FLUX 3 Video**'s QHD ($0.40/s),
+   UHD ($0.80/s), and video-to-video ($0.65/$0.95) tiers were documented
+   in its model record since the Sept 10 BFL listing but never reached
+   the table the budget tools read. Both fixed from the records' own
+   sourced figures (PixVerse: gateway-reported ~$0.09/s 720p,
+   $0.18–0.23/s 1080p, third-party-estimate confidence). Coverage is now
+   31 of 31, and the baseline diff shows exactly these 5 changes —
+   which is the detection working, on its first day, on its own wave.
+7. **Docs:** API.md + `api.html` (new endpoint, counts 30→31, manifest
+   11→12 endpoints), AGENT.md (endpoint row + workflow 3 rewritten for
+   2.0, stale review-queue count corrected 0→5), `build_llms.py` tool
+   blurb + data list, search-index entry.
+
+**Validation:** `scripts/watchtower.test.js` **15/15** (real-data diff ==
+the 5 coverage changes; pct math; events windows; drift severities incl.
+the doctored-check alert case; server/browser mirror equivalence).
+`tests/api.test.sh` **55/55** (was 42/42 in Wave B; adds the
+models-changes section, the health-freshness regression check, and a
+corrected §9 — the old assertion demanded a `nodejs22.x` runtime pin
+that the standing Vercel rule forbids and the current `vercel.json`
+never had). `bash scripts/validate.sh` → 17 passed, 1 failed pre-commit —
+the stage-6 llms zero-diff check, the expected uncommitted state (the
+regenerated llms files carry this wave's entries; green on commit, per
+the standing pattern). Playwright suites: **21/21 live** (functions
+proxied to the real harness) and **20/20 static** (functions down:
+cached badges, panels recomputed locally, zero page errors) — first
+visit, returning visit (Sep 20 baseline names the date, shows the 8 most
+recent), baseline reset, status filter, mobile 390px no overflow,
+reduced-motion full content. Screenshots inspected: hero, since panel,
+drift board, pricing table, PixVerse card with chips, mobile. Note: both
+live badges correctly read `cached` today — the envelopes are honestly
+degraded (2 failed sources; the check feed is past its 24h SLA), which
+is the contract working, not a fault.
+
+**Bugs caught in testing:** (1) the since-panel JS set `textContent` on
+the heading that contained its own API badge — first render deleted the
+badge from the DOM (fixed: badge moved outside the re-rendered span);
+(2) two of my own api.test.sh assertions were wrong, not the endpoint
+(the October window holds exactly 9 events, and the `?model_id=` check
+needed an explicit `since` — the default window is the baseline date,
+by design); (3) a model-added diff row rendered its "now" as a dash —
+it now carries the new record's full rate span ($0.09–$0.23 for
+PixVerse).
+
+**HUMAN-MADE self-check:** the copy argues from specifics ("a
+confirmation is recorded as an event because budgets were built on
+these numbers; if they move, this is the baseline they move from"),
+the layouts are watch-specific (kind chips, severity board, TC stamps),
+and the page's best moment is a quiet one: come back tomorrow and the
+first panel already knows what you missed. AI-ism scan on all new copy:
+clean. No TODOs, no dead code.
+
+**Commit:** (recorded in the follow-up commit, per the standing pattern.)
+
 ## WOW wave 2 — "The Green Light": a studio meeting, playable (2026-10-12)
 
 **Assignment:** the ambition mandate's #1 flagship — the STUDIO. The Studio

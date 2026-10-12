@@ -24,7 +24,7 @@ Static files — **no auth, no keys, no rate limits**. Works on any static host.
 
 | Endpoint | Contents | Count |
 |---|---|---|
-| `data/v1/index.json` | Manifest — start here | 11 endpoints |
+| `data/v1/index.json` | Manifest — start here | 12 endpoints |
 | `data/v1/models.json` | 30 models: platform, type, credit cost, strengths/weaknesses/best use, `last_verified`, `status`, `what_changed`, `sources`, `unverified` list | 30 |
 | `data/v1/prompt-templates.json` | 47 templates: id, title, track, prompt, anatomy, use, models | 47 |
 | `data/v1/camera-movements.json` | 22-move camera lexicon: id, move, prompt_phrasing, when_to_use | 22 |
@@ -34,7 +34,8 @@ Static files — **no auth, no keys, no rate limits**. Works on any static host.
 | `data/v1/teardowns.json` | 10 shot-by-shot teardowns; prompt reconstructions are analytical | 8 |
 | `data/v1/diagnoses.json` | 12 failure diagnoses: symptom → diagnosis, fixes, repair template | 12 |
 | `data/v1/model-checks.json` | Model-watch freshness feed: per-model last check, source diffs, headlines | 22 checked |
-| `data/v1/model-review-queue.json` | Pending model-watch review items (empty = nothing pending) | 0 pending |
+| `data/v1/model-history.json` | Watchtower 2.0 event log: dated status/price/tier/release/verification/coverage events + the 2026-10-11 pricing baseline the drift engine diffs against | 28 events |
+| `data/v1/model-review-queue.json` | Pending model-watch review items (empty = nothing pending) | 5 pending |
 | `data/v1/model-updates.md` | Human-readable model changelog (Markdown, no schema) | — |
 
 Example requests (Node; swap `fs` for `fetch` in a browser):
@@ -99,20 +100,39 @@ chapter (`llms-full.txt`); per-template anatomy notes live in
 Well-formed prompts cover 8–10 layers; a prompt like "cool video of a guy"
 covers 0. The test script proves both against the real layer data.
 
-## Example workflow 3 — track a model's price changes
+## Example workflow 3 — track a model's price changes (Watchtower 2.0)
 
 1. `models.json` → the model's `est_cost_credits`, `last_verified`,
    `status`, `what_changed`, `sources`.
-2. `model-checks.json` → the model's check record: `last_checked`,
-   `changed`, `source_status`, plus fresh `news_headlines`.
-3. `model-review-queue.json` → `pending` items: changed source signatures
+2. `model-history.json` → the model's dated events (`kind: "price"` ones
+   carry `before_usd`/`after_usd` only where the record documents both
+   numbers) **and** the pricing baseline: diff
+   `pricing.json` against `pricing_baseline.entries` tier by tier — a
+   moved, added, or removed tier is a pricing change even when no event
+   was written for it yet. (The live site does exactly this in
+   `GET /api/models-changes`; `server/lib/drift.js` is the reference
+   implementation, unit-tested in `scripts/watchtower.test.js`.)
+3. `model-checks.json` → the model's check record: `last_checked`,
+   `changed`, `source_status`, plus fresh `news_headlines`. Read the
+   per-model records, not the header summary — the Oct 11 feed's header
+   claims 0 errors while Wan 3.0 and Grok Imagine 1.5 each carry a
+   failed source (`source_status: "partial"`), which the drift engine
+   correctly surfaces as alerts.
+4. `model-review-queue.json` → `pending` items: changed source signatures
    awaiting human promotion. A `changed: true` flag is a **review signal**,
    not a confirmed model change — never auto-mutate on it.
 
 Worked result for Kling 3.0 (real data): `est_cost_credits` "720p ~7/5s",
 `status: "active"`, `last_verified: "2026-10-11"`; check record
 `last_checked: "2026-10-11T22:21:51+00:00"`, `changed: false`;
-review queue `pending: 0` — nothing awaiting review.
+review queue `pending: 5` — five standing watch items (Seedance 3.0
+confirmation, Kling 4.0 GA, the Wan 2.7 gap, MiniMax H3 weights, Soul
+Cinema pricing), none of them a Kling 3.0 change. Latest history
+event: `2026-06-17-kling-30-turbo-ga` (tier). Drift severity: `ok`.
+Worked pricing result for Vidu Q4 Preview: history event
+`2026-10-07-vidu-q4-rate-card` — the $0.014/s launch headline was a
+promotional off-peak floor; the official card lists $0.045/s at 540p
+(+221.4%), $0.12/s at 1080p, $0.39/s at 4K.
 
 ## Example workflow 4 — lock a mini-drama series (episode planner input)
 

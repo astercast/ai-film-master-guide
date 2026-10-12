@@ -1,17 +1,17 @@
 'use strict';
-/* GET /api/health — film-watchtower v1.0.0 (ARCHITECTURE.md §1.4).
+/* GET /api/health — film-watchtower v2.0.0 (ARCHITECTURE.md §1.4, Watchtower 2.0).
  * No auth. Edge-cacheable (s-maxage=60 via vercel.json or envelope override).
  * Never returns 5xx: status is "ok" unless a check fails, then "degraded".
  */
 var env = require('../lib/envelope.js');
 
 var SERVICE = 'film-watchtower';
-var VERSION = '1.0.0';
+var VERSION = '2.0.0';
 var STARTED_AT = env.nowIso();
 var START_MS = Date.now();
 
 // The §7.1 roster. Wave A test asserts this list matches the spec roster.
-var FUNCTIONS = ['health', 'models-status', 'models-pricing', 'calc-cost', 'cron/watchtower'];
+var FUNCTIONS = ['health', 'models-status', 'models-pricing', 'models-changes', 'calc-cost', 'cron/watchtower'];
 
 function loadJson(path) {
   try { return { ok: true, json: require(path) }; }
@@ -36,16 +36,19 @@ module.exports = function (req, res) {
   }
 
   var checks = {
-    static_fallback_present: loadJson('./v1/model-checks.json').ok && loadJson('./v1/pricing.json').ok,
+    static_fallback_present: loadJson('../data/v1/model-checks.json').ok && loadJson('../data/v1/pricing.json').ok && loadJson('../data/v1/model-history.json').ok,
     cron_secret_configured: !!(process.env.CRON_SECRET || ''),
     github_token_configured: !!(process.env.GITHUB_REPO_TOKEN || '')
   };
   var fresh = {
-    'model-checks.json': freshnessOf('./v1/model-checks.json', 86400),
-    'pricing.json': freshnessOf('./v1/pricing.json', 86400),
+    'model-checks.json': freshnessOf('../data/v1/model-checks.json', 86400),
+    'pricing.json': freshnessOf('../data/v1/pricing.json', 86400),
     // models.json is a research artifact refreshed by the wave engine (weekly
     // deep-research cadence), not the daily cron — its SLA is 7 days.
-    'models.json': freshnessOf('./v1/models.json', 604800)
+    'models.json': freshnessOf('../data/v1/models.json', 604800),
+    // model-history.json is an event log: it changes when the field does,
+    // not on a schedule. A quiet month is not staleness — SLA 30 days.
+    'model-history.json': freshnessOf('../data/v1/model-history.json', 2592000)
   };
   var stale = Object.keys(fresh).some(function (k) { return !fresh[k].within_sla; });
   var status = (checks.static_fallback_present && !stale) ? 'ok' : 'degraded';
