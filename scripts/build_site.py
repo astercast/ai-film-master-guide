@@ -56,6 +56,7 @@ NAV_ITEMS = [
     ("model-watch.html", "Model watch"),
     ("doctor.html", "Doctor"),
     ("linter.html", "Linter"),
+    ("prompts.html", "Prompts"),
     ("models/", "Models"),
     ("shots.html", "Shot list"),
     ("style-bible.html", "Style bible"),
@@ -80,6 +81,7 @@ FOOTER_ITEMS = [
     ("style-bible.html", "Style bible"),
     ("doctor.html", "Doctor"),
     ("linter.html", "Linter"),
+    ("prompts.html", "Prompts"),
     ("models/", "Models"),
     ("anatomy.html", "Anatomy"),
     ("manifesto.html", "Manifesto"),
@@ -357,6 +359,16 @@ INDEX_TMPL = """<!DOCTYPE html>
           <p>The prompt workshop fills any of the 47 guide templates against the model of your choice — with the anatomy notes that explain why each template works, and one-click copy.</p>
         </div>
         <a class="btn" href="workshop.html">Open the workshop</a>
+      </div>
+    </section>
+
+    <section class="container" aria-labelledby="prompts-promo-h">
+      <div class="card calc-promo">
+        <div>
+          <h2 id="prompts-promo-h">Browse all 47 templates</h2>
+          <p>The prompt library filters the template shelf by shot type, camera movement, lighting, and mood — every card shows the anatomy layers the template demonstrates, with one-click copy, remix, and Send to Studio.</p>
+        </div>
+        <a class="btn" href="prompts.html">Open the library</a>
       </div>
     </section>
 
@@ -1087,6 +1099,7 @@ STUDIO_TMPL = """<!DOCTYPE html>
     <section class="container" aria-labelledby="st-in-h" id="st-form-sec">
       <h2 id="st-in-h">Your concept</h2>
       <p class="calc-note" id="st-import-msg" role="status" hidden></p>
+      <div class="card" id="st-prompt-msg" role="status" hidden style="margin-bottom:var(--space-4);"></div>
       <form class="card calc-form" aria-label="Film or series concept" onsubmit="return false;">
         <fieldset>
           <legend>Project type</legend>
@@ -1605,6 +1618,177 @@ ANATOMY_TMPL = """<!DOCTYPE html>
 </html>
 """
 
+PROMPTS_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prompt library — AI Film Master Guide</title>
+  <meta name="description" content="Browse all 47 guide prompt templates: search full text, filter by shot type, camera movement, lighting, and mood, see which prompt-anatomy layers each template demonstrates, copy any prompt, remix it, or send it to the Studio.">
+  {css}
+  <style>
+    .pr-grid {{ display: grid; gap: var(--space-4); grid-template-columns: 1fr; margin-bottom: var(--space-7); }}
+    @media (min-width: 1100px) {{ .pr-grid {{ grid-template-columns: 1fr 1fr; }} }}
+    .pr-card-head {{ display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-3); }}
+    .pr-card-head h3 {{ margin: 0; }}
+    .pr-track {{ flex: none; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold); border: 1px solid var(--gold); border-radius: 999px; padding: 0.15em 0.8em; }}
+    .pr-id {{ color: var(--muted); font-size: 0.85rem; margin-top: var(--space-2); }}
+    .pr-prompt {{ white-space: pre-wrap; word-break: break-word; background: var(--bg-raise); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-3); font-size: 0.92rem; max-height: 16rem; overflow: auto; }}
+    .pr-slot {{ color: var(--gold); font-weight: 700; }}
+    .pr-chips {{ list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-2); padding: 0; margin: var(--space-3) 0; }}
+    .pr-chip {{ font-size: 0.78rem; border: 1px solid var(--line-bright); border-radius: 999px; padding: 0.2em 0.8em; color: var(--ink-dim); }}
+    .pr-chip.pr-layer {{ border-color: var(--gold); }}
+    .pr-chip.pr-layer a {{ color: var(--gold); text-decoration: none; }}
+    .pr-chip.pr-layer a:hover {{ text-decoration: underline; }}
+    .pr-note {{ font-size: 0.9rem; border-left: 3px solid var(--gold); padding-left: var(--space-3); }}
+    .pr-models, .pr-teardowns {{ list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-2); padding: 0; margin: var(--space-2) 0; font-size: 0.85rem; color: var(--muted); }}
+    .pr-models li {{ border: 1px solid var(--line); border-radius: var(--radius-s); padding: 0.1em 0.6em; }}
+    .pr-teardowns li a {{ color: var(--ink-dim); }}
+    .pr-actions .btn {{ margin-bottom: var(--space-2); }}
+    #pr-count {{ color: var(--muted); font-size: 0.9rem; }}
+    #pr-remix-dialog {{ border: 1px solid var(--line-bright); border-radius: var(--radius-l); background: var(--bg); color: var(--ink); max-width: 42rem; width: calc(100% - 2rem); padding: var(--space-5); }}
+    #pr-remix-dialog::backdrop {{ background: rgba(0, 0, 0, 0.6); }}
+    #pr-remix-dialog h2 {{ margin-top: 0; }}
+    .is-ok {{ color: var(--gold); }}
+    .is-err {{ color: #e5484d; }}
+    @media (prefers-reduced-motion: reduce) {{
+      * {{ scroll-behavior: auto !important; }}
+    }}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        {sitenav}
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">⌘K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="prompts-title">
+      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>5</b></div>
+      <div class="container hero-inner">
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Interactive tool</span>
+        <h1 id="prompts-title">Prompt <span class="accent">library.</span></h1>
+        <p class="lede">All 47 guide templates in one browsable shelf — filter by shot type, camera movement, lighting, and mood, see which of the ten <a href="anatomy.html">prompt-anatomy</a> layers each template demonstrates, then copy, remix, or send any template to the <a href="studio.html">Studio</a> as a shot-prompt starting point.</p>
+      </div>
+    </section>
+    <section class="container" aria-labelledby="pr-filters-h" id="pr-app">
+      <div class="card" style="margin-bottom:var(--space-5);">
+        <h2 id="pr-filters-h">Find a template</h2>
+        <div class="placeholder-grid">
+          <div class="field">
+            <label for="pr-q">Search</label>
+            <input class="input" id="pr-q" type="search" placeholder="e.g. orbit, dialogue, neon" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="pr-track">Track</label>
+            <select class="input" id="pr-track">
+              <option value="all">All tracks</option>
+              <option value="core">Core</option>
+              <option value="animated">Animated / stylized</option>
+              <option value="photorealistic">Photorealistic</option>
+              <option value="performance">Performance direction</option>
+              <option value="audio">Audio &amp; voice</option>
+              <option value="longform">Long-form craft</option>
+              <option value="repair">Failure repair</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="pr-shot-type">Shot type</label>
+            <select class="input" id="pr-shot-type"><option value="all">All shot types</option></select>
+          </div>
+          <div class="field">
+            <label for="pr-movement">Camera movement</label>
+            <select class="input" id="pr-movement"><option value="all">All movements</option></select>
+          </div>
+          <div class="field">
+            <label for="pr-lighting">Lighting</label>
+            <select class="input" id="pr-lighting"><option value="all">All lighting</option></select>
+          </div>
+          <div class="field">
+            <label for="pr-mood">Mood</label>
+            <select class="input" id="pr-mood"><option value="all">All moods</option></select>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn btn-ghost" id="pr-clear">Clear filters</button>
+        </div>
+        <p class="empty-state" id="pr-error" hidden></p>
+        <p class="calc-note" id="pr-provenance" hidden></p>
+      </div>
+      <p id="pr-count" role="status"></p>
+      <div id="pr-list" class="pr-grid" aria-live="polite"></div>
+      <div class="empty-state" id="pr-empty" hidden><p>No templates match those filters. Clear a filter or try a different search.</p></div>
+    </section>
+    <section class="container" aria-labelledby="pr-more-h">
+      <h2 id="pr-more-h">Where to go next</h2>
+      <p class="section-lede">Templates are starting points — the craft around them lives here.</p>
+      <div class="btn-row" style="margin-bottom:var(--space-7);">
+        <a class="btn btn-ghost" href="anatomy.html">Learn the ten layers →</a>
+        <a class="btn btn-ghost" href="studio.html">Plan in the Studio →</a>
+        <a class="btn btn-ghost" href="workshop.html">Fill in the workshop →</a>
+        <a class="btn btn-ghost" href="linter.html">Lint a prompt →</a>
+        <a class="btn btn-ghost" href="teardown.html">Watch the teardowns →</a>
+      </div>
+    </section>
+    <dialog id="pr-remix-dialog" aria-labelledby="pr-remix-h">
+      <form method="dialog" aria-label="Remix a template">
+        <h2 id="pr-remix-h">Remix a template</h2>
+        <p class="calc-note">Pick a template, swap the subject, setting, and lighting — the rest of the template's craft stays intact. The output is always labeled as a remix, never as a guide template. Empty fields keep their <span class="pr-slot">[BRACKETS]</span>. Two-subject templates: write the subject as "Mara and Jun".</p>
+        <div class="field">
+          <label for="pr-remix-template">Template</label>
+          <select class="input" id="pr-remix-template"></select>
+        </div>
+        <div class="field">
+          <label for="pr-remix-subject">Subject</label>
+          <input class="input" id="pr-remix-subject" type="text" placeholder="e.g. a lighthouse keeper in her forties">
+        </div>
+        <div class="field">
+          <label for="pr-remix-setting">Setting</label>
+          <input class="input" id="pr-remix-setting" type="text" placeholder="e.g. a fog-drowned coastal cliff">
+        </div>
+        <div class="field">
+          <label for="pr-remix-lighting">Lighting</label>
+          <input class="input" id="pr-remix-lighting" type="text" placeholder="e.g. cold dawn, one warm lantern">
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn btn-gold" id="pr-remix-generate">Generate remix</button>
+          <button type="button" class="btn" id="pr-remix-copy" disabled>Copy remix</button>
+          <button type="submit" class="btn btn-ghost">Close</button>
+        </div>
+        <p class="calc-note" id="pr-remix-label" aria-live="polite"></p>
+        <pre class="pr-prompt" id="pr-remix-out" aria-live="polite"></pre>
+        <p class="empty-state" id="pr-remix-msg" hidden></p>
+      </form>
+    </dialog>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer">{footer}</nav>
+    </div>
+  </footer>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
+    <div class="palette-box">
+      <input id="palette-input" type="search" placeholder="Search chapters, prompts, models…" autocomplete="off" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/prompts.js"></script>
+</body>
+</html>
+
+"""
 WORKSHOP_TMPL = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -3331,10 +3515,17 @@ def main():
     shutil.copy(ROOT / "api" / "v1" / "prompt-templates.json", SITE / "prompt-templates.json")
     shutil.copy(ROOT / "api" / "v1" / "models.json", SITE / "models.json")
     shutil.copy(ROOT / "api" / "v1" / "glossary.json", SITE / "glossary.json")
+    shutil.copy(ROOT / "api" / "v1" / "camera-movements.json", SITE / "camera-movements.json")
 
     # Prompt workshop page (data above is what it loads)
     (SITE / "workshop.html").write_text(WORKSHOP_TMPL.format(
         css=css_links, sitenav=nav_html("", "workshop.html"), footer=footer_html("")))
+    shutil.copy(ROOT / "prompts-facets.json", SITE / "prompts-facets.json")
+
+    # Prompt library explorer (wave 25: searchable/filterable browser over the
+    # 47 templates; reads prompt-templates.json + prompts-facets.json live)
+    (SITE / "prompts.html").write_text(PROMPTS_TMPL.format(
+        css=css_links, sitenav=nav_html("", "prompts.html"), footer=footer_html("")))
 
     # Model-picker quiz page
     (SITE / "quiz.html").write_text(QUIZ_TMPL.format(
@@ -3490,6 +3681,9 @@ def main():
         {"url": "linter.html", "title": "Prompt linter", "section": "Tools",
          "headings": ["Your prompt", "Analysis", "The ten layers"],
          "text": "Prompt linter: paste any prompt and get a structural analysis against the ten-layer prompt anatomy — layers present/missing, vague words flagged, concrete fix per gap, one-click handoff to the workshop. Heuristic: checks structure, not taste."},
+        {"url": "prompts.html", "title": "Prompt library", "section": "Tools",
+         "headings": ["Find a template", "Where to go next"],
+         "text": "Prompt library: all 47 guide templates in one browsable shelf — full-text search plus filters for shot type, camera movement, lighting, and mood. Every card shows which prompt-anatomy layers the template demonstrates, the shortlisted models, matching teardown workflows, and one-click copy, remix, or Send to Studio."},
         {"url": "models/", "title": "Model deep dives", "section": "Reference",
          "headings": [],
          "text": "One deep-dive page per model: spec record, worked cost math, prompt tips from the guide's chapters, use-when/avoid-when. Generated from models.json."},

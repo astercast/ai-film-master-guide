@@ -268,6 +268,42 @@ print(f"  ok: all skill ids generator-sourced; index count {idx['count']} matche
 EOF
 [ $? -eq 0 ] && pass "skills ids all generator-sourced" || FAIL=$((FAIL+1))
 
+# 5e. prompts-facets.json (HAND) must cover every template id exactly once —
+# the library UI reads prompt-templates.json live, so the counts must match
+python3 - <<'EOF'
+import json, sys
+from pathlib import Path
+
+ROOT = Path(".")
+t = json.loads((ROOT / "api/v1/prompt-templates.json").read_text())["templates"]
+f = json.loads((ROOT / "prompts-facets.json").read_text())
+tids = [x["id"] for x in t]
+fids = list(f["facets"].keys())
+voc = f["vocab"]
+mov = {m["id"] for m in json.loads((ROOT / "api/v1/camera-movements.json").read_text())["movements"]} | {"varies", "none"}
+tds = {x["id"] for x in json.loads((ROOT / "api/v1/teardowns.json").read_text())["teardowns"]}
+layers = set(voc["layers"])
+errors = []
+if sorted(fids) != sorted(tids):
+    errors.append(f"facet ids != template ids (facets {len(fids)}, templates {len(tids)})")
+if len(set(fids)) != len(fids):
+    errors.append("duplicate facet ids")
+for k, v in f["facets"].items():
+    if v["shot_type"] not in voc["shot_type"]: errors.append(f"{k}: shot_type {v['shot_type']}")
+    if v["movement"] not in mov: errors.append(f"{k}: movement {v['movement']}")
+    if v["lighting"] not in voc["lighting"]: errors.append(f"{k}: lighting {v['lighting']}")
+    if v["mood"] not in voc["mood"]: errors.append(f"{k}: mood {v['mood']}")
+    if set(v["layers"]) - layers: errors.append(f"{k}: layers {set(v['layers']) - layers}")
+    if set(v["teardowns"]) - tds: errors.append(f"{k}: teardowns {set(v['teardowns']) - tds}")
+if errors:
+    print("  FAIL: prompts-facets.json out of sync:")
+    for e in errors[:15]: print("   -", e)
+    if len(errors) > 15: print(f"   ... and {len(errors)-15} more")
+    sys.exit(1)
+print(f"  ok: prompts-facets.json covers all {len(tids)} template ids; facets/teardowns in vocab")
+EOF
+[ $? -eq 0 ] && pass "prompts-facets.json in sync with prompt-templates.json" || FAIL=$((FAIL+1))
+
 # ---------------------------------------------------------------- stage 6 ---
 stage 6 "llms.txt / llms-full.txt freshness (generator-owned)"
 if python3 scripts/build_llms.py >/dev/null 2>&1; then
@@ -297,7 +333,7 @@ else
   STUDIO_OK=0
 fi
 # the Studio page must fetch the data it plans from
-for d in site/models.json site/prompt-templates.json; do
+for d in site/models.json site/prompt-templates.json site/camera-movements.json site/prompts-facets.json; do
   if [ ! -f "$d" ]; then fail "$d missing — the Studio cannot plan without it"; STUDIO_OK=0; fi
 done
 if [ "$STUDIO_OK" = 1 ]; then pass "studio.html + studio.js shipped in assets/js and site/, data files present"; fi

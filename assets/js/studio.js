@@ -1750,12 +1750,65 @@
     var raw = null;
     try { raw = localStorage.getItem(BRIDGE_KEY); } catch (err) { /* ignore */ }
     if (!raw) return null;
+    var b = null;
+    try { b = JSON.parse(raw); } catch (err) { return null; }
+    /* only claim the payload when it is actually a series bridge — a prompt
+       bridge from the library must survive for consumePromptBridge */
+    if (!b || b.v !== 1 || b.kind !== "series") return null;
     try { localStorage.removeItem(BRIDGE_KEY); } catch (err) { /* ignore */ }
-    try {
-      var b = JSON.parse(raw);
-      if (!b || b.v !== 1 || b.kind !== "series") return null;
-      return b;
-    } catch (err) { return null; }
+    return b;
+  }
+
+  /* Prompt library → Studio bridge (wave 25): a "Send to Studio" click stages
+     one template as a shot-prompt starting point. The Studio consumes the
+     payload once and shows a dismissible banner above the concept form with
+     the template text and a copy button — it never overwrites the user's
+     own title/logline. Nothing leaves the browser. */
+  function consumePromptBridge() {
+    var raw = null;
+    try { raw = localStorage.getItem(BRIDGE_KEY); } catch (err) { /* ignore */ }
+    if (!raw) return null;
+    var b = null;
+    try { b = JSON.parse(raw); } catch (err) { return null; }
+    if (!b || b.v !== 1 || b.kind !== "prompt") return null;
+    try { localStorage.removeItem(BRIDGE_KEY); } catch (err) { /* ignore */ }
+    return b;
+  }
+
+  function applyPromptBridge(b) {
+    var e = els();
+    var host = document.getElementById("st-prompt-msg");
+    if (!host) return;
+    var layers = (b.layers || []).map(function (l) { return esc(l); }).join(", ");
+    host.innerHTML =
+      "<p><strong>Sent from the Prompt library:</strong> " + esc(b.title || b.templateId || "template") +
+      (b.templateId ? ' <span class="st-tid">' + esc(b.templateId) + "</span>" : "") + "</p>" +
+      (layers ? '<p class="st-note">Anatomy layers demonstrated: ' + layers + "</p>" : "") +
+      '<pre class="st-prompt" tabindex="0">' + esc(b.prompt || "") + "</pre>" +
+      '<div class="btn-row">' +
+      '<button type="button" class="btn btn-sm btn-gold" id="st-prompt-copy">Copy prompt</button>' +
+      '<button type="button" class="btn btn-sm btn-ghost" id="st-prompt-dismiss">Dismiss</button>' +
+      "</div>" +
+      '<p class="st-note">Paste it into your shot list or logline draft below — this is a starting point, not a plan.</p>';
+    host.hidden = false;
+    var copyBtn = document.getElementById("st-prompt-copy");
+    if (copyBtn) copyBtn.addEventListener("click", function () {
+      var done = function () {
+        copyBtn.textContent = "Copied ✓";
+        setTimeout(function () { copyBtn.textContent = "Copy prompt"; }, 1500);
+      };
+      var txt = b.prompt || "";
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(txt).then(done, done);
+      } else { done(); }
+    });
+    var dismissBtn = document.getElementById("st-prompt-dismiss");
+    if (dismissBtn) dismissBtn.addEventListener("click", function () {
+      host.hidden = true;
+      host.innerHTML = "";
+    });
+    announce("Prompt template “" + (b.title || b.templateId || "") +
+      "” staged from the library. Copy it or dismiss it above the concept form.");
   }
 
   function applyBridge(b) {
@@ -2337,6 +2390,16 @@
       e.importMsg.hidden = false;
       e.importMsg.textContent = "The planner sent you here, but no series payload was found in this browser " +
         "(it was already consumed or never saved). Plan manually below — or go back and press “Send series to Studio” again.";
+    }
+
+    /* Prompt-library bridge: a library "Send to Studio" lands here. */
+    var promptBridge = consumePromptBridge();
+    if (promptBridge) {
+      applyPromptBridge(promptBridge);
+    } else if (/[?&]from=prompts/.test(location.search)) {
+      e.importMsg.hidden = false;
+      e.importMsg.textContent = "The prompt library sent you here, but no template payload was found in this browser " +
+        "(it was already consumed or never staged). Plan manually below — or go back and press “Send to Studio” again.";
     }
 
     Promise.all([
