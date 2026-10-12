@@ -64,4 +64,4 @@
 
 **Validation:** `bash scripts/validate.sh` → ALL STAGES PASS (9 passed, 0 failed); 42 JS files `node --check` clean; 5,883 relative links, 0 broken; link IDs of both tools verified against their JS; both tools functionally smoke-tested (5 hook variants, planner gates/save/log).
 
-**Commit:** (pending push below)
+**Commit:** `d9e78792600e6627c9d7b739d84fef29b293be2b` ([view](https://github.com/astercast/ai-film-master-guide/commit/d9e78792600e6627c9d7b739d84fef29b293be2b)) — 44 files, pushed 2026-10-11, remote confirmed via gh-push `pushed:true` response
