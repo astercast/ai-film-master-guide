@@ -7,7 +7,7 @@ one-time deploy; push only on user's explicit "push"/"ship it").
 Snapshot built 2026-10-11 from working-repo commit `ddddbe8`'s tree
 (`site/` as built by `python3 scripts/build_site.py`, timed ~2s).
 
-## Functions wired in the live track (5, ≤12 budget, all nodejs22.x, zero deps)
+## Functions wired in the live track (5, ≤12 budget, all nodejs20.x, zero deps)
 
 | route | source in live repo | notes |
 |---|---|---|
@@ -43,8 +43,10 @@ Secrets live only in Vercel, never in either repo.
   static `api/v1/*.json` (force-cache), badge states `live|waking|cached|none`;
   no error state without the API.
 - `vercel.json` in live repo: valid JSON, `outputDirectory: "."`,
-  `functions: {"api/**/*.js": {"runtime": "nodejs22.x"}}`, crons + headers
+  `functions: {"api/**/*.js": {"runtime": "nodejs20.x"}}`, crons + headers
   carried over from the working config, no build step.
+- Vercel rejects nodejs22.x — use nodejs20.x (2026-10-12: all 5 first
+  deploys failed validation on nodejs22.x).
 - Deployability: 5 functions ≤ 12; each function designed within the 10s
   Hobby timeout (local harness: warm hits ~2ms, cron slice bounded by
   8 URLs × 4s timeout sequential ≈ worst-case design stays inside 10s);

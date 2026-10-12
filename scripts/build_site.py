@@ -3957,9 +3957,8 @@ def main():
             }))
 
     font_links = (
-        '<link rel="preconnect" href="https://fonts.googleapis.com">\n  '
-        '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n  '
-        '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap">\n  '
+        '<link rel="preload" href="assets/fonts/anton-latin-normal-400.woff2" as="font" type="font/woff2" crossorigin>\n  '
+        '<link rel="stylesheet" href="assets/css/fonts.css">\n  '
     )
     css_links = font_links + "\n  ".join(f'<link rel="stylesheet" href="{c}">' for c in CSS)
 

@@ -1,10 +1,12 @@
 /* ============================================================
    Design tokens — AI Film Master Guide
    "The Cutting Room": cinematic craft, not SaaS.
-   Deep blacks, tungsten warmth, REC-red accents. Condensed
-   industrial display (Archivo variable width), warm serif
+   Deep blacks, tungsten warmth, REC-red accents. Heavy condensed
+   industrial display (Anton), warm serif
    for long craft chapters (Newsreader), Inter for tool UI,
-   JetBrains Mono for timecode. Wave 36 identity rework.
+   JetBrains Mono for timecode. Wave 36 identity rework;
+   wave 38: Anton replaces Archivo (Archivo-family conflict
+   with activity-vault's Archivo Black stamp face).
    ============================================================ */
 :root {
   color-scheme: dark;
@@ -37,7 +39,7 @@
   --warn: #ffb35c;
 
   /* ——— Type ——— */
-  --font-display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Anton", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
   --font-body: "Inter", "Helvetica Neue", Arial, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;

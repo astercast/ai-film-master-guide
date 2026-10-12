@@ -1,5 +1,89 @@
 # Wave Log — AI Film Master Guide
 
+## Wave 38 — identity hardening: self-hosted fonts + Archivo conflict resolved (2026-10-12)
+
+**Assignment:** verification + fixes, zero content changes. (1) Verify font
+self-hosting is real — audit every built page for remote font requests.
+(2) Resolve the Archivo-family conflict with activity-vault. (3) Re-run the
+identity audit (typography pairing, custom details, reduced-motion, contrast)
+with headless-Chromium screenshots, actually inspected.
+
+**1. Font self-hosting — was NOT real, now is.** The audit found every page
+loading all four families remote: `scripts/build_site.py`'s shared head
+fragment (`font_links`) plus the two hand-maintained root pages (`api.html`,
+`craft-not-buttons.html`) all pulled `fonts.googleapis.com/css2?...` (the
+wave-37 "blocked Google-Fonts fetch" console error was exactly this). Zero
+`.woff*` files existed anywhere in the repo.
+**Fixed:** 5 OFL woff2 files (latin subsets) into the new `assets/fonts/`
+(copied to `site/assets/fonts/` by the build, which copies `assets/`
+wholesale): Anton 400 (display), Newsreader variable 200–800 upright+italic
+(prose), Inter variable 100–900 (UI body), JetBrains Mono variable 100–800
+(timecode). New `assets/css/fonts.css` with `@font-face` rules
+(`font-display: swap`); the shared head fragment now emits a font `preload` +
+the local `fonts.css` link instead of the three Google tags (depth-`../`
+rewriting automatic via the existing `css_links.replace`). Provenance +
+re-download recipe in `assets/fonts/FONTS.md`. Post-rebuild grep: **zero**
+`fonts.googleapis` / `fonts.gstatic` / font `@import` in built HTML/CSS/JS
+(the only repo hit is the FONTS.md doc URL, not a page request). Server logs
+show all woff2 200s; `document.fonts` in headless Chromium: Anton / Inter /
+JetBrains Mono `loaded` on the homepage (Newsreader correctly `unloaded` —
+no `.prose` there); computed `h1` font-family starts with Anton — no fallback
+in play. Dedupe note: Google's css2 API now serves Inter/JetBrains Mono as a
+single variable file per subset even for discrete-weight requests — one file
+each shipped (7 identical duplicate downloads deleted).
+
+**2. Archivo conflict — resolved by changing FILM.** Evidence: activity-vault
+uses **Archivo Black** (`--font-stamp`, stamp labels across the site, paired
+with Caveat/Fraunces/Courier Prime — read-only check, repo untouched); film
+used **Archivo variable** (wdth 62–125, wght 100–900) as its entire display
+system. Separate families, same name + grotesque DNA, and the identity
+brief's rule is "no same-font-family-everywhere" — overlap not acceptable.
+Film's display face is now **Anton** (OFL, single-weight heavy condensed):
+narrow where Archivo Black is wide — opposite ends of the width spectrum,
+maximally distinct — while keeping the cutting-room "condensed industrial
+leader" character (film leaders set heavy condensed caps). Only `tokens.css`'s
+`--font-display` changed; Anton's `@font-face` is declared over weight
+400–800 / stretch 50–100% so the existing `font-weight:800` /
+`font-stretch:62%` display declarations bind to it with zero synthesis and
+zero layout shift. Newsreader / Inter / JetBrains Mono untouched (no conflicts
+with activity-vault's stack). Note: the wave brief said "Anton + IBM Plex
+Mono" — that described an older identity draft; the implemented system
+(waves 36/37) is Anton/Newsreader/Inter/JetBrains Mono, and self-hosting
+covers what's actually used. No "Archivo" remains in sources outside
+history/comments.
+
+**3. Identity audit re-run (all verified, screenshots inspected):**
+typography pairing — Anton display heroes, Newsreader prose with Anton drop
+cap, Inter UI, JetBrains Mono timecode (home, chapter, cutting-room, budget,
+model-watch pages); selection REC red `#c81e23`, sprocket scrollbars, 2px
+tungsten `:focus-visible` (computed on focused skip-link:
+`rgb(245,179,1) 2px solid`); NO-FOOTAGE `.empty-state` / `.es-slate` slates
+present; tail-pop colophon on 99/99 pages; 404 upside-down slate intact;
+reduced-motion: leader rests on static READY, playhead static
+(forced-reduced-motion screenshot); mobile 390px clean, no overflow;
+contrast recomputed: 5.73–18.22:1 (muted 7.56:1, selection 5.73:1 — all AA);
+zero page errors in headless Chromium. `bash scripts/validate.sh` → **13/13
+green, ALL STAGES PASS**. llms.txt untouched (no content changes; generator
+zero-diff check passes). Harness notes: /tmp was 94% full from stale
+chrome/puppeteer profiles → renderer crashes; freed ~110M of dead profiles
+(other agents' wave scratch left alone); `--disable-dev-shm-usage` +
+chrome-headless-shell for screenshots (no virtual-time-budget per the
+scroll-animation hang lesson).
+
+**Also folded in (urgent deploy lesson, 2026-10-12):** Vercel rejects
+`"runtime": "nodejs22.x"` ("Function Runtimes must have a valid version") —
+all 5 first-deployed live repos failed validation. `vercel.json` functions
+runtime → `nodejs20.x` (JSON re-validated, parses OK); `LIVE_CHECKLIST.md`
+updated (header + known-good section) with the lesson line. Git identity:
+repo-local `mikey@hatch.local` override removed per the 2026-10-12 hard rule
+— commits now use the global `astercast` / noreply address.
+
+**Commit:** local `PENDING` → pushed 2026-10-12 as remote commit `PENDING`;
+remote `main` HEAD matched the pushed SHA; GitHub Trees API verified: tree
+not truncated, key wave files present, local HEAD tree == remote tree.
+Remote track verified pre-push: `astercast/ai-film-master-guide` (working
+repo, not `-live`).
+
 ## WOW wave 1 — "The Cutting Room, playable" (2026-10-12)
 
 **Assignment:** the first wow-moment wave — a scroll-driven cinematic sequence
