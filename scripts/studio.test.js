@@ -463,7 +463,7 @@ test("optimizer: series plans flatten with per-episode breakdown", () => {
     "episode rows must sum to the balanced total");
   const md = S.seriesToMarkdown(Object.assign({}, sp, { optimizer: opt }));
   assert.ok(md.includes("## Cost optimizer"), "series markdown packet must carry the optimizer section");
-  assert.ok(md.includes("Three budget modes"), "series packet must carry the mode comparison");
+  assert.ok(md.includes("Four budget modes"), "series packet must carry the mode comparison");
   assert.ok(md.includes("Documented production economics"), "series markdown packet must carry the wave-27 benchmark block");
   assert.ok(md.includes("$50/min benchmark"), "series markdown benchmark block must name the StoReel $50/min figure");
   assert.ok(md.includes("storeel-off-campus"), "series markdown benchmark block must point at the teardown id");
@@ -602,6 +602,256 @@ test("microdrama: markdown plan carries the honesty framing", () => {
   assert.ok(md.includes("benchmark to beat, not a promise"), "must carry the honesty framing");
   assert.ok(md.includes("drawing cards"), "must name the retake discipline");
   assert.ok(md.includes("your budget guess"), "the regen count must be labeled as the filmmaker's input");
+});
+
+
+/* ---------------- Studio 3.0: Shot Refinery ---------------- */
+const MOVEMENTS = JSON.parse(fs.readFileSync(path.join(ROOT, "api/v1/camera-movements.json"), "utf8")).movements;
+const T2 = templates.find((t) => t.id === "t2");
+const GEN_DRAMA = S.GENRES.drama;
+const F5 = (o) => Object.assign(
+  { character: "", camera: "", palette: "", register: "", grammar: "" }, o || {});
+
+test("refinery: slotFills exposes the engine's slot values", () => {
+  const f = S.slotFills(T2, GEN_DRAMA, "festival");
+  assert.strictEqual(f.SUBJECT, "the protagonist");
+  assert.strictEqual(f["SUBJECT A"], "the lead");
+  assert.strictEqual(f.ENV, GEN_DRAMA.env);
+  assert.strictEqual(f.LIGHT, GEN_DRAMA.light);
+  assert.ok(f.STYLE.indexOf("festival grade") !== -1, "festival style tag, got " + f.STYLE);
+});
+
+test("refinery: fillPrompt accepts slot overrides", () => {
+  const a = S.fillPrompt(T2, GEN_DRAMA, "festival");
+  const b = S.fillPrompt(T2, GEN_DRAMA, "festival", { "SUBJECT A": "Mara Voss", LIGHT: "ember orange" });
+  assert.ok(!/\[SUBJECT A/i.test(b.text), "override must fill the slot");
+  assert.ok(b.text.includes("Mara Voss") && b.text.includes("ember orange"));
+  assert.notStrictEqual(a.text, b.text, "overrides must change the prompt");
+});
+
+test("refinery: refineryInit seeds character + palette from the prompt slots", () => {
+  const plan = S.buildPlan(DATA, INPUT({ runtimeSec: 30, tier: "draft" }));
+  const init = S.refineryInit(plan.shots[0], GEN_DRAMA, "draft");
+  assert.strictEqual(init.character, "the protagonist");
+  assert.strictEqual(init.palette, GEN_DRAMA.light);
+  assert.strictEqual(init.camera, "", "camera starts blank — keep the template's move");
+  assert.strictEqual(init.register, "");
+  assert.strictEqual(init.grammar, "");
+  assert.deepStrictEqual(Object.keys(init).sort(),
+    ["camera", "character", "grammar", "palette", "register"], "exactly the five fields");
+});
+
+test("refinery: buildRefinedPrompt is deterministic and appends the five-field spec", () => {
+  const fields = F5({ character: "Mara Voss, copper bob", camera: "dolly-in-push-in",
+    palette: "ember orange", register: "quiet dread", grammar: "close-up, rule of thirds" });
+  const a = S.buildRefinedPrompt(T2, GEN_DRAMA, "festival", fields, MOVEMENTS);
+  const b = S.buildRefinedPrompt(T2, GEN_DRAMA, "festival", fields, MOVEMENTS);
+  assert.strictEqual(a.text, b.text, "same fields must build the same prompt");
+  assert.ok(a.text.includes("Mara Voss, copper bob"), "character override must land in the prompt");
+  assert.ok(a.text.includes("Refinement — five-field spec:"), "must carry the five-field block");
+  assert.ok(a.text.includes("Character design: Mara Voss, copper bob"));
+  assert.ok(a.text.includes("Camera movement: Dolly in / Push-in (dolly-in-push-in)"),
+    "camera must cite the lexicon move + id");
+  const c = S.buildRefinedPrompt(T2, GEN_DRAMA, "festival",
+    Object.assign({}, fields, { register: "relief" }), MOVEMENTS);
+  assert.notStrictEqual(a.text, c.text, "changed fields must change the prompt");
+  assert.deepStrictEqual(Object.keys(a.fields).sort(),
+    ["camera", "character", "grammar", "palette", "register"], "cleaned fields returned");
+});
+
+test("refinery: empty fields are skipped, never rendered as blanks", () => {
+  const out = S.buildRefinedPrompt(T2, GEN_DRAMA, "festival", F5(), MOVEMENTS);
+  assert.ok(!out.text.includes("five-field spec"), "all-empty fields must not append the block");
+  assert.ok(!/\[SUBJECT A/i.test(out.text), "slots still filled from engine defaults");
+});
+
+test("refinery: camera movement validated against the lexicon", () => {
+  const okFields = F5({ camera: "dolly-in-push-in" });
+  assert.doesNotThrow(() => S.buildRefinedPrompt(T2, GEN_DRAMA, "festival", okFields, MOVEMENTS));
+  assert.throws(() => S.buildRefinedPrompt(T2, GEN_DRAMA, "festival",
+    F5({ camera: "spiral-zoom-9000" }), MOVEMENTS), /unknown camera movement/);
+});
+
+test("refinery: works without the lexicon (movements=null)", () => {
+  const out = S.buildRefinedPrompt(T2, GEN_DRAMA, "festival", F5({ camera: "slow push in" }), null);
+  assert.ok(out.text.includes("Camera movement: slow push in"),
+    "free-text camera must pass through when the lexicon is unloaded");
+});
+
+test("refinery: refineShotInPlan writes back and logs rounds", () => {
+  const plan = S.buildPlan(DATA, INPUT({ runtimeSec: 30, tier: "draft" }));
+  const before = plan.shots[0].prompt;
+  const e1 = S.refineShotInPlan(plan, { episode: null, index: 0 }, before + " [refined]", F5({ character: "Mara Voss" }));
+  assert.strictEqual(e1.round, 1);
+  assert.strictEqual(plan.shots[0].prompt, before + " [refined]");
+  assert.strictEqual(plan.shots[0].refined, true);
+  assert.strictEqual(plan.shots[0].originalPrompt, before, "generated prompt kept once");
+  assert.strictEqual(e1.fields.character, "Mara Voss");
+  const e2 = S.refineShotInPlan(plan, { episode: null, index: 0 }, before + " [refined again]", F5({ character: "Mara Voss" }));
+  assert.strictEqual(e2.round, 2);
+  assert.strictEqual(plan.shots[0].originalPrompt, before, "original kept from the first round");
+  assert.strictEqual(plan.shots[0].refinements.length, 2);
+});
+
+test("refinery: series shots addressable by episode", () => {
+  const sp = S.buildSeriesPlan(DATA, SIN({ episodes: 3 }));
+  const shot = S.findRefinedShots(sp, { episode: 2, index: 0 });
+  assert.ok(shot && shot.prompt.length > 40);
+  S.refineShotInPlan(sp, { episode: 2, index: 0 }, shot.prompt + " [E2 refined]", F5({ character: "x" }));
+  assert.strictEqual(S.findRefinedShots(sp, { episode: 2, index: 0 }).refined, true);
+  assert.strictEqual(S.findRefinedShots(sp, { episode: 1, index: 0 }).refined || false, false,
+    "other episodes untouched");
+  assert.throws(() => S.findRefinedShots(sp, { episode: 9, index: 0 }), /unknown episode/);
+  assert.throws(() => S.findRefinedShots(sp, { episode: 1, index: 999 }), /unknown shot index/);
+  assert.throws(() => S.findRefinedShots(sp, { episode: null, index: 0 }), /unknown shot index/,
+    "film refs must not resolve against a series plan");
+});
+
+test("refinery: revertRefinement restores the generated prompt", () => {
+  const plan = S.buildPlan(DATA, INPUT({ runtimeSec: 30, tier: "draft" }));
+  const before = plan.shots[0].prompt;
+  S.refineShotInPlan(plan, { episode: null, index: 0 }, "custom", F5({ character: "x" }));
+  const e = S.revertRefinement(plan, { episode: null, index: 0 });
+  assert.strictEqual(e.reverted, true);
+  assert.strictEqual(plan.shots[0].prompt, before);
+  assert.strictEqual(plan.shots[0].refined, false);
+  assert.strictEqual(plan.shots[0].refinements.length, 2, "history kept after revert");
+  assert.throws(() => S.revertRefinement(plan, { episode: null, index: 4 }), /never refined/);
+});
+
+test("refinery: budget + schedule byte-identical after refinement", () => {
+  const film = S.buildPlan(DATA, INPUT({ runtimeSec: 30, tier: "draft" }));
+  const b0 = JSON.stringify(film.budget), s0 = JSON.stringify(film.schedule);
+  S.refineShotInPlan(film, { episode: null, index: 3 }, "a much better prompt", F5({ character: "Mara" }));
+  assert.strictEqual(JSON.stringify(film.budget), b0, "film budget must not move");
+  assert.strictEqual(JSON.stringify(film.schedule), s0, "film schedule must not move");
+  const series = S.buildSeriesPlan(DATA, SIN({ episodes: 3 }));
+  const b1 = JSON.stringify(series.budget), s1 = JSON.stringify(series.schedule);
+  S.refineShotInPlan(series, { episode: 1, index: 2 }, "a much better prompt", F5({ character: "Mara" }));
+  assert.strictEqual(JSON.stringify(series.budget), b1, "series budget must not move");
+  assert.strictEqual(JSON.stringify(series.schedule), s1, "series schedule must not move");
+});
+
+test("refinery: markdown packet carries the refinements section only when refined", () => {
+  const plan = S.buildPlan(DATA, INPUT({ runtimeSec: 30, tier: "draft" }));
+  assert.ok(!S.planToMarkdown(plan).includes("## Shot refinements"), "no section without refinements");
+  S.refineShotInPlan(plan, { episode: null, index: 0 }, "custom prompt", F5({ character: "Mara Voss" }));
+  const md = S.planToMarkdown(plan);
+  assert.ok(md.includes("## Shot refinements"), "section present once refined");
+  assert.ok(md.includes("Shot 1 — refined ×1"));
+  assert.ok(md.includes("Character design: Mara Voss"));
+  assert.ok(md.includes("words only"), "honesty framing present");
+});
+
+test("refinery: series markdown + HTML carry refinements", () => {
+  const sp = S.buildSeriesPlan(DATA, SIN({ episodes: 3 }));
+  S.refineShotInPlan(sp, { episode: 2, index: 1 }, "custom", F5({ character: "Mara" }));
+  const md = S.seriesToMarkdown(sp);
+  assert.ok(md.includes("## Shot refinements"), "series markdown carries the section");
+  assert.ok(md.includes("E2 · Shot"), "series refs carry episode labels");
+  const html = S.seriesToHtml(sp);
+  assert.ok(html.includes("Shot refinements"), "series HTML carries the section");
+  assert.ok(html.includes("E2 · Shot"), "HTML refs carry episode labels");
+  assert.ok(html.includes("Studio 3.0"), "HTML packet names the Studio version");
+});
+
+test("refinery: shotRefAttrs + refineButtonHtml", () => {
+  assert.strictEqual(S.shotRefAttrs({ episode: null, index: 3 }), 'data-st3-ep="" data-st3-idx="3"');
+  assert.strictEqual(S.shotRefAttrs({ episode: 2, index: 4 }), 'data-st3-ep="2" data-st3-idx="4"');
+  const b = S.refineButtonHtml();
+  assert.ok(b.includes("st3-refine") && b.includes("Refine shot"), "button carries hook class + label");
+  assert.ok(b.includes('type="button"'), "real button, not a link");
+});
+
+/* ---------------- Studio 3.0: plan sharing ---------------- */
+test("sharing: export → import round-trips a saved plan", () => {
+  const plan = S.buildPlan(DATA, INPUT());
+  const saved = { name: "Test plan", savedAt: "2026-10-11T00:00:00.000Z",
+    kind: "film", input: plan.input, plan: plan };
+  const json = S.exportPlanData(saved);
+  const parsed = JSON.parse(json);
+  assert.strictEqual(parsed.format, "afg-studio-plan", "format tag present");
+  assert.strictEqual(parsed.v, 1, "version tag present");
+  const res = S.importPlanData(json);
+  assert.strictEqual(res.ok, true, res.error);
+  assert.strictEqual(res.saved.kind, "film");
+  assert.strictEqual(res.saved.name, "Test plan");
+  assert.strictEqual(res.saved.plan.shots.length, plan.shots.length, "shot count survives");
+  assert.strictEqual(res.saved.plan.shots[0].prompt, plan.shots[0].prompt, "prompts survive");
+  assert.strictEqual(res.saved.plan.budget.clean, plan.budget.clean, "budget survives");
+  assert.strictEqual(res.saved.input.title, plan.input.title, "input survives");
+});
+
+test("sharing: import validates the shape", () => {
+  assert.strictEqual(S.importPlanData("not json").ok, false, "bad JSON rejected");
+  const bad = S.importPlanData(JSON.stringify({ format: "nope", v: 1 }));
+  assert.strictEqual(bad.ok, false, "wrong format tag rejected");
+  assert.ok(/format tag/.test(bad.error), "error names the problem");
+  const base = JSON.parse(S.exportPlanData({ name: "x", kind: "film", input: {}, plan: { shots: [] } }));
+  assert.strictEqual(S.importPlanData(JSON.stringify(Object.assign({}, base, { v: 99 }))).ok, false,
+    "future version rejected");
+  assert.strictEqual(S.importPlanData(JSON.stringify(Object.assign({}, base, { kind: "hologram" }))).ok, false,
+    "unknown kind rejected");
+  assert.strictEqual(S.importPlanData(JSON.stringify(Object.assign({}, base, { plan: {} }))).ok, false,
+    "film without shots rejected");
+  assert.strictEqual(S.importPlanData(JSON.stringify(Object.assign({}, base, { plan: null }))).ok, false,
+    "missing plan rejected");
+  assert.strictEqual(S.importPlanData(JSON.stringify(Object.assign({}, base, { input: null }))).ok, false,
+    "missing input rejected");
+});
+
+test("sharing: import accepts series + microdrama plans", () => {
+  const sp = S.buildSeriesPlan(DATA, SIN({ episodes: 3 }));
+  const r1 = S.importPlanData(S.exportPlanData({ name: "s", kind: "series", input: {}, plan: sp }));
+  assert.strictEqual(r1.ok, true, r1.error);
+  assert.strictEqual(r1.saved.plan.episodes.length, 3);
+  const mp = S.buildMicrodramaPlan(DATA, MIN());
+  const r2 = S.importPlanData(S.exportPlanData({ name: "m", kind: "microdrama", input: {}, plan: mp }));
+  assert.strictEqual(r2.ok, true, r2.error);
+  assert.ok(r2.saved.plan.budget, "microdrama budget survives");
+});
+
+/* ---------------- Studio 3.0: draft-cheap / finish-flagship mode ---------------- */
+test("optimizer: draftfinal mode splits takes (coverage cheap, keeper flagship)", () => {
+  const opt = optPlan();
+  const df = opt.modes.draftfinal;
+  assert.ok(df, "draftfinal mode must exist");
+  assert.strictEqual(df.complete, true, "mode must be complete on the fixture plan");
+  assert.ok(df.shots > 0, "shots counted");
+  let expect = 0, counted = 0;
+  opt.perShot.forEach((s) => {
+    if (s.cheapest && s.bestrated) {
+      counted++;
+      expect += s.takes === 1 ? s.bestrated.cost
+        : Math.round(((s.cheapest.cost / s.takes) * (s.takes - 1) +
+          (s.bestrated.cost / s.takes)) * 100) / 100;
+    }
+  });
+  assert.ok(counted > 0, "needs priced cheap+bestrated pairs");
+  assert.ok(Math.abs(expect - df.total) < 0.05 * counted,
+    "draftfinal total must reconcile per shot: " + expect + " vs " + df.total);
+  assert.ok(opt.modes.cheapest.total <= df.total + 1e-9,
+    "the split can never undercut the cheapest-viable floor");
+  assert.strictEqual(df.shots, counted, "every priced shot counted");
+});
+
+test("optimizer: four modes in the packet tables (markdown + HTML + panel)", () => {
+  const opt = optPlan();
+  const md = S.optimizeToMarkdown({ optimizer: opt });
+  assert.ok(md.includes("### Four budget modes"), "markdown heading names four modes");
+  assert.ok(md.includes("Draft cheap, finish flagship"), "markdown table carries the split mode");
+  assert.ok(md.includes("Oct 2026 pricing reality"), "split row cites the research grounding");
+  const html = S.optimizeToHtml({ optimizer: opt });
+  assert.ok(html.includes("Four budget modes"), "HTML heading names four modes");
+  assert.ok(html.includes("Draft cheap, finish flagship"), "HTML table carries the split mode");
+});
+
+test("optimizer: draftfinal degrades honestly when a shot has no pair", () => {
+  const plan = S.buildPlan(DATA, OPTIN());
+  plan.shots.forEach((s) => { s.model = null; });
+  const opt = S.optimizePlan(DATA, plan, {});
+  assert.strictEqual(typeof opt.modes.draftfinal.complete, "boolean",
+    "mode flag present even on degenerate plans");
 });
 
 console.log(`\nstudio.test.js: ${n} tests, ${process.exitCode ? "FAILURES" : "all pass"}`);

@@ -3240,7 +3240,29 @@
       ".st3-share-json{width:100%;min-height:9rem;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;",
       " font-size:.8rem;background:var(--bg-raise);color:inherit;border:1px solid var(--line);",
       " border-radius:var(--radius-s);padding:var(--space-3)}",
-      ".st3-err{color:#e5484d;font-weight:600}"
+      ".st3-err{color:#e5484d;font-weight:600}",
+      "/* Motion tokens (web-craft round 1, motion-system finding): durations +",
+      "   named easings as custom properties; 500ms max on UI interactions. */",
+      ":root{--st3-dur-fast:120ms;--st3-dur-base:200ms;--st3-dur-slow:480ms;",
+      " --st3-ease-standard:cubic-bezier(.2,0,0,1);--st3-ease-out:cubic-bezier(0,0,0,1)}",
+      "/* Dialog entry: opacity + small rise, decelerating ease-out, 200ms base.",
+      "   Reduced-motion users get no travel (variant, not kill switch — the",
+      "   dialog still opens instantly). Transform + opacity only. */",
+      "@media (prefers-reduced-motion:no-preference){",
+      " dialog.st3-dialog{animation:st3-in var(--st3-dur-base) var(--st3-ease-out)}",
+      " @keyframes st3-in{from{opacity:0;transform:translateY(10px)}}}",
+      ".st3-dlg-head h3{text-wrap:balance}",
+      "/* Auto-growing refinery textareas (field-sizing:content, Baseline Jun 2026;",
+      "   unsupported browsers keep rows=2). Scoped to the refinery dialog — the",
+      "   share dialog's JSON textareas keep their fixed heights. */",
+      "#st3-dialog .st3-field textarea{field-sizing:content}",
+      "/* Tactile hover: 120ms ease-out lift, transform only. */",
+      ".st3-pnav a,.st3-refine{transition:transform var(--st3-dur-fast) var(--st3-ease-out)}",
+      "@media (hover:hover){.st3-pnav a:hover,.st3-refine:hover{transform:translateY(-1px)}}",
+      ".st3-pnav a:focus-visible,.st3-refine:focus-visible{outline:2px solid var(--gold);outline-offset:2px}",
+      "/* Long shot lists stay fast: skip off-screen cards (content-visibility),",
+      "   reserving ~26rem so scroll position never jumps. */",
+      ".st3-shots .st-shot{content-visibility:auto;contain-intrinsic-size:auto 26rem}"
     ].join("\n");
     var st = document.createElement("style");
     st.setAttribute("data-st3", "injected");
@@ -3334,7 +3356,7 @@
       '<div class="st3-dlg-body">' +
       '<div id="st3-fields"></div>' +
       "<h4>Preview</h4>" +
-      '<pre class="st3-preview" id="st3-preview" tabindex="0" aria-live="polite"></pre>' +
+      '<pre class="st3-preview" id="st3-preview" tabindex="0"></pre>' +
       "<h4>Refinement history</h4>" +
       '<ul class="st3-history" id="st3-history"></ul>' +
       "</div>" +
@@ -3346,8 +3368,10 @@
       "</div>" +
       "</div>";
     document.body.appendChild(dlg);
+    /* Native <dialog> restores focus to the trigger on close() by itself
+       (Baseline since ~Mar 2022) — no manual re-focus (web-craft round 2,
+       Angle 4: don't re-implement what the platform handles). */
     dlg.addEventListener("close", function () {
-      if (ST3_DLG_INVOKER && document.contains(ST3_DLG_INVOKER)) ST3_DLG_INVOKER.focus();
       ST3_DLG_INVOKER = null;
       ST3_DLG_REF = null;
     });
@@ -3540,8 +3564,10 @@
   }
 
   /* Surgical card update after a refinement — no full re-render, no scroll
-     jump. Wrapped in a view transition when the browser offers one and the
-     user hasn't asked for reduced motion. */
+     jump. Same-document view transitions are Baseline since Oct 2025
+     (web-craft round 1), so document.startViewTransition() ships with only a
+     feature check; the prefers-reduced-motion guard is the user's call, not
+     a support question. */
   function st3UpdateShotCard(ref, shot) {
     var ep = ref.episode == null ? "" : String(ref.episode);
     var art = document.querySelector(
