@@ -129,4 +129,4 @@
 
 **Validation:** `bash scripts/validate.sh` → ALL STAGES PASS; `node --check` clean; 0 broken relative links; planner smoke tests 11/11; studio.test.js 19/19.
 
-**Commit:** `3169e51` ([view](https://github.com/astercast/ai-film-master-guide/commit/3169e51)) — 11 files, pushed 2026-10-11, new/changed files verified present in the remote tree via GitHub API.
+**Commit:** `dd5a7574930c84fdaa440cf55d2520a9ee58740e` ([view](https://github.com/astercast/ai-film-master-guide/commit/dd5a7574930c84fdaa440cf55d2520a9ee58740e)) — 11 files, pushed 2026-10-11, all new files verified present in the remote tree via GitHub API (439 blobs, 0 missing).
