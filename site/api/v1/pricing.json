@@ -1,0 +1,1114 @@
+{
+  "format": "pricing/1.0",
+  "generated_at": "2026-10-12T06:00:00Z",
+  "generated_by": "Vercel Wave A curation from models.json cost_basis (mega-research 2026-10-10, re-verified 2026-10-11). Wave-engine job; NOT auto-mutated by the watchtower cron (pricing changes need verification \u2014 repo promotion rule).",
+  "currency": "USD",
+  "credit_usd": 0.0392,
+  "credit_basis": "Higgsfield Plus plan: $47/1200 credits = $0.0392/credit, declared in models.json cost_basis",
+  "disclaimer": "Rates move. Re-check the source page before spending real money. 'verify live' marks every rate the research flagged as needing a live re-read.",
+  "entries": [
+    {
+      "model_id": "soul-2-0",
+      "model": "Soul 2.0",
+      "provider": "Higgsfield",
+      "type": "image",
+      "status": "active",
+      "pricing_status": "live",
+      "currency": "USD",
+      "tiers": [
+        {
+          "tier": "image",
+          "unit": "image",
+          "usd_low": 0.0047,
+          "usd_high": 0.0047,
+          "basis": "0.12 credits/image; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary \u2014 verify live",
+          "confidence": "credit-derived"
+        }
+      ],
+      "updated_at": "2026-10-11T00:00:00Z",
+      "source_urls": [
+        "https://higgsfield.ai/",
+        "https://github.com/osidemedia/higgsfield-ai-prompt-skill/blob/HEAD/skills/higgsfield-models/SKILL.md"
+      ]
+    },
+    {
+      "model_id": "soul-cast",
+      "model": "Soul Cast",
+      "provider": "Higgsfield",
+      "type": "image",
+      "status": "active",
+      "pricing_status": "live",
+      "currency": "USD",
+      "tiers": [
+        {
+          "tier": "image",
+          "unit": "image",
+          "usd_low": 0.0049,
+          "usd_high": 0.0049,
+          "basis": "~0.125 credits/image (third-party); Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary \u2014 verify live",
+          "confidence": "credit-derived"
+        }
+      ],
+      "updated_at": "2026-10-11T00:00:00Z",
+      "source_urls": [
+        "https://github.com/steven-3352/case-study/blob/HEAD/.agents/skills/higgsfield-soul/SKILL.md"
+      ]
+    },
+    {
+      "model_id": "soul-cinema",
+      "model": "Soul Cinema",
+      "provider": "Higgsfield",
+      "type": "image",
+      "status": "active",
+      "pricing_status": "unpublished",
+      "currency": "USD",
+      "tiers": [],
+      "updated_at": "2026-10-11T00:00:00Z",
+      "source_urls": [
+        "https://aiforautomation.io/news/2026-03-31-higgsfield-soul-cinema-preview-one-click-cinematic-ai",
+        "https://github.com/dsm5e/aso-tracker/blob/HEAD/aso-video/docs/higgsfield-prompts/skills/higgsfield-soul/SKILL.md"
+      ],
+      "note": "Not in the captured pricing table \u2014 verify live."
+    },
+    {
+      "model_id": "dop",
+      "model": "DoP (Lite/Standard/Turbo)",
+      "provider": "Higgsfield",
+      "type": "video",
+      "status": "active",
+      "pricing_status": "live",
+      "currency": "USD",
+      "tiers": [
+        {
+          "tier": "lite-720p",
+          "unit": "second",
+          "usd_low": 0.0392,
+          "usd_high": 0.0392,
+          "basis": "Lite ~3 credits/3s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary \u2014 verify live",
+          "confidence": "credit-derived"
+        },
+        {
+          "tier": "turbo-720p",
+          "unit": "second",
+          "usd_low": 0.0653,
+          "usd_high": 0.0653,
+          "basis": "Turbo ~5 credits/3s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary \u2014 verify live",
+          "confidence": "credit-derived"
+        },
+        {
+          "tier": "standard-720p",
+          "unit": "second",
+          "usd_low": 0.0915,
+          "usd_high": 0.0915,
+          "basis": "Standard ~7 credits/3s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary \u2014 verify live",
+          "confidence": "credit-derived"
+        }
+      ],
+      "updated_at": "2026-10-11T00:00:00Z",
+      "source_urls": []
+    },
+    {
+      "model_id": "marketing-studio-video",
+      "model": "Marketing Studio video",
+      "provider": "Higgsfield",
+      "type": "video",
+      "status": "active",
+      "pricing_status": "live",
+      "currency": "USD",
+      "tiers": [
+        {
+          "tier": "video",
+          "unit": "second",
+          "usd_low": 0.196,
+          "usd_high": 0.196,
+          "basis": "~60 credits/12s (~75/15s same rate), third-party; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary \u2014 verify live",
+          "confidence": "credit-derived"
+        }
+      ],
+      "updated_at": "2026-10-11T00:00:00Z",
+      "source_urls": [],
+      "note": "Third-party rate \u2014 verify live."
+    },
+    {
+      "model_id": "seedance-2-0",
+      "model": "Seedance 2.0",
+      "provider": "ByteDance",
+      "type": "video",
+      "status": "active",
+      "pricing_status": "live",
+      "currency": "USD",
+      "tiers": [
+        {
+          "tier": "720p",
+          "unit": "second",
+          "usd_low": 0.08,
+          "usd_high": 0.08,
+          "basis": "2.0 Mini 720p ~$0.08/s, third-party estimate \u2014 verify live",
+          "confidence": "third-party-estimate"
+        },
+        {
+          "tier": "1080p",
+          "unit": "second",
+          "usd_low": 0.37,
+          "usd_high": 0.37,
+          "basis": "BytePlus API estimate ~$0.37/s at 1080p for 2.0, third-party estimate \u2014 verify live",
+          "confidence": "third-party-estimate"
+        }
+      ],
+      "updated_at": "2026-10-11T00:00:00Z",
+      "source_urls": [
+        "https://www.socialmediaexaminer.com/how-to-think-like-a-filmmaker-ai-video-with-seedance/",
+        "https://synthesys.io/blog/seedance-vs-kling/"
+      ],
+      "note": "Higgsfield credit tiers (720p ~22/5s etc.) also exist; API USD shown."
+    },
+    {
+      "model_id": "seedance-2-5",
+      "model": "Seedance 2.5",
+      "provider": "ByteDance",
+      "type": "video",
+      "status": "active",
+      "pricing_status": "live",
+      "currency": "USD",
+      "tiers": [
+        {
+          "tier": "480p",
+          "unit": "second",
+          "usd_low": 0.1028,
+          "usd_high": 0.1028,
+          "basis": "BytePlus official, re-read Oct 6, 2026: $0.1028/s at 480p",
+          "confidence": "official"
+        },
+        {
+          "tier": "720p",
+          "unit": "second",
+          "usd_low": 0.231,
+          "usd_high": 0.2311,
+          "basis": "Sept 2026 benchmark $2.31/10s 720p; BytePlus official $0.2311/s \u2014 verify live",
+          "confidence": "reported-benchmark"
+        },
+        {
+          "tier": "1080p",
+          "unit": "second",
+          "usd_low": 0.5686,
+          "usd_high": 0.5686,
+          "basis": "BytePlus official, re-read Oct 6, 2026: $0.5686/s at 1080p",
+          "confidence": "official"
+        }
+      ],
+      "updated_at": "2026-10-11T00:00:00Z",
+      "source_urls": [
+        "https://www.versely.studio/blog/state-of-ai-video-oct-2026",
+        "https://higgsfield.ai/blog/best-ai-video-generation-apis",
+        "https://synthesys.io/blog/seedance-vs-kling/",
+        "https://cellcog.ai/blog/seedance-2-5-pricing/",
+        "https://github.com/devlinmarsh/seedance-2-5-api-quickstart/blob/HEAD/README.md"
+      ]
+    },
+    {
+      "model_id": "seedance-3-0",
+      "model": "Seedance 3.0",
+      "provider": "ByteDance",
+      "type": "video",
+      "status": "reported",
+      "pricing_status": "unpublished",
+      "currency": "USD",
+      "tiers": [],
+      "updated_at": "2026-10-11T00:00:00Z",
+      "source_urls": [
+        "https://alltopstartups.com/directory/listing/seedance-3-0-bring-your-ideas-to-life-with-video-generation-with-synchronized-audio/",
+        "https://www.urbansplatter.com/2026/10/when-text-to-video-hits-its-limits-why-reference-driven-ai-filmmaking-deserves-a-closer-look/",
+        "https://medium.com/@ruben_25479/seedance-3-status-availability-and-how-to-prepare-for-the-video-model-update-7ea7df120ae7",
+        "https://www.breakread.com/bytedance-ai-real-time-world-model/",
+        "https://www.versely.studio/blog/state-of-ai-video-oct-2026"
+      ],
+      "note": "Not published \u2014 verify live."
+    },
+    {
+      "model_id": "kling-3-0",
+      "model": "Kling 3.0",
+      "provider": "Kuaishou",
+      "type": "video",
+      "status": "active",
+      "pricing_status": "live",
+      "currency": "USD",
+      "tiers": [
+        {
+          "tier": "720p",
+          "unit": "second",
+          "usd_low": 0.084,
+          "usd_high": 0.168,
+          "basis": "kling-v3 $0.084/s std, $0.112/s pro, $0.126\u2013$0.168/s with audio; 3.0-turbo $0.112/s 720p (audio included). Sept 2026 benchmark $0.84/10s corroborates std. Third-party mirror of official docs, rechecked Oct 2026.",
+          "confidence": "third-party-mirror"
+        },
+        {
+          "tier": "1080p",
+          "unit": "second",
+          "usd_low": 0.14,
+          "usd_high": 0.14,
+          "basis": "kling-3.0-turbo $0.14/s 1080p (audio included), third-party mirror of official docs",
+          "confidence": "third-party-mirror"
+        },
+        {
+          "tier": "4k",
+          "unit": "second",
+          "usd_low": 0.42,
+          "usd_high": 0.42,
+          "basis": "kling-v3 $0.42/s 4K, third-party mirror of official docs",
+          "confidence": "third-party-mirror"
+        }
+      ],
+      "updated_at": "2026-10-11T00:00:00Z",
+      "source_urls": [
+        "https://www.techtimes.com/articles/328285/20260930/kling-40-promises-30-second-4k-video-broadcast-spec-coming-october-not-today.htm",
+        "https://pakera.pk/kling-4-ai-video-pakistan/",
+        "https://github.com/vericontext/vibeframe/blob/HEAD/.agents/references/providers/kling.md",
+        "https://synthesys.io/blog/seedance-vs-kling/",
+        "https://www.usefastlane.ai/models/kling-3-0"
+      ]
+    },
+    {
+      "model_id": "kling-2-5-turbo",
+      "model": "Kling 2.5 Turbo",
+      "provider": "Kuaishou",
+      "type": "video",
+      "status": "active",
+      "pricing_status": "live",
+      "currency": "USD",
+      "tiers": [
+        {
+          "tier": "720p",
+          "unit": "second",
+          "usd_low": 0.042,
+          "usd_high": 0.042,
+          "basis": "kling-v2-5-turbo $0.042/s 720p (1 unit = $0.14), third-party mirror of official docs",
+          "confidence": "third-party-mirror"
+        },
+        {
+          "tier": "1080p",
+          "unit": "second",
+          "usd_low": 0.07,
+          "usd_high": 0.07,
+          "basis": "kling-v2-5-turbo $0.07/s 1080p, third-party mirror of official docs",
+          "confidence": "third-party-mirror"
+        }
+      ],
+      "updated_at": "2026-10-11T00:00:00Z",
+      "source_urls": [
+        "https://github.com/vericontext/vibeframe/blob/HEAD/.agents/references/providers/kling.md"
+      ]
+    },
+    {
+      "model_id": "kling-4-0",
+      "model": "Kling 4.0",
+      "provider": "Kuaishou",
+      "type": "video",
+      "status": "announced",
+      "pricing_status": "unpublished",
+      "currency": "USD",
+      "tiers": [],
+      "updated_at": "2026-10-11T00:00:00Z",
+      "source_urls": [
+        "https://www.techtimes.com/articles/328285/20260930/kling-40-promises-30-second-4k-video-broadcast-spec-coming-october-not-today.htm",
+        "https://cryptobriefing.com/kuaishou-kling-ai-video-model-hong-kong-ipo/",
+        "https://pakera.pk/kling-4-ai-video-pakistan/",
+        "https://medium.com/@gptproto.team/what-is-kling-4-0-preview-leaks-release-status-what-to-use-now-5d9afa268132",
+        "https://wavespeed.ai/blog/ai-news/kling-4-0-release-date/",
+        "https://rctv.com/posts/ai-video-weekly-roundup-2026-10-05/",
+        "https://www.orcarouter.ai/blog/kling-4-0-release-date",
+        "https://apimart.ai/model/kling-4-0",
+        "https://finance.biggo.com/news/d4992938-39a9-4515-84b2-c35e4e2bdc27"
+      ],
+      "note": "Announced, not GA as of Oct 11, 2026 \u2014 no date, pricing, API or benchmarks published."
+    },
+    {
+      "model_id": "veo-3-1",
+      "model": "Veo 3.1",
+      "provider": "Google DeepMind",
+      "type": "video",
+      "status": "active",
+      "pricing_status": "live",
+      "currency": "USD",
+      "tiers": [
+        {
+          "tier": "standard-720p",
+          "unit": "second",
+          "usd_low": 0.4,
+          "usd_high": 0.4,
+          "basis": "API ladder, third-party mirror of Google docs: Standard $0.40/s 720p/1080p \u2014 verify live",
+          "confidence": "third-party-mirror"
+        },
+        {
+          "tier": "standard-1080p",
+          "unit": "second",
+          "usd_low": 0.4,
+          "usd_high": 0.4,
+          "basis": "API ladder, third-party mirror of Google docs \u2014 verify live",
+          "confidence": "third-party-mirror"
+        },
+        {
+          "tier": "standard-4k",
+          "unit": "second",
+          "usd_low": 0.6,
+          "usd_high": 0.6,
+          "basis": "API ladder, third-party mirror of Google docs: Standard $0.60/s 4K \u2014 verify live",
+          "confidence": "third-party-mirror"
+        },
+        {
+          "tier": "fast-720p",
+          "unit": "second",
+          "usd_low": 0.15,
+          "usd_high": 0.15,
+          "basis": "API ladder: Fast $0.15/s 720p/1080p, third-party mirror \u2014 verify live",
+          "confidence": "third-party-mirror"
+        },
+        {
+          "tier": "fast-1080p",
+          "unit": "second",
+          "usd_low": 0.15,
+          "usd_high": 0.15,
+          "basis": "API ladder: Fast $0.15/s 720p/1080p, third-party mirror \u2014 verify live",
+          "confidence": "third-party-mirror"
+        },
+        {
+          "tier": "fast-4k",
+          "unit": "second",
+          "usd_low": 0.35,
+          "usd_high": 0.35,
+          "basis": "API ladder: Fast $0.35/s 4K, third-party mirror \u2014 verify live",
+          "confidence": "third-party-mirror"
+        },
+        {
+          "tier": "lite-720p",
+          "unit": "second",
+          "usd_low": 0.05,
+          "usd_high": 0.05,
+          "basis": "API ladder: Lite $0.05/s 720p (Gemini API; Vertex silent SKUs cheaper \u2014 single-source) \u2014 verify live",
+          "confidence": "third-party-mirror"
+        },
+        {
+          "tier": "lite-1080p",
+          "unit": "second",
+          "usd_low": 0.08,
+          "usd_high": 0.08,
+          "basis": "API ladder: Lite $0.08/s 1080p \u2014 verify live",
+          "confidence": "third-party-mirror"
+        },
+        {
+          "tier": "app-720p-1080p",
+          "unit": "second",
+          "usd_low": 0.392,
+          "usd_high": 0.392,
+          "basis": "App ~40 credits/4s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary \u2014 verify live; Sept 2026 benchmark $3.20/8s corroborates",
+          "confidence": "credit-derived"
+        }
+      ],
+      "updated_at": "2026-10-11T00:00:00Z",
+      "source_urls": [
+        "https://www.lumeflow.ai/ai-tools/veo-4-release-date/",
+        "https://mer.vin/2026/09/which-ai-video-models-actually-take-a-first-and-last-frame/",
+        "https://innfactory.ai/en/ai-models/google-veo/",
+        "https://www.versely.studio/blog/state-of-ai-video-oct-2026",
+        "https://omniflash-ai.com/blog/gemini-omni-flash-1-1",
+        "https://github.com/popschlock/promptfu/blob/HEAD/skills/promptfu/models/google/veo-3-1.md",
+        "https://www.scriptbyai.com/gpt-gemini-claude-pricing/"
+      ]
+    },
+    {
+      "model_id": "veo-3-1-fast",
+      "model": "Veo 3.1 Fast / Veo 3",
+      "provider": "Google DeepMind",
+      "type": "video",
+      "status": "active",
+      "pricing_status": "live",
+      "currency": "USD",
+      "tiers": [
+        {
+          "tier": "fast-4s",
+          "unit": "second",
+          "usd_low": 0.1568,
+          "usd_high": 0.1568,
+          "basis": "Veo 3.1 Fast ~16 credits/4s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary \u2014 verify live",
+          "confidence": "credit-derived"
+        },
+        {
+          "tier": "veo-3-720p",
+          "unit": "second",
+          "usd_low": 0.2842,
+          "usd_high": 0.2842,
+          "basis": "Veo 3 720p ~58 credits/8s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary \u2014 verify live",
+          "confidence": "credit-derived"
+        },
+        {
+          "tier": "veo-3-fast",
+          "unit": "second",
+          "usd_low": 0.1078,
+          "usd_high": 0.1078,
+          "basis": "Veo 3 Fast ~22 credits/8s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary \u2014 verify live",
+          "confidence": "credit-derived"
+        }
+      ],
+      "updated_at": "2026-10-11T00:00:00Z",
+      "source_urls": [
+        "https://mer.vin/2026/09/which-ai-video-models-actually-take-a-first-and-last-frame/",
+        "http://dev.to/osman_sylemez_e83bde4a36/running-veo-31-kling-30-and-seedance-20-side-by-side-what-a-10-second-clip-actually-costs-597"
+      ]
+    },
+    {
+      "model_id": "gemini-omni",
+      "model": "Gemini Omni",
+      "provider": "Google DeepMind",
+      "type": "video",
+      "status": "active",
+      "pricing_status": "live",
+      "currency": "USD",
+      "tiers": [
+        {
+          "tier": "360p-draft",
+          "unit": "second",
+          "usd_low": 0.03,
+          "usd_high": 0.03,
+          "basis": "RESOLUTION LADDER (reported benchmarks): 360p draft ~$0.03/s, up to 60% faster \u2014 verify live",
+          "confidence": "reported-benchmark"
+        },
+        {
+          "tier": "720p",
+          "unit": "second",
+          "usd_low": 0.1,
+          "usd_high": 0.1,
+          "basis": "Gemini Omni Flash API ~$0.10/s at 720p, token-billed ($17.50/1M video tokens), reported benchmark \u2014 verify live",
+          "confidence": "reported-benchmark"
+        },
+        {
+          "tier": "1080p",
+          "unit": "second",
+          "usd_low": 0.15,
+          "usd_high": 0.15,
+          "basis": "RESOLUTION LADDER: 1080p ~$0.15/s (upscaled from 720p), reported benchmark \u2014 verify live",
+          "confidence": "reported-benchmark"
+        },
+        {
+          "tier": "4k",
+          "unit": "second",
+          "usd_low": 0.3,
+          "usd_high": 0.3,
+          "basis": "RESOLUTION LADDER: 4K ~$0.30/s (upscaled from 720p), reported benchmark \u2014 verify live",
+          "confidence": "reported-benchmark"
+        }
+      ],
+      "updated_at": "2026-10-11T00:00:00Z",
+      "source_urls": [
+        "https://www.lumeflow.ai/ai-tools/veo-4-release-date/",
+        "https://innfactory.ai/en/ai-models/google-veo/",
+        "https://www.marktechpost.com/2026/08/29/google-ai-releases-gemini-omni-1-1-flash-40-second-scene-extension-first-last-frame-control-and-4k-upscaling/",
+        "https://omniflash-ai.com/blog/gemini-omni-flash-1-1",
+        "https://www.unite.ai/google-brings-free-gemini-omni-1-1-video-generation-to-google-vids/",
+        "https://www.ffmpeg-micro.com/blog/gemini-omni-flash-preview-is-deprecated-swap-to-omni-1-1-flash"
+      ],
+      "note": "1080p/4K are upscaled from 720p. English only fully supported for prompts."
+    },
+    {
+      "model_id": "sora-2",
+      "model": "Sora 2 / Pro / Max",
+      "provider": "OpenAI",
+      "type": "video",
+      "status": "discontinued",
+      "pricing_status": "discontinued",
+      "currency": "USD",
+      "tiers": [],
+      "updated_at": "2026-10-11T00:00:00Z",
+      "source_urls": [
+        "https://dev.to/stimlau/sora-vs-runway-openai-killed-sora-now-what-2692",
+        "https://higgsfield.ai/blog/sora-api-migration-guide",
+        "https://www.versely.studio/blog/state-of-ai-video-oct-2026"
+      ],
+      "note": "Discontinued; Azure retirement Oct 15, 2026. No current pricing."
+    },
+    {
+      "model_id": "wan-2-6",
+      "model": "Wan 2.6",
+      "provider": "Alibaba",
+      "type": "video",
+      "status": "active",
+      "pricing_status": "live",
+      "currency": "USD",
+      "tiers": [
+        {
+          "tier": "480p",
+          "unit": "second",
+          "usd_low": 0.0392,
+          "usd_high": 0.0392,
+          "basis": "480p ~5 credits/5s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary \u2014 verify live",
+          "confidence": "credit-derived"
+        },
+        {
+          "tier": "720p",
+          "unit": "second",
+          "usd_low": 0.0549,
+          "usd_high": 0.0549,
+          "basis": "720p ~7 credits/5s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary \u2014 verify live",
+          "confidence": "credit-derived"
+        },
+        {
+          "tier": "1080p",
+          "unit": "second",
+          "usd_low": 0.0784,
+          "usd_high": 0.0784,
+          "basis": "1080p ~10 credits/5s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary \u2014 verify live",
+          "confidence": "credit-derived"
+        }
+      ],
+      "updated_at": "2026-10-11T00:00:00Z",
+      "source_urls": [
+        "http://www.upgrademag.com/web/2026/04/25/alibaba-unveils-wan2-7-video/",
+        "https://www.abnewswire.com/pressreleases/alibaba-launches-wan-27-breakthrough-ai-image-video-generation-model-with-thinking-mode_800302.html"
+      ]
+    },
+    {
+      "model_id": "wan-3-0",
+      "model": "Wan 3.0 / 3.0 Prime",
+      "provider": "Alibaba",
+      "type": "video",
+      "status": "active",
+      "pricing_status": "live",
+      "currency": "USD",
+      "tiers": [
+        {
+          "tier": "480p",
+          "unit": "second",
+          "usd_low": 0.0392,
+          "usd_high": 0.0392,
+          "basis": "3.0: 480p 5 credits/5s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary \u2014 verify live",
+          "confidence": "credit-derived"
+        },
+        {
+          "tier": "720p",
+          "unit": "second",
+          "usd_low": 0.0686,
+          "usd_high": 0.0686,
+          "basis": "3.0: 720p 8.75 credits/5s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary \u2014 verify live",
+          "confidence": "credit-derived"
+        },
+        {
+          "tier": "1080p",
+          "unit": "second",
+          "usd_low": 0.1372,
+          "usd_high": 0.1372,
+          "basis": "3.0: 1080p 17.5 credits/5s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary \u2014 verify live",
+          "confidence": "credit-derived"
+        },
+        {
+          "tier": "prime-480p",
+          "unit": "second",
+          "usd_low": 0.0588,
+          "usd_high": 0.0588,
+          "basis": "Prime: 480p 7.5 credits/5s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary \u2014 verify live",
+          "confidence": "credit-derived"
+        },
+        {
+          "tier": "prime-720p",
+          "unit": "second",
+          "usd_low": 0.1176,
+          "usd_high": 0.1176,
+          "basis": "Prime: 720p 15 credits/5s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary \u2014 verify live",
+          "confidence": "credit-derived"
+        },
+        {
+          "tier": "prime-1080p",
+          "unit": "second",
+          "usd_low": 0.2352,
+          "usd_high": 0.2352,
+          "basis": "Prime: 1080p 30 credits/5s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary \u2014 verify live",
+          "confidence": "credit-derived"
+        },
+        {
+          "tier": "api-480p",
+          "unit": "second",
+          "usd_low": 0.05,
+          "usd_high": 0.05,
+          "basis": "Provider-list API: $0.05/s at 480p, 2\u201330s with native audio (reported benchmark \u2014 verify live)",
+          "confidence": "reported-benchmark"
+        }
+      ],
+      "updated_at": "2026-10-11T00:00:00Z",
+      "source_urls": [
+        "https://medium.com/@lvntblsn/what-is-wan3-0-why-30-seconds-cost-alibaba-its-open-source-crown-12f45dd461fb",
+        "https://github.com/yzrkbys/pika-canvas/commit/4c4a782b81e4cad87590bef6a492669b8e8f04ef",
+        "https://www.versely.studio/blog/state-of-ai-video-oct-2026",
+        "https://www.makeinfluencer.ai/guides/best-ai-video-generators-2026",
+        "https://www.therundown.ai/tools/wan-3-0",
+        "https://www.zacks.com/stock/news/2979739/alibabas-wan-30-ai-debut-follows-102b-share-sale-whats-ahead",
+        "https://openrouter.ai/alibaba/wan-3.0"
+      ]
+    },
+    {
+      "model_id": "hailuo-2-3",
+      "model": "Hailuo 02 / 2.3",
+      "provider": "MiniMax",
+      "type": "video",
+      "status": "active",
+      "pricing_status": "live",
+      "currency": "USD",
+      "tiers": [
+        {
+          "tier": "768p",
+          "unit": "second",
+          "usd_low": 0.0467,
+          "usd_high": 0.056,
+          "basis": "Direct API, rechecked 2026-10-10: 2.3 768p $0.28/6s ($0.0467/s), $0.56/10s ($0.056/s), MiniMax pay-as-you-go",
+          "confidence": "official"
+        },
+        {
+          "tier": "1080p",
+          "unit": "second",
+          "usd_low": 0.0817,
+          "usd_high": 0.0817,
+          "basis": "Direct API, rechecked 2026-10-10: 1080p $0.49/6s ($0.0817/s)",
+          "confidence": "official"
+        },
+        {
+          "tier": "fast-768p",
+          "unit": "second",
+          "usd_low": 0.0317,
+          "usd_high": 0.032,
+          "basis": "Direct API: 2.3 Fast 768p $0.19/6s ($0.0317/s), $0.32/10s ($0.032/s)",
+          "confidence": "official"
+        }
+      ],
+      "updated_at": "2026-10-11T00:00:00Z",
+      "source_urls": [
+        "https://www.abnewswire.com/pressreleases/hailuo-video-agent-review-oneclick-video-creation-with-visible-ai-reasoning_839110.html",
+        "https://magichour.ai/blog/hailuo-23-pricing",
+        "https://recatools.com/ai-directory/hailuo-video/",
+        "https://minimax-ai.chat/hailuo/"
+      ]
+    },
+    {
+      "model_id": "minimax-h3",
+      "model": "MiniMax H3",
+      "provider": "MiniMax",
+      "type": "video",
+      "status": "active",
+      "pricing_status": "live",
+      "currency": "USD",
+      "tiers": [
+        {
+          "tier": "2k",
+          "unit": "second",
+          "usd_low": 0.13,
+          "usd_high": 0.13,
+          "basis": "API MiniMax-H3: $0.13/s 2K \u2014 verify live",
+          "confidence": "official"
+        },
+        {
+          "tier": "768p",
+          "unit": "second",
+          "usd_low": 0.08,
+          "usd_high": 0.08,
+          "basis": "API MiniMax-H3: $0.08/s 768p; H3 Max 768p $0.08/s (published) \u2014 verify live",
+          "confidence": "official"
+        },
+        {
+          "tier": "480p",
+          "unit": "second",
+          "usd_low": 0.038,
+          "usd_high": 0.05,
+          "basis": "480p $0.038/s (vendor-confirmed, unpublished); H3 Max 480p $0.05/s (published) \u2014 verify live",
+          "confidence": "vendor-confirmed"
+        },
+        {
+          "tier": "max-turbo-768p",
+          "unit": "second",
+          "usd_low": 0.04,
+          "usd_high": 0.04,
+          "basis": "H3-Max-Turbo $0.04/s 768p (unpublished) \u2014 verify live",
+          "confidence": "vendor-confirmed"
+        },
+        {
+          "tier": "max-turbo-480p",
+          "unit": "second",
+          "usd_low": 0.025,
+          "usd_high": 0.025,
+          "basis": "H3-Max-Turbo $0.025/s 480p (unpublished) \u2014 verify live",
+          "confidence": "vendor-confirmed"
+        }
+      ],
+      "updated_at": "2026-10-11T00:00:00Z",
+      "source_urls": [
+        "https://huggingface.co/blog/ResterChed/minimax-h3-hailuo-3-0",
+        "https://pixo.video/blog/what-is-minimax-h3",
+        "https://www.marktechpost.com/2026/08/01/minimax-releases-minimax-h3-an-omni-modal-video-model-that-generates-15-second-2k-clips-with-native-stereo-audio/",
+        "https://magichour.ai/blog/ai-video-model-release-tracker-2026",
+        "https://www.einpresswire.com/article/948320883/protoface-expands-ai-video-api-with-kling-3-0-seedance-2-5-and-google-veo-3-1",
+        "https://github.com/monid-ai/monid/blob/HEAD/openspec/changes/add-connector-minimax/design.md",
+        "https://www.abnewswire.com/pressreleases/pixazo-announces-reduced-pricing-on-minimax-h3-max-api-expanding-affordable-access-to-ai-video-with-native-audio_837151.html",
+        "https://magichour.ai/blog/hailuo-23-pricing"
+      ],
+      "note": "Input video billed at output tier rate; first 5 reference images free, then $0.04 each."
+    },
+    {
+      "model_id": "luma-ray-3-2",
+      "model": "Luma App / Ray 3.2",
+      "provider": "Luma",
+      "type": "video",
+      "status": "active",
+      "pricing_status": "live",
+      "currency": "USD",
+      "tiers": [
+        {
+          "tier": "360p",
+          "unit": "second",
+          "usd_low": 0.012,
+          "usd_high": 0.012,
+          "basis": "Luma API standard video: $0.06 (5s, 360p) \u2014 verify live",
+          "confidence": "official"
+        },
+        {
+          "tier": "720p",
+          "unit": "second",
+          "usd_low": 0.09,
+          "usd_high": 0.09,
+          "basis": "Sept 2026 benchmark ~$0.90/10s 720p \u2014 verify live",
+          "confidence": "reported-benchmark"
+        },
+        {
+          "tier": "1080p",
+          "unit": "second",
+          "usd_low": 0.24,
+          "usd_high": 0.36,
+          "basis": "Luma API: $1.20 (5s, 1080p) = $0.24/s; $0.18\u2013$3.60 for 10s generations ($0.018\u2013$0.36/s) \u2014 verify live",
+          "confidence": "official"
+        }
+      ],
+      "updated_at": "2026-10-11T00:00:00Z",
+      "source_urls": [
+        "https://magichour.ai/blog/kling-vs-pika-vs-luma",
+        "https://thetoolsverse.com/tools/luma-dream-machine-ai-video-generator",
+        "https://www.techtimes.com:443/articles/327054/20260909/adobe-embeds-five-competing-ai-video-models-premiere-killing-round-trip-export.htm",
+        "https://mivicai.com/luma-ray-3-2-powerful-cinematic-video-creation/",
+        "https://whatsnew.fyi/product/comfyui/releases/v0.39.0"
+      ],
+      "note": "Luma Plus $30/mo consumer plan also exists."
+    },
+    {
+      "model_id": "pika-2-5",
+      "model": "Pika 2.5",
+      "provider": "Pika",
+      "type": "video",
+      "status": "active",
+      "pricing_status": "unpublished",
+      "currency": "USD",
+      "tiers": [],
+      "updated_at": "2026-10-11T00:00:00Z",
+      "source_urls": [
+        "https://magichour.ai/blog/pika-labs-pricing",
+        "https://alphasignal.ai/news/pika-rebuilds-into-a-full-creative-studio-routing-across-seven-ai-tools",
+        "https://magichour.ai/blog/ai-video-api-magic-hour-vs-runway-vs-pika"
+      ],
+      "note": "Not in the captured table; Pika native 12\u201380 credits/gen with no verified USD conversion \u2014 verify live."
+    },
+    {
+      "model_id": "grok-imagine-1-5",
+      "model": "Grok Imagine Video 1.5",
+      "provider": "xAI",
+      "type": "video",
+      "status": "active",
+      "pricing_status": "live",
+      "currency": "USD",
+      "tiers": [
+        {
+          "tier": "lite-480p",
+          "unit": "second",
+          "usd_low": 0.02,
+          "usd_high": 0.02,
+          "basis": "xAI API docs, rechecked Oct 2026: Lite $0.02/s at 480p (third-party mirror) \u2014 verify live",
+          "confidence": "third-party-mirror"
+        },
+        {
+          "tier": "lite-720p",
+          "unit": "second",
+          "usd_low": 0.03,
+          "usd_high": 0.03,
+          "basis": "xAI API docs: Lite $0.03/s at 720p (third-party mirror) \u2014 verify live",
+          "confidence": "third-party-mirror"
+        },
+        {
+          "tier": "lite-1080p",
+          "unit": "second",
+          "usd_low": 0.14,
+          "usd_high": 0.14,
+          "basis": "xAI API docs: Lite $0.14/s at 1080p (third-party mirror) \u2014 verify live",
+          "confidence": "third-party-mirror"
+        },
+        {
+          "tier": "flagship-480p",
+          "unit": "second",
+          "usd_low": 0.08,
+          "usd_high": 0.08,
+          "basis": "xAI API docs: flagship 1.5 $0.08/s at 480p (third-party mirror) \u2014 verify live",
+          "confidence": "third-party-mirror"
+        },
+        {
+          "tier": "flagship-720p",
+          "unit": "second",
+          "usd_low": 0.14,
+          "usd_high": 0.14,
+          "basis": "xAI API docs: flagship 1.5 $0.14/s at 720p (third-party mirror) \u2014 verify live",
+          "confidence": "third-party-mirror"
+        },
+        {
+          "tier": "flagship-1080p",
+          "unit": "second",
+          "usd_low": 0.25,
+          "usd_high": 0.25,
+          "basis": "xAI API docs: flagship 1.5 $0.25/s at 1080p (third-party mirror) \u2014 verify live",
+          "confidence": "third-party-mirror"
+        }
+      ],
+      "updated_at": "2026-10-11T00:00:00Z",
+      "source_urls": [
+        "https://www.europesays.com/ai/127331/",
+        "https://theplanettools.ai/blog/xai-grok-imagine-video-1-5-image-to-video-native-audio-arena-june-2026",
+        "https://openrouter.ai/x-ai/grok-imagine-video-1.5-lite",
+        "https://llmgateway.io/timeline",
+        "https://deployedbyai.com/log/b06e09074889/grok-imagine-video-1-5-lite/",
+        "https://whatsnew.fyi/product/comfyui/releases/v0.39.0",
+        "https://sloptvnews.com/grok-imagine-video-1-5-lite-pricing/",
+        "https://venice.ai/models/grok-imagine-1-5-lite"
+      ],
+      "note": "Lite adds $0.01 per input image; clips 1\u201315s; headline API ~$0.08/s output."
+    },
+    {
+      "model_id": "midjourney-v1-video",
+      "model": "Midjourney V1 Video",
+      "provider": "Midjourney",
+      "type": "video",
+      "status": "active",
+      "pricing_status": "unpublished",
+      "currency": "USD",
+      "tiers": [],
+      "updated_at": "2026-10-11T00:00:00Z",
+      "source_urls": [
+        "https://www.cometapi.com/midjourney-unveils-v1-video/",
+        "https://www.krea.ai/blog/is-midjourney-free-pricing-video-and-free-alternatives-in-2026",
+        "https://www.outlookbusiness.com/deeptech/artificial-intelligence/midjourney-launches-v1-ai-video-model-generating-5second-clips-from-images"
+      ],
+      "note": "~8x image cost; 5s SD batch = 8 GPU-min \u2014 verify live."
+    },
+    {
+      "model_id": "runway-gen-4-5",
+      "model": "Runway Gen-4.5",
+      "provider": "Runway",
+      "type": "video",
+      "status": "active",
+      "pricing_status": "live",
+      "currency": "USD",
+      "tiers": [
+        {
+          "tier": "api",
+          "unit": "second",
+          "usd_low": 0.12,
+          "usd_high": 0.12,
+          "basis": "Gen-4.5 API $0.12/s; Sept 2026 benchmark $1.20/10s 720p corroborates \u2014 verify live",
+          "confidence": "official"
+        }
+      ],
+      "updated_at": "2026-10-11T00:00:00Z",
+      "source_urls": [
+        "https://www.versely.studio/blog/state-of-ai-video-oct-2026",
+        "https://www.techtimes.com/articles/326994/20260908/runway-ai-hits-200m-arr-enterprise-video-adoption-triples-existing-spend.htm",
+        "https://www.techtimes.com:443/articles/327054/20260909/adobe-embeds-five-competing-ai-video-models-premiere-killing-round-trip-export.htm",
+        "https://magichour.ai/blog/runway-gen-45-pricing",
+        "https://multilogin.com/blog/runway-ai-review/",
+        "https://www.therundown.ai/tools/runway-gen-4-5"
+      ],
+      "note": "Consumer: 12 credits/s; Standard $15/mo (625 credits) / Pro $35/mo (2,250) / Max $95/mo (9,500, 1-mo rollover)."
+    },
+    {
+      "model_id": "vidu-q4-preview",
+      "model": "Vidu Q4 Preview",
+      "provider": "Vidu / Shengshu Technology",
+      "type": "video",
+      "status": "active",
+      "pricing_status": "live",
+      "currency": "USD",
+      "tiers": [
+        {
+          "tier": "540p",
+          "unit": "second",
+          "usd_low": 0.045,
+          "usd_high": 0.045,
+          "basis": "List pricing, official Oct 7, 2026: $0.045/s at 540p \u2014 verify live (preview pricing may change)",
+          "confidence": "official"
+        },
+        {
+          "tier": "1080p",
+          "unit": "second",
+          "usd_low": 0.12,
+          "usd_high": 0.12,
+          "basis": "List pricing, official Oct 7, 2026: $0.12/s at 1080p \u2014 verify live (preview pricing may change)",
+          "confidence": "official"
+        },
+        {
+          "tier": "4k",
+          "unit": "second",
+          "usd_low": 0.39,
+          "usd_high": 0.39,
+          "basis": "List pricing, official Oct 7, 2026: $0.39/s at 4K \u2014 verify live (preview pricing may change)",
+          "confidence": "official"
+        }
+      ],
+      "updated_at": "2026-10-11T00:00:00Z",
+      "source_urls": [
+        "https://www.globenewswire.com/news-release/2026/10/07/3376813/0/en/shengshu-technology-launches-vidu-q4-preview-a-next-generation-ai-video-model-built-for-lifelike-performances.html",
+        "https://www.morningstar.com/news/pr-newswire/20261007cn65903/vidu-launches-q4-preview-making-flagship-ai-video-creation-accessible-to-everyone",
+        "https://usanewshour.com/shengshu-technology-launches-vidu-q4-preview-a-next-generation-ai-video-model-built-for-lifelike-performances/396369/",
+        "https://sloptvnews.com/vidu-q4-preview-price-per-second-launch-promo-vs-list/"
+      ],
+      "note": "Launch headline $0.014/s was a promotional off-peak floor (GlobeNewswire). Image-to-video and reference-to-video 30% off through Nov 30."
+    },
+    {
+      "model_id": "vidu-s2",
+      "model": "Vidu S2",
+      "provider": "Vidu",
+      "type": "video",
+      "status": "active",
+      "pricing_status": "live",
+      "currency": "USD",
+      "tiers": [
+        {
+          "tier": "clip",
+          "unit": "clip",
+          "usd_low": 0.05,
+          "usd_high": 0.05,
+          "basis": "Cheapest paid tier ~$0.05/clip reported \u2014 verify live",
+          "confidence": "reported-benchmark"
+        }
+      ],
+      "updated_at": "2026-10-11T00:00:00Z",
+      "source_urls": [
+        "https://www.versely.studio/blog/state-of-ai-video-oct-2026",
+        "https://higgsfield.ai/blog/best-affordable-ai-video-generators",
+        "https://www.globenewswire.com/news-release/2026/10/07/3376813/0/en/shengshu-technology-launches-vidu-q4-preview-a-next-generation-ai-video-model-built-for-lifelike-performances.html",
+        "https://www.prnewswire.com/news-releases/shengshu-technology-unveils-vidu-s2-bringing-real-time-interaction-and-editing-to-ai-video-302879976.html",
+        "https://lapaasvoice.com/vidu-s2-real-time-ai-video-control/"
+      ]
+    },
+    {
+      "model_id": "flux-3-video",
+      "model": "FLUX 3 Video",
+      "provider": "Black Forest Labs",
+      "type": "video",
+      "status": "active",
+      "pricing_status": "live",
+      "currency": "USD",
+      "tiers": [
+        {
+          "tier": "720p-draft",
+          "unit": "second",
+          "usd_low": 0.06,
+          "usd_high": 0.06,
+          "basis": "API: $0.06/s 720p draft \u2014 verify live",
+          "confidence": "reported-benchmark"
+        },
+        {
+          "tier": "720p",
+          "unit": "second",
+          "usd_low": 0.17,
+          "usd_high": 0.17,
+          "basis": "API: $0.17/s 720p \u2014 verify live",
+          "confidence": "reported-benchmark"
+        },
+        {
+          "tier": "1080p",
+          "unit": "second",
+          "usd_low": 0.29,
+          "usd_high": 0.29,
+          "basis": "API: $0.29/s 1080p (~$2.90/10s HD) \u2014 verify live",
+          "confidence": "reported-benchmark"
+        }
+      ],
+      "updated_at": "2026-10-11T00:00:00Z",
+      "source_urls": [
+        "https://www.eweek.com/news/black-forest-labs-flux-3-multimodal-ai-robotics/",
+        "https://dev.to/leilarowe/flux-3-review-2026-black-forest-labs-multimodal-video-model-priced-per-second-p76",
+        "https://www.bottlerocketcontent.com/flux-3-video-black-forest-labs-launch/",
+        "https://www.digitaltoday.co.kr/en/view/89607/black-forest-labs-releases-flux-3-video-to-public",
+        "https://www.marktechpost.com/2026/07/26/black-forest-labs-releases-flux-3-a-multimodal-flow-model-for-image-video-audio-and-robot-action-prediction/",
+        "https://the-decoder.com/black-forest-labs-makes-flux-3-video-generally-available-and-claims-it-beats-seedance-2-0/",
+        "https://developers.cloudflare.com/ai/models/black-forest-labs/flux-3-video/"
+      ]
+    },
+    {
+      "model_id": "ltx-2-5",
+      "model": "LTX-2.5",
+      "provider": "Lightricks",
+      "type": "video",
+      "status": "active",
+      "pricing_status": "live",
+      "currency": "USD",
+      "tiers": [
+        {
+          "tier": "fast",
+          "unit": "second",
+          "usd_low": 0.003,
+          "usd_high": 0.003,
+          "basis": "LTX 2.5 Fast API from ~$0.003/s (reported benchmark \u2014 verify live)",
+          "confidence": "reported-benchmark"
+        }
+      ],
+      "updated_at": "2026-10-11T00:00:00Z",
+      "source_urls": [
+        "https://magichour.ai/blog/ai-video-model-release-tracker-2026",
+        "https://www.versely.studio/blog/state-of-ai-video-oct-2026",
+        "https://intelligibberish.com/articles/best-local-video-generation-models-by-vram/",
+        "https://github.com/red-weasel/machx-inference-engine/blob/HEAD/docs/ltx25/LTX25_ON_ARC.md",
+        "https://roboticsandautomationnews.com/2026/08/13/ltx-launches-new-free-to-use-open-world-model-for-video-and-physical-ai/104079/",
+        "https://github.com/nicholashui/common-agent-structure/blob/HEAD/spec/ltx_operation_guide.md",
+        "https://www.runcomfy.com/models/lightricks/ltx-2.5/image-to-video/fast",
+        "https://www.therundown.ai/tools/ltx-2-5"
+      ],
+      "note": "Open weights (22B); paid license required above $10M revenue."
+    },
+    {
+      "model_id": "mirage-tesseract",
+      "model": "Mirage Tesseract",
+      "provider": "Mirage (formerly Captions)",
+      "type": "suite",
+      "status": "active",
+      "pricing_status": "live",
+      "currency": "USD",
+      "tiers": [
+        {
+          "tier": "local",
+          "unit": "unlimited",
+          "usd_low": 0,
+          "usd_high": 0,
+          "basis": "Local engine free (reported \u2014 verify live)",
+          "confidence": "reported-benchmark"
+        }
+      ],
+      "updated_at": "2026-10-11T00:00:00Z",
+      "source_urls": [
+        "https://www.versely.studio/blog/state-of-ai-video-oct-2026",
+        "https://lifestyle.therapybutbetter.com/story/351680/mirage-introduces-tesseract-a-video-creative-suite-built-for-ai-agents/",
+        "https://www.webdisclosure.com/press-release/mirage-introduces-tesseract-a-video-creative-suite-built-for-ai-agents-zPS3ERdoUFK"
+      ]
+    },
+    {
+      "model_id": "vivago-r1",
+      "model": "vivago R1",
+      "provider": "HiDream.ai",
+      "type": "suite",
+      "status": "active",
+      "pricing_status": "unpublished",
+      "currency": "USD",
+      "tiers": [],
+      "updated_at": "2026-10-11T00:00:00Z",
+      "source_urls": [
+        "https://lifestyle.nextmentors.com/story/878361/hidream-ai-makes-vivago-r1-available-globally-for-end-to-end-ai-video-production/"
+      ],
+      "note": "Not published \u2014 verify live."
+    }
+  ]
+}
