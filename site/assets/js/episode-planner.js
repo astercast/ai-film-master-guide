@@ -23,6 +23,73 @@
     };
   }
 
+  /* Format presets (wave 17): per-format episode-block skeletons + runtime band.
+     Bands are genre-plastic craft guidance, not platform settings. */
+  var FORMAT_PRESETS = {
+    minidrama: {
+      label: "Mini-drama", band: [60, 150], spb: 15,
+      emotion: "longing",
+      stake: "Mia took a taxi alone to find her daddy",
+      hook: "Toddler alone in the back of a night taxi, city lights",
+      beats: [
+        "Hook: Mia alone in the taxi at night",
+        "The driver asks where to",
+        "Flashback: why she is going",
+        "Turn: the driver realizes she is not lost — she is determined"
+      ],
+      turn: "Beat 4: the driver realizes she's not lost — she's determined",
+      cliff: "The taxi stops at the wrong address — headlights, cut",
+      scenes: "taxi night exterior; Mia clutching coat; driver sees her; wrong-address stop"
+    },
+    pov: {
+      label: "POV series", band: [30, 90], spb: 12,
+      emotion: "dread",
+      stake: "You borrowed your roommate's jacket — the stain won't come out",
+      hook: "Your hands scrubbing fabric in a bathroom sink, coffee spreading",
+      beats: [
+        "Hook: the spill, frozen mid-panic",
+        "Flashback: the roommate lending it this morning",
+        "The knock at the door — she's home early",
+        "Turn: the designer label — it cost four figures"
+      ],
+      turn: "Beat 4: the designer label — it cost four figures",
+      cliff: "The bathroom door handle turns — freeze on your face",
+      scenes: "sink scrub close-up; flashback handoff; designer label macro; door handle mid-turn"
+    },
+    daylife: {
+      label: "Day-in-the-life", band: [15, 60], spb: 10,
+      emotion: "comfort",
+      stake: "Rin the night-shift barista makes the 2 AM regular's drink before he orders",
+      hook: "Espresso machine steaming in a dark shop window, rain on glass",
+      beats: [
+        "Hook: rain on the window, empty café",
+        "The regular's shadow at the door",
+        "Turn: Rin is already steaming the milk — she remembered"
+      ],
+      turn: "Beat 3: Rin is already steaming the milk — she remembered",
+      cliff: "He slides a folded note across the counter — freeze before it opens",
+      scenes: "rainy window; door shadow; steaming milk close-up; folded note mid-slide"
+    },
+    revenge: {
+      label: "Revenge arc", band: [60, 150], spb: 15,
+      emotion: "triumph",
+      stake: "Nadia exposes the partner who stole her designs — at his own launch event",
+      hook: "A runway spotlight swinging onto a garment that is unmistakably hers",
+      beats: [
+        "Hook: the crowd gasps at her stolen collection",
+        "Nadia in the back row, phone raised, recording",
+        "Turn: she live-posts the original sketches — timestamped two years earlier",
+        "The audience's phones light up, one by one"
+      ],
+      turn: "Beat 3: she live-posts the original sketches — timestamped two years earlier",
+      cliff: "The partner spots her in the crowd — freeze on his face",
+      scenes: "spotlight garment; back-row recording; timestamped sketches on phone; his frozen face"
+    }
+  };
+  var DEFAULT_FORMAT = "minidrama";
+  /* "custom" is a real format choice — it just has no preset skeleton. */
+  var ALL_FORMATS = ["minidrama", "pov", "daylife", "revenge", "custom"];
+
   var els = {
     title: document.getElementById("ep-title"),
     logline: document.getElementById("ep-logline"),
@@ -44,6 +111,10 @@
     blockMsg: document.getElementById("epb-msg"),
     saveBlock: document.getElementById("epb-save"),
     newBlock: document.getElementById("epb-new"),
+    formatRadios: document.querySelectorAll('input[name="epf-format"]'),
+    applyFormat: document.getElementById("epf-apply"),
+    spb: document.getElementById("epf-spb"),
+    runtime: document.getElementById("epf-runtime"),
     logList: document.getElementById("epl-list"),
     logEmpty: document.getElementById("epl-empty"),
     logEp: document.getElementById("epl-ep"),
@@ -169,9 +240,72 @@
       els.beats.appendChild(div);
     });
   }
+  /* ---------------- format presets + runtime estimator ---------------- */
+
+  function currentFormat() {
+    var sel = document.querySelector('input[name="epf-format"]:checked');
+    var v = sel && sel.value;
+    return ALL_FORMATS.indexOf(v) >= 0 ? v : DEFAULT_FORMAT;
+  }
+  function formatBand() {
+    var p = FORMAT_PRESETS[currentFormat()];
+    return p ? p.band : [60, 150];
+  }
+  function applyPreset(key) {
+    var p = FORMAT_PRESETS[key];
+    if (!p) {
+      /* custom: blank the block skeleton, keep the format + estimator */
+      els.emotion.value = ""; els.stake.value = ""; els.hook.value = "";
+      renderBeatInputs([]);
+      els.turn.value = ""; els.cliff.value = ""; els.scenes.value = "";
+      els.spb.value = 15;
+      estimate();
+      msg(els.blockMsg, "Custom format — blank block, runtime band is the 60–150s mini-drama default.", true);
+      return;
+    }
+    els.emotion.value = p.emotion;
+    els.stake.value = p.stake;
+    els.hook.value = p.hook;
+    renderBeatInputs(p.beats);
+    els.turn.value = p.turn;
+    els.cliff.value = p.cliff;
+    els.scenes.value = p.scenes;
+    els.spb.value = p.spb;
+    estimate();
+    msg(els.blockMsg, "Format template applied: " + p.label + " — edit every line to make it yours, then save.", true);
+  }
+  /* Runtime estimator: beats × seconds-per-beat vs the format's runtime band.
+     This is the dialogue-budget rule applied at planning time: voice must
+     total the estimate ±10% before any frame is generated (the golden rule). */
+  function estimate() {
+    var beats = beatInputs().filter(Boolean).length;
+    var spb = Math.max(1, parseInt(els.spb.value, 10) || 15);
+    var band = formatBand();
+    if (!beats) {
+      els.runtime.textContent = "Add beats above to estimate the runtime.";
+      els.runtime.className = "calc-note";
+      return;
+    }
+    var est = beats * spb;
+    var verdict, cls = "calc-note";
+    if (est < band[0]) {
+      verdict = " Too short for this format: add beats or widen seconds-per-beat — or the emotion has no room to land.";
+      cls += " td-error";
+    } else if (est > band[1]) {
+      verdict = " Too long for one emotion: split the episode (the two-emotions rule).";
+      cls += " td-error";
+    } else {
+      verdict = " Inside the " + band[0] + "–" + band[1] + "s band. Now lock voice at ≈" + est + "s ±10% before generating a frame (the golden rule).";
+    }
+    els.runtime.textContent = "≈" + est + "s (" + beats + " beats × " + spb + "s). " + verdict;
+    els.runtime.className = cls;
+  }
   function renderBlockForm(n) {
     var b = state.blocks[String(n)] || {};
     els.epNum.value = n;
+    var fmt = (b.format && ALL_FORMATS.indexOf(b.format) >= 0) ? b.format : currentFormat();
+    els.formatRadios.forEach(function (r) { r.checked = (r.value === fmt); });
+    els.spb.value = b.spb || (FORMAT_PRESETS[fmt] ? FORMAT_PRESETS[fmt].spb : 15);
     els.emotion.value = b.emotion || "";
     els.stake.value = b.stake || "";
     els.hook.value = b.hook || "";
@@ -179,6 +313,7 @@
     els.turn.value = b.turn || "";
     els.cliff.value = b.cliff || "";
     els.scenes.value = b.scenes || "";
+    estimate();
     msg(els.blockMsg, state.blocks[String(n)] ? "Loaded saved block for episode " + n + " — edit and re-save to overwrite." : "Planning episode " + n + ".", true);
   }
 
@@ -187,9 +322,22 @@
     if (cur.length >= 6) { msg(els.blockMsg, "Genre rule: 3–5 beats. Six inputs is already generous — trim, don't add.", false); return; }
     cur.push("");
     renderBeatInputs(cur);
+    estimate();
     var last = els.beats.querySelectorAll("input");
     last[last.length - 1].focus();
   });
+
+  /* format picker + estimator wiring */
+  els.applyFormat.addEventListener("click", function () { applyPreset(currentFormat()); });
+  els.formatRadios.forEach(function (r) {
+    r.addEventListener("change", function () {
+      var p = FORMAT_PRESETS[currentFormat()];
+      if (p) els.spb.value = p.spb;
+      estimate();
+    });
+  });
+  els.spb.addEventListener("input", estimate);
+  els.beats.addEventListener("input", estimate);
 
   els.saveBlock.addEventListener("click", function () {
     var n = parseInt(els.epNum.value, 10) || state.nextEpisode;
@@ -205,6 +353,8 @@
     }
     state.blocks[String(n)] = {
       n: n,
+      format: currentFormat(),
+      spb: Math.max(1, parseInt(els.spb.value, 10) || 15),
       emotion: els.emotion.value.trim(),
       stake: els.stake.value.trim(),
       hook: els.hook.value.trim(),

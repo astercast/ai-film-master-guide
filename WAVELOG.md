@@ -109,3 +109,24 @@
 **Validation:** `bash scripts/validate.sh` → ALL STAGES PASS; studio.test.js 19/19; node --check clean; 0 broken relative links.
 
 **Commit:** `7a846607b769e54e7ddf74274b46fa35491b62dc` ([view](https://github.com/astercast/ai-film-master-guide/commit/7a846607b769e54e7ddf74274b46fa35491b62dc)) — 46 files, pushed 2026-10-11, all new files verified present in the remote tree via GitHub API (439 blobs, 0 missing).
+
+## Wave 17 — EPISODE PIPELINE revisit #1 (2026-10-11)
+
+**Standing workstream:** first scheduled revisit of the permanent episode-pipeline workstream (wave 14 was the integration). Source fuel: `~/workspace/research_notes/wave-fuel-2026-20261011-2355/report.md` mission 1 (short-form, late 2026).
+
+**Shipped:**
+
+1. **Mini-drama boom validation** in `craft/episodic-shortform.md` — new section "The mini-drama boom — why the format is winning (Oct 2026)": TikTok's episodic-series promotion since June 2026 (mini dramas = fastest-growing new category, single-source flag); the dedicated "TikTok Short Drama" search section (1–3 min vertical 9:16 episodes, series up to 455.7M views per series — single-source); ~90% of Chinese micro-drama releases now AI-generated (Kuhn reporting, single-source); Sensor Tower *State of Short Drama Apps 2026*: 850M+ downloads Q1 2026 (+140% YoY), 25 min/day viewing by April 2026; DoubleVerify: 1–2 min romance/revenge/cliffhanger episodes, $14B revenue expected 2026. Platform-mechanics reading: serialization is the follow mechanic under TikTok's interest-graph test-pool distribution; watch time + completion are the dominant signals (one emotion per episode IS a completion-rate design — the 60–150s genre band); cliffhangers are built for Reels' #1 signal, sends per reach (Mosseri); and the Oct 1, 2026 YouTube Shorts originality update REWARDS this exact format (original serialized content vs. channel-level reach cuts for aggregator re-uploads — announced by Creator Liaison Rene Ritchie).
+2. **Three new serialized formats** — each entry: the format, why it works, a fictional worked episode-block example. Sourced, no invented accounts/numbers:
+   - **POV micro-series** — "you" are the protagonist: @quiet.truths742 "Hallway series" Ep 1 — "POV: You insulted a stranger yesterday… and today he's your billionaire boss" (76.4K likes, 134 comments; TikTok, Oct 2026).
+   - **"Day in the life" AI character vignettes** — recurring AI protagonist, 15–60s (autoweeb.com: serialized recurring-protagonist content outperforms one-offs in completion rate and subscriber conversion).
+   - **Revenge / betrayal arcs** — the justice ladder (OutlierKit: betrayal & revenge storytelling 21x breakout, $20–$25 CPM, creator-reported ranges; ReelShort's *Your love is my poison* + Playlet's *Never Betray the Woman Who Built You* + the TikTok→drama-app funnel via md-eksperiment.org; DoubleVerify brand-suitability caution → the guide's lane stays non-graphic, feel-good vengeance).
+3. **Episode planner tool upgrades** (`assets/js/episode-planner.js` + `EPISODEPLANNER_TMPL` in `scripts/build_site.py`, copytree'd to `site/`):
+   - **Format picker** (mini-drama / POV series / day-in-the-life / revenge arc / custom) — "Apply format template" pre-fills the block skeleton (emotion, stake, hook, beats, turn, cliffhanger, keyframe scenes, seconds-per-beat); format + spb persist on saved blocks and restore on load.
+   - **Runtime estimator** — beats × seconds-per-beat vs the format's runtime band (mini-drama 60–150s, POV 30–90s, day-in-life 15–60s); in-band verdicts state the dialogue-budget rule ("lock voice at ≈Ns ±10% before generating a frame"); too-short / too-long verdicts cite the one-emotion discipline (the two-emotions rule).
+   - Accessibility: native radios (keyboard-operable), aria-live `role="status"` estimator readout, mobile-first grid, no motion. Functional smoke test (DOM-stubbed, 11 assertions) 11/11 — and it caught one real bug pre-ship (`currentFormat()` dropped "custom" → fell back to mini-drama; fixed, plus restore-on-load for saved custom blocks).
+4. **Regenerated:** `site/` (27 chapters, episode-planner.html, copytree'd JS), `llms-full.txt` (+76 lines of new chapter text).
+
+**Validation:** `bash scripts/validate.sh` → ALL STAGES PASS; `node --check` clean; 0 broken relative links; planner smoke tests 11/11; studio.test.js 19/19.
+
+**Commit:** `3169e51` ([view](https://github.com/astercast/ai-film-master-guide/commit/3169e51)) — 11 files, pushed 2026-10-11, new/changed files verified present in the remote tree via GitHub API.

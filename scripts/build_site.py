@@ -758,6 +758,12 @@ EPISODEPLANNER_TMPL = """<!DOCTYPE html>
     .hg-caption {{ white-space: pre-wrap; word-break: break-word; }}
     .hg-num {{ display: inline-block; min-width: 1.6em; text-align: center; background: var(--gold); color: #111; border-radius: 999px; font-size: 0.85em; margin-right: 0.4em; }}
     .hg-why {{ border-left: 3px solid var(--gold); padding-left: var(--space-3); }}
+    .epf-formats {{ display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2); }}
+    @media (max-width: 720px) {{ .epf-formats {{ grid-template-columns: 1fr; }} }}
+    .epf-radio {{ display: block; border: 1px solid var(--line); border-radius: var(--radius-s); padding: var(--space-2) var(--space-3); cursor: pointer; }}
+    .epf-radio:has(input:checked) {{ border-color: var(--gold); background: color-mix(in srgb, var(--gold) 8%, transparent); }}
+    .epf-radio input {{ margin-right: var(--space-2); }}
+    .epf-hint {{ display: block; color: var(--muted); font-size: 0.85rem; }}
   </style>
 </head>
 <body>
@@ -815,6 +821,17 @@ EPISODEPLANNER_TMPL = """<!DOCTYPE html>
     <section class="container" aria-labelledby="epb-h" style="margin-top:var(--space-6);">
       <h2 id="epb-h">2 · Episode block — one emotion, one turn, one cliffhanger</h2>
       <form class="card calc-form" aria-label="Episode block" onsubmit="return false;">
+        <fieldset>
+          <legend>Format preset — pre-fills the block skeleton</legend>
+          <div class="epf-formats" role="radiogroup" aria-label="Series format">
+            <label class="epf-radio"><input type="radio" name="epf-format" value="minidrama" checked> Mini-drama<span class="epf-hint">One emotion, soap-opera pacing, 60–150s</span></label>
+            <label class="epf-radio"><input type="radio" name="epf-format" value="pov"> POV series<span class="epf-hint">"You" are the protagonist, 30–90s</span></label>
+            <label class="epf-radio"><input type="radio" name="epf-format" value="daylife"> Day-in-the-life<span class="epf-hint">Recurring character, one small event, 15–60s</span></label>
+            <label class="epf-radio"><input type="radio" name="epf-format" value="revenge"> Revenge arc<span class="epf-hint">The justice ladder, 60–150s</span></label>
+            <label class="epf-radio"><input type="radio" name="epf-format" value="custom"> Custom<span class="epf-hint">Blank block, 60–150s band</span></label>
+          </div>
+          <button type="button" class="btn btn-ghost btn-sm" id="epf-apply" style="margin-top:var(--space-3);">Apply format template</button>
+        </fieldset>
         <div class="field">
           <label for="epb-num">Episode number</label>
           <input class="input" type="number" id="epb-num" min="1" step="1" value="1">
@@ -848,6 +865,14 @@ EPISODEPLANNER_TMPL = """<!DOCTYPE html>
           <label for="epb-scenes">Keyframe scenes — hook / beat / turn / cliffhanger</label>
           <input class="input" type="text" id="epb-scenes" placeholder="e.g. taxi night exterior; Mia clutching coat; driver sees her; wrong-address stop">
         </div>
+        <fieldset>
+          <legend>Runtime estimator — beats × seconds-per-beat vs the dialogue budget</legend>
+          <div class="field">
+            <label for="epf-spb">Seconds per beat</label>
+            <input class="input" type="number" id="epf-spb" min="5" max="45" step="1" value="15">
+          </div>
+          <p class="calc-note" id="epf-runtime" role="status">Add beats above to estimate the runtime.</p>
+        </fieldset>
         <div class="btn-row">
           <button type="button" class="btn" id="epb-save">Save episode block</button>
           <button type="button" class="btn btn-ghost" id="epb-new">New blank block</button>

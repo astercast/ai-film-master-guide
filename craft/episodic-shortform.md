@@ -10,6 +10,25 @@ The representative episode: **"Episode 3 — A 2-Year-Old Girl Took a Taxi Alone
 
 *(Episode-pipeline research, Oct 2026 — observed case. Single-source, flag: the platform analytics came from the episode page itself, not an independent audit.)*
 
+## The mini-drama boom — why the format is winning (Oct 2026)
+
+Since this chapter was first written, the genre stopped being a niche observation and became the platform's headline story:
+
+- **TikTok has been promoting episodic series since June 2026**, and mini dramas are now the fastest-growing *new* category on the platform (buytiktokaccount.com — single-source, flag).
+- Typing "microdrama" into TikTok search now opens a dedicated **"TikTok Short Drama"** section: vertical 9:16 episodes, 1–3 minutes each. Series like *Reborn After He Chose Her*, *Spoiled by the CEO's Family*, and *My Fluffy Alpha Husband* have accumulated up to **455.7M views per series** (tiktoktiktoktiktok.substack.com, Oct 2026 — single-source).
+- In China, roughly **90% of micro-drama series released are now AI-generated** (Johannes Kuhn's reporting, via the same source — flag).
+- Sensor Tower's *State of Short Drama Apps 2026*: short-drama apps passed **850M global downloads in Q1 2026 (+140% YoY)**, with average daily viewing at 25 minutes by April 2026 (+85% vs January 2025) (archyde.com, Sept 2026).
+- DoubleVerify (Sept 2026): microdramas are **1–2 minute serialized episodes** built on romance, revenge, and frequent cliffhangers; 2026 revenues are expected to hit **$14B**.
+
+This is validation, not a trend to chase — the pipeline in this chapter *is* the thing the platforms are now rewarding. Why the format wins, in platform-mechanics terms:
+
+- **Serialization is the follow mechanic, and TikTok tests for it.** TikTok's distribution is interest-graph, not social-graph: every upload is tested against a small audience pool and widened only if early signals clear the gates (Hootsuite, Vamp, fivebbc — all three agree). An episode that ends on a cliffhanger with a numbered next part manufactures the follower the algorithm can't give you: someone who returns unprompted.
+- **Watch time + completion rate are the dominant ranking signals.** The three sources agree on the order — watch time/completion first, then rewatches, shares, saves; one marketing study estimates the pair at 40–50% of ranking weight (DMA — single-source, treat as lore). One emotion per episode *is* a completion-rate design: nothing leaks the viewer's attention because there is only one thing to attend to. The genre's 60–150s band at high completion outcompetes shorter, leakier clips (DMA lore: a 60s video at 80% completion beats a 15s clip at 95%).
+- **Cliffhangers are built for sends.** On Instagram Reels the #1 ranking signal is **sends per reach** (Mosseri, via virvid.ai / CreatorFlow) — and a cliffhanger is the most sendable thing a video can be: *"you have to see what happens next."*
+- **The Oct 1, 2026 Shorts originality update REWARDS this format.** YouTube now prioritizes original content in Shorts recommendations and reduces reach at the *channel level* for accounts that mainly aggregate or re-upload (announced by Creator Liaison Rene Ritchie via Creator Insider video + TeamYouTube post; Social Media Today, Oct 1, 2026). An original serialized series is the exact opposite of a clipping channel. The same gate exists on TikTok, which does not recommend reused or unoriginal content (viral.app, citing TikTok docs, Sept 2026). Everything in the nine stages below produces *original* footage — this pipeline was compliant before the rules changed.
+
+The craft consequence: the deep moat (bible, arc, voice-first cut) is now also the platform moat. AI makes the footage cheap; the serialization makes it distributed.
+
 ## The genre anatomy — why the format works
 
 Each of these is a design decision you can steal for any series, on any platform:
@@ -22,6 +41,59 @@ Each of these is a design decision you can steal for any series, on any platform
 - **The funnel CTA.** "More inDrama↓" teases a longer cut on a drama app. That is an external business funnel; the production pipeline produces the TikTok episode itself. Steal the shape (tease the next thing), not the destination.
 
 The deep moat is not the animation — the genre's visuals are slow, simple, character-consistent frames; *the story does the work, not the animation.* The moat is the arc: a locked character bible, per-line voice-first editing, and dialogue-locked cuts. Everything else is execution.
+
+## Three more working serialized formats (Oct 2026)
+
+The mini-drama pipeline above is the flagship, but the boom is wider than one genre. Three more serialized short-form formats are demonstrably working right now. Each follows the same skeleton — numbered episodes, one unit of tension per episode, cliffhanger endings — with a different engine under it. Each entry: the format, why it works, and a fictional worked episode-block example showing the block structure.
+
+### 1. POV micro-series — "you" are the protagonist
+
+**The format.** Second-person scenarios, one per episode, numbered: *"Episode 1 … POV: You insulted a stranger yesterday… and today he's your billionaire boss"* — the "Hallway series" by @quiet.truths742 (76.4K likes, 134 comments on Episode 1; TikTok, Oct 2026). Each episode is a single encounter with one power reversal; the camera is the viewer's eyes.
+
+**Why it works.** The "you" casts the viewer — no character introduction needed, no bible to lock, and the stakes are instant (status, embarrassment, desire). It inherits the mini-drama pacing (gut-punch → reversal → cliffhanger), but the cliffhanger is always social: *what happens when he sees you tomorrow?* The comment section does the distribution work — viewers tag the friend who "would absolutely do this," which is sends-per-reach fuel.
+
+**Worked episode-block example** *(fictional — shows the block structure, not a real series):*
+
+- Format: POV series · Episode 4 · Emotion: **dread**
+- Stake: you borrowed your roommate's jacket — the stain won't come out
+- Hook visual (first 3s): your hands frantically scrubbing fabric in a bathroom sink, coffee brown spreading
+- Beats: (1) the spill, frozen mid-panic; (2) flashback: the roommate lending it this morning — *"take care of it"*; (3) the knock at the door — she's home early; (4) the turn: the designer label — it cost four figures
+- Cliffhanger: the bathroom door handle turns — freeze on your face
+- Keyframe scenes: sink scrub close-up / flashback handoff / designer label macro / door handle mid-turn
+
+### 2. "Day in the life" AI character vignettes
+
+**The format.** A recurring AI character, 15–60 second episodes from its daily routine — one small event per episode, no multi-episode plot required. An AI-anime creator guide (autoweeb.com, 2026) reports that **short serialized content with a recurring protagonist outperforms one-off images in both completion rate and subscriber conversion**, and that "day in the life" character vignettes work in the 15–60s range.
+
+**Why it works.** The character IS the series — familiarity compounds. Plot overhead is near zero (routine + one surprise), so the nine-stage pipeline runs at its cheapest: the anchor paragraph and voice ID do the heavy lifting, and every episode is four keyframes from one world. The follow mechanic is parasocial, not narrative: viewers return to *see how she's doing*, the way they check a friend's story. The bible is the whole show here — G0 discipline is the quality bar.
+
+**Worked episode-block example** *(fictional):*
+
+- Format: day-in-the-life · Episode 12 · Emotion: **comfort**
+- Stake: Rin the night-shift barista makes the 2 AM regular's drink before he orders
+- Hook visual (first 3s): espresso machine steaming in a dark shop window, rain on glass
+- Beats: (1) rain on the window, empty café; (2) the regular's shadow at the door; (3) the turn: Rin is already steaming the milk — she remembered
+- Cliffhanger: he slides a folded note across the counter — freeze before it opens
+- Keyframe scenes: rainy window / door shadow / steaming milk close-up / folded note mid-slide
+
+### 3. Revenge / betrayal arcs — the justice ladder
+
+**The format.** A multi-episode revenge plot where each episode delivers one injustice and one retaliatory move: betrayal → discovery → the plan → the takedown → the reveal. OutlierKit's 2026 niche data gives betrayal & revenge storytelling a **21x breakout rate** with $20–$25 CPMs on YouTube (outlierkit.com — creator-reported ranges). In short drama, ReelShort's *Your love is my poison* (60-second episodes of betrayal, hidden identities, second-chance romance — viral early 2026) and Playlet's *Never Betray the Woman Who Built You* (affair reveal in minutes, revenge escalating episode by episode) show the funnel pattern: free episodes as TikTok/Reels clips, the full series behind the drama app — *"Continue the story here 👉🏻 Find the full series on the ReelShort app"* (md-eksperiment.org watch guides, 2026; TikTok promo posts).
+
+**Why it works.** Catharsis is the most portable emotion on the internet: the viewer arrives already angry on the heroine's behalf, so the hook costs nothing. The justice ladder is a natural episode map — each episode is one rung — and the cliffhanger is always *the next move*. Finales get the thesis line (the pipeline's G7 rule), which is why these series convert to the paid funnel: the thesis is the product.
+
+**Craft caution.** DoubleVerify flags that some microdramas carry adult, violent, or criminal content and advises brand-suitability review (Sept 2026). The guide's lane: non-graphic, feel-good vengeance — the betrayal is emotional, the revenge is a comeuppance, never gore. A revenge series with the pipeline's single-emotion discipline reads as empowerment; without it, it reads as slop.
+
+**Worked episode-block example** *(fictional):*
+
+- Format: revenge arc · Episode 6 · Emotion: **triumph**
+- Stake: Nadia exposes the business partner who stole her designs — at his own launch event
+- Hook visual (first 3s): a runway spotlight swinging onto a garment that is unmistakably hers
+- Beats: (1) the crowd gasps at her stolen collection; (2) Nadia in the back row, phone raised, recording; (3) the turn: she live-posts the original sketches — timestamped two years earlier; (4) the audience's phones light up, one by one
+- Cliffhanger: the partner spots her in the crowd — freeze on his face
+- Keyframe scenes: spotlight garment / back-row recording / timestamped sketches on a phone / his frozen face
+
+All three plug into the same planner. The [Episode planner](../episode-planner.html) now has a **format picker** (mini-drama / POV series / day-in-the-life / revenge arc) that pre-fills the block skeleton per format, plus a **runtime estimator** (beats × seconds-per-beat) that checks the estimate against the genre's runtime band before you save — the dialogue-budget rule, enforced at the planning stage instead of discovered in post.
 
 ## The nine stages, adapted
 
@@ -81,5 +153,9 @@ Run every episode through all eight before it ships. A gate fails → fix at tha
 ## Sources
 
 - Episode-pipeline research artifact: `~/workspace/tiktok-episode-pipeline/PIPELINE.md` (Oct 2026 — FutureGalaxyStories / @uq6ctqxxc8 case analysis; 82s Episode 3, 128K plays, 3,187 likes, 722 saves; single-source, flag)
+- Mini-drama boom (Oct 2026): TikTok episodic-series push since June 2026 — mini dramas the fastest-growing new category (buytiktokaccount.com — single-source, flag); dedicated "TikTok Short Drama" search section, 1–3 min vertical episodes, series up to 455.7M views, ~90% of Chinese micro-dramas AI-generated per Johannes Kuhn (tiktoktiktoktiktok.substack.com — single-source); Sensor Tower *State of Short Drama Apps 2026*: 850M+ downloads Q1 2026, +140% YoY (archyde.com); DoubleVerify: 1–2 min episodes, romance/revenge/cliffhangers, $14B revenue expected 2026 + brand-suitability caution (doubleverify.com)
+- Platform mechanics: TikTok interest-graph test-pool + watch time/completion signal hierarchy (blog.hootsuite.com/tiktok-algorithm/, vamp.com, fivebbc.com); DMA 40–50% weight estimate (single-source); TikTok unoriginal-content demotion (viral.app); Instagram Reels sends-per-reach as #1 signal (Mosseri, via virvid.ai / creatorflow.so)
+- Oct 1, 2026 Shorts originality update: Creator Liaison Rene Ritchie announcement — original content prioritized, aggregator re-uploads demoted at channel level (socialmediatoday.com)
+- New formats: POV "Hallway series" @quiet.truths742, Episode 1 (TikTok, Oct 2026); "day in the life" AI character vignettes — serialized recurring protagonist outperforms one-offs in completion + subscriber conversion (autoweeb.com); betrayal & revenge storytelling 21x breakout, $20–$25 CPM (outlierkit.com — creator-reported ranges); *Your love is my poison* (ReelShort) and *Never Betray the Woman Who Built You* (Playlet) + TikTok→app funnel (md-eksperiment.org, 2026)
 - Companion: `craft/longform-pipelines.md`, `craft/story-structure.md`, `craft/sound-music-audio.md`, `craft/editing-ai-footage.md`
 - Companion tools: [Episode planner](../episode-planner.html) and [Hook-title generator](../hook-generator.html) (Tools)
