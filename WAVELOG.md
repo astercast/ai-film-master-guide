@@ -18,7 +18,7 @@
 
 **Validation:** `bash scripts/validate.sh` → ALL STAGES PASS (13/13, run post-commit); link check 0 broken; `node --check` clean on all changed JS; studio.test.js 50/50 (7 new microdrama assertions with pinned fixtures: documented constants, clip math + StoReel cross-check, benchmark arithmetic, model-rate relationships derived from models.json, festival retake end, determinism + validation errors, markdown honesty framing); agent-workflows.test.js 74/74 (new workflow 6 asserts the AGENT.md worked example); generator audits clean (skills byte-identical, prompt-templates.json == artifact parser, llms.txt zero-diff).
 
-**Commit:** local `1a0b8bf` (27 files) — pushed PENDING as of this entry; see remote-hash note below.
+**Commit:** local `1a0b8bf` (27 files) + `e9b6aa1` (WAVELOG entry) — pushed 2026-10-11 as remote commit `8d8c4ce2d2dd74ad114e4d3ff08b827f87a50897`; remote `main` HEAD matches the pushed SHA; all 9 key files verified present in the remote tree via GitHub API (554 tree entries, 0 missing; `skills/studio/studio-microdrama-plan.md` confirmed in-tree).
 
 **Next episode-pipeline revisit:** ~wave 29.
 
