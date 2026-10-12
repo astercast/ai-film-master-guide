@@ -83,7 +83,11 @@ klingai.com's exclusion takes effect on the next weekly run. If ltx.io
 ever accepts non-browser clients, LTX-2.5's watch should move from the
 GitHub releases page to the pricing page.
 
-**Commit:** (recorded below after push)
+**Commit:** local `14af31c` (23 files) → pushed 2026-10-12 as remote commit
+`e7e093e6f38d0f2ae855cc3c0cd09eb1ff3db1df` (gh-push.py, exit 0). Verified:
+remote tree `fd18e5ae` == local HEAD tree, 653 entries, not truncated,
+key files present (model-checks, model-history, check config, WAVELOG,
+model-watch page). Working repo only — no `-live` repo touched.
 
 ## Watchtower 2.0 — model status with a memory (2026-10-12)
 
