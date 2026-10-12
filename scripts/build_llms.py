@@ -193,7 +193,7 @@ def build_llms_txt():
     out.append("- `api/v1/model-checks.json` — model-watch freshness feed: per-model last check, source-signature diffs, news headlines")
     out.append("- `api/v1/model-review-queue.json` — pending model-watch review items (empty = nothing pending)")
     out.append("- `api/v1/schema/` — JSON Schema (draft-07) for EVERY endpoint: index, model, prompt-template, camera-movement, checklist, glossary, competition, teardown, diagnosis, model-checks, model-review-queue")
-    out.append("- `AGENT.md` — how an agent uses this repo: base URL pattern, example requests, four end-to-end workflows (Studio planning, prompt linting, model price tracking, mini-drama setup) — executable via `node scripts/agent-workflows.test.js`")
+    out.append("- `AGENT.md` — how an agent uses this repo: base URL pattern, example requests, five end-to-end workflows (Studio planning, prompt linting, model price tracking, mini-drama series setup, microdrama run economics) — executable via `node scripts/agent-workflows.test.js`")
     out.append("")
     out.append("## Skills (agentic task procedures)")
     out.append("")

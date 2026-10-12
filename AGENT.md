@@ -135,6 +135,32 @@ Input shape:
 revenge (60–150s), custom. One emotion per episode; beats × seconds-per-beat
 must land inside the format's band (the runtime estimator enforces this).
 
+## Example workflow 5 — plan a microdrama run's economics (Studio 2.5)
+
+The Studio's microdrama mode (`site/studio.html`, `assets/js/studio.js`
+`buildMicrodramaPlan`) is an **economics planner**, not a shot packet: it
+turns a run shape into a clip budget, a benchmark comparison, and a
+timeline from the documented $150-microdrama figures
+(`api/v1/teardowns.json`, id `storeel-off-campus`).
+
+Input shape:
+
+```json
+{ "title": "...", "logline": "...",
+  "episodes": 4, "minPerEpisode": 1, "tier": "draft", "regensPerEp": 5 }
+```
+
+- `episodes` 1–40 · `minPerEpisode` 0.5–3 (1 page of dialogue ≈ 1 minute ≈ 1 episode) · `tier` ∈ draft, festival.
+- **Clip budget:** ceil(runtime/15)–ceil(runtime/10) clips per episode (the documented 10–15s clip unit; StoReel's actual 146 clips / 30 storyboarded episodes ≈ 4.9 per 60s episode sits inside the 4–6 range).
+- **Benchmark:** $50/min × total minutes (TheWrap's reported AI-series rate — the benchmark to beat, not a promise).
+- **Generation cost:** runtime × takes × cheapest priced video model rate from `models.json` (the floor, verify live); takes = 3 (draft) or 5 (festival) — the ends of Qidian's documented 3–5 "drawing cards" range.
+- **Regen reserve:** regens/episode (your budget guess — StoReel paid for regenerations, no per-episode figure published) × cheapest image-model rate.
+- **Timeline:** 1 day per finished episode (the documented 4-days-for-4-episodes pace).
+- Export: `microdramaToMarkdown(plan)` — copy/download; save named runs in the browser.
+- Bridge: the episode planner's "Send run to Studio →" stages `{v:1, kind:"microdrama", episodes, minPerEpisode}` in the `afg-studio-bridge` localStorage key; the Studio pre-fills microdrama mode.
+
+Worked result for `{title, episodes: 4, minPerEpisode: 1, tier: "draft", regensPerEp: 5}` against the real data (verified by `node scripts/agent-workflows.test.js`): 4–6 clips/episode (16–24 for the run); $200 benchmark ($50/min × 4 min); generation 180s/episode × 3 takes at the cheapest video-model rate; regen reserve 20 regens at the cheapest image-model rate; 4 days at the documented pace; plan total vs benchmark in the run-budget table with every line's documented basis.
+
 ## Rate and expectation notes
 
 - **Static JSON.** No rate limits, no pagination — payloads are complete

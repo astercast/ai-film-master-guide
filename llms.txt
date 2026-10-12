@@ -71,11 +71,11 @@ research artifacts; outputs committed).
 - `api/v1/model-checks.json` — model-watch freshness feed: per-model last check, source-signature diffs, news headlines
 - `api/v1/model-review-queue.json` — pending model-watch review items (empty = nothing pending)
 - `api/v1/schema/` — JSON Schema (draft-07) for EVERY endpoint: index, model, prompt-template, camera-movement, checklist, glossary, competition, teardown, diagnosis, model-checks, model-review-queue
-- `AGENT.md` — how an agent uses this repo: base URL pattern, example requests, four end-to-end workflows (Studio planning, prompt linting, model price tracking, mini-drama setup) — executable via `node scripts/agent-workflows.test.js`
+- `AGENT.md` — how an agent uses this repo: base URL pattern, example requests, five end-to-end workflows (Studio planning, prompt linting, model price tracking, mini-drama series setup, microdrama run economics) — executable via `node scripts/agent-workflows.test.js`
 
 ## Skills (agentic task procedures)
 
-228 skills in `skills/` — rebuild with `python3 scripts/build_skills.py`
+229 skills in `skills/` — rebuild with `python3 scripts/build_skills.py`
 (generates from `api/v1/` data + authored procedures; outputs committed).
 `skills/index.json` is the manifest: id, title, description, path per skill.
 

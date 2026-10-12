@@ -496,4 +496,112 @@ test("optimizer: biggest decision names the priciest shot with a real alternativ
   }
 });
 
+/* ===== Studio 2.5: microdrama production planner (wave 28) =================
+   Pinned fixtures: the documented economics are constants; the model-rate
+   math derives its expectations from the real models.json (like the other
+   suites), so a rate change moves both sides of the assertion together. */
+const MIN = (o) => Object.assign(
+  { title: "Run Fixture", episodes: 4, minPerEpisode: 1, tier: "draft", regensPerEp: 5 }, o || {});
+
+test("microdrama: documented constants are pinned", () => {
+  assert.strictEqual(S.MICRO.clipLo, 10, "clip unit low end must be 10s (StoReel 146-clip breakdown)");
+  assert.strictEqual(S.MICRO.clipHi, 15, "clip unit high end must be 15s");
+  assert.strictEqual(S.MICRO.benchmarkPerMin, 50, "$50/min StoReel benchmark");
+  assert.strictEqual(S.MICRO.pugcPerMin, 150, "$150/min PUGC rate");
+  assert.strictEqual(S.MICRO.liveActionPerMin, 2000, "$2,000/min live-action figure");
+  assert.strictEqual(S.MICRO.paceDaysPerEp, 1, "4 episodes in 4 days = 1 day/ep");
+  assert.strictEqual(S.MICRO.takes.draft, 3, "draft = low end of the 3-5 drawing-cards range");
+  assert.strictEqual(S.MICRO.takes.festival, 5, "festival = high end of the 3-5 drawing-cards range");
+});
+
+test("microdrama: clip budget math (10-15s clips)", () => {
+  assert.deepStrictEqual(S.clipCountFor(1), { runtimeSec: 60, lo: 4, hi: 6 },
+    "1-minute episode: 60/15=4 to 60/10=6 clips");
+  assert.deepStrictEqual(S.clipCountFor(2), { runtimeSec: 120, lo: 8, hi: 12 },
+    "2-minute episode: 8-12 clips");
+  /* StoReel's actual granularity must sit inside the documented range */
+  const actual = 146 / 30;
+  assert.ok(actual >= 4 && actual <= 6,
+    "StoReel's 146 clips / 30 storyboarded episodes (~" + actual.toFixed(1) + ") must sit inside the 4-6 range for a 60s episode");
+});
+
+test("microdrama: benchmark totals are pure documented arithmetic", () => {
+  const p = S.buildMicrodramaPlan(DATA, MIN());
+  assert.strictEqual(p.benchmarkPerEp, 50, "1 min x $50/min = $50/episode");
+  assert.strictEqual(p.benchmarkTotal, 200, "4 episodes x $50 = $200 benchmark");
+  assert.strictEqual(p.pugcRef, 600, "4 min x $150/min PUGC = $600");
+  assert.strictEqual(p.liveActionRef, 8000, "4 min x $2,000/min live-action = $8,000");
+  assert.strictEqual(p.timelineDays, 4, "4 episodes at the documented pace = 4 days");
+});
+
+test("microdrama: generation math derives from models.json (pinned relationships)", () => {
+  const p = S.buildMicrodramaPlan(DATA, MIN());
+  const vids = models.filter((m) => m.type === "video" && m.status !== "discontinued");
+  const cps = (m) => { const mt = String(m.est_cost_credits || "").match(/(\d+(?:\.\d+)?)\s*\/\s*(\d+)\s*s/); return mt ? parseFloat(mt[1]) / parseFloat(mt[2]) : null; };
+  const priced = vids.map((m) => ({ m, c: cps(m) })).filter((x) => x.c !== null)
+    .sort((a, b) => a.c - b.c);
+  assert.ok(priced.length, "need at least one priced video model");
+  assert.strictEqual(p.rate.model, priced[0].m.model, "planner rate = cheapest priced video model");
+  assert.strictEqual(p.genSecPerEp, 60 * 3, "draft: 60s x 3 retakes = 180 generated s/episode");
+  assert.strictEqual(p.genSecTotal, 180 * 4, "720 generated seconds for the run");
+  assert.ok(Math.abs(p.budget.genCreditsTotal - 720 * priced[0].c) < 0.01,
+    "generation credits = seconds x rate");
+  const imgs = models.filter((m) => m.type === "image" && m.status !== "discontinued");
+  const cpi = (m) => { const mt = String(m.est_cost_credits || "").match(/~?(\d+(?:\.\d+)?)\s*\/\s*image/); return mt ? parseFloat(mt[1]) : null; };
+  const pi = imgs.map((m) => ({ m, c: cpi(m) })).filter((x) => x.c !== null)
+    .sort((a, b) => a.c - b.c);
+  if (pi.length) {
+    assert.strictEqual(p.img.model, pi[0].m.model, "regen rate = cheapest priced image model");
+    assert.strictEqual(p.budget.regenCount, 20, "5 regens/ep x 4 episodes");
+    assert.ok(Math.abs(p.budget.regenCredits - 20 * pi[0].c) < 0.01,
+      "regen credits = count x image rate");
+  } else {
+    assert.strictEqual(p.img, null, "no priced image model -> null, flagged verify-live");
+  }
+  assert.ok(Math.abs(p.budget.totalUsd -
+    (p.budget.genCreditsTotal + p.budget.regenCredits) * 0.0392) < 0.01,
+    "total USD = total credits x $0.0392");
+  assert.ok(p.perMinPlan <= p.benchmarkTotal / p.totalMinutes,
+    "the plan's per-minute cost must land at or under the $50/min benchmark on the fixture");
+  assert.ok(p.viduRef && p.viduRef.indexOf("$0.014/s") !== -1,
+    "Vidu Q4 Preview reference line must carry the launch pricing claim");
+});
+
+test("microdrama: festival tier uses the high end of the retake range", () => {
+  const f = S.buildMicrodramaPlan(DATA, MIN({ tier: "festival" }));
+  assert.strictEqual(f.takes, 5, "festival = 5x");
+  assert.strictEqual(f.genSecPerEp, 60 * 5, "festival: 60s x 5 retakes = 300 generated s/episode");
+  assert.ok(f.budget.genCreditsPerEp > S.buildMicrodramaPlan(DATA, MIN()).budget.genCreditsPerEp,
+    "festival generation cost must exceed draft at the same rate");
+});
+
+test("microdrama: deterministic + input validation", () => {
+  const a = JSON.stringify(S.buildMicrodramaPlan(DATA, MIN()));
+  const b = JSON.stringify(S.buildMicrodramaPlan(DATA, MIN()));
+  assert.strictEqual(a, b, "same inputs must build byte-identical plans");
+  assert.notStrictEqual(S.buildMicrodramaPlan(DATA, MIN()).seed,
+    S.buildMicrodramaPlan(DATA, MIN({ episodes: 5 })).seed, "seed must change with the inputs");
+  assert.throws(() => S.buildMicrodramaPlan(DATA, MIN({ episodes: 0 })), /1–40/,
+    "0 episodes must throw");
+  assert.throws(() => S.buildMicrodramaPlan(DATA, MIN({ episodes: 41 })), /1–40/,
+    "41 episodes must throw");
+  assert.throws(() => S.buildMicrodramaPlan(DATA, MIN({ minPerEpisode: 0 })), /0.5–3/,
+    "0 min/episode must throw");
+  assert.throws(() => S.buildMicrodramaPlan(DATA, MIN({ tier: "ultra" })), /unknown tier/,
+    "unknown tier must throw");
+  assert.throws(() => S.buildMicrodramaPlan(DATA, MIN({ title: "" })), /title/,
+    "missing title must throw");
+});
+
+test("microdrama: markdown plan carries the honesty framing", () => {
+  const md = S.microdramaToMarkdown(S.buildMicrodramaPlan(DATA, MIN()));
+  assert.ok(md.includes("Documented production economics"), "must carry the economics block");
+  assert.ok(md.includes("$50/min"), "must name the $50/min benchmark");
+  assert.ok(md.includes("storeel-off-campus"), "must point at the teardown id");
+  assert.ok(md.includes("verify live"), "must carry verify-live flags");
+  assert.ok(md.includes("benchmark to beat, not a promise"), "must carry the honesty framing");
+  assert.ok(md.includes("drawing cards"), "must name the retake discipline");
+  assert.ok(md.includes("your budget guess"), "the regen count must be labeled as the filmmaker's input");
+});
+
 console.log(`\nstudio.test.js: ${n} tests, ${process.exitCode ? "FAILURES" : "all pass"}`);

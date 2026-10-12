@@ -62,6 +62,14 @@
       + "</div>"
       + shotCard(t, state.shot)
       + '<details class="td-sources"><summary>Sources for this teardown</summary><ul>' + sources + "</ul></details>"
+      + (t.id === "storeel-off-campus"
+        ? '<div class="card td-cta" style="margin-top:var(--space-4);"><p><strong>' +
+          "Turn these economics into a plan.</strong> The Studio's microdrama " +
+          "mode plans the clip budget, the $50/min benchmark, the 3–5× retake " +
+          "budget, the regen reserve, and the timeline from these same " +
+          "documented figures.</p>" +
+          '<p><a class="btn" href="studio.html?mode=microdrama">Plan a microdrama run →</a></p></div>'
+        : "")
       + "</div>"
       + '<p class="td-note">Prompt reconstructions are analytical reconstructions for study — not the productions\u2019 actual prompts. Production facts carry their sources above.</p>';
   }

@@ -678,6 +678,277 @@
     };
   }
 
+  /* ---- Studio 2.5: microdrama production planner --------------------------
+     An economics planner for serialized AI-microdrama runs — not a shot
+     packet. Every figure below is labeled with its documented basis, from
+     the wave-27 teardown "The $150 Microdrama" (api/v1/teardowns.json,
+     id `storeel-off-campus` — TheWrap, June 2026; Sixth Tone, June 2026):
+     - Clip unit 10–15s: StoReel Canvas split a 30-episode storyboard into
+       146 clips of 10–15s — the unit of generation for the whole run.
+     - $50/min benchmark: TheWrap's reported per-minute AI series cost
+       (~$150 for 4 one-minute episodes ≈ $37.50/ep), vs ~$2,000/min for a
+       typical live-action microseries. One platform's rate card, one
+       experiment — a benchmark to beat, not a promise.
+     - 3–5 "drawing cards": Qidian Interactive's retake discipline — 3 to
+       5 attempts per usable shot. Draft tier plans the low end (3×),
+       festival tier the high end (5×).
+     - 1 day/episode: TheWrap's reporter shipped 4 one-minute episodes in
+       4 days — script, breakdown, generation, and assembly inside the day;
+       free (reporter) labor, scripting cost uncounted.
+     - Character regenerations were a real paid cost (faces drifting); no
+       per-episode figure was published — the count is the filmmaker's
+       input, priced at the cheapest image-model rate.
+     Generation rates come from api/v1/models.json (always flagged
+     verify-live in this planner); everything else is arithmetic on the
+     filmmaker's inputs. Nothing here is a promise about any live price. */
+  var MICRO = {
+    clipLo: 10, clipHi: 15,
+    benchmarkPerMin: 50,
+    pugcPerMin: 150,
+    liveActionPerMin: 2000,
+    paceDaysPerEp: 1,
+    takes: { draft: 3, festival: 5 },
+    maxEpisodes: 40, minEpMin: 0.5, maxEpMin: 3,
+    maxRegensPerEp: 100
+  };
+
+  function clipCountFor(minPerEp) {
+    var secs = minPerEp * 60;
+    return {
+      runtimeSec: secs,
+      lo: Math.ceil(secs / MICRO.clipHi),
+      hi: Math.ceil(secs / MICRO.clipLo)
+    };
+  }
+
+  /* Cheapest priced video / image model in the data — the planner's rate
+     floor, always labeled as such. Null when nothing in the file is priced. */
+  function cheapestPricedVideo(data) {
+    var best = null, bestCps = null;
+    (data.models || []).forEach(function (m) {
+      if (m.type !== "video" || m.status === "discontinued") return;
+      var cps = costPerSec(m);
+      if (cps !== null && (bestCps === null || cps < bestCps)) {
+        bestCps = cps; best = m;
+      }
+    });
+    return best ? {
+      model: best.model, platform: best.platform, cps: bestCps,
+      lastVerified: best.last_verified || null
+    } : null;
+  }
+
+  function cheapestPricedImage(data) {
+    var best = null, bestCpi = null;
+    (data.models || []).forEach(function (m) {
+      if (m.type !== "image" || m.status === "discontinued") return;
+      var cpi = costPerImage(m);
+      if (cpi !== null && (bestCpi === null || cpi < bestCpi)) {
+        bestCpi = cpi; best = m;
+      }
+    });
+    return best ? {
+      model: best.model, platform: best.platform, cpi: bestCpi,
+      lastVerified: best.last_verified || null
+    } : null;
+  }
+
+  /* input: { title, logline?, episodes (1–40), minPerEpisode (0.5–3),
+              tier (draft|festival), regensPerEp (0–100 — your budget guess) }
+     Deterministic: same inputs → byte-identical plan. */
+  function buildMicrodramaPlan(data, input) {
+    var episodes = parseInt(input.episodes, 10);
+    if (!(episodes >= 1 && episodes <= MICRO.maxEpisodes)) {
+      throw new Error("episode count must be 1–" + MICRO.maxEpisodes +
+        ", got " + input.episodes);
+    }
+    var minPerEp = parseFloat(input.minPerEpisode);
+    if (!(minPerEp >= MICRO.minEpMin && minPerEp <= MICRO.maxEpMin)) {
+      throw new Error("minutes per episode must be " + MICRO.minEpMin + "–" +
+        MICRO.maxEpMin + ", got " + input.minPerEpisode);
+    }
+    if (!TIERS[input.tier]) throw new Error("unknown tier: " + input.tier);
+    var regensPerEp = parseFloat(input.regensPerEp);
+    if (!(regensPerEp >= 0 && regensPerEp <= MICRO.maxRegensPerEp)) {
+      throw new Error("regenerations per episode must be 0–" +
+        MICRO.maxRegensPerEp + ", got " + input.regensPerEp);
+    }
+    if (!input.title) throw new Error("the run needs a title");
+
+    var takes = MICRO.takes[input.tier];
+    var clips = clipCountFor(minPerEp);
+    var runtimeSec = clips.runtimeSec;
+    var totalMinutes = r2(episodes * minPerEp);
+    var totalClips = { lo: clips.lo * episodes, hi: clips.hi * episodes };
+
+    var rate = cheapestPricedVideo(data);
+    var img = cheapestPricedImage(data);
+    var vidu = null;
+    (data.models || []).forEach(function (m) {
+      if (/vidu q4/i.test(String(m.model || ""))) vidu = m;
+    });
+
+    var genSecPerEp = runtimeSec * takes;
+    var genSecTotal = genSecPerEp * episodes;
+    var genCreditsPerEp = rate ? r2(genSecPerEp * rate.cps) : 0;
+    var genCreditsTotal = r2(genCreditsPerEp * episodes);
+    var regenCount = regensPerEp * episodes;
+    var regenCredits = img ? r2(regenCount * img.cpi) : 0;
+    var genUsdPerEp = rate ? r2(genCreditsPerEp * USD_PER_CREDIT) : 0;
+    var genUsdTotal = rate ? r2(genCreditsTotal * USD_PER_CREDIT) : 0;
+    var regenUsdTotal = img ? r2(regenCredits * USD_PER_CREDIT) : 0;
+    var totalUsd = r2(genUsdTotal + regenUsdTotal);
+    var perEpUsd = r2(totalUsd / episodes);
+
+    var benchmarkPerEp = r2(MICRO.benchmarkPerMin * minPerEp);
+    var benchmarkTotal = r2(MICRO.benchmarkPerMin * totalMinutes);
+
+    var seed = fnv1a(["microdrama", input.title, episodes, minPerEp,
+      input.tier, regensPerEp].join("|")).toString(16);
+
+    return {
+      kind: "microdrama",
+      input: {
+        title: input.title, logline: input.logline || "",
+        episodes: episodes, minPerEpisode: minPerEp, tier: input.tier,
+        tierLabel: TIERS[input.tier].label, regensPerEp: regensPerEp
+      },
+      seed: seed,
+      episodes: episodes, minPerEpisode: minPerEp, tier: input.tier,
+      runtimeSec: runtimeSec, totalMinutes: totalMinutes,
+      clipsPerEp: { lo: clips.lo, hi: clips.hi },
+      totalClips: totalClips,
+      storeelClipCheck: "StoReel's actual granularity — 146 clips for a " +
+        "30-episode storyboard ≈ " + (146 / 30).toFixed(1) +
+        " clips per 60s episode — sits inside this " + clips.lo + "–" +
+        clips.hi + " range.",
+      takes: takes,
+      benchmarkPerEp: benchmarkPerEp, benchmarkTotal: benchmarkTotal,
+      pugcRef: r2(MICRO.pugcPerMin * totalMinutes),
+      liveActionRef: r2(MICRO.liveActionPerMin * totalMinutes),
+      rate: rate, img: img,
+      viduRef: vidu ? vidu.est_cost_credits : null,
+      genSecPerEp: genSecPerEp, genSecTotal: genSecTotal,
+      budget: {
+        genCreditsPerEp: genCreditsPerEp, genCreditsTotal: genCreditsTotal,
+        genUsdPerEp: genUsdPerEp, genUsdTotal: genUsdTotal,
+        regenCount: regenCount, regenCredits: regenCredits,
+        regenUsdTotal: regenUsdTotal,
+        totalCredits: r2(genCreditsTotal + regenCredits),
+        totalUsd: totalUsd, perEpUsd: perEpUsd,
+        verifyLive: true
+      },
+      perMinPlan: totalMinutes ? r2(totalUsd / totalMinutes) : 0,
+      timelineDays: episodes * MICRO.paceDaysPerEp,
+      paceNote: "1 day per finished episode — StoReel's documented pace " +
+        "(4 episodes in 4 days). Script, breakdown, generation, and assembly " +
+        "all inside the day; free reporter labor, scripting cost uncounted. " +
+        "Festival-tier work runs slower — no documented festival pace exists, " +
+        "so adjust from your own runs."
+    };
+  }
+
+  /* Microdrama run plan: markdown. Economics-only: clip budget, the $50/min
+     benchmark, model-rate generation cost, the retake envelope, the regen
+     reserve, PUGC revenue context, timeline — every line carrying its
+     documented basis. */
+  function microdramaToMarkdown(plan) {
+    var L = [];
+    var inp = plan.input;
+    var b = plan.budget;
+    L.push("# " + inp.title + " — microdrama run plan");
+    L.push("");
+    if (inp.logline) { L.push("_Logline:_ " + inp.logline); L.push(""); }
+    L.push(inp.episodes + " episodes × " + inp.minPerEpisode + " min/episode (" +
+      plan.runtimeSec + "s) · " + inp.tierLabel + " tier (" + plan.takes +
+      "× retakes) · plan seed `" + plan.seed + "`");
+    L.push("");
+    L.push("Planned by the Studio's microdrama mode (AI Film Master Guide, " +
+      "Studio 2.5) from the documented economics in the guide's \"The $150 " +
+      "Microdrama\" teardown (`api/v1/teardowns.json`, id `storeel-off-campus` " +
+      "— TheWrap, June 2026; Sixth Tone, June 2026) and live `models.json` " +
+      "rates. Every figure below is a benchmark or a range, never a promise; " +
+      "model rates are third-party estimates — verify live before spending.");
+    L.push("");
+    L.push("## Clip budget");
+    L.push("");
+    L.push("|  | Per episode | Whole run (" + plan.episodes + " eps) |");
+    L.push("|---|---|---|");
+    L.push("| Runtime | " + plan.runtimeSec + "s | " + plan.totalMinutes +
+      " min finished |");
+    L.push("| Clips (10–15s each) | " + plan.clipsPerEp.lo + "–" +
+      plan.clipsPerEp.hi + " | " + plan.totalClips.lo + "–" +
+      plan.totalClips.hi + " |");
+    L.push("");
+    L.push("Basis: 146 clips of 10–15s for StoReel's 30-episode storyboard " +
+      "(TheWrap) — the documented unit of generation. " +
+      plan.storeelClipCheck + " One page of dialogue ≈ one minute ≈ one " +
+      "episode (TheWrap's industry survey).");
+    L.push("");
+    L.push("## Run budget");
+    L.push("");
+    L.push("| Line item | Math | Cost | Documented basis |");
+    L.push("|---|---|---|---|");
+    L.push("| Documented benchmark | $50/min × " + plan.totalMinutes +
+      " min | " + fmtUSD(plan.benchmarkTotal) + " | TheWrap's reported AI " +
+      "series rate (~$150 for 4 one-minute episodes ≈ $37.50/ep). One " +
+      "platform's rate card, one experiment — the benchmark to beat, not a promise. |");
+    L.push("| Generation (" + plan.takes + "× retakes) | " +
+      plan.genSecTotal + "s × " +
+      (plan.rate ? plan.rate.cps.toFixed(2) + " credits/s (" + plan.rate.model +
+        ")" : "no priced video model") + " | " +
+      (plan.rate ? fmtUSD(b.genUsdTotal) : "verify live") + " | " +
+      plan.takes + "× = the " + inp.tierLabel.toLowerCase() + " end of " +
+      "Qidian's 3–5 \"drawing cards\" retake range (Sixth Tone). Rate = " +
+      "cheapest priced video model in `models.json` — the generation floor, " +
+      "verify live. |");
+    L.push("| Character-regen reserve | " + b.regenCount + " regens × " +
+      (plan.img ? plan.img.cpi + " credits (" + plan.img.model + ")" :
+        "no priced image model") + " | " +
+      (plan.img ? fmtUSD(b.regenUsdTotal) : "verify live") + " | StoReel " +
+      "paid for regenerations when faces drifted; no per-episode figure was " +
+      "published — the count (" + inp.regensPerEp + "/ep) is your budget " +
+      "guess, priced at the cheapest image-model rate. |");
+    L.push("| **Plan total** | generation + regen reserve | **" +
+      fmtUSD(b.totalUsd) + "** (" + fmtUSD(b.perEpUsd) + "/episode, " +
+      fmtUSD(plan.perMinPlan) + "/min) | Your plan's per-minute cost " +
+      "vs the $50/min benchmark. |");
+    L.push("| Live-action context | $2,000/min × " + plan.totalMinutes +
+      " min | " + fmtUSD(plan.liveActionRef) + " | TheWrap's reported " +
+      "typical live-action microseries figure. Context, not a quote. |");
+    L.push("| PUGC revenue context | $150/min × " + plan.totalMinutes +
+      " min | " + fmtUSD(plan.pugcRef) + " | StoReel's reported payout rate " +
+      "for creator series it designates. Platform-specific — not revenue " +
+      "you can count on. |");
+    L.push("");
+    if (plan.viduRef) {
+      L.push("Reference pricing (not used in the math): Vidu Q4 Preview — " +
+        plan.viduRef + " (PR Newswire, preview pricing — verify live).");
+      L.push("");
+    }
+    L.push("## Documented production economics (benchmarks, not predictions)");
+    L.push("");
+    L.push("StoReel Canvas 'Off Campus' experiment (TheWrap, June 2026): 4 " +
+      "one-minute AI episodes in 4 days for ~$150 in credits (≈$37.50/episode); " +
+      "AI series generation ≈$50/min vs live-action ≈$2,000/min; 146 clips " +
+      "of 10–15s for a 30-episode storyboard; character regenerations paid " +
+      "when faces drifted. StoReel's PUGC payout rate: ≈$150/min for creator " +
+      "series it designates. Qidian Interactive's AI studio (Sixth Tone, June " +
+      "2026): 3–5 retakes per usable shot ('drawing cards'). Finishing " +
+      "StoReel's full 30-episode storyboard was estimated at 'a few thousand " +
+      "dollars more' in credits. Full teardown: `storeel-off-campus`.");
+    L.push("");
+    L.push("## Timeline");
+    L.push("");
+    L.push("**" + plan.timelineDays + " day" +
+      (plan.timelineDays === 1 ? "" : "s") + " at the documented pace** — " +
+      "≈7 episodes/week. " + plan.paceNote);
+    L.push("");
+    L.push("All model rates are third-party estimates at $0.0392/credit " +
+      "(models.json cost_basis, Oct 2026) — verify live before spending.");
+    return L.join("\n");
+  }
+
   /* ---- markdown export --------------------------------------------------- */
   function planToMarkdown(plan) {
     var L = [];
@@ -1588,6 +1859,11 @@
     buildPlan: buildPlan, planToMarkdown: planToMarkdown,
     seriesBible: seriesBible, buildSeriesPlan: buildSeriesPlan,
     seriesToMarkdown: seriesToMarkdown, seriesToHtml: seriesToHtml, fmtUSD: fmtUSD,
+    MICRO: MICRO, clipCountFor: clipCountFor,
+    cheapestPricedVideo: cheapestPricedVideo,
+    cheapestPricedImage: cheapestPricedImage,
+    buildMicrodramaPlan: buildMicrodramaPlan,
+    microdramaToMarkdown: microdramaToMarkdown,
     modelRateOptions: modelRateOptions, rateAtRes: rateAtRes,
     modelDocMaxRes: modelDocMaxRes, modelMaxClipSec: modelMaxClipSec,
     optAudioCapable: optAudioCapable, rankOfModel: rankOfModel,
@@ -1629,6 +1905,10 @@
       generate: document.getElementById("st-generate"),
       seriesPanel: document.getElementById("st-series-panel"),
       runtimeFieldset: document.getElementById("st-runtime-fs"),
+      mdPanel: document.getElementById("st-micro-panel"),
+      mdEps: document.getElementById("st-md-eps"),
+      mdMin: document.getElementById("st-md-min"),
+      mdRegens: document.getElementById("st-md-regens"),
       eps: document.getElementById("st-eps"),
       epRuntime: document.getElementById("st-epruntime"),
       castList: document.getElementById("st-cast-list"),
@@ -1704,8 +1984,10 @@
     var e = els();
     var kind = projectKind();
     var isSeries = SERIES_FORMATS[kind] != null;
+    var isMicro = kind === "microdrama";
     e.seriesPanel.hidden = !isSeries;
-    e.runtimeFieldset.hidden = isSeries;
+    e.runtimeFieldset.hidden = isSeries || isMicro;
+    if (e.mdPanel) e.mdPanel.hidden = !isMicro;
     e.dlHtml.hidden = !(CURRENT && CURRENT.kind === "series");
     if (isSeries) {
       var f = SERIES_FORMATS[kind];
@@ -1727,6 +2009,8 @@
       e.presetNote.textContent = f.label + ": " + f.band[0] + "–" + f.band[1] +
         "s per episode · " + f.beats + " beats/episode · hook: " + f.hookStyle + ". " + f.voiceRule;
       e.generate.textContent = "Build my series packet";
+    } else if (isMicro) {
+      e.generate.textContent = "Plan my microdrama run";
     } else {
       e.generate.textContent = "Build my production packet";
     }
@@ -2270,10 +2554,19 @@
   /* LocalStorage plans: names, kind badge, Load (continue planning),
      Duplicate, Delete — all real buttons, keyboard-operable. Old wave-15
      entries (no kind) are treated as films. */
-  function planKind(p) { return p.kind === "series" ? "series" : "film"; }
+  function planKind(p) {
+    if (p.kind === "microdrama") return "microdrama";
+    return p.kind === "series" ? "series" : "film";
+  }
 
   function planMeta(p) {
     var kind = planKind(p);
+    if (kind === "microdrama") {
+      var i = p.input || {};
+      return "Microdrama run · " + (i.episodes || "?") + " eps × " +
+        (i.minPerEpisode || "?") + " min · " + (i.tier || "") + " · " +
+        ((p.plan && p.plan.budget) ? fmtUSD(p.plan.budget.totalUsd) : "?") + " run";
+    }
     if (kind === "series") {
       var b = (p.plan && p.plan.bible) || {};
       return esc(b.formatLabel || "Series") + " · " + (b.episodes || "?") + " episodes · " +
@@ -2303,6 +2596,15 @@
       f.locations.value = (inp.locations || []).join(", ");
       CURRENT = { kind: "series", input: inp, plan: p.plan };
       renderSeries(p.plan);
+    } else if (kind === "microdrama") {
+      var mr = document.querySelector('input[name="st-kind"][value="microdrama"]');
+      if (mr) mr.checked = true;
+      refreshKindUI();
+      f.mdEps.value = inp.episodes || 4;
+      f.mdMin.value = inp.minPerEpisode || 1;
+      f.mdRegens.value = inp.regensPerEp != null ? inp.regensPerEp : 5;
+      CURRENT = { kind: "microdrama", input: inp, plan: p.plan };
+      renderMicrodrama(p.plan);
     } else {
       var fr = document.querySelector('input[name="st-kind"][value="film"]');
       if (fr) fr.checked = true;
@@ -2368,6 +2670,158 @@
     e.msg.textContent = msg;
   }
 
+  /* ---------------- microdrama mode (Studio 2.5) --------------------------- */
+  function readMicroInput() {
+    var e = els();
+    var tier = document.querySelector('input[name="st-tier"]:checked');
+    return {
+      title: e.title.value.trim(),
+      logline: e.logline.value.trim(),
+      episodes: Math.max(1, Math.min(MICRO.maxEpisodes,
+        parseInt(e.mdEps.value, 10) || 4)),
+      minPerEpisode: Math.max(MICRO.minEpMin, Math.min(MICRO.maxEpMin,
+        parseFloat(e.mdMin.value) || 1)),
+      tier: tier ? tier.value : "draft",
+      regensPerEp: Math.max(0, Math.min(MICRO.maxRegensPerEp,
+        parseFloat(e.mdRegens.value) || 0))
+    };
+  }
+
+  /* Episode-planner "Send run to Studio" → Studio microdrama mode. The
+     planner stages {v:1, kind:"microdrama", episodes, minPerEpisode,
+     seriesTitle, logline} in the same bridge key; the series consumer
+     ignores non-"series" payloads, so the two bridges coexist. */
+  function consumeMicrodramaBridge() {
+    var raw = null;
+    try { raw = localStorage.getItem(BRIDGE_KEY); } catch (err) { /* ignore */ }
+    if (!raw) return null;
+    var b = null;
+    try { b = JSON.parse(raw); } catch (err) { return null; }
+    if (!b || b.v !== 1 || b.kind !== "microdrama") return null;
+    try { localStorage.removeItem(BRIDGE_KEY); } catch (err) { /* ignore */ }
+    return b;
+  }
+
+  function applyMicrodramaBridge(b) {
+    var e = els();
+    var radio = document.querySelector('input[name="st-kind"][value="microdrama"]');
+    if (radio) radio.checked = true;
+    refreshKindUI();
+    if (b.seriesTitle) e.title.value = b.seriesTitle;
+    if (b.logline) e.logline.value = b.logline;
+    if (b.episodes) {
+      e.mdEps.value = Math.max(1, Math.min(MICRO.maxEpisodes,
+        parseInt(b.episodes, 10) || 4));
+    }
+    if (b.minPerEpisode) {
+      e.mdMin.value = Math.max(MICRO.minEpMin, Math.min(MICRO.maxEpMin,
+        parseFloat(b.minPerEpisode) || 1));
+    }
+    announce("Planner run staged into microdrama mode: " +
+      (b.episodes || "?") + " episodes × " + (b.minPerEpisode || "?") +
+      " min/episode. Review the inputs, then press “Plan my microdrama run”.");
+  }
+
+  function renderMicrodrama(plan) {
+    var e = els();
+    var inp = plan.input;
+    var b = plan.budget;
+
+    var rateCell = plan.rate
+      ? plan.rate.cps.toFixed(2) + " credits/s (" + esc(plan.rate.model) + ")"
+      : "no priced video model";
+    var imgCell = plan.img
+      ? plan.img.cpi + " credits/regen (" + esc(plan.img.model) + ")"
+      : "no priced image model";
+
+    e.results.innerHTML =
+      '<section aria-labelledby="st-run-h">' +
+      '<p class="st-kicker">Microdrama run plan · Studio 2.5 · plan seed <code>' +
+      esc(plan.seed) + "</code> · deterministic: same inputs, same plan</p>" +
+      '<h2 id="st-run-h" tabindex="-1">' + esc(inp.title) + "</h2>" +
+      (inp.logline ? '<p class="lede">' + esc(inp.logline) + "</p>" : "") +
+      '<p class="calc-note"><strong>Economics-only planner</strong> — no shot ' +
+      "list, no per-shot model picks. The run's clip budget, cost envelope, " +
+      "and timeline from the documented $150-microdrama figures (TheWrap / " +
+      "Sixth Tone, June 2026). Every number carries its documented basis " +
+      "below; model rates are third-party estimates — <strong>verify live</strong> " +
+      "before spending.</p>" +
+      "<h3>Clip budget</h3>" +
+      '<div class="table-scroll"><table><caption>Generation happens in 10–15s ' +
+      "clips — StoReel Canvas's documented unit.</caption>" +
+      "<thead><tr><th scope=\"col\"></th><th scope=\"col\">Per episode</th>" +
+      "<th scope=\"col\">Whole run (" + plan.episodes + " episodes)</th></tr></thead><tbody>" +
+      "<tr><td>Runtime</td><td>" + plan.runtimeSec + "s</td><td>" +
+      plan.totalMinutes + " min finished</td></tr>" +
+      "<tr><td>Clips (10–15s each)</td><td><strong>" + plan.clipsPerEp.lo +
+      "–" + plan.clipsPerEp.hi + "</strong></td><td><strong>" +
+      plan.totalClips.lo + "–" + plan.totalClips.hi + "</strong></td></tr>" +
+      "</tbody></table></div>" +
+      '<p class="calc-note">' + esc(plan.storeelClipCheck) +
+      " One page of dialogue ≈ one minute ≈ one episode (TheWrap's industry survey).</p>" +
+      "<h3>Run budget</h3>" +
+      '<div class="table-scroll"><table><caption>Every line shows its math and its documented basis.</caption>' +
+      "<thead><tr><th scope=\"col\">Line item</th><th scope=\"col\">Math</th>" +
+      "<th scope=\"col\">Cost</th><th scope=\"col\">Documented basis</th></tr></thead><tbody>" +
+      "<tr><td>Documented benchmark</td><td class=\"st-math\">$50/min × " +
+      plan.totalMinutes + " min</td><td><strong>" + fmtUSD(plan.benchmarkTotal) +
+      "</strong></td><td class=\"st-note\">TheWrap's reported AI-series rate " +
+      "(~$150 for 4 one-minute episodes ≈ $37.50/ep). One platform's rate " +
+      "card, one experiment — the benchmark to beat, not a promise.</td></tr>" +
+      "<tr><td>Generation (" + plan.takes + "× retakes)</td><td class=\"st-math\">" +
+      plan.genSecTotal + "s × " + esc(rateCell) + "</td><td><strong>" +
+      (plan.rate ? fmtUSD(b.genUsdTotal) : "verify live") + "</strong></td>" +
+      "<td class=\"st-note\">" + plan.takes + "× = the " +
+      esc(inp.tierLabel.toLowerCase()) + " end of Qidian's 3–5 “drawing cards” " +
+      "retake range (Sixth Tone). Rate = the cheapest priced video model in " +
+      "`models.json` — the generation floor, verify live.</td></tr>" +
+      "<tr><td>Character-regen reserve</td><td class=\"st-math\">" +
+      b.regenCount + " regens × " + esc(imgCell) + "</td><td><strong>" +
+      (plan.img ? fmtUSD(b.regenUsdTotal) : "verify live") + "</strong></td>" +
+      "<td class=\"st-note\">StoReel paid for regenerations when faces drifted; " +
+      "no per-episode figure was published — the count (" + inp.regensPerEp +
+      "/ep) is your budget guess, priced at the cheapest image-model rate.</td></tr>" +
+      "<tr><td><strong>Plan total</strong></td><td class=\"st-math\">generation + " +
+      "regen reserve</td><td><strong>" + fmtUSD(b.totalUsd) + "</strong> (" +
+      fmtUSD(b.perEpUsd) + "/ep, " + fmtUSD(plan.perMinPlan) + "/min)</td>" +
+      "<td class=\"st-note\">Your plan's per-minute cost vs the $50/min benchmark.</td></tr>" +
+      "<tr><td>Live-action context</td><td class=\"st-math\">$2,000/min × " +
+      plan.totalMinutes + " min</td><td>" + fmtUSD(plan.liveActionRef) +
+      "</td><td class=\"st-note\">TheWrap's reported typical live-action " +
+      "microseries figure. Context, not a quote.</td></tr>" +
+      "<tr><td>PUGC revenue context</td><td class=\"st-math\">$150/min × " +
+      plan.totalMinutes + " min</td><td>" + fmtUSD(plan.pugcRef) +
+      "</td><td class=\"st-note\">StoReel's reported payout rate for creator " +
+      "series it designates. Platform-specific — not revenue you can count on.</td></tr>" +
+      "</tbody></table></div>" +
+      (plan.viduRef
+        ? '<p class="calc-note">Reference pricing (not used in the math): <strong>Vidu Q4 Preview</strong> — ' +
+          esc(plan.viduRef) + " (PR Newswire, preview pricing — verify live).</p>"
+        : "") +
+      "<h3>Timeline</h3>" +
+      '<p class="calc-note"><strong>' + plan.timelineDays + " day" +
+      (plan.timelineDays === 1 ? "" : "s") +
+      "</strong> at the documented pace — ≈7 episodes/week. " +
+      esc(plan.paceNote) + "</p>" +
+      "<h3>Documented production economics (benchmarks, not predictions)</h3>" +
+      '<p class="calc-note">StoReel Canvas “Off Campus” experiment (TheWrap, June 2026): ' +
+      "4 one-minute AI episodes in 4 days for ~$150 in credits (≈$37.50/episode); " +
+      "AI series generation ≈$50/min vs live-action ≈$2,000/min; 146 clips of " +
+      "10–15s for a 30-episode storyboard; character regenerations paid when " +
+      "faces drifted. StoReel's PUGC payout rate: ≈$150/min for creator series it " +
+      "designates. Qidian Interactive's AI studio (Sixth Tone, June 2026): 3–5 " +
+      "retakes per usable shot (“drawing cards”). Full teardown: " +
+      "`storeel-off-campus` — <a href=\"teardown.html\">read it shot by shot →</a>.</p>" +
+      "</section>";
+    e.actions.hidden = false;
+    e.dlHtml.hidden = true;
+    e.optSec.hidden = true;
+    document.getElementById("st-run-h").focus({ preventScroll: false });
+    var smooth = typeof window.matchMedia === "function" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+    e.results.scrollIntoView({ block: "start", behavior: smooth });
+  }
+
   function init() {
     var e = els();
     if (!e.title) return;
@@ -2388,14 +2842,31 @@
     setCastRows([]);
     refreshKindUI();
 
-    /* Episode-planner bridge: a planner "Send series to Studio" lands here. */
+    /* Episode-planner bridges: "Send series to Studio" (kind "series") or
+       "Send run to Studio" (kind "microdrama") lands here. */
     var bridge = consumeBridge();
     if (bridge) {
       BRIDGE_ARCS = applyBridge(bridge);
-    } else if (/[?&]from=planner/.test(location.search)) {
+    }
+    var mdBridge = consumeMicrodramaBridge();
+    if (mdBridge) {
+      applyMicrodramaBridge(mdBridge);
+    }
+    if (!bridge && !mdBridge && /[?&]from=planner/.test(location.search)) {
       e.importMsg.hidden = false;
       e.importMsg.textContent = "The planner sent you here, but no series payload was found in this browser " +
-        "(it was already consumed or never saved). Plan manually below — or go back and press “Send series to Studio” again.";
+        "(it was already consumed or never saved). Plan manually below — or go back and press “Send series to Studio” or “Send run to Studio” again.";
+    }
+
+    /* ?mode=microdrama (e.g. from the $150 Microdrama teardown) pre-selects
+       the microdrama run planner. */
+    if (/[?&]mode=microdrama/.test(location.search)) {
+      var microRadio = document.querySelector('input[name="st-kind"][value="microdrama"]');
+      if (microRadio) {
+        microRadio.checked = true;
+        refreshKindUI();
+        announce("Microdrama mode selected — plan a serialized run from the documented $150-microdrama economics.");
+      }
     }
 
     /* Prompt-library bridge: a library "Send to Studio" lands here. */
@@ -2428,16 +2899,25 @@
       e.error.hidden = true;
       var title = e.title.value.trim();
       var logline = e.logline.value.trim();
-      if (!title) { fail("Give the project a title first."); e.title.focus(); return; }
-      if (!logline) { fail("Write a one-line logline first."); e.logline.focus(); return; }
       if (!DATA) { fail("Data is still loading — one moment."); return; }
       var kind = projectKind();
       try {
-        if (SERIES_FORMATS[kind]) {
+        if (kind === "microdrama") {
+          if (!title) { fail("Give the run a title first."); e.title.focus(); return; }
+          var minp = readMicroInput();
+          minp.title = title;
+          minp.logline = logline;
+          CURRENT = { kind: "microdrama", input: minp, plan: buildMicrodramaPlan(DATA, minp) };
+          renderMicrodrama(CURRENT.plan);
+        } else if (SERIES_FORMATS[kind]) {
+          if (!title) { fail("Give the project a title first."); e.title.focus(); return; }
+          if (!logline) { fail("Write a one-line logline first."); e.logline.focus(); return; }
           var sin = readSeriesInput(BRIDGE_ARCS);
           CURRENT = { kind: "series", input: sin, plan: buildSeriesPlan(DATA, sin) };
           renderSeries(CURRENT.plan);
         } else {
+          if (!title) { fail("Give the project a title first."); e.title.focus(); return; }
+          if (!logline) { fail("Write a one-line logline first."); e.logline.focus(); return; }
           var inp = { title: title, logline: logline, genre: e.genre.value,
             runtimeSec: runtimeSec(), tier: tier() };
           CURRENT = { kind: "film", input: inp, plan: buildPlan(DATA, inp) };
@@ -2449,11 +2929,18 @@
       }
     });
 
+    /* "Copy packet as markdown" and downloads follow the current plan kind. */
+    function currentMarkdown() {
+      if (!CURRENT) return null;
+      return CURRENT.kind === "series" ? seriesToMarkdown(CURRENT.plan)
+        : CURRENT.kind === "microdrama" ? microdramaToMarkdown(CURRENT.plan)
+        : planToMarkdown(CURRENT.plan);
+    }
+
     e.copy.addEventListener("click", function () {
-      if (!CURRENT) return;
-      var md = CURRENT.kind === "series"
-        ? seriesToMarkdown(CURRENT.plan)
-        : planToMarkdown(CURRENT.plan);      function done() { announce("Production packet copied as markdown."); }
+      var md = currentMarkdown();
+      if (!md) return;
+      function done() { announce("Production packet copied as markdown."); }
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(md).then(done, function () { fallbackCopy(md, done); });
       } else { fallbackCopy(md, done); }
@@ -2474,10 +2961,8 @@
       return String(s || "packet").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "") || "packet";
     }
     e.dlMd.addEventListener("click", function () {
-      if (!CURRENT) return;
-      var md = CURRENT.kind === "series"
-        ? seriesToMarkdown(CURRENT.plan)
-        : planToMarkdown(CURRENT.plan);
+      var md = currentMarkdown();
+      if (!md) return;
       downloadFile(slugify(CURRENT.input.title || CURRENT.input.seriesTitle) + "-packet.md", md,
         "text/markdown;charset=utf-8");
       announce("Packet downloaded as markdown.");

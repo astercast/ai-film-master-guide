@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Studio — plan my AI film — AI Film Master Guide</title>
-  <meta name="description" content="Studio 2.0: the AI-film studio simulator. A standalone film (title, logline, genre/mood, runtime, quality tier) or a serialized series (3–10 episodes, one of the 5 proven serialized formats) in — a deterministic production packet out: shot list with per-shot prompts from the 47-template library, per-shot model picks with real cost math, budget table with 5×/20× envelopes, shooting schedule, series bible with locked prompt DNA, self-contained HTML packet export.">
+  <meta name="description" content="Studio 2.0: the AI-film studio simulator. A standalone film (title, logline, genre/mood, runtime, quality tier) or a serialized series (3–10 episodes, one of the 5 proven serialized formats) in — a deterministic production packet out: shot list with per-shot prompts from the 47-template library, per-shot model picks with real cost math, budget table with 5×/20× envelopes, shooting schedule, series bible with locked prompt DNA, self-contained HTML packet export. Or plan a microdrama run: clip budget, $50/min benchmark, 3–5× retake budget, regen reserve, timeline — all from the documented $150-microdrama figures.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap">
@@ -88,7 +88,7 @@
       <div class="container hero-inner">
         <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Tools · Flagship</span>
         <h1 id="st-title-h">The Studio<span class="accent">.</span></h1>
-        <p class="lede">Plan my AI film — or my AI series. A standalone film (title, logline, genre and mood, target runtime, quality tier) or a serialized series (3–10 episodes in one of the five proven serialized formats) in — and the Studio builds the production packet: a shot list with per-shot prompts written from the guide's 47-template library, a model pick for every shot with the real credit math, a budget table that shows its work, and a shooting schedule. Series get a locked bible with prompt DNA that keeps every episode consistent, plus a self-contained HTML packet you can hand to a collaborator. Every number traces back to <code>models.json</code> or a template id.</p>
+        <p class="lede">Plan my AI film — or my AI series — or my microdrama run. A standalone film (title, logline, genre and mood, target runtime, quality tier) or a serialized series (3–10 episodes in one of the five proven serialized formats) in — and the Studio builds the production packet: a shot list with per-shot prompts written from the guide's 47-template library, a model pick for every shot with the real credit math, a budget table that shows its work, and a shooting schedule. A <strong>microdrama run</strong> in — and the Studio plans the run's economics from the documented $150-microdrama figures: clip budget (10–15s clip units), per-episode and run budgets against the $50/min benchmark, the 3–5× "drawing cards" retake budget, a character-regen reserve, and a timeline from the documented 4-days-for-4-episodes pace. Series get a locked bible with prompt DNA that keeps every episode consistent, plus a self-contained HTML packet you can hand to a collaborator. Every number traces back to <code>models.json</code> or a documented figure — ranges, not promises.</p>
       </div>
     </section>
     <section class="container" aria-labelledby="st-in-h" id="st-form-sec">
@@ -105,6 +105,7 @@
             <label class="radio-pill"><input type="radio" name="st-kind" value="daylife"> Series — day-in-the-life<span class="st-hint">15–60s per episode, recurring character</span></label>
             <label class="radio-pill"><input type="radio" name="st-kind" value="revenge"> Series — revenge arc<span class="st-hint">60–150s per episode, the justice ladder</span></label>
             <label class="radio-pill"><input type="radio" name="st-kind" value="interactive"> Series — interactive<span class="st-hint">60–150s per episode, viewer decisions shape the plot</span></label>
+            <label class="radio-pill"><input type="radio" name="st-kind" value="microdrama"> Microdrama run<span class="st-hint">economics planner — clip budget, $50/min benchmark, documented 4-day pace</span></label>
           </div>
         </fieldset>
         <div class="field">
@@ -148,6 +149,23 @@
           </div>
           <p class="calc-note" id="st-preset-note" role="status"></p>
         </div>
+        <div id="st-micro-panel" hidden>
+          <div class="field">
+            <label for="st-md-eps">Episodes — 1 to 40</label>
+            <input class="input" type="number" id="st-md-eps" min="1" max="40" step="1" value="4">
+          </div>
+          <div class="field">
+            <label for="st-md-min">Minutes per episode — 0.5 to 3</label>
+            <input class="input" type="number" id="st-md-min" min="0.5" max="3" step="0.5" value="1">
+            <p class="calc-note">One page of dialogue ≈ one minute ≈ one episode (TheWrap's industry survey).</p>
+          </div>
+          <div class="field">
+            <label for="st-md-regens">Character regenerations per episode — your input</label>
+            <input class="input" type="number" id="st-md-regens" min="0" max="100" step="1" value="5">
+            <p class="calc-note">StoReel paid for regenerations when faces drifted; no per-episode figure was published — this is your budget guess, priced at the cheapest image-model rate.</p>
+          </div>
+          <p class="calc-note"><strong>Documented basis:</strong> every number in the plan traces to the "The $150 Microdrama" teardown (StoReel Canvas experiment, TheWrap, June 2026; Qidian Interactive, Sixth Tone) or to <code>models.json</code> rates — ranges, not promises. <a href="teardown.html">Read the teardown first →</a></p>
+        </div>
         <fieldset>
           <legend>Quality tier</legend>
           <div class="radio-row" role="radiogroup" aria-label="Quality tier">
@@ -161,7 +179,7 @@
         <p class="calc-note" id="st-msg" role="status" hidden></p>
         <p class="calc-note" id="st-error" role="alert" tabindex="-1" hidden></p>
       </form>
-      <p class="calc-note">Tier assumptions, stated up front: draft = 1 shot per 6s, 3 takes per keeper, 40 shots/day, 1 keyframe still per shot. Festival = 1 shot per 4s, 6 takes per keeper, 12 shots/day, 2 stills per shot. The packet is deterministic — the same concept always builds the same plan (the seed is printed on the packet).</p>
+      <p class="calc-note">Tier assumptions, stated up front: draft = 1 shot per 6s, 3 takes per keeper, 40 shots/day, 1 keyframe still per shot. Festival = 1 shot per 4s, 6 takes per keeper, 12 shots/day, 2 stills per shot. Microdrama run: 10–15s clips, draft = 3× retakes (low end of the documented "drawing cards" range), festival = 5× (high end), regen count is your input. The packet is deterministic — the same concept always builds the same plan (the seed is printed on the packet).</p>
     </section>
     <section class="container" aria-labelledby="st-out-h" style="margin-top:var(--space-6);">
       <h2 id="st-out-h" class="visually-hidden">Production packet</h2>

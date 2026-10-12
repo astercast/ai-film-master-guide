@@ -264,6 +264,38 @@ eq(JSON.stringify(nbUSD), JSON.stringify([3.81, 3.81, 3.53, 5.66, 3.81]), "worke
 eq(NightBus.episodes[0].voiceBudgetSec, 60, "worked example: voice budget 60s = the locked dialogue budget");
 console.log("       Night Bus: 50 shots | clean $20.64 | 5x $103.20 | bible avoided 1.92 credits");
 
+/* ===== workflow 6: microdrama run economics — Studio 2.5 (asserts the AGENT.md workflow-5 numbers) ======= */
+/* Canonical microdrama run: 4 x 1-minute episodes, draft tier, 5 regens/ep.
+ * Model rates derive from the live models.json; documented figures are pinned. */
+console.log("--- workflow 6: microdrama run economics (real engine, asserted numbers) ---");
+const RunPlan = Studio.buildMicrodramaPlan(
+  { models: read("models.json").models, templates: read("prompt-templates.json").templates },
+  { title: "Run Example", episodes: 4, minPerEpisode: 1, tier: "draft", regensPerEp: 5 });
+eq(RunPlan.kind, "microdrama", "run plan kind");
+eq(JSON.stringify([RunPlan.clipsPerEp.lo, RunPlan.clipsPerEp.hi]), JSON.stringify([4, 6]),
+  "run: 4-6 clips per 1-minute episode (10-15s clip unit)");
+eq(JSON.stringify([RunPlan.totalClips.lo, RunPlan.totalClips.hi]), JSON.stringify([16, 24]),
+  "run: 16-24 clips for the run");
+eq(RunPlan.benchmarkPerEp, 50, "run: $50/episode benchmark ($50/min x 1 min)");
+eq(RunPlan.benchmarkTotal, 200, "run: $200 benchmark for the run");
+eq(RunPlan.genSecPerEp, 180, "run: 60s x 3 takes = 180 generated s/episode (draft)");
+eq(RunPlan.genSecTotal, 720, "run: 720 generated seconds for the run");
+eq(RunPlan.timelineDays, 4, "run: 4 days at the documented pace");
+ok(RunPlan.rate && RunPlan.rate.cps !== null, "run: rate model resolved from models.json");
+ok(Math.abs(RunPlan.budget.totalUsd -
+  (RunPlan.budget.genCreditsTotal + RunPlan.budget.regenCredits) * 0.0392) < 0.01,
+  "run: total USD = total credits x $0.0392");
+ok(RunPlan.perMinPlan <= RunPlan.benchmarkTotal / RunPlan.totalMinutes,
+  "run: plan per-minute cost at or under the $50/min benchmark");
+const RunMd = Studio.microdramaToMarkdown(RunPlan);
+ok(RunMd.includes("Documented production economics"), "run markdown: economics block");
+ok(RunMd.includes("storeel-off-campus"), "run markdown: teardown id");
+ok(RunMd.includes("verify live"), "run markdown: verify-live flags");
+console.log("       Run: " + RunPlan.totalClips.lo + "-" + RunPlan.totalClips.hi +
+  " clips | benchmark $" + RunPlan.benchmarkTotal.toFixed(2) +
+  " | plan total $" + RunPlan.budget.totalUsd.toFixed(2) +
+  " | " + RunPlan.timelineDays + " days");
+
 /* ================================ summary ================================ */
 console.log("");
 if (failures === 0) {

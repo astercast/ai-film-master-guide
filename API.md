@@ -94,8 +94,9 @@ Agents: `api/v1/index.json` carries `repository`, `skills` (directory,
 index, count, usage), and `for_agents` routing. Load the skill matching
 the task; use the JSON endpoints as the data layer behind it.
 Repo-level operator's manual: `AGENT.md` — base URL pattern, key endpoints
-with example requests, and four end-to-end workflows (Studio planning,
-prompt linting, model price tracking, mini-drama series setup), all
+with example requests, and five end-to-end workflows (Studio planning,
+prompt linting, model price tracking, mini-drama series setup,
+microdrama run economics), all
 executable via `node scripts/agent-workflows.test.js` against the real
 `api/v1` data.
 

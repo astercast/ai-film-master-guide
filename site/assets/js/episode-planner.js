@@ -130,6 +130,7 @@
     blocksList: document.getElementById("epb-blocks"),
     blocksEmpty: document.getElementById("epb-blocks-empty"),
     sendSeries: document.getElementById("epb-send-series"),
+    sendRun: document.getElementById("epb-send-run"),
     formatRadios: document.querySelectorAll('input[name="epf-format"]'),
     applyFormat: document.getElementById("epf-apply"),
     spb: document.getElementById("epf-spb"),
@@ -408,10 +409,12 @@
       els.blocksEmpty.hidden = false;
       els.blocksList.innerHTML = "";
       els.sendSeries.disabled = true;
+      els.sendRun.disabled = true;
       return;
     }
     els.blocksEmpty.hidden = true;
     els.sendSeries.disabled = false;
+    els.sendRun.disabled = false;
     els.blocksList.innerHTML = nums.map(function (n) {
       var b = state.blocks[String(n)];
       var fmt = FORMAT_PRESETS[b.format];
@@ -434,6 +437,39 @@
       cast: state.cast.filter(function (c) { return c.name || c.anchor; }),
       format: state.blocks[String(nums[0])].format || DEFAULT_FORMAT,
       blocks: nums.map(function (n) { return state.blocks[String(n)]; })
+    };
+    try {
+      localStorage.setItem(BRIDGE_KEY, JSON.stringify(payload));
+    } catch (e) {
+      msg(els.blockMsg, "Could not stage the Studio payload — browser storage is unavailable.", false);
+      return;
+    }
+    location.href = "studio.html?from=planner";
+  });
+
+  /* ---------------- "Send run to Studio": microdrama-mode bridge ------------
+     Stages the saved series' episode count and median per-episode runtime
+     into the Studio's microdrama economics planner (kind "microdrama").
+     The Studio's series consumer ignores non-"series" payloads, so this
+     never collides with "Send series to Studio". */
+  els.sendRun.addEventListener("click", function () {
+    var nums = Object.keys(state.blocks).map(Number).sort(function (a, b) { return a - b; });
+    if (!nums.length) { msg(els.blockMsg, "No saved blocks yet — save an episode block first.", false); return; }
+    var runtimes = nums.map(function (n) {
+      return blockRuntime(state.blocks[String(n)]);
+    }).sort(function (a, b) { return a - b; });
+    var median = runtimes[Math.floor(runtimes.length / 2)];
+    /* snap to the microdrama planner's 0.5–3 min input band */
+    var minPerEp = Math.max(0.5, Math.min(3, Math.round((median / 60) * 2) / 2));
+    var payload = {
+      v: 1,
+      kind: "microdrama",
+      sentAt: new Date().toISOString(),
+      seriesTitle: state.title,
+      logline: state.logline,
+      episodes: nums.length,
+      minPerEpisode: minPerEp,
+      regensPerEp: 5
     };
     try {
       localStorage.setItem(BRIDGE_KEY, JSON.stringify(payload));
