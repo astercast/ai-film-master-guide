@@ -93,13 +93,13 @@
       hook: "A door where a wall should be, light leaking underneath",
       beats: [
         "Hook: the impossible door",
-        "The vote: she knocks — or walks away (the decision beat)",
+        "The vote: she knocks — or walks away (the decision beat, freeze on her hand; the TikTok comment poll asks — up to 5 options)",
         "She follows the winning choice — the consequence plays out",
         "Turn: what is behind the door reframes the question"
       ],
       turn: "Beat 4: what is behind the door reframes the question",
-      cliff: "The next decision point — freeze before the vote closes",
-      scenes: "impossible door close-up; decision-beat freeze for poll overlay; consequence beat; decision-point cliffhanger"
+      cliff: "The next decision point — freeze before the poll deadline",
+      scenes: "impossible door close-up; decision-beat freeze (native poll UI asks, no burned text); consequence beat; decision-point cliffhanger"
     }
   };
   var DEFAULT_FORMAT = "minidrama";

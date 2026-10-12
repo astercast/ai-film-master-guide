@@ -2,7 +2,38 @@
 
 ## Standing items (permanent workstreams)
 
-- **Episode pipeline workstream (permanent, from wave 14):** revisit every ~3 waves — new episode formats from what's working, new tools, tighter procedures, worked examples. Goal: best agent-run episode-production system anywhere. (WAVELOG entry each revisit; the research artifact lives at `~/workspace/tiktok-episode-pipeline/PIPELINE.md`.) **Last revisited: wave 23 (2026-10-11) — check pass, no changes. Next revisit ~wave 26.**
+- **Episode pipeline workstream (permanent, from wave 14):** revisit every ~3 waves — new episode formats from what's working, new tools, tighter procedures, worked examples. Goal: best agent-run episode-production system anywhere. (WAVELOG entry each revisit; the research artifact lives at `~/workspace/tiktok-episode-pipeline/PIPELINE.md`.) **Last revisited: wave 26 (2026-10-11) — native comment-poll procedure tightening + boom data refresh. Next revisit ~wave 29.**
+
+## Wave 26 — EPISODE PIPELINE revisit #3 (2026-10-11)
+
+**Standing workstream:** third scheduled revisit (wave 17 was #1, wave 20 was #2, wave 23 a check pass). One real procedure tightening (the interactive format's vote mechanic is now platform-native), a data refresh of the boom section, one craft-judgment addition, one tooling note, and two interactive-tool upgrades.
+
+**Research** (4 search batches + 1 price check against models.json): AI mini-drama/short-drama trends Oct 2026; TikTok comment/interaction features; new AI video model releases; Kling 4.0 GA status.
+
+**What changed (all sourced, no invented productions):**
+
+1. **Interactive format — vote mechanic is now platform-native** (`craft/episodic-shortform.md`, planner preset, hook generator, HAND skill): TikTok's comment polls rolled out globally Sept 3, 2026 — up to 5 options, creator-set timeframe, real-time results in the comment thread (TechCrunch / USA Today). The chapter's interactive-format rules now read: the native comment poll does the asking (never burn it into the video); the poll's built-in timeframe *is* the deadline rule; harvest reads the in-thread tally; the Sept 2026 comment overhaul also brought voice comments (60s, 18+) — transcribe audio theories before harvesting. One decision per episode stays.
+2. **Episode planner:** the interactive `FORMAT_PRESETS` block skeleton now names the native comment poll (up to 5 options) in the decision beat and the poll deadline in the cliffhanger; radio hint "Comment-poll-driven".
+3. **Hook-title generator:** new 4th CTA style — "Interactive — vote CTA (comment poll)": *"vote in the comments — the winning choice plays out tomorrow 🗳️"* (template select in `build_site.py` + `hook-gen.js` `CTAS`/`CTA_LABEL`).
+4. **HAND skill `episode-interactive-format`:** vote-mechanic steps + pitfalls rewritten around native comment polls (steps 1–4, 2 pitfalls); `skills/` regenerated — generator owns output, no standalone edits.
+5. **Boom section refresh:** Omdia via Oct 2026 EIN release — $11B global 2025 → $14B projected end of 2026 (US $1.5B of it; single-source) replaces the DoubleVerify-only revenue line; China — 120,000+ microdramas released Jan–Mar 2026, 95% AI-generated (PhilSTAR Life citing Chinese state media and CNN — sourcing chain flagged), consistent with the earlier ~90% Kuhn figure; new platform-rails line — TikTok Drama Center (June 2026 Apps Summit: series management, multilingual translation, revenue sharing; Technode) + TikTok/Amplify "The Next Episode" series-funding program (Metricool 2026 timeline).
+6. **Craft judgment — "The one-prompt temptation"** (new bullet): TikTok Symphony Agent (Seedance 2.0 campaign generation) and CapCut Video Studio (type-an-idea → multi-scene mini-dramas) now exist — useful for drafting beats, but they skip the locked bible, the voice-first cut, and the continuity log. Draft with them; ship from the pipeline.
+7. **Keyframe tooling note (Stage 5):** multi-reference models accept the bible's locked anchor plates directly — Vidu Q4 Preview (launched Oct 7, 2026: up to 15 image refs, 3 audio refs, launch pricing from $0.014/s — PR Newswire, preview pricing, verify live). Kling 4.0's announced Omni Reference works the same way, but the full model is still not GA.
+8. **Agentic surface:** regenerated `skills/` (228, index count unchanged), `api/v1/` (re-stamped), `site/` (27 chapters, planner + hook-generator pages, search index), `llms.txt`/`llms-full.txt` (generator-owned, via `build_llms.py`). Sources section of the chapter carries the 4 new source groups.
+
+**Deliberately left alone (the revisit log):**
+
+- **Kling 4.0** — full model still NOT GA as of Oct 11, 2026 (Flash early access for Ultra Yearly subscribers only; "October 2026" is a target window, not a date — wavespeed.ai, pakera.pk). No model-record change; the guide's "announced, not GA" record is still correct.
+- **No new worked examples** — nothing new this cycle documents a production at rebuildable detail (SelfyzAI's Vidu Q4 beta tests name scenarios — AI short drama, film-style — not a production; no new verified serialized accounts with episode-level data).
+- **No new verified hook patterns** — the cycle's corpus (booms, polls, rails) produced no new observed caption patterns; the hook generator's five formula variants stand.
+- **Oct 1, 2026 Shorts originality update** — no new developments found; the chapter's compliance reading stands.
+- **Vidu Q4 Preview record** — already in `models.json` (active, $0.014/s launch pricing, last_verified 2026-10-11); no record edit needed.
+- **The "ask the AI character" Q&A verdict** (wave 20) — unchanged; no new serialized traction found.
+- **Verticals For Good micro-drama challenge (deadline Oct 30)** — a competition, not a format; not integrated (festival-is-not-the-subject rule).
+
+**Validation:** `bash scripts/validate.sh` → ALL STAGES PASS (13/13, run post-commit); 6,783 relative links, 0 broken; studio.test.js 43/43; agent-workflows.test.js 60/60; generator audits clean (skills byte-identical, prompt-templates.json == artifact parser, llms.txt zero-diff).
+
+**Next revisit:** ~wave 29.
 
 ## Wave 25 — Prompt library explorer (2026-10-11)
 

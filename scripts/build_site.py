@@ -840,7 +840,7 @@ EPISODEPLANNER_TMPL = """<!DOCTYPE html>
             <label class="epf-radio"><input type="radio" name="epf-format" value="pov"> POV series<span class="epf-hint">"You" are the protagonist, 30–90s</span></label>
             <label class="epf-radio"><input type="radio" name="epf-format" value="daylife"> Day-in-the-life<span class="epf-hint">Recurring character, one small event, 15–60s</span></label>
             <label class="epf-radio"><input type="radio" name="epf-format" value="revenge"> Revenge arc<span class="epf-hint">The justice ladder, 60–150s</span></label>
-            <label class="epf-radio"><input type="radio" name="epf-format" value="interactive"> Interactive<span class="epf-hint">Comment/poll-driven episodes, 60–150s</span></label>
+            <label class="epf-radio"><input type="radio" name="epf-format" value="interactive"> Interactive<span class="epf-hint">Comment-poll-driven episodes, 60–150s</span></label>
             <label class="epf-radio"><input type="radio" name="epf-format" value="custom"> Custom<span class="epf-hint">Blank block, 60–150s band</span></label>
           </div>
           <button type="button" class="btn btn-ghost btn-sm" id="epf-apply" style="margin-top:var(--space-3);">Apply format template</button>
@@ -997,6 +997,7 @@ HOOKGEN_TMPL = """<!DOCTYPE html>
             <option value="tomorrow" selected>Next-part tease — "part N+1 tomorrow"</option>
             <option value="funnel">Funnel tease — longer cut elsewhere</option>
             <option value="thesis">Finale — thesis line instead of tease</option>
+            <option value="poll">Interactive — vote in the comments (TikTok poll)</option>
           </select>
         </div>
         <div class="field">

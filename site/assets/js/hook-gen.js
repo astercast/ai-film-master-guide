@@ -17,12 +17,14 @@
   var CTAS = {
     tomorrow: function (n) { return "part " + (n + 1) + " tomorrow ⏳"; },
     funnel: function () { return "more inDrama ↓"; },
-    thesis: function () { return "some doors only open from the other side"; }
+    thesis: function () { return "some doors only open from the other side"; },
+    poll: function () { return "vote in the comments — the winning choice plays out tomorrow 🗳️"; }
   };
   var CTA_LABEL = {
     tomorrow: "Next-part tease",
     funnel: "Funnel tease (longer cut elsewhere)",
-    thesis: "Finale thesis line"
+    thesis: "Finale thesis line",
+    poll: "Interactive — vote CTA (TikTok comment poll)"
   };
 
   function pickEmoji(stake) {
