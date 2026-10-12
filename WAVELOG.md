@@ -92,6 +92,10 @@ waveforms, marker flags), not SaaS-generic. The one thing I'd still push
 further in a future wave: a real before/after A/B wipe slider on a teardown
 page (researched, not yet built).
 
+**Push record:** local commit `2a0ec6e` → remote `eb0e77eb0e302756b0f7f6cc7cee1052cbb4980b`
+(Trees-API verified: remote tree `2097db8c…` == local HEAD tree). Follow-up
+commit `WAVELOG` hash record + changelog refresh pushed separately.
+
 ## Wave 38 — identity hardening: self-hosted fonts + Archivo conflict resolved (2026-10-12)
 
 **Assignment:** verification + fixes, zero content changes. (1) Verify font
