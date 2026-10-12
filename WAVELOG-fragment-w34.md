@@ -126,7 +126,12 @@ skills/ 231 files byte-identical (no hand edits; count includes wave 33's new
 skill); prompt-templates == parser; api/v1 preserve-list clean; prompts-facets
 in sync; llms.txt zero-diff; studio.test.js 70/70; agent-workflows 74/74.
 
-**Commits:** LOCAL_TBD → pushed REMOTE_TBD (see report).
+**Commits:** local `6b342d1` → pushed 2026-10-11 as remote commit
+`14d8e04a196294466f6e672831d03f430c57c623`; remote `main` HEAD matches the
+pushed SHA; all 4 wave-34 files verified present in the remote tree via GitHub
+API (503 tree entries, 0 missing, not truncated; remote `assets/js/studio.js`
+blob sha256-identical to local and contains all wave-34 markers: refinery
+engine, draftfinal mode, st3 design CSS).
 
 **Needs merge attention:**
 - Injected `.st3-*` styles in studio.js are a candidate for `STUDIO_TMPL`'s
