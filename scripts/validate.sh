@@ -11,8 +11,11 @@
 #                         (no hand edits); prompt-templates.json matches the
 #                         artifact parser; api/v1 preserve list covers every
 #                         non-generated file
-#   6. llms.txt freshness chapter count matches CHAPTER_ORDER; every chapter
-#                         marker present in llms-full.txt
+#   6. llms.txt freshness build_llms.py regenerates llms.txt + llms-full.txt;
+#                         git diff must be clean (the generator owns them)
+#   7. Studio ............ node unit tests for the studio engine
+#                         (scripts/studio.test.js); studio.html + studio.js
+#                         exist in both assets/js and the built site/
 #
 # Exit code: 0 only if every stage passes. Anything failing is a real issue
 # to fix, not cosmetic churn.
@@ -25,9 +28,10 @@ cd "$ROOT"
 
 PASS=0
 FAIL=0
+STAGES=7
 fail() { echo "  FAIL: $1"; FAIL=$((FAIL+1)); }
 pass() { echo "  ok: $1"; PASS=$((PASS+1)); }
-stage() { echo; echo "[$1/6] $2"; }
+stage() { echo; echo "[$1/$STAGES] $2"; }
 
 # ---------------------------------------------------------------- stage 1 ---
 stage 1 "JS syntax (node --check)"
@@ -255,32 +259,38 @@ EOF
 [ $? -eq 0 ] && pass "skills ids all generator-sourced" || FAIL=$((FAIL+1))
 
 # ---------------------------------------------------------------- stage 6 ---
-stage 6 "llms.txt / llms-full.txt freshness"
-python3 - <<'EOF'
-import re, sys
-sys.path.insert(0, "scripts")
-import build_site
+stage 6 "llms.txt / llms-full.txt freshness (generator-owned)"
+if python3 scripts/build_llms.py >/dev/null 2>&1; then
+  if git diff --quiet -- llms.txt llms-full.txt; then
+    pass "build_llms.py regenerates llms.txt + llms-full.txt with zero diff (no hand edits)"
+  else
+    fail "llms.txt / llms-full.txt differ from build_llms.py output (hand edit or stale build):"
+    git diff --stat -- llms.txt llms-full.txt | head -5 | sed 's/^/    /'
+  fi
+else
+  fail "build_llms.py crashed"
+fi
 
-order = build_site.CHAPTER_ORDER
-expected_n = sum(len(v) for v in order.values())
-
-llms = open("llms.txt").read()
-m = re.search(r"(\d+) chapters with sidebar nav", llms)
-if not m or int(m.group(1)) != expected_n:
-    print(f"  FAIL: llms.txt chapter count {m.group(1) if m else 'MISSING'} != CHAPTER_ORDER total {expected_n}")
-    sys.exit(1)
-
-full = open("llms-full.txt").read()
-missing = [f"{sec}/{slug}" for sec, slugs in order.items() for slug in slugs
-           if f"<!-- chapter: {sec}/{slug}.md -->" not in full]
-if missing:
-    print("  FAIL: llms-full.txt missing chapter markers:")
-    for x in missing:
-        print("   -", x)
-    sys.exit(1)
-print(f"  ok: llms.txt says {expected_n} chapters; llms-full.txt carries all {expected_n} chapter markers")
-EOF
-[ $? -eq 0 ] && pass "llms.txt/llms-full.txt fresh" || FAIL=$((FAIL+1))
+# ---------------------------------------------------------------- stage 7 ---
+stage 7 "Studio engine + artifacts"
+STUDIO_OK=1
+if [ ! -f assets/js/studio.js ]; then fail "assets/js/studio.js missing"; STUDIO_OK=0; fi
+if [ ! -f site/studio.html ]; then fail "site/studio.html missing (rebuild the site)"; STUDIO_OK=0; fi
+if [ ! -f site/assets/js/studio.js ]; then fail "site/assets/js/studio.js missing (rebuild the site)"; STUDIO_OK=0; fi
+STUDIO_OUT=$(node scripts/studio.test.js 2>&1)
+if echo "$STUDIO_OUT" | tail -1 | grep -q "all pass"; then
+  TEST_N=$(echo "$STUDIO_OUT" | grep -c "^ok ")
+  pass "studio.test.js: $TEST_N engine unit tests pass (shot counts, determinism, budget sums, model resolution)"
+else
+  fail "studio.test.js failures:"
+  echo "$STUDIO_OUT" | grep "^FAIL" | head -8 | sed 's/^/    /'
+  STUDIO_OK=0
+fi
+# the Studio page must fetch the data it plans from
+for d in site/models.json site/prompt-templates.json; do
+  if [ ! -f "$d" ]; then fail "$d missing — the Studio cannot plan without it"; STUDIO_OK=0; fi
+done
+if [ "$STUDIO_OK" = 1 ]; then pass "studio.html + studio.js shipped in assets/js and site/, data files present"; fi
 
 # ---------------------------------------------------------------- summary ---
 echo

@@ -86,6 +86,7 @@
     var cast = [];
     els.castList.querySelectorAll(".cast-row").forEach(function (row) {
       var inputs = row.querySelectorAll("input");
+      if (inputs.length < 3) return;
       cast.push({ name: inputs[0].value.trim(), voice: inputs[1].value.trim(), anchor: inputs[2].value.trim() });
     });
     state.cast = cast.length ? cast : [{ name: "", voice: "", anchor: "" }];

@@ -982,6 +982,142 @@ HOOKGEN_TMPL = """<!DOCTYPE html>
 </html>
 """
 
+STUDIO_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Studio — plan my AI film — AI Film Master Guide</title>
+  <meta name="description" content="The AI-film studio simulator: film title, logline, genre/mood, runtime and quality tier in — a full production packet out: shot list with per-shot prompts from the 47-template library, per-shot model picks with real cost math, budget table, shooting schedule, markdown export.">
+  {css}
+  <style>
+    .radio-row {{ display: flex; flex-wrap: wrap; gap: var(--space-3); }}
+    .radio-pill {{ display: inline-flex; align-items: center; gap: var(--space-2); border: 1px solid var(--line); border-radius: 999px; padding: var(--space-2) var(--space-4); cursor: pointer; }}
+    .radio-pill input {{ accent-color: var(--gold); }}
+    .radio-pill:has(input:checked) {{ border-color: var(--gold); background: color-mix(in srgb, var(--gold) 12%, transparent); }}
+    .radio-pill:has(input:focus-visible) {{ outline: 2px solid var(--gold); outline-offset: 2px; }}
+    .st-kicker {{ color: var(--gold); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.8rem; }}
+    .st-shot {{ margin-bottom: var(--space-4); }}
+    .st-shot h4 {{ margin-top: 0; }}
+    .st-tid {{ color: var(--muted); font-weight: 400; font-size: 0.85em; }}
+    .st-meta {{ color: var(--muted); font-size: 0.9rem; }}
+    .st-anatomy {{ border-left: 3px solid var(--gold); padding-left: var(--space-3); font-size: 0.92rem; }}
+    .st-track {{ color: var(--muted); }}
+    .st-prompt {{ white-space: pre-wrap; word-break: break-word; background: var(--bg-raise); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-3); font-size: 0.92rem; }}
+    .st-note {{ font-size: 0.9rem; color: var(--muted); }}
+    .st-badge {{ display: inline-block; font-size: 0.78rem; border: 1px solid var(--gold); color: var(--gold); border-radius: 999px; padding: 0.1em 0.7em; margin-left: 0.4em; }}
+    .st-math {{ font-variant-numeric: tabular-nums; font-size: 0.88rem; color: var(--muted); }}
+    #st-actions .btn-row {{ margin-top: var(--space-4); }}
+    @media (prefers-reduced-motion: reduce) {{
+      * {{ scroll-behavior: auto !important; }}
+    }}
+    @media print {{
+      .site-header, .site-footer, .skip-link, #st-form-sec, #st-saved-sec, #st-actions {{ display: none !important; }}
+      .hero {{ padding: var(--space-4) 0; }}
+      .st-shot {{ break-inside: avoid; }}
+      body {{ background: #fff; color: #000; }}
+    }}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        {sitenav}
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">⌘K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="st-title-h">
+      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>★</b></div>
+      <div class="container hero-inner">
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Tools · Flagship</span>
+        <h1 id="st-title-h">The Studio<span class="accent">.</span></h1>
+        <p class="lede">Plan my AI film. Title, logline, genre and mood, target runtime, quality tier — and the Studio builds the production packet: a shot list with per-shot prompts written from the guide's 47-template library, a model pick for every shot with the real credit math, a budget table that shows its work, and a shooting schedule. Every number traces back to <code>models.json</code> or a template id.</p>
+      </div>
+    </section>
+    <section class="container" aria-labelledby="st-in-h" id="st-form-sec">
+      <h2 id="st-in-h">Your concept</h2>
+      <form class="card calc-form" aria-label="Film concept" onsubmit="return false;">
+        <div class="field">
+          <label for="st-title">Film title</label>
+          <input class="input" type="text" id="st-title" placeholder="e.g. Porch Light" maxlength="80" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="st-logline">Logline — one sentence</label>
+          <textarea class="input" id="st-logline" rows="2" maxlength="300" placeholder="e.g. A lonely projectionist restores an abandoned cinema before the wrecking ball arrives."></textarea>
+        </div>
+        <div class="field">
+          <label for="st-genre">Genre / mood</label>
+          <select class="input" id="st-genre"></select>
+        </div>
+        <fieldset>
+          <legend>Target runtime</legend>
+          <div class="radio-row" role="radiogroup" aria-label="Target runtime">
+            <label class="radio-pill"><input type="radio" name="st-runtime" value="30"> 30s</label>
+            <label class="radio-pill"><input type="radio" name="st-runtime" value="120" checked> 2 min</label>
+            <label class="radio-pill"><input type="radio" name="st-runtime" value="300"> 5 min</label>
+            <label class="radio-pill"><input type="radio" name="st-runtime" value="600"> 10 min</label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Quality tier</legend>
+          <div class="radio-row" role="radiogroup" aria-label="Quality tier">
+            <label class="radio-pill"><input type="radio" name="st-tier" value="draft" checked> Draft — fast, cheap, coverage first</label>
+            <label class="radio-pill"><input type="radio" name="st-tier" value="festival"> Festival — slower, costlier, color-locked</label>
+          </div>
+        </fieldset>
+        <div class="btn-row">
+          <button type="button" class="btn" id="st-generate" disabled>Build my production packet</button>
+        </div>
+        <p class="calc-note" id="st-msg" role="status" hidden></p>
+        <p class="calc-note" id="st-error" role="alert" tabindex="-1" hidden></p>
+      </form>
+      <p class="calc-note">Tier assumptions, stated up front: draft = 1 shot per 6s, 3 takes per keeper, 40 shots/day, 1 keyframe still per shot. Festival = 1 shot per 4s, 6 takes per keeper, 12 shots/day, 2 stills per shot. The packet is deterministic — the same concept always builds the same plan (the seed is printed on the packet).</p>
+    </section>
+    <section class="container" aria-labelledby="st-out-h" style="margin-top:var(--space-6);">
+      <h2 id="st-out-h" class="visually-hidden">Production packet</h2>
+      <div id="st-results" aria-live="polite"></div>
+      <div id="st-actions" hidden>
+        <div class="btn-row">
+          <button type="button" class="btn" id="st-copy">Copy packet as markdown</button>
+          <button type="button" class="btn btn-ghost" id="st-print">Print / save PDF</button>
+        </div>
+        <div class="field" style="margin-top:var(--space-4);">
+          <label for="st-plan-name">Plan name (for saving)</label>
+          <input class="input" type="text" id="st-plan-name" maxlength="60" placeholder="Defaults to the film title">
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn btn-ghost" id="st-save">Save plan in this browser</button>
+        </div>
+      </div>
+    </section>
+    <section class="container" aria-labelledby="st-sv-h" id="st-saved-sec" style="margin-top:var(--space-6);">
+      <h2 id="st-sv-h">Saved plans</h2>
+      <ul class="log-list" id="st-saved" aria-live="polite"></ul>
+      <p class="empty-state" id="st-saved-empty">No saved plans yet — build a packet and save it here.</p>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer">{footer}</nav>
+    </div>
+  </footer>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/studio.js"></script>
+</body>
+</html>
+"""
+
 LINTER_TMPL = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -3158,6 +3294,10 @@ def main():
     (SITE / "hook-generator.html").write_text(HOOKGEN_TMPL.format(
         css=css_links, sitenav=nav_html("", ""), footer=footer_html("")))
 
+    # Studio (wave 15: flagship "plan my AI film" production-packet simulator)
+    (SITE / "studio.html").write_text(STUDIO_TMPL.format(
+        css=css_links, sitenav=nav_html("", ""), footer=footer_html("")))
+
     # Model deep dives (wave 11: one page per model + index, from models.json)
     model_pages = build_models(css_links)
 
@@ -3227,6 +3367,9 @@ def main():
         {"url": "hook-generator.html", "title": "Hook-title generator", "section": "Tools",
          "headings": ["Your episode", "Five variants"],
          "text": "Hook-title generator: builds hook-title captions from the observed formula [Episode N] + [one-line emotional stake] + [CTA] — five worked variants per input, each with a why-this-hooks craft note. Copy any caption in one click."},
+        {"url": "studio.html", "title": "Studio — plan my AI film", "section": "Tools",
+         "headings": ["Your concept", "Production packet", "Shot list", "Model picks", "Budget", "Schedule", "Saved plans"],
+         "text": "The Studio: AI-film studio simulator. Concept (title, logline, genre/mood, runtime, draft/festival tier) in — a deterministic production packet out: shot list with per-shot prompts built from the 47-template library, per-shot model picks from models.json with real cost math, budget table with 5×/20× envelopes, shooting schedule, markdown export and print."},
         {"url": "skills.html", "title": "Skills browser", "section": "Tools",
          "headings": [],
          "text": "Browse all task skills: prompt templates, camera moves, models, long-form pipelines, craft techniques, checklists, and more, with live filtering."},
