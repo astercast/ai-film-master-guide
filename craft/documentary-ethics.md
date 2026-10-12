@@ -184,11 +184,11 @@ Every row below maps a disclosure-craft task to a real tool or platform behavior
 
 - [Rights & disclosure](../legal/rights-and-disclosure.html) — the legal chapter this one's craft rests on; read it before distributing anything.
 - [Festival landscape 2026](../distribution/festival-landscape-2026.html) — the results and eligibility rules: Cannes's line, the "plan for the ethics question" takeaway, the "how much AI → what did you do with it" judging pattern.
-- [Editing AI footage](editing-ai-footage.md) — regenerate-vs-repair discipline and selects; the footage-reading craft that keeps reconstructions honest.
-- [Directing performance](directing-performance.md) — synthetic performance direction; pairs with Section 4's likeness rules.
-- [Sound, music & audio](sound-music-audio.md) — the rights gap and generation-receipts hygiene for AI music and voices.
+- [Editing AI footage](editing-ai-footage.html) — regenerate-vs-repair discipline and selects; the footage-reading craft that keeps reconstructions honest.
+- [Directing performance](directing-performance.html) — synthetic performance direction; pairs with Section 4's likeness rules.
+- [Sound, music & audio](sound-music-audio.html) — the rights gap and generation-receipts hygiene for AI music and voices.
 - [Shot-by-shot teardowns](../teardown.html) — the *Dreams of Violets* teardown, broken into shots.
-- [State of the field 2026](../field/2026-developments.md) — the model field and the institutional shifts this chapter's rules respond to.
+- [State of the field 2026](../field/2026-developments.html) — the model field and the institutional shifts this chapter's rules respond to.
 
 ## Sources & confidence
 

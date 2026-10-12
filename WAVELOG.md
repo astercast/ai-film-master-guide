@@ -2,7 +2,278 @@
 
 ## Standing items (permanent workstreams)
 
-- **Episode pipeline workstream (permanent, from wave 14):** revisit every ~3 waves — new episode formats from what's working, new tools, tighter procedures, worked examples. Goal: best agent-run episode-production system anywhere. (WAVELOG entry each revisit; the research artifact lives at `~/workspace/tiktok-episode-pipeline/PIPELINE.md`.) **Last revisited: wave 32 (2026-10-11) — HeyGen Voice TTS tooling note, YouTube Feb-2027 monetization thresholds, Sundance+TikTok series-development discipline, TikTok's own production push, Shortical off-screen-lives technique. Next revisit ~wave 35.**
+- **Episode pipeline workstream (permanent, from wave 14):** revisit every ~3 waves — new episode formats from what's working, new tools, tighter procedures, worked examples. Goal: best agent-run episode-production system anywhere. (WAVELOG entry each revisit; the research artifact lives at `~/workspace/tiktok-episode-pipeline/PIPELINE.md`.) **Last revisited: wave 32 (2026-10-11) — HeyGen Voice TTS tooling note, YouTube Feb-2027 monetization thresholds, Sundance+TikTok series-development discipline, TikTok's own production push, Shortical off-screen-lives technique. Next revisit ~wave 36 (wave 35 shipped the documentary-ethics chapter instead).**
+
+## Wave 35 — New deep craft chapter: "Documentary Ethics for AI Footage" (2026-10-11)
+
+**Assignment:** parallel lane — waves 33 (teardown #9: Tim Simmons' Dragon Blue) and 34
+(Studio expansion: agentic-production-office chapter) run concurrently. Wave 35 touched
+none of their files: only NEW files were written; every shared-file edit is staged in
+`MERGE-fragment-w35-sources.md` for the merge worker.
+
+**Topic choice.** The candidate directions were AI-native sound/voice craft, directing
+synthetic performers, and documentary-ethics craft. The first two are already deep
+chapters (`craft/sound-music-audio.md`, 85 lines with two-pass voice, TTS direction,
+rights gap; `craft/directing-performance.md`, 180 lines) — a new chapter there would
+duplicate. Documentary ethics had no chapter and genuine fresh material: the *Dreams
+of Violets* collision at Tribeca (wave 23's "plan for the ethics question" takeaway was
+still unexpanded), a current six-step disclosure workflow (magichour, Oct 2026), and
+2026 platform disclosure rules with real exemption detail.
+
+**Research** (3 fresh search batches on 2026-10-11 + the Cycle-1 scout notes +
+`~/workspace/research_notes/ai-film-deep-2026-20261011-2154/report.md`):
+
+1. *Dreams of Violets* — corroborated across outlets: 75-min docudrama, Tribeca
+   Festival June 10, 2026 (first fully AI-generated live-action film at a major
+   festival), dir. Ash Koosha, Fountain 0, ~$2K, ~3 months, Kling AI + Claude +
+   Gemini + Nano Banana, built from journalistic reports/photographs/eyewitness
+   accounts; January 2026 Tehran protests, five Iranians, Amir (10, cerebral palsy).
+   Reception split: Jane Rosenthal's defense (Variety) vs. the A.V. Club's hostile
+   review; Guardian framing piece (June 3, 2026); THR on the distributor/festival-rep
+   walkout. All paraphrased, zero direct quotes.
+2. Disclosure mechanics — YouTube/TikTok/Meta trigger and exemption detail
+   (builtbyfoundry.io, ~Sept 2026): realism as trigger; YouTube's exemption list
+   (filters, color, upscaling, audio repair, own-voice cloning) and no-penalty-for-
+   disclosing line; TikTok's permanent auto-label from Content Credentials; banned-
+   even-with-label categories. magichour.ai's six-step disclosure workflow (Oct 2026):
+   describe what changed → classify realism/risk → clear inputs/claims → select
+   platform control → add human-readable context → verify the published result.
+   everymoviehasalesson.com (Oct 2026): sort assets by the claim they make; a label
+   is not proof. EU AI Act Art 50 (applies Aug 2, 2026; grace to Dec 2026 —
+   single secondary, flagged).
+3. Svedka "Shake Your Bots Off" (verified, multiple outlets + ComfyUI case study):
+   Super Bowl LX, Feb 8, 2026; first primarily AI-generated Super Bowl spot (per
+   ADWEEK); Silverside AI; ~4 months rebuilding the lost Fembot CGI assets; humans
+   on storyline; TikTok choreography call won by Jessica Rizzardi ($10,000 prize).
+   Used as the clean synthetic-person case: own the likeness, credit and pay the
+   human in the loop.
+4. filmustage.com (Sept 2026): Human Provenance in Film framework (No AI Used /
+   Assistive AI / Generative AI) + audience data (~two-thirds reject an AI lead,
+   ~three-quarters want disclosure; Academy + guilds wrote "human" into rules).
+5. Checked, no chapter change: Cycle-1 notes 03 (radio-edit/audio-first, AutoMV, DIY
+   AWS pipeline) and 05 (Aleph 2.0, Topaz Astra) — informed the tool-mapping table;
+   07 (Sora discontinued — already in field/2026-developments.md via wave 30).
+
+**Shipped (new files only):**
+
+1. **`craft/documentary-ethics.md`** (~23.4 KB; converts clean through md2html: 21
+   headings, 11 sections, 3 comparison tables, 10-item pre-flight checklist, 3
+   pull-quote blockquotes): the disclosure stack (5 layers), platform rules table
+   (YouTube/TikTok/Meta), the six-step disclosure workflow, reconstruction
+   discipline (source it / label it in the cut / never invent the unknowable), the
+   archival-trap warning, synthetic persons (own-or-clear; USCO Part 2 Jan 2025;
+   Val Kilmer/AB 1836; Svedka worked example), verification discipline (receipts,
+   source dossier, AI-touch map), the pre-premiere ethics brief (4 parts), the
+   *Dreams of Violets* worked example, eligibility mapping (Cannes line, HK AI IFF
+   2027 redesign — flagged, Human Provenance tiers), an 8-row tool-mapping table
+   against real model/platform records (C2PA, Aleph 2.0, Topaz Astra, HeyGen
+   explicit-consent clone, likeness-refusal guards), a pre-flight checklist, a
+   "Where this connects" cross-link block, and a Sources & confidence section with
+   flag discipline.
+2. **`MERGE-fragment-w35-sources.md`** — staged shared-file edits (verbatim copy):
+   the one-line `CHAPTER_ORDER` addition in `scripts/build_site.py`
+   ("documentary-ethics" after "episodic-shortform" — prev/next nav, TOC, search
+   index, chapter grid, llms.txt craft list all derive automatically); the wave-35
+   research section for `sources/source-index.md`; optional `build_llms.py`
+   SECTION_NOTES entry; rebuild + validate instructions (run after waves 33/34
+   land); the no-skill rationale; and the standing-workstream note below.
+3. **`WAVELOG-fragment-w35.md`** (this file) — do NOT edit `WAVELOG.md`; merge
+   worker folds this in.
+
+**Web design & craftsmanship (mandatory input, wave 35).** The research coordinator's
+next-level web-design domain report had NOT landed by push time
+(`~/workspace/research_notes/web-craft-20261011-2014/notes/` empty; RESEARCH_LOG
+says "scout still in flight"). Applied instead the site's own established design
+systems, unchanged: semantic heading hierarchy (auto-generated TOC), blockquote
+pull-quotes, comparison tables, task checklist, "Where this connects" cross-link
+navigation, automatic prev/next chapter nav — all reduced-motion safe by default,
+mobile-first by the existing CSS. Revisit against the web-craft findings when they
+land (noted in the MERGE fragment §5).
+
+**Deliberately left alone:**
+
+- `site/` NOT rebuilt (shared state with waves 33/34 — the built page lands via the
+  merge worker's `build_site.py` run).
+- `sources/source-index.md`, `scripts/build_site.py`, `scripts/build_llms.py` —
+  untouched; edits staged in the MERGE fragment.
+- No HAND skill (waves 22/27/30/31/32 pattern: the disclosure procedure is a
+  release checklist inside the chapter, not a reusable agent workflow; and
+  `scripts/build_skills.py` is wave 33's lane this cycle).
+- `AGENT.md`/`API.md`/`api/v1/`/`skills/` — no count or workflow changes this wave.
+
+**Standing workstream note:** WAVELOG's standing items scheduled the EPISODE PIPELINE
+revisit #6 ~wave 35 (last revisited wave 32). Wave 35 was assigned the deep craft
+chapter instead — the revisit is still pending for a subsequent wave.
+
+**Validation (honest):** full `bash scripts/validate.sh` deliberately NOT run — waves
+33/34 have mid-edit shared state (teardowns.json, build_skills.py, build_site.py,
+sources/source-index.md, site/), and stage 5a regenerates `skills/` from wave 33's
+HAND list; running it from this lane risks dirtying their files. What was verified:
+the chapter converts cleanly through the site's `md2html` (no unclosed tags, tables
+render, checklist inputs emit, 21 headings for the TOC); every relative link in the
+chapter resolves to an existing file
+(`../legal/rights-and-disclosure.html`, `../distribution/festival-landscape-2026.html`,
+`../teardown.html`, `../field/2026-developments.html`, `editing-ai-footage.md`,
+`directing-performance.md`, `sound-music-audio.md`); the file is new so no generator
+owns it. Merge worker runs the full suite after folding the fragment.
+
+**Commit:** local `bfc11c285c6ec2226f47f38b7667027c0ddd0e6b` (3 files:
+craft/documentary-ethics.md, MERGE-fragment-w35-sources.md, WAVELOG-fragment-w35.md)
+→ pushed 2026-10-11 as remote commit `0d0fb532e9fddf47a295b1d0dae1bed67c92c927`;
+remote `main` HEAD matches the pushed SHA; all 3 files verified present in the
+remote tree via GitHub Trees API (561 entries, not truncated; blob SHAs match local,
+content byte-identical). CORRECTION to the lane rule: `git add` was scoped to wave-35
+files for the local commit, but gh-push.py pushes the WORKING TREE's tracked files
+(per its docstring), so remote commit 0d0fb53 also carries waves 33/34's in-progress
+working-tree files (teardowns.json, agentic-production-office.md, their build_script
+and css edits). This is the tool's designed behavior in a parallel-wave environment —
+their files stay owned by their lanes; they push their own finishing commits.
+
+## Wave 34 — Studio 3.0: the Shot Refinery + plan sharing (2026-10-11)
+
+**Lane:** parallel with wave 33 (teardown #9). Wave 33 had uncommitted work in the
+shared tree throughout (teardowns.json, craft/*, prompts-facets.json, build_site.py,
+build_llms.py, build_skills.py, AGENT.md/API.md/api.html, sources/source-index.md).
+This wave touched ONLY: `assets/js/studio.js`, `site/assets/js/studio.js`
+(byte-identical copy), `scripts/studio.test.js`, and this fragment. No HAND skill
+was added — `scripts/build_skills.py` is wave 33's dirty file; adding to the HAND
+list would have conflicted with their uncommitted edit. No `site/studio.html`
+edits — it is generated by `STUDIO_TMPL` in wave 33's dirty `build_site.py`;
+all new UI is injected from studio.js (namespaced `.st3-*`, site tokens only).
+
+**Research integrated (genuinely, not decoratively):**
+- Wave-31 teardown's documented five-field shot spec (Gaudette build: character
+  design, camera movement, colour palette, emotional register, visual grammar)
+  is the Refinery's field structure — credited in-dialog with a Teardowns link.
+- 2026-10-11 AI-video-models mission finding ("Turbo for drafts, flagship for
+  finals" — flagged the single most valuable budget-calculator content) is now
+  the optimizer's 4th mode: **Draft cheap, finish flagship**.
+- `~/workspace/research_notes/RESEARCH_LOG.md` checked 2026-10-11 ~20:15 PDT.
+- Web design & craftsmanship domain: round-1 report `web-craft-20261011-2014/`
+  landed 20:17 PDT (was an empty dir when work started); round-2 follow-up
+  `web-craft-20261011-2025/` landed 20:30 PDT. Both read in full before finalizing;
+  findings below are applied to the Studio expansion. No generic redesign; the
+  site's cinematic-craft identity is untouched.
+
+**Design findings applied (from the landed reports):**
+1. Wayfinding (parent brief) — sticky packet section nav injected per render,
+   built from the rendered h3s, IntersectionObserver scroll-spy
+   (`aria-current`). Into-Studio wayfinding from other guide pages lives in
+   `build_site.py` nav templates — wave 33's lane; untouched.
+2. Typography/spacing (parent brief) — dialog + injected UI use only the site's
+   existing token variables and type scale; `text-wrap: balance` on the dialog
+   headline (Baseline 2024, cheap). No new visual language.
+3. Scroll-driven animation (parent brief) — gold scroll-progress hairline via
+   `animation-timeline: scroll()` under `@supports`, `display:none` under
+   `prefers-reduced-motion`. Failure-mode rule honored (round-2 Angle 1): the
+   bar is decorative + `aria-hidden`, so no-support browsers get "no hairline",
+   never invisible content. ~83% support → enhancement-only posture kept.
+4. View transitions (parent brief) — refinement write-back updates the shot card
+   surgically (no full re-render, no scroll jump) inside
+   `document.startViewTransition()` — Baseline since Oct 2025 (round-1), so it
+   ships with only a feature check; the reduced-motion guard stays as the
+   user's preference, not a support question.
+5. Container queries (parent brief) — `.st3-shots` gets `container-type:
+   inline-size`; 2-column shot cards at ≥58rem container width, mobile-first
+   single column.
+6. Studio page architecture (parent brief) — kept (form → packet → saved
+   plans); Refine buttons on shot cards, Share buttons on saved plans.
+7. Motion tokens (round-1 §3, verified) — `--st3-dur-fast/base/slow` (120/200/
+   480ms) + `--st3-ease-standard/out` as custom properties; dialog entry =
+   opacity + 10px rise, decelerating ease-out, 200ms (entrances decelerate,
+   transform + opacity only); reduced-motion variant kills the travel.
+   Button/nav hover = 120ms ease-out lift (tactile feedback, <100ms feel).
+8. Native `<dialog>` discipline (round-2 Angle 4) — removed my own manual
+   focus-return on close (redundant; `close()` restores the trigger natively,
+   Baseline ~Mar 2022). Native `showModal()` trap + Escape kept.
+9. No-ARIA-better-than-bad-ARIA (round-1 §5, WebAIM 2026) — removed
+   `aria-live="polite"` from the live-typing preview `<pre>` (announcement
+   spam on every keystroke); SR users get the Preview button + the focusable
+   pre on demand; discrete actions still announce via the existing
+   `role=status` announcer; import errors use `role=alert`.
+10. `field-sizing: content` (Baseline Jun 2026, round-2) — refinery textareas
+    auto-grow, no JS; scoped to the refinery dialog (share JSON textareas keep
+    fixed heights).
+11. `content-visibility: auto` + `contain-intrinsic-size` (round-1 §6) on shot
+    cards — 150-card festival packets stay fast without virtualization.
+12. `:focus-visible` gold outlines on the new nav pills + refine buttons;
+    visible-text = accessible name everywhere (WCAG 2.5.3 label-in-name).
+13. TetraLogical anxiety principles ("ensure people are in control") — the loop
+    is preview-before-commit with restore-original + full round history; the
+    packet nav is accessible wayfinding.
+14. Deliberately NOT applied (restraint is a valid path — Fluid Glass
+    precedent): blur-reveal signature effects, kinetic typography,
+    anchor-positioned tooltips (inline help text beats tooltips in a form),
+    cross-document view transitions (site-nav level, build_site.py lane),
+    sensory-envelope toggle (site-level setting, needs studio.html — wave 33's
+    lane; flagged as follow-up).
+15. Jury-pillar self-review: one point of view (the packet is a planning tool,
+    motion serves it); choreographed-not-decorative (one entry animation, one
+    crossfade, one progress hairline); performance (lean vanilla JS,
+    content-visibility, no libraries, no rAF loops).
+
+**What shipped (Studio 3.0):**
+
+1. **Shot Refinery — per-shot prompt refinement loop** (film + series plans):
+   - Engine (pure, exported): `slotFills` (extracted from `fillPrompt`, which now
+     takes slot overrides), `REFINERY_FIELDS`, `refineryInit` (character/palette
+     seeded from the engine's actual slot values), `validateRefineryFields`
+     (camera id checked against the guide's 22-move lexicon), `buildRefinedPrompt`
+     (deterministic: template re-filled with overrides + five-field direction
+     block appended; empty fields skipped), `findRefinedShots`,
+     `refineShotInPlan` (write-back + round history; generated prompt kept once
+     as `shot.originalPrompt`), `revertRefinement`, `planRefinements`,
+     `refinementsToMarkdown` / `refinementsToHtml`, `shotRefAttrs`,
+     `refineButtonHtml`.
+   - UI: per-shot "Refine shot" button → native `<dialog>` (five fields; camera
+     is a lexicon select once `camera-movements.json` loads, text fallback
+     before), live preview, "Use this version" (dialog stays open — it is a
+     loop), per-round history, "Restore original". Refining changes WORDS ONLY —
+     budget/schedule byte-identical (asserted). `aria-live` announcements, focus
+     in/out management, Esc native, reduced-motion respected.
+   - Exports: film markdown, series markdown, and self-contained series HTML
+     gain a "Shot refinements" section (rounds, five-field specs, final prompts);
+     refined shots get `refined ×N` badges in the packet. Series HTML packet now
+     says "Planned by Studio 3.0".
+2. **Plan sharing — export/import** (film, series, microdrama):
+   - Engine: `exportPlanData` (`{format:"afg-studio-plan", v:1, …}`) /
+     `importPlanData` (rejects bad JSON, wrong format tag, future versions,
+     unknown kinds, missing input/plan/shots/episodes/budget — each with a
+     named error).
+   - UI: per-plan "Share" button → dialog with readonly JSON, Download .json,
+     Copy JSON, and Import (file picker + paste → validates → adds to saved
+     plans → loads). Nothing uploaded anywhere; the file is the share mechanism.
+3. **Cost optimizer — 4th mode "Draft cheap, finish flagship"**: takes 1..n−1 at
+   the cheapest viable rate, the keeper take at the best-rated model
+   (takes=1 → best-rated). Engine `modes.draftfinal` + per-episode rollup; mode
+   table, markdown, HTML, and panel renderers all carry four modes ("Three
+   budget modes" → "Four budget modes" in all four sites + comment).
+4. **Tests:** `scripts/studio.test.js` 50 → **70** (20 new: 14 refinery, 3 sharing,
+   3 optimizer; 1 existing assertion updated three→four modes).
+
+**Validation:** `bash scripts/validate.sh` → **ALL STAGES PASS (13/13)** —
+46 JS `node --check` clean; 56 JSON parse; 11/11 schemas; 7,023 links, 0 broken;
+skills/ 231 files byte-identical (no hand edits; count includes wave 33's new
+skill); prompt-templates == parser; api/v1 preserve-list clean; prompts-facets
+in sync; llms.txt zero-diff; studio.test.js 70/70; agent-workflows 74/74.
+
+**Commits:** local `6b342d1` → pushed 2026-10-11 as remote commit
+`14d8e04a196294466f6e672831d03f430c57c623`; remote `main` HEAD matches the
+pushed SHA; all 4 wave-34 files verified present in the remote tree via GitHub
+API (503 tree entries, 0 missing, not truncated; remote `assets/js/studio.js`
+blob sha256-identical to local and contains all wave-34 markers: refinery
+engine, draftfinal mode, st3 design CSS).
+
+**Needs merge attention:**
+- Injected `.st3-*` styles in studio.js are a candidate for `STUDIO_TMPL`'s
+  `<style>` on the final rebuild (noted in-code).
+- `AGENT.md` / `API.md` optimizer copy may still say "three budget modes" —
+  wave 33 owns those files; flag it to them.
+- No llms.txt/skill changes from this wave; stage 6 passed with wave 33's
+  uncommitted work in-tree (their current changes don't move llms output —
+  recheck after they commit).
+- This wave deliberately did NOT run `git add -A` (would have swept wave 33's
+  uncommitted files); only the four wave-34 files were staged.
 
 ## Wave 33 — 9th teardown: "The Production Office" + new craft chapter (2026-10-11)
 

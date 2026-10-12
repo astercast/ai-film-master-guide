@@ -3179,12 +3179,11 @@
   /* ---------------- Studio 3.0: Refinery + sharing UI ---------------------------
      Per-shot refinement dialog, packet wayfinding nav, scroll progress,
      plan share/import. Progressive enhancement throughout: every piece
-     feature-detects and honors prefers-reduced-motion. Injected styles are
-     namespaced .st3-*, built only from the site's token variables — no new
-     visual language. A final rebuild may move them into STUDIO_TMPL. */
+     feature-detects and honors prefers-reduced-motion. Styles (.st3-*) live
+     statically in STUDIO_TMPL's <style> block, namespaced and built only
+     from the site's token variables — no new visual language. */
 
   var ST3_MOVEMENTS = null;
-  var ST3_STYLES_DONE = false;
   var ST3_DLG_REF = null;
   var ST3_DLG_INVOKER = null;
   var ST3_SHARE_NAME = "studio-plan";
@@ -3192,82 +3191,6 @@
   function st3ReducedMotion() {
     return typeof window.matchMedia === "function" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  }
-
-  function st3EnsureStyles() {
-    if (ST3_STYLES_DONE) return;
-    ST3_STYLES_DONE = true;
-    var css = [
-      "/* Studio 3.0 — injected styles; candidate for STUDIO_TMPL on final rebuild. */",
-      "dialog.st3-dialog{border:1px solid var(--line);border-radius:var(--radius);",
-      " background:var(--bg);color:inherit;padding:0;width:min(46rem,94vw)}",
-      "dialog.st3-dialog::backdrop{background:rgba(0,0,0,.6)}",
-      ".st3-dlg-wrap{display:flex;flex-direction:column;max-height:92vh}",
-      ".st3-dlg-head{padding:var(--space-4) var(--space-5) 0}",
-      ".st3-dlg-head h3{margin:0 0 var(--space-2)}",
-      ".st3-dlg-body{padding:var(--space-2) var(--space-5);overflow:auto}",
-      ".st3-dlg-body h4{margin:var(--space-4) 0 var(--space-2)}",
-      ".st3-dlg-foot{padding:var(--space-4) var(--space-5);border-top:1px solid var(--line);",
-      " display:flex;gap:var(--space-3);flex-wrap:wrap}",
-      ".st3-field{margin:0 0 var(--space-4)}",
-      ".st3-field>label{display:block;font-weight:600;margin-bottom:var(--space-1)}",
-      ".st3-field .st-hint{display:block;font-weight:400;color:var(--muted);font-size:.85rem}",
-      ".st3-field textarea,.st3-field select,.st3-field input[type=text]{width:100%;font:inherit;",
-      " color:inherit;background:var(--bg-raise);border:1px solid var(--line);",
-      " border-radius:var(--radius-s);padding:var(--space-2) var(--space-3)}",
-      ".st3-preview{background:var(--bg-raise);border:1px solid var(--line);",
-      " border-radius:var(--radius-s);padding:var(--space-3);white-space:pre-wrap;",
-      " word-break:break-word;font-size:.92rem;max-height:16rem;overflow:auto;margin:0}",
-      ".st3-history{list-style:none;padding:0;margin:0}",
-      ".st3-history li{border-top:1px solid var(--line);padding:var(--space-2) 0;font-size:.9rem}",
-      "nav.st3-pnav{position:sticky;top:0;z-index:20;background:var(--bg);",
-      " border-bottom:1px solid var(--line);padding:var(--space-2) 0;margin-bottom:var(--space-4)}",
-      "nav.st3-pnav ul{list-style:none;display:flex;gap:var(--space-1);margin:0;padding:0;",
-      " overflow-x:auto;scrollbar-width:thin}",
-      "nav.st3-pnav a{display:inline-block;padding:var(--space-1) var(--space-3);white-space:nowrap;",
-      " border:1px solid var(--line);border-radius:999px;font-size:.85rem;text-decoration:none;color:inherit}",
-      "nav.st3-pnav a[aria-current=\"true\"]{border-color:var(--gold);color:var(--gold)}",
-      ".st3-progress{position:fixed;top:0;left:0;z-index:60;height:3px;width:100%;",
-      " background:var(--gold);transform:scaleX(0);transform-origin:0 50%;pointer-events:none}",
-      "@supports (animation-timeline:scroll()){",
-      " .st3-progress{animation:st3-progressbar linear both;animation-timeline:scroll()}",
-      " @keyframes st3-progressbar{to{transform:scaleX(1)}}}",
-      "@media (prefers-reduced-motion:reduce){.st3-progress{display:none}}",
-      ".st3-shots{container-type:inline-size;display:grid;gap:var(--space-4);",
-      " grid-template-columns:minmax(0,1fr)}",
-      ".st3-shots .st-shot{margin-bottom:0}",
-      "@container (min-width:58rem){.st3-shots{grid-template-columns:1fr 1fr}}",
-      ".st3-share-json{width:100%;min-height:9rem;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;",
-      " font-size:.8rem;background:var(--bg-raise);color:inherit;border:1px solid var(--line);",
-      " border-radius:var(--radius-s);padding:var(--space-3)}",
-      ".st3-err{color:#e5484d;font-weight:600}",
-      "/* Motion tokens (web-craft round 1, motion-system finding): durations +",
-      "   named easings as custom properties; 500ms max on UI interactions. */",
-      ":root{--st3-dur-fast:120ms;--st3-dur-base:200ms;--st3-dur-slow:480ms;",
-      " --st3-ease-standard:cubic-bezier(.2,0,0,1);--st3-ease-out:cubic-bezier(0,0,0,1)}",
-      "/* Dialog entry: opacity + small rise, decelerating ease-out, 200ms base.",
-      "   Reduced-motion users get no travel (variant, not kill switch — the",
-      "   dialog still opens instantly). Transform + opacity only. */",
-      "@media (prefers-reduced-motion:no-preference){",
-      " dialog.st3-dialog{animation:st3-in var(--st3-dur-base) var(--st3-ease-out)}",
-      " @keyframes st3-in{from{opacity:0;transform:translateY(10px)}}}",
-      ".st3-dlg-head h3{text-wrap:balance}",
-      "/* Auto-growing refinery textareas (field-sizing:content, Baseline Jun 2026;",
-      "   unsupported browsers keep rows=2). Scoped to the refinery dialog — the",
-      "   share dialog's JSON textareas keep their fixed heights. */",
-      "#st3-dialog .st3-field textarea{field-sizing:content}",
-      "/* Tactile hover: 120ms ease-out lift, transform only. */",
-      ".st3-pnav a,.st3-refine{transition:transform var(--st3-dur-fast) var(--st3-ease-out)}",
-      "@media (hover:hover){.st3-pnav a:hover,.st3-refine:hover{transform:translateY(-1px)}}",
-      ".st3-pnav a:focus-visible,.st3-refine:focus-visible{outline:2px solid var(--gold);outline-offset:2px}",
-      "/* Long shot lists stay fast: skip off-screen cards (content-visibility),",
-      "   reserving ~26rem so scroll position never jumps. */",
-      ".st3-shots .st-shot{content-visibility:auto;contain-intrinsic-size:auto 26rem}"
-    ].join("\n");
-    var st = document.createElement("style");
-    st.setAttribute("data-st3", "injected");
-    st.textContent = css;
-    document.head.appendChild(st);
   }
 
   /* Packet wayfinding: sticky section nav built from the rendered h3s, with
@@ -3311,7 +3234,6 @@
   }
 
   function afterPacketRender() {
-    st3EnsureStyles();
     st3PacketNav();
   }
 
@@ -3602,7 +3524,6 @@
   /* ---------------- plan sharing UI ---------------------------------------- */
 
   function openShare(p) {
-    st3EnsureStyles();
     var dlg = document.getElementById("st3-share");
     if (!dlg) return;
     ST3_SHARE_NAME = String(p.name || "studio-plan").toLowerCase()
@@ -3640,7 +3561,6 @@
   }
 
   function st3Init() {
-    st3EnsureStyles();
     /* Camera lexicon for the refinery's movement picker (progressive
        enhancement — the dialog falls back to a text field). */
     fetch("camera-movements.json").then(function (r) {
