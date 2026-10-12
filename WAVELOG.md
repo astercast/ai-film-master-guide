@@ -27,7 +27,7 @@
 
 **Validation:** `bash scripts/validate.sh` → ALL STAGES PASS post-commit; 6,540 links, 0 broken; generator audits clean.
 
-**Commit:** `6856fb8b531b3849e7f50a78441d4eb28f914c59` ([view](https://github.com/astercast/ai-film-master-guide/commit/6856fb8b531b3849e7f50a78441d4eb28f914c59)) — 12 files, pushed 2026-10-11 as remote commit `[REMOTE]`; all 12 files verified present in the remote tree via GitHub API.
+**Commit:** `6856fb8b531b3849e7f50a78441d4eb28f914c59` ([view](https://github.com/astercast/ai-film-master-guide/commit/6856fb8b531b3849e7f50a78441d4eb28f914c59)) — 12 files, pushed 2026-10-11 as remote commit `8608974198637b4a2387f06b0b148329fc100e03`; all 8 new/changed key files verified present in the remote tree via GitHub API (484 tree entries, 0 missing; chapter blob SHA matches local).
 
 ## Wave 22 — 6th teardown: The First Honest Day (2026-10-11)
 
