@@ -11,13 +11,13 @@ You are generating on Kling 3.0 (Kuaishou, video). Best use: Motion-heavy cinema
 
 ## Inputs
 
-- Shot list with durations (cost basis: 720p ~7/5s (~$0.55/8s), 1080p ~8/5s, 4K ~30/5s; Motion Control 720p ~7, 1080p ~12)
+- Shot list with durations (cost basis: 720p ~7/5s (~$0.55/8s), 1080p ~8/5s, 4K ~30/5s; Motion Control 720p ~7, 1080p ~12 ; API $0.84/10s 720p (reported Sept 2026 benchmark))
 - Whether you need native audio, lip sync, or long takes
 - Your quality bar: draft (720p/fast) vs hero
 
 ## Procedure
 
-1. Budget first: 720p ~7/5s (~$0.55/8s), 1080p ~8/5s, 4K ~30/5s; Motion Control 720p ~7, 1080p ~12. Multiply by 3–5× per hero shot for re-rolls.
+1. Budget first: 720p ~7/5s (~$0.55/8s), 1080p ~8/5s, 4K ~30/5s; Motion Control 720p ~7, 1080p ~12 ; API $0.84/10s 720p (reported Sept 2026 benchmark). Multiply by 3–5× per hero shot for re-rolls.
 2. Lean into its strength: Best-in-class motion/physics; native audio; Motion Control puppetry; Omni multi-shot; 15s.
 3. Design around its weakness — do not fight it: Subtle emotional faces trail Hailuo; fingers/camera drift without control; probabilistic.
 4. Draft everything at the cheapest tier that still answers the creative question.
@@ -25,7 +25,7 @@ You are generating on Kling 3.0 (Kuaishou, video). Best use: Motion-heavy cinema
 
 ## Worked example
 
-10-second hero shot budgeting at 720p ~7/5s (~$0.55/8s), 1080p ~8/5s, 4K ~30/5s; Motion Control 720p ~7, 1080p ~12: estimate the per-second rate, × 2 for duration, × 4 for re-roll headroom.
+10-second hero shot budgeting at 720p ~7/5s (~$0.55/8s), 1080p ~8/5s, 4K ~30/5s; Motion Control 720p ~7, 1080p ~12 ; API $0.84/10s 720p (reported Sept 2026 benchmark): estimate the per-second rate, × 2 for duration, × 4 for re-roll headroom.
 
 ## API references
 

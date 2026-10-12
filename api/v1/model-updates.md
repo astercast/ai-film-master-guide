@@ -59,18 +59,61 @@ pricing before spending — this file is a snapshot, not a rate card.
   independent scores for physics-led motion.
 - **Pika 2.5** — no Pika 3.0 as of Oct 2026; 2.5 remains current. Pika now also routes
   third-party models (e.g. Kling 3.0) through its dev API.
-- **Runway** — not in the model table, but noted: Gen-4.5 (Dec 2025) is still the current
-  video model; no Gen-5 shipped (rumored Q4 2026). Runway has pivoted toward a multi-vendor
-  platform and Media Router.
+- **Runway Gen-4.5** — now in the model table (see Wave 16 section below). Gen-4.5 (Dec 2025)
+  is still the current video model; no Gen-5 shipped (rumored Q4 2026). Runway has pivoted
+  toward a multi-vendor platform and Media Router.
 - **Soul 2.0 / Soul Cinema / Soul Cast / DoP / Marketing Studio** (Higgsfield) — no
   successor announced; Soul Cinema launched as a preview March 4, 2026 with pricing still
   unpublished. All flagged verify-live.
 
+## Wave 16 refresh — 2026-10-11 (Oct 2026 fuel research)
+
+### New entrants
+
+- **Gemini Omni** (Google DeepMind) — the correction that matters: Google's actual next
+  play is Gemini Omni (I/O 2026), not a "Veo 4". Omni Flash shipped day one in the Gemini
+  app, YouTube Shorts, and Google Flow; API since June 30, 2026 (~$0.10/s at 720p,
+  token-billed, reported). "Veo 4" pages ranking on Google are SEO bait — verified across
+  three sources.
+- **Runway Gen-4.5** (Runway) — now a proper record: Runway shipped NO new model in 2026;
+  Sept 2026 news was distribution (MCP) and the Sept 30 Summit. API benchmark ~$1.20/10s
+  720p (reported). $200M ARR, $350M projection (company-claimed). Included in Adobe's
+  Sept 8 in-Premiere multi-model workbench.
+- **LTX-2.5** (Lightricks) — Aug 11, 2026: Fast/Pro up to 4K, open weights 22B,
+  multi-shot in one pass. Trained on licensed Getty/Shutterstock imagery — the legal-safe
+  open pick; paid license required above $10M revenue. API from ~$0.003/s (reported).
+- **Vidu S2** (Vidu) — Sept 15, 2026: real-time S2-Avatar (interactive character up to
+  720p) and S2-Editing (changes a live stream as it plays).
+- **Mirage Tesseract** (Mirage, formerly Captions) — Sept 22, 2026: agent-driven
+  editing/motion-graphics suite with a free local engine. Typed `suite` so the Studio
+  never treats it as a per-shot generation model.
+
+### API benchmark table (reported, not vendor-quoted)
+
+Sept 2026 via Higgsfield's AI-video API comparison — per 10s 720p: MiniMax H3 $0.80,
+Kling 3.0 $0.84, Luma Ray 3.2 $0.90, Runway Gen-4.5 $1.20, Seedance 2.5 $2.31, Veo 3.1
+$3.20 (per 8s). Veo 3.1 is the premium API tier. Verify live before budgeting.
+
+### Other refreshes
+
+- **Wan 3.0** — formal release confirmed Aug 24, 2026; provider-list $0.05/s at 480p,
+  2–30s with native audio. **Native audio is now standard** across Kling 3.0, Seedance
+  2.5, MiniMax H3, Wan 3.0, Veo 3.1.
+- **MiniMax H3** — open weights Aug 3, 2026 (base checkpoint; hosted Context-IR/
+  Regenerate-2K separate); optimized third-party inference from $0.01/s.
+- **Seedance 2.5** — five modes incl. Turbo drafting tier for cents-level prompt testing.
+- **Kling 4.0** — still announced, not GA. Specs (30s) are preview-leak level per
+  GPTProto — do not present as confirmed. Kling 4K is a 3.0 feature (Apr 23, 2026).
+- **Wan 2.2** (Apache 2.0) remains the practical open-weights quality benchmark.
+
 ## Rumors explicitly not treated as fact
 
 - "Veo 4" — does not exist; do not trust third-party "Veo 4 generator" pages.
+  Google's actual play is Gemini Omni (I/O 2026) — now its own record.
 - "OpenAI Spud" (Sora replacement) — rumored, unconfirmed.
 - Runway Gen-5 — rumored Q4 2026, not shipped.
+- Kling 4.0 specs (30s) — announced, preview-leak level; not confirmed.
+- Seedance 3.0 — reported in third-party indexes, unconfirmed by ByteDance.
 
 *Next refresh: when a model in the table changes version, price, or status. The
 `model-watch.html` page renders this file's data live from `models.json`.*

@@ -22,15 +22,38 @@ What this actually proves: a feature can now be *produced* for the price of a us
 By October 2026 the field had consolidated around 4K output and native audio as table stakes. The current map (sources: creativeainews.com, Sept 2026; versely.studio, Oct 1, 2026; blog.laozhang.ai, Sept 30, 2026):
 
 - **Kling 3.0** (Kuaishou, launched Feb 4, 2026) — the current GA flagship: native 4K 60fps, 16-bit HDR, "Omni Native Audio." API ~$0.084–$0.168/s (720p/1080p), 4K $0.42/s; plans $10–$37/mo.
-- **Kling 4.0** (Kuaishou) — **announced September 28, 2026; not generally available.** Kling 4.0 Flash opened in limited early access for Ultra Yearly subscribers the same day; the full model (30-second single-pass generation, up to 10 keyframes, stereo audio, 4K 10-bit HDR listed "coming soon") is scheduled for October 2026, but had not launched as of early October. Kling 3.0 remains the model you can actually use today. Multiple outlets covered the announcement (techtimes.com, Sept 30; Pandaily via aiaffairs.com, Sept 29; curatedai.net); one field roundup (versely.studio, Oct 1) called 4.0 "unannounced" — that was wrong or stale; the announcement is multi-sourced.
-- **Veo 3.1** (Google) — the current Google model: native audio by default, scene extension, last-frame control, extensions to ~148s. Google AI Plus $7.99/mo (Fast tier) is the most aggressive consumer entry price in the field. **No Veo 4 exists as of late September 2026** (laozhang.ai; versely).
-- **Runway Gen-4.5** — 4K with camera control; consumer plans ~$12/$28/mo.
-- **LTX-2.3** (Lightricks) — fully open-source (Apache 2.0), 4K 50fps, video and audio in one pass. The open-weight pipeline story of the year (see the workflow section below).
-- **Wan 3.0** (Alibaba) — rated the budget/fast-drafting pick in October field notes (from ~6 credits/shot on aggregator hosts).
+- **Kling 4.0** (Kuaishou) — **announced September 28, 2026; not generally available.** Kling 4.0 Flash opened in limited early access for Ultra Yearly subscribers the same day; the full model is scheduled for October 2026 but had not launched as of early October. Kling 3.0 remains the model you can actually use today. Multiple outlets covered the announcement (techtimes.com, Sept 30; Pandaily via aiaffairs.com, Sept 29; curatedai.net); one field roundup (versely.studio, Oct 1) called 4.0 "unannounced" — that was wrong or stale; the announcement is multi-sourced. **Leak-level flag (Oct 11, 2026):** the "30-second single-pass" spec is preview-leak level — GPTProto (medium.com/@gptproto.team) explicitly cautions it is unverified. Do not present 4.0 specs as confirmed. Note: Kling 4K is a **3.0** feature (native 4K added April 23, 2026), not a 4.0 feature — don't conflate.
+- **Veo 3.1** (Google) — the current Google model: native audio by default (always-on via the Gemini API), scene extension, last-frame control, extensions to ~148s. Google AI Plus $7.99/mo (Fast tier) is the most aggressive consumer entry price in the field. API benchmark ~$3.20/8s — the premium API tier (reported, Sept 2026). **CORRECTION (Oct 11, 2026): Veo 4 does not exist.** Pages titled "Veo 4 release date" ranking on Google are **SEO bait** — no Google documentation names such a model (verified across three sources: lumeflow.ai, innfactory.ai). Google's actual next play is **Gemini Omni**, unveiled at Google I/O 2026 (May 19–20) as a unified multimodal creation platform: Omni Flash shipped day one in the Gemini app, YouTube Shorts, and Google Flow, with API since June 30, 2026 (~$0.10/s at 720p, token-billed).
+- **Gemini Omni / Omni Flash** (Google) — the conversational video platform Google built instead of a "Veo 4": prompt-plus-reference generation and clip editing across Gemini, Shorts, and Flow.
+- **Runway Gen-4.5** — still the current Runway model: **Runway shipped no new model in 2026.** September's news was distribution (its MCP serving other companies' models) and the Sept 30 Summit. 4K with camera control; consumer plans ~$12/$28/mo; API benchmark ~$1.20/10s 720p (reported, Sept 2026). $200M ARR, $350M year-end projection (company-claimed); research pipeline spans creative video, interactive simulation, and humanoid robotics (world models).
+- **LTX-2.5** (Lightricks) — released Aug 11, 2026: Fast/Pro variants up to 4K, open weights 22B, multi-shot in one pass. The LTX line is trained on licensed Getty/Shutterstock imagery — the legal-safe open pick for commercial work (paid license required above $10M revenue).
+- **Wan 3.0** (Alibaba) — formal release Aug 24, 2026: 2–30s with native audio at **$0.05/s at 480p** (provider list price) — "thirty seconds with audio got cheap; a year ago that length and price did not exist together" (makeinfluencer.ai). Also rated the budget/fast-drafting pick in October field notes (from ~6 credits/shot on aggregator hosts).
+- **Vidu S2** — launched Sept 15, 2026: real-time S2-Avatar (interactive character up to 720p) and S2-Editing (changes a live stream as it plays).
+- **Mirage Tesseract** (Mirage, formerly Captions) — launched Sept 22, 2026: agent-driven editing and motion-graphics suite with a free local engine. Not a shot generator — it belongs to the edit/post stage.
 - **Seedance 2.5** (ByteDance) — third-party field notes report identity holds up to ~30s. Seedance 3.0 is *reported* in third-party indexes but unconfirmed by ByteDance — treat as rumor.
-- **MiniMax H3** (alias Hailuo 3.0) — 2K plates, native stereo audio; $9.99/mo entry, $94.99/mo unlimited, API ~$0.045/s (768p).
+- **MiniMax H3** (alias Hailuo 3.0) — 2K plates, native stereo audio; $9.99/mo entry, $94.99/mo unlimited, API ~$0.045/s (768p). Open weights released Aug 3, 2026 (base checkpoint; hosted Context-IR/Regenerate-2K stages separate). Optimized third-party inference from $0.01/s.
 - **FLUX 3 text-to-video** (Black Forest Labs) — ~34 credits/shot on aggregator hosts.
-- **Gemini Omni Video / Omni Flash Edit** (Google) — prompt-plus-references generation and clip editing, ~29–50 credits.
+
+**Native audio is now standard** across Kling 3.0, Seedance 2.5, MiniMax H3, Wan 3.0, and Veo 3.1 (Oct 2026 coverage).
+
+**Adobe's Sept 8 multi-model in-Premiere workbench is the big workflow shift:** announced at IBC 2026, Premiere now embeds five competing models — Firefly, Google Veo, Runway, Kling, Luma — directly in the toolbar, plus in-timeline AI audio/music generation, an After Effects AI assistant, and audio repair tools. The round-trip export loop is over: editors generate B-roll in-timeline from whichever model wins per shot. (TechTimes, Sept 8, 2026)
+
+**The API pricing war, in one table** (REPORTED benchmarks — third-party reported, not vendor-quoted; Sept 2026, via Higgsfield's AI-video API price comparison; verify live before budgeting):
+
+| Model | API cost per 10s 720p (reported) |
+|---|---|
+| MiniMax H3 | $0.80 |
+| Kling 3.0 | $0.84 |
+| Luma Ray 3.2 | $0.90 |
+| Runway Gen-4.5 | $1.20 |
+| Seedance 2.5 | $2.31 |
+| Veo 3.1 | $3.20 (per 8s) |
+
+Veo 3.1 sits alone as the premium API tier. Open-model floors keep falling: LTX 2.5 Fast from ~$0.003/s, optimized MiniMax H3 inference from $0.01/s. **Drafting tiers are now a workflow:** Seedance 2.5 Turbo and Gemini Omni Flash at 360p exist for cents-level prompt testing before hero renders. (MakeInfluencer, Oct 2026)
+
+**Model exclusivity is gone.** fal, Replicate, Higgsfield, Protoface, and Krea now carry all frontier models behind one API key — Kling 3.0, Seedance 2.5, Wan 3.0, Veo 3.1, Grok Imagine, Runway Gen-4.5, LTX-2.5 in one place (Protoface, Oct 8, 2026). The same models appear on Pika, Runway, Luma, Higgsfield, and Krea — platforms now compete on price per second, tooling, and character consistency, not the model list. Margins are moving to workflow tooling and inference optimization.
+
+**Open source, October 2026:** Wan 2.2 (Apache 2.0) remains the practical quality benchmark for open-weights video; HunyuanVideo is the open-source consistency standout (temporal identity stability). LTX-2/2.5 trained on licensed Getty/Shutterstock data — legal safety for commercial work. **License traps to flag:** HunyuanVideo excludes EU/UK/SK and caps at 100M MAU; CogVideoX caps free commercial use at 1M visits/mo; LTX requires a paid license above $10M revenue. (intelligibberish.com, Oct 2026; Medium open-source stack guide, June 2026)
 
 **The pricing war cratered generation costs.** 10 seconds of HD video now runs $0.25–$5.00 depending on platform and quality; entry plans start around $8/mo (Pika). Every major proprietary platform restructured pricing since late 2025. Pricing tables differ slightly across sources — these are directional, not quotes.
 
@@ -67,8 +90,10 @@ And in the West: ***The Cully Hill Boys*** (110 minutes, August 2026, reportedly
 
 ## What to watch next
 
-- **Kling 4.0's full launch** — announced, priced only by rumor. Don't plan around it until it's GA.
-- **Veo 4 and Seedance 3.0** — both unannounced as of October 2026.
+- **Kling 4.0's full launch** — announced, priced only by rumor, specs at leak-level. Don't plan around it until it's GA.
+- **Seedance 3.0** — reported in third-party indexes, unconfirmed by ByteDance. Treat as rumor.
+- **Veo 4** — does not exist; "Veo 4" pages are SEO bait. Google's play is Gemini Omni (see the correction above).
+- **Long-form coherence research** — Google Research's four-system framework (AI Video Co-Director orchestration, CANVAS visual memory, A²RD long-horizon synthesis, VQQA artifact repair) targets coherent minutes-long video — but it's research only, no downloadable product. (AlphaSignal, Sept 2026)
 - **Cannes** — reported (single source, April 2026) to have banned AI-generated films from competition. If true, the major-festival path runs through festivals like Tribeca and Venice's orbit, not the Palme d'Or.
 - **Costs keep falling; taste keeps mattering.** The field's advice going into Q4: delete dead routes, draft cheap, upscale last, and spend the savings on sound and edit.
 
@@ -90,6 +115,18 @@ And in the West: ***The Cully Hill Boys*** (110 minutes, August 2026, reportedly
 - https://www.aiaffairs.com/technology/kuaishou-kling-4-0-30-second-video-multi-reference-control/ (Sept 29, 2026)
 - https://www.curatedai.net/tools/kling-4-0.html (Sept 29, 2026)
 - https://rctv.com/posts/ai-video-weekly-roundup-2026-10-05/ (Oct 5, 2026)
+- https://medium.com/@gptproto.team/what-is-kling-4-0-preview-leaks-release-status-what-to-use-now-5d9afa268132 (Oct 2026 — Kling 4.0 leak-level caution; Kling 4K is a 3.0 feature, added April 23, 2026)
+- https://www.lumeflow.ai/ai-tools/veo-4-release-date/ (May 2026 — no Veo 4; Google I/O 2026 unveiled Gemini Omni)
+- https://innfactory.ai/en/ai-models/google-veo/ (Gemini Omni API since June 30, 2026, ~$0.10/s at 720p)
+- https://www.techtimes.com:443/articles/327054/20260909/adobe-embeds-five-competing-ai-video-models-premiere-killing-round-trip-export.htm (Sept 8, 2026 — Adobe multi-model in-Premiere workbench)
+- https://www.makeinfluencer.ai/guides/best-ai-video-generators-2026 (Oct 2026 — Sora deprecation, Seedance 2.5 modes, Wan 3.0 $0.05/s, Kling 4.0 announced, drafting tiers)
+- https://magichour.ai/blog/ai-video-model-release-tracker-2026 (Oct 2026 — release timeline: MiniMax H3 open weights Aug 3, LTX-2.5 Aug 11)
+- https://www.versely.studio/blog/state-of-ai-video-oct-2026 (Oct 2026 — Wan 3.0 formal Aug 24, Vidu S2, Mirage Tesseract, Runway no new model)
+- https://www.einpresswire.com/article/948320883/protoface-expands-ai-video-api-with-kling-3-0-seedance-2-5-and-google-veo-3-1 (Oct 8, 2026 — aggregators: Kling 3.0 Pro, Seedance 2.5, Wan 3.0, Veo 3.1, LTX 2.5 Fast from $0.003/s)
+- https://higgsfield.ai/blog/best-ai-video-generation-apis (Sept 2026 — API benchmark table: MiniMax H3 $0.80, Kling 3.0 $0.84, Luma Ray 3.2 $0.90, Runway Gen-4.5 $1.20, Seedance 2.5 $2.31, Veo 3.1 $3.20/8s per 10s 720p)
+- https://higgsfield.ai/blog/best-affordable-ai-video-generators (Aug 2026 — Vidu ~$0.05, Pika ~$0.17, Runway ~$1.44 per clip)
+- https://intelligibberish.com/articles/best-local-video-generation-models-by-vram/ (Oct 2026 — open-source license traps: Wan 2.2 Apache, LTX paid >$10M, HunyuanVideo EU/UK/SK exclusion, CogVideoX 1M visits/mo cap)
+- https://alphasignal.ai/news/google-s-gemini-and-veo-team-up-to-generate-coherent-10-minute-videos (Sept 2026 — Google long-form research framework)
 - https://gizmodo.com/best-vpn/access-sora-uk (Oct 2026 — Sora shutdown timeline)
 - https://www.cinemadrop.com/blog/ai-generated-movie (~Oct 2026 — long-form workflow; trade source, it's a tool vendor)
 - https://blog.designhero.tv/ai-filmmaking-2/ (~Oct 2026 — long-form workflow)

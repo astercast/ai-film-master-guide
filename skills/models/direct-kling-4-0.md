@@ -18,7 +18,7 @@ You are generating on Kling 4.0 (Kuaishou, video). Best use: Long-take narrative
 ## Procedure
 
 1. Budget first: not published — verify live. Multiply by 3–5× per hero shot for re-rolls.
-2. Lean into its strength: 30s native clips (longest single-pass in class), up to 10 keyframes, Omni Reference (up to 15 refs from 50 uploads), stereo audio with improved lip-sync; 4K 10-bit HDR promised.
+2. Lean into its strength: REPORTED, NOT CONFIRMED: 30s native clips, up to 10 keyframes, Omni Reference, stereo audio with improved lip-sync; 4K 10-bit HDR promised ('coming soon'). Treat ALL specs as leak-level until GA..
 3. Design around its weakness — do not fight it: Not generally available as of Oct 11, 2026 — Flash early access for Ultra Yearly subscribers only; 4K 10-bit listed 'coming soon'; no independent benchmark rating yet (full model not shipped).
 4. Draft everything at the cheapest tier that still answers the creative question.
 5. Upscale or re-render at hero quality only for approved selects.

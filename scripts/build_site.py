@@ -1628,7 +1628,7 @@ QUIZ_TMPL = """<!DOCTYPE html>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Model-picker quiz — AI Film Master Guide</title>
-  <meta name="description" content="Five questions, one ranked shortlist: the model-picker quiz scores all 18 video models in the guide's API against your use case, budget, and audio needs — with live cost math.">
+  <meta name="description" content="Five questions, one ranked shortlist: the model-picker quiz scores all 22 video models in the guide's API against your use case, budget, and audio needs — with live cost math.">
   {css}
 </head>
 <body>
@@ -3333,7 +3333,7 @@ def main():
          "text": "Printable one-page field guides generated from the guide's own data: model quick-reference, prompt anatomy cheat sheet, consistency and dead-eyes checklist."},
         {"url": "quiz.html", "title": "Model-picker quiz", "section": "Tools",
          "headings": ["What's the job?", "Budget tier?", "What look?", "Native audio needed?", "Your footage plan"],
-         "text": "Five questions, one ranked shortlist: the model-picker quiz scores all 18 video models against your use case, budget, and audio needs, with live cost math and a one-click handoff to the prompt workshop."},
+         "text": "Five questions, one ranked shortlist: the model-picker quiz scores all 22 video models against your use case, budget, and audio needs, with live cost math and a one-click handoff to the prompt workshop."},
         {"url": "compare.html", "title": "Model compare", "section": "Tools",
          "headings": ["Pick your contenders"],
          "text": "Side-by-side model comparison from the guide's versioned model data: cost, best use, strengths, weaknesses, native audio, and freshness status for 2–3 models, with shareable URLs. Discontinued models excluded."},

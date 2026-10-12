@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "count": 212,
+  "count": 217,
   "skills": [
     {
       "id": "prompt-t1",
@@ -541,6 +541,36 @@
       "title": "Direct with Kling 4.0",
       "description": "Use Kling 4.0 well: costs, strengths, weaknesses, best use.",
       "path": "skills/models/direct-kling-4-0.md"
+    },
+    {
+      "id": "direct-gemini-omni",
+      "title": "Direct with Gemini Omni",
+      "description": "Use Gemini Omni well: costs, strengths, weaknesses, best use.",
+      "path": "skills/models/direct-gemini-omni.md"
+    },
+    {
+      "id": "direct-ltx-2-5",
+      "title": "Direct with LTX-2.5",
+      "description": "Use LTX-2.5 well: costs, strengths, weaknesses, best use.",
+      "path": "skills/models/direct-ltx-2-5.md"
+    },
+    {
+      "id": "direct-vidu-s2",
+      "title": "Direct with Vidu S2",
+      "description": "Use Vidu S2 well: costs, strengths, weaknesses, best use.",
+      "path": "skills/models/direct-vidu-s2.md"
+    },
+    {
+      "id": "direct-mirage-tesseract",
+      "title": "Direct with Mirage Tesseract",
+      "description": "Use Mirage Tesseract well: costs, strengths, weaknesses, best use.",
+      "path": "skills/models/direct-mirage-tesseract.md"
+    },
+    {
+      "id": "direct-runway-gen-4-5",
+      "title": "Direct with Runway Gen-4.5",
+      "description": "Use Runway Gen-4.5 well: costs, strengths, weaknesses, best use.",
+      "path": "skills/models/direct-runway-gen-4-5.md"
     },
     {
       "id": "audit-pre-production-checklist",

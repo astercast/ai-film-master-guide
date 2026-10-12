@@ -11,13 +11,13 @@ You are generating on Seedance 2.5 (ByteDance, video). Best use: Hero multi-shot
 
 ## Inputs
 
-- Shot list with durations (cost basis: not in captured table — verify live (promo: ~80 videos on Plus/mo))
+- Shot list with durations (cost basis: API ~$2.31/10s 720p (reported Sept 2026 benchmark — verify live); Higgsfield promo ~80 videos on Plus/mo)
 - Whether you need native audio, lip sync, or long takes
 - Your quality bar: draft (720p/fast) vs hero
 
 ## Procedure
 
-1. Budget first: not in captured table — verify live (promo: ~80 videos on Plus/mo). Multiply by 3–5× per hero shot for re-rolls.
+1. Budget first: API ~$2.31/10s 720p (reported Sept 2026 benchmark — verify live); Higgsfield promo ~80 videos on Plus/mo. Multiply by 3–5× per hero shot for re-rolls.
 2. Lean into its strength: Omni reference mode + start-image; best continuity per community.
 3. Design around its weakness — do not fight it: Premium credit cost; 30-day unlimited promos are business-plan only.
 4. Draft everything at the cheapest tier that still answers the creative question.
@@ -25,7 +25,7 @@ You are generating on Seedance 2.5 (ByteDance, video). Best use: Hero multi-shot
 
 ## Worked example
 
-10-second hero shot budgeting at not in captured table — verify live (promo: ~80 videos on Plus/mo): estimate the per-second rate, × 2 for duration, × 4 for re-roll headroom.
+10-second hero shot budgeting at API ~$2.31/10s 720p (reported Sept 2026 benchmark — verify live); Higgsfield promo ~80 videos on Plus/mo: estimate the per-second rate, × 2 for duration, × 4 for re-roll headroom.
 
 ## API references
 

@@ -85,3 +85,27 @@
 **Validation:** `bash scripts/validate.sh` → ALL STAGES PASS (11 passed, 0 failed); 44 JS files `node --check` clean; 5,936 relative links, 0 broken; studio.test.js 19/19; all 8 genres × 2 tiers build and export clean; every studio.js-referenced element id verified present in studio.html.
 
 **Commit:** `568066080fdd7c4609de2650c3cf55f7bd093f7d` ([view](https://github.com/astercast/ai-film-master-guide/commit/568066080fdd7c4609de2650c3cf55f7bd093f7d)) — 13 files, pushed 2026-10-11, all new files verified present in the remote tree via GitHub API.
+
+## Wave 16 — RESEARCH-FUEL integration (AI video Q4 2026) (2026-10-11)
+
+**Source research:** `~/workspace/research_notes/wave-fuel-2026-20261011-2355/report.md` + `notes/mission-b-models.md`, `notes/mission-b-pricing-open.md` (mission 2, read 2026-10-11, index-level reads). Every spec/price carries its source URL or an explicit "reported — verify live" flag; no invented specs.
+
+**Shipped:**
+
+1. **Model record refresh via the generator path** (never hand-edited `api/v1/models.json`): new script `scripts/wave16_artifact_refresh.py` edits `artifact-3-model-comparison.json`, then `scripts/build_api.py` regenerates `models.json` (assert updated 22 → 27 models). Five new records:
+   - **Gemini Omni** (Google DeepMind, active) — Google's actual next play, unveiled at I/O 2026 (May 19–20); Omni Flash shipped day one in the Gemini app, YouTube Shorts, Google Flow; API since June 30, 2026 (~$0.10/s at 720p, token-billed, reported).
+   - **Runway Gen-4.5** (Runway, active) — now a first-class record: no new model shipped in 2026 (Gen-4.5 still latest); Sept 2026 news was distribution (MCP) + Sept 30 Summit; $200M ARR → $350M projection (company-claimed); API benchmark $1.20/10s 720p (reported).
+   - **LTX-2.5** (Lightricks, active) — Aug 11, 2026: Fast/Pro up to 4K, open weights 22B, multi-shot in one pass; trained on licensed Getty/Shutterstock data (commercial-legal safety; paid license above $10M revenue); API from ~$0.003/s (reported).
+   - **Vidu S2** (Vidu, active) — Sept 15, 2026: real-time S2-Avatar (interactive character up to 720p) + S2-Editing (changes a live stream as it plays).
+   - **Mirage Tesseract** (Mirage, formerly Captions, active, type `suite`) — Sept 22, 2026: agent-driven editing/motion-graphics suite, free local engine. Typed `suite` (not `video`) so the Studio never treats it as a per-shot generation model.
+   - Refreshed: Wan 3.0 (formal release Aug 24, 2026; $0.05/s at 480p, 2–30s with native audio); MiniMax H3 (open weights Aug 3, 2026; optimized inference from $0.01/s); Kling 3.0, Seedance 2.5 (Turbo drafting tier), Luma (16-keyframe support), Veo 3.1 — all with the API benchmarks below.
+2. **Pricing table** — API per 10s 720p (REPORTED benchmarks, Sept 2026, Higgsfield API comparison — third-party reported, not vendor-quoted; verify live): MiniMax H3 **$0.80**, Kling 3.0 **$0.84**, Luma Ray 3.2 **$0.90**, Runway Gen-4.5 **$1.20**, Seedance 2.5 **$2.31**, Veo 3.1 **$3.20** (per 8s). Landed in `cost_basis`, the 2026-developments chapter, and `model-updates.md`. Veo 3.1 is the premium API tier; open-model floors keep falling (LTX 2.5 Fast ~$0.003/s); drafting tiers (Seedance 2.5 Turbo, Gemini Omni Flash 360p) are now a workflow.
+3. **Explicit corrections** (2026-developments chapter + model records + changelog):
+   - **Veo 4 does not exist** — pages titled "Veo 4 release date" ranking on Google are SEO bait; no Google documentation names such a model (verified across three sources: lumeflow.ai, innfactory.ai). Google's actual play is Gemini Omni (I/O 2026).
+   - **Kling 4.0 specs at leak-level** — the 30s claim is preview-leak level (GPTProto explicitly cautions unverified); flagged as "REPORTED, NOT CONFIRMED" in the record; Kling 4K is a 3.0 feature (added April 23, 2026), not a 4.0 feature — do not conflate.
+4. **Chapter `field/2026-developments.md` additions:** native audio now standard across Kling 3.0 / Seedance 2.5 / MiniMax H3 / Wan 3.0 / Veo 3.1; Adobe's Sept 8 in-Premiere multi-model workbench (Firefly/Veo/Runway/Kling/Luma in the toolbar — the round-trip export loop is over); model-exclusivity is gone (fal, Replicate, Higgsfield, Protoface, Krea carry all frontier models); open-source notes (Wan 2.2 Apache = practical benchmark; HunyuanVideo consistency standout; LTX licensed-data legal safety; license traps: HunyuanVideo excludes EU/UK/SK + 100M MAU cap, CogVideoX 1M visits/mo cap, LTX paid license >$10M revenue); Google long-form research framework (research only, no product); "What to watch next" updated (Veo 4 line replaced by the correction).
+5. **Regenerated:** `api/v1/models.json` (27 models), skills/ (5 new `direct-*` skills + 8 updated model skills, index 212 → 217), `llms.txt`/`llms-full.txt` (build_llms.py), `site/` — 5 new model deep-dive pages, search index, quiz copy 18 → 22 video models. Studio's model picks read `models.json` live — `studio.test.js` 19/19 against the refreshed data (model resolution, cheapest-draft invariant, budget sums all hold).
+
+**Validation:** `bash scripts/validate.sh` → ALL STAGES PASS; studio.test.js 19/19; node --check clean; 0 broken relative links.
+
+**Commit:** `a0d4e0a` ([view](https://github.com/astercast/ai-film-master-guide/commit/a0d4e0a)) — 45 files, pushed 2026-10-11, remote confirmed via GitHub API.
