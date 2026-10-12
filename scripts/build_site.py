@@ -879,6 +879,13 @@ EPISODEPLANNER_TMPL = """<!DOCTYPE html>
         </div>
         <p class="calc-note" id="epb-msg" role="status" hidden></p>
       </form>
+      <h3 style="margin-top:var(--space-5);">Saved blocks — your series so far</h3>
+      <ul class="log-list" id="epb-blocks" aria-live="polite"></ul>
+      <p class="empty-state" id="epb-blocks-empty">No saved blocks yet — write a block above and save it.</p>
+      <p>
+        <button type="button" class="btn" id="epb-send-series" disabled>Send series to Studio →</button>
+      </p>
+      <p class="calc-note">One click stages the whole saved series (title, logline, cast anchors, every block's format/runtime/beats) into the Studio — which pre-fills a series packet: per-episode shot budgets, the locked series bible, and reuse math. Nothing leaves your browser.</p>
     </section>
     <section class="container" aria-labelledby="epl-h" style="margin-top:var(--space-6);">
       <h2 id="epl-h">3 · Arc tracker — the log that makes the series smarter</h2>
@@ -1013,7 +1020,7 @@ STUDIO_TMPL = """<!DOCTYPE html>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Studio — plan my AI film — AI Film Master Guide</title>
-  <meta name="description" content="The AI-film studio simulator: film title, logline, genre/mood, runtime and quality tier in — a full production packet out: shot list with per-shot prompts from the 47-template library, per-shot model picks with real cost math, budget table, shooting schedule, markdown export.">
+  <meta name="description" content="Studio 2.0: the AI-film studio simulator. A standalone film (title, logline, genre/mood, runtime, quality tier) or a serialized series (3–10 episodes, one of the 4 proven mini-drama formats) in — a deterministic production packet out: shot list with per-shot prompts from the 47-template library, per-shot model picks with real cost math, budget table with 5×/20× envelopes, shooting schedule, series bible with locked prompt DNA, self-contained HTML packet export.">
   {css}
   <style>
     .radio-row {{ display: flex; flex-wrap: wrap; gap: var(--space-3); }}
@@ -1021,6 +1028,13 @@ STUDIO_TMPL = """<!DOCTYPE html>
     .radio-pill input {{ accent-color: var(--gold); }}
     .radio-pill:has(input:checked) {{ border-color: var(--gold); background: color-mix(in srgb, var(--gold) 12%, transparent); }}
     .radio-pill:has(input:focus-visible) {{ outline: 2px solid var(--gold); outline-offset: 2px; }}
+    .st-kinds {{ display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2); }}
+    @media (max-width: 720px) {{ .st-kinds {{ grid-template-columns: 1fr; }} }}
+    .st-kinds .radio-pill {{ align-items: flex-start; border-radius: var(--radius-s); }}
+    .st-hint {{ display: block; color: var(--muted); font-size: 0.85rem; }}
+    .st-cast-row {{ display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: var(--space-3); align-items: end; border-top: 1px solid var(--line); padding-top: var(--space-3); }}
+    .st-cast-row:first-of-type {{ border-top: 0; padding-top: 0; }}
+    @media (max-width: 720px) {{ .st-cast-row {{ grid-template-columns: 1fr; }} }}
     .st-kicker {{ color: var(--gold); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.8rem; }}
     .st-shot {{ margin-bottom: var(--space-4); }}
     .st-shot h4 {{ margin-top: 0; }}
@@ -1066,14 +1080,25 @@ STUDIO_TMPL = """<!DOCTYPE html>
       <div class="container hero-inner">
         <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Tools · Flagship</span>
         <h1 id="st-title-h">The Studio<span class="accent">.</span></h1>
-        <p class="lede">Plan my AI film. Title, logline, genre and mood, target runtime, quality tier — and the Studio builds the production packet: a shot list with per-shot prompts written from the guide's 47-template library, a model pick for every shot with the real credit math, a budget table that shows its work, and a shooting schedule. Every number traces back to <code>models.json</code> or a template id.</p>
+        <p class="lede">Plan my AI film — or my AI series. A standalone film (title, logline, genre and mood, target runtime, quality tier) or a serialized series (3–10 episodes in one of the four proven mini-drama formats) in — and the Studio builds the production packet: a shot list with per-shot prompts written from the guide's 47-template library, a model pick for every shot with the real credit math, a budget table that shows its work, and a shooting schedule. Series get a locked bible with prompt DNA that keeps every episode consistent, plus a self-contained HTML packet you can hand to a collaborator. Every number traces back to <code>models.json</code> or a template id.</p>
       </div>
     </section>
     <section class="container" aria-labelledby="st-in-h" id="st-form-sec">
       <h2 id="st-in-h">Your concept</h2>
-      <form class="card calc-form" aria-label="Film concept" onsubmit="return false;">
+      <p class="calc-note" id="st-import-msg" role="status" hidden></p>
+      <form class="card calc-form" aria-label="Film or series concept" onsubmit="return false;">
+        <fieldset>
+          <legend>Project type</legend>
+          <div class="st-kinds" role="radiogroup" aria-label="Project type">
+            <label class="radio-pill"><input type="radio" name="st-kind" value="film" checked> Standalone film<span class="st-hint">one production packet, runtime 30s–10min</span></label>
+            <label class="radio-pill"><input type="radio" name="st-kind" value="minidrama"> Series — mini-drama<span class="st-hint">60–150s per episode, soap-opera pacing</span></label>
+            <label class="radio-pill"><input type="radio" name="st-kind" value="pov"> Series — POV micro-series<span class="st-hint">30–90s per episode, "you" are the protagonist</span></label>
+            <label class="radio-pill"><input type="radio" name="st-kind" value="daylife"> Series — day-in-the-life<span class="st-hint">15–60s per episode, recurring character</span></label>
+            <label class="radio-pill"><input type="radio" name="st-kind" value="revenge"> Series — revenge arc<span class="st-hint">60–150s per episode, the justice ladder</span></label>
+          </div>
+        </fieldset>
         <div class="field">
-          <label for="st-title">Film title</label>
+          <label for="st-title">Film / series title</label>
           <input class="input" type="text" id="st-title" placeholder="e.g. Porch Light" maxlength="80" autocomplete="off">
         </div>
         <div class="field">
@@ -1084,7 +1109,7 @@ STUDIO_TMPL = """<!DOCTYPE html>
           <label for="st-genre">Genre / mood</label>
           <select class="input" id="st-genre"></select>
         </div>
-        <fieldset>
+        <fieldset id="st-runtime-fs">
           <legend>Target runtime</legend>
           <div class="radio-row" role="radiogroup" aria-label="Target runtime">
             <label class="radio-pill"><input type="radio" name="st-runtime" value="30"> 30s</label>
@@ -1093,6 +1118,26 @@ STUDIO_TMPL = """<!DOCTYPE html>
             <label class="radio-pill"><input type="radio" name="st-runtime" value="600"> 10 min</label>
           </div>
         </fieldset>
+        <div id="st-series-panel" hidden>
+          <div class="field">
+            <label for="st-eps">Episodes — plan 3 to 10 in one pass</label>
+            <input class="input" type="number" id="st-eps" min="3" max="10" step="1" value="5">
+          </div>
+          <div class="field">
+            <label for="st-epruntime">Runtime per episode — inside the format's band</label>
+            <select class="input" id="st-epruntime"></select>
+          </div>
+          <fieldset>
+            <legend>Series cast — name + voice + one-line anchor, locked into the bible</legend>
+            <div id="st-cast-list"></div>
+            <button type="button" class="btn btn-ghost btn-sm" id="st-cast-add" style="margin-top:var(--space-3);">+ Add character</button>
+          </fieldset>
+          <div class="field">
+            <label for="st-locations">Locations — recurring sets (comma-separated)</label>
+            <input class="input" type="text" id="st-locations" placeholder="e.g. abandoned cinema lobby, rooftop at dawn" autocomplete="off">
+          </div>
+          <p class="calc-note" id="st-preset-note" role="status"></p>
+        </div>
         <fieldset>
           <legend>Quality tier</legend>
           <div class="radio-row" role="radiogroup" aria-label="Quality tier">
@@ -1114,6 +1159,8 @@ STUDIO_TMPL = """<!DOCTYPE html>
       <div id="st-actions" hidden>
         <div class="btn-row">
           <button type="button" class="btn" id="st-copy">Copy packet as markdown</button>
+          <button type="button" class="btn btn-ghost" id="st-dl-md">Download packet (.md)</button>
+          <button type="button" class="btn btn-ghost" id="st-dl-html" hidden>Download packet (.html, self-contained)</button>
           <button type="button" class="btn btn-ghost" id="st-print">Print / save PDF</button>
         </div>
         <div class="field" style="margin-top:var(--space-4);">
@@ -3388,13 +3435,13 @@ def main():
          "text": "Anatomy of a prompt: the nine-layer prompt anatomy as an interactive annotated example — hover any layer to learn what it does, why it matters, and what breaks without it. Plus a build-your-own mode that assembles the layers into a production-ready prompt."},
         {"url": "episode-planner.html", "title": "Episode planner", "section": "Tools",
          "headings": ["Series setup — lock the bible", "Episode block", "Arc tracker"],
-         "text": "Episode planner: lock a mini-drama series (title, logline, hashtag, recurring cast with voice IDs and anchor paragraphs), plan each episode as a block (one emotion, 3–5 beats, emotional turn, cliffhanger), and keep an arc log with lessons learned. Saves in the browser."},
+         "text": "Episode planner: lock a mini-drama series (title, logline, hashtag, recurring cast with voice IDs and anchor paragraphs), plan each episode as a block (one emotion, 3–5 beats, emotional turn, cliffhanger), and keep an arc log with lessons learned. Saved blocks feed one-click \"Send series to Studio\", which pre-fills the Studio's series mode (format, runtime, beats, cast anchors). Saves in the browser."},
         {"url": "hook-generator.html", "title": "Hook-title generator", "section": "Tools",
          "headings": ["Your episode", "Five variants"],
          "text": "Hook-title generator: builds hook-title captions from the observed formula [Episode N] + [one-line emotional stake] + [CTA] — five worked variants per input, each with a why-this-hooks craft note. Copy any caption in one click."},
         {"url": "studio.html", "title": "Studio — plan my AI film", "section": "Tools",
          "headings": ["Your concept", "Production packet", "Shot list", "Model picks", "Budget", "Schedule", "Saved plans"],
-         "text": "The Studio: AI-film studio simulator. Concept (title, logline, genre/mood, runtime, draft/festival tier) in — a deterministic production packet out: shot list with per-shot prompts built from the 47-template library, per-shot model picks from models.json with real cost math, budget table with 5×/20× envelopes, shooting schedule, markdown export and print."},
+         "text": "The Studio 2.0: AI-film studio simulator. A standalone film (title, logline, genre/mood, runtime, draft/festival tier) or a serialized series (3–10 episodes, one of the 4 proven mini-drama formats) in — a deterministic production packet out: shot list with per-shot prompts built from the 47-template library, per-shot model picks from models.json with real cost math, budget table with 5×/20× envelopes, shooting schedule, series bible with locked prompt DNA, self-contained HTML/Markdown packet export, localStorage plans with duplicate and continue-planning."},
         {"url": "skills.html", "title": "Skills browser", "section": "Tools",
          "headings": [],
          "text": "Browse all task skills: prompt templates, camera moves, models, long-form pipelines, craft techniques, checklists, and more, with live filtering."},

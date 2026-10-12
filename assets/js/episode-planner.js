@@ -5,6 +5,7 @@
   "use strict";
 
   var STORE_KEY = "afg-episode-series";
+  var BRIDGE_KEY = "afg-studio-bridge";
 
   function load() {
     try { return JSON.parse(localStorage.getItem(STORE_KEY) || "null") || null; }
@@ -111,6 +112,9 @@
     blockMsg: document.getElementById("epb-msg"),
     saveBlock: document.getElementById("epb-save"),
     newBlock: document.getElementById("epb-new"),
+    blocksList: document.getElementById("epb-blocks"),
+    blocksEmpty: document.getElementById("epb-blocks-empty"),
+    sendSeries: document.getElementById("epb-send-series"),
     formatRadios: document.querySelectorAll('input[name="epf-format"]'),
     applyFormat: document.getElementById("epf-apply"),
     spb: document.getElementById("epf-spb"),
@@ -207,6 +211,7 @@
       save(state);
       renderSeries();
       renderBlockForm(state.nextEpisode);
+      renderBlocks();
       renderLog();
       msg(els.seriesMsg, "Cleared. Fresh slate.", true);
     }
@@ -365,11 +370,64 @@
     };
     if (n >= state.nextEpisode) state.nextEpisode = n + 1;
     save(state);
+    renderBlocks();
     renderLog();
     msg(els.blockMsg, "Episode " + n + " block saved — one emotion, " + beats.length + " beats, cliffhanger set. G1 ready.", true);
     renderBlockForm(state.nextEpisode);
   });
   els.newBlock.addEventListener("click", function () { renderBlockForm(state.nextEpisode); });
+
+  /* ---------------- saved blocks + Studio bridge ---------------- */
+
+  /* One-click "Send series to Studio": the whole saved series — title,
+     logline, cast anchors, every block with its format/runtime/beats —
+     lands in the Studio as a pre-filled series plan. The Studio consumes
+     the payload once (localStorage "afg-studio-bridge") and shows its own
+     message; nothing is posted anywhere. */
+  function blockRuntime(b) {
+    return (b.beats || []).length * (b.spb || 15);
+  }
+  function renderBlocks() {
+    var nums = Object.keys(state.blocks).map(Number).sort(function (a, b) { return a - b; });
+    if (!nums.length) {
+      els.blocksEmpty.hidden = false;
+      els.blocksList.innerHTML = "";
+      els.sendSeries.disabled = true;
+      return;
+    }
+    els.blocksEmpty.hidden = true;
+    els.sendSeries.disabled = false;
+    els.blocksList.innerHTML = nums.map(function (n) {
+      var b = state.blocks[String(n)];
+      var fmt = FORMAT_PRESETS[b.format];
+      return '<li class="log-entry"><span class="log-label">Ep ' + n + "</span> " +
+        '<span class="log-meta">' + esc(fmt ? fmt.label : b.format) + " · " +
+        esc(b.emotion || "no emotion") + " · " + b.beats.length + " beats · ~" +
+        blockRuntime(b) + "s</span></li>";
+    }).join("");
+  }
+  els.sendSeries.addEventListener("click", function () {
+    var nums = Object.keys(state.blocks).map(Number).sort(function (a, b) { return a - b; });
+    if (!nums.length) { msg(els.blockMsg, "No saved blocks yet — save an episode block first.", false); return; }
+    var payload = {
+      v: 1,
+      kind: "series",
+      sentAt: new Date().toISOString(),
+      seriesTitle: state.title,
+      logline: state.logline,
+      hashtag: state.hashtag,
+      cast: state.cast.filter(function (c) { return c.name || c.anchor; }),
+      format: state.blocks[String(nums[0])].format || DEFAULT_FORMAT,
+      blocks: nums.map(function (n) { return state.blocks[String(n)]; })
+    };
+    try {
+      localStorage.setItem(BRIDGE_KEY, JSON.stringify(payload));
+    } catch (e) {
+      msg(els.blockMsg, "Could not stage the Studio payload — browser storage is unavailable.", false);
+      return;
+    }
+    location.href = "studio.html?from=planner";
+  });
 
   /* ---------------- arc tracker ---------------- */
 
@@ -424,5 +482,6 @@
   /* ---------------- init ---------------- */
   renderSeries();
   renderBlockForm(state.nextEpisode);
+  renderBlocks();
   renderLog();
 })();

@@ -159,6 +159,41 @@ eq(queue.pending, queue.items.length, "review queue pending count matches items"
 console.log("       model-review-queue.json: pending=" + queue.pending +
   " | note: " + queue.note.slice(0, 80) + "...");
 
+/* ===== workflow 4: plan a 5-episode mini-drama series (Studio 2.0) ======= */
+console.log("--- workflow 4: plan a 5-episode mini-drama series (Studio 2.0, real engine) ---");
+const Studio = require(path.join(ROOT, "assets", "js", "studio.js"));
+const wf4 = Studio.buildSeriesPlan(
+  { models: read("models.json").models, templates: read("prompt-templates.json").templates },
+  { seriesTitle: "Porch Light: The Hallway",
+    seriesLogline: "A projectionist restores an abandoned cinema.",
+    format: "minidrama", genre: "drama", runtimeSec: 90, tier: "draft", episodes: 5,
+    cast: [{ name: "Mara", voice: "avocado_v2:MARA_01",
+             anchor: "woman, late 20s, copper bob, leather jacket" }],
+    locations: ["abandoned cinema lobby"] });
+eq(wf4.episodeCount, 5, "5 episodes planned");
+eq(wf4.totalShots, 75, "75 shots (5 x 15 at 90s draft)");
+ok(wf4.episodes.every((e) => e.shots.every((s) => s.prompt.startsWith("[SERIES BIBLE"))),
+  "locked prompt DNA on every shot of every episode");
+eq(wf4.bible.lockedAssets.length, 2, "2 locked assets (1 cast + 1 location)");
+const wf4Sum = wf4.budget.lines.reduce((a, l) => a + l.usd, 0);
+ok(Math.abs(wf4Sum - wf4.budget.clean) < 0.011, "series budget lines sum to clean");
+ok(wf4.budget.clean > 0, "series clean cost positive: $" + wf4.budget.clean);
+eq(wf4.budget.five, r2(wf4.budget.clean * 5), "5x envelope is an exact multiple");
+eq(wf4.budget.twenty, r2(wf4.budget.clean * 20), "20x envelope is an exact multiple");
+ok(wf4.reuse.avoidedCredits > 0, "bible avoids real credits: " + wf4.reuse.avoidedCredits);
+const wf4Days = wf4.schedule.phases.reduce((a, p) => a + p.days, 0);
+eq(wf4Days, wf4.schedule.totalDays, "series schedule phases sum to total days");
+const wf4Md = Studio.seriesToMarkdown(wf4);
+ok(wf4Md.includes("# Porch Light: The Hallway — series production packet"), "markdown export carries the packet title");
+ok(wf4Md.includes("## Series bible — locked before generation"), "markdown export carries the bible");
+const wf4Html = Studio.seriesToHtml(wf4);
+ok(wf4Html.startsWith("<!DOCTYPE html>") && wf4Html.includes("<style>") &&
+  wf4Html.trim().endsWith("</html>"), "self-contained HTML packet export");
+console.log("       series: " + wf4.episodeCount + " eps x " + wf4.runtimeSec + "s | " +
+  wf4.totalShots + " shots | clean $" + wf4.budget.clean.toFixed(2) +
+  " | 5x $" + wf4.budget.five.toFixed(2) + " | bible avoided $" +
+  wf4.reuse.avoidedUSD.toFixed(2));
+
 /* ================================ summary ================================ */
 console.log("");
 if (failures === 0) {

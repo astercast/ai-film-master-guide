@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "count": 222,
+  "count": 225,
   "skills": [
     {
       "id": "prompt-t1",
@@ -1333,6 +1333,24 @@
       "title": "Plan an episode block with runtime estimate",
       "description": "Build one episode block (one emotion, 3-5 beats, turn, cliffhanger) and verify it against the format's runtime band.",
       "path": "skills/episodes/episode-plan-block.md"
+    },
+    {
+      "id": "episode-studio-bridge",
+      "title": "Send planner blocks to the Studio",
+      "description": "One-click bridge: stage the episode planner's saved series (title, logline, cast anchors, every block's format/runtime/beats) into the Studio's series mode for a full costed packet.",
+      "path": "skills/episodes/episode-studio-bridge.md"
+    },
+    {
+      "id": "studio-series-plan",
+      "title": "Plan a mini-drama season with Studio 2.0",
+      "description": "Plan 3-10 episodes in one pass: pick one of the 4 serialized format presets, lock the series bible, get per-episode shot lists with prompts, model picks, budget, and schedule.",
+      "path": "skills/studio/studio-series-plan.md"
+    },
+    {
+      "id": "studio-packet-export",
+      "title": "Export the production packet for a collaborator",
+      "description": "Turn any Studio plan into a hand-offable artifact: markdown download, self-contained HTML (series), or print/PDF \u2014 with shots, prompts, model math, budget, schedule, bible, and checklist.",
+      "path": "skills/studio/studio-packet-export.md"
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "count": 217,
+  "count": 225,
   "skills": [
     {
       "id": "prompt-t1",
@@ -1303,6 +1303,54 @@
       "title": "Build the costed shot list",
       "description": "Turn a scene plan into a per-shot list with model assignments, takes, and live costs.",
       "path": "skills/workflow/workflow-shot-list.md"
+    },
+    {
+      "id": "workflow-studio-plan",
+      "title": "Plan a production with the Studio recipe",
+      "description": "Reproduce the Studio's deterministic planning logic from the raw API data: concept in, costed shot list + budget envelopes out.",
+      "path": "skills/workflow/workflow-studio-plan.md"
+    },
+    {
+      "id": "workflow-model-price-watch",
+      "title": "Track a model's price and status changes",
+      "description": "Follow one model across models.json, the model-watch freshness feed, and the review queue to answer 'what changed and when'.",
+      "path": "skills/workflow/workflow-model-price-watch.md"
+    },
+    {
+      "id": "episode-lock-series",
+      "title": "Lock a mini-drama series bible",
+      "description": "Set up the series record the episode planner persists: title, logline, hashtag, and the cast with voice IDs + one-line visual anchors.",
+      "path": "skills/episodes/episode-lock-series.md"
+    },
+    {
+      "id": "episode-format-pick",
+      "title": "Pick the serialized format for a series",
+      "description": "Choose among the four proven mini-drama formats (mini-drama, POV series, day-in-the-life, revenge arc) or custom \u2014 each with its runtime band and beat skeleton.",
+      "path": "skills/episodes/episode-format-pick.md"
+    },
+    {
+      "id": "episode-plan-block",
+      "title": "Plan an episode block with runtime estimate",
+      "description": "Build one episode block (one emotion, 3-5 beats, turn, cliffhanger) and verify it against the format's runtime band.",
+      "path": "skills/episodes/episode-plan-block.md"
+    },
+    {
+      "id": "episode-studio-bridge",
+      "title": "Send planner blocks to the Studio",
+      "description": "One-click bridge: stage the episode planner's saved series (title, logline, cast anchors, every block's format/runtime/beats) into the Studio's series mode for a full costed packet.",
+      "path": "skills/episodes/episode-studio-bridge.md"
+    },
+    {
+      "id": "studio-series-plan",
+      "title": "Plan a mini-drama season with Studio 2.0",
+      "description": "Plan 3-10 episodes in one pass: pick one of the 4 serialized format presets, lock the series bible, get per-episode shot lists with prompts, model picks, budget, and schedule.",
+      "path": "skills/studio/studio-series-plan.md"
+    },
+    {
+      "id": "studio-packet-export",
+      "title": "Export the production packet for a collaborator",
+      "description": "Turn any Studio plan into a hand-offable artifact: markdown download, self-contained HTML (series), or print/PDF \u2014 with shots, prompts, model math, budget, schedule, bible, and checklist.",
+      "path": "skills/studio/studio-packet-export.md"
     }
   ]
 }
