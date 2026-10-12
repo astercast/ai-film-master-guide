@@ -32,7 +32,7 @@
 
 **Validation:** (post-commit) `bash scripts/validate.sh` → ALL STAGES PASS (13/13); link check 0 broken; studio.test.js 50/50; agent-workflows.test.js 74/74; generator audits clean (skills byte-identical, prompt-templates.json == artifact parser, llms.txt zero-diff).
 
-**Commit:** local `___` (___ files) → pushed 2026-10-11 as remote commit `___`; remote `main` HEAD matches the pushed SHA; all key files verified present in the remote tree via GitHub API (___ tree entries, 0 missing, not truncated; `site/craft/episodic-shortform.html` confirmed to contain the new HeyGen Voice note).
+**Commit:** local `784c9ec` (9 files) → pushed 2026-10-11 as remote commit `30e3d08bc4cce693fbbd51d6e72085b4de107c61`; remote `main` HEAD matches the pushed SHA; all 6 key files verified present in the remote tree via GitHub API (558 tree entries, 0 missing, not truncated; remote `site/craft/episodic-shortform.html` blob confirmed to contain the new HeyGen Voice note and wave-32 sourcing).
 
 **Next episode-pipeline revisit:** ~wave 35.
 
