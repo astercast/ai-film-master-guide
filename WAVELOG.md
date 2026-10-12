@@ -21,7 +21,7 @@
 
 **Validation:** `bash scripts/validate.sh` → ALL STAGES PASS (12/12); 43 studio engine tests green; 60/60 agent-workflow tests green; link check 6,540 links, 0 broken; generator audits clean (228 skills byte-identical, llms.txt zero-diff).
 
-**Commit:** `TODO`
+**Commit:** `7e52e95` → pushed 2026-10-11 as remote commit `b4532d858e90e4462be982ff28d2c54b5b1d20d9` ([view](https://github.com/astercast/ai-film-master-guide/commit/b4532d858e90e4462be982ff28d2c54b5b1d20d9)) — 7 files; all 7 new/changed key files verified present in the remote tree via GitHub API (546 tree entries, 0 missing; blob SHAs match local).
 
 ## Wave 23 — Festival landscape refresh: 2026 results (2026-10-11)
 
