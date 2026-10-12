@@ -33,7 +33,7 @@
 
 **Validation:** (post-commit) `bash scripts/validate.sh` → ALL STAGES PASS (13/13); link check 0 broken; `node --check` clean on changed JS; studio.test.js 50/50 (Vidu Q4 rate assertion $0.014→$0.12/s, viduRef assertion updated); agent-workflows.test.js ALL PASS; generator audits clean (skills byte-identical, prompt-templates.json == artifact parser, llms.txt zero-diff).
 
-**Commit:** local TBD → pushed 2026-10-11 as remote commit TBD; remote `main` HEAD matches the pushed SHA; key files verified present in the remote tree via GitHub API.
+**Commit:** local `55fb868` (52 files) → pushed 2026-10-11 as remote commit `152ba12222f40db076921ec2a0a0346f6fdf442b`; remote `main` HEAD matches the pushed SHA; all 12 key files verified present in the remote tree via GitHub API (495 tree entries, 0 missing, not truncated; `site/models/vivago-r1.html` + `skills/models/direct-vivago-r1.md` confirmed in-tree).
 
 **Next episode-pipeline revisit:** ~wave 32.
 
