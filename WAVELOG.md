@@ -6,6 +6,12 @@
 
 ## Vercel Wave B — The Watchtower integration (2026-10-12)
 
+**Commit:** local `90b87fb` (31 files, +3262/−231) → pushed 2026-10-12 as remote
+commit `5ab10e9a5ec162f70b003bf0429b25121c984f5e`; remote `main` HEAD matched
+the pushed SHA; all 15 key Wave B files verified present in the remote tree
+via GitHub Trees API (542 blobs, not truncated; local HEAD blob SHAs match
+remote exactly). Push succeeded on the first attempt — no 400s this wave.
+
 **Frontend fallback wiring + GO_LIVE.md** (server-program ARCHITECTURE.md §3/§11/§13, followed exactly). The site now calls `/api/*` first and falls back to the static `api/v1/` JSON with honest badges — and it can never look broken when the functions are down.
 
 **Shipped:**
