@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Episode planner — AI Film Master Guide</title>
+  <meta name="description" content="Plan an AI mini-drama series: series setup with locked character bible, per-episode blocks (emotion, beats, turn, cliffhanger), and an arc tracker with lessons learned. Saves in your browser.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/docs.css">
+  <link rel="stylesheet" href="assets/css/print.css">
+  <style>
+    .cast-row { display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: var(--space-3); align-items: end; border-top: 1px solid var(--line); padding-top: var(--space-3); }
+    .cast-row:first-of-type { border-top: 0; padding-top: 0; }
+    @media (max-width: 720px) { .cast-row { grid-template-columns: 1fr; } }
+    .log-entry { margin-bottom: var(--space-4); }
+    .log-entry .log-label { font-weight: 700; color: var(--gold); }
+    .log-entry .log-meta { color: var(--muted); font-size: 0.85rem; }
+    .log-list { list-style: none; padding: 0; margin: 0; }
+    .hg-card { margin-bottom: var(--space-5); }
+    .hg-caption { white-space: pre-wrap; word-break: break-word; }
+    .hg-num { display: inline-block; min-width: 1.6em; text-align: center; background: var(--gold); color: #111; border-radius: 999px; font-size: 0.85em; margin-right: 0.4em; }
+    .hg-why { border-left: 3px solid var(--gold); padding-left: var(--space-3); }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html">Guide</a>
+        <a href="skills.html">Skills</a>
+        <a href="workshop.html">Workshop</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="compare.html">Compare</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="teardown.html">Teardowns</a>
+        <a href="model-watch.html">Model watch</a>
+        <a href="doctor.html">Doctor</a>
+        <a href="linter.html">Linter</a>
+        <a href="models/">Models</a>
+        <a href="shots.html">Shot list</a>
+        <a href="style-bible.html">Style bible</a>
+        <a href="changelog.html">Changelog</a>
+        <a href="skill-spec.html">Skill spec</a>
+        <a href="api.html">API</a>
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">⌘K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="ep-title-h">
+      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
+      <div class="container hero-inner">
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Tools</span>
+        <h1 id="ep-title-h">Episode <span class="accent">planner.</span></h1>
+        <p class="lede">A series is a contract with the audience: lock the bible once, plan every episode as a block (one emotion, 3–5 beats, dedicated turn, cliffhanger), and keep an arc log with lessons learned. Everything saves in your browser — nothing leaves your machine.</p>
+      </div>
+    </section>
+    <section class="container" aria-labelledby="eps-h">
+      <h2 id="eps-h">1 · Series setup — lock the bible</h2>
+      <form class="card calc-form" aria-label="Series setup" onsubmit="return false;">
+        <div class="field">
+          <label for="ep-title">Series title</label>
+          <input class="input" type="text" id="ep-title" placeholder="e.g. The Taxi Home">
+        </div>
+        <div class="field">
+          <label for="ep-logline">Logline — the arc in one sentence</label>
+          <input class="input" type="text" id="ep-logline" placeholder="e.g. A brave toddler crosses the city alone to find her daddy">
+        </div>
+        <div class="field">
+          <label for="ep-hashtag">Series hashtag</label>
+          <input class="input" type="text" id="ep-hashtag" placeholder="#taxihome">
+        </div>
+        <fieldset>
+          <legend>Recurring cast — name + voice + one-line anchor per character</legend>
+          <div id="ep-cast-list"></div>
+          <button type="button" class="btn btn-ghost btn-sm" id="ep-cast-add" style="margin-top:var(--space-3);">+ Add character</button>
+        </fieldset>
+        <div class="btn-row">
+          <button type="button" class="btn" id="ep-save-series">Lock series</button>
+          <button type="button" class="btn btn-ghost" id="ep-clear-series">Delete saved series</button>
+        </div>
+        <p class="calc-note" id="ep-series-msg" role="status" hidden></p>
+      </form>
+    </section>
+    <section class="container" aria-labelledby="epb-h" style="margin-top:var(--space-6);">
+      <h2 id="epb-h">2 · Episode block — one emotion, one turn, one cliffhanger</h2>
+      <form class="card calc-form" aria-label="Episode block" onsubmit="return false;">
+        <div class="field">
+          <label for="epb-num">Episode number</label>
+          <input class="input" type="number" id="epb-num" min="1" step="1" value="1">
+        </div>
+        <div class="field">
+          <label for="epb-emotion">Emotion — one word</label>
+          <input class="input" type="text" id="epb-emotion" placeholder="e.g. longing">
+        </div>
+        <div class="field">
+          <label for="epb-stake">One-line emotional stake</label>
+          <input class="input" type="text" id="epb-stake" placeholder="e.g. Mia took a taxi alone to find her daddy">
+        </div>
+        <div class="field">
+          <label for="epb-hook">Hook visual — the first 3 seconds</label>
+          <input class="input" type="text" id="epb-hook" placeholder="e.g. Toddler alone in the back of a night taxi, city lights">
+        </div>
+        <fieldset>
+          <legend>Beats — 3 to 5</legend>
+          <div id="epb-beats"></div>
+          <button type="button" class="btn btn-ghost btn-sm" id="epb-beat-add" style="margin-top:var(--space-3);">+ Add beat</button>
+        </fieldset>
+        <div class="field">
+          <label for="epb-turn">Emotional turn — which beat, and what changes</label>
+          <input class="input" type="text" id="epb-turn" placeholder="e.g. Beat 4: the driver realizes she's not lost — she's determined">
+        </div>
+        <div class="field">
+          <label for="epb-cliff">Cliffhanger — the unanswered beat. Never the resolution.</label>
+          <input class="input" type="text" id="epb-cliff" placeholder="e.g. The taxi stops at the wrong address — headlights, cut">
+        </div>
+        <div class="field">
+          <label for="epb-scenes">Keyframe scenes — hook / beat / turn / cliffhanger</label>
+          <input class="input" type="text" id="epb-scenes" placeholder="e.g. taxi night exterior; Mia clutching coat; driver sees her; wrong-address stop">
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn" id="epb-save">Save episode block</button>
+          <button type="button" class="btn btn-ghost" id="epb-new">New blank block</button>
+        </div>
+        <p class="calc-note" id="epb-msg" role="status" hidden></p>
+      </form>
+    </section>
+    <section class="container" aria-labelledby="epl-h" style="margin-top:var(--space-6);">
+      <h2 id="epl-h">3 · Arc tracker — the log that makes the series smarter</h2>
+      <ul class="log-list" id="epl-list" aria-live="polite"></ul>
+      <p class="empty-state" id="epl-empty">No log entries yet — ship an episode, then write what it taught you.</p>
+      <form class="card calc-form" aria-label="Add an arc log entry" onsubmit="return false;" style="margin-top:var(--space-5);">
+        <div class="field">
+          <label for="epl-ep">Episode</label>
+          <input class="input" type="number" id="epl-ep" min="1" step="1" value="1">
+        </div>
+        <div class="field">
+          <label for="epl-title">Episode title (optional)</label>
+          <input class="input" type="text" id="epl-title" placeholder="e.g. The Wrong Address">
+        </div>
+        <div class="field">
+          <label for="epl-lesson">Lesson learned — story, timing, or production</label>
+          <textarea class="input" id="epl-lesson" rows="3" placeholder="e.g. Turn landed flat: the driver reveal needed its own keyframe, not a borrowed beat shot."></textarea>
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn" id="epl-add">Append to log</button>
+        </div>
+      </form>
+      <p class="calc-note">Gate G8: the episode isn't shipped until the log and a lesson are appended — and the bible never changes mid-series.</p>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer"><a href="index.html">Guide</a><a href="skills.html">Skills</a><a href="workshop.html">Workshop</a><a href="quiz.html">Quiz</a><a href="compare.html">Compare</a><a href="gallery.html">Gallery</a><a href="teardown.html">Teardowns</a><a href="model-watch.html">Model watch</a><a href="checks/">Knowledge checks</a><a href="budget.html">Budget</a><a href="optimizer.html">Optimizer</a><a href="shots.html">Shot list</a><a href="style-bible.html">Style bible</a><a href="doctor.html">Doctor</a><a href="linter.html">Linter</a><a href="models/">Models</a><a href="anatomy.html">Anatomy</a><a href="manifesto.html">Manifesto</a><a href="craft-not-buttons.html">Craft, not buttons</a><a href="recipes.html">Recipes</a><a href="field-guides/">Field guides</a><a href="changelog.html">Changelog</a><a href="skill-spec.html">Skill spec</a><a href="api.html">API</a></nav>
+    </div>
+  </footer>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/episode-planner.js"></script>
+</body>
+</html>

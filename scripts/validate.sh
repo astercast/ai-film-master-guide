@@ -127,6 +127,9 @@ def resolve(page, link):
     return (page.parent / link)
 
 for page in sorted(ROOT.glob("*.html")) + sorted((ROOT / "site").rglob("*.html")):
+    if page.parent == ROOT and page.name in ("craft-not-buttons.html", "api.html"):
+        # build sources, not published pages: the copies served at site/ are checked there
+        continue
     text = page.read_text()
     for m in ATTR.finditer(text):
         total += 1

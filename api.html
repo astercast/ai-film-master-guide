@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>API — AI Film Master Guide</title>
+  <meta name="description" content="Machine-readable AI filmmaking data: versioned JSON for models, prompt templates, camera movements, checklists, glossary, and competition craft records — with JSON schemas.">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/docs.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to API docs</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html">Guide</a>
+        <a href="api.html" aria-current="page">API</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="container page-head">
+      <span class="hero-kicker">Machine-readable</span>
+      <h1>The API</h1>
+      <p class="lede">Versioned static JSON for agents and tools, generated from the research artifacts. Start at <code>api/v1/index.json</code>; full reference lives in <code>API.md</code> at the repo root.</p>
+    </div>
+
+    <div class="container">
+      <section aria-labelledby="endpoints-h">
+        <h2 id="endpoints-h">Endpoints</h2>
+        <div class="chapter-grid" style="margin-bottom:var(--space-6);">
+          <article class="card chapter-card"><h3><code>api/v1/index.json</code></h3><p>Manifest: version, endpoints, observation date, provenance.</p></article>
+          <article class="card chapter-card"><h3><code>api/v1/models.json</code></h3><p>18 models with platform, type, credit costs, strengths, weaknesses, best use — plus an explicit unverified list.</p></article>
+          <article class="card chapter-card"><h3><code>api/v1/prompt-templates.json</code></h3><p>47 templates (15 core, 8 animated, 8 photorealistic, 5 performance, 4 audio, 4 longform, 3 repair) with anatomy, use, and model notes.</p></article>
+          <article class="card chapter-card"><h3><code>api/v1/camera-movements.json</code></h3><p>22-move camera lexicon with exact prompt phrasing and use cases.</p></article>
+          <article class="card chapter-card"><h3><code>api/v1/checklists.json</code></h3><p>Pre-production, per-shot, continuity, audio, and delivery checklists.</p></article>
+          <article class="card chapter-card"><h3><code>api/v1/glossary.json</code></h3><p>60+ AI film and production terms.</p></article>
+          <article class="card chapter-card"><h3><code>api/v1/competitions.json</code></h3><p>Judged competitions as craft records: what they judge, production constraints, craft lessons. No prizes or deadlines.</p></article>
+          <article class="card chapter-card"><h3><code>api/v1/schema/</code></h3><p>JSON Schema (draft-07) for models, prompt templates, and camera movements.</p></article>
+        </div>
+      </section>
+
+      <section aria-labelledby="notes-h">
+        <h2 id="notes-h">Usage notes</h2>
+        <div class="card" style="margin-bottom:var(--space-6);">
+          <p style="color:var(--ink-dim);margin-bottom:var(--space-3);">Credit costs were read from Higgsfield's live pricing page on 2026-10-10 and are denominated in Higgsfield credits per 5 seconds unless noted. <strong>Verify live before budgeting</strong> — the <code>unverified</code> array in <code>models.json</code> lists costs that could not be confirmed.</p>
+          <p style="color:var(--ink-dim);margin:0;">Template ids are stable (<code>t1</code>–<code>t15</code> core, <code>a1</code>–<code>a8</code> animated, <code>p1</code>–<code>p8</code> photorealistic). Track is one of <code>core</code>, <code>animated</code>, <code>photorealistic</code>.</p>
+        </div>
+      </section>
+
+      <section aria-labelledby="llm-h">
+        <h2 id="llm-h">For language models</h2>
+        <div class="card">
+          <p style="color:var(--ink-dim);">Agents should start with <code>llms.txt</code> (index) and <code>llms-full.txt</code> (the full guide text) at the repo root, then <code>API.md</code>.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer"><a href="index.html">Guide</a><a href="api.html">API</a></nav>
+    </div>
+  </footer>
+</body>
+</html>

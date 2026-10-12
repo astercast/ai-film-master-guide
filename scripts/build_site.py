@@ -32,7 +32,7 @@ SECTIONS = [
 CHAPTER_ORDER = {
     "field": ["2026-developments"],
     "higgsfield": ["platform-mastery", "prompt-engineering", "soul-id-deep-dive", "competition-entry-craft"],
-    "craft": ["story-structure", "cinematic-language", "character-consistency", "directing-performance", "color-grading", "sound-music-audio", "editing-pipeline", "editing-ai-footage", "longform-pipelines", "failure-gallery", "ai-film-business"],
+    "craft": ["story-structure", "cinematic-language", "character-consistency", "directing-performance", "color-grading", "sound-music-audio", "editing-pipeline", "editing-ai-footage", "longform-pipelines", "episodic-shortform", "failure-gallery", "ai-film-business"],
     "platforms": ["field-guide", "when-to-use-what"],
     "economics": ["credit-math"],
     "case-studies": ["competition-teardowns", "entry-craft-teardowns"],
@@ -734,6 +734,250 @@ DOCTOR_TMPL = """<!DOCTYPE html>
   </footer>
   <script src="assets/js/palette.js"></script>
   <script src="assets/js/doctor.js"></script>
+</body>
+</html>
+"""
+
+EPISODEPLANNER_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Episode planner — AI Film Master Guide</title>
+  <meta name="description" content="Plan an AI mini-drama series: series setup with locked character bible, per-episode blocks (emotion, beats, turn, cliffhanger), and an arc tracker with lessons learned. Saves in your browser.">
+  {css}
+  <style>
+    .cast-row {{ display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: var(--space-3); align-items: end; border-top: 1px solid var(--line); padding-top: var(--space-3); }}
+    .cast-row:first-of-type {{ border-top: 0; padding-top: 0; }}
+    @media (max-width: 720px) {{ .cast-row {{ grid-template-columns: 1fr; }} }}
+    .log-entry {{ margin-bottom: var(--space-4); }}
+    .log-entry .log-label {{ font-weight: 700; color: var(--gold); }}
+    .log-entry .log-meta {{ color: var(--muted); font-size: 0.85rem; }}
+    .log-list {{ list-style: none; padding: 0; margin: 0; }}
+    .hg-card {{ margin-bottom: var(--space-5); }}
+    .hg-caption {{ white-space: pre-wrap; word-break: break-word; }}
+    .hg-num {{ display: inline-block; min-width: 1.6em; text-align: center; background: var(--gold); color: #111; border-radius: 999px; font-size: 0.85em; margin-right: 0.4em; }}
+    .hg-why {{ border-left: 3px solid var(--gold); padding-left: var(--space-3); }}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        {sitenav}
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">⌘K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="ep-title-h">
+      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
+      <div class="container hero-inner">
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Tools</span>
+        <h1 id="ep-title-h">Episode <span class="accent">planner.</span></h1>
+        <p class="lede">A series is a contract with the audience: lock the bible once, plan every episode as a block (one emotion, 3–5 beats, dedicated turn, cliffhanger), and keep an arc log with lessons learned. Everything saves in your browser — nothing leaves your machine.</p>
+      </div>
+    </section>
+    <section class="container" aria-labelledby="eps-h">
+      <h2 id="eps-h">1 · Series setup — lock the bible</h2>
+      <form class="card calc-form" aria-label="Series setup" onsubmit="return false;">
+        <div class="field">
+          <label for="ep-title">Series title</label>
+          <input class="input" type="text" id="ep-title" placeholder="e.g. The Taxi Home">
+        </div>
+        <div class="field">
+          <label for="ep-logline">Logline — the arc in one sentence</label>
+          <input class="input" type="text" id="ep-logline" placeholder="e.g. A brave toddler crosses the city alone to find her daddy">
+        </div>
+        <div class="field">
+          <label for="ep-hashtag">Series hashtag</label>
+          <input class="input" type="text" id="ep-hashtag" placeholder="#taxihome">
+        </div>
+        <fieldset>
+          <legend>Recurring cast — name + voice + one-line anchor per character</legend>
+          <div id="ep-cast-list"></div>
+          <button type="button" class="btn btn-ghost btn-sm" id="ep-cast-add" style="margin-top:var(--space-3);">+ Add character</button>
+        </fieldset>
+        <div class="btn-row">
+          <button type="button" class="btn" id="ep-save-series">Lock series</button>
+          <button type="button" class="btn btn-ghost" id="ep-clear-series">Delete saved series</button>
+        </div>
+        <p class="calc-note" id="ep-series-msg" role="status" hidden></p>
+      </form>
+    </section>
+    <section class="container" aria-labelledby="epb-h" style="margin-top:var(--space-6);">
+      <h2 id="epb-h">2 · Episode block — one emotion, one turn, one cliffhanger</h2>
+      <form class="card calc-form" aria-label="Episode block" onsubmit="return false;">
+        <div class="field">
+          <label for="epb-num">Episode number</label>
+          <input class="input" type="number" id="epb-num" min="1" step="1" value="1">
+        </div>
+        <div class="field">
+          <label for="epb-emotion">Emotion — one word</label>
+          <input class="input" type="text" id="epb-emotion" placeholder="e.g. longing">
+        </div>
+        <div class="field">
+          <label for="epb-stake">One-line emotional stake</label>
+          <input class="input" type="text" id="epb-stake" placeholder="e.g. Mia took a taxi alone to find her daddy">
+        </div>
+        <div class="field">
+          <label for="epb-hook">Hook visual — the first 3 seconds</label>
+          <input class="input" type="text" id="epb-hook" placeholder="e.g. Toddler alone in the back of a night taxi, city lights">
+        </div>
+        <fieldset>
+          <legend>Beats — 3 to 5</legend>
+          <div id="epb-beats"></div>
+          <button type="button" class="btn btn-ghost btn-sm" id="epb-beat-add" style="margin-top:var(--space-3);">+ Add beat</button>
+        </fieldset>
+        <div class="field">
+          <label for="epb-turn">Emotional turn — which beat, and what changes</label>
+          <input class="input" type="text" id="epb-turn" placeholder="e.g. Beat 4: the driver realizes she's not lost — she's determined">
+        </div>
+        <div class="field">
+          <label for="epb-cliff">Cliffhanger — the unanswered beat. Never the resolution.</label>
+          <input class="input" type="text" id="epb-cliff" placeholder="e.g. The taxi stops at the wrong address — headlights, cut">
+        </div>
+        <div class="field">
+          <label for="epb-scenes">Keyframe scenes — hook / beat / turn / cliffhanger</label>
+          <input class="input" type="text" id="epb-scenes" placeholder="e.g. taxi night exterior; Mia clutching coat; driver sees her; wrong-address stop">
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn" id="epb-save">Save episode block</button>
+          <button type="button" class="btn btn-ghost" id="epb-new">New blank block</button>
+        </div>
+        <p class="calc-note" id="epb-msg" role="status" hidden></p>
+      </form>
+    </section>
+    <section class="container" aria-labelledby="epl-h" style="margin-top:var(--space-6);">
+      <h2 id="epl-h">3 · Arc tracker — the log that makes the series smarter</h2>
+      <ul class="log-list" id="epl-list" aria-live="polite"></ul>
+      <p class="empty-state" id="epl-empty">No log entries yet — ship an episode, then write what it taught you.</p>
+      <form class="card calc-form" aria-label="Add an arc log entry" onsubmit="return false;" style="margin-top:var(--space-5);">
+        <div class="field">
+          <label for="epl-ep">Episode</label>
+          <input class="input" type="number" id="epl-ep" min="1" step="1" value="1">
+        </div>
+        <div class="field">
+          <label for="epl-title">Episode title (optional)</label>
+          <input class="input" type="text" id="epl-title" placeholder="e.g. The Wrong Address">
+        </div>
+        <div class="field">
+          <label for="epl-lesson">Lesson learned — story, timing, or production</label>
+          <textarea class="input" id="epl-lesson" rows="3" placeholder="e.g. Turn landed flat: the driver reveal needed its own keyframe, not a borrowed beat shot."></textarea>
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn" id="epl-add">Append to log</button>
+        </div>
+      </form>
+      <p class="calc-note">Gate G8: the episode isn't shipped until the log and a lesson are appended — and the bible never changes mid-series.</p>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer">{footer}</nav>
+    </div>
+  </footer>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/episode-planner.js"></script>
+</body>
+</html>
+"""
+
+HOOKGEN_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hook-title generator — AI Film Master Guide</title>
+  <meta name="description" content="Build hook-title captions from the observed formula: Episode N + one-line emotional stake + CTA. Five worked variants per input, each with a why-this-hooks note.">
+  {css}
+  <style>
+    .hg-card {{ margin-bottom: var(--space-5); }}
+    .hg-caption {{ white-space: pre-wrap; word-break: break-word; }}
+    .hg-num {{ display: inline-block; min-width: 1.6em; text-align: center; background: var(--gold); color: #111; border-radius: 999px; font-size: 0.85em; margin-right: 0.4em; }}
+    .hg-why {{ border-left: 3px solid var(--gold); padding-left: var(--space-3); }}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        {sitenav}
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">⌘K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="hg-title">
+      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
+      <div class="container hero-inner">
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Tools</span>
+        <h1 id="hg-title">Hook-title <span class="accent">generator.</span></h1>
+        <p class="lede">In the mini-drama genre the caption <em>is</em> the hook. The observed formula — <code>[Episode N] + [one-line emotional stake] + [CTA]</code> — turns one line of stake into five worked caption variants, each with the craft reason it hooks. Name the character every time; never lead with hashtags.</p>
+      </div>
+    </section>
+    <section class="container" aria-labelledby="hg-in-h">
+      <h2 id="hg-in-h">Your episode</h2>
+      <form class="card calc-form" aria-label="Hook inputs" onsubmit="return false;">
+        <div class="field">
+          <label for="hg-num">Episode number</label>
+          <input class="input" type="number" id="hg-num" min="1" step="1" value="1">
+        </div>
+        <div class="field">
+          <label for="hg-character">Character name</label>
+          <input class="input" type="text" id="hg-character" placeholder="e.g. Mia">
+        </div>
+        <div class="field">
+          <label for="hg-stake">One-line emotional stake</label>
+          <input class="input" type="text" id="hg-stake" placeholder="e.g. took a taxi alone to find her daddy">
+        </div>
+        <div class="field">
+          <label for="hg-cta">CTA style</label>
+          <select class="input" id="hg-cta">
+            <option value="tomorrow" selected>Next-part tease — "part N+1 tomorrow"</option>
+            <option value="funnel">Funnel tease — longer cut elsewhere</option>
+            <option value="thesis">Finale — thesis line instead of tease</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="hg-hashtag">Series hashtag (optional)</label>
+          <input class="input" type="text" id="hg-hashtag" placeholder="#taxihome">
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn" id="hg-generate">Generate hooks</button>
+        </div>
+        <p class="calc-note" id="hg-status" role="status" hidden></p>
+      </form>
+    </section>
+    <section class="container" aria-labelledby="hg-out-h" style="margin-top:var(--space-6);">
+      <h2 id="hg-out-h">Five variants</h2>
+      <p class="empty-state" id="hg-empty">Fill in the episode and stake above — five worked captions appear here.</p>
+      <div id="hg-results" aria-live="polite"></div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer">{footer}</nav>
+    </div>
+  </footer>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/hook-gen.js"></script>
 </body>
 </html>
 """
@@ -2906,6 +3150,14 @@ def main():
     (SITE / "linter.html").write_text(LINTER_TMPL.format(
         css=css_links, sitenav=nav_html("", "linter.html"), footer=footer_html("")))
 
+    # Episode planner (wave 14: mini-drama series setup → episode blocks → arc tracker)
+    (SITE / "episode-planner.html").write_text(EPISODEPLANNER_TMPL.format(
+        css=css_links, sitenav=nav_html("", ""), footer=footer_html("")))
+
+    # Hook-title generator (wave 14: [Episode N] + [stake] + [CTA] caption variants)
+    (SITE / "hook-generator.html").write_text(HOOKGEN_TMPL.format(
+        css=css_links, sitenav=nav_html("", ""), footer=footer_html("")))
+
     # Model deep dives (wave 11: one page per model + index, from models.json)
     model_pages = build_models(css_links)
 
@@ -2969,6 +3221,12 @@ def main():
         {"url": "anatomy.html", "title": "Anatomy of a prompt", "section": "Tools",
          "headings": ["Prompt anatomy explorer", "Your prompt"],
          "text": "Anatomy of a prompt: the nine-layer prompt anatomy as an interactive annotated example — hover any layer to learn what it does, why it matters, and what breaks without it. Plus a build-your-own mode that assembles the layers into a production-ready prompt."},
+        {"url": "episode-planner.html", "title": "Episode planner", "section": "Tools",
+         "headings": ["Series setup — lock the bible", "Episode block", "Arc tracker"],
+         "text": "Episode planner: lock a mini-drama series (title, logline, hashtag, recurring cast with voice IDs and anchor paragraphs), plan each episode as a block (one emotion, 3–5 beats, emotional turn, cliffhanger), and keep an arc log with lessons learned. Saves in the browser."},
+        {"url": "hook-generator.html", "title": "Hook-title generator", "section": "Tools",
+         "headings": ["Your episode", "Five variants"],
+         "text": "Hook-title generator: builds hook-title captions from the observed formula [Episode N] + [one-line emotional stake] + [CTA] — five worked variants per input, each with a why-this-hooks craft note. Copy any caption in one click."},
         {"url": "skills.html", "title": "Skills browser", "section": "Tools",
          "headings": [],
          "text": "Browse all task skills: prompt templates, camera moves, models, long-form pipelines, craft techniques, checklists, and more, with live filtering."},

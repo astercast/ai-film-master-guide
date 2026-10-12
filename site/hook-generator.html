@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hook-title generator — AI Film Master Guide</title>
+  <meta name="description" content="Build hook-title captions from the observed formula: Episode N + one-line emotional stake + CTA. Five worked variants per input, each with a why-this-hooks note.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/docs.css">
+  <link rel="stylesheet" href="assets/css/print.css">
+  <style>
+    .hg-card { margin-bottom: var(--space-5); }
+    .hg-caption { white-space: pre-wrap; word-break: break-word; }
+    .hg-num { display: inline-block; min-width: 1.6em; text-align: center; background: var(--gold); color: #111; border-radius: 999px; font-size: 0.85em; margin-right: 0.4em; }
+    .hg-why { border-left: 3px solid var(--gold); padding-left: var(--space-3); }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html">Guide</a>
+        <a href="skills.html">Skills</a>
+        <a href="workshop.html">Workshop</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="compare.html">Compare</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="teardown.html">Teardowns</a>
+        <a href="model-watch.html">Model watch</a>
+        <a href="doctor.html">Doctor</a>
+        <a href="linter.html">Linter</a>
+        <a href="models/">Models</a>
+        <a href="shots.html">Shot list</a>
+        <a href="style-bible.html">Style bible</a>
+        <a href="changelog.html">Changelog</a>
+        <a href="skill-spec.html">Skill spec</a>
+        <a href="api.html">API</a>
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">⌘K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="hg-title">
+      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
+      <div class="container hero-inner">
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Tools</span>
+        <h1 id="hg-title">Hook-title <span class="accent">generator.</span></h1>
+        <p class="lede">In the mini-drama genre the caption <em>is</em> the hook. The observed formula — <code>[Episode N] + [one-line emotional stake] + [CTA]</code> — turns one line of stake into five worked caption variants, each with the craft reason it hooks. Name the character every time; never lead with hashtags.</p>
+      </div>
+    </section>
+    <section class="container" aria-labelledby="hg-in-h">
+      <h2 id="hg-in-h">Your episode</h2>
+      <form class="card calc-form" aria-label="Hook inputs" onsubmit="return false;">
+        <div class="field">
+          <label for="hg-num">Episode number</label>
+          <input class="input" type="number" id="hg-num" min="1" step="1" value="1">
+        </div>
+        <div class="field">
+          <label for="hg-character">Character name</label>
+          <input class="input" type="text" id="hg-character" placeholder="e.g. Mia">
+        </div>
+        <div class="field">
+          <label for="hg-stake">One-line emotional stake</label>
+          <input class="input" type="text" id="hg-stake" placeholder="e.g. took a taxi alone to find her daddy">
+        </div>
+        <div class="field">
+          <label for="hg-cta">CTA style</label>
+          <select class="input" id="hg-cta">
+            <option value="tomorrow" selected>Next-part tease — "part N+1 tomorrow"</option>
+            <option value="funnel">Funnel tease — longer cut elsewhere</option>
+            <option value="thesis">Finale — thesis line instead of tease</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="hg-hashtag">Series hashtag (optional)</label>
+          <input class="input" type="text" id="hg-hashtag" placeholder="#taxihome">
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn" id="hg-generate">Generate hooks</button>
+        </div>
+        <p class="calc-note" id="hg-status" role="status" hidden></p>
+      </form>
+    </section>
+    <section class="container" aria-labelledby="hg-out-h" style="margin-top:var(--space-6);">
+      <h2 id="hg-out-h">Five variants</h2>
+      <p class="empty-state" id="hg-empty">Fill in the episode and stake above — five worked captions appear here.</p>
+      <div id="hg-results" aria-live="polite"></div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer"><a href="index.html">Guide</a><a href="skills.html">Skills</a><a href="workshop.html">Workshop</a><a href="quiz.html">Quiz</a><a href="compare.html">Compare</a><a href="gallery.html">Gallery</a><a href="teardown.html">Teardowns</a><a href="model-watch.html">Model watch</a><a href="checks/">Knowledge checks</a><a href="budget.html">Budget</a><a href="optimizer.html">Optimizer</a><a href="shots.html">Shot list</a><a href="style-bible.html">Style bible</a><a href="doctor.html">Doctor</a><a href="linter.html">Linter</a><a href="models/">Models</a><a href="anatomy.html">Anatomy</a><a href="manifesto.html">Manifesto</a><a href="craft-not-buttons.html">Craft, not buttons</a><a href="recipes.html">Recipes</a><a href="field-guides/">Field guides</a><a href="changelog.html">Changelog</a><a href="skill-spec.html">Skill spec</a><a href="api.html">API</a></nav>
+    </div>
+  </footer>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/hook-gen.js"></script>
+</body>
+</html>

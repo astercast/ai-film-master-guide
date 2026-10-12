@@ -10,7 +10,7 @@ Generated static site in `site/` — rebuild with `python3 scripts/build_site.py
 after editing chapters. Open `site/index.html`.
 
 - `site/index.html` — landing: track picker (animated vs photorealistic), chapter grid, learning paths (7: first film, competition, animated, photoreal, long-form, first 60-second short, the 90-day filmmaker)
-- `site/<section>/<chapter>.html` — 26 chapters with sidebar nav, table of contents, prev/next; every chapter shows its honest read time (200 wpm from actual word count) and prints cleanly via `@media print` (`assets/css/print.css`)
+- `site/<section>/<chapter>.html` — 27 chapters with sidebar nav, table of contents, prev/next; every chapter shows its honest read time (200 wpm from actual word count) and prints cleanly via `@media print` (`assets/css/print.css`)
 - `site/teardown.html` — shot-by-shot teardown viewer: Passport Rush, ONEIRIC, the Grok Odyssey $100K winner, Google DeepMind's Dear Upstairs Neighbors, and Fountain 0's Dreams of Violets (75-min Tribeca 2026 AI feature, $2K budget) broken into shots (setup / what works / what breaks / craft lesson, labeled prompt reconstructions); data in `api/v1/teardowns.json`
 - `site/manifesto.html` — positioning: a living free reference, not a course; everything sourced; what it won't do
 - `site/field-guides/` — printable one-pagers generated from the guide's own data: model quick-reference (from `models.json`), prompt anatomy cheat sheet, consistency & dead-eyes checklist
@@ -25,6 +25,8 @@ after editing chapters. Open `site/index.html`.
 - `site/anatomy.html` — anatomy of a prompt: interactive nine-layer annotated example + build-your-own mode
 - `site/workshop.html` — interactive prompt workshop (template × model × track, save/rate, optional style-bible prepend from `site/style-bible.html`)
 - `site/style-bible.html` — style-bible builder: describe character/world once → reusable STYLE LOCK block; named bibles in localStorage (`afg-style-bibles`), copy/save/export/import, workshop integration
+- `site/episode-planner.html` — episode planner: lock a mini-drama series (title, logline, hashtag, cast with voice IDs + anchors), plan episode blocks (one emotion, 3–5 beats, turn, cliffhanger), arc tracker with lessons; localStorage (`afg-episode-series`)
+- `site/hook-generator.html` — hook-title generator: `[Episode N] + [one-line emotional stake] + [CTA]` → 5 worked caption variants, each with a why-this-hooks note
 - `site/quiz.html` — model-picker quiz: 5 questions → ranked top-3 from `models.json` with cost math, one-click handoff to the workshop
 - `site/compare.html` — model compare: 2–3 models side by side (cost, best use, strengths, weaknesses, native audio, status/last-verified) from `models.json`, shareable via URL params; discontinued excluded
 - `site/gallery.html` — prompt gallery: your workshop-saved prompts (localStorage) browsable, filterable by track/model, sortable by rating, open-in-workshop deep links, JSON export/import
