@@ -2,7 +2,43 @@
 
 ## Standing items (permanent workstreams)
 
-- **Episode pipeline workstream (permanent, from wave 14):** revisit every ~3 waves — new episode formats from what's working, new tools, tighter procedures, worked examples. Goal: best agent-run episode-production system anywhere. (WAVELOG entry each revisit; the research artifact lives at `~/workspace/tiktok-episode-pipeline/PIPELINE.md`.) **Last revisited: wave 26 (2026-10-11) — native comment-poll procedure tightening + boom data refresh. Next revisit ~wave 29.**
+- **Episode pipeline workstream (permanent, from wave 14):** revisit every ~3 waves — new episode formats from what's working, new tools, tighter procedures, worked examples. Goal: best agent-run episode-production system anywhere. (WAVELOG entry each revisit; the research artifact lives at `~/workspace/tiktok-episode-pipeline/PIPELINE.md`.) **Last revisited: wave 29 (2026-10-11) — IMDA+TikTok Singapore programme rails, Douyin oversupply economics, AI-label compliance tightening, "oversupply discipline" craft judgment. Next revisit ~wave 32.**
+
+## Wave 29 — EPISODE PIPELINE revisit #4 (2026-10-11)
+
+**Standing workstream:** fourth scheduled revisit (w17 = #1, w20 = #2, w23 check pass, w26 = #3). New material is genuinely thin (only hours since #3) — but three real developments landed: an institutional microdrama training programme with an AI track, Douyin oversupply economics at hit-rate granularity, and TikTok's AI-label enforcement numbers.
+
+**Research** (6 search batches + Grok Lite/Next Episode/Drama Center verification): AI microdrama market + TikTok drama rails; "The Next Episode" program; TikTok algorithm/AI-policy updates Oct 2026; new AI video model launches; IMDA+TikTok programme corroboration (7 outlets); DataEye oversupply sourcing (4 outlets).
+
+**What changed (all sourced, no invented productions):**
+
+1. **Platform rails — institutional tier** (`craft/episodic-shortform.md`, sources): IMDA + TikTok Singapore launched a Microdrama Programme Oct 1, 2026 — 20 accredited companies, 50–100 episodes × 1–3 min over 6–9 months, live-action + dedicated AI-enabled animation track (prompt engineering, character consistency planning, VFX quality review, ByteDance's Seedance 2.5) plus paywall/monetization training (Xinhua via peoplesdaily.pdnews.cn + 6 corroborating outlets). Sits next to the Drama Center / Next Episode bullet; chapter frames it as the locked-bible discipline becoming industry curriculum.
+2. **Boom section — oversupply economics counterweight** (`craft/episodic-shortform.md`): DataEye H1 2026 — 221,900 new AI/animated dramas on Douyin, only 1,055 cleared 100M views (0.48% hit rate); The Paper (Sept 1) — 98.7% failed to break even (~50M-view line); CCTV — cost fell from ~5,000 yuan/min early 2026 to a few hundred (sourcing chain flagged). DataEye VP Lin Qiwen's read paraphrased: AI lowers the threshold for losing money more than it lowers costs.
+3. **Compliance tightening** (chapter compliance paragraph + Stage 8 caption package): TikTok Newsroom Oct 1 — 3B+ videos labeled AI-generated; TikTok's AI-content page says the AIGC setting does not affect distribution when guidelines-compliant (reported via blog.evolvedlotus.com, Oct 8, 2026 — single-source). New Stage 8 posting-discipline line: turn on the AIGC label for AI episodes; skipping the label is the risk, not the label itself.
+4. **New craft judgment — "The oversupply discipline"**: the 0.48% hit rate is the argument for running all nine gates per episode — in a market where footage is nearly free, the scarce inputs are the ones the pipeline makes expensive (locked bible, read-aloud script, verified voice track, dedicated turn shot).
+5. **Sourcing upgrade**: "The Next Episode" line now corroborated by the official TikTok Newsroom announcement (newsroom.tiktok.com) alongside Metricool.
+6. **Agentic surface:** `sources/source-index.md` gains a wave-29 research section; regenerated `site/` (27 chapters, search index, changelog), `api/v1/` (re-stamped, endpoints unchanged at 11, schema-clean), `skills/` (229 — no HAND skill added: no genuine procedural gap; AI-label = one posting rule, oversupply = craft judgment, IMDA = institutional news), `llms.txt`/`llms-full.txt`.
+
+**Deliberately left alone (the revisit log):**
+
+- **Grok Imagine Video 1.5 Lite** (Oct 8, 2026) — already recorded in `models.json` (what_changed covers the Lite tier, pricing, ComfyUI nodes); no record edit needed.
+- **Vidu Q4 Preview** — record current (active, $0.014/s launch pricing, last_verified 2026-10-11); no change.
+- **Kling 4.0** — full model still not GA (Flash early access only); "announced, not GA" record still correct.
+- **HeyGen Voice** (Oct 9 — #1 on Artificial Analysis leaderboard) — a voice model, not a verified episode-pipeline tool; no chapter or skill change.
+- **Cloudflare Clef-omni / Reka Edge / other Oct LLM drops** — not video-generation tools; no chapter change.
+- **Even Realities "Exposed"** (8-episode TikTok micro-drama, Oct 8, Muse by Clios) — documented but live-action brand content with no episode-level craft detail; not a worked example.
+- **naoo AG microdrama rollout** — platform announcement, no procedural content.
+- **No new worked examples** — nothing new documents a production at rebuildable detail; the StoReel/Qidian builds (w27) stand as the documented builds.
+- **No new verified hook patterns** — the cycle's corpus produced no new observed caption patterns; the five hook formulas stand.
+- **Episode planner / hook generator code** — untouched (no new format presets, no new CTA styles justified this cycle).
+- **AGENT.md** — untouched (no new workflow; the AI-label rule is a posting-discipline line, not a workflow).
+- **Verticals For Good micro-drama challenge (deadline Oct 30)** — still a competition, not a format; not integrated (festival-is-not-the-subject rule).
+
+**Validation:** (post-commit) `bash scripts/validate.sh` → ALL STAGES PASS (13/13); link check 0 broken; studio.test.js 50/50; agent-workflows.test.js 74/74; generator audits clean (skills byte-identical, prompt-templates.json == artifact parser, llms.txt zero-diff).
+
+**Commit:** local `<hash>` → pushed 2026-10-11 as remote commit `<rhash>`; remote `main` HEAD matches the pushed SHA; key files verified present in the remote tree via GitHub API.
+
+**Next episode-pipeline revisit:** ~wave 32.
 
 ## Wave 28 — Studio 2.5: microdrama mode (2026-10-11)
 

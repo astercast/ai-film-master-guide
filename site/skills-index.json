@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "count": 228,
+  "count": 229,
   "skills": [
     {
       "id": "prompt-t1",
@@ -1349,7 +1349,7 @@
     {
       "id": "episode-studio-bridge",
       "title": "Send planner blocks to the Studio",
-      "description": "One-click bridge: stage the episode planner's saved series (title, logline, cast anchors, every block's format/runtime/beats) into the Studio's series mode for a full costed packet.",
+      "description": "One-click bridge: stage the episode planner's saved series (title, logline, cast anchors, every block's format/runtime/beats) into the Studio's series mode for a full costed packet \u2014 or into microdrama mode for the run economics.",
       "path": "skills/episodes/episode-studio-bridge.md"
     },
     {
@@ -1369,6 +1369,12 @@
       "title": "Export the production packet for a collaborator",
       "description": "Turn any Studio plan into a hand-offable artifact: markdown download, self-contained HTML (series), or print/PDF \u2014 with shots, prompts, model math, budget, schedule, bible, and checklist.",
       "path": "skills/studio/studio-packet-export.md"
+    },
+    {
+      "id": "studio-microdrama-plan",
+      "title": "Plan a microdrama run's economics (Studio 2.5)",
+      "description": "Plan a serialized AI-microdrama run's economics from the documented $150-microdrama figures: clip budget, the $50/min benchmark, the 3-5x retake budget, the character-regen reserve, and the documented-pace timeline.",
+      "path": "skills/studio/studio-microdrama-plan.md"
     }
   ]
 }
