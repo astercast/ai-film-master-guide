@@ -4,6 +4,39 @@
 
 - **Episode pipeline workstream (permanent, from wave 14):** revisit every ~3 waves — new episode formats from what's working, new tools, tighter procedures, worked examples. Goal: best agent-run episode-production system anywhere. (WAVELOG entry each revisit; the research artifact lives at `~/workspace/tiktok-episode-pipeline/PIPELINE.md`.) **Last revisited: wave 29 (2026-10-11) — IMDA+TikTok Singapore programme rails, Douyin oversupply economics, AI-label compliance tightening, "oversupply discipline" craft judgment. Next revisit ~wave 32.**
 
+## Wave 30 — Late-Q4 model field sweep (2026-10-11)
+
+**Research** (8 search batches): re-verified all 29 model records against Oct 2026 coverage — Kling 4.0 GA status, Vidu Q4 Preview pricing/specs, Veo 3.1 ladder, Seedance 2.5/2.0, MiniMax H3, Wan 3.0, LTX-2.5, FLUX 3 T2V, Grok Imagine 1.5 Lite, Mirage Tesseract, Vidu S2 real-time, Seedance 3.0 / Veo 4 non-existence, Sora 2 death, plus a new-model scan.
+
+**Headline correction — Vidu Q4 Preview pricing was wrong.** The guide carried the $0.014/s launch headline as the rate; it was a promotional off-peak floor, not a list rate. The official Oct 7, 2026 rate card (GlobeNewswire): $0.045/s at 540p, $0.12/s at 1080p, $0.39/s at 4K; I2V + reference-to-video 30% off through Nov 30; off-peak half (sloptvnews). The record's cost string now carries the list rates bound to their resolutions; the $0.014 headline is deliberately written non-parseable ("per second", no /s) so it can never win the Studio's cost floor. The Studio's pinned rate for Vidu Q4 at 1080p moved $0.014 → $0.12/s; the microdrama planner's reference line and both `studio.test.js` assertions updated. Also corrected in the episode-pipeline chapter's Stage 5 tooling note (×2), `api/v1/model-updates.md`, and the model-checker's watch note.
+
+**Record changes (all sourced, no invented specs):**
+
+1. **Kling 4.0** — still not GA as of Oct 11 ("coming this October" is a month, not a date — wavespeed Oct-1 evidence review, orcarouter). Status stays `announced`. Enriched with announced-not-confirmed specs: 3–30s, 720p/1080p/4K, 21:9, up to 15 combined multimodal refs (10 images, 5 videos ≤30s, 7 subjects), 10 keyframes; no price, no API model ID (APIMart).
+2. **Vidu S2** — official Sept 15, 2026 details confirmed (PR Newswire): S2-Avatar real-time 720p (up from S1's 540p), mid-session reference-image swaps, S2-Editing on live streams; noted as a different product class from rendered clips for budgeting.
+3. **Mirage Tesseract** — Sept 22, 2026 launch (EZ Newswire) confirmed as an agent-driven editing/motion-graphics suite, not a generation model; free local engine. Stays in the edit/post lane.
+4. **Grok Imagine Video 1.5** — Lite-tier pricing confirmed against xAI's own API docs (via sloptvnews): $0.02/s 480p, $0.03/s 720p, $0.14/s 1080p + $0.01/image; flagship 1.5: $0.08/$0.14/$0.25; Venice listed Lite Sept 30.
+5. **Seedance 3.0** — still unannounced by any vendor as of Oct 1 (versely.studio). Status stays `reported`; ByteDance's real-time world-model project is a separate product.
+6. **Veo 3.1** — API ladder added (third-party mirror of Google docs, verify live): Standard $0.40/s, $0.60/s 4K; Fast $0.15/s, $0.35/s 4K; Lite $0.05/s 720p, $0.08/s 1080p. 4/6/8s clips; Vertex us-central1 only; server deletes generations after 2 days; Veo 2 shut down June 2026.
+7. **Seedance 2.5** — official BytePlus rates re-read Oct 6, 2026: $0.1028/$0.2311/$0.5686 per s (480/720/1080p); 4–30s; up to 50 refs; timestamp edits; US unavailable. Parser check caught the Dreamina first-month promo (~$0.035/s) binding to 1080p and winning the floor — reworded to "about $0.035 per second" (non-parseable) so a promo can never become the budget rate.
+8. **Seedance 2.0** — 15 refs (9/3/3), 4–15s, edit + extend (BytePlus docs).
+9. **Wan 3.0 / 3.0 Prime** — formally released Aug 24 (beta Aug 6); native 30s at 30fps; 10/5/5 refs; document mode; Model Studio $0.05/$0.10/$0.20.
+10. **MiniMax H3** — H3 Max native 1080p + Turbo tier per Krea's Sept 9 changelog (single secondary source — guide figures unchanged pending confirmation); open-weights availability still verify-live.
+11. **LTX-2.5** — Community License (free commercial <$10M ARR), Fast = distilled 8-step vs Pro fidelity, automatic duration, audio-to-video limits; stays unpriced in the Studio's honest floor.
+12. **FLUX 3 Video** — GA since Aug 2026; QHD $0.40/s and UHD $0.80/s since Sept 10 (v2v $0.65/$0.95); FLUX Video Upscale shipped Aug 20; Elo claims still vendor-run.
+13. **Sora 2 / Pro / Max** — the Sora API is gone (410s — versely.studio, Oct 2026). Status stays `discontinued`.
+14. **Runway Gen-4.5** — still the latest; no new model in 2026 (Sept news was distribution/MCP).
+15. **NEW: vivago R1** (HiDream.ai) — global availability Oct 9, 2026 (EZ Newswire syndicate — single-source, verify live). Agent workflow product (script → storyboard → generation → edit in one conversational workflow; up to 5-minute videos; CLI for developers/agents). Type `suite` — excluded from the Studio's generation pool by design; auto-generated model skill follows the generator's pattern. 29 → **30 models**.
+16. **"Veo 4"** — re-verified as SEO bait (mer.vin, queststudio.io, independent coverage memo: no announcement, no model card, no API ID). The standing correction in `field/2026-developments.md` now carries the re-verification.
+
+**Propagation:** artifact → `api/v1/models.json` (30 models, build_api assert 29→30) → `site/` (27 chapters, model pages incl. new vivago-r1 page, search index), `skills/` (230 — auto-generated `direct-vivago-r1`; no HAND skill: no genuine procedural gap), `llms.txt`/`llms-full.txt`; `AGENT.md`/`API.md` 29→30; `craft/episodic-shortform.md` Stage 5 pricing correction (×2); `field/2026-developments.md` Veo 4 re-verification + new sources; `api/v1/model-updates.md` wave-30 section; `sources/source-index.md` wave-30 research section; model-checker watch note updated.
+
+**Validation:** (post-commit) `bash scripts/validate.sh` → ALL STAGES PASS (13/13); link check 0 broken; `node --check` clean on changed JS; studio.test.js 50/50 (Vidu Q4 rate assertion $0.014→$0.12/s, viduRef assertion updated); agent-workflows.test.js ALL PASS; generator audits clean (skills byte-identical, prompt-templates.json == artifact parser, llms.txt zero-diff).
+
+**Commit:** local TBD → pushed 2026-10-11 as remote commit TBD; remote `main` HEAD matches the pushed SHA; key files verified present in the remote tree via GitHub API.
+
+**Next episode-pipeline revisit:** ~wave 32.
+
 ## Wave 29 — EPISODE PIPELINE revisit #4 (2026-10-11)
 
 **Standing workstream:** fourth scheduled revisit (w17 = #1, w20 = #2, w23 check pass, w26 = #3). New material is genuinely thin (only hours since #3) — but three real developments landed: an institutional microdrama training programme with an AI track, Douyin oversupply economics at hit-rate granularity, and TikTok's AI-label enforcement numbers.

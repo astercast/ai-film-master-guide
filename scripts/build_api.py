@@ -181,7 +181,7 @@ def main():
     assert len(templates) == 47, f"expected 47 prompt templates, got {len(templates)}"
     assert len(checklists) == 5, f"expected 5 checklists, got {len(checklists)}"
     assert len(glossary) >= 60, f"expected 60+ glossary terms, got {len(glossary)}"
-    assert len(model_data["models"]) == 29, f"expected 29 models, got {len(model_data['models'])}"  # wave 21: +Vidu Q4 Preview, +FLUX 3 Video
+    assert len(model_data["models"]) == 30, f"expected 30 models, got {len(model_data['models'])}"  # wave 30: +vivago R1
     assert len(camera_data["lexicon"]) == 22
 
     models = {

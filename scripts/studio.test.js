@@ -343,7 +343,7 @@ test("optimizer: USD/s rates parse from models.json (Vidu Q4, H3, FLUX 3)", () =
   const vidu = S.rateAtRes(byName["Vidu Q4 Preview"], 1080);
   assert.ok(vidu, "Vidu Q4 should price at 1080p");
   assert.strictEqual(vidu.kind, "usd");
-  assert.ok(Math.abs(vidu.usdps - 0.014) < 1e-9, "Vidu Q4 launch pricing $0.014/s, got " + vidu.usdps);
+  assert.ok(Math.abs(vidu.usdps - 0.12) < 1e-9, "Vidu Q4 list pricing $0.12/s at 1080p (wave 30: the $0.014/s headline was a promo floor), got " + vidu.usdps);
   const h3 = S.rateAtRes(byName["MiniMax H3"], 1080);
   assert.ok(h3 && h3.kind === "usd" && Math.abs(h3.usdps - 0.13) < 1e-9,
     "MiniMax H3 2K $0.13/s expected, got " + JSON.stringify(h3));
@@ -563,8 +563,8 @@ test("microdrama: generation math derives from models.json (pinned relationships
     "total USD = total credits x $0.0392");
   assert.ok(p.perMinPlan <= p.benchmarkTotal / p.totalMinutes,
     "the plan's per-minute cost must land at or under the $50/min benchmark on the fixture");
-  assert.ok(p.viduRef && p.viduRef.indexOf("$0.014/s") !== -1,
-    "Vidu Q4 Preview reference line must carry the launch pricing claim");
+  assert.ok(p.viduRef && p.viduRef.indexOf("$0.12/s") !== -1,
+    "Vidu Q4 Preview reference line must carry the corrected list pricing (wave 30: $0.12/s at 1080p)");
 });
 
 test("microdrama: festival tier uses the high end of the retake range", () => {

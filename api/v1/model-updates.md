@@ -5,6 +5,85 @@ every entry in `models.json` was re-verified against October 2026 coverage, and 
 now carries `last_verified`, `status`, `what_changed`, and `sources`. Verify live
 pricing before spending — this file is a snapshot, not a rate card.
 
+## 2026-10-11 — Wave 30: Late-Q4 field sweep
+
+29 → **30 models** (one added); no status changes. The headline item is a
+pricing correction; everything else is record enrichment with sources.
+Third-party or vendor numbers as labeled — verify live before spending.
+
+### Headline correction
+
+- **Vidu Q4 Preview** — the **$0.014/s** launch headline was a promotional
+  off-peak floor, not a list rate. The official Oct 7, 2026 rate card
+  (GlobeNewswire): **$0.045/s at 540p, $0.12/s at 1080p, $0.39/s at 4K**;
+  image-to-video and reference-to-video at a 30% discount through Nov 30;
+  off-peak jobs at half. The guide's record now carries the list rates
+  (Studio cost math follows them); the episode-pipeline chapter's Stage 5
+  tooling note carries the same correction. Also added: 16s max clips,
+  I2V + reference-to-video only (no T2V), audio on by default, and the
+  Artificial Analysis image-to-video Elo 1,179 on Oct 8 (#3, up from Q3
+  Pro's 1,056 — sloptvnews, single-source).
+
+### New model (1)
+
+- **vivago R1** (HiDream.ai) — made available globally Oct 9, 2026 (EZ
+  Newswire syndicate — single-source, verify live). An AI video creation
+  agent, not a shot-generation model: scriptwriting, storyboarding,
+  generation, and editing in one conversational workflow, up to 5-minute
+  videos in one production run, extendable through additional rounds, with
+  CLI access for developers and agents. Lives in the guide's `suite` lane
+  (like Mirage Tesseract) — no published rate card, no independent
+  production evidence yet.
+
+### Record changes
+
+- **Kling 4.0** — still not GA as of Oct 11 ("coming this October" is a
+  month, not a date — wavespeed Oct-1 evidence review; orcarouter). Status
+  stays `announced`. Announced-not-confirmed specs enriched: 3–30s,
+  720p/1080p/4K, 21:9 ultrawide, up to 15 combined multimodal references
+  (10 images, 5 videos ≤30s, 7 subjects), 10 keyframes; no published price,
+  no API model ID (APIMart).
+- **Vidu S2** — Sept 15, 2026 official details confirmed (PR Newswire):
+  S2-Avatar real-time 720p (up from S1's 540p), mid-session reference-image
+  swaps, S2-Editing on live streams. Noted as a different product class from
+  rendered clips for budgeting.
+- **Mirage Tesseract** — Sept 22, 2026 launch (EZ Newswire) confirmed as an
+  agent-driven editing/motion-graphics suite, not a generation model; local
+  engine free. Stays in the edit/post lane.
+- **Grok Imagine Video 1.5** — Lite-tier pricing confirmed against xAI's own
+  API docs (via sloptvnews, Oct 2026): $0.02/s 480p, $0.03/s 720p, $0.14/s
+  1080p + $0.01/input image; flagship 1.5: $0.08/$0.14/$0.25. Venice listed
+  Lite Sept 30 ($0.04/clip entry).
+- **Seedance 3.0** — still unannounced by any vendor as of Oct 1
+  (versely.studio). Status stays `reported`. ByteDance's real-time
+  world-model project is a separate product, not a Seedance 3 video release.
+- **Veo 3.1** — API ladder added (third-party mirror of Google docs, verify
+  live): Standard $0.40/s (720p/1080p), $0.60/s 4K; Fast $0.15/s, $0.35/s
+  4K; Lite $0.05/s 720p, $0.08/s 1080p. 4/6/8s clips; Vertex us-central1
+  only; server deletes generations after 2 days; Veo 2 shut down June 2026.
+- **Seedance 2.5** — official BytePlus rates re-read Oct 6, 2026:
+  $0.1028/s 480p, $0.2311/s 720p, $0.5686/s 1080p; 4–30s; up to 50 refs
+  (30 images/10 videos/10 audio); timestamp edits; US unavailable.
+- **Seedance 2.0** — 15 refs (9/3/3), 4–15s, edit + extend (BytePlus docs).
+- **Wan 3.0 / 3.0 Prime** — formally released Aug 24 (beta Aug 6); native
+  30s at 30fps; 10/5/5 refs; document mode; Model Studio $0.05/$0.10/$0.20.
+- **MiniMax H3** — H3 Max native 1080p + Turbo tier per Krea's Sept 9
+  changelog (single secondary source — guide figures unchanged pending
+  confirmation); open-weights availability still verify-live.
+- **LTX-2.5** — Community License (free commercial <$10M ARR), Fast =
+  distilled 8-step vs Pro fidelity, automatic duration, audio-to-video
+  limits; stays unpriced in the Studio's honest floor.
+- **FLUX 3 Video** — GA since Aug 2026; QHD $0.40/s and UHD $0.80/s since
+  Sept 10 (v2v $0.65/$0.95); FLUX Video Upscale shipped Aug 20; Elo claims
+  still vendor-run.
+- **Sora 2 / Pro / Max** — the Sora API is gone (410s — versely.studio,
+  Oct 2026). Status stays `discontinued`.
+- **Runway Gen-4.5** — still the latest; no new model in 2026 (Sept news
+  was distribution/MCP).
+- **"Veo 4"** — re-verified as SEO bait (mer.vin, queststudio.io, and an
+  independent coverage memo all agree: no announcement, no model card, no
+  API ID). The guide's standing correction holds.
+
 ## 2026-10-11 — Wave 21: Q4 model refresh
 
 All 29 records re-verified against Oct 2026 coverage. Two models added;

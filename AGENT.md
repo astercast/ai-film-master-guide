@@ -25,7 +25,7 @@ Static files — **no auth, no keys, no rate limits**. Works on any static host.
 | Endpoint | Contents | Count |
 |---|---|---|
 | `api/v1/index.json` | Manifest — start here | 11 endpoints |
-| `api/v1/models.json` | 29 models: platform, type, credit cost, strengths/weaknesses/best use, `last_verified`, `status`, `what_changed`, `sources`, `unverified` list | 29 |
+| `api/v1/models.json` | 30 models: platform, type, credit cost, strengths/weaknesses/best use, `last_verified`, `status`, `what_changed`, `sources`, `unverified` list | 30 |
 | `api/v1/prompt-templates.json` | 47 templates: id, title, track, prompt, anatomy, use, models | 47 |
 | `api/v1/camera-movements.json` | 22-move camera lexicon: id, move, prompt_phrasing, when_to_use | 22 |
 | `api/v1/checklists.json` | 5 checklists: pre-production, per-shot, continuity, audio, delivery | 5 |
