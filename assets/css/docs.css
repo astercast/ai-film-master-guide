@@ -10,8 +10,6 @@
 .track-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-4); margin-bottom: var(--space-7); }
 
 .section-lede { color: var(--ink-dim); font-size: 1.02rem; max-width: 62ch; margin-bottom: var(--space-5); }
-.path-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: var(--space-4); margin-bottom: var(--space-7); }
-.path-card h3 { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-2); }
 .path-time { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 600; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; white-space: nowrap; }
 .path-steps { margin: var(--space-3) 0 0; padding-left: 1.4em; display: grid; gap: var(--space-2); }
 .path-steps li::marker { color: var(--gold); font-weight: 800; }
@@ -118,15 +116,7 @@
 .calc-promo h2 { font-size: 1.4rem; margin-bottom: var(--space-2); }
 .calc-promo p { color: var(--ink-dim); margin: 0; max-width: 60ch; }
 
-/* ——— Section headers & chapter index ——— */
-.section-h {
-  font-family: var(--font-display); font-size: 1.05rem; font-weight: 800; font-stretch: 68%;
-  letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--gold); margin: var(--space-7) 0 var(--space-4);
-  display: flex; align-items: center; gap: var(--space-3);
-}
-.section-h::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, var(--line-bright), transparent); }
-.section-h .tc { font-size: 0.68rem; letter-spacing: 0.12em; color: var(--muted); }
+/* ——— Chapter index ——— */
 .chapter-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--space-3); counter-reset: scene; }
 .chapter-card { padding: var(--space-4); counter-increment: scene; overflow: hidden; }
 .chapter-card::after {

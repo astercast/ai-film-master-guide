@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/motifs.css">
   <link rel="stylesheet" href="assets/css/docs.css">
+  <link rel="stylesheet" href="assets/css/home.css">
   <link rel="stylesheet" href="assets/css/print.css">
 </head>
 <body>
@@ -26,23 +27,12 @@
       </a>
       <nav class="site-nav" aria-label="Primary">
         <a href="index.html">Guide</a>
-        <a href="skills.html">Skills</a>
-        <a href="workshop.html">Workshop</a>
-        <a href="quiz.html">Quiz</a>
-        <a href="compare.html">Compare</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="teardown.html">Teardowns</a>
-        <a href="model-watch.html">Model watch</a>
-        <a href="doctor.html">Doctor</a>
-        <a href="linter.html">Linter</a>
         <a href="cutting-room.html">Cutting room</a>
-        <a href="prompts.html">Prompts</a>
+        <a href="teardown.html">Teardowns</a>
+        <a href="workshop.html">Workshop</a>
         <a href="models/">Models</a>
-        <a href="shots.html">Shot list</a>
-        <a href="style-bible.html">Style bible</a>
-        <a href="changelog.html" aria-current="page">Changelog</a>
-        <a href="skill-spec.html">Skill spec</a>
-        <a href="api.html">API</a>
+        <a href="compare.html">Compare</a>
+        <details class="nav-idx"><summary class="nav-idx-btn is-current"><span>Index</span><span class="nav-idx-caret" aria-hidden="true">▾</span></summary><div class="nav-idx-panel"><div class="nav-idx-group"><p>On the bench</p><ul><li><a href="prompts.html">Prompts</a></li><li><a href="shots.html">Shot list</a></li><li><a href="style-bible.html">Style bible</a></li><li><a href="budget.html">Budget</a></li><li><a href="optimizer.html">Optimizer</a></li><li><a href="doctor.html">Doctor</a></li><li><a href="linter.html">Linter</a></li><li><a href="recipes.html">Recipes</a></li></ul></div><div class="nav-idx-group"><p>Study</p><ul><li><a href="manifesto.html">Manifesto</a></li><li><a href="craft-not-buttons.html">Craft, not buttons</a></li><li><a href="field-guides/">Field guides</a></li><li><a href="checks/">Knowledge checks</a></li><li><a href="quiz.html">Quiz</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="model-watch.html">Model watch</a></li></ul></div><div class="nav-idx-group"><p>For agents</p><ul><li><a href="skills.html">Skills</a></li><li><a href="skill-spec.html">Skill spec</a></li><li><a href="api.html">API</a></li><li><a href="changelog.html" aria-current="page">Changelog</a></li></ul></div></div></details>
       </nav>
       <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
       <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
@@ -92,7 +82,10 @@
         <p>This changelog is rebuilt from the repository's git history on every site build, so it always reflects the latest release. Each entry below is a shipped change with its commit date — not a roadmap, not a promise. When a model price, feature, or platform rule changes in the world, the corresponding chapter or API update appears here with its date, and the affected chapter links its sources.</p>
       </div>
       <h2>Recent changes</h2>
-      <ol class="change-list"><li><span class="change-date">2026-10-12</span> <span class="change-hash">b829c45</span><p>WAVELOG: wow wave 1 commit/push record</p></li>
+      <ol class="change-list"><li><span class="change-date">2026-10-12</span> <span class="change-hash">7d183bf</span><p>Wave 38: WAVELOG — record follow-up commit hash</p></li>
+      <li><span class="change-date">2026-10-12</span> <span class="change-hash">a8e44e3</span><p>Wave 38 follow-up: vercel.json — explicit function paths, maxDuration 10, no runtime</p></li>
+      <li><span class="change-date">2026-10-12</span> <span class="change-hash">36d148b</span><p>Wave 38: identity hardening — self-hosted fonts, Archivo→Anton, vercel nodejs20.x</p></li>
+      <li><span class="change-date">2026-10-12</span> <span class="change-hash">b829c45</span><p>WAVELOG: wow wave 1 commit/push record</p></li>
       <li><span class="change-date">2026-10-12</span> <span class="change-hash">1068f01</span><p>WOW wave 1: The Cutting Room, playable — type a weak prompt, watch the scene get built shot by shot</p></li>
       <li><span class="change-date">2026-10-12</span> <span class="change-hash">9d69af2</span><p>GO_LIVE.md + LIVE_CHECKLIST.md: one-time -live deploy model, function roster, crons, env vars</p></li>
       <li><span class="change-date">2026-10-12</span> <span class="change-hash">ddddbe8</span><p>GO_LIVE.md: one-time -live snapshot deploy model (CLI, no git integration, GitHub-only after)</p></li>
@@ -103,10 +96,7 @@
       <li><span class="change-date">2026-10-12</span> <span class="change-hash">245fe91</span><p>Wave 38: record remote commit hash in WAVELOG</p></li>
       <li><span class="change-date">2026-10-12</span> <span class="change-hash">2bbd451</span><p>Wave 38: episode-pipeline revisit #6 — tooling upgrades, tool improvements, worked example</p></li>
       <li><span class="change-date">2026-10-12</span> <span class="change-hash">4e18f65</span><p>Wave 37: record remote commit hash in WAVELOG</p></li>
-      <li><span class="change-date">2026-10-12</span> <span class="change-hash">1195e04</span><p>Wave 37: &#x27;The Cutting Room&#x27; identity wave 2 — every page recognizable blind</p></li>
-      <li><span class="change-date">2026-10-12</span> <span class="change-hash">d4c8306</span><p>Wave 36: &#x27;The Cutting Room&#x27; visual identity rework (wave 1)</p></li>
-      <li><span class="change-date">2026-10-12</span> <span class="change-hash">8b89d84</span><p>MERGE waves 33/34/35: fold WAVELOG entries, documentary-ethics chapter build, st3 styles into STUDIO_TMPL</p></li>
-      <li><span class="change-date">2026-10-12</span> <span class="change-hash">d10a300</span><p>Wave 34: Studio 3.0 — Shot Refinery + plan sharing + draft-cheap/finish-flagship optimizer mode</p></li></ol>
+      <li><span class="change-date">2026-10-12</span> <span class="change-hash">1195e04</span><p>Wave 37: &#x27;The Cutting Room&#x27; identity wave 2 — every page recognizable blind</p></li></ol>
       <p class="calc-note" style="margin-bottom:var(--space-7);">Older history lives in the repository's git log. The guide also ships <code>llms.txt</code> so agents can check freshness programmatically.</p>
     </section>
   </main>

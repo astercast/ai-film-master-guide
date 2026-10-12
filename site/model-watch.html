@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/motifs.css">
   <link rel="stylesheet" href="assets/css/docs.css">
+  <link rel="stylesheet" href="assets/css/home.css">
   <link rel="stylesheet" href="assets/css/print.css">
 </head>
 <body>
@@ -26,23 +27,12 @@
       </a>
       <nav class="site-nav" aria-label="Primary">
         <a href="index.html">Guide</a>
-        <a href="skills.html">Skills</a>
-        <a href="workshop.html">Workshop</a>
-        <a href="quiz.html">Quiz</a>
-        <a href="compare.html">Compare</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="teardown.html">Teardowns</a>
-        <a href="model-watch.html" aria-current="page">Model watch</a>
-        <a href="doctor.html">Doctor</a>
-        <a href="linter.html">Linter</a>
         <a href="cutting-room.html">Cutting room</a>
-        <a href="prompts.html">Prompts</a>
+        <a href="teardown.html">Teardowns</a>
+        <a href="workshop.html">Workshop</a>
         <a href="models/">Models</a>
-        <a href="shots.html">Shot list</a>
-        <a href="style-bible.html">Style bible</a>
-        <a href="changelog.html">Changelog</a>
-        <a href="skill-spec.html">Skill spec</a>
-        <a href="api.html">API</a>
+        <a href="compare.html">Compare</a>
+        <details class="nav-idx"><summary class="nav-idx-btn is-current"><span>Index</span><span class="nav-idx-caret" aria-hidden="true">▾</span></summary><div class="nav-idx-panel"><div class="nav-idx-group"><p>On the bench</p><ul><li><a href="prompts.html">Prompts</a></li><li><a href="shots.html">Shot list</a></li><li><a href="style-bible.html">Style bible</a></li><li><a href="budget.html">Budget</a></li><li><a href="optimizer.html">Optimizer</a></li><li><a href="doctor.html">Doctor</a></li><li><a href="linter.html">Linter</a></li><li><a href="recipes.html">Recipes</a></li></ul></div><div class="nav-idx-group"><p>Study</p><ul><li><a href="manifesto.html">Manifesto</a></li><li><a href="craft-not-buttons.html">Craft, not buttons</a></li><li><a href="field-guides/">Field guides</a></li><li><a href="checks/">Knowledge checks</a></li><li><a href="quiz.html">Quiz</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="model-watch.html" aria-current="page">Model watch</a></li></ul></div><div class="nav-idx-group"><p>For agents</p><ul><li><a href="skills.html">Skills</a></li><li><a href="skill-spec.html">Skill spec</a></li><li><a href="api.html">API</a></li><li><a href="changelog.html">Changelog</a></li></ul></div></div></details>
       </nav>
       <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
       <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
@@ -91,8 +81,8 @@
         <p><strong>Verify live before spending.</strong> Model versions, prices, and availability move monthly — sometimes weekly. Every card below shows its last-verified date. If a card is older than your shoot budget, re-check the vendor's pricing page first.</p>
       </div>
       <div class="mw-filters" role="group" aria-label="Filter by model status">
-        <button type="button" class="btn btn-sm" data-mw-filter="all" aria-pressed="true">All (30)</button>
-        <button type="button" class="btn btn-sm" data-mw-filter="active" aria-pressed="false">Active (27)</button>
+        <button type="button" class="btn btn-sm" data-mw-filter="all" aria-pressed="true">All (31)</button>
+        <button type="button" class="btn btn-sm" data-mw-filter="active" aria-pressed="false">Active (28)</button>
         <button type="button" class="btn btn-sm" data-mw-filter="reported" aria-pressed="false">Reported (1)</button>
         <button type="button" class="btn btn-sm" data-mw-filter="discontinued" aria-pressed="false">Discontinued (1)</button>
       </div>
@@ -100,7 +90,7 @@
         <h2 class="mw-freshness-h">Watchtower freshness <span class="api-badge" id="mw-api-badge" data-api-state="none" role="status" tabindex="0"></span></h2>
         <p class="card-meta" id="mw-freshness-line">Last published check: 2026-10-11 22:23:45 UTC — 22 models, 0 changed, 0 check errors, 2 unwatched.</p>
       </div>
-      <p class="card-meta">30 models · <a href="../api/v1/model-updates.md">changelog</a> · <a href="../api/v1/models.json">raw JSON</a> · <a href="../api/v1/model-checks.json">check feed</a></p>
+      <p class="card-meta">31 models · <a href="../api/v1/model-updates.md">changelog</a> · <a href="../api/v1/models.json">raw JSON</a> · <a href="../api/v1/model-checks.json">check feed</a></p>
       <div class="mw-grid" id="mw-grid">
 <article class="mw-card" data-status="active">
   <span class="mw-badge mw-badge-active">Active</span>
@@ -552,8 +542,23 @@
   <div class="mw-sources"><strong>Sources</strong><ul><li><a href="https://lifestyle.nextmentors.com/story/878361/hidream-ai-makes-vivago-r1-available-globally-for-end-to-end-ai-video-production/" rel="noopener">lifestyle.nextmentors.com</a></li></ul></div>
   <p class="mw-verified">last verified 2026-10-11</p>
 </article>
+<article class="mw-card" data-status="active">
+  <span class="mw-badge mw-badge-active">Active</span>
+  <span class="print-tag is-answer">ANSWER PRINT</span>
+  <h3>PixVerse V6</h3>
+  <p class="mw-platform">AIsphere · video</p>
+  <dl>
+    <dt>Best use</dt><dd>Cinematic short-form and social video; anime/stylized work with multi-shot consistency; pre-viz and multi-shot scene sketches</dd>
+    <dt>Cost</dt><dd>API gateways (reported, third-party — verify live): ~$0.09/s at 720p with audio, ~$0.18-0.23/s at 1080p (worked: 5s 720p + audio approx $0.60; 10s 1080p no audio approx $1.80; 15s 1080p + audio approx $3.45). PixVerse web plans from ~$19/mo; free tier 60 daily credits at 720p, watermarked.</dd>
+    <dt>Strength</dt><dd>Native audio generated in the same pass; 1-15s clips at up to 1080p; 20+ prompt-driven camera controls (focal length, aperture, depth of field, lens distortion); multi-shot flag cuts one prompt into an ordered scene; reference-to-video with up to 10 images; strong independent image-to-video showings (Artificial Analysis Elo 1,343, April 2026).</dd>
+    <dt>Weakness</dt><dd>1080p ceiling — no 4K; audio integration less mature than Kling 3.0 / Seedance 2.x for dialogue and lip-sync; audio synthesis reported as Pro-plan-and-up on the web product; free tier watermarked at 720p.</dd>
+  </dl>
+  <p class="mw-changed"><strong>What changed:</strong> NEW — added to model watch 2026-10-12; previously the guide&#x27;s most conspicuous uncovered model. Launched March 30, 2026 with native audio and multi-shot. Sibling C1 (April 7, 2026) targets action/VFX/high-speed motion; not separately tracked.</p>
+  <div class="mw-sources"><strong>Sources</strong><ul><li><a href="https://www.yottalabs.ai/post/pixverse-v6-vs-c1-differences-api-2026" rel="noopener">www.yottalabs.ai</a></li><li><a href="https://blog.segmind.com/ai-video-generation-api-pixverse-v6-review-real-world-use-cases-2026/" rel="noopener">blog.segmind.com</a></li><li><a href="http://tagshop.ai/ai-models/pixverse-6" rel="noopener">tagshop.ai</a></li></ul></div>
+  <p class="mw-verified">last verified 2026-10-12</p>
+</article>
       </div>
-      <noscript><p>Filtering needs JavaScript; all 30 models are listed above regardless.</p></noscript>
+      <noscript><p>Filtering needs JavaScript; all 31 models are listed above regardless.</p></noscript>
     </section>
   </main>
   <footer class="site-footer">

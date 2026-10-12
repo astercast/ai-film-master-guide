@@ -307,32 +307,10 @@
 .hdr-tc .hdr-rec { color: var(--ember); font-weight: 700; }
 @media (max-width: 1100px) { .hdr-tc { display: none; } }
 
-/* ——— Stat strip: slate cards ——— */
-.stat-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--space-3); margin-top: var(--space-6); }
-.stat {
-  position: relative; background: var(--panel); border: 1px solid var(--line-soft);
-  border-radius: var(--radius-m); padding: var(--space-4); overflow: hidden;
-  transition: border-color var(--dur-2) var(--ease), transform var(--dur-2) var(--ease);
-}
-.stat::before {
-  content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 5px;
-  background: var(--gold); opacity: 0.7;
-}
-.stat::after {
-  /* mini timecode ruler along the card's top */
-  content: ""; position: absolute; top: 0; left: 5px; right: 0; height: 8px;
-  background-image: var(--ruler); background-size: 100% 5px; background-repeat: repeat-x; background-position: top;
-  opacity: 0.5;
-}
-.stat:hover { border-color: var(--line-bright); transform: translateY(-2px); }
-.stat-value { font-family: var(--font-display); font-weight: 800; font-stretch: 62%; font-size: 2.4rem; line-height: 1; letter-spacing: 0.01em; }
-.stat-value .unit { font-size: 1rem; color: var(--muted); font-weight: 500; font-stretch: 100%; }
-.stat-label { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-top: var(--space-2); }
-
 /* ——— Reduced-motion: every signature motion degrades to a static frame ——— */
 @media (prefers-reduced-motion: reduce) {
   .tl-playhead { left: 34%; animation: none; }
   .tl-rec i, .td-viewer-head .rec-dot, .hero-kicker .rec { animation: none; opacity: 1; }
   .leader-frame b { animation: none; }
-  .td-clip, .stat { transition: none; }
+  .td-clip { transition: none; }
 }

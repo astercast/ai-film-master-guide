@@ -23,8 +23,6 @@
   .no-print,
   .hero-film .btn-row,
   .track-grid .btn-row,
-  .path-grid,
-  .stat-strip,
   .gloss-pop { display: none !important; }
 
   html, body {

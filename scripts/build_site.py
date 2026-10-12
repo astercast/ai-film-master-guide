@@ -6,6 +6,7 @@ Reads chapters from <repo>/<section>/*.md, writes HTML to <repo>/site/.
 """
 import html
 import json
+import random
 import re
 import shutil
 import subprocess
@@ -43,27 +44,45 @@ CHAPTER_ORDER = {
 }
 
 CSS = ["assets/css/tokens.css", "assets/css/base.css", "assets/css/layout.css",
-       "assets/css/components.css", "assets/css/motifs.css", "assets/css/docs.css", "assets/css/print.css"]
+       "assets/css/components.css", "assets/css/motifs.css", "assets/css/docs.css",
+       "assets/css/home.css", "assets/css/print.css"]
 
-NAV_ITEMS = [
+NAV_TOP = [
     ("index.html", "Guide"),
-    ("skills.html", "Skills"),
-    ("workshop.html", "Workshop"),
-    ("quiz.html", "Quiz"),
-    ("compare.html", "Compare"),
-    ("gallery.html", "Gallery"),
-    ("teardown.html", "Teardowns"),
-    ("model-watch.html", "Model watch"),
-    ("doctor.html", "Doctor"),
-    ("linter.html", "Linter"),
     ("cutting-room.html", "Cutting room"),
-    ("prompts.html", "Prompts"),
+    ("teardown.html", "Teardowns"),
+    ("workshop.html", "Workshop"),
     ("models/", "Models"),
-    ("shots.html", "Shot list"),
-    ("style-bible.html", "Style bible"),
-    ("changelog.html", "Changelog"),
-    ("skill-spec.html", "Skill spec"),
-    ("api.html", "API"),
+    ("compare.html", "Compare"),
+]
+# Everything else lives in the Index drawer — progressive disclosure.
+# Groups are editorial, not taxonomic: where a working filmmaker would reach.
+NAV_INDEX = [
+    ("On the bench", [
+        ("prompts.html", "Prompts"),
+        ("shots.html", "Shot list"),
+        ("style-bible.html", "Style bible"),
+        ("budget.html", "Budget"),
+        ("optimizer.html", "Optimizer"),
+        ("doctor.html", "Doctor"),
+        ("linter.html", "Linter"),
+        ("recipes.html", "Recipes"),
+    ]),
+    ("Study", [
+        ("manifesto.html", "Manifesto"),
+        ("craft-not-buttons.html", "Craft, not buttons"),
+        ("field-guides/", "Field guides"),
+        ("checks/", "Knowledge checks"),
+        ("quiz.html", "Quiz"),
+        ("gallery.html", "Gallery"),
+        ("model-watch.html", "Model watch"),
+    ]),
+    ("For agents", [
+        ("skills.html", "Skills"),
+        ("skill-spec.html", "Skill spec"),
+        ("api.html", "API"),
+        ("changelog.html", "Changelog"),
+    ]),
 ]
 
 FOOTER_ITEMS = [
@@ -98,9 +117,26 @@ FOOTER_ITEMS = [
 
 def nav_html(prefix, current):
     parts = []
-    for href, label in NAV_ITEMS:
+    for href, label in NAV_TOP:
         cur = ' aria-current="page"' if href == current else ""
         parts.append(f'<a href="{prefix}{href}"{cur}>{label}</a>')
+    groups = []
+    index_current = False
+    for gname, items in NAV_INDEX:
+        lis = []
+        for href, label in items:
+            if href == current:
+                index_current = True
+                lis.append(f'<li><a href="{prefix}{href}" aria-current="page">{label}</a></li>')
+            else:
+                lis.append(f'<li><a href="{prefix}{href}">{label}</a></li>')
+        groups.append(
+            f'<div class="nav-idx-group"><p>{gname}</p><ul>{"".join(lis)}</ul></div>')
+    idx_cls = " is-current" if index_current else ""
+    parts.append(
+        f'<details class="nav-idx"><summary class="nav-idx-btn{idx_cls}">'
+        f'<span>Index</span><span class="nav-idx-caret" aria-hidden="true">▾</span></summary>'
+        f'<div class="nav-idx-panel">{"".join(groups)}</div></details>')
     return "\n        ".join(parts)
 
 
@@ -121,6 +157,28 @@ def _deck_clips(labels, cls):
         parts.append(
             f'<span class="clip {cls}" style="left:{left:.1f}%;width:{w:.1f}%">{lab}</span>')
     return "\n            ".join(parts)
+
+
+def waveform_divider(seed=7, bars=72):
+    """Section divider styled as an audio waveform — pure markup, deterministic.
+
+    A seeded random walk gives it the irregular hand of real room tone;
+    the same seed builds identically every time (stable builds, no drift).
+    """
+    rnd = random.Random(seed)
+    h = 42.0
+    parts = []
+    for _ in range(bars):
+        h = max(10.0, min(100.0, h + rnd.uniform(-36, 36)))
+        parts.append(f'<i style="height:{h:.0f}%"></i>')
+    return '<div class="waveform" aria-hidden="true">' + "".join(parts) + "</div>"
+
+
+def reel_cue(scene, tc, label):
+    """Slate-style cue above a homepage section: scene number + timecode."""
+    return (f'<p class="reel-cue"><span class="tc">{tc}</span>'
+            f'<span class="reel-cue-scene">{scene}</span>'
+            f'<span class="reel-cue-label">{label}</span></p>')
 
 
 def hero_cutroom(kicker, h1, lede, deck_title, clips, h1_id, extra=""):
@@ -249,7 +307,7 @@ INDEX_TMPL = """<!DOCTYPE html>
   <meta name="description" content="The master guide to professional AI filmmaking: Higgsfield mastery, pro craft, animated and photorealistic tracks, competition-entry craft, and a machine-readable API.">
   {css}
 </head>
-<body>
+<body class="home">
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
@@ -266,10 +324,10 @@ INDEX_TMPL = """<!DOCTYPE html>
         <span aria-hidden="true">⌘K</span> Search
       </button>
     </div>
-  </header>
+  
   <main id="main">
     <section class="hero hero-cutroom" aria-labelledby="hero-title">
-      <div class="tl-deck" aria-hidden="true">
+<div class="tl-deck" aria-hidden="true">
         <div class="tl-chrome">
           <span class="tl-rec"><i></i>REC</span>
           <span class="tl-tc-live" data-tl-tc>00:00:04:00</span>
@@ -298,34 +356,37 @@ INDEX_TMPL = """<!DOCTYPE html>
         </div>
         <div class="leader-frame" data-leader-frame><b>3</b><span class="lf-label">LEADER</span></div>
       </div>
-      <div class="container hero-inner">
+            <div class="container hero-inner">
         <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Professional AI filmmaking</span>
         <h1 id="hero-title">Make films with AI<br><span class="accent">like a studio.</span></h1>
-        <p class="lede">Thirty chapters on Higgsfield mastery, professional craft, directing performance, color grading, sound, economics, long-form pipelines, competition-entry craft, distribution, and rights — with separate tracks for animated/stylized and photorealistic production. Plus a machine-readable API and 232 task skills for agents.</p>
-        <div class="btn-row">
-          <a class="btn btn-gold" href="manifesto.html">Read the manifesto</a>
-          <a class="btn" href="teardown.html">Shot-by-shot teardowns</a>
-          <a class="btn" href="field-guides/">Printable field guides</a>
-          <a class="btn" href="craft-not-buttons.html">Craft, not buttons</a>
-        </div>
-        <div class="stat-strip">
-          <div class="stat"><div class="stat-value">30</div><div class="stat-label">Chapters</div></div>
-          <div class="stat"><div class="stat-value">{total_read}</div><div class="stat-label">Total read time</div></div>
-          <div class="stat"><div class="stat-value">47</div><div class="stat-label">Prompt templates</div></div>
-          <div class="stat"><div class="stat-value">22</div><div class="stat-label">Camera moves</div></div>
-          <div class="stat"><div class="stat-value">22</div><div class="stat-label">Models compared</div></div>
-          <div class="stat"><div class="stat-value">79</div><div class="stat-label">Glossary terms</div></div>
-          <div class="stat"><div class="stat-value">232</div><div class="stat-label">Agent skills</div></div>
+        <p class="lede">Typing a sentence gets you a clip. Getting twelve clips to feel like one film — same faces, same world, a story worth the runtime — that's a craft. This is the craft manual: thirty chapters, a working cutting room, and every tool you'd reach for at 2 a.m. before a deadline.</p>
+        <div class="btn-row hero-cta">
+          <a class="btn btn-gold btn-lg" href="guides/first-short.html">Make your first short <span aria-hidden="true">&rarr;</span></a>
+          <a class="hero-alt" href="cutting-room.html">or watch a scene get built in the cutting room</a>
         </div>
       </div>
     </section>
 
+    <div class="reel-stats" role="list" aria-label="What's inside the guide">
+      <span role="listitem"><b>{chapter_count}</b> chapters</span><i aria-hidden="true">&middot;</i>
+      <span role="listitem"><b>{total_read}</b> of reading</span><i aria-hidden="true">&middot;</i>
+      <span role="listitem"><b>47</b> prompt templates</span><i aria-hidden="true">&middot;</i>
+      <span role="listitem"><b>22</b> camera moves</span><i aria-hidden="true">&middot;</i>
+      <span role="listitem"><b>{model_count}</b> models compared</span><i aria-hidden="true">&middot;</i>
+      <span role="listitem"><b>79</b> glossary terms</span><i aria-hidden="true">&middot;</i>
+      <span role="listitem"><b>{skill_count}</b> agent skills</span>
+    </div>
+
+    {wave1}
+
     <section class="container tracks" aria-labelledby="tracks-h">
+      {cue_tracks}
       <h2 id="tracks-h">Pick your track</h2>
+      <p class="section-lede">Two ways to shoot. The craft overlaps; the prompt language doesn't. Pick the lane your film lives in.</p>
       <div class="track-grid">
         <article class="card track-card">
           <h3>Animated / Stylized</h3>
-          <p>Anime, Ghibli-style, Pixar-style 3D, 2D cartoon, claymation. Cheaper, more forgiving, dedicated judged categories — with its own prompt register (no lens or DOF language) and model shortlist.</p>
+          <p>Anime, Ghibli-style, Pixar-style 3D, 2D cartoon, claymation. Cheaper to iterate, more forgiving on faces, judged in its own categories — with its own prompt register (no lens or depth-of-field language) and its own model shortlist.</p>
           <div class="btn-row">
             <a class="btn btn-sm" href="higgsfield/prompt-engineering.html">Prompt engineering</a>
             <a class="btn btn-sm" href="platforms/when-to-use-what.html">Model selection</a>
@@ -333,7 +394,7 @@ INDEX_TMPL = """<!DOCTYPE html>
         </article>
         <article class="card track-card">
           <h3>Photorealistic</h3>
-          <p>Premium models, identity discipline, and post-production craft to pass for real. The craft lane for drama, action, and trailer-grade work.</p>
+          <p>Premium models, identity discipline, and post-production craft that passes for real. The lane for drama, action, and trailer-grade work — where every shortcut shows.</p>
           <div class="btn-row">
             <a class="btn btn-sm" href="higgsfield/soul-id-deep-dive.html">Soul ID deep dive</a>
             <a class="btn btn-sm" href="craft/character-consistency.html">Character consistency</a>
@@ -342,12 +403,15 @@ INDEX_TMPL = """<!DOCTYPE html>
       </div>
     </section>
 
-    <section class="container" aria-labelledby="paths-h">
-      <h2 id="paths-h">Start here: learning paths</h2>
-      <p class="section-lede">Don't read twenty-six chapters in order. Pick your goal — each path is the shortest route through the guide that gets you there. Tick steps off as you finish them; your progress is saved in this browser.</p>
-      <div class="path-grid">
-        <article class="card path-card" data-path="first-film">
-          <h3>Your first AI film <span class="path-time">a weekend</span></h3>
+    {wave2}
+
+<section class="container" aria-labelledby="paths-h">
+      {cue_paths}
+      <h2 id="paths-h">Pick your path</h2>
+      <p class="section-lede">Don't read thirty chapters in order. Pick the goal that matches the film you're trying to make — each path is the shortest honest route through the guide. Tick steps off as you finish them; your progress stays in this browser.</p>
+      <div class="path-list">
+        <details class="path-row path-card" data-path="first-film">
+          <summary class="path-summary"><span class="path-title">Your first AI film <span class="path-time">a weekend</span></span></summary>
           <p>Story to finished short in two days. The minimum viable path.</p>
           <div class="path-bar" aria-hidden="true"><span class="path-bar-fill"></span></div>
           <p class="path-progress"><span data-path-progress aria-live="polite">0 of 5 complete</span><button type="button" class="btn btn-sm btn-ghost" data-path-reset="first-film">Reset</button></p>
@@ -358,9 +422,9 @@ INDEX_TMPL = """<!DOCTYPE html>
             <li><input type="checkbox" class="path-check" id="pc-first-film-4" data-step="first-film-4" aria-label="Mark complete: Credit math"><a href="economics/credit-math.html">Credit math</a></li>
             <li><input type="checkbox" class="path-check" id="pc-first-film-5" data-step="first-film-5" aria-label="Mark complete: Editing pipeline"><a href="craft/editing-pipeline.html">Editing pipeline</a></li>
           </ol>
-        </article>
-        <article class="card path-card" data-path="competition">
-          <h3>Competition-ready craft <span class="path-time">2–4 weeks</span></h3>
+        </details>
+        <details class="path-row path-card" data-path="competition">
+          <summary class="path-summary"><span class="path-title">Competition-ready craft <span class="path-time">2–4 weeks</span></span></summary>
           <p>What judged competitions teach about production. The craft bar, taught by the judging table.</p>
           <div class="path-bar" aria-hidden="true"><span class="path-bar-fill"></span></div>
           <p class="path-progress"><span data-path-progress aria-live="polite">0 of 5 complete</span><button type="button" class="btn btn-sm btn-ghost" data-path-reset="competition">Reset</button></p>
@@ -371,9 +435,9 @@ INDEX_TMPL = """<!DOCTYPE html>
             <li><input type="checkbox" class="path-check" id="pc-competition-4" data-step="competition-4" aria-label="Mark complete: Sound and music"><a href="craft/sound-music-audio.html">Sound &amp; music</a></li>
             <li><input type="checkbox" class="path-check" id="pc-competition-5" data-step="competition-5" aria-label="Mark complete: Entry craft teardowns"><a href="case-studies/entry-craft-teardowns.html">Entry craft teardowns</a></li>
           </ol>
-        </article>
-        <article class="card path-card" data-path="animated">
-          <h3>Animated / stylized <span class="path-time">1–2 weeks</span></h3>
+        </details>
+        <details class="path-row path-card" data-path="animated">
+          <summary class="path-summary"><span class="path-title">Animated / stylized <span class="path-time">1–2 weeks</span></span></summary>
           <p>Cheaper, more forgiving, dedicated judged categories.</p>
           <div class="path-bar" aria-hidden="true"><span class="path-bar-fill"></span></div>
           <p class="path-progress"><span data-path-progress aria-live="polite">0 of 4 complete</span><button type="button" class="btn btn-sm btn-ghost" data-path-reset="animated">Reset</button></p>
@@ -383,9 +447,9 @@ INDEX_TMPL = """<!DOCTYPE html>
             <li><input type="checkbox" class="path-check" id="pc-animated-3" data-step="animated-3" aria-label="Mark complete: Character consistency"><a href="craft/character-consistency.html">Character consistency</a></li>
             <li><input type="checkbox" class="path-check" id="pc-animated-4" data-step="animated-4" aria-label="Mark complete: Model selection"><a href="platforms/when-to-use-what.html">Model selection</a></li>
           </ol>
-        </article>
-        <article class="card path-card" data-path="photoreal">
-          <h3>Photorealistic drama <span class="path-time">3–6 weeks</span></h3>
+        </details>
+        <details class="path-row path-card" data-path="photoreal">
+          <summary class="path-summary"><span class="path-title">Photorealistic drama <span class="path-time">3–6 weeks</span></span></summary>
           <p>The premium lane: invisible AI, visible craft.</p>
           <div class="path-bar" aria-hidden="true"><span class="path-bar-fill"></span></div>
           <p class="path-progress"><span data-path-progress aria-live="polite">0 of 4 complete</span><button type="button" class="btn btn-sm btn-ghost" data-path-reset="photoreal">Reset</button></p>
@@ -395,9 +459,9 @@ INDEX_TMPL = """<!DOCTYPE html>
             <li><input type="checkbox" class="path-check" id="pc-photoreal-3" data-step="photoreal-3" aria-label="Mark complete: Directing performance"><a href="craft/directing-performance.html">Directing performance</a></li>
             <li><input type="checkbox" class="path-check" id="pc-photoreal-4" data-step="photoreal-4" aria-label="Mark complete: Color grading"><a href="craft/color-grading.html">Color grading</a></li>
           </ol>
-        </article>
-        <article class="card path-card" data-path="longform">
-          <h3>Long-form: 20+ minutes <span class="path-time">ongoing</span></h3>
+        </details>
+        <details class="path-row path-card" data-path="longform">
+          <summary class="path-summary"><span class="path-title">Long-form: 20+ minutes <span class="path-time">ongoing</span></span></summary>
           <p>Systems, not prompts. How features actually get made.</p>
           <div class="path-bar" aria-hidden="true"><span class="path-bar-fill"></span></div>
           <p class="path-progress"><span data-path-progress aria-live="polite">0 of 4 complete</span><button type="button" class="btn btn-sm btn-ghost" data-path-reset="longform">Reset</button></p>
@@ -407,9 +471,9 @@ INDEX_TMPL = """<!DOCTYPE html>
             <li><input type="checkbox" class="path-check" id="pc-longform-3" data-step="longform-3" aria-label="Mark complete: Editing pipeline"><a href="craft/editing-pipeline.html">Editing pipeline</a></li>
             <li><input type="checkbox" class="path-check" id="pc-longform-4" data-step="longform-4" aria-label="Mark complete: Credit math, compute envelopes"><a href="economics/credit-math.html">Credit math</a> <span class="path-note">compute envelopes</span></li>
           </ol>
-        </article>
-        <article class="card path-card" data-path="first-short">
-          <h3>Your first 60-second short <span class="path-time">7 days</span></h3>
+        </details>
+        <details class="path-row path-card" data-path="first-short" open>
+          <summary class="path-summary"><span class="path-title">Your first 60-second short <span class="path-time">7 days</span></span><span class="marker-flag marker-sm" aria-hidden="true">M1 · start here</span></summary>
           <p>Zero to one finished minute. A day-by-day production plan with checkpoints — the whole guide compressed into a shippable week.</p>
           <div class="path-bar" aria-hidden="true"><span class="path-bar-fill"></span></div>
           <p class="path-progress"><span data-path-progress aria-live="polite">0 of 7 complete</span><button type="button" class="btn btn-sm btn-ghost" data-path-reset="first-short">Reset</button></p>
@@ -422,9 +486,9 @@ INDEX_TMPL = """<!DOCTYPE html>
             <li><input type="checkbox" class="path-check" id="pc-first-short-6" data-step="first-short-6" aria-label="Mark complete: Day 6, sound"><a href="guides/first-short.html">Day 6</a> <span class="path-note">sound</span></li>
             <li><input type="checkbox" class="path-check" id="pc-first-short-7" data-step="first-short-7" aria-label="Mark complete: Day 7, grade and export"><a href="guides/first-short.html">Day 7</a> <span class="path-note">grade &amp; export</span></li>
           </ol>
-        </article>
-        <article class="card path-card" data-path="filmmaker">
-          <h3>The 90-day filmmaker <span class="path-time">12 weeks</span></h3>
+        </details>
+        <details class="path-row path-card" data-path="filmmaker">
+          <summary class="path-summary"><span class="path-title">The 90-day filmmaker <span class="path-time">12 weeks</span></span></summary>
           <p>From first short to competition-ready entry. The advanced arc the 7-day plan feeds into — one milestone project per month.</p>
           <div class="path-bar" aria-hidden="true"><span class="path-bar-fill"></span></div>
           <p class="path-progress"><span data-path-progress aria-live="polite">0 of 12 complete</span><button type="button" class="btn btn-sm btn-ghost" data-path-reset="filmmaker">Reset</button></p>
@@ -442,54 +506,65 @@ INDEX_TMPL = """<!DOCTYPE html>
             <li><input type="checkbox" class="path-check" id="pc-filmmaker-11" data-step="filmmaker-11" aria-label="Mark complete: study the teardowns"><a href="teardown.html">Study</a> <span class="path-note">shot-by-shot teardowns, all ten films</span></li>
             <li><input type="checkbox" class="path-check" id="pc-filmmaker-12" data-step="filmmaker-12" aria-label="Mark complete: ship the entry"><a href="case-studies/entry-craft-teardowns.html">Ship</a> <span class="path-note">milestone: competition entry submitted</span></li>
           </ol>
-        </article>
+        </details>
       </div>
     </section>
 
-    <section class="container" aria-labelledby="chapters-h">
-      <h2 id="chapters-h">The chapters</h2>
-      {chapter_grid}
+    {wave3}
+
+    <section class="container bins" aria-labelledby="chapters-h">
+      {cue_chapters}
+      <h2 id="chapters-h">The full shelf</h2>
+      <p class="section-lede">Thirty chapters across ten bins. Open a bin; every chapter lists its read time. The order that matters is your path's, not this one's.</p>
+      {bins_section}
     </section>
 
-    <section class="container" aria-labelledby="calc-promo-h">
-      <div class="card calc-promo">
-        <div>
-          <h2 id="calc-promo-h">Budget your film before you spend a credit</h2>
-          <p>The interactive calculator turns runtime, shot length, model, and discipline into a cost envelope — grounded in the credit-math chapter's per-clip data.</p>
-        </div>
-        <a class="btn" href="budget.html">Open the calculator</a>
+    {wave4}
+
+    <section class="container workbench" aria-labelledby="bench-h">
+      {cue_bench}
+      <h2 id="bench-h">The workbench</h2>
+      <p class="section-lede">Four tools, no filler. Each one answers a question you'll actually ask at 2 a.m.</p>
+      <div class="bench-grid">
+        <a class="bench-tile" href="budget.html">
+          <p class="bench-kicker">Economics</p>
+          <h3>Budget calculator</h3>
+          <p>What will this film actually cost? Runtime in, cost envelope out — per-clip math from the credit-math chapter.</p>
+          <span class="bench-go" aria-hidden="true">Open <span>&rarr;</span></span>
+        </a>
+        <a class="bench-tile" href="workshop.html">
+          <p class="bench-kicker">Craft</p>
+          <h3>Prompt workshop</h3>
+          <p>A pro prompt in sixty seconds. Pick a template, pick a model, learn why it works, copy it.</p>
+          <span class="bench-go" aria-hidden="true">Open <span>&rarr;</span></span>
+        </a>
+        <a class="bench-tile" href="prompts.html">
+          <p class="bench-kicker">Library</p>
+          <h3>Prompt library</h3>
+          <p>All 47 templates, filterable by shot, camera move, lighting, and mood. Remix and send to the Studio.</p>
+          <span class="bench-go" aria-hidden="true">Open <span>&rarr;</span></span>
+        </a>
+        <a class="bench-tile" href="api.html">
+          <p class="bench-kicker">Machine-readable</p>
+          <h3>For agents</h3>
+          <p>Versioned JSON: {model_count} model records, 47 templates, the 22-move camera lexicon, checklists, glossary — with schemas and llms.txt.</p>
+          <span class="bench-go" aria-hidden="true">Open <span>&rarr;</span></span>
+        </a>
       </div>
     </section>
 
-    <section class="container" aria-labelledby="workshop-promo-h">
-      <div class="card calc-promo">
-        <div>
-          <h2 id="workshop-promo-h">Write a pro prompt in sixty seconds</h2>
-          <p>The prompt workshop fills any of the 47 guide templates against the model of your choice — with the anatomy notes that explain why each template works, and one-click copy.</p>
-        </div>
-        <a class="btn" href="workshop.html">Open the workshop</a>
-      </div>
-    </section>
-
-    <section class="container" aria-labelledby="prompts-promo-h">
-      <div class="card calc-promo">
-        <div>
-          <h2 id="prompts-promo-h">Browse all 47 templates</h2>
-          <p>The prompt library filters the template shelf by shot type, camera movement, lighting, and mood — every card shows the anatomy layers the template demonstrates, with one-click copy, remix, and Send to Studio.</p>
-        </div>
-        <a class="btn" href="prompts.html">Open the library</a>
-      </div>
-    </section>
-
-    <section class="container" aria-labelledby="api-h">
-      <h2 id="api-h">Built for agents too</h2>
-      <div class="card" style="margin-bottom:var(--space-7);">
-        <p style="color:var(--ink-dim);">Versioned JSON under <code>api/v1/</code>: models with live credit costs, 47 prompt templates, the 22-move camera lexicon, production checklists, and the glossary — with JSON Schemas, <code>llms.txt</code>, and <code>API.md</code>.</p>
-        <div class="btn-row"><a class="btn" href="api.html">Read the API docs</a></div>
+    <section class="container curator" aria-labelledby="curator-h">
+      {cue_curator}
+      <h2 id="curator-h">From the cutting room</h2>
+      <div class="curator-note">
+        <span class="marker-flag" aria-hidden="true">M1 &middot; good take</span>
+        <p>If you read one chapter this week, make it <a href="higgsfield/prompt-engineering.html">prompt engineering</a>. Everything downstream — the budget, the edit, the grade — gets cheaper when the prompt is right on the first take. And skip the model-comparison rabbit hole until you've finished three clips on whatever you already have. The model is never the reason the film is bad; the cut is.</p>
+        <p class="curator-sign">&mdash; the editor</p>
       </div>
     </section>
   </main>
-  <footer class="site-footer">
+
+<footer class="site-footer">
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
@@ -3674,7 +3749,7 @@ def build_models(css_links):
                 h1="""Model <span class="accent">deep dives.</span>""",
                 lede="""One page per model: the spec record, worked cost math, prompt tips from the guide's chapters, and honest use-when/avoid-when. Generated from <code>models.json</code> — it can't drift from the data.""",
                 deck_title="""MODEL_INDEX — BIN_01""",
-                clips={"v2": ['30 records'], "v1": ['Spec records', 'Cost math', 'Use-when'], "a1": ['Data tone', 'models.json']},
+                clips={"v2": [f'{len(models)} records'], "v1": ['Spec records', 'Cost math', 'Use-when'], "a1": ['Data tone', 'models.json']},
                 h1_id="mdi-title",
                 extra=""""""),        css=css_sub, sitenav=nav_html("../", ""), footer=footer_html("../"), cards=cards))
     return pages
@@ -3911,7 +3986,7 @@ FOUR_OH_FOUR_TMPL = """<!DOCTYPE html>
         <div class="leader-frame" data-leader-frame><b>3</b><span class="lf-label">LEADER</span></div>
         <p class="kicker is-rec">Missing reel</p>
         <h1>That reel <span class="accent">is missing.</span></h1>
-        <p class="lede" style="text-align:center;color:var(--ink-dim);max-width:52ch;margin:0 auto var(--space-5);">The footage you asked for never made it to the cutting room. The other 30 chapters, the Studio, and all ten teardowns are still on the shelf.</p>
+        <p class="lede" style="text-align:center;color:var(--ink-dim);max-width:52ch;margin:0 auto var(--space-5);">The footage you asked for never made it to the cutting room — even the best editors lose a reel. The other 30 chapters, the Studio, and all ten teardowns are still on the shelf.</p>
         <div class="end-slate" role="img" aria-label="Upside-down end slate: footage pending"><b>SLATED AT TAIL</b><span>FOOTAGE PENDING</span></div>
         <div class="btn-row" style="justify-content:center;">
           <a class="btn btn-gold" href="index.html">Back to the guide</a>
@@ -3999,19 +4074,47 @@ def main():
             "text": text[:4000],
         })
 
-    # Landing
-    grid_parts = []
+    # Landing — the homepage is a cut, not a catalog: one hero, one action,
+    # everything else revealed progressively (bins, path accordion, workbench).
+    models_data = json.loads((ROOT / "api" / "v1" / "models.json").read_text())
+    model_count = len(models_data["models"])
+    chapter_count = len(flat)
+    skill_count = json.loads((ROOT / "skills" / "index.json").read_text())["count"]
+    bins_parts = []
     for s_idx, (section_id, section_name) in enumerate(SECTIONS):
+        items = chapters[section_id]
+        n = len(items)
+        mins = sum(c["read_min"] for _, c in items)
         cards = "".join(
             f'<article class="card chapter-card"><h3><a href="{section_id}/{slug}.html">{c["title"]}</a></h3>'
             f'<p>{c["desc"]}</p><p class="card-meta">{c["read_min"]} min read</p></article>'
-            for slug, c in chapters[section_id]
+            for slug, c in items
         )
-        grid_parts.append(f'<h3 class="section-h">{section_name} <span class="tc">00:{s_idx * 5:02d}:00:00</span></h3><div class="chapter-grid">{cards}</div>')
+        open_attr = " open" if s_idx == 0 else ""
+        bins_parts.append(
+            f'<details class="bin"{open_attr}><summary class="bin-summary">'
+            f'<span class="bin-no">Bin {s_idx + 1:02d}</span>'
+            f'<span class="bin-name">{section_name}</span>'
+            f'<span class="bin-meta">{n} {"chapter" if n == 1 else "chapters"} · {mins} min</span>'
+            f'<span class="tc bin-tc">00:{s_idx * 5:02d}:00:00</span>'
+            f'</summary><div class="bin-body"><div class="chapter-grid">{cards}</div></div></details>')
     total_read = fmt_total_minutes(sum(c["read_min"] for _, _, c in flat))
     (SITE / "index.html").write_text(INDEX_TMPL.format(
-        css=css_links, chapter_grid="\n".join(grid_parts),
+        css=css_links,
         total_read=total_read,
+        model_count=model_count,
+        chapter_count=chapter_count,
+        skill_count=skill_count,
+        cue_tracks=reel_cue("Scene 01", "00:01:00:00", "two ways to shoot"),
+        cue_paths=reel_cue("Scene 02", "00:02:00:00", "shortest honest routes"),
+        cue_chapters=reel_cue("Scene 03", "00:04:00:00", "the full shelf"),
+        cue_bench=reel_cue("Scene 04", "00:06:00:00", "the bench"),
+        cue_curator=reel_cue("Scene 05", "00:08:00:00", "a note, taped to the bin"),
+        wave1=waveform_divider(seed=11),
+        wave2=waveform_divider(seed=23),
+        wave3=waveform_divider(seed=37),
+        wave4=waveform_divider(seed=51),
+        bins_section="\n".join(bins_parts),
         sitenav=nav_html("", "index.html"), footer=footer_html("")))
     (SITE / "budget.html").write_text(BUDGET_TMPL.format(
             hero=hero_cutroom(

@@ -1,5 +1,97 @@
 # Wave Log — AI Film Master Guide
 
+## Wave 39 — EXTREME MAKEOVER: the landing cut (2026-10-12)
+
+**Assignment:** the user's verdict on the live sites — "a lot at once when someone
+first visits." First impression must be SLEEK. Bar: the best sites on the
+internet, not "alright." Keep everything, present it dramatically better. Plus
+the new HUMAN-MADE hard rule: no AI-isms, no generic layouts, real editorial
+voice, easter eggs, clean code.
+
+**1. Homepage rebuilt as a cut, not a catalog.** The old homepage showed its
+whole hand at once: an 18-link two-row nav, a 4-button hero, 7 stat cards, 6
+path cards, 30 chapter cards, 3 promo cards, an API card. The new homepage:
+- **Nav (all pages):** 18 flat links → 6 top-level (Guide, Cutting room,
+  Teardowns, Workshop, Models, Compare) + an "Index" drawer grouping the other
+  19 pages (On the bench / Study / For agents). CSS-only `<details>`,
+  keyboard-accessible, `aria-current` preserved. Every page on the site got the
+  slimmer header for free since `nav_html()` is shared.
+- **Hero:** one primary action ("Make your first short" → the 7-day
+  first-short guide) + one quiet alternative link ("or watch a scene get built
+  in the cutting room"). The 4-button row and 7 stat cards are gone from the
+  hero; stats became a slim mono "reel-stats" strip below it.
+- **Lede rewritten with a human voice:** "Typing a sentence gets you a clip.
+  Getting twelve clips to feel like one film — same faces, same world, a story
+  worth the runtime — that's a craft." (Old lede was an inventory list.)
+- **Learning paths:** 6-card wall → accordion rows (first-short open by
+  default, with an "M1 · START HERE" grease-pencil flag). Checkboxes/progress
+  JS untouched — `paths.js` still binds `.path-card[data-path]`.
+- **Chapters:** 30 cards → 10 "BIN" rows (`Bin 01 — State of the Field ·
+  1 chapter · 15 min · 00:00:00:00`), first open. The bin/sequence-panel idea
+  comes straight from the web-craft research (site-mapped for Film).
+- **Promos:** three repetitive promo cards + API card → one "Workbench"
+  section with four compact tiles (Budget calculator, Prompt workshop, Prompt
+  library, For agents), each with a one-line human description.
+- **New: "From the cutting room"** — a signed curator's note with a genuine
+  opinion ("The model is never the reason the film is bad; the cut is."),
+  Newsreader serif with an Anton drop cap and an "M1 · GOOD TAKE" marker flag.
+- **Waveform dividers** between sections (deterministic seeded random-walk,
+  pure markup — another web-craft research steal), slate cues
+  (`00:02:00:00 · SCENE 02 · SHORTEST HONEST ROUTES`) above each section.
+- **Easter egg:** clicking the leader-frame countdown rolls 3-2-1 again
+  (`identity.js`, click-only on the decorative `aria-hidden` deck, reduced-motion
+  safe). 404 got a human touch: "even the best editors lose a reel."
+
+**2. HUMAN-MADE audit.** Scanned homepage copy for AI-isms — none found in the
+new copy (no "unlock", "delve", "game-changer", "elevate", "whether you're a
+beginner or a pro"). Fixed one stale copy bug found along the way: the paths
+lede said "twenty-six chapters" — it's thirty. Killed dead CSS left over from
+the old layout (`.stat-strip`, `.path-grid`, `.path-card h3`, `.section-h`,
+global `details` rule scoped off the nav drawer, `.stat` in the
+reduced-motion list). No commented-out blocks, no TODOs. Counts are computed,
+not hardcoded: `{model_count}` (31), `{chapter_count}` (30), `{skill_count}`
+(233) — the strip can never drift again. vercel.json unchanged (already
+compliant: explicit function paths, `maxDuration: 10`, no `runtime` key).
+
+**3. Completeness audit.** Models: checked the field against Oct 2026 coverage —
+one conspicuous gap found: **PixVerse V6** (launched Mar 30, 2026, native
+audio, 15s, 1080p, 20+ camera controls; strong independent benchmark showings)
+was completely uncovered. Added properly through the generator chain: research
+artifact → `build_api.py` (assert 30→31) → `build_skills.py` (auto-created
+`skills/models/direct-pixverse-v6.md`) → `build_site.py` (new
+`site/models/pixverse-v6.html`) → `build_llms.py`. Sora's discontinuation was
+already correctly tracked (status: discontinued, verified 2026-10-11).
+Production stages and skill levels: covered by the pipeline docs + 7 learning
+paths — no gaps found. Also fixed a latent doc bug in GO_LIVE.md: it told
+editors to hand-edit `api/v1/models.json`, which `build_api.py` regenerates
+from the artifact (the edit would be silently wiped). Corrected to
+artifact-first.
+
+**4. Validation:** `validate.sh` 13/13 after commit (the two generator-freshness
+checks diff against git HEAD, so they pass once the regenerated
+`skills/index.json`, `llms.txt`, `llms-full.txt` are committed — by design).
+0 broken relative links (stage 4). 0 console errors on homepage and
+cutting-room (headless Chromium). All API JSON parses. `api/` has no static
+`.js` data files (json/md only). Git identity: local override removed (falls
+through to the correct global `astercast` noreply identity).
+
+**Screenshots (before/after, inspected with fresh eyes):** BEFORE
+(`/tmp/fg-before-home.png`) — 18-link nav, 4 competing CTAs, stat-card wall.
+AFTER (`/tmp/fg-after-home.png`, `/tmp/fg-s2-crop.png`, `/tmp/fg-wb.png`,
+`/tmp/fg-after-cr.png`, `/tmp/fg-pxv.png`, `/tmp/fg-404.png`,
+`/tmp/fg-mobile.png` 390px) — focused hero, one action, bins, waveform
+dividers, curator's note. "Would I put this in a portfolio?" — the bins and
+waveform dividers are the kind of specific, identity-bound craft I'd defend;
+the curator's note is the human signal. Honest caveat: the hero timeline deck
+is still information-dense at 1600px (it's the site's signature motif, kept
+deliberately), and the mobile deck is cramped (pre-existing behavior).
+
+**HUMAN-MADE self-check:** "would anyone guess a machine made this?" — the
+copy has opinions and the layouts are cutting-room-specific (bins, slates,
+waveforms, marker flags), not SaaS-generic. The one thing I'd still push
+further in a future wave: a real before/after A/B wipe slider on a teardown
+page (researched, not yet built).
+
 ## Wave 38 — identity hardening: self-hosted fonts + Archivo conflict resolved (2026-10-12)
 
 **Assignment:** verification + fixes, zero content changes. (1) Verify font

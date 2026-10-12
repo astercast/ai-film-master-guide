@@ -544,6 +544,23 @@
         "https://lifestyle.nextmentors.com/story/878361/hidream-ai-makes-vivago-r1-available-globally-for-end-to-end-ai-video-production/"
       ],
       "last_verified": "2026-10-11"
+    },
+    {
+      "model": "PixVerse V6",
+      "platform": "AIsphere",
+      "type": "video",
+      "status": "active",
+      "strength": "Native audio generated in the same pass; 1-15s clips at up to 1080p; 20+ prompt-driven camera controls (focal length, aperture, depth of field, lens distortion); multi-shot flag cuts one prompt into an ordered scene; reference-to-video with up to 10 images; strong independent image-to-video showings (Artificial Analysis Elo 1,343, April 2026).",
+      "est_cost_credits": "API gateways (reported, third-party — verify live): ~$0.09/s at 720p with audio, ~$0.18-0.23/s at 1080p (worked: 5s 720p + audio approx $0.60; 10s 1080p no audio approx $1.80; 15s 1080p + audio approx $3.45). PixVerse web plans from ~$19/mo; free tier 60 daily credits at 720p, watermarked.",
+      "weakness": "1080p ceiling — no 4K; audio integration less mature than Kling 3.0 / Seedance 2.x for dialogue and lip-sync; audio synthesis reported as Pro-plan-and-up on the web product; free tier watermarked at 720p.",
+      "best_use": "Cinematic short-form and social video; anime/stylized work with multi-shot consistency; pre-viz and multi-shot scene sketches",
+      "what_changed": "NEW — added to model watch 2026-10-12; previously the guide's most conspicuous uncovered model. Launched March 30, 2026 with native audio and multi-shot. Sibling C1 (April 7, 2026) targets action/VFX/high-speed motion; not separately tracked.",
+      "sources": [
+        "https://www.yottalabs.ai/post/pixverse-v6-vs-c1-differences-api-2026",
+        "https://blog.segmind.com/ai-video-generation-api-pixverse-v6-review-real-world-use-cases-2026/",
+        "http://tagshop.ai/ai-models/pixverse-6"
+      ],
+      "last_verified": "2026-10-12"
     }
   ],
   "unverified": [

@@ -366,14 +366,14 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--gold); }
 .lint-num { font-family: var(--font-display); font-size: 3.2rem; font-weight: 600; color: var(--gold); line-height: 1; }
 @media (max-width: 640px) { .lint-grade { flex-direction: column; align-items: flex-start; } }
 
-/* ——— Disclosure widgets ——— */
-details { border: 1px solid var(--line-soft); border-radius: var(--radius-m); padding: var(--space-3) var(--space-4); background: var(--panel); margin-bottom: var(--space-3); }
-details summary { cursor: pointer; font-weight: 600; color: var(--ink); }
-details summary::marker { color: var(--gold); }
-details[open] { border-color: var(--line-bright); }
+/* ——— Disclosure widgets (content accordions; the nav Index drawer opts out) ——— */
+details:not(.nav-idx):not(.bin):not(.path-row) { border: 1px solid var(--line-soft); border-radius: var(--radius-m); padding: var(--space-3) var(--space-4); background: var(--panel); margin-bottom: var(--space-3); }
+details:not(.nav-idx):not(.bin):not(.path-row) summary { cursor: pointer; font-weight: 600; color: var(--ink); }
+details:not(.nav-idx):not(.bin):not(.path-row) summary::marker { color: var(--gold); }
+details:not(.nav-idx):not(.bin):not(.path-row)[open] { border-color: var(--line-bright); }
 
 @media (prefers-reduced-motion: reduce) {
-  .btn, .star, .copy-btn, .card, .quiz-opt, .doc-symptom, .lint-layer, .mw-card, .stat { transition: none; }
+  .btn, .star, .copy-btn, .card, .quiz-opt, .doc-symptom, .lint-layer, .mw-card { transition: none; }
   .gloss-term { transition: none; }
   .td-card { animation-name: td-card-in-reduced; }
 }

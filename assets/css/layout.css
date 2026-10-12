@@ -53,6 +53,45 @@
 .site-nav a:hover::after { transform: scaleX(1); }
 .site-nav a[aria-current="page"] { color: var(--gold); }
 .site-nav a[aria-current="page"]::after { transform: scaleX(1); }
+
+/* ——— Index drawer: the full nav, disclosed progressively ——— */
+.nav-idx { position: relative; }
+.nav-idx-btn {
+  list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+  color: var(--ink-dim);
+  font-family: var(--font-display); font-size: 0.82rem; font-weight: 600; font-stretch: 75%;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: var(--space-2) var(--space-3); border-radius: var(--radius-s);
+  transition: color var(--dur-1) var(--ease), background var(--dur-1) var(--ease);
+}
+.nav-idx-btn::-webkit-details-marker { display: none; }
+.nav-idx-btn::marker { content: ""; }
+.nav-idx-btn:hover { color: var(--ink); background: var(--panel); }
+.nav-idx-btn.is-current { color: var(--gold); }
+.nav-idx-caret { font-size: 0.72em; line-height: 1; transition: transform var(--dur-2) var(--ease); }
+.nav-idx[open] .nav-idx-caret { transform: rotate(180deg); }
+.nav-idx-panel {
+  position: absolute; top: calc(100% + 10px); right: 0; z-index: var(--z-header);
+  display: grid; grid-template-columns: repeat(3, minmax(150px, 1fr)); gap: var(--space-5);
+  min-width: 540px; padding: var(--space-5);
+  background: var(--panel-2); border: 1px solid var(--line-bright); border-radius: var(--radius-m);
+  box-shadow: var(--shadow-2);
+}
+.nav-idx-group > p {
+  font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold);
+  margin: 0 0 var(--space-2);
+}
+.nav-idx-group ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; }
+.nav-idx-group a {
+  display: block; padding: 6px 8px; border-radius: var(--radius-s);
+  color: var(--ink-dim); font-size: 0.88rem; text-decoration: none; font-family: var(--font-body);
+  letter-spacing: 0; text-transform: none;
+  transition: color var(--dur-1) var(--ease), background var(--dur-1) var(--ease);
+}
+.nav-idx-group a::after { content: none; }
+.nav-idx-group a:hover { color: var(--ink); background: var(--panel-3); text-decoration: none; }
+.nav-idx-group a[aria-current="page"] { color: var(--gold); }
 .palette-open { margin-left: var(--space-2); flex: none; }
 
 /* ——— Hero ——— */
@@ -125,4 +164,8 @@
   .site-nav { margin-left: 0; order: 3; width: 100%; }
   .palette-open { margin-left: auto; }
   .hero-inner { padding-block: var(--space-7) var(--space-6); }
+  .nav-idx-panel {
+    position: fixed; left: var(--space-4); right: var(--space-4); top: auto;
+    min-width: 0; grid-template-columns: 1fr 1fr; max-height: 70vh; overflow: auto;
+  }
 }

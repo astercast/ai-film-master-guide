@@ -218,8 +218,12 @@ if inputs won't load.
 - **The checker never auto-mutates `api/v1/models.json`.** A signature diff
   is a *review signal*, not a confirmed fact. Weekly routine: run
   `refresh.sh` → check `logs/refresh.log` + `model-review-queue.json`
-  `pending` count → verify each flagged URL by hand → on confirmation edit
-  `api/v1/models.json`, run `build_api.py` + `build_site.py`, commit, push.
+  `pending` count → verify each flagged URL by hand → on confirmation edit the
+  research artifact
+  (`~/workspace/research_notes/ai-film-mega-research-20261010-0311/artifacts/artifact-3-model-comparison.json`
+  — generator-owns-output: `api/v1/models.json` is REGENERATED from it and a
+  direct edit is wiped), run `build_api.py` + `build_skills.py` + `build_site.py`
+  + `build_llms.py`, commit, push.
 - **Generator gotcha (fixed 2026-10-11):** `build_api.py` wipes `api/v1/`
   and restores only its `preserved` list — `pricing.json`,
   `schema/envelope.json`, `model-checks.json`, `model-review-queue.json`,

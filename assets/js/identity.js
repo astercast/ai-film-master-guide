@@ -48,27 +48,40 @@
   }
 
   /* Leader countdown: 3 -> 2 -> 1 with frame-advance steps, then holds.
+     Clicking the leader frame rolls it again (a small delight, decorative only).
      Reduced motion: jump straight to the final state. */
   var frame = document.querySelector("[data-leader-frame]");
   if (frame) {
     var num = frame.querySelector("b");
     var label = frame.querySelector(".lf-label");
-    if (reduceMotion) {
-      if (label) label.textContent = "READY";
-    } else if (num) {
+    var timer = null;
+    var runCountdown = function () {
+      if (timer) window.clearTimeout(timer);
+      if (reduceMotion) {
+        if (num) num.textContent = "3";
+        if (label) label.textContent = "READY";
+        return;
+      }
+      if (!num) return;
       var seq = ["3", "2", "1"];
       var i = 0;
       num.textContent = seq[0];
+      if (label) label.textContent = "LEADER";
       var step = function () {
         i += 1;
         if (i < seq.length) {
           num.textContent = seq[i];
-          window.setTimeout(step, 520);
+          timer = window.setTimeout(step, 520);
         } else if (label) {
           label.textContent = "ROLLING";
+          timer = null;
         }
       };
-      window.setTimeout(step, 520);
-    }
+      timer = window.setTimeout(step, 520);
+    };
+    runCountdown();
+    /* Decorative element (aria-hidden deck): click-only, never keyboard-focusable. */
+    frame.setAttribute("title", "Roll it again");
+    frame.addEventListener("click", runCountdown);
   }
 })();
