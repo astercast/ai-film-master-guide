@@ -12,7 +12,9 @@ There are two working architectures in the documented record, and they solve dif
 
 **Which to use:** solo or small team → scene-by-scene; the chaining rule is your continuity department. Team of five-plus → sequence assembly, but only if someone owns the registry full-time; without a wrangler, parallel generation produces parallel continuities.
 
-Both architectures share the same foundation: **assets before shots, always.** The working shape is one folder per film — `brief.md` (logline, tools, plan), `script.md`, `registry.md` (named looks + one verbatim descriptor per @-tagged asset), one `shotlist.md` per scene (shot number, seconds, one-line goal, the *entire prompt verbatim*, `look:`, optional `source:`), and a per-shot version log.
+Both architectures share the same foundation: **assets before shots, always.**
+
+**The third architecture: the agentic production office.** Tim Simmons' *Dragon Blue* (see the wave-33 teardown, "The Production Office") ran a solo short through the same folder-per-film shape with an agent crew instead of a department: Claude Cowork executing a published SKILL.md pipeline — stills first (character reference grids, scene grids), video second — with a references folder (prompt templates, filter-safety memory, style lock, story notes) and a production tracker that survives context death. The file contract is the discipline; the agent is just the labor. The full operating system is documented in the [agentic production office](agentic-production-office.html) chapter. The working shape is one folder per film — `brief.md` (logline, tools, plan), `script.md`, `registry.md` (named looks + one verbatim descriptor per @-tagged asset), one `shotlist.md` per scene (shot number, seconds, one-line goal, the *entire prompt verbatim*, `look:`, optional `source:`), and a per-shot version log.
 
 ## 2. The consistency system: what survives 90 minutes
 

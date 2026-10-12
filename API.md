@@ -24,7 +24,7 @@ Base path: `api/v1/`
 | `checklists.json` | Named checklists (pre-production, per-shot, continuity, audio, delivery) with item arrays | 5 |
 | `glossary.json` | 79 terms: term + definition | 79 |
 | `competitions.json` | Competition craft records: what each judged competition scores, the production constraints its rules teach, craft lessons from judged work. No prizes, deadlines, or promotional material | 2 |
-| `teardowns.json` | 8 shot-by-shot teardowns; prompt reconstructions are analytical, not actual prompts | 8 |
+| `teardowns.json` | 9 shot-by-shot teardowns; prompt reconstructions are analytical, not actual prompts | 8 |
 | `diagnoses.json` | 12 failure diagnoses: symptom → craft diagnosis, fixes, repair-template link, source chapters | 12 |
 | `model-checks.json` | Model-watch freshness feed: per-model last check, source-signature diffs, news headlines | 22 |
 | `model-review-queue.json` | Pending model-watch review items (empty = nothing pending) | 0 |

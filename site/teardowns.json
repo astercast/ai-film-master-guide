@@ -507,6 +507,84 @@
           "prompt_reconstruction": null
         }
       ]
+    },
+    {
+      "id": "dragon-blue-production-office",
+      "title": "The Production Office",
+      "subtitle": "Tim Simmons' Dragon Blue — a hyper-stylized AI action short about vengeance and katanas, made solo in two days with Claude Cowork as the production office and a published file-driven pipeline skill: reference grids before video, a filter-safety memory, and token discipline",
+      "context": "Tim Simmons is a filmmaker with seventeen years of professional production experience who runs Theoretically Media, where he stress-tests the creative-AI video stack for working creators; his analysis has been cited by Forbes, Decrypt, ICG Magazine, TV Tech, and CineD, and he has spoken on creative AI at the HPA Tech Retreat, the Philly Ad Club, and Curious Refuge (theoreticallymedia.com about page). Dragon Blue is his AI action short starring Flame/Katana Girl — a hyper-stylized action thriller about vengeance and katanas, with every shot generated in Seedance 2.0 (film listing). He made it solo, in two days, with Claude Cowork as his 'production office' — and then published the whole operating system as a downloadable skill (the Ultimate AI Film Pipeline, v3), plus a masterclass breakdown video covering every tool, every technique, every mistake, and what it cost (newsletter; YouTube description).\n\nSOURCING NOTE — read before the shots: this is the creator's own account of his own production — first-hand, but self-reported and n=1. The pipeline skill's contents are published in the newsletter itself, so the procedure below is documented, not inferred. The follow-up newsletter piece on 'AI Film Studio 2.0' with Martini.film is disclosed sponsored content (the creator says so) and is not used as craft evidence here. Exact generation spend and shot counts were not published in extractable form — the cost math below is bounding arithmetic on this guide's own model records, explicitly labeled illustrative.",
+      "sources": [
+        "https://www.youtube.com/watch?v=ORuSQ0Fui-A",
+        "https://theoreticallymedia.beehiiv.com/p/the-ultimate-ai-film-pipeline",
+        "https://theoreticallymedia.com/about/",
+        "https://aatventure.news/posts/film-secret-of-the-incas-1954",
+        "https://theoreticallymedia.beehiiv.com/p/the-ai-film-studio-gets-a-brain-transplant"
+      ],
+      "shots": [
+        {
+          "n": 1,
+          "title": "The headline numbers — solo, two days, one production office",
+          "setup": "One person. Two days. A ~4-minute hyper-stylized action short (the masterclass plays the film across roughly three and three-quarter minutes). The calendar compression came from the operating system, not the renders: Claude Cowork running a published pipeline skill as the film's production office — script parsing, reference grids, prompt writing, asset filing, and progress tracking all routed through one agent with local folder access (newsletter).",
+          "works": "Bounding math, explicitly illustrative: this guide's model database carries Seedance 2.0 at a BytePlus API estimate of ~$0.37 per second at 1080p (third-party estimate, verify-live) — 240 finished seconds generated exactly once would be ~$89. The real number is unknowable (Dreamina credit spend unpublished, retakes uncounted), but the envelope is the lesson: generation for a festival-grade action short is subscription-class spend plus a $20/month Claude Pro plan (Cowork requires Pro or above), not a budget line. The money went to the office, not the pixels.",
+          "breaks": "Two days is his pace with seventeen years of professional production experience behind it — not a beginner schedule and not a promise. And the unknowable spend cuts both ways: nobody can audit the real cost, which means the only fully reproducible part of this production is the pipeline.",
+          "lesson": "Budget the office, not the renders. An agent with a written pipeline and folder access compressed a short's calendar more than any model upgrade could; if your plan's generation line dwarfs a subscription, you're pricing the wrong thing.",
+          "prompt_reconstruction": null
+        },
+        {
+          "n": 2,
+          "title": "SKILL.md — the agent reads the pipeline, not your chat history",
+          "setup": "The skill's core is one SKILL.md file that Claude reads when the pipeline activates. It walks the agent through a two-stage workflow — still image generation first (character reference grids plus scene grids), video generation second — and handles asset management: sorting grids into scene folders, curating the best picks, and tracking progress across the whole project (newsletter). Installation is three moves: unzip into a working folder, create a Cowork project pointed at that folder with the SKILL.md uploaded, then tell it to follow the workflow in SKILL.md exactly, starting with Step 0.",
+          "works": "The pipeline lives in files, so context death doesn't kill the production. Upload the final script and the agent asks a few setup questions (target style, existing characters), then populates the folder structure and keeps it organized. The file is the production office's memory; the chat is just the current shift.",
+          "breaks": "A skill file is only as good as its maintenance — v3 exists because v1 and v2 existed, and the creator expects a v4 within weeks of new drops. Adopt the habit of versioning the pipeline, not just the film.",
+          "lesson": "Write the pipeline where the agent can read it. Chat is a terrible production office; a versioned instruction file with folder access is a real one.",
+          "prompt_reconstruction": null
+        },
+        {
+          "n": 3,
+          "title": "The references folder — templates, safety memory, style lock",
+          "setup": "Four reference files ride alongside the skill. prompt-templates.md holds three placeholder-based templates — Character Reference Grids, Scene Grids (2x2 stills), and Video Prompts — which the agent fills in per project. filter-safety-guide.md stores prompt keywords that get blocked, and once a workaround is found, future prompts use that language automatically. style-guide.md locks the film's visual style, color palette, lighting, and film stock decisions. story-notes.md takes the script, outline, or book passage and has the agent parse it into scenes (newsletter).",
+          "works": "The safety file is institutional memory: every blocked keyword is fought exactly once, then never again. The style guide does for a solo short what a production designer does on a feature — decisions get made once, in writing, before generation starts spending. Each film gets easier than the last because the files persist across projects.",
+          "breaks": "All of this is one filmmaker's v3 — battle-tested on his films, not independently verified across other productions. Treat the file structure as the steal and the specific templates as a starting draft.",
+          "lesson": "Build the memory files as you go. The third production is cheaper than the first because the safety log, the style lock, and the templates survive; nothing you re-derive should ever be re-derived.",
+          "prompt_reconstruction": null
+        },
+        {
+          "n": 4,
+          "title": "Nano Banana Pro for the frames, Luma Agent Board for the boards",
+          "setup": "Reference stills are generated in Nano Banana Pro — chosen over Nano Banana 2 deliberately, because Pro frames more cinematically and renders texture better, while NB2 carries too much 'sheen' and weaker composition (newsletter). Scene boards are built on Luma's Agent Board, an agent canvas with project-wide knowledge, using a 'spray and select' approach: generate lots of 2x2 scene grids, curate the selects. Behind-the-scenes stills got the same treatment.",
+          "works": "Stills-first means composition decisions happen at image cost, not video cost — the expensive medium only ever executes locked frames. Picking the stills engine for framing rather than raw fidelity is the kind of tool-choice judgment that reads as taste on screen.",
+          "breaks": "'Spray and select' is a retake budget with a friendly name — the selects are the visible tip of a generated pile. Anyone copying the workflow should budget the spray, not just the selects.",
+          "lesson": "Grade the boards before a single video credit burns. The still that locks framing, texture, and palette is the cheapest decision on the production.",
+          "prompt_reconstruction": null
+        },
+        {
+          "n": 5,
+          "title": "Seedance 2.0 via Dreamina — and the BTS lesson in tool fit",
+          "setup": "Every shot was generated with Seedance 2.0 through Dreamina's Omni model. The behind-the-scenes montage was built the same way: BTS stills fed into Seedance with a documentary-brief prompt (raw documentary feel, handheld camera). The instructive part is what happened next — Seedance's BTS output leaned pro-EPK, including unintended interview clips that had to be prompted out ('No Interviews'), while Veo 3's BTS output leans run-and-gun documentary (newsletter).",
+          "works": "The tool-bias read is the steal: neither engine is better or worse — each has a default register, and the same brief is two different films in two engines. Casting the model to its bias (polished EPK vs. run-and-gun) is a directing decision, and it's free.",
+          "breaks": "Model registers drift with every version bump — today's EPK-leaning Seedance is not a permanent property. Re-test the bias whenever the model changes, the way you'd re-test a new lens.",
+          "lesson": "Know each model's default register and cast accordingly. Prompting against the grain is possible but expensive; prompting with it is the cheapest production value available.",
+          "prompt_reconstruction": null
+        },
+        {
+          "n": 6,
+          "title": "Token discipline and the handoff",
+          "setup": "The pipeline is built lean on purpose — about 4.7k tokens — because Cowork sessions have limits and a bloated skill eats the working room (newsletter). Model choice is role-split: the smartest model (Claude Opus 4.6 in his setup) does brainstorming and prompt writing, where judgment lives; the cheap models (Sonnet, even Haiku) do asset management and folder cleanup — 'the intern' does the grunt work. When a long session degrades, the move is to have the agent package up a handoff prompt, saved in the project folder, then open a fresh project pointed at the same folder. One sharp warning: don't let the agent rename files while you're editing — it breaks the editor's links.",
+          "works": "Role-splitting is a budget discipline disguised as a workflow: the expensive brain only does the thinking work, and the folder-plus-tracker system makes handoffs nearly lossless. The production survives context death because the state lives in files.",
+          "breaks": "Handoffs still lose nuance — even the 'Personality Notes' the agent saves are a sketch, not the session. And the rename warning is a real failure mode: an agent reorganizing mid-edit is a continuity break in your own toolchain.",
+          "lesson": "Spend tokens where judgment lives. The thinking gets the smart model; the filing cabinet gets the cheap one; the project gets files that outlive every session.",
+          "prompt_reconstruction": null
+        },
+        {
+          "n": 7,
+          "title": "The verdict — steal the office, not the sprint",
+          "setup": "What survives contact with other productions: the file-driven production office (skill file + references + tracker), the stills-first two-stage discipline, the filter-safety memory, token role-splitting, and the tool-bias casting read. What doesn't transfer: the two-day sprint (seventeen years of craft made it possible), the exact tool stack (the creator expects to rebuild for v4 within weeks of new drops), and any audited cost figure (spend was described, not published).",
+          "works": "The pipeline is the product and the models are interchangeable parts — that framing is why the skill is oriented to a Nano Banana Pro / Seedance 2.0 workflow but the creator expects the video prompts to work across most modern generators. Build for the file contract, not the engine.",
+          "breaks": "The masterclass format is marketing-adjacent by nature — every published pipeline is also a portfolio piece. The counterweight here is unusual: the actual skill file is published, so the claims are checkable against the artifact in a way most 'workflow' content isn't.",
+          "lesson": "Version the pipeline, not just the film. v3 exists because v1 and v2 existed; the office that ships the next film is the one that learned from this one — in files.",
+          "prompt_reconstruction": null
+        }
+      ]
     }
   ],
   "version": "1.0.0"

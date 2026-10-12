@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "count": 230,
+  "count": 231,
   "skills": [
     {
       "id": "prompt-t1",
@@ -1381,6 +1381,12 @@
       "title": "Plan a microdrama run's economics (Studio 2.5)",
       "description": "Plan a serialized AI-microdrama run's economics from the documented $150-microdrama figures: clip budget, the $50/min benchmark, the 3-5x retake budget, the character-regen reserve, and the documented-pace timeline.",
       "path": "skills/studio/studio-microdrama-plan.md"
+    },
+    {
+      "id": "workflow-production-office",
+      "title": "Run a file-driven production office",
+      "description": "Set up an agent crew as the film's production office: a SKILL.md pipeline file, a references/ folder (templates, safety memory, style lock, story notes), and a tracking/ folder \u2014 so the production survives context death.",
+      "path": "skills/workflow/workflow-production-office.md"
     }
   ]
 }

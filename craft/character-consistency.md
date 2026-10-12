@@ -11,6 +11,8 @@ The technical discipline of keeping people and worlds stable across shots. This 
 
 **A documented build.** Robert Gaudette's "A Face Only a Mother Could Love" — the 8-minute solo short that took the $50K Runway AIFF 2026 Grand Prix and the Reply AI Film Festival 2026 prize — was built character-sheets-first: he generated initial AI character sheets for the cast before any shots, and credits them for holding the characters' distinctive physicality coherent across the film (his own account; the tool identity is reported, not audited — the Reply press release names Grok, Nano Banana, and Seedance; his escape.ai page tags Dreamina and Gemini AI). Marcel's facial disfigurement is exactly the trait that drifts shot-to-shot without a locked reference — the sheet made the trait lockable. See the full shot-by-shot teardown ([teardown.html](../teardown.html) — "The Character Sheets Came First").
 
+**A second documented build.** Tim Simmons' *Dragon Blue* ran the same idea through an agent: his "production office" pipeline generates Character Reference Grids and 2×2 Scene Grids as stage one, and video generation only ever executes locked stills — composition decisions happen at image cost, not video cost. The grids are curated from a "spray and select" run on Luma's Agent Board, and the Nano Banana Pro stills were chosen over Nano Banana 2 for cinematic framing (his own published account). See the full shot-by-shot teardown ("The Production Office") and the new [agentic production office](agentic-production-office.html) chapter for the file contract that runs it.
+
 ## Wardrobe and props lock
 
 - Write the wardrobe once, in exact language, and paste it verbatim into every prompt: "worn brown leather jacket, white t-shirt, dark jeans, scuffed boots."

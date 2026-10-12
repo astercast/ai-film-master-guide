@@ -32,7 +32,7 @@ SECTIONS = [
 CHAPTER_ORDER = {
     "field": ["2026-developments"],
     "higgsfield": ["platform-mastery", "prompt-engineering", "soul-id-deep-dive", "competition-entry-craft"],
-    "craft": ["story-structure", "cinematic-language", "character-consistency", "directing-performance", "color-grading", "sound-music-audio", "editing-pipeline", "editing-ai-footage", "longform-pipelines", "episodic-shortform", "failure-gallery", "ai-film-business"],
+    "craft": ["story-structure", "cinematic-language", "character-consistency", "directing-performance", "color-grading", "sound-music-audio", "editing-pipeline", "editing-ai-footage", "longform-pipelines", "agentic-production-office", "episodic-shortform", "failure-gallery", "ai-film-business"],
     "platforms": ["field-guide", "when-to-use-what"],
     "economics": ["credit-math"],
     "case-studies": ["competition-teardowns", "entry-craft-teardowns"],
@@ -330,7 +330,7 @@ INDEX_TMPL = """<!DOCTYPE html>
             <li><input type="checkbox" class="path-check" id="pc-filmmaker-8" data-step="filmmaker-8" aria-label="Mark complete: Week 10, the 3-minute short"><a href="craft/longform-pipelines.html">Week 10</a> <span class="path-note">milestone: 3-minute short</span></li>
             <li><input type="checkbox" class="path-check" id="pc-filmmaker-9" data-step="filmmaker-9" aria-label="Mark complete: Week 11, competition craft"><a href="higgsfield/competition-entry-craft.html">Week 11</a> <span class="path-note">competition-entry craft</span></li>
             <li><input type="checkbox" class="path-check" id="pc-filmmaker-10" data-step="filmmaker-10" aria-label="Mark complete: Week 12, distribution and rights"><a href="distribution/release-paths.html">Week 12</a> <span class="path-note"><a href="legal/rights-and-disclosure.html">rights</a> + release plan</span></li>
-            <li><input type="checkbox" class="path-check" id="pc-filmmaker-11" data-step="filmmaker-11" aria-label="Mark complete: study the teardowns"><a href="teardown.html">Study</a> <span class="path-note">shot-by-shot teardowns, all eight films</span></li>
+            <li><input type="checkbox" class="path-check" id="pc-filmmaker-11" data-step="filmmaker-11" aria-label="Mark complete: study the teardowns"><a href="teardown.html">Study</a> <span class="path-note">shot-by-shot teardowns, all nine films</span></li>
             <li><input type="checkbox" class="path-check" id="pc-filmmaker-12" data-step="filmmaker-12" aria-label="Mark complete: ship the entry"><a href="case-studies/entry-craft-teardowns.html">Ship</a> <span class="path-note">milestone: competition entry submitted</span></li>
           </ol>
         </article>
@@ -2365,7 +2365,7 @@ TEARDOWN_TMPL = """<!DOCTYPE html>
       <div class="container hero-inner">
         <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Learn to see</span>
         <h1 id="td-title">Shot-by-shot <span class="accent">teardowns.</span></h1>
-        <p class="lede">Four documented AI-film sequences, broken into shots: what each shot did, what worked, what broke, and the craft lesson. Prompt reconstructions are analytical — they teach the thinking, not the buttons.</p>
+        <p class="lede">Nine documented AI-film productions, broken into shots: what each shot did, what worked, what broke, and the craft lesson. Prompt reconstructions are analytical — they teach the thinking, not the buttons.</p>
       </div>
     </section>
     <section class="container" aria-labelledby="td-app-h" style="margin-bottom:var(--space-7);">
@@ -3632,7 +3632,7 @@ def main():
     search_index.extend([
         {"url": "teardown.html", "title": "Shot-by-shot teardowns", "section": "Tools",
          "headings": ["Passport Rush", "ONEIRIC", "The $100K cautionary case", "Dear Upstairs Neighbors", "Dreams of Violets", "The First Honest Day", "The $150 Microdrama", "The Character Sheets Came First"],
-         "text": "Learn to see: shot-by-shot teardowns of Passport Rush, ONEIRIC, the Grok Odyssey $100K winner, Google DeepMind's Dear Upstairs Neighbors, Fountain 0's Dreams of Violets, Nikolay Shestak's The First Honest Day ($450K Astana 2026 Grand Prix winner), StoReel's The $150 Microdrama ('Off Campus' experiment — four AI episodes in four days, documented clip by clip), and Robert Gaudette's 'A Face Only a Mother Could Love' ($50K Runway AIFF 2026 Grand Prix + Reply AI Film Festival 2026 winner — 8-minute solo short, character sheets before shot one, lip-sync in the prompt, redub for the voice) — what each shot did, what worked, what broke, and the craft lesson, with labeled prompt reconstructions where the production documented its stack."},
+         "text": "Learn to see: shot-by-shot teardowns of Passport Rush, ONEIRIC, the Grok Odyssey $100K winner, Google DeepMind's Dear Upstairs Neighbors, Fountain 0's Dreams of Violets, Nikolay Shestak's The First Honest Day ($450K Astana 2026 Grand Prix winner), StoReel's The $150 Microdrama ('Off Campus' experiment — four AI episodes in four days, documented clip by clip), and Robert Gaudette's 'A Face Only a Mother Could Love' ($50K Runway AIFF 2026 Grand Prix + Reply AI Film Festival 2026 winner — 8-minute solo short, character sheets before shot one, lip-sync in the prompt, redub for the voice), and Tim Simmons' Dragon Blue (hyper-stylized AI action short, made solo in two days with Claude Cowork as the production office — reference grids before video, filter-safety memory, token discipline) — what each shot did, what worked, what broke, and the craft lesson, with labeled prompt reconstructions where the production documented its stack."},
         {"url": "manifesto.html", "title": "Manifesto", "section": "Meta",
          "headings": ["What this is", "What it costs", "Everything is sourced", "What it won't do", "How to use it", "Who it's for"],
          "text": "This is not a course: the guide's positioning — a living, free, sourced reference. What it costs, what it refuses to do (no hype, no tool worship, no secrets), and how to use it in 10 minutes or 10 hours."},
