@@ -24,7 +24,7 @@
 
 **Deliberate spec deviations (documented, all in code comments):** (a) §7.1's "update pricing fields in models.json" is overridden by the repo's own promotion rule — the cron flags, never invents prices (spec §6 outranks it). (b) GITHUB_REPO_TOKEN is still pending the user's decision (spec §14.1) — `github.js` degrades gracefully to read-only (`{committed:false, reason:'no-token'}` + plain-words note in the cron envelope); static JSON stays fresh via wave-engine pushes; zero code change needed once the PAT exists. (c) models.json freshness SLA is 7d in `/api/health` (research artifact, weekly wave cadence).
 
-**Commit:**
+**Commit:** local `df8c246` (17 files, +2468/−1) → pushed 2026-10-11 as remote commit `ee3f71b0733c6296fa4941b66083a3c1b234d742`; remote `main` HEAD matched the pushed SHA; all 17 key Wave A files verified present in the remote tree via GitHub Trees API (591 entries, not truncated; blob SHAs match local exactly). Push succeeded on the first attempt — no 400s this wave (the in-tool 400-retry held).
 
 **Scope note:** the wave-33 bar stands — a teardown ships with a second substantial piece. Wave 39 ships teardown #10 AND a deep new craft chapter (with a new HAND skill) on the architecture teardown #10 documents.
 
