@@ -114,7 +114,22 @@
           <article class="card chapter-card"><h3><code>api/v1/diagnoses.json</code></h3><p>12 failure diagnoses: symptom → craft diagnosis, fixes, repair-template link.</p></article>
           <article class="card chapter-card"><h3><code>api/v1/model-checks.json</code></h3><p>Model-watch freshness feed: per-model last check, source-signature diffs, news headlines.</p></article>
           <article class="card chapter-card"><h3><code>api/v1/model-review-queue.json</code></h3><p>Pending model-watch review items. Empty array = nothing pending.</p></article>
+          <article class="card chapter-card"><h3><code>api/v1/pricing.json</code></h3><p>Curated pricing table: 30 models with per-tier USD rates (per second / per clip / per image), basis and confidence per tier.</p></article>
           <article class="card chapter-card"><h3><code>api/v1/schema/</code></h3><p>JSON Schema (draft-07) for every endpoint: index, model, prompt-template, camera-movement, checklist, glossary, competition, teardown, diagnosis, model-checks, model-review-queue.</p></article>
+        </div>
+      </section>
+
+      <section aria-labelledby="live-h">
+        <h2 id="live-h">Live functions — The Watchtower<span class="tc" aria-hidden="true">00:01:30:00</span></h2>
+        <div class="card" style="margin-bottom:var(--space-6);">
+          <p style="color:var(--ink-dim);margin-top:0;">On the deployed site the same data is served live by five Vercel serverless functions (zero npm dependencies). The frontend calls the function first with a 7&nbsp;second timeout and falls back to the static <code>api/v1/</code> file — the badge next to each widget reads <code>live</code>, <code>waking&nbsp;server…</code>, or <code>cached&nbsp;·&nbsp;updated&nbsp;HH:MM</code>. Full reference in <code>API.md</code>; deploy runbook in <code>GO_LIVE.md</code>.</p>
+          <ul style="color:var(--ink-dim);margin:0;padding-left:var(--space-5);">
+            <li><code>GET /api/health</code> — status, function roster, data-freshness SLAs.</li>
+            <li><code>GET /api/models-status</code> — 22-model freshness join; honestly degraded when sources failed.</li>
+            <li><code>GET /api/models-pricing</code> — the curated pricing table (<code>?model_id=</code> filter).</li>
+            <li><code>POST /api/calc-cost</code> — <code>{model_id, seconds, resolution_tier, clips}</code> → cost envelope with full 400/404 validation.</li>
+            <li><code>GET /api/cron/watchtower</code> — daily incremental refresh (<code>CRON_SECRET</code> bearer); flags, never auto-edits.</li>
+          </ul>
         </div>
       </section>
 

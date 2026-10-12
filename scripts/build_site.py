@@ -655,7 +655,7 @@ BUDGET_TMPL = """<!DOCTYPE html>
   <main id="main">
     {hero}
     <section class="container" aria-labelledby="calc-h">
-      <h2 id="calc-h">Your production</h2>
+      <h2 id="calc-h">Your production <span class="api-badge" id="b-api-badge" data-api-state="none" role="status" tabindex="0"></span></h2>
       <div class="calc-grid">
         <form class="card calc-form" aria-label="Budget inputs" onsubmit="return false;">
           <div class="field">
@@ -685,7 +685,8 @@ BUDGET_TMPL = """<!DOCTYPE html>
           <div class="calc-stat highlight"><div class="calc-value" id="r-low">—</div><div class="calc-label">Envelope low</div></div>
           <div class="calc-stat highlight"><div class="calc-value" id="r-high">—</div><div class="calc-label">Envelope high</div></div>
           <div class="calc-stat"><div class="calc-value" id="r-rule">—</div><div class="calc-label">$80/min rule of thumb</div></div>
-          <p class="calc-note">Per-clip costs are third-party estimates (Oct 2026) — verify live before budgeting. The envelope budgets the rejects, not just the hero renders.</p>
+          <p class="calc-note">Per-clip costs come from the guide's pricing table — the Watchtower API serves it live when it can, otherwise the last published copy. The envelope budgets the rejects, not just the hero renders. Verify live before budgeting.</p>
+          <p class="calc-note" id="b-provenance">Rates: built-in estimates (Oct 2026).</p>
           <p style="margin-top:var(--space-4);"><a class="btn" href="optimizer.html">Plan a full production → budget optimizer</a></p>
         </div>
       </div>
@@ -698,6 +699,7 @@ BUDGET_TMPL = """<!DOCTYPE html>
       <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
+  <script src="assets/js/api-client.js"></script>
   <script src="assets/js/budget.js"></script>
   <script src="assets/js/docs.js"></script>
   <script src="assets/js/identity.js"></script>
@@ -3131,7 +3133,11 @@ MODELWATCH_TMPL = """<!DOCTYPE html>
         <button type="button" class="btn btn-sm" data-mw-filter="reported" aria-pressed="false">Reported ({n_reported})</button>
         <button type="button" class="btn btn-sm" data-mw-filter="discontinued" aria-pressed="false">Discontinued ({n_discontinued})</button>
       </div>
-      <p class="card-meta">Last full refresh: {refresh_date} · {total} models · <a href="../api/v1/model-updates.md">changelog</a> · <a href="../api/v1/models.json">raw JSON</a></p>
+      <div class="mw-freshness">
+        <h2 class="mw-freshness-h">Watchtower freshness <span class="api-badge" id="mw-api-badge" data-api-state="none" role="status" tabindex="0"></span></h2>
+        <p class="card-meta" id="mw-freshness-line">{freshness_line}</p>
+      </div>
+      <p class="card-meta">{total} models · <a href="../api/v1/model-updates.md">changelog</a> · <a href="../api/v1/models.json">raw JSON</a> · <a href="../api/v1/model-checks.json">check feed</a></p>
       <div class="mw-grid" id="mw-grid">
 {cards}
       </div>
@@ -3155,6 +3161,8 @@ MODELWATCH_TMPL = """<!DOCTYPE html>
   <script src="assets/js/palette.js"></script>
   <script src="assets/js/docs.js"></script>
   <script src="assets/js/identity.js"></script>
+  <script src="assets/js/api-client.js"></script>
+  <script src="assets/js/model-watch.js"></script>
   <script>
   (function () {{
     var btns = Array.prototype.slice.call(document.querySelectorAll("[data-mw-filter]"));
@@ -3178,6 +3186,21 @@ def build_model_watch(css_links):
     """Model freshness page, generated from api/v1/models.json."""
     doc = json.loads((ROOT / "api" / "v1" / "models.json").read_text())
     models = doc["models"]
+    # Pre-rendered freshness line: the last published check feed. The live
+    # layer (model-watch.js) overwrites it from /api/models-status when the
+    # function answers, or re-renders it from the same static file on fallback.
+    checks = json.loads((ROOT / "api" / "v1" / "model-checks.json").read_text())
+    ck_when = str(checks.get("checked_at", "")).replace("T", " ").replace("+00:00", " UTC")
+    ck_sum = checks.get("summary", {})
+    freshness_line = (
+        "Last published check: {when} — {total} models, {changed} changed, "
+        "{errors} check errors, {unwatched} unwatched.".format(
+            when=ck_when or "unknown time",
+            total=ck_sum.get("models_total", len(models)),
+            changed=ck_sum.get("changed", 0),
+            errors=ck_sum.get("with_errors", 0),
+            unwatched=ck_sum.get("no_sources", 0)))
+
 
     def card(m):
         status = m.get("status", "active")
@@ -3222,7 +3245,7 @@ def build_model_watch(css_links):
         cards="\n".join(card(m) for m in models),
         total=len(models), n_active=counts.get("active", 0),
         n_reported=counts.get("reported", 0), n_discontinued=counts.get("discontinued", 0),
-        refresh_date="2026-10-11"))
+        freshness_line=freshness_line))
 
 
 # ---- Model deep dives (wave 11): one page per model + index ----
@@ -4184,6 +4207,11 @@ def main():
     # Bundle shared assets + API docs page into site/ so it is self-contained
     shutil.copytree(ROOT / "assets", SITE / "assets", dirs_exist_ok=True)
     shutil.copytree(ROOT / "api", SITE / "api", dirs_exist_ok=True)
+    # Wave B: the Watchtower functions + lib live at ROOT/server/ and are
+    # copied into site/ so a rebuild (which wipes SITE first) can never
+    # orphan them. site/api/v1/* above is the static fallback they serve.
+    shutil.copytree(ROOT / "server" / "api", SITE / "api", dirs_exist_ok=True)
+    shutil.copytree(ROOT / "server" / "lib", SITE / "lib", dirs_exist_ok=True)
     shutil.copy(ROOT / "api.html", SITE / "api.html")
     print(f"Built {len(flat)} chapters + index + search index -> {SITE}")
 

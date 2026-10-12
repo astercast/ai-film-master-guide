@@ -377,3 +377,56 @@ details[open] { border-color: var(--line-bright); }
   .gloss-term { transition: none; }
   .td-card { animation-name: td-card-in-reduced; }
 }
+
+/* ——— API status badge: The Watchtower fallback contract (ARCHITECTURE.md §3) ———
+   One per dynamic widget. Four states: live (green), cached (amber),
+   waking (muted pulse), none (hidden). The badge is the honesty mechanism —
+   cached data is never shown without its timestamp. Text colors are
+   contrast-checked: --ok 12.72:1, --warn 11.30:1, --muted 7.56:1 on --bg. */
+.api-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-mono); font-size: var(--text-xs);
+  letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap;
+  padding: 3px 10px; margin-left: 12px; vertical-align: middle;
+  border: 1px solid var(--line-bright); border-radius: 999px;
+  color: var(--muted); background: rgba(168, 158, 139, 0.06);
+}
+.api-badge::before {
+  content: ""; width: 7px; height: 7px; border-radius: 50%;
+  background: currentColor; flex: none;
+}
+.api-badge[data-api-state="live"] {
+  color: var(--ok); border-color: var(--ok); background: rgba(139, 226, 139, 0.07);
+}
+.api-badge[data-api-state="cached"] {
+  color: var(--warn); border-color: var(--warn); background: rgba(255, 179, 92, 0.08);
+}
+.api-badge[data-api-state="waking"] { color: var(--muted); }
+.api-badge[data-api-state="waking"]::before { animation: api-pulse 1.2s ease-in-out infinite; }
+.api-badge[data-api-state="none"] { display: none; }
+.api-badge:focus-visible { outline: 2px solid var(--reel); outline-offset: 2px; }
+@keyframes api-pulse { 50% { opacity: 0.25; } }
+@media (prefers-reduced-motion: reduce) {
+  .api-badge[data-api-state="waking"]::before { animation: none; }
+}
+@media (max-width: 640px) {
+  .api-badge { margin-left: 0; margin-top: 8px; }
+}
+
+/* ——— Model-watch freshness panel + check flags ——— */
+.mw-freshness {
+  border: 1px solid var(--line-soft); border-radius: var(--radius-m);
+  background: var(--panel); padding: var(--space-4) var(--space-5);
+  margin-bottom: var(--space-5);
+}
+.mw-freshness-h { font-size: var(--text-lg); margin: 0 0 var(--space-2); }
+.mw-flag {
+  margin-top: var(--space-2); padding: var(--space-2) var(--space-3);
+  border-left: 2px solid var(--warn); background: rgba(255, 179, 92, 0.06);
+  color: var(--warn); font-size: var(--text-sm);
+}
+.mw-card[data-check-status="error"] .mw-flag {
+  border-color: var(--ember-soft); background: rgba(230, 36, 41, 0.07);
+  color: var(--ember-soft);
+}
+

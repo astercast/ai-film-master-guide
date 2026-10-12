@@ -87,7 +87,7 @@
       </div>
     </section>
     <section class="container" aria-labelledby="calc-h">
-      <h2 id="calc-h">Your production</h2>
+      <h2 id="calc-h">Your production <span class="api-badge" id="b-api-badge" data-api-state="none" role="status" tabindex="0"></span></h2>
       <div class="calc-grid">
         <form class="card calc-form" aria-label="Budget inputs" onsubmit="return false;">
           <div class="field">
@@ -117,7 +117,8 @@
           <div class="calc-stat highlight"><div class="calc-value" id="r-low">—</div><div class="calc-label">Envelope low</div></div>
           <div class="calc-stat highlight"><div class="calc-value" id="r-high">—</div><div class="calc-label">Envelope high</div></div>
           <div class="calc-stat"><div class="calc-value" id="r-rule">—</div><div class="calc-label">$80/min rule of thumb</div></div>
-          <p class="calc-note">Per-clip costs are third-party estimates (Oct 2026) — verify live before budgeting. The envelope budgets the rejects, not just the hero renders.</p>
+          <p class="calc-note">Per-clip costs come from the guide's pricing table — the Watchtower API serves it live when it can, otherwise the last published copy. The envelope budgets the rejects, not just the hero renders. Verify live before budgeting.</p>
+          <p class="calc-note" id="b-provenance">Rates: built-in estimates (Oct 2026).</p>
           <p style="margin-top:var(--space-4);"><a class="btn" href="optimizer.html">Plan a full production → budget optimizer</a></p>
         </div>
       </div>
@@ -130,6 +131,7 @@
       <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
+  <script src="assets/js/api-client.js"></script>
   <script src="assets/js/budget.js"></script>
   <script src="assets/js/docs.js"></script>
   <script src="assets/js/identity.js"></script>

@@ -28,8 +28,34 @@ Base path: `api/v1/`
 | `diagnoses.json` | 12 failure diagnoses: symptom → craft diagnosis, fixes, repair-template link, source chapters | 12 |
 | `model-checks.json` | Model-watch freshness feed: per-model last check, source-signature diffs, news headlines | 22 |
 | `model-review-queue.json` | Pending model-watch review items (empty = nothing pending) | 0 |
+| `pricing.json` | Curated pricing table: 30 models with per-tier USD rates (`unit`: `second`/`clip`/`image`), `usd_low`/`usd_high`, `basis` + `confidence` per tier; `status` live/unpublished/discontinued | 30 |
 | `model-updates.md` | Human-readable model changelog (Markdown document, no schema) | — |
 | `schema/` | JSON Schema (draft-07) for every endpoint: `index`, `model`, `prompt-template`, `camera-movement`, `checklist`, `glossary`, `competition`, `teardown`, `diagnosis`, `model-checks`, `model-review-queue` | 11 |
+
+## Live functions — The Watchtower (Vercel serverless, zero npm deps)
+
+On the deployed site the same data is also served live by five
+serverless functions under `/api/` (spec:
+`~/workspace/server-program/ARCHITECTURE.md`, "film-watchtower"). Every
+response uses the §1.1 envelope (`ok`/`data`/`meta`, `request_id` per
+invocation). The frontend (`assets/js/api-client.js`) calls the function
+first with a 7s timeout and falls back to the static `api/v1/` file above —
+the badge next to each widget reads `live`, `waking server…`, or
+`cached · updated HH:MM`, and the page never renders an error state for a
+backend problem.
+
+| Function | Method | What it returns |
+|---|---|---|
+| `/api/health` | GET | `status:"ok"`, the function roster, per-file data-freshness SLAs. Never 5xx. |
+| `/api/models-status` | GET | 22-model freshness join (`model-checks.json` × `pricing.json`): per-model `status` (`stable`/`changed`/`error`/`unwatched`), `last_checked`, `change_summary`; honestly `degraded` when sources failed. |
+| `/api/models-pricing` | GET | The curated pricing table (`?model_id=` filters; unknown id → 404 `NOT_FOUND`). |
+| `/api/calc-cost` | POST | `{model_id, seconds, resolution_tier, clips=1}` → `{cost_low, cost_high, currency:"USD", breakdown[], pricing_as_of, note}`. Full validation: 400 `BAD_INPUT` (bad body/seconds/clips/tier, human messages for image/per-clip/discontinued models), 404 for unknown model. Compute bucket 20/min, no-store. |
+| `/api/cron/watchtower` | GET | Daily incremental freshness refresh (Vercel Cron `0 14 * * *` UTC). Bearer `CRON_SECRET`, fail closed (401 without). Flags changed models into the review queue; never auto-edits `models.json`/`pricing.json`. Commits back only when `GITHUB_REPO_TOKEN` is set. |
+
+Error codes: `BAD_INPUT` 400, `UNAUTHORIZED` 401, `NOT_FOUND` 404,
+`RATE_LIMITED` 429 (with `Retry-After`), `UPSTREAM_UNAVAILABLE` 502,
+`REFRESH_FAILED`/`INTERNAL` 500 — all in the envelope with `ok:false`.
+Deploy runbook: `GO_LIVE.md`.
 
 ## Model object
 

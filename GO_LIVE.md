@@ -1,185 +1,222 @@
-# GO_LIVE.md — AI Film Master Guide: live architecture & deploy
+# GO_LIVE.md — AI Film Master Guide: The Watchtower on Vercel
 
-Date: 2026-10-11. Status: **GitHub-only, nothing deployed yet. NO Vercel** (standing rule).
+**Status: LIVE-READY, NOT DEPLOYED. Do not connect Vercel until the user
+approves.** No Vercel project exists for this repo yet; nothing has been
+deployed anywhere. (Standing rule: GitHub-only until the user says go.)
 
-## 1. Live architecture
+Spec: `~/workspace/server-program/ARCHITECTURE.md` ("The Watchtower" =
+film-watchtower, §7.1). Where this file and the spec disagree, the spec wins.
 
-Three moving parts, nothing else:
+## 1. What deploys
 
-```
-┌──────────────┐     ┌──────────────┐     ┌─────────────────────────┐
-│  STATIC HOST │     │  SCHEDULER   │     │   GIT (the database)    │
-│  serves site/│     │  cron / GH   │     │   repo = source of      │
-│  as-is       │     │  Actions     │     │   truth for site/ + api/│
-└──────────────┘     │  runs        │     │                         │
-                     │  refresh.sh  │     │   api/v1/*.json are     │
-                     └──────┬───────┘     │   committed artifacts,  │
-                            │             │   versioned like code   │
-                            ▼             └─────────────────────────┘
-                  scripts/refresh/check_models.py
-                  → api/v1/model-checks.json        (freshness records)
-                  → api/v1/model-review-queue.json  (human/agent review list)
-```
+One Vercel project containing a static frontend plus serverless functions:
 
-- **Static host serves `site/`** — plain files, no build step, no server-side code.
-- **Scheduler runs `scripts/refresh/refresh.sh`** (weekly) on any always-on machine
-  (a laptop, a VPS, or GitHub Actions). It fetches public model pages, writes the
-  two JSON files, appends to `logs/refresh.log`.
-- **Git is the database.** The scheduler commits + pushes the refreshed JSON;
-  the static host re-deploys from git (or gets `site/` re-uploaded). There is no
-  live API server, no runtime database, no auth layer.
+- **Static frontend** — `site/` (built by `python3 scripts/build_site.py`,
+  timed 0.6s; `outputDirectory: site`). The Cutting Room identity, all
+  chapters, tools, and the pre-rendered model-watch / budget pages.
+- **5 functions** under `site/api/` (sources live at repo-root `server/api/`,
+  copied into `site/` at build time — `build_site.py` wipes `site/` first,
+  so function sources must never live only under `site/`):
+  - `GET /api/health` — service status, function roster, data-freshness SLAs
+  - `GET /api/models-status` — 22-model freshness join (model-checks × pricing)
+  - `GET /api/models-pricing` — the curated 30-model pricing table
+    (`?model_id=` filter; unknown id → 404)
+  - `POST /api/calc-cost` — `{model_id, seconds, resolution_tier, clips}`
+    → `{cost_low, cost_high, breakdown[]}`; full 400/404 validation
+  - `GET /api/cron/watchtower` — daily incremental freshness refresh
+    (Bearer `CRON_SECRET`; see §8)
+- **Shared lib** `site/lib/` (from repo-root `server/lib/`): envelope,
+  fetchx, ratelimit, cronauth, github — zero npm dependencies, `nodejs22.x`.
+- **1 daily cron** — `/api/cron/watchtower` at `0 14 * * *` UTC (see §8).
+- **Static fallback data** — `site/api/v1/*.json` (models, pricing,
+  model-checks, review queue, …). The frontend calls `/api/*` first and
+  falls back to these files; the site never renders an error state because
+  the backend was cold or down (ARCHITECTURE.md §3).
 
-## 2. What's live vs static per feature
+## 2. Prerequisites
 
-| Feature | Mode | How it refreshes |
+1. This repo pushed to GitHub (private repo, GitHub-only).
+2. Access to the user's Vercel account (Hobby).
+3. Secrets generated (see §4):
+   - `CRON_SECRET` — random 32+ bytes, e.g. `openssl rand -hex 32`.
+   - `GITHUB_REPO_TOKEN` — **pending the user's decision** (spec §14.1):
+     either a fine-grained PAT (`contents:write`, this repo only) so the
+     daily cron can commit refreshed check data back to the repo, **or**
+     deliberately omitted — then the cron is read-only (it still computes
+     fresh data and returns it in its response envelope) and static JSON
+     updates only via the wave engine's pushes. Zero code change either way.
+4. Build machine set to **Standard** (see §4 step 4 and §10 — the $38.64 rule).
+
+## 3. Hookup steps (exact clicks)
+
+1. **vercel.com/new** → Import Git Repository → select
+   `astercast/ai-film-master-guide` (private).
+2. Framework Preset: **Other**.
+   - Build Command: `python3 scripts/build_site.py`
+   - Output Directory: `site`
+   - Install Command: `echo 'no dependencies'`
+3. Environment Variables (Production):
+   - `CRON_SECRET` = `<random 32+ bytes>`
+   - `GITHUB_REPO` = `astercast/ai-film-master-guide`
+   - `REPO_STATIC_PREFIX` = `site/api/v1`
+   - `GITHUB_REPO_TOKEN` = `<fine-grained PAT, contents:write, this repo only>`
+     — or omit it deliberately (see §2.3); do not leave a placeholder value.
+4. **Build machine: Standard.** Project → Settings → Build & Deployment →
+   Build Machine → **Standard**. **Never Turbo** — September 2026 Turbo CPU
+   billed **$38.64** (invoice 1ZU1WJJS-0012). Turbo buys nothing on a static
+   site; builds take under a second.
+5. **Deploy.** Open `/api/health` — assert `"status":"ok"` and the `functions`
+   list equals `["health","models-status","models-pricing","calc-cost",
+   "cron/watchtower"]`.
+6. Dashboard → **Cron Jobs** — assert `/api/cron/watchtower` is listed at
+   `0 14 * * *`. Trigger it once manually (Functions → ⋯ → Test) with
+   `Authorization: Bearer <CRON_SECRET>`; check the function logs for
+   `[cron] watchtower start` / `[cron] watchtower done …` lines.
+7. `curl` the roster and assert the envelope schema (`tests/api.test.sh`
+   does this; run it with `BASE=https://<project>.vercel.app`):
+   - `GET /api/health` → 200, `ok:true`
+   - `GET /api/models-status` → 200, 22 models, statuses in
+     `stable|changed|error|unwatched`
+   - `GET /api/models-pricing` → 200, 30 models; `?model_id=bogus` → 404
+   - `POST /api/calc-cost` with `{}` → 400 `BAD_INPUT`
+   - `GET /api/cron/watchtower` without secret → 401
+8. **Disable test** (§12.3): block `/api/*` (or stop the functions) → reload
+   `model-watch.html` and `budget.html` → assert every widget shows its
+   pre-rendered/static data with honest `cached · updated HH:MM` badges and
+   zero blank widgets or console errors from `api-client.js`.
+
+## 4. Env var table
+
+| name | required? | where set | rotation notes |
+|---|---|---|---|
+| `CRON_SECRET` | yes | Vercel → Project → Settings → Environment Variables (Production) | Rotate any time: update Vercel, no code change. The cron 401s fail closed on a wrong value. |
+| `GITHUB_REPO_TOKEN` | no (pending §14.1 decision) | same as above | Fine-grained PAT, `contents:write`, this repo only. Without it the cron degrades gracefully to read-only (`{committed:false, reason:'no-token'}`). Never commit the token to the repo. |
+| `GITHUB_REPO` | yes (used by cron when committing) | same as above | `astercast/ai-film-master-guide`. Only read when `GITHUB_REPO_TOKEN` is set. |
+| `REPO_STATIC_PREFIX` | yes (used by cron when committing) | same as above | `site/api/v1` — where the cron writes refreshed check JSON. |
+
+## 5. Hobby limits table
+
+| resource | Hobby limit | our usage |
 |---|---|---|
-| Model Watch (22 models: versions, prices, status) | **LIVE — weekly refresh** | `refresh.sh` → `model-checks.json`; changed models land in `model-review-queue.json`. Sources per model: `sources` URLs from models.json + per-model `extra_urls` (official pages/pricing aggregators, public no-key only) + Google News RSS headlines (passive signal, never drives `changed`) |
-| Review queue → models.json promotion | **MANUAL, agent-verified** | Agent verifies flagged URLs → edits `api/v1/models.json` → `python3 scripts/build_api.py` → `python3 scripts/build_site.py` → commit → push (see §3) |
-| Prompt templates, camera lexicon, checklists, glossary, competitions, teardowns, case studies, all guide chapters | **STATIC** | Rebuilt from research artifacts only; refreshed by hand when research lands |
-| Everything else (LLM-facing files `llms.txt`/`llms-full.txt`, skills index) | **STATIC** | Same; regenerated by build scripts from committed sources |
+| Bandwidth | 100 GB/mo | static + small JSON; personal-use sites ≈ MBs |
+| Build minutes | 6,000/mo | seconds per deploy; daily cron redeploys ≈ negligible |
+| Function invocations | 100k/mo | edge cache absorbs reads (§1.6); ~1 cron + trickle |
+| Function duration | 10s default (Hobby) | all functions designed ≤10s; no `maxDuration` overrides |
+| Cron jobs | daily minimum cadence, UTC, ±60min window, prod only | 1 job, `0 14 * * *` UTC |
+| Overage billing | **none — usage pauses instead of charging** | design stays far under limits; a pause is a visible signal, not a bill |
 
-Deliberate design: the checker **never auto-mutates `api/v1/models.json`** (fetched
-landing pages are noisy marketing copy — a signature diff is a *review signal*,
-not a confirmed fact). The queue exists precisely so a human or agent verifies
-before anything the site shows changes.
+If any site approaches 80% of any Hobby limit, the wave report flags it and
+the fix is *less* work (longer edge TTL, smaller payloads) — never a plan
+upgrade without the user's explicit word.
 
-## 3. Pipeline docs
+## 6. Cold-start behavior
 
-### Files
-- `scripts/refresh/check_models.py` — the checker (stdlib only, urllib). Per model:
-  fetches `sources` + per-model `extra_urls`, strips HTML, sha256 signature per
-  source, compares **per-URL** against the previous run (a URL counts as moved
-  only if it has a signature in both runs and they differ — URLs flapping
-  ok↔failed don't drive `changed`). Applies optional `extract` regexes
-  (version/price signals). One dead URL is recorded per-model, never fatal.
-  Exit 0 on partial success; 2 only if inputs won't load.
-- **Google News RSS layer** (public, no-key, per the user's aggressive-public
-  mandate): each model may carry a `news_query` in the config. The checker pulls
-  `news.google.com/rss/search` and stores the latest headlines in the record's
-  `news_headlines` (`news_status` ok/failed/skipped/empty). News is PASSIVE
-  SIGNAL — headlines never feed the change signature (news churn would flag
-  every model every week); they exist for the reviewing agent to spot
-  release/discontinuation stories.
-- **Noise control**: verified-noisy rotating marketing pages go in the per-model
-  `exclude_from_signature` list (verified 2026-10-11 by double-fetch:
-  higgsfield.ai, deepmind.google/technologies/veo/, higgsfield.ai/blog/*,
-  marktechpost.com, lumalabs.ai, hailuoai.video, the yzrkbys GitHub commit
-  page). They are still fetched and recorded — they just never drive `changed`.
-- `scripts/refresh/model-check-config.json` — per-model overrides keyed by the
-  `model` field in `api/v1/models.json`: `extra_urls`, per-model `extract`
-  regexes, `note`. Global defaults (timeout, UA, max bytes) under `defaults`.
-- `scripts/refresh/refresh.sh` — cron entry: runs the checker, appends
-  timestamped output to `logs/refresh.log`. Always exits 0.
-- `logs/refresh.log` — run history (created by refresh.sh; `logs/.gitkeep` keeps
-  the dir committed while empty).
+- First hit on a cold function: typically **1–3s** on Hobby. The client
+  timeout is **7s** (`LIVE_TIMEOUT_MS` in `assets/js/api-client.js`), so a
+  normal cold start still wins the race and the badge flips `waking → live`.
+- A cold start that misses 7s loses cleanly: the badge shows
+  `cached · updated HH:MM` and the user keeps reading the complete
+  pre-rendered page. **First paint never waits for `/api/*`.**
+- Local harness measurements (fresh node process, not a true Vercel cold
+  start — true cold start is only measurable on a preview deploy):
+  first-hit 18ms / warm-hit 2.3ms on `/api/health`; 7.5ms warm on
+  `/api/models-pricing`. All far under the 7s budget.
+- If first hits ever approach 10s, the 7s client timeout always loses —
+  investigate the function (upstream hangs), don't raise the timeout.
 
-### Weekly routine (human or cron-assisted agent)
-1. Monday 09:00 UTC — scheduler runs `refresh.sh`.
-2. Check the summary line in `logs/refresh.log` and
-   `api/v1/model-review-queue.json`'s `pending` count.
-2b. Scan each model's `news_headlines` in `model-checks.json` for
-    release/discontinuation stories (price cuts, shutdowns, successor
-    announcements) — passive signals worth a human look even when
-    `changed=false`.
-3. For each queued model: open its flagged `sources_changed` URLs, confirm what
-   actually changed (price / version / discontinuation / marketing noise).
-4. If confirmed: edit `api/v1/models.json` (`last_verified`, `status`,
-   `est_cost_credits`, `what_changed`, `sources`), run
-   `python3 scripts/build_api.py` then `python3 scripts/build_site.py`, inspect
-   the diff, commit, push. Next Monday's run re-baselines the new signatures.
-5. If noise: do nothing — leave the baseline; the next run compares against it.
+## 7. Cron behavior
 
-### ⚠️ Known gotcha (action required, one-line fix)
-`scripts/build_api.py` **wipes `api/v1/` and only preserves a hardcoded list**
-(`teardowns.json`, `schema/teardown.json`, `model-updates.md`) — a rebuild
-DELETES `model-checks.json` and `model-review-queue.json`. Verified by running
-the exact rebuild code path against a temp copy on 2026-10-11.
+- **Schedule:** `0 14 * * *` UTC daily (Vercel Cron minimum cadence;
+  more frequent schedules fail the deploy). ±60min execution window,
+  production only, best-effort.
+- **What it does:** bounded incremental refresh of the model-check URLs —
+  day-keyed rotation, max 8 URLs/run, 4s per-source timeout, ≤1 request/5s
+  per provider domain, sequential for HTML, all inside the 10s function
+  budget. Signature-change detection via the repo's clean-text+sha256
+  technique. On a moved signature it **flags** the model and appends a
+  review-queue item — it **never auto-edits** `models.json`/`pricing.json`
+  (repo promotion rule: fetched pages are unreliable signals; a human or the
+  wave engine verifies and promotes). Commits only on change
+  (`writeJsonIfChanged`), only when `GITHUB_REPO_TOKEN` is set.
+- **Idempotent:** 60s duplicate-delivery cooldown; re-running the same day
+  re-checks the same rotation slice without duplicating queue items.
+- **Alerting:** logs only, `[cron]` prefix. **No log lines in 48h** means the
+  cron isn't firing — check Vercel → Cron Jobs (paused? secret rotated?).
+- **The weekly deep refresh still exists:** `scripts/refresh/refresh.sh`
+  (Monday 09:00 UTC on any always-on machine) runs the full 22-model check
+  with Google News RSS passive signals and the noise-control lists; see
+  Appendix A. The Vercel cron is the daily incremental layer on top.
 
-Fix (add to the `preserved` list in `build_api.py::main`, ~line 154):
-```python
-for rel in ["teardowns.json", "schema/teardown.json", "model-updates.md",
-            "model-checks.json", "model-review-queue.json"]:
-```
-Until that lands, **do not run `build_api.py` after a refresh run** unless the
-two check files are backed up first. (Separate pre-existing issue noticed in the
-same test: the rebuild asserts 21 models from artifacts while the repo now
-carries 22 — running it would also downgrade `models.json`.)
+## 8. Custom domain notes
 
-## 4. Cron lines (copy-paste)
+- Add the domain in the Vercel dashboard → Domains; the `/api/*` paths move
+  with the domain automatically.
+- If a domain is assigned later, sweep absolute URLs: `llms.txt`,
+  `sitemap.xml`, and the `$id` in `api/v1/schema/envelope.json` (currently
+  the planned `ai-film-master-guide.vercel.app` hostname) — spec §14.4.
 
-Weekly, Monday 09:00 UTC, on any machine with the repo cloned and python3:
+## 9. Rollback
 
-```cron
-# AI Film Master Guide — Model Watch weekly refresh
-0 9 * * 1 cd /path/to/ai-film-master-guide && ./scripts/refresh/refresh.sh
-```
+- `git revert` the offending commit → push → Vercel redeploys the previous
+  good state. Functions are stateless; there is no data migration.
+- If a bad **static data** file shipped (e.g. a bad `pricing.json`), revert
+  that file's commit; the frontend's static fallback immediately serves the
+  reverted copy on the next deploy.
+- If a bad **function** shipped but static data is good, the site keeps
+  working on the fallback path while you revert — the badge shows `cached`,
+  nothing looks broken.
 
-Weekly plus auto-commit+push of the refreshed check files (recommended):
+## 10. Cost rules (the $38.64 lesson)
 
-```cron
-0 9 * * 1 cd /path/to/ai-film-master-guide && ./scripts/refresh/refresh.sh && \
-  git add api/v1/model-checks.json api/v1/model-review-queue.json logs/refresh.log && \
-  git -c user.name="model-watch" -c user.email="model-watch@local" \
-  commit -m "Model Watch weekly refresh $(date -u +%F)" && \
-  python3 ~/workspace/skills/github/bin/gh-push.py /path/to/ai-film-master-guide
-```
+September 2026 invoice 1ZU1WJJS-0012: **$38.64** of Turbo build CPU across the
+user's projects. Standing rule:
 
-### GitHub Actions alternative (sketch)
-`.github/workflows/model-watch.yml`:
-```yaml
-name: Model Watch
-on:
-  schedule:
-    - cron: "0 9 * * 1"   # Monday 09:00 UTC
-  workflow_dispatch: {}
-jobs:
-  refresh:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with: { python-version: "3.12" }
-      - run: ./scripts/refresh/refresh.sh
-      - run: |
-          git config user.name "model-watch" && git config user.email "model-watch@local"
-          git add api/v1/model-checks.json api/v1/model-review-queue.json logs/refresh.log
-          git diff --cached --quiet || git commit -m "Model Watch weekly refresh $(date -u +%F)"
-          git push
-```
+- **Build machine: Standard. Never Turbo.** Vercel dashboard → Project →
+  Settings → Build & Deployment → Build Machine → **Standard**. Turbo is what
+  billed $38.64; these are static sites with near-instant builds (this repo's
+  build: **0.6s**) — Turbo buys nothing.
+- `installCommand`: `echo 'no dependencies'` — zero npm packages, nothing to
+  install, builds stay seconds-long.
+- Static builds are the only builds. Function bundling is part of the static
+  build (no separate build minutes).
+- Hobby limits table: see §5 (verbatim from the spec).
+- If any site approaches 80% of any Hobby limit, the wave report flags it
+  and the fix is *less* work — never a plan upgrade without the user's
+  explicit word.
 
-## 5. Keys needed
+## Appendix A — the weekly refresh pipeline (unchanged)
 
-**None.** This pipeline fetches public pages only (vendor homepages, news
-articles, Google News RSS — all public, no-key endpoints). No API keys, no
-tokens, no auth, no cookies, no accounts, no spend. The only network
-dependency is outbound HTTPS to the model's own `sources` URLs, the
-per-model `extra_urls`, and `news.google.com/rss`. Anything needing a key
-stays out of scope by design; public pricing-aggregator pages can be folded
-into `extra_urls` per model at any time.
+`scripts/refresh/check_models.py` (stdlib only, urllib) + `refresh.sh`
+remain the deep-refresh path. Per model: fetches `sources` + per-model
+`extra_urls`, strips HTML, sha256 signature per source, compares **per-URL**
+against the previous run (a URL counts as moved only if it has a signature
+in both runs and they differ — URLs flapping ok↔failed don't drive
+`changed`). Optional `extract` regexes for version/price signals. One dead
+URL is recorded per-model, never fatal. Exit 0 on partial success; 2 only
+if inputs won't load.
 
-## 6. Deploy checklist (any static host)
-
-1. Upload the contents of **`site/`** as the web root. That's the whole deploy.
-2. **No SPA routing needed** — every route is a real file (`index.html`,
-   `compare.html`, per-chapter `.html`). 404→index rewrites are unnecessary;
-   leave the host's default 404 page or point it at a static `404.html`.
-3. Keep the relative structure intact: pages reference `../assets/…` and sibling
-   JSON (`models.json`, `search-index.json`, …). Serve over HTTPS and everything
-   works; no env vars, no functions, no edge config.
-4. Cache: set long cache on `assets/` (hashed filenames if present), short/no
-   cache on HTML + JSON so weekly model updates reach readers.
-5. Optional: mirror `api/v1/*.json` at `/api/v1/` for agents — copy the repo's
-   `api/` tree next to `site/` at deploy time.
-
-## 7. Static-readiness audit (2026-10-11)
-
-| Check | Result |
-|---|---|
-| Link/asset references scanned | 3,143 |
-| Broken references | **0** |
-| Absolute `/`-rooted refs in site/ | **0** — all relative (`../assets/…`) |
-| localhost / file:// references | **0** |
-| `fetch()` targets | **all relative JSON paths** (no absolute API URLs) |
-| Deploy root | `site/` self-contained (own JSON mirrors: `models.json`, `search-index.json`, …) |
-| Live pipeline added | `scripts/refresh/` + `api/v1/model-checks.json` + `api/v1/model-review-queue.json` — stdlib only, no keys |
-| Test run | 22/22 models checked, baselines stored, exit 0; review queue empty (first run = baseline) |
+- **Google News RSS layer** (public, no-key): each model may carry a
+  `news_query`; the checker pulls `news.google.com/rss/search` into
+  `news_headlines` (`news_status` ok/failed/skipped/empty). PASSIVE SIGNAL —
+  headlines never feed the change signature.
+- **Noise control**: verified-noisy rotating marketing pages go in the
+  per-model `exclude_from_signature` list (verified 2026-10-11 by
+  double-fetch: higgsfield.ai, deepmind.google/technologies/veo/,
+  higgsfield.ai/blog/*, marktechpost.com, lumalabs.ai, hailuoai.video, the
+  yzrkbys GitHub commit page). Fetched and recorded, never driving `changed`.
+- **The checker never auto-mutates `api/v1/models.json`.** A signature diff
+  is a *review signal*, not a confirmed fact. Weekly routine: run
+  `refresh.sh` → check `logs/refresh.log` + `model-review-queue.json`
+  `pending` count → verify each flagged URL by hand → on confirmation edit
+  `api/v1/models.json`, run `build_api.py` + `build_site.py`, commit, push.
+- **Generator gotcha (fixed 2026-10-11):** `build_api.py` wipes `api/v1/`
+  and restores only its `preserved` list — `pricing.json`,
+  `schema/envelope.json`, `model-checks.json`, `model-review-queue.json`,
+  `diagnoses.json` + schemas are all on that list now. Any new
+  hand-maintained `api/v1/` file must be added there or the next rebuild
+  deletes it.
+- **Build gotcha (fixed Wave B):** `build_site.py` wipes `site/` first —
+  the Watchtower function sources live at repo-root `server/api/` +
+  `server/lib/` and are copied into `site/` at build time. Never place
+  function sources only under `site/`.
+- No keys needed: the pipeline fetches public pages only.

@@ -96,7 +96,11 @@
         <button type="button" class="btn btn-sm" data-mw-filter="reported" aria-pressed="false">Reported (1)</button>
         <button type="button" class="btn btn-sm" data-mw-filter="discontinued" aria-pressed="false">Discontinued (1)</button>
       </div>
-      <p class="card-meta">Last full refresh: 2026-10-11 · 30 models · <a href="../api/v1/model-updates.md">changelog</a> · <a href="../api/v1/models.json">raw JSON</a></p>
+      <div class="mw-freshness">
+        <h2 class="mw-freshness-h">Watchtower freshness <span class="api-badge" id="mw-api-badge" data-api-state="none" role="status" tabindex="0"></span></h2>
+        <p class="card-meta" id="mw-freshness-line">Last published check: 2026-10-11 22:23:45 UTC — 22 models, 0 changed, 0 check errors, 2 unwatched.</p>
+      </div>
+      <p class="card-meta">30 models · <a href="../api/v1/model-updates.md">changelog</a> · <a href="../api/v1/models.json">raw JSON</a> · <a href="../api/v1/model-checks.json">check feed</a></p>
       <div class="mw-grid" id="mw-grid">
 <article class="mw-card" data-status="active">
   <span class="mw-badge mw-badge-active">Active</span>
@@ -569,6 +573,8 @@
   <script src="assets/js/palette.js"></script>
   <script src="assets/js/docs.js"></script>
   <script src="assets/js/identity.js"></script>
+  <script src="assets/js/api-client.js"></script>
+  <script src="assets/js/model-watch.js"></script>
   <script>
   (function () {
     var btns = Array.prototype.slice.call(document.querySelectorAll("[data-mw-filter]"));

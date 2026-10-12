@@ -160,7 +160,8 @@ def main():
     for rel in ["teardowns.json", "schema/teardown.json", "model-updates.md",
                 "model-checks.json", "model-review-queue.json",
                 "diagnoses.json", "schema/diagnosis.json",
-                "schema/model-checks.json", "schema/model-review-queue.json"]:
+                "schema/model-checks.json", "schema/model-review-queue.json",
+                "pricing.json", "schema/envelope.json"]:
         p = API / rel
         if p.exists():
             preserved[rel] = p.read_bytes()
