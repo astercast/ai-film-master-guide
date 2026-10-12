@@ -26,7 +26,7 @@
 
 **Validation:** `bash scripts/validate.sh` → **13/13 green, ALL STAGES PASS** (48 JS parse; 56 JSON parse; 11/11 schemas; 7,568 links, 0 broken; skills 232 byte-identical; prompt-templates == parser; llms.txt zero-diff; studio 70/70; agent-workflows 74/74). Two real failures caught and fixed during the wave: (1) schema — my first draft set `"breaks": null`; the teardown schema requires breaks as a string, so all 7 shots got real what-broke analysis instead; (2) the new chapter's cross-links used `.md` — the site convention is `.html` (6 broken links, fixed). A third finding from screenshots: hardcoded "chapter 16 of 29" + "29 chapters" stat + "231 skills" strings — all updated to 30/232. Headless-Chromium (Playwright, ThreadingHTTPServer): teardown viewer — 10 tabs, Svedka tab renders 7 shots, shot stepper Next advances, prev/next teardown nav wraps correctly (← The Production Office / Passport Rush →), tab ARIA roles correct; chapter page — REEL 16, "chapter 16 of 30", TOC sidebar, drop cap; mobile 390px teardown — tabs stack, Svedka content clean. Zero non-environmental console errors (only the sandbox's blocked Google-Fonts fetch). Cutting Room identity intact on all.
 
-**Commit:** local wave-39 commit → push via gh-push.py, remote verify via GitHub Trees API (see below).
+**Commit:** local `e5db368` (61 files) → pushed 2026-10-11 as remote commit `f4e4bb66e638d6422c9082efc9330dcf231cd08e`; remote `main` HEAD matches the pushed SHA; all 14 key wave-39 files verified present in the remote tree via GitHub Trees API (510 entries, not truncated; blob SHAs match local exactly). Push succeeded on the first attempt — no 400s this wave (the in-tool 400-retry from the morning's skill fix held).
 
 ## Wave 38 — EPISODE PIPELINE revisit #6 (2026-10-11)
 
