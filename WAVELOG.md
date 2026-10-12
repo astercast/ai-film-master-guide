@@ -20,7 +20,7 @@
 
 **Validation:** `bash scripts/validate.sh` → ALL STAGES PASS; studio.test.js 32/32; agent-workflows.test.js 60/60 (new workflow 5: 10 Night Bus assertions); 6,296 links, 0 broken; generator audits clean post-commit.
 
-**Commit:** `884b06471581efbe1f28d0f5f9596bdffd249077` ([view](https://github.com/astercast/ai-film-master-guide/commit/884b06471581efbe1f28d0f5f9596bdffd249077)) — 26 files, pushed 2026-10-11, all new/changed files verified present in the remote tree via GitHub API.
+**Commit:** `884b06471581efbe1f28d0f5f9596bdffd249077` ([view](https://github.com/astercast/ai-film-master-guide/commit/884b06471581efbe1f28d0f5f9596bdffd249077)) — 26 files, pushed 2026-10-11 as remote commit `394f64a460e5150dda5485107021820398e3bfe9`; all 12 new/changed key files verified present in the remote tree via GitHub API (540 tree entries, 0 missing).
 
 ## History
 
