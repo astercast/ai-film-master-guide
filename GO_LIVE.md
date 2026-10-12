@@ -7,6 +7,17 @@ deployed anywhere. (Standing rule: GitHub-only until the user says go.)
 Spec: `~/workspace/server-program/ARCHITECTURE.md` ("The Watchtower" =
 film-watchtower, §7.1). Where this file and the spec disagree, the spec wins.
 
+**One-time deploy model (user's order 2026-10-11):** this repo is NEVER
+deployed to Vercel — it is the build engine. A one-time release snapshot
+lives in the separate private repo `astercast/ai-film-master-guide-live`
+(prebuilt static frontend at repo root + the Watchtower functions under
+`api/` + `vercel.json` with functions/crons config; `outputDirectory: "."`,
+no build step). Import the -live repo into Vercel (the user connects it in
+the browser); the deploy happens via CLI with no git integration; after the
+single deploy, the -live repo is never pushed again unless the user
+explicitly says "push"/"ship it" in chat. Future work stays GitHub-only in
+THIS repo. Build machine on the Vercel project: Standard. Never Turbo.
+
 ## 1. What deploys
 
 One Vercel project containing a static frontend plus serverless functions:

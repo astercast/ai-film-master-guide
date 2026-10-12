@@ -56,6 +56,7 @@ NAV_ITEMS = [
     ("model-watch.html", "Model watch"),
     ("doctor.html", "Doctor"),
     ("linter.html", "Linter"),
+    ("cutting-room.html", "Cutting room"),
     ("prompts.html", "Prompts"),
     ("models/", "Models"),
     ("shots.html", "Shot list"),
@@ -81,6 +82,7 @@ FOOTER_ITEMS = [
     ("style-bible.html", "Style bible"),
     ("doctor.html", "Doctor"),
     ("linter.html", "Linter"),
+    ("cutting-room.html", "Cutting room"),
     ("prompts.html", "Prompts"),
     ("models/", "Models"),
     ("anatomy.html", "Anatomy"),
@@ -1524,6 +1526,148 @@ LINTER_TMPL = """<!DOCTYPE html>
   </footer>
   <script src="assets/js/palette.js"></script>
   <script src="assets/js/linter.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
+</body>
+</html>
+"""
+
+CUTTINGROOM_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The cutting room — AI Film Master Guide</title>
+  <meta name="description" content="A playable cutting room: type a weak prompt, roll the camera, and watch the scene get built shot by shot from the guide's real prompt library — then improve the prompt and watch the cut improve. Real templates, real model pricing, real cost math.">
+  {css}
+</head>
+<body>
+  <div class="edge-right" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        {sitenav}
+      </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">⌘K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    {hero}
+    <div id="cr-note" class="container" style="margin-top:var(--space-4);"></div>
+
+    <section class="container cr-reveal" aria-labelledby="cr-bench-h" style="margin-top:var(--space-7);">
+      <div class="cr-slate">
+        <span class="cr-take-tag" aria-hidden="true">Take 01</span>
+        <h2 id="cr-bench-h">The empty bench</h2>
+        <span class="tc" aria-hidden="true">00:00:00:00</span>
+      </div>
+      <p>A weak prompt is already on the bench — the kind everyone types first. Roll the camera and watch what it shoots. Then use the fix bay to direct it properly, take by take.</p>
+      <label for="cr-prompt"><strong>Your prompt</strong> <span class="calc-note">(Ctrl+Enter rolls the camera)</span></label>
+      <textarea id="cr-prompt" rows="6" style="width:100%;margin-top:var(--space-2);">a dog in a city</textarea>
+      <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;margin-top:var(--space-3);align-items:end;">
+        <div class="field" style="max-width:180px;">
+          <label for="cr-seconds">Shot length (seconds)</label>
+          <input class="input" type="number" id="cr-seconds" min="2" max="10" step="1" value="4">
+        </div>
+        <div class="field" style="max-width:220px;">
+          <label for="cr-takes-per">Takes per keeper</label>
+          <select class="input" id="cr-takes-per">
+            <option value="3">3 — disciplined</option>
+            <option value="5" selected>5 — typical</option>
+            <option value="8">8 — perfectionist</option>
+          </select>
+        </div>
+      </div>
+      <p style="margin-top:var(--space-4);display:flex;gap:var(--space-3);flex-wrap:wrap;">
+        <button type="button" class="btn" id="cr-roll">🎬 Roll camera</button>
+        <button type="button" class="btn btn-ghost" id="cr-sample-weak">Load the weak sample</button>
+        <button type="button" class="btn btn-ghost" id="cr-sample-strong">Load the strong sample</button>
+        <button type="button" class="btn btn-ghost" id="cr-clear">Clear</button>
+      </p>
+      <p class="empty-state" id="cr-error" role="alert" hidden></p>
+    </section>
+
+    <div id="cr-results" class="cr-reveal" hidden>
+      <section class="container" aria-labelledby="cr-grade-h" style="margin-top:var(--space-8);">
+        <div class="cr-slate">
+          <span class="cr-take-tag" aria-hidden="true">Take 02</span>
+          <h2 id="cr-grade-h">The dailies <span class="api-badge" id="cr-badge" data-api-state="none" role="status" tabindex="0"></span></h2>
+          <span class="tc" aria-hidden="true">00:00:45:00</span>
+        </div>
+        <div id="cr-grade" class="card" aria-live="polite"></div>
+        <h3 style="margin-top:var(--space-5);">The ten layers</h3>
+        <ol id="cr-layers" class="cr-layers"></ol>
+      </section>
+
+      <section class="container" aria-labelledby="cr-shoot-h" style="margin-top:var(--space-8);">
+        <div class="cr-slate">
+          <span class="cr-take-tag" aria-hidden="true">Take 03</span>
+          <h2 id="cr-shoot-h">The shoot</h2>
+          <span class="tc" aria-hidden="true">00:01:30:00</span>
+        </div>
+        <p class="calc-note">Shot-by-shot, built from the guide's real prompt library — every shot names the template it came from. Better prompts earn more coverage.</p>
+        <div id="cr-shoot"></div>
+        <div class="cr-timeline" role="region" aria-label="Scene timeline">
+          <div class="container cr-timeline-inner">
+            <span class="cr-tl-label" aria-hidden="true">Timeline — this take</span>
+            <div class="cr-tl-track">
+              <div class="cr-tl-fill" id="cr-tl-fill"></div>
+              <ol class="cr-tl-shots" id="cr-tl-shots"></ol>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="container" aria-labelledby="cr-cost-h" style="margin-top:var(--space-8);">
+        <div class="cr-slate">
+          <span class="cr-take-tag" aria-hidden="true">Take 04</span>
+          <h2 id="cr-cost-h">The cost desk</h2>
+          <span class="tc" aria-hidden="true">00:02:15:00</span>
+        </div>
+        <div class="card" aria-live="polite">
+          <div id="cr-cost"></div>
+        </div>
+      </section>
+
+      <section class="container" aria-labelledby="cr-fix-h" style="margin-top:var(--space-8);">
+        <div class="cr-slate">
+          <span class="cr-take-tag" aria-hidden="true">Take 05</span>
+          <h2 id="cr-fix-h">The fix bay</h2>
+          <span class="tc" aria-hidden="true">00:03:00:00</span>
+        </div>
+        <p>Every missing layer gets a real technique from the prompt library — quoted, cited, one click to apply. Applying re-shoots the scene as a new take, so you can watch the cut improve.</p>
+        <div id="cr-fix" class="cr-fixgrid"></div>
+      </section>
+
+      <section class="container" aria-labelledby="cr-takes-h" style="margin-top:var(--space-8);">
+        <div class="cr-slate">
+          <span class="cr-take-tag" aria-hidden="true">Take 06</span>
+          <h2 id="cr-takes-h">The take log</h2>
+          <span class="tc" aria-hidden="true">00:03:45:00</span>
+        </div>
+        <ol id="cr-takes" class="cr-takelog"></ol>
+        <p style="margin-top:var(--space-5);"><a class="btn btn-ghost" href="anatomy.html">Learn the anatomy →</a> <a class="btn btn-ghost" href="workshop.html">Open the workshop →</a> <a class="btn btn-ghost" href="linter.html">Lint any prompt →</a></p>
+      </section>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+    </div>
+  </footer>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/api-client.js"></script>
+  <script src="assets/js/cutting-room.js"></script>
   <script src="assets/js/docs.js"></script>
   <script src="assets/js/identity.js"></script>
 </body>
@@ -4050,6 +4194,19 @@ def main():
                 h1_id="lint-title",
                 extra=""""""),        css=css_links, sitenav=nav_html("", "linter.html"), footer=footer_html("")))
 
+    # The Cutting Room, playable (wow wave 1: type a weak prompt, watch the
+    # scene get built shot by shot from the real prompt library, improve the
+    # prompt via the fix bay, watch the cut improve — real cost math)
+    (SITE / "cutting-room.html").write_text(CUTTINGROOM_TMPL.format(
+            hero=hero_cutroom(
+                kicker="""Interactive tool""",
+                h1="""The cutting <span class="accent">room.</span>""",
+                lede="""A playable cutting room: type a weak prompt, roll the camera, and watch the scene get built shot by shot from the guide's real prompt library — then improve the prompt in the fix bay and watch the cut improve, take by take. Real templates, real model pricing, real cost math.""",
+                deck_title="""CUTTING_ROOM — TAKE_01""",
+                clips={"v2": ['The bench'], "v1": ['Dailies', 'The shoot', 'Fix bay'], "a1": ['Take log', 'Cost desk', 'Print it']},
+                h1_id="cr-title",
+                extra=""""""),        css=css_links, sitenav=nav_html("", "cutting-room.html"), footer=footer_html("")))
+
     # Episode planner (wave 14: mini-drama series setup → episode blocks → arc tracker)
     (SITE / "episode-planner.html").write_text(EPISODEPLANNER_TMPL.format(
             hero=hero_cutroom(
@@ -4180,6 +4337,9 @@ def main():
         {"url": "linter.html", "title": "Prompt linter", "section": "Tools",
          "headings": ["Your prompt", "Analysis", "The ten layers"],
          "text": "Prompt linter: paste any prompt and get a structural analysis against the ten-layer prompt anatomy — layers present/missing, vague words flagged, concrete fix per gap, one-click handoff to the workshop. Heuristic: checks structure, not taste."},
+        {"url": "cutting-room.html", "title": "The cutting room", "section": "Tools",
+         "headings": ["The empty bench", "The dailies", "The shoot", "The cost desk", "The fix bay", "The take log"],
+         "text": "The cutting room, playable: type a weak prompt, roll the camera, and watch the scene get built shot by shot from the guide's real 47-template prompt library — then improve the prompt with guided fix-bay techniques quoted from real templates and watch the cut improve take by take, with real model pricing and honest cost math from the Watchtower pricing API."},
         {"url": "prompts.html", "title": "Prompt library", "section": "Tools",
          "headings": ["Find a template", "Where to go next"],
          "text": "Prompt library: all 47 guide templates in one browsable shelf — full-text search plus filters for shot type, camera movement, lighting, and mood. Every card shows which prompt-anatomy layers the template demonstrates, the shortlisted models, matching teardown workflows, and one-click copy, remix, or Send to Studio."},

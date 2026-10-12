@@ -36,6 +36,7 @@
         <a href="model-watch.html">Model watch</a>
         <a href="doctor.html">Doctor</a>
         <a href="linter.html">Linter</a>
+        <a href="cutting-room.html">Cutting room</a>
         <a href="prompts.html">Prompts</a>
         <a href="models/">Models</a>
         <a href="shots.html">Shot list</a>
@@ -92,7 +93,11 @@
         <p>This changelog is rebuilt from the repository's git history on every site build, so it always reflects the latest release. Each entry below is a shipped change with its commit date — not a roadmap, not a promise. When a model price, feature, or platform rule changes in the world, the corresponding chapter or API update appears here with its date, and the affected chapter links its sources.</p>
       </div>
       <h2>Recent changes</h2>
-      <ol class="change-list"><li><span class="change-date">2026-10-12</span> <span class="change-hash">fdc51f8</span><p>Vercel Wave A: The Watchtower (film-watchtower server system)</p></li>
+      <ol class="change-list"><li><span class="change-date">2026-10-12</span> <span class="change-hash">9d69af2</span><p>GO_LIVE.md + LIVE_CHECKLIST.md: one-time -live deploy model, function roster, crons, env vars</p></li>
+      <li><span class="change-date">2026-10-12</span> <span class="change-hash">ddddbe8</span><p>GO_LIVE.md: one-time -live snapshot deploy model (CLI, no git integration, GitHub-only after)</p></li>
+      <li><span class="change-date">2026-10-12</span> <span class="change-hash">710814d</span><p>WAVELOG: record Wave B remote commit hash</p></li>
+      <li><span class="change-date">2026-10-12</span> <span class="change-hash">90b87fb</span><p>Vercel Wave B: Watchtower frontend integration + GO_LIVE.md</p></li>
+      <li><span class="change-date">2026-10-12</span> <span class="change-hash">fdc51f8</span><p>Vercel Wave A: The Watchtower (film-watchtower server system)</p></li>
       <li><span class="change-date">2026-10-12</span> <span class="change-hash">cea2f52</span><p>Wave 39: 10th teardown &#x27;The Lost Fembot&#x27; (Svedka/Silverside Super Bowl LX) + component-based generation craft chapter + workflow-component-separation HAND skill</p></li>
       <li><span class="change-date">2026-10-12</span> <span class="change-hash">245fe91</span><p>Wave 38: record remote commit hash in WAVELOG</p></li>
       <li><span class="change-date">2026-10-12</span> <span class="change-hash">2bbd451</span><p>Wave 38: episode-pipeline revisit #6 — tooling upgrades, tool improvements, worked example</p></li>
@@ -102,18 +107,14 @@
       <li><span class="change-date">2026-10-12</span> <span class="change-hash">8b89d84</span><p>MERGE waves 33/34/35: fold WAVELOG entries, documentary-ethics chapter build, st3 styles into STUDIO_TMPL</p></li>
       <li><span class="change-date">2026-10-12</span> <span class="change-hash">d10a300</span><p>Wave 34: Studio 3.0 — Shot Refinery + plan sharing + draft-cheap/finish-flagship optimizer mode</p></li>
       <li><span class="change-date">2026-10-12</span> <span class="change-hash">f6563d7</span><p>Wave 33: WAVELOG remote commit hash + verification detail</p></li>
-      <li><span class="change-date">2026-10-12</span> <span class="change-hash">46ff995</span><p>Wave 35: WAVELOG fragment — fill commit SHAs + remote-push behavior note</p></li>
-      <li><span class="change-date">2026-10-12</span> <span class="change-hash">e4f16d2</span><p>Wave 33: 9th teardown — Dragon Blue &#x27;The Production Office&#x27; + new agentic-production-office craft chapter &amp; HAND skill</p></li>
-      <li><span class="change-date">2026-10-12</span> <span class="change-hash">bfc11c2</span><p>Wave 35: new craft chapter &#x27;Documentary Ethics for AI Footage&#x27; (+ MERGE + WAVELOG fragments)</p></li>
-      <li><span class="change-date">2026-10-12</span> <span class="change-hash">6929b26</span><p>Wave 32: WAVELOG remote commit hash + verification detail</p></li>
-      <li><span class="change-date">2026-10-12</span> <span class="change-hash">784c9ec</span><p>Wave 32: EPISODE PIPELINE revisit #5 — HeyGen Voice tooling, YouTube Feb-2027 monetization thresholds, institutional series-development discipline, Shortical off-screen lane</p></li></ol>
+      <li><span class="change-date">2026-10-12</span> <span class="change-hash">46ff995</span><p>Wave 35: WAVELOG fragment — fill commit SHAs + remote-push behavior note</p></li></ol>
       <p class="calc-note" style="margin-bottom:var(--space-7);">Older history lives in the repository's git log. The guide also ships <code>llms.txt</code> so agents can check freshness programmatically.</p>
     </section>
   </main>
   <footer class="site-footer">
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
-      <nav aria-label="Footer"><a href="index.html">Guide</a><a href="skills.html">Skills</a><a href="workshop.html">Workshop</a><a href="quiz.html">Quiz</a><a href="compare.html">Compare</a><a href="gallery.html">Gallery</a><a href="teardown.html">Teardowns</a><a href="model-watch.html">Model watch</a><a href="checks/">Knowledge checks</a><a href="budget.html">Budget</a><a href="optimizer.html">Optimizer</a><a href="shots.html">Shot list</a><a href="style-bible.html">Style bible</a><a href="doctor.html">Doctor</a><a href="linter.html">Linter</a><a href="prompts.html">Prompts</a><a href="models/">Models</a><a href="anatomy.html">Anatomy</a><a href="manifesto.html">Manifesto</a><a href="craft-not-buttons.html">Craft, not buttons</a><a href="recipes.html">Recipes</a><a href="field-guides/">Field guides</a><a href="changelog.html">Changelog</a><a href="skill-spec.html">Skill spec</a><a href="api.html">API</a></nav>
+      <nav aria-label="Footer"><a href="index.html">Guide</a><a href="skills.html">Skills</a><a href="workshop.html">Workshop</a><a href="quiz.html">Quiz</a><a href="compare.html">Compare</a><a href="gallery.html">Gallery</a><a href="teardown.html">Teardowns</a><a href="model-watch.html">Model watch</a><a href="checks/">Knowledge checks</a><a href="budget.html">Budget</a><a href="optimizer.html">Optimizer</a><a href="shots.html">Shot list</a><a href="style-bible.html">Style bible</a><a href="doctor.html">Doctor</a><a href="linter.html">Linter</a><a href="cutting-room.html">Cutting room</a><a href="prompts.html">Prompts</a><a href="models/">Models</a><a href="anatomy.html">Anatomy</a><a href="manifesto.html">Manifesto</a><a href="craft-not-buttons.html">Craft, not buttons</a><a href="recipes.html">Recipes</a><a href="field-guides/">Field guides</a><a href="changelog.html">Changelog</a><a href="skill-spec.html">Skill spec</a><a href="api.html">API</a></nav>
       <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>

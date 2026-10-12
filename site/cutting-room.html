@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The cutting room — AI Film Master Guide</title>
+  <meta name="description" content="A playable cutting room: type a weak prompt, roll the camera, and watch the scene get built shot by shot from the guide's real prompt library — then improve the prompt and watch the cut improve. Real templates, real model pricing, real cost math.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/motifs.css">
+  <link rel="stylesheet" href="assets/css/docs.css">
+  <link rel="stylesheet" href="assets/css/print.css">
+</head>
+<body>
+  <div class="edge-right" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html">Guide</a>
+        <a href="skills.html">Skills</a>
+        <a href="workshop.html">Workshop</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="compare.html">Compare</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="teardown.html">Teardowns</a>
+        <a href="model-watch.html">Model watch</a>
+        <a href="doctor.html">Doctor</a>
+        <a href="linter.html">Linter</a>
+        <a href="cutting-room.html" aria-current="page">Cutting room</a>
+        <a href="prompts.html">Prompts</a>
+        <a href="models/">Models</a>
+        <a href="shots.html">Shot list</a>
+        <a href="style-bible.html">Style bible</a>
+        <a href="changelog.html">Changelog</a>
+        <a href="skill-spec.html">Skill spec</a>
+        <a href="api.html">API</a>
+      </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">⌘K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-cutroom" aria-labelledby="cr-title">
+      <div class="tl-deck" aria-hidden="true">
+        <div class="tl-chrome">
+          <span class="tl-rec"><i></i>REC</span>
+          <span class="tl-tc-live" data-tl-tc>00:00:04:00</span>
+          <span class="tl-pop">2-POP 01:00:06:00 &#183; &#x223F;1kHz</span>
+          <span class="tl-title">CUTTING_ROOM — TAKE_01</span>
+        </div>
+        <div class="tl-ruler">
+          <span style="left:0%">00:00:00:00</span><span style="left:20%">00:00:12:00</span><span style="left:40%">00:00:24:00</span><span style="left:60%">00:00:36:00</span><span style="left:80%">00:00:48:00</span><span style="left:100%">00:01:00:00</span>
+        </div>
+        <div class="tl-tracks">
+          <div class="tl-track"><span class="tl-track-label">V2</span>
+            <span class="clip is-blue" style="left:2.0%;width:96.0%">The bench</span>
+          </div>
+          <div class="tl-track"><span class="tl-track-label">V1</span>
+            <span class="clip is-gold" style="left:2.0%;width:30.7%">Dailies</span>
+            <span class="clip is-gold" style="left:34.7%;width:30.7%">The shoot</span>
+            <span class="clip is-gold" style="left:67.3%;width:30.7%">Fix bay</span>
+          </div>
+          <div class="tl-track"><span class="tl-track-label">A1</span>
+            <span class="clip is-rec" style="left:2.0%;width:30.7%">Take log</span>
+            <span class="clip " style="left:34.7%;width:30.7%">Cost desk</span>
+            <span class="clip " style="left:67.3%;width:30.7%">Print it</span>
+          </div>
+          <div class="tl-playhead"></div>
+        </div>
+        <div class="leader-frame" data-leader-frame><b>3</b><span class="lf-label">LEADER</span></div>
+      </div>
+      <div class="container hero-inner">
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Interactive tool</span>
+        <h1 id="cr-title">The cutting <span class="accent">room.</span></h1>
+        <p class="lede">A playable cutting room: type a weak prompt, roll the camera, and watch the scene get built shot by shot from the guide's real prompt library — then improve the prompt in the fix bay and watch the cut improve, take by take. Real templates, real model pricing, real cost math.</p>
+        
+      </div>
+    </section>
+    <div id="cr-note" class="container" style="margin-top:var(--space-4);"></div>
+
+    <section class="container cr-reveal" aria-labelledby="cr-bench-h" style="margin-top:var(--space-7);">
+      <div class="cr-slate">
+        <span class="cr-take-tag" aria-hidden="true">Take 01</span>
+        <h2 id="cr-bench-h">The empty bench</h2>
+        <span class="tc" aria-hidden="true">00:00:00:00</span>
+      </div>
+      <p>A weak prompt is already on the bench — the kind everyone types first. Roll the camera and watch what it shoots. Then use the fix bay to direct it properly, take by take.</p>
+      <label for="cr-prompt"><strong>Your prompt</strong> <span class="calc-note">(Ctrl+Enter rolls the camera)</span></label>
+      <textarea id="cr-prompt" rows="6" style="width:100%;margin-top:var(--space-2);">a dog in a city</textarea>
+      <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;margin-top:var(--space-3);align-items:end;">
+        <div class="field" style="max-width:180px;">
+          <label for="cr-seconds">Shot length (seconds)</label>
+          <input class="input" type="number" id="cr-seconds" min="2" max="10" step="1" value="4">
+        </div>
+        <div class="field" style="max-width:220px;">
+          <label for="cr-takes-per">Takes per keeper</label>
+          <select class="input" id="cr-takes-per">
+            <option value="3">3 — disciplined</option>
+            <option value="5" selected>5 — typical</option>
+            <option value="8">8 — perfectionist</option>
+          </select>
+        </div>
+      </div>
+      <p style="margin-top:var(--space-4);display:flex;gap:var(--space-3);flex-wrap:wrap;">
+        <button type="button" class="btn" id="cr-roll">🎬 Roll camera</button>
+        <button type="button" class="btn btn-ghost" id="cr-sample-weak">Load the weak sample</button>
+        <button type="button" class="btn btn-ghost" id="cr-sample-strong">Load the strong sample</button>
+        <button type="button" class="btn btn-ghost" id="cr-clear">Clear</button>
+      </p>
+      <p class="empty-state" id="cr-error" role="alert" hidden></p>
+    </section>
+
+    <div id="cr-results" class="cr-reveal" hidden>
+      <section class="container" aria-labelledby="cr-grade-h" style="margin-top:var(--space-8);">
+        <div class="cr-slate">
+          <span class="cr-take-tag" aria-hidden="true">Take 02</span>
+          <h2 id="cr-grade-h">The dailies <span class="api-badge" id="cr-badge" data-api-state="none" role="status" tabindex="0"></span></h2>
+          <span class="tc" aria-hidden="true">00:00:45:00</span>
+        </div>
+        <div id="cr-grade" class="card" aria-live="polite"></div>
+        <h3 style="margin-top:var(--space-5);">The ten layers</h3>
+        <ol id="cr-layers" class="cr-layers"></ol>
+      </section>
+
+      <section class="container" aria-labelledby="cr-shoot-h" style="margin-top:var(--space-8);">
+        <div class="cr-slate">
+          <span class="cr-take-tag" aria-hidden="true">Take 03</span>
+          <h2 id="cr-shoot-h">The shoot</h2>
+          <span class="tc" aria-hidden="true">00:01:30:00</span>
+        </div>
+        <p class="calc-note">Shot-by-shot, built from the guide's real prompt library — every shot names the template it came from. Better prompts earn more coverage.</p>
+        <div id="cr-shoot"></div>
+        <div class="cr-timeline" role="region" aria-label="Scene timeline">
+          <div class="container cr-timeline-inner">
+            <span class="cr-tl-label" aria-hidden="true">Timeline — this take</span>
+            <div class="cr-tl-track">
+              <div class="cr-tl-fill" id="cr-tl-fill"></div>
+              <ol class="cr-tl-shots" id="cr-tl-shots"></ol>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="container" aria-labelledby="cr-cost-h" style="margin-top:var(--space-8);">
+        <div class="cr-slate">
+          <span class="cr-take-tag" aria-hidden="true">Take 04</span>
+          <h2 id="cr-cost-h">The cost desk</h2>
+          <span class="tc" aria-hidden="true">00:02:15:00</span>
+        </div>
+        <div class="card" aria-live="polite">
+          <div id="cr-cost"></div>
+        </div>
+      </section>
+
+      <section class="container" aria-labelledby="cr-fix-h" style="margin-top:var(--space-8);">
+        <div class="cr-slate">
+          <span class="cr-take-tag" aria-hidden="true">Take 05</span>
+          <h2 id="cr-fix-h">The fix bay</h2>
+          <span class="tc" aria-hidden="true">00:03:00:00</span>
+        </div>
+        <p>Every missing layer gets a real technique from the prompt library — quoted, cited, one click to apply. Applying re-shoots the scene as a new take, so you can watch the cut improve.</p>
+        <div id="cr-fix" class="cr-fixgrid"></div>
+      </section>
+
+      <section class="container" aria-labelledby="cr-takes-h" style="margin-top:var(--space-8);">
+        <div class="cr-slate">
+          <span class="cr-take-tag" aria-hidden="true">Take 06</span>
+          <h2 id="cr-takes-h">The take log</h2>
+          <span class="tc" aria-hidden="true">00:03:45:00</span>
+        </div>
+        <ol id="cr-takes" class="cr-takelog"></ol>
+        <p style="margin-top:var(--space-5);"><a class="btn btn-ghost" href="anatomy.html">Learn the anatomy →</a> <a class="btn btn-ghost" href="workshop.html">Open the workshop →</a> <a class="btn btn-ghost" href="linter.html">Lint any prompt →</a></p>
+      </section>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer"><a href="index.html">Guide</a><a href="skills.html">Skills</a><a href="workshop.html">Workshop</a><a href="quiz.html">Quiz</a><a href="compare.html">Compare</a><a href="gallery.html">Gallery</a><a href="teardown.html">Teardowns</a><a href="model-watch.html">Model watch</a><a href="checks/">Knowledge checks</a><a href="budget.html">Budget</a><a href="optimizer.html">Optimizer</a><a href="shots.html">Shot list</a><a href="style-bible.html">Style bible</a><a href="doctor.html">Doctor</a><a href="linter.html">Linter</a><a href="cutting-room.html">Cutting room</a><a href="prompts.html">Prompts</a><a href="models/">Models</a><a href="anatomy.html">Anatomy</a><a href="manifesto.html">Manifesto</a><a href="craft-not-buttons.html">Craft, not buttons</a><a href="recipes.html">Recipes</a><a href="field-guides/">Field guides</a><a href="changelog.html">Changelog</a><a href="skill-spec.html">Skill spec</a><a href="api.html">API</a></nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+    </div>
+  </footer>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/api-client.js"></script>
+  <script src="assets/js/cutting-room.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
+</body>
+</html>
