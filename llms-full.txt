@@ -1117,7 +1117,7 @@ AI features have a specific structural grammar, and the failures are structural 
 <!-- chapter: craft/episodic-shortform.md -->
 # Episodic Short-Form: The AI Mini-Drama Pipeline
 
-The most durable format in AI short-form video right now is not a single short — it is a *series*. Numbered episodes, one emotion each, voice-led, cliffhanger endings, and a caption that is itself the hook. This chapter adapts the genre into a repeatable production pipeline: nine stages, hard budgets, eight quality gates. The craft lesson underneath is old: a serial lives or dies on the bible, the arc, and the cut — AI only changes which of those costs the most money.
+The most durable format in AI short-form video right now is not a single short — it is a *series*. Numbered episodes, one emotion each, voice-led, cliffhanger endings, and a caption that is itself the hook. This chapter adapts the genre into a repeatable production pipeline: nine stages, hard budgets, nine quality gates. The craft lesson underneath is old: a serial lives or dies on the bible, the arc, and the cut — AI only changes which of those costs the most money.
 
 ## The observed case
 
@@ -1159,9 +1159,9 @@ Each of these is a design decision you can steal for any series, on any platform
 
 The deep moat is not the animation — the genre's visuals are slow, simple, character-consistent frames; *the story does the work, not the animation.* The moat is the arc: a locked character bible, per-line voice-first editing, and dialogue-locked cuts. Everything else is execution.
 
-## Three more working serialized formats (Oct 2026)
+## Four more working serialized formats (Oct 2026)
 
-The mini-drama pipeline above is the flagship, but the boom is wider than one genre. Three more serialized short-form formats are demonstrably working right now. Each follows the same skeleton — numbered episodes, one unit of tension per episode, cliffhanger endings — with a different engine under it. Each entry: the format, why it works, and a fictional worked episode-block example showing the block structure.
+The mini-drama pipeline above is the flagship, but the boom is wider than one genre. Four more serialized short-form formats are demonstrably working right now. Each follows the same skeleton — numbered episodes, one unit of tension per episode, cliffhanger endings — with a different engine under it. Each entry: the format, why it works, and a fictional worked episode-block example showing the block structure.
 
 ### 1. POV micro-series — "you" are the protagonist
 
@@ -1210,7 +1210,47 @@ The mini-drama pipeline above is the flagship, but the boom is wider than one ge
 - Cliffhanger: the partner spots her in the crowd — freeze on his face
 - Keyframe scenes: spotlight garment / back-row recording / timestamped sketches on a phone / his frozen face
 
-All three plug into the same planner. The [Episode planner](../episode-planner.html) now has a **format picker** (mini-drama / POV series / day-in-the-life / revenge arc) that pre-fills the block skeleton per format, plus a **runtime estimator** (beats × seconds-per-beat) that checks the estimate against the genre's runtime band before you save — the dialogue-budget rule, enforced at the planning stage instead of discovered in post.
+### 4. Interactive / comment-driven episodes — the audience votes, the story obeys
+
+**The format.** One decision per episode, and the decision is genuinely handed to the viewers: the episode freezes on the choice, the caption + pinned comment (or the platform's poll sticker) ask the vote, and the *next* episode plays out the winning choice. The comment section becomes part of the writers' room.
+
+**Why it's verified, not trend-hype.** This is the strongest new sub-format of the cycle, with evidence on both sides of the fence:
+
+- **Interactive production is now a stated product category.** Singapore-based DRAMAGO (an AI-native drama platform) announced Sept 30, 2026 that it has built its catalogue around interactive drama since April 2026 — 14 AI-produced dramas released, 10 of them interactive — and plans a Q4 2026 beta of an "AI Story World" where the audience keeps questioning the story after the episode ends (FinanceWire press release, Sept 30, 2026 — company-claimed).
+- **The audience is already doing it on TikTok.** Sydney Robinson's (@thatgirlsydjo) five-part "Group Chat" series — fictional drama unfolding between a group of friends, played by one creator — opened at 30M+ views and 20,000 comments of viewers demanding more episodes (Dexerto). A vertical-micro-drama survey paper (Zenodo, late 2025) documents the behavior explicitly: viewers *roleplay in the comments*, anticipating characters' next moves — "effectively becoming a shared communal experience." Some micro-drama apps have already built in-app discussion threads and polls so viewers vote on plot twists (same paper). TikTok has been adapting too: an experimental "Minis" series section in the main app and, by early 2026, PineDrama as a separate app to organize episodic shorts with continue-watching rails.
+
+**Why it works.** Participation is a stronger follow mechanic than emotion. A cliffhanger asks the viewer to *return*; a vote asks them to *invest* — and investment converts: the voter has to come back to see whether their choice won. The comment section does double duty as distribution (comments are engagement signals) and as the writers' room (the winning vote and the strongest minority theories become episode N+1's block inputs).
+
+**The pipeline rules for this format:**
+
+- **One decision per episode** — the interactive analogue of the two-emotions rule. Two votes splits the comment section and kills the funnel.
+- **The decision beat freezes on the choice** — generate a freeze-frame-friendly keyframe with clean composition; do NOT burn the poll into the video. Platform poll stickers and pinned comments do the asking, and they stay editable.
+- **The vote gets a real deadline** ("the winning choice plays out tomorrow") — open votes feel like homework; closed votes feel like a game.
+- **The vote wins, always** — rigging or ignoring the result reads instantly in the comments. The format's contract is participation.
+- **Harvest the comments** — the winning vote and the loudest minority theories become the next block's stakes, hook, and beats. Log the tally in the arc tracker.
+
+**Worked episode-block example** *(fictional):*
+
+- Format: interactive · Episode 3 · Emotion: **suspense**
+- Stake: Lena finds a door in her apartment that was not there yesterday
+- Hook visual (first 3s): a door where a wall should be, light leaking underneath
+- Beats: (1) the impossible door; (2) the vote: she knocks — or walks away (the decision beat, freeze on her hand); (3) she follows the winning choice — the consequence plays out; (4) the turn: what is behind the door reframes the question
+- Cliffhanger: the next decision point — freeze before the vote closes
+- Keyframe scenes: impossible-door close-up / decision-beat freeze for poll overlay / consequence beat / decision-point cliffhanger
+
+*Honesty note on the rest of the cycle:* multi-POV telling (the Group Chat phenomenon is inherently multi-character) is a *technique inside* these formats, not a verified standalone AI format; duet/stitch chains are a 2020-era mechanic, not new; and "ask the AI character" Q&A accounts (e.g. the Eleanor account's "ask AI anything") show no verified Oct-2026 serialized-mini-drama traction — reported as observed, not as a format pick.
+
+## Studio 2.0 — the pipeline's production-planning end
+
+The guide's [Studio](../studio.html) now runs the episode pipeline as a planning tool end to end:
+
+- **Series mode** — plan 3–10 episodes in one pass. Each episode is a full production plan (shot list with per-shot prompts from the 47-template library, per-shot model picks from `models.json` with real cost math, budget lines, schedule), wrapped in a **series bible**: locked cast anchors + locations and a **prompt-DNA block** prepended verbatim to every shot prompt in every episode — the pipeline's official cross-episode consistency engine.
+- **The bridge** — "Send series to Studio →" in the [Episode planner](../episode-planner.html) stages the saved series (title, logline, cast anchors, every block's format/runtime/beats) into the Studio, which pre-fills project type (most common block format), episode count (block count, 3–10), per-episode runtime (median beats × seconds-per-beat snapped into the format's band), cast rows, and attaches each block's emotion/beats/hook/turn/cliffhanger as the episode's arc — no skeletons when bridge arcs exist.
+- **The production packet** — the deliverable: the full costed packet (bible, per-episode arcs + shot prompts with locked DNA, model picks, budget with the "saved by the bible" reuse line, schedule, the consistency checklist) exported as Markdown or a self-contained HTML file with inline CSS, a print stylesheet, and zero external requests.
+
+**The reference implementation.** A full 5-episode mini-drama — *"The Night Bus"* — runs through this whole chain in `~/workspace/tiktok-episode-pipeline/WORKED-EXAMPLE-5-EPISODE.md`: concept → five planner blocks → the bridge handoff → a Studio series packet with real cost math (50 shots, $20.48 clean / $102.40 at 5× / $409.60 at 20×, seed `b272deb1`), and the nine gates walked for episode 1. The numbers are asserted against the real engine in `scripts/agent-workflows.test.js` (workflow 5) — if the underlying model data changes, the test fails rather than letting the example drift.
+
+All four formats plug into the same planner. The [Episode planner](../episode-planner.html) now has a **format picker** (mini-drama / POV series / day-in-the-life / revenge arc / interactive) that pre-fills the block skeleton per format, plus a **runtime estimator** (beats × seconds-per-beat) that checks the estimate against the genre's runtime band before you save — the dialogue-budget rule, enforced at the planning stage instead of discovered in post.
 
 ## The nine stages, adapted
 
@@ -1245,9 +1285,9 @@ The production pipeline runs one episode at a time inside a series scaffold buil
 
 These budgets are genre-plastic in one direction only: you can spend *fewer* videos or *less* runtime. Spending more on any row is how episodes die in post.
 
-## The eight quality gates
+## The nine quality gates
 
-Run every episode through all eight before it ships. A gate fails → fix at that stage, never compensate downstream.
+Run every episode through all nine before it ships. A gate fails → fix at that stage, never compensate downstream.
 
 - [ ] **G0 — Series lock:** bible has anchor + verified ref image + locked voice per character; arc complete with all episode blocks and cliffhangers.
 - [ ] **G2 — Script:** read aloud; hook line in line 1; one emotion; ends mid-beat (question or interrupted line, never a resolution).
@@ -1257,6 +1297,7 @@ Run every episode through all eight before it ships. A gate fails → fix at tha
 - [ ] **G6 — Cut:** 1080×1920; runtime ±10% of dialogue; dialogue starts ≤0.3s; captions burned, phrase-level, legible; the assembly script re-runs cleanly from scratch.
 - [ ] **G7 — Caption package:** hook + hashtags + tease; one-episode-per-day cadence respected.
 - [ ] **G8 — Continuity:** episode log + lesson appended; episode counter incremented.
+- [ ] **G9 — Cross-episode consistency (series gate):** prompt-DNA block byte-identical across every shot prompt of every episode; anchor paragraphs byte-identical to the bible; no new characters mid-episode; recurring props/costumes carried across episodes per the bible. (Run once per season — or whenever the bible changes.)
 
 (Gates are numbered to match the pipeline stages — G1, the per-episode prep check, is absorbed into the episode block itself.)
 
@@ -1274,6 +1315,8 @@ Run every episode through all eight before it ships. A gate fails → fix at tha
 - Platform mechanics: TikTok interest-graph test-pool + watch time/completion signal hierarchy (blog.hootsuite.com/tiktok-algorithm/, vamp.com, fivebbc.com); DMA 40–50% weight estimate (single-source); TikTok unoriginal-content demotion (viral.app); Instagram Reels sends-per-reach as #1 signal (Mosseri, via virvid.ai / creatorflow.so)
 - Oct 1, 2026 Shorts originality update: Creator Liaison Rene Ritchie announcement — original content prioritized, aggregator re-uploads demoted at channel level (socialmediatoday.com)
 - New formats: POV "Hallway series" @quiet.truths742, Episode 1 (TikTok, Oct 2026); "day in the life" AI character vignettes — serialized recurring protagonist outperforms one-offs in completion + subscriber conversion (autoweeb.com); betrayal & revenge storytelling 21x breakout, $20–$25 CPM (outlierkit.com — creator-reported ranges); *Your love is my poison* (ReelShort) and *Never Betray the Woman Who Built You* (Playlet) + TikTok→app funnel (md-eksperiment.org, 2026)
+- Interactive format (Oct 2026): DRAMAGO — interactive AI drama since April 2026, 14 AI-produced dramas / 10 interactive, Q4 2026 AI Story World beta (FinanceWire press release, Sept 30, 2026 — company-claimed); TikTok "Group Chat" series @thatgirlsydjo — 30M+ views, 20,000 comments, five-part (Dexerto); viewers roleplaying in comments + in-app discussion threads/polls + PineDrama app early 2026 + "Minis" series section experiment (vertical micro-drama survey paper, Zenodo, late 2025)
+- Worked reference implementation: `~/workspace/tiktok-episode-pipeline/WORKED-EXAMPLE-5-EPISODE.md` ("The Night Bus" — 5-episode mini-drama, concept → blocks → bridge → Studio packet; 50 shots, $20.48 clean / $102.40 at 5× / $409.60 at 20×, seed b272deb1; numbers asserted in `scripts/agent-workflows.test.js` workflow 5)
 - Companion: `craft/longform-pipelines.md`, `craft/story-structure.md`, `craft/sound-music-audio.md`, `craft/editing-ai-footage.md`
 - Companion tools: [Episode planner](../episode-planner.html) and [Hook-title generator](../hook-generator.html) (Tools)
 
@@ -2216,7 +2259,7 @@ Do a 20-minute post-mortem while it's fresh: what broke, what the fix was, what 
 - `site/style-bible.html` — style-bible builder: describe character/world once → reusable STYLE LOCK block; named bibles in localStorage (`afg-style-bibles`), copy/save/export/import, workshop integration
 - `site/episode-planner.html` — episode planner: lock a mini-drama series (title, logline, hashtag, cast with voice IDs + anchors), plan episode blocks (one emotion, 3–5 beats, turn, cliffhanger), arc tracker with lessons; saved blocks feed one-click 'Send series to Studio' — the planner stages title/logline/cast anchors/every block's format, runtime, and beats into the Studio's series mode; localStorage (`afg-episode-series`)
 - `site/hook-generator.html` — hook-title generator: `[Episode N] + [one-line emotional stake] + [CTA]` → 5 worked caption variants, each with a why-this-hooks note
-- `site/studio.html` — Studio 2.0 — AI-film studio simulator: a standalone film (title, logline, genre/mood, runtime, draft/festival tier) or a serialized series (3–10 episodes, one of the 4 proven mini-drama format presets: mini-drama / POV micro-series / day-in-the-life / revenge arc — each pre-filling runtime band, beat structure, hook style, the dialogue-budget rule) in → deterministic production packet — shot list with per-shot prompts built from the 47-template library, per-shot model picks from `models.json` with cost math, budget table with 5×/20× envelopes, shooting schedule, series bible with locked prompt DNA + locked-anchor asset reuse, self-contained HTML/Markdown packet export (download, print), localStorage plans with names, duplicate, delete, continue-planning; one-click 'Send to Studio' bridge from the episode planner
+- `site/studio.html` — Studio 2.0 — AI-film studio simulator: a standalone film (title, logline, genre/mood, runtime, draft/festival tier) or a serialized series (3–10 episodes, one of the 5 proven serialized format presets: mini-drama / POV micro-series / day-in-the-life / revenge arc / interactive — each pre-filling runtime band, beat structure, hook style, the dialogue-budget rule) in → deterministic production packet — shot list with per-shot prompts built from the 47-template library, per-shot model picks from `models.json` with cost math, budget table with 5×/20× envelopes, shooting schedule, series bible with locked prompt DNA + locked-anchor asset reuse, self-contained HTML/Markdown packet export (download, print), localStorage plans with names, duplicate, delete, continue-planning; one-click 'Send to Studio' bridge from the episode planner
 - `site/quiz.html` — model-picker quiz: 5 questions → ranked top-3 from `models.json` with cost math, one-click handoff to the workshop
 - `site/compare.html` — model compare: 2–3 models side by side (cost, best use, strengths, weaknesses, native audio, status/last-verified) from `models.json`, shareable via URL params; discontinued excluded
 - `site/gallery.html` — prompt gallery: your workshop-saved prompts (localStorage) browsable, filterable by track/model, sortable by rating, open-in-workshop deep links, JSON export/import

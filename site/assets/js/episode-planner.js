@@ -85,11 +85,26 @@
       turn: "Beat 3: she live-posts the original sketches — timestamped two years earlier",
       cliff: "The partner spots her in the crowd — freeze on his face",
       scenes: "spotlight garment; back-row recording; timestamped sketches on phone; his frozen face"
+    },
+    interactive: {
+      label: "Interactive", band: [60, 150], spb: 15,
+      emotion: "suspense",
+      stake: "Lena finds a door in her apartment that was not there yesterday",
+      hook: "A door where a wall should be, light leaking underneath",
+      beats: [
+        "Hook: the impossible door",
+        "The vote: she knocks — or walks away (the decision beat)",
+        "She follows the winning choice — the consequence plays out",
+        "Turn: what is behind the door reframes the question"
+      ],
+      turn: "Beat 4: what is behind the door reframes the question",
+      cliff: "The next decision point — freeze before the vote closes",
+      scenes: "impossible door close-up; decision-beat freeze for poll overlay; consequence beat; decision-point cliffhanger"
     }
   };
   var DEFAULT_FORMAT = "minidrama";
   /* "custom" is a real format choice — it just has no preset skeleton. */
-  var ALL_FORMATS = ["minidrama", "pov", "daylife", "revenge", "custom"];
+  var ALL_FORMATS = ["minidrama", "pov", "daylife", "revenge", "interactive", "custom"];
 
   var els = {
     title: document.getElementById("ep-title"),

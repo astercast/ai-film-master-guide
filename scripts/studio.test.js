@@ -261,10 +261,13 @@ test("series: format presets carry band, beats, spb from the episode planner", (
   assert.deepStrictEqual(S.SERIES_FORMATS.pov.band, [30, 90]);
   assert.deepStrictEqual(S.SERIES_FORMATS.daylife.band, [15, 60]);
   assert.deepStrictEqual(S.SERIES_FORMATS.revenge.band, [60, 150]);
+  assert.deepStrictEqual(S.SERIES_FORMATS.interactive.band, [60, 150], "interactive band");
   assert.strictEqual(S.SERIES_FORMATS.minidrama.spb, 15);
   assert.strictEqual(S.SERIES_FORMATS.pov.spb, 12);
   assert.strictEqual(S.SERIES_FORMATS.daylife.spb, 10);
+  assert.strictEqual(S.SERIES_FORMATS.interactive.spb, 15, "interactive spb");
   assert.ok(S.SERIES_FORMATS.minidrama.voiceRule.includes("golden rule"), "voice rule missing");
+  assert.ok(S.SERIES_FORMATS.interactive.arcStyle.includes("decision"), "interactive arc style missing");
 });
 test("series: studio bands match the episode planner's FORMAT_PRESETS (sync guard)", () => {
   const src = fs.readFileSync(path.join(ROOT, "assets/js/episode-planner.js"), "utf8");

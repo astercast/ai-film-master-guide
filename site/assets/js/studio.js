@@ -150,6 +150,10 @@
     revenge: { label: "Revenge arc", band: [60, 150], spb: 15, beats: 4,
       hookStyle: "the injustice + the first retaliatory move, inside 3 seconds",
       arcStyle: "betrayal → discovery → the plan → the takedown → the reveal; one justice-ladder rung per episode",
+      voiceRule: "Lock voice/dialogue at ≈beats × 15s ±10% BEFORE any frame is generated (the golden rule)." },
+    interactive: { label: "Interactive series", band: [60, 150], spb: 15, beats: 4,
+      hookStyle: "the decision point as a visual in the first 3 seconds — a choice the viewer can see",
+      arcStyle: "one decision per episode: hook → the stakes → the decision beat (poll/comment prompt) → the consequence → freeze before the next choice; viewer comments shape the next episode's block",
       voiceRule: "Lock voice/dialogue at ≈beats × 15s ±10% BEFORE any frame is generated (the golden rule)." }
   };
 

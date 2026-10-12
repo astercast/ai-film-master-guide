@@ -2,7 +2,25 @@
 
 ## Standing items (permanent workstreams)
 
-- **Episode pipeline workstream (permanent, from wave 14):** revisit every ~3 waves — new episode formats from what's working, new tools, tighter procedures, worked examples. Goal: best agent-run episode-production system anywhere. (WAVELOG entry each revisit; the research artifact lives at `~/workspace/tiktok-episode-pipeline/PIPELINE.md`.)
+- **Episode pipeline workstream (permanent, from wave 14):** revisit every ~3 waves — new episode formats from what's working, new tools, tighter procedures, worked examples. Goal: best agent-run episode-production system anywhere. (WAVELOG entry each revisit; the research artifact lives at `~/workspace/tiktok-episode-pipeline/PIPELINE.md`.) **Last revisited: wave 20 (2026-10-11).**
+
+## Wave 20 — EPISODE PIPELINE revisit #2 (2026-10-11)
+
+**Standing workstream:** second scheduled revisit (wave 17 was #1). Studio 2.0 absorbed into the pipeline doc; one verified new format; the first full worked example with engine-asserted numbers.
+
+**Shipped:**
+
+1. **Pipeline doc sync** (`~/workspace/tiktok-episode-pipeline/PIPELINE.md`): new **Stage 0B — Studio 2.0 consistency** as the pipeline's official consistency stage (series bible + prompt-DNA block prepended verbatim to every shot prompt in every episode; locked anchor plates generated ONCE with stated reuse math `avoided = assets × (episodes−1) × still-rate`); the **episode-planner → Studio bridge** as the planning-to-production handoff (bridge input authoritative: project type = most common block format, episodes = block count 3–10, runtime = median beats×spb snapped in-band); **production-packet export** (Markdown + self-contained HTML) as the deliverable format. New **G9 — cross-episode consistency** gate (DNA byte-identical across all shots; anchors byte-identical to the bible; no new characters mid-episode). 8 gates → 9.
+2. **One genuinely new format verified this cycle: interactive / comment-driven episodes.** Verified, not invented: DRAMAGO's AI-native interactive drama catalogue since April 2026 (14 AI-produced dramas, 10 interactive; Q4 2026 AI Story World beta — FinanceWire press release Sept 30, 2026, company-claimed); Sydney Robinson's (@thatgirlsydjo) five-part "Group Chat" TikTok series — 30M+ views, 20,000 comments (Dexerto); viewers roleplaying in comments, in-app discussion threads + polls, PineDrama app, "Minis" series-section experiment (vertical micro-drama survey paper, Zenodo, late 2025). Honest negatives noted in the chapter: multi-POV is a technique inside formats (not standalone); duet/stitch chains are 2020-era; "ask the AI character" Q&A shows no verified Oct-2026 serialized traction.
+3. **Worked example — "The Night Bus"** (`~/workspace/tiktok-episode-pipeline/WORKED-EXAMPLE-5-EPISODE.md`): full 5-episode mini-drama through concept → five planner blocks → bridge → Studio series packet. Real engine numbers, seed `b272deb1`, USD $0.0392/credit: **50 shots** (10/ep, 6s draft, 3 takes), models MiniMax H3 (25) / Kling 3.0 (11) / Hailuo 02-2.3 (8) / Wan 2.6 (3) / Luma Ray 3.2 (3); budget **$20.48 clean, $102.40 at 5×, $409.60 at 20×** (per-episode $3.78/$3.77/$3.49/$5.64/$3.78; ep 4 is Kling-heavy); bible plates $0.02 (4 assets × 0.12 credits/image Soul 2.0); **reuse avoids 1.92 credits ($0.08)**; 26-day schedule; DNA identical on all 50 shots; bridge arcs attached (no skeletons); voice budget 60s = locked dialogue budget. New **workflow 5** in `scripts/agent-workflows.test.js` rebuilds the exact config and asserts every printed number — the example is versioned to the data, not floating.
+4. **Chapter `craft/episodic-shortform.md`:** new format #4 (interactive/comment-driven — the format, the evidence, the pipeline rules, a fictional worked block), new "Studio 2.0 — the pipeline's production-planning end" section (series mode, bridge, packet, worked-example pointer), 8 → 9 gates with the G9 series gate, sources updated.
+5. **Planner + Studio:** new **interactive format preset** everywhere — `FORMAT_PRESETS` (planner) + `SERIES_FORMATS` (Studio) with band [60,150]/spb 15, radios in both tools, "5 proven serialized formats" copy. Sync-test guard auto-covers the new key (32/32 studio tests). Format-preset gap found while doing the worked example: none — the worked example's 4×15s=60s blocks resolve to the bridge's honest median-beats×spb runtime (60s, in-band) rather than the Studio's 90s default; documented in the worked example.
+6. **Skills 225 → 226 (HAND):** `episode-interactive-format` (episodes) — the comment-driven procedure: one decision/episode, decision-beat freeze frame, real vote deadline, harvest comments into the next block. `episode-format-pick` updated to five formats.
+7. **Regenerated:** `site/` (27 chapters, interactive radios, new chapter text), `skills/`, `api/v1/` (re-stamped), `llms.txt`/`llms-full.txt`.
+
+**Validation:** `bash scripts/validate.sh` → ALL STAGES PASS; studio.test.js 32/32; agent-workflows.test.js 60/60 (new workflow 5: 10 Night Bus assertions); 6,296 links, 0 broken; generator audits clean post-commit.
+
+**Commit:** `884b06471581efbe1f28d0f5f9596bdffd249077` ([view](https://github.com/astercast/ai-film-master-guide/commit/884b06471581efbe1f28d0f5f9596bdffd249077)) — 26 files, pushed 2026-10-11, all new/changed files verified present in the remote tree via GitHub API.
 
 ## History
 

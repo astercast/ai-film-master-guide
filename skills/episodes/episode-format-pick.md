@@ -1,6 +1,6 @@
 ---
 name: episode-format-pick
-description: Choose among the four proven mini-drama formats (mini-drama, POV series, day-in-the-life, revenge arc) or custom — each with its runtime band and beat skeleton.
+description: Choose among the five proven serialized formats (mini-drama, POV series, day-in-the-life, revenge arc, interactive) or custom — each with its runtime band and beat skeleton.
 ---
 
 # Pick the serialized format for a series
@@ -15,7 +15,7 @@ When the series concept exists but the episode shape doesn't. Format is a comple
 
 ## Procedure
 
-1. Match the concept to a format: mini-drama (60-150s, one emotion, 3-5 beats, turn, cliffhanger); POV series (30-90s, 'you' are the protagonist); day-in-the-life (15-60s, recurring AI character vignette); revenge arc (60-150s, betrayal -> justice ladder).
+1. Match the concept to a format: mini-drama (60-150s, one emotion, 3-5 beats, turn, cliffhanger); POV series (30-90s, 'you' are the protagonist); day-in-the-life (15-60s, recurring AI character vignette); revenge arc (60-150s, betrayal -> justice ladder); interactive (60-150s, one decision per episode, comment/poll beat, cliffhanger at the next choice).
 2. Apply the format's beat skeleton to the first episode block: emotion, stake, hook, beats, turn, cliffhanger, keyframe scenes, seconds-per-beat.
 3. Custom is a real choice — it just has no preset skeleton; define the band yourself and hold it.
 4. Verify: beats x seconds-per-beat lands inside the format's band; one emotion per episode (the two-emotions rule).

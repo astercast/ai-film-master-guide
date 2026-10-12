@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "count": 225,
+  "count": 226,
   "skills": [
     {
       "id": "prompt-t1",
@@ -1325,7 +1325,7 @@
     {
       "id": "episode-format-pick",
       "title": "Pick the serialized format for a series",
-      "description": "Choose among the four proven mini-drama formats (mini-drama, POV series, day-in-the-life, revenge arc) or custom \u2014 each with its runtime band and beat skeleton.",
+      "description": "Choose among the five proven serialized formats (mini-drama, POV series, day-in-the-life, revenge arc, interactive) or custom \u2014 each with its runtime band and beat skeleton.",
       "path": "skills/episodes/episode-format-pick.md"
     },
     {
@@ -1339,6 +1339,12 @@
       "title": "Send planner blocks to the Studio",
       "description": "One-click bridge: stage the episode planner's saved series (title, logline, cast anchors, every block's format/runtime/beats) into the Studio's series mode for a full costed packet.",
       "path": "skills/episodes/episode-studio-bridge.md"
+    },
+    {
+      "id": "episode-interactive-format",
+      "title": "Plan comment-driven interactive episodes",
+      "description": "Run the interactive serialized format: one decision per episode, a poll/comment beat that freezes on the choice, and a cliffhanger at the next decision \u2014 with viewer comments shaping the following episode's block.",
+      "path": "skills/episodes/episode-interactive-format.md"
     },
     {
       "id": "studio-series-plan",

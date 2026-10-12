@@ -828,6 +828,7 @@ EPISODEPLANNER_TMPL = """<!DOCTYPE html>
             <label class="epf-radio"><input type="radio" name="epf-format" value="pov"> POV series<span class="epf-hint">"You" are the protagonist, 30–90s</span></label>
             <label class="epf-radio"><input type="radio" name="epf-format" value="daylife"> Day-in-the-life<span class="epf-hint">Recurring character, one small event, 15–60s</span></label>
             <label class="epf-radio"><input type="radio" name="epf-format" value="revenge"> Revenge arc<span class="epf-hint">The justice ladder, 60–150s</span></label>
+            <label class="epf-radio"><input type="radio" name="epf-format" value="interactive"> Interactive<span class="epf-hint">Comment/poll-driven episodes, 60–150s</span></label>
             <label class="epf-radio"><input type="radio" name="epf-format" value="custom"> Custom<span class="epf-hint">Blank block, 60–150s band</span></label>
           </div>
           <button type="button" class="btn btn-ghost btn-sm" id="epf-apply" style="margin-top:var(--space-3);">Apply format template</button>
@@ -1020,7 +1021,7 @@ STUDIO_TMPL = """<!DOCTYPE html>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Studio — plan my AI film — AI Film Master Guide</title>
-  <meta name="description" content="Studio 2.0: the AI-film studio simulator. A standalone film (title, logline, genre/mood, runtime, quality tier) or a serialized series (3–10 episodes, one of the 4 proven mini-drama formats) in — a deterministic production packet out: shot list with per-shot prompts from the 47-template library, per-shot model picks with real cost math, budget table with 5×/20× envelopes, shooting schedule, series bible with locked prompt DNA, self-contained HTML packet export.">
+  <meta name="description" content="Studio 2.0: the AI-film studio simulator. A standalone film (title, logline, genre/mood, runtime, quality tier) or a serialized series (3–10 episodes, one of the 5 proven serialized formats) in — a deterministic production packet out: shot list with per-shot prompts from the 47-template library, per-shot model picks with real cost math, budget table with 5×/20× envelopes, shooting schedule, series bible with locked prompt DNA, self-contained HTML packet export.">
   {css}
   <style>
     .radio-row {{ display: flex; flex-wrap: wrap; gap: var(--space-3); }}
@@ -1080,7 +1081,7 @@ STUDIO_TMPL = """<!DOCTYPE html>
       <div class="container hero-inner">
         <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Tools · Flagship</span>
         <h1 id="st-title-h">The Studio<span class="accent">.</span></h1>
-        <p class="lede">Plan my AI film — or my AI series. A standalone film (title, logline, genre and mood, target runtime, quality tier) or a serialized series (3–10 episodes in one of the four proven mini-drama formats) in — and the Studio builds the production packet: a shot list with per-shot prompts written from the guide's 47-template library, a model pick for every shot with the real credit math, a budget table that shows its work, and a shooting schedule. Series get a locked bible with prompt DNA that keeps every episode consistent, plus a self-contained HTML packet you can hand to a collaborator. Every number traces back to <code>models.json</code> or a template id.</p>
+        <p class="lede">Plan my AI film — or my AI series. A standalone film (title, logline, genre and mood, target runtime, quality tier) or a serialized series (3–10 episodes in one of the five proven serialized formats) in — and the Studio builds the production packet: a shot list with per-shot prompts written from the guide's 47-template library, a model pick for every shot with the real credit math, a budget table that shows its work, and a shooting schedule. Series get a locked bible with prompt DNA that keeps every episode consistent, plus a self-contained HTML packet you can hand to a collaborator. Every number traces back to <code>models.json</code> or a template id.</p>
       </div>
     </section>
     <section class="container" aria-labelledby="st-in-h" id="st-form-sec">
@@ -1095,6 +1096,7 @@ STUDIO_TMPL = """<!DOCTYPE html>
             <label class="radio-pill"><input type="radio" name="st-kind" value="pov"> Series — POV micro-series<span class="st-hint">30–90s per episode, "you" are the protagonist</span></label>
             <label class="radio-pill"><input type="radio" name="st-kind" value="daylife"> Series — day-in-the-life<span class="st-hint">15–60s per episode, recurring character</span></label>
             <label class="radio-pill"><input type="radio" name="st-kind" value="revenge"> Series — revenge arc<span class="st-hint">60–150s per episode, the justice ladder</span></label>
+            <label class="radio-pill"><input type="radio" name="st-kind" value="interactive"> Series — interactive<span class="st-hint">60–150s per episode, viewer decisions shape the plot</span></label>
           </div>
         </fieldset>
         <div class="field">
@@ -3441,7 +3443,7 @@ def main():
          "text": "Hook-title generator: builds hook-title captions from the observed formula [Episode N] + [one-line emotional stake] + [CTA] — five worked variants per input, each with a why-this-hooks craft note. Copy any caption in one click."},
         {"url": "studio.html", "title": "Studio — plan my AI film", "section": "Tools",
          "headings": ["Your concept", "Production packet", "Shot list", "Model picks", "Budget", "Schedule", "Saved plans"],
-         "text": "The Studio 2.0: AI-film studio simulator. A standalone film (title, logline, genre/mood, runtime, draft/festival tier) or a serialized series (3–10 episodes, one of the 4 proven mini-drama formats) in — a deterministic production packet out: shot list with per-shot prompts built from the 47-template library, per-shot model picks from models.json with real cost math, budget table with 5×/20× envelopes, shooting schedule, series bible with locked prompt DNA, self-contained HTML/Markdown packet export, localStorage plans with duplicate and continue-planning."},
+         "text": "The Studio 2.0: AI-film studio simulator. A standalone film (title, logline, genre/mood, runtime, draft/festival tier) or a serialized series (3–10 episodes, one of the 5 proven serialized formats) in — a deterministic production packet out: shot list with per-shot prompts built from the 47-template library, per-shot model picks from models.json with real cost math, budget table with 5×/20× envelopes, shooting schedule, series bible with locked prompt DNA, self-contained HTML/Markdown packet export, localStorage plans with duplicate and continue-planning."},
         {"url": "skills.html", "title": "Skills browser", "section": "Tools",
          "headings": [],
          "text": "Browse all task skills: prompt templates, camera moves, models, long-form pipelines, craft techniques, checklists, and more, with live filtering."},

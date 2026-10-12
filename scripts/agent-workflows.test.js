@@ -194,6 +194,76 @@ console.log("       series: " + wf4.episodeCount + " eps x " + wf4.runtimeSec + 
   " | 5x $" + wf4.budget.five.toFixed(2) + " | bible avoided $" +
   wf4.reuse.avoidedUSD.toFixed(2));
 
+/* ===== workflow 5: The Night Bus — 5-episode worked example (asserts the pipeline doc's numbers) ======= */
+/* Canonical config shared with ~/workspace/tiktok-episode-pipeline/WORKED-EXAMPLE-5-EPISODE.md.
+ * If models.json data changes, these exact numbers change and the test FAILS on purpose —
+ * the worked example is versioned to the data, not floating. */
+console.log("--- workflow 5: The Night Bus worked example (real engine, asserted numbers) ---");
+/* The Night Bus — 5-episode mini-drama, planner blocks staged via the bridge */
+const cast = [
+  { name: "Harun", voice: "avocado_v2:briggs",
+    anchor: "a retired bus driver in his sixties, silver stubble, kind tired eyes, navy depot jacket" },
+  { name: "Noor", voice: "avocado_v2:MAI_01",
+    anchor: "a young woman, mid 20s, dark braided hair, red scarf, carrying a paper ticket" }
+];
+const locations = ["night bus interior", "empty depot yard at dawn"];
+const arcs = [
+  { n: 1, skeleton: false, emotion: "regret", stake: "Harun drives the retired route one last night and finds a passenger who never gets off",
+    hook: "empty night bus, headlights on, Harun staring at a paper ticket on his dashboard",
+    beats: ["Hook: the empty bus, the ticket on the dashboard", "Noor boards at a stop that closed years ago",
+             "She sits where the accident seat used to be", "Turn: Harun realizes he has seen this ride before"],
+    turn: "Beat 4: Harun realizes he has seen this ride before — he drove it the night of the crash",
+    cliff: "Noor holds out her ticket — freeze before he takes it",
+    scenes: "empty bus interior at night; depot yard dusk; Noor boarding at the closed stop; ticket held out in close-up" },
+  { n: 2, skeleton: false, emotion: "dread", stake: "Harun asks where she is going — Noor answers with the name of his own street",
+    hook: "Harun's knuckles whitening on the wheel as her answer lands",
+    beats: ["Hook: the wrong-name answer, silence in the bus", "Harun reroutes — the GPS insists the stop does not exist",
+             "The bus passes his own house, lights off", "Turn: she describes the crash — from inside the other car"],
+    turn: "Beat 4: Noor describes the crash that ended his career — from the other car's point of view",
+    cliff: "Headlights ahead — freeze before they resolve",
+    scenes: "hands on wheel close-up; dark GPS screen; his house passing; oncoming headlights" },
+  { n: 3, skeleton: false, emotion: "grief", stake: "Noor shows him what she remembers: the night of the crash, rebuilt piece by piece",
+    hook: "rain on the windshield — the same storm, forty years back",
+    beats: ["Hook: rain, the same storm sound", "Her memories play like a film on the windows",
+             "Harun watches himself swerve — and sees what he missed", "Turn: the brake light he never noticed, glowing in her memory"],
+    turn: "Beat 4: the brake light that failed, visible only in her telling",
+    cliff: "She asks him the one question he never answered — freeze on his face",
+    scenes: "rain streaking the windshield; memories on the windows; young Harun swerving; her question close-up" },
+  { n: 4, skeleton: false, emotion: "forgiveness", stake: "Harun finally answers — and Noor forgives him for the thing he never confessed",
+    hook: "Harun pulls the bus over. The engine ticks in the silence.",
+    beats: ["Hook: the bus at the shoulder, engine ticking", "He says the unsaid thing out loud, finally",
+             "The depot yard at dawn — the route is ending", "Turn: she tears the ticket in half and hands him his half"],
+    turn: "Beat 4: she tears the old ticket in two and gives him the half he always owed",
+    cliff: "Her half fades at the edges — freeze before it goes",
+    scenes: "bus on the shoulder, dawn light; his confession close-up; depot yard at dawn; the torn ticket" },
+  { n: 5, skeleton: false, emotion: "peace", stake: "Harun drives into the depot for the last time — alone, at peace, the route complete",
+    hook: "Harun alone in the driver's seat, smiling for the first time in the series",
+    beats: ["Hook: Harun's smile in the mirror", "The empty seat where she sat — a folded red scarf",
+             "He parks the bus, hands in the keys", "Finale thesis: some routes you drive so someone else can get off"],
+    turn: "Beat 3: the folded scarf on the empty seat",
+    cliff: "He pins the torn ticket half to the depot board — the series' last image",
+    scenes: "smile in the mirror; empty seat, folded scarf; keys handed over; ticket pinned to the board" }
+];
+
+const NightBus = Studio.buildSeriesPlan(
+  { models: read("models.json").models, templates: read("prompt-templates.json").templates },
+  { seriesTitle: "The Night Bus", seriesLogline: "A retired driver drives his old route one last night and carries a passenger who never gets off.",
+    format: "minidrama", genre: "drama", runtimeSec: 60, tier: "draft", episodes: 5,
+    cast: cast, locations: locations, arcs: arcs });
+eq(NightBus.episodeCount, 5, "worked example: 5 episodes");
+eq(NightBus.totalShots, 50, "worked example: 50 shots (5 x 10 at 60s draft)");
+ok(Math.abs(NightBus.budget.clean - 20.48) < 0.011, "worked example: clean $20.48 (got $" + NightBus.budget.clean.toFixed(2) + ")");
+eq(NightBus.budget.five, r2(20.48 * 5), "worked example: 5x envelope $102.40");
+eq(NightBus.budget.twenty, r2(20.48 * 20), "worked example: 20x envelope $409.60");
+eq(NightBus.reuse.avoidedCredits, 1.92, "worked example: bible avoids 1.92 credits");
+ok(NightBus.episodes.every((e) => e.arc.skeleton === false), "worked example: bridge arcs attached (no skeletons)");
+ok(NightBus.episodes.every((e) => e.shots.every((x) => x.prompt.startsWith("[SERIES BIBLE"))),
+  "worked example: locked DNA on all 50 shots");
+const nbUSD = NightBus.episodes.map((e) => r2(e.budget.lines.reduce((a, l) => a + l.usd, 0)));
+eq(JSON.stringify(nbUSD), JSON.stringify([3.78, 3.77, 3.49, 5.64, 3.78]), "worked example: per-episode USD " + JSON.stringify(nbUSD));
+eq(NightBus.episodes[0].voiceBudgetSec, 60, "worked example: voice budget 60s = the locked dialogue budget");
+console.log("       Night Bus: 50 shots | clean $20.48 | 5x $102.40 | bible avoided 1.92 credits");
+
 /* ================================ summary ================================ */
 console.log("");
 if (failures === 0) {
