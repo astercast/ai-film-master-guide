@@ -146,4 +146,4 @@
 
 **Validation:** `bash scripts/validate.sh` → ALL 8 STAGES PASS (10 passed, 0 failed post-commit); 44 JS parse; 54 JSON parse; all 11 endpoints validate; 6,292 links, 0 broken; generator audits clean; studio.test.js 19/19; agent-workflows.test.js 37/37.
 
-**Commit:** PENDING_PUSH
+**Commit:** `a68e106458b3d69ac26b7f6bcee59b1f440f1c30` ([view](https://github.com/astercast/ai-film-master-guide/commit/a68e106458b3d69ac26b7f6bcee59b1f440f1c30)) — 48 files, pushed 2026-10-11, all new/changed files verified present in the remote tree via GitHub API (474 blobs, 0 missing).
