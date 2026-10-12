@@ -108,7 +108,13 @@ stamp, day-by-day schedule), not SaaS-generic. The easter egg: the
 schedule's last day is always "Lock the cut — one day to stop touching
 it."
 
-**Commit:** [recorded below after push]
+**Commit:** local `f74c2bf` (117 files: 2 new + WAVELOG + 114 rebuilt
+site/) → pushed 2026-10-12 as remote commit
+`7efbf6f460e0a62fffc1ef8e78446413b14f4ade`; remote `main` HEAD matched the
+pushed SHA; GitHub Trees API verified: 642 entries, not truncated, all 10
+key wave files present, local HEAD tree == remote tree (`fe30fa22`). Push
+succeeded on the first attempt — no 400s this wave. Remote track verified
+pre-push: `astercast/ai-film-master-guide` (working repo, not `-live`).
 
 ## Wave 39 — addendum: Vercel data-dir fix (2026-10-12, same day)
 
