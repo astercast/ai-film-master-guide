@@ -22,7 +22,7 @@
 
 **Validation:** `bash scripts/validate.sh` → ALL STAGES PASS post-commit; studio.test.js 32/32; agent-workflows.test.js 60/60 (workflow 5 asserts the new Night Bus numbers); 6,536 links, 0 broken; generator audits clean post-commit.
 
-**Commit:** PENDING
+**Commit:** `41adf0f3dc5550f041fd48584f20dd931aff6692` ([view](https://github.com/astercast/ai-film-master-guide/commit/be3344ec0d3f7e4f2d8f5d3a1b3bddc98df324c0)) — 69 files, pushed 2026-10-11 as remote commit `be3344ec0d3f7e4f2d8f5d3a1b3bddc98df324c0`; all 9 new/changed key files verified present in the remote tree via GitHub API (545 tree entries, 0 missing).
 
 ## Wave 20 — EPISODE PIPELINE revisit #2 (2026-10-11)
 
