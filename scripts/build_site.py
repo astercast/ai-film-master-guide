@@ -943,7 +943,22 @@ EPISODEPLANNER_TMPL = """<!DOCTYPE html>
         </div>
         <div class="field">
           <label for="epb-emotion">Emotion — one word</label>
-          <input class="input" type="text" id="epb-emotion" placeholder="e.g. longing">
+          <input class="input" type="text" id="epb-emotion" list="epb-emotion-list" autocomplete="off" placeholder="e.g. longing">
+          <datalist id="epb-emotion-list">
+            <option value="longing"></option>
+            <option value="dread"></option>
+            <option value="grief"></option>
+            <option value="relief"></option>
+            <option value="triumph"></option>
+            <option value="suspense"></option>
+            <option value="comfort"></option>
+            <option value="heartbreak"></option>
+            <option value="defiance"></option>
+            <option value="tenderness"></option>
+            <option value="guilt"></option>
+            <option value="joy"></option>
+          </datalist>
+          <span class="epf-hint">One emotion per episode — the save gate refuses a block that reads as two.</span>
         </div>
         <div class="field">
           <label for="epb-stake">One-line emotional stake</label>
@@ -965,6 +980,11 @@ EPISODEPLANNER_TMPL = """<!DOCTYPE html>
         <div class="field">
           <label for="epb-cliff">Cliffhanger — the unanswered beat. Never the resolution.</label>
           <input class="input" type="text" id="epb-cliff" placeholder="e.g. The taxi stops at the wrong address — headlights, cut">
+          <div class="field" style="margin-top:var(--space-2);">
+            <label for="epb-cliff-tpl">…or start from a template (<span class="mono">{{name}}</span> fills from the cast)</label>
+            <select class="input" id="epb-cliff-tpl"></select>
+            <button type="button" class="btn btn-ghost btn-sm" id="epb-cliff-apply" style="margin-top:var(--space-2);">Use template</button>
+          </div>
         </div>
         <div class="field">
           <label for="epb-scenes">Keyframe scenes — hook / beat / turn / cliffhanger</label>
@@ -981,6 +1001,11 @@ EPISODEPLANNER_TMPL = """<!DOCTYPE html>
         <div class="btn-row">
           <button type="button" class="btn" id="epb-save">Save episode block</button>
           <button type="button" class="btn btn-ghost" id="epb-new">New blank block</button>
+          <button type="button" class="btn btn-ghost" id="epb-caption-draft">Draft caption from block</button>
+        </div>
+        <pre class="hg-caption" id="epb-caption-out" hidden aria-live="polite" style="margin-top:var(--space-3);"></pre>
+        <div class="btn-row" id="epb-caption-row" hidden style="margin-top:var(--space-2);">
+          <button type="button" class="btn btn-ghost btn-sm" id="epb-caption-copy">Copy caption</button>
         </div>
         <p class="calc-note" id="epb-msg" role="status" hidden></p>
       </form>
@@ -1038,7 +1063,7 @@ HOOKGEN_TMPL = """<!DOCTYPE html>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Hook-title generator — AI Film Master Guide</title>
-  <meta name="description" content="Build hook-title captions from the observed formula: Episode N + one-line emotional stake + CTA. Five worked variants per input, each with a why-this-hooks note.">
+  <meta name="description" content="Build hook-title captions from the observed formula: Episode N + one-line emotional stake + CTA. Six worked variants per input, each with a why-this-hooks note.">
   {css}
   <style>
     .hg-card {{ margin-bottom: var(--space-5); }}
@@ -1102,8 +1127,8 @@ HOOKGEN_TMPL = """<!DOCTYPE html>
       </form>
     </section>
     <section class="container" aria-labelledby="hg-out-h" style="margin-top:var(--space-6);">
-      <h2 id="hg-out-h">Five variants</h2>
-      <p class="empty-state" id="hg-empty">Fill in the episode and stake above — five worked captions appear here.</p>
+      <h2 id="hg-out-h">Six variants</h2>
+      <p class="empty-state" id="hg-empty">Fill in the episode and stake above — six worked captions appear here.</p>
       <div id="hg-results" aria-live="polite"></div>
     </section>
   </main>
@@ -4020,7 +4045,7 @@ def main():
                 h1="""Hook-title <span class="accent">generator.</span>""",
                 lede="""In the mini-drama genre the caption <em>is</em> the hook. The observed formula — <code>[Episode N] + [one-line emotional stake] + [CTA]</code> — turns one line of stake into five worked caption variants, each with the craft reason it hooks. Name the character every time; never lead with hashtags.""",
                 deck_title="""HOOK_GENERATOR — TAKE_01""",
-                clips={"v2": ['Caption stack'], "v1": ['Your episode', 'Five variants', 'CTA cards'], "a1": ['Hook sting', 'Five formulas']},
+                clips={"v2": ['Caption stack'], "v1": ['Your episode', 'Six variants', 'CTA cards'], "a1": ['Hook sting', 'Six formulas']},
                 h1_id="hg-title",
                 extra=""""""),        css=css_links, sitenav=nav_html("", ""), footer=footer_html("")))
 
@@ -4102,10 +4127,10 @@ def main():
          "text": "Anatomy of a prompt: the nine-layer prompt anatomy as an interactive annotated example — hover any layer to learn what it does, why it matters, and what breaks without it. Plus a build-your-own mode that assembles the layers into a production-ready prompt."},
         {"url": "episode-planner.html", "title": "Episode planner", "section": "Tools",
          "headings": ["Series setup — lock the bible", "Episode block", "Arc tracker"],
-         "text": "Episode planner: lock a mini-drama series (title, logline, hashtag, recurring cast with voice IDs and anchor paragraphs), plan each episode as a block (one emotion, 3–5 beats, emotional turn, cliffhanger), and keep an arc log with lessons learned. Saved blocks feed one-click \"Send series to Studio\", which pre-fills the Studio's series mode (format, runtime, beats, cast anchors), or \"Send run to Studio\", which stages episode count and median runtime into the Studio's microdrama economics mode. Saves in the browser."},
+         "text": "Episode planner: lock a mini-drama series (title, logline, hashtag, recurring cast with voice IDs and anchor paragraphs), plan each episode as a block (one emotion, 3–5 beats, emotional turn, cliffhanger), and keep an arc log with lessons learned. The save gate enforces the one-emotion rule (a second emotion word in the block refuses the save), per-format cliffhanger templates slot in the cast name, and a caption draft builds the hook-title caption straight from the block. Saved blocks feed one-click \"Send series to Studio\", which pre-fills the Studio's series mode (format, runtime, beats, cast anchors), or \"Send run to Studio\", which stages episode count and median runtime into the Studio's microdrama economics mode. Saves in the browser."},
         {"url": "hook-generator.html", "title": "Hook-title generator", "section": "Tools",
-         "headings": ["Your episode", "Five variants"],
-         "text": "Hook-title generator: builds hook-title captions from the observed formula [Episode N] + [one-line emotional stake] + [CTA] — five worked variants per input, each with a why-this-hooks craft note. Copy any caption in one click."},
+         "headings": ["Your episode", "Six variants"],
+         "text": "Hook-title generator: builds hook-title captions from the observed formula [Episode N] + [one-line emotional stake] + [CTA] — six worked variants per input, each with a why-this-hooks craft note (including the vote-hook variant for interactive episodes). Copy any caption in one click."},
         {"url": "studio.html", "title": "Studio — plan my AI film", "section": "Tools",
          "headings": ["Your concept", "Production packet", "Shot list", "Model picks", "Budget", "Schedule", "Saved plans"],
          "text": "The Studio 2.0: AI-film studio simulator. A standalone film (title, logline, genre/mood, runtime, draft/festival tier) or a serialized series (3–10 episodes, one of the 5 proven serialized formats) in — a deterministic production packet out: shot list with per-shot prompts built from the 47-template library, per-shot model picks from models.json with real cost math, budget table with 5×/20× envelopes, shooting schedule, series bible with locked prompt DNA, self-contained HTML/Markdown packet export, localStorage plans with duplicate and continue-planning. Microdrama run mode (Studio 2.5): episodes + minutes per episode + tier in — clip budget (10–15s clips), per-episode and run budgets against the documented $50/min StoReel benchmark with live models.json rates, the 3–5x drawing-cards retake budget, a character-regen reserve, and a timeline from the documented 4-days-for-4-episodes pace. Episode planner bridges: Send series to Studio (series mode) and Send run to Studio (microdrama mode)."},

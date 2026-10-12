@@ -154,7 +154,22 @@
         </div>
         <div class="field">
           <label for="epb-emotion">Emotion — one word</label>
-          <input class="input" type="text" id="epb-emotion" placeholder="e.g. longing">
+          <input class="input" type="text" id="epb-emotion" list="epb-emotion-list" autocomplete="off" placeholder="e.g. longing">
+          <datalist id="epb-emotion-list">
+            <option value="longing"></option>
+            <option value="dread"></option>
+            <option value="grief"></option>
+            <option value="relief"></option>
+            <option value="triumph"></option>
+            <option value="suspense"></option>
+            <option value="comfort"></option>
+            <option value="heartbreak"></option>
+            <option value="defiance"></option>
+            <option value="tenderness"></option>
+            <option value="guilt"></option>
+            <option value="joy"></option>
+          </datalist>
+          <span class="epf-hint">One emotion per episode — the save gate refuses a block that reads as two.</span>
         </div>
         <div class="field">
           <label for="epb-stake">One-line emotional stake</label>
@@ -176,6 +191,11 @@
         <div class="field">
           <label for="epb-cliff">Cliffhanger — the unanswered beat. Never the resolution.</label>
           <input class="input" type="text" id="epb-cliff" placeholder="e.g. The taxi stops at the wrong address — headlights, cut">
+          <div class="field" style="margin-top:var(--space-2);">
+            <label for="epb-cliff-tpl">…or start from a template (<span class="mono">{name}</span> fills from the cast)</label>
+            <select class="input" id="epb-cliff-tpl"></select>
+            <button type="button" class="btn btn-ghost btn-sm" id="epb-cliff-apply" style="margin-top:var(--space-2);">Use template</button>
+          </div>
         </div>
         <div class="field">
           <label for="epb-scenes">Keyframe scenes — hook / beat / turn / cliffhanger</label>
@@ -192,6 +212,11 @@
         <div class="btn-row">
           <button type="button" class="btn" id="epb-save">Save episode block</button>
           <button type="button" class="btn btn-ghost" id="epb-new">New blank block</button>
+          <button type="button" class="btn btn-ghost" id="epb-caption-draft">Draft caption from block</button>
+        </div>
+        <pre class="hg-caption" id="epb-caption-out" hidden aria-live="polite" style="margin-top:var(--space-3);"></pre>
+        <div class="btn-row" id="epb-caption-row" hidden style="margin-top:var(--space-2);">
+          <button type="button" class="btn btn-ghost btn-sm" id="epb-caption-copy">Copy caption</button>
         </div>
         <p class="calc-note" id="epb-msg" role="status" hidden></p>
       </form>

@@ -8,6 +8,7 @@
     { test: /daddy|father|mom|mother|dada|mama|parents/i, emoji: "💔" },
     { test: /wait|waiting|still|years/i, emoji: "🕯️" },
     { test: /alone|lost|left behind/i, emoji: "😔" },
+    { test: /door|wall|room|hallway|behind/i, emoji: "🚪" },
     { test: /secret|hidden|nobody knows|didn't tell/i, emoji: "🤫" },
     { test: /reunion|found|home|returned/i, emoji: "🥹" },
     { test: /surprise|twist|shocked|didn't expect/i, emoji: "😳" }
@@ -38,7 +39,18 @@
     return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   }
 
-  /* Five worked variants of the observed formula, each a different hook framing. */
+  /* Stake hygiene (wave 38): users paste full captions. Strip a leading
+     "Episode N —" prefix, collapse whitespace, drop trailing punctuation —
+     so the formula never emits "Episode 3 — Episode 3 — …". */
+  function sanitizeStake(s) {
+    return String(s == null ? "" : s)
+      .replace(/^\s*episode\s*\d+\s*[—–-]\s*/i, "")
+      .replace(/\s+/g, " ")
+      .replace(/[.!?…]+\s*$/, "")
+      .trim();
+  }
+
+  /* Six worked variants of the observed formula, each a different hook framing. */
   function variants(n, stake, emoji, cta, hashtag) {
     var tag = hashtag ? " #" + hashtag.replace(/^#/, "") : " #aiminidrama";
     var base = "Episode " + n + " — ";
@@ -67,12 +79,21 @@
         title: "Address the viewer",
         text: base + "POV: you're watching " + uncap(stake) + " " + emoji + "\n" + tag + " #aianimation #fyp #emotionalstory\n" + cta,
         why: "Second-person framing makes the viewer a witness, not a scroller. Use sparingly — once per series arc, or it becomes the house style and loses force."
+      },
+      {
+        title: "Vote hook (the interactive read)",
+        text: base + cap(stake) + " — you decide what happens next " + emoji + "\n" + tag + " #aianimation #fyp #emotionalstory\n" + CTAS.poll(n),
+        why: "Hands the decision to the viewer — the interactive-format read (TikTok comment polls since Sept 2026; DRAMAGO's interactive slate). This variant always carries the vote CTA, whatever is selected above: the poll is the point. Only for interactive episodes — a vote CTA on a linear episode breaks the participation contract."
       }
     ];
   }
 
   function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
   function uncap(s) { return s.charAt(0).toLowerCase() + s.slice(1); }
+  /* The stake may already start with the character name — never double it. */
+  function nameFirst(name, stake) {
+    return !!name && new RegExp("^" + name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\b", "i").test(stake);
+  }
 
   function copyText(text, done) {
     if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -113,18 +134,19 @@
 
   function generate() {
     var n = parseInt(els.num.value, 10);
-    var stake = els.stake.value.trim();
+    var stake = sanitizeStake(els.stake.value);
     var character = els.character.value.trim();
     var ctaKey = els.cta.value;
     var hashtag = els.hashtag.value.trim();
 
     if (!n || n < 1) { setStatus("Episode number is required — serialization is the follow mechanic.", true); els.num.focus(); return; }
     if (!stake) { setStatus("Give one line of emotional stake — legible in two seconds to a stranger.", true); els.stake.focus(); return; }
-    if (character) stake = character + " " + uncap(stake);
+    if (character && !nameFirst(character, stake)) stake = character + " " + uncap(stake);
 
     var emoji = pickEmoji(stake);
     var cta = CTAS[ctaKey](n);
     var list = variants(n, stake, emoji, cta, hashtag);
+    var words = stake.split(/\s+/).filter(Boolean).length;
 
     els.results.innerHTML = "";
     list.forEach(function (v, i) {
@@ -161,7 +183,10 @@
       els.results.appendChild(card);
     });
     els.empty.hidden = true;
-    setStatus("5 variants from the formula — " + CTA_LABEL[ctaKey] + ". Never lead with hashtags; the character is named every time.", false);
+    var lengthNote = words > 14
+      ? " Stake is " + words + " words — the observed hook reads in ~2 seconds; trim toward ~10."
+      : "";
+    setStatus("6 variants from the formula — " + CTA_LABEL[ctaKey] + ". Never lead with hashtags; the character is named every time." + lengthNote, false);
     var first = els.results.querySelector("h3");
     if (first) first.setAttribute("tabindex", "-1");
   }

@@ -123,6 +123,8 @@
     beatAdd: document.getElementById("epb-beat-add"),
     turn: document.getElementById("epb-turn"),
     cliff: document.getElementById("epb-cliff"),
+    cliffTpl: document.getElementById("epb-cliff-tpl"),
+    cliffTplApply: document.getElementById("epb-cliff-apply"),
     scenes: document.getElementById("epb-scenes"),
     blockMsg: document.getElementById("epb-msg"),
     saveBlock: document.getElementById("epb-save"),
@@ -135,6 +137,10 @@
     applyFormat: document.getElementById("epf-apply"),
     spb: document.getElementById("epf-spb"),
     runtime: document.getElementById("epf-runtime"),
+    captionDraft: document.getElementById("epb-caption-draft"),
+    captionOut: document.getElementById("epb-caption-out"),
+    captionRow: document.getElementById("epb-caption-row"),
+    captionCopy: document.getElementById("epb-caption-copy"),
     logList: document.getElementById("epl-list"),
     logEmpty: document.getElementById("epl-empty"),
     logEp: document.getElementById("epl-ep"),
@@ -321,6 +327,183 @@
     els.runtime.textContent = "≈" + est + "s (" + beats + " beats × " + spb + "s). " + verdict;
     els.runtime.className = cls;
   }
+  /* ---------------- one-emotion discipline (wave 38) ---------------- */
+
+  /* Curated one-word emotion vocabulary for the one-emotion-per-episode rule.
+     The emotion input is free text with a datalist of suggestions; the save
+     gate below scans the block's other fields for a SECOND emotion word and
+     refuses the save, naming the word and the field it was found in. */
+  var EMOTIONS = ["longing", "dread", "grief", "relief", "triumph", "suspense",
+    "comfort", "heartbreak", "defiance", "tenderness", "guilt", "joy"];
+  var EMOTION_PATTERNS = {
+    longing: /\blonging\b|\blonged\b/i,
+    dread: /\bdread\w*\b/i,
+    grief: /\bgrief\b|\bgrieving\b|\bgrieved\b/i,
+    relief: /\brelief\b|\brelieved\b|\brelieving\b/i,
+    triumph: /\btriumph\w*\b|\btriumphant\b/i,
+    suspense: /\bsuspense\w*\b/i,
+    comfort: /\bcomfort\w*\b/i,
+    heartbreak: /\bheartbreak\b|\bheartbroken\b/i,
+    defiance: /\bdefian\w*\b/i,
+    tenderness: /\btender\w*\b|\btenderness\b/i,
+    guilt: /\bguilt\b|\bguilty\b/i,
+    joy: /\bjoy\w*\b/i
+  };
+  /* Scan the block (everything except the emotion declaration itself) for a
+     second emotion word. Returns [{emotion, field}] hits. */
+  function findSecondEmotion(declared) {
+    var fields = [
+      ["stake", els.stake.value],
+      ["hook", els.hook.value],
+      ["beats", beatInputs().join(" ")],
+      ["turn", els.turn.value],
+      ["cliffhanger", els.cliff.value]
+    ];
+    var hits = [];
+    EMOTIONS.forEach(function (emo) {
+      if (emo === declared) return;
+      fields.forEach(function (f) {
+        if (f[1] && EMOTION_PATTERNS[emo].test(f[1])) hits.push({ emotion: emo, field: f[0] });
+      });
+    });
+    return hits;
+  }
+
+  /* ---------------- cliffhanger templates (wave 38) ---------------- */
+
+  /* Per-format cliffhanger templates. {name} fills from the first cast
+     character's name ("the lead" when the bible has no name yet). Templates
+     are starting points — the field stays editable after applying. */
+  var CLIFF_TEMPLATES = {
+    minidrama: [
+      "Freeze on {name}'s face as the headlights swing toward them — cut.",
+      "{name} hears the one sound that changes everything — cut."
+    ],
+    pov: [
+      "The door handle turns — freeze on your face.",
+      "Your phone lights up with a name you never expected — cut."
+    ],
+    daylife: [
+      "Freeze on the folded note mid-slide — it stays unopened.",
+      "The regular's smile fades. Cut on the unasked question."
+    ],
+    revenge: [
+      "The partner spots {name} in the crowd — freeze on his face.",
+      "{name} presses send — cut on the loading screen."
+    ],
+    interactive: [
+      "Freeze on the decision: knock or walk away — the poll decides tomorrow.",
+      "The clock is running. The comments choose — cut before it hits zero."
+    ],
+    any: [
+      "Freeze on {name}'s face — the unanswered question.",
+      "Cut on the knock at the door."
+    ]
+  };
+  function castName() {
+    return (state.cast[0] && state.cast[0].name) || "the lead";
+  }
+  function renderCliffTemplates() {
+    if (!els.cliffTpl) return;
+    var fmt = currentFormat();
+    var label = (FORMAT_PRESETS[fmt] && FORMAT_PRESETS[fmt].label) || "This format";
+    var html = '<option value="">Start from a template…</option>' +
+      '<optgroup label="' + esc(label) + '">';
+    (CLIFF_TEMPLATES[fmt] || []).forEach(function (t, i) {
+      html += '<option value="' + fmt + ':' + i + '">' + esc(t) + '</option>';
+    });
+    html += '</optgroup><optgroup label="Any format">';
+    CLIFF_TEMPLATES.any.forEach(function (t, i) {
+      html += '<option value="any:' + i + '">' + esc(t) + '</option>';
+    });
+    els.cliffTpl.innerHTML = html + '</optgroup>';
+  }
+  if (els.cliffTplApply) {
+    els.cliffTplApply.addEventListener("click", function () {
+      var v = els.cliffTpl.value;
+      if (!v) { msg(els.blockMsg, "Pick a cliffhanger template first — or write your own above.", false); return; }
+      var parts = v.split(":");
+      var tpl = (CLIFF_TEMPLATES[parts[0]] || [])[parseInt(parts[1], 10)];
+      if (tpl == null) return;
+      readCast();
+      els.cliff.value = tpl.split("{name}").join(castName());
+      msg(els.blockMsg, "Template applied — edit it to make it yours. The cliffhanger is never the resolution.", true);
+      els.cliff.focus();
+    });
+  }
+
+  /* ---------------- caption draft from block (wave 38) ---------------- */
+
+  /* Hook-title caption drafted straight from the episode block: the observed
+     formula [Episode N] + [one-line emotional stake] + [CTA]. The emoji table
+     mirrors the hook-title generator's EMOJI_FOR (keep the two in sync). */
+  var CAPTION_EMOJI = [
+    { test: /daddy|father|mom|mother|dada|mama|parents/i, emoji: "💔" },
+    { test: /wait|waiting|still|years/i, emoji: "🕯️" },
+    { test: /alone|lost|left behind/i, emoji: "😔" },
+    { test: /door|wall|room|hallway|behind/i, emoji: "🚪" },
+    { test: /secret|hidden|nobody knows|didn't tell/i, emoji: "🤫" },
+    { test: /reunion|found|home|returned/i, emoji: "🥹" },
+    { test: /surprise|twist|shocked|didn't expect/i, emoji: "😳" }
+  ];
+  function captionEmoji(text) {
+    for (var i = 0; i < CAPTION_EMOJI.length; i++) {
+      if (CAPTION_EMOJI[i].test.test(text)) return CAPTION_EMOJI[i].emoji;
+    }
+    return "🥺";
+  }
+  function pCap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+  function pUncap(s) { return s.charAt(0).toLowerCase() + s.slice(1); }
+  function escReg(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
+  /* The preset stakes already include the character name ("Lena finds a
+     door…") — don't double it when drafting the hook. */
+  function nameFirst(name, stake) {
+    return !!name && new RegExp("^" + escReg(name) + "\\b", "i").test(stake);
+  }
+  function copyTextPlain(text, done) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(false); });
+      return;
+    }
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "absolute";
+    ta.style.left = "-9999px";
+    document.body.appendChild(ta);
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+    document.body.removeChild(ta);
+    done(ok);
+  }
+  var lastCaption = "";
+  if (els.captionDraft) {
+    els.captionDraft.addEventListener("click", function () {
+      var n = parseInt(els.epNum.value, 10) || state.nextEpisode;
+      var stake = els.stake.value.trim();
+      if (!stake) { msg(els.blockMsg, "Write the one-line stake first — the caption IS the hook.", false); els.stake.focus(); return; }
+      readCast();
+      var name = state.cast[0] && state.cast[0].name;
+      var hook = (name && !nameFirst(name, stake)) ? name + " " + pUncap(stake) : pCap(stake);
+      var emoji = captionEmoji(els.emotion.value + " " + stake);
+      var tag = state.hashtag ? " " + state.hashtag : " #aiminidrama";
+      lastCaption = "Episode " + n + " — " + hook + " " + emoji + "\n" +
+        tag + " #aianimation #fyp #emotionalstory\npart " + (n + 1) + " tomorrow ⏳";
+      els.captionOut.textContent = lastCaption;
+      els.captionOut.hidden = false;
+      els.captionRow.hidden = false;
+      msg(els.blockMsg, "Caption drafted from the block — the observed hook formula. Take it to the Hook-title generator for the six variants.", true);
+    });
+    els.captionCopy.addEventListener("click", function () {
+      var btn = els.captionCopy;
+      copyTextPlain(lastCaption, function (ok) {
+        btn.textContent = ok ? "Copied ✓" : "Copy failed";
+        setTimeout(function () { btn.textContent = "Copy caption"; }, 1600);
+      });
+    });
+  }
+
   function renderBlockForm(n) {
     var b = state.blocks[String(n)] || {};
     els.epNum.value = n;
@@ -335,6 +518,7 @@
     els.cliff.value = b.cliff || "";
     els.scenes.value = b.scenes || "";
     estimate();
+    renderCliffTemplates();
     msg(els.blockMsg, state.blocks[String(n)] ? "Loaded saved block for episode " + n + " — edit and re-save to overwrite." : "Planning episode " + n + ".", true);
   }
 
@@ -349,12 +533,13 @@
   });
 
   /* format picker + estimator wiring */
-  els.applyFormat.addEventListener("click", function () { applyPreset(currentFormat()); });
+  els.applyFormat.addEventListener("click", function () { applyPreset(currentFormat()); renderCliffTemplates(); });
   els.formatRadios.forEach(function (r) {
     r.addEventListener("change", function () {
       var p = FORMAT_PRESETS[currentFormat()];
       if (p) els.spb.value = p.spb;
       estimate();
+      renderCliffTemplates();
     });
   });
   els.spb.addEventListener("input", estimate);
@@ -370,6 +555,16 @@
     if (!els.cliff.value.trim()) errs.push("a cliffhanger (never the resolution)");
     if (errs.length) {
       msg(els.blockMsg, "Gate check before save: missing " + errs.join(", ") + ".", false);
+      return;
+    }
+    /* wave 38 — one-emotion discipline: a second emotion word anywhere in the
+       block is two episodes stapled together. Name the word and the field. */
+    var secondHits = findSecondEmotion(els.emotion.value.trim().toLowerCase());
+    if (secondHits.length) {
+      var hit = secondHits[0];
+      msg(els.blockMsg, "Two-emotion block: \u201c" + hit.emotion + "\u201d in the " + hit.field +
+        " reads as a second emotion beside \u201c" + els.emotion.value.trim() +
+        "\u201d. The one-emotion rule — split the episode, or rewrite the " + hit.field + ".", false);
       return;
     }
     state.blocks[String(n)] = {

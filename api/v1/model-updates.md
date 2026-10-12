@@ -292,5 +292,38 @@ $3.20 (per 8s). Veo 3.1 is the premium API tier. Verify live before budgeting.
 - Kling 4.0 specs (30s) — announced, preview-leak level; not confirmed.
 - Seedance 3.0 — reported in third-party indexes, unconfirmed by ByteDance.
 
+## Wave 38 — Episode-pipeline revisit #6 (2026-10-11)
+
+No model-record changes this cycle (all 30 records re-verified Oct 11). Tooling-field
+watch notes, mapped to the episode-production pipeline (`craft/episodic-shortform.md`):
+
+- **Adobe multi-model in-Premiere workbench** (announced Sept 8, 2026, IBC; TechTimes)
+  — Firefly, Google Veo, Runway, Kling, Luma embedded in Premiere's toolbar; in-timeline
+  AI audio/music generation; audio-repair tools; After Effects AI assistant. Pipeline
+  mapping: forks Stage 6 (assembly) into build-cut.sh vs in-timeline; forks Stage 3/7
+  with audio repair (polishes a locked track, never re-times it) and in-timeline bed
+  generation. The gates don't move: name clips by line, cut in the gaps, verify mid-frames.
+- **Mirage Tesseract** (launched Sept 22, 2026; EZ Newswire) — agent-driven
+  editing/motion-graphics suite, free local engine. Stays in the edit/post lane:
+  Stages 6–7 motion graphics, title cards, caption treatments. Not a generation model.
+- **Vidu S2** (Sept 15, 2026; PR Newswire) — S2-Avatar real-time 720p, S2-Editing on live
+  streams. Different product class from rendered clips: does NOT enter the Stage 5
+  budget. Relevance is the interactive format's live-companion lane (off-screen lives).
+  Cheapest paid tier ~$0.05/clip reported — verify live.
+- **"Brief to the row, not the headline"** (versely.studio, Oct 2026) — vendor headline
+  specs ≠ hosted-row specs (Wan 3.0's row renders 15s not the vendor's 30s; H3 Max's row
+  is 768p not 1080p). Generalizes the wave-30 headline-price rule: the production
+  packet quotes the row actually rendered on. Added as a G5 sub-check in the chapter.
+- **Veo 4** — confirmed non-existent (see rumors section above). The chapter's Stage 5
+  tooling note now carries the hype-hygiene line: never plan a series around a rumor.
+- **Wan 3.0** is the current Stage 5 cost floor ($0.05/s at 480p provider-list, 2–30s
+  native audio); **Gemini Omni Flash** is the draft tier (~$0.03/s at 360p, ~$0.10/s at
+  720p) — the "draft cheap" half of the Studio 3.0 draft-final optimizer mode.
+- **HeyGen Voice** consent lane: Royal Mail/ElevenLabs Christmas-ad episode + the
+  Save Our Voices Now performer petition (80+ UK performers, backed by Nicola Coughlan)
+  make voice-rights a bible column — own, license, or synthesize; never clone a real
+  person without explicit consent. HeyGen's $99/mo Professional Voice Clone tier builds
+  consent into the product.
+
 *Next refresh: when a model in the table changes version, price, or status. The
 `model-watch.html` page renders this file's data live from `models.json`.*
