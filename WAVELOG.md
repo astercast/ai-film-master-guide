@@ -145,7 +145,7 @@
 
 **Validation:** `bash scripts/validate.sh` → ALL 8 STAGES PASS (12 passed, 0 failed, run post-commit); node --check clean; 6,292 links, 0 broken; generator audits byte-identical; studio.test.js 32/32 (19 film + 13 new series: shot math, determinism, DNA-on-every-prompt, bible-plates line, reuse math, schedule sums, planner-band sync, skeleton vs bridge arcs, export contents, guard rails); agent-workflows.test.js 50/50 (new workflow 4: 5-episode mini-drama via the real engine — 75 shots, $38.38 clean, $191.90 at 5×, bible avoids 0.96 credits).
 
-**Commit:** `f363022e81ea8af354bb9dd788e8f18d0ebfd571` ([view](https://github.com/astercast/ai-film-master-guide/commit/f363022e81ea8af354bb9dd788e8f18d0ebfd571)) — pushed 2026-10-11, verified in the remote tree via GitHub API.
+**Commit:** `f363022e81ea8af354bb9dd788e8f18d0ebfd571` ([view](https://github.com/astercast/ai-film-master-guide/commit/f363022e81ea8af354bb9dd788e8f18d0ebfd571)) — 24 files, pushed 2026-10-11 as remote commit `2a3b1cdc219e2a64d48d75ffe731042dda1e17df`; all new/changed files verified present in the remote tree via GitHub API (539 tree entries, 0 missing; remote `skills/index.json` count 225 with all 3 new skill ids; remote `site/assets/js/studio.js` contains `buildSeriesPlan`/`seriesToHtml`; remote `site/studio.html` contains the series panel).
 
 ## Wave 18 — Agent API excellence pass (2026-10-11)
 
