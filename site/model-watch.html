@@ -51,12 +51,39 @@
     </div>
   </header>
   <main id="main">
-    <section class="hero hero-film" aria-labelledby="mw-title">
-      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
+    <section class="hero hero-cutroom" aria-labelledby="mw-title">
+      <div class="tl-deck" aria-hidden="true">
+        <div class="tl-chrome">
+          <span class="tl-rec"><i></i>REC</span>
+          <span class="tl-tc-live" data-tl-tc>00:00:04:00</span>
+          <span class="tl-pop">2-POP 01:00:06:00 &#183; &#x223F;1kHz</span>
+          <span class="tl-title">MODEL_WATCH — FEED_01</span>
+        </div>
+        <div class="tl-ruler">
+          <span style="left:0%">00:00:00:00</span><span style="left:20%">00:00:12:00</span><span style="left:40%">00:00:24:00</span><span style="left:60%">00:00:36:00</span><span style="left:80%">00:00:48:00</span><span style="left:100%">00:01:00:00</span>
+        </div>
+        <div class="tl-tracks">
+          <div class="tl-track"><span class="tl-track-label">V2</span>
+            <span class="clip is-blue" style="left:2.0%;width:96.0%">Last checked</span>
+          </div>
+          <div class="tl-track"><span class="tl-track-label">V1</span>
+            <span class="clip is-gold" style="left:2.0%;width:30.7%">What it is</span>
+            <span class="clip is-gold" style="left:34.7%;width:30.7%">What it costs</span>
+            <span class="clip is-gold" style="left:67.3%;width:30.7%">What changed</span>
+          </div>
+          <div class="tl-track"><span class="tl-track-label">A1</span>
+            <span class="clip is-rec" style="left:2.0%;width:47.0%">Watch beep</span>
+            <span class="clip " style="left:51.0%;width:47.0%">Never drifts</span>
+          </div>
+          <div class="tl-playhead"></div>
+        </div>
+        <div class="leader-frame" data-leader-frame><b>3</b><span class="lf-label">LEADER</span></div>
+      </div>
       <div class="container hero-inner">
         <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Trust, dated</span>
         <h1 id="mw-title">Model <span class="accent">watch.</span></h1>
         <p class="lede">Every model in the guide's API — what it is, what it costs, what changed, and when we last checked. Generated from <code>models.json</code> at build time, so this page can never drift from the data.</p>
+        
       </div>
     </section>
     <section class="container" aria-label="Model status" style="margin-bottom:var(--space-7);">
@@ -73,6 +100,7 @@
       <div class="mw-grid" id="mw-grid">
 <article class="mw-card" data-status="active">
   <span class="mw-badge mw-badge-active">Active</span>
+  <span class="print-tag is-answer">ANSWER PRINT</span>
   <h3>Soul 2.0</h3>
   <p class="mw-platform">Higgsfield · image</p>
   <dl>
@@ -87,6 +115,7 @@
 </article>
 <article class="mw-card" data-status="active">
   <span class="mw-badge mw-badge-active">Active</span>
+  <span class="print-tag is-answer">ANSWER PRINT</span>
   <h3>Soul Cinema</h3>
   <p class="mw-platform">Higgsfield · image</p>
   <dl>
@@ -101,6 +130,7 @@
 </article>
 <article class="mw-card" data-status="active">
   <span class="mw-badge mw-badge-active">Active</span>
+  <span class="print-tag is-answer">ANSWER PRINT</span>
   <h3>Soul Cast</h3>
   <p class="mw-platform">Higgsfield · image</p>
   <dl>
@@ -115,6 +145,7 @@
 </article>
 <article class="mw-card" data-status="active">
   <span class="mw-badge mw-badge-active">Active</span>
+  <span class="print-tag is-answer">ANSWER PRINT</span>
   <h3>Seedance 2.0</h3>
   <p class="mw-platform">ByteDance · video</p>
   <dl>
@@ -129,6 +160,7 @@
 </article>
 <article class="mw-card" data-status="active">
   <span class="mw-badge mw-badge-active">Active</span>
+  <span class="print-tag is-answer">ANSWER PRINT</span>
   <h3>Seedance 2.5</h3>
   <p class="mw-platform">ByteDance · video</p>
   <dl>
@@ -143,6 +175,7 @@
 </article>
 <article class="mw-card" data-status="reported">
   <span class="mw-badge mw-badge-reported">Reported — unconfirmed</span>
+  <span class="print-tag is-workprint">WORKPRINT</span>
   <h3>Seedance 3.0</h3>
   <p class="mw-platform">ByteDance · video</p>
   <dl>
@@ -157,6 +190,7 @@
 </article>
 <article class="mw-card" data-status="active">
   <span class="mw-badge mw-badge-active">Active</span>
+  <span class="print-tag is-answer">ANSWER PRINT</span>
   <h3>Kling 3.0</h3>
   <p class="mw-platform">Kuaishou · video</p>
   <dl>
@@ -171,6 +205,7 @@
 </article>
 <article class="mw-card" data-status="active">
   <span class="mw-badge mw-badge-active">Active</span>
+  <span class="print-tag is-answer">ANSWER PRINT</span>
   <h3>Kling 2.5 Turbo</h3>
   <p class="mw-platform">Kuaishou · video</p>
   <dl>
@@ -185,6 +220,7 @@
 </article>
 <article class="mw-card" data-status="active">
   <span class="mw-badge mw-badge-active">Active</span>
+  <span class="print-tag is-answer">ANSWER PRINT</span>
   <h3>Veo 3.1</h3>
   <p class="mw-platform">Google DeepMind · video</p>
   <dl>
@@ -199,6 +235,7 @@
 </article>
 <article class="mw-card" data-status="active">
   <span class="mw-badge mw-badge-active">Active</span>
+  <span class="print-tag is-answer">ANSWER PRINT</span>
   <h3>Veo 3.1 Fast / Veo 3</h3>
   <p class="mw-platform">Google DeepMind · video</p>
   <dl>
@@ -213,6 +250,7 @@
 </article>
 <article class="mw-card is-discontinued" data-status="discontinued">
   <span class="mw-badge mw-badge-discontinued">Discontinued</span>
+  <span class="print-tag is-answer">ANSWER PRINT</span>
   <h3>Sora 2 / Pro / Max</h3>
   <p class="mw-platform">OpenAI · video</p>
   <dl>
@@ -227,6 +265,7 @@
 </article>
 <article class="mw-card" data-status="active">
   <span class="mw-badge mw-badge-active">Active</span>
+  <span class="print-tag is-answer">ANSWER PRINT</span>
   <h3>Wan 2.6</h3>
   <p class="mw-platform">Alibaba · video</p>
   <dl>
@@ -241,6 +280,7 @@
 </article>
 <article class="mw-card" data-status="active">
   <span class="mw-badge mw-badge-active">Active</span>
+  <span class="print-tag is-answer">ANSWER PRINT</span>
   <h3>Wan 3.0 / 3.0 Prime</h3>
   <p class="mw-platform">Alibaba · video</p>
   <dl>
@@ -255,6 +295,7 @@
 </article>
 <article class="mw-card" data-status="active">
   <span class="mw-badge mw-badge-active">Active</span>
+  <span class="print-tag is-answer">ANSWER PRINT</span>
   <h3>Hailuo 02 / 2.3</h3>
   <p class="mw-platform">MiniMax · video</p>
   <dl>
@@ -269,6 +310,7 @@
 </article>
 <article class="mw-card" data-status="active">
   <span class="mw-badge mw-badge-active">Active</span>
+  <span class="print-tag is-answer">ANSWER PRINT</span>
   <h3>MiniMax H3</h3>
   <p class="mw-platform">MiniMax · video</p>
   <dl>
@@ -283,6 +325,7 @@
 </article>
 <article class="mw-card" data-status="active">
   <span class="mw-badge mw-badge-active">Active</span>
+  <span class="print-tag is-answer">ANSWER PRINT</span>
   <h3>Luma App / Ray 3.2</h3>
   <p class="mw-platform">Luma · video</p>
   <dl>
@@ -297,6 +340,7 @@
 </article>
 <article class="mw-card" data-status="active">
   <span class="mw-badge mw-badge-active">Active</span>
+  <span class="print-tag is-answer">ANSWER PRINT</span>
   <h3>Pika 2.5</h3>
   <p class="mw-platform">Pika · video</p>
   <dl>
@@ -311,6 +355,7 @@
 </article>
 <article class="mw-card" data-status="active">
   <span class="mw-badge mw-badge-active">Active</span>
+  <span class="print-tag is-answer">ANSWER PRINT</span>
   <h3>DoP (Lite/Standard/Turbo)</h3>
   <p class="mw-platform">Higgsfield · video</p>
   <dl>
@@ -325,6 +370,7 @@
 </article>
 <article class="mw-card" data-status="active">
   <span class="mw-badge mw-badge-active">Active</span>
+  <span class="print-tag is-answer">ANSWER PRINT</span>
   <h3>Marketing Studio video</h3>
   <p class="mw-platform">Higgsfield · video</p>
   <dl>
@@ -339,6 +385,7 @@
 </article>
 <article class="mw-card" data-status="active">
   <span class="mw-badge mw-badge-active">Active</span>
+  <span class="print-tag is-answer">ANSWER PRINT</span>
   <h3>Grok Imagine Video 1.5</h3>
   <p class="mw-platform">xAI · video</p>
   <dl>
@@ -353,6 +400,7 @@
 </article>
 <article class="mw-card" data-status="active">
   <span class="mw-badge mw-badge-active">Active</span>
+  <span class="print-tag is-answer">ANSWER PRINT</span>
   <h3>Midjourney V1 Video</h3>
   <p class="mw-platform">Midjourney · video</p>
   <dl>
@@ -367,6 +415,7 @@
 </article>
 <article class="mw-card" data-status="announced">
   <span class="mw-badge mw-badge-announced">Announced — not GA</span>
+  <span class="print-tag is-answer">ANSWER PRINT</span>
   <h3>Kling 4.0</h3>
   <p class="mw-platform">Kuaishou · video</p>
   <dl>
@@ -381,6 +430,7 @@
 </article>
 <article class="mw-card" data-status="active">
   <span class="mw-badge mw-badge-active">Active</span>
+  <span class="print-tag is-answer">ANSWER PRINT</span>
   <h3>Gemini Omni</h3>
   <p class="mw-platform">Google DeepMind · video</p>
   <dl>
@@ -395,6 +445,7 @@
 </article>
 <article class="mw-card" data-status="active">
   <span class="mw-badge mw-badge-active">Active</span>
+  <span class="print-tag is-answer">ANSWER PRINT</span>
   <h3>LTX-2.5</h3>
   <p class="mw-platform">Lightricks · video</p>
   <dl>
@@ -409,6 +460,7 @@
 </article>
 <article class="mw-card" data-status="active">
   <span class="mw-badge mw-badge-active">Active</span>
+  <span class="print-tag is-answer">ANSWER PRINT</span>
   <h3>Vidu S2</h3>
   <p class="mw-platform">Vidu · video</p>
   <dl>
@@ -423,6 +475,7 @@
 </article>
 <article class="mw-card" data-status="active">
   <span class="mw-badge mw-badge-active">Active</span>
+  <span class="print-tag is-answer">ANSWER PRINT</span>
   <h3>Mirage Tesseract</h3>
   <p class="mw-platform">Mirage (formerly Captions) · suite</p>
   <dl>
@@ -437,6 +490,7 @@
 </article>
 <article class="mw-card" data-status="active">
   <span class="mw-badge mw-badge-active">Active</span>
+  <span class="print-tag is-answer">ANSWER PRINT</span>
   <h3>Runway Gen-4.5</h3>
   <p class="mw-platform">Runway · video</p>
   <dl>
@@ -451,6 +505,7 @@
 </article>
 <article class="mw-card" data-status="active">
   <span class="mw-badge mw-badge-active">Active</span>
+  <span class="print-tag is-answer">ANSWER PRINT</span>
   <h3>Vidu Q4 Preview</h3>
   <p class="mw-platform">Vidu / Shengshu Technology · video</p>
   <dl>
@@ -465,6 +520,7 @@
 </article>
 <article class="mw-card" data-status="active">
   <span class="mw-badge mw-badge-active">Active</span>
+  <span class="print-tag is-answer">ANSWER PRINT</span>
   <h3>FLUX 3 Video</h3>
   <p class="mw-platform">Black Forest Labs · video</p>
   <dl>
@@ -479,6 +535,7 @@
 </article>
 <article class="mw-card" data-status="active">
   <span class="mw-badge mw-badge-active">Active</span>
+  <span class="print-tag is-answer">ANSWER PRINT</span>
   <h3>vivago R1</h3>
   <p class="mw-platform">HiDream.ai · suite</p>
   <dl>
@@ -499,7 +556,7 @@
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer"><a href="index.html">Guide</a><a href="skills.html">Skills</a><a href="workshop.html">Workshop</a><a href="quiz.html">Quiz</a><a href="compare.html">Compare</a><a href="gallery.html">Gallery</a><a href="teardown.html">Teardowns</a><a href="model-watch.html">Model watch</a><a href="checks/">Knowledge checks</a><a href="budget.html">Budget</a><a href="optimizer.html">Optimizer</a><a href="shots.html">Shot list</a><a href="style-bible.html">Style bible</a><a href="doctor.html">Doctor</a><a href="linter.html">Linter</a><a href="prompts.html">Prompts</a><a href="models/">Models</a><a href="anatomy.html">Anatomy</a><a href="manifesto.html">Manifesto</a><a href="craft-not-buttons.html">Craft, not buttons</a><a href="recipes.html">Recipes</a><a href="field-guides/">Field guides</a><a href="changelog.html">Changelog</a><a href="skill-spec.html">Skill spec</a><a href="api.html">API</a></nav>
-      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <button type="button" class="back-to-top" aria-label="Back to top">&uarr;</button>
@@ -510,6 +567,8 @@
     </div>
   </div>
   <script src="assets/js/palette.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
   <script>
   (function () {
     var btns = Array.prototype.slice.call(document.querySelectorAll("[data-mw-filter]"));

@@ -2,7 +2,97 @@
 
 ## Standing items (permanent workstreams)
 
-- **Episode pipeline workstream (permanent, from wave 14):** revisit every ~3 waves — new episode formats from what's working, new tools, tighter procedures, worked examples. Goal: best agent-run episode-production system anywhere. (WAVELOG entry each revisit; the research artifact lives at `~/workspace/tiktok-episode-pipeline/PIPELINE.md`.) **Last revisited: wave 32 (2026-10-11) — HeyGen Voice TTS tooling note, YouTube Feb-2027 monetization thresholds, Sundance+TikTok series-development discipline, TikTok's own production push, Shortical off-screen-lives technique. Next revisit ~wave 37 (wave 36 was the Cutting Room identity rework).**
+- **Episode pipeline workstream (permanent, from wave 14):** revisit every ~3 waves — new episode formats from what's working, new tools, tighter procedures, worked examples. Goal: best agent-run episode-production system anywhere. (WAVELOG entry each revisit; the research artifact lives at `~/workspace/tiktok-episode-pipeline/PIPELINE.md`.) **Last revisited: wave 32 (2026-10-11) — HeyGen Voice TTS tooling note, YouTube Feb-2027 monetization thresholds, Sundance+TikTok series-development discipline, TikTok's own production push, Shortical off-screen-lives technique. Next revisit ~wave 38 (wave 37 was the Cutting Room identity wave 2).**
+
+## Wave 37 — "The Cutting Room" identity wave 2: every page recognizable blind (2026-10-11)
+
+**Assignment:** extend the wave-36 identity system to the remaining page types —
+tools (episode planner, hook generator, doctor, optimizer, budget, linter, shots,
+prompts, workshop, quiz, anatomy, gallery, skills, recipes, style-bible), data
+views (model tables, cost tables, model-watch), docs (API docs, skill spec,
+manifesto, field guides, craft-not-buttons, knowledge checks) — plus a full
+consistency audit (selection, scrollbars, focus rings, empty states, footers,
+404). Identity only: content, tools, data, and API surfaces untouched.
+Generator-owns-output split respected: all template work in `scripts/build_site.py`,
+all CSS/JS in root `assets/`; `site/` rebuilt by the generator; the two
+hand-maintained root pages (`api.html`, `craft-not-buttons.html`) edited at the
+root (they are their own source, copied to `site/` by the build).
+
+**Research applied** (`~/workspace/research_notes/RESEARCH_LOG.md` checked at wave
+start; web-identity round 4's cutting-room deep dive
+`web-identity-20261011-2135/notes/05a-cutting-room.md` — landed 21:41 PDT — was
+the primary input, applied as techniques not copy):
+- **2-pop sync markers** (verified craft: 1kHz, one frame, 2s before FFOA,
+  01:00:06:00 film convention): head-pop chrome in every timeline deck's
+  control row (`2-POP 01:00:06:00 · ∿1kHz`), tail pop in every footer colophon
+  (97/97 pages). Aria-hidden decoration.
+- **Upside-down end slate for missing content**: the 404 now carries an
+  upside-down slate ("SLATED AT TAIL — FOOTAGE PENDING") under the missing-reel
+  copy — the craft's native mark for footage that never arrived.
+- **WORKPRINT vs ANSWER PRINT maturity**: model-watch cards and per-model hero
+  badges now carry print tags — `reported` (unconfirmed) records are WORKPRINT,
+  verified/active/discontinued records are ANSWER PRINT; field guides (print-ready
+  by design) are tagged ANSWER PRINT.
+- **Field guides** (print-first, no hero by design): screen-only slate masthead
+  (`no-print`) with REC + 2-pop chrome instead of a timeline deck.
+- Deliberately NOT applied (restraint is a valid path): EDL index tables
+  (would restructure data views — content-adjacent, deferred), splice-tape
+  frames (zero `<img>`/`<figure>` on the site — no surface), MOS markers (no
+  silent media to tag), J-cut/L-cut section flows (layout choreography risk).
+
+**What shipped:**
+1. **`hero_cutroom()` generator helper** (`scripts/build_site.py`): the canonical
+   Cutting Room hero — REC + live TC + 2-pop chrome, timecode ruler, three
+   clip-block tracks (V2/V1/A1), sweeping playhead, leader-countdown frame,
+   kicker/title/lede. Clip blocks auto-laid-out; every page gets its own deck
+   labels (e.g. episode planner: BIBLE LOCK / EPISODE BLOCKS / ARC LOG;
+   model-watch: WHAT IT IS / WHAT IT COSTS / WHAT CHANGED). All 25 convertible
+   templates moved off the legacy `hero-film` hero; hero copy was
+   *extracted* from the existing templates (never retyped) and passed through
+   the outer `.format()` — except MODEL/CHECK/CHECKS_INDEX, whose hero
+   fragments are pre-substituted at the call site (a value's placeholders don't
+   get a second format pass — caught by the link checker, fixed same wave).
+2. **2-pop head marker** added to the 3 wave-36 inline decks (index, Studio,
+   teardown) — verified the teardown deck still lays out clean.
+3. **Tail pop** in all 31 footer colophons (builds to 97/97 pages).
+4. **`docs.js` + `identity.js` on every tool/data/docs page** (25 templates):
+   leader countdowns tick everywhere, header TC tickers run, TC stamps now hit
+   tool-page section h2s (45s marks, same reel), card reveal choreography, and
+   previously-dead back-to-top buttons are wired.
+5. **NO-FOOTAGE slates** on all true empty states (5 template slots + quiz.js +
+   gallery.js); error slots deliberately left as errors, not empties.
+6. **`api.html` + `craft-not-buttons.html`** (hand-maintained): full identity —
+   fonts, motifs.css, deck heroes (API_V1 — DOCS / CRAFT_NOT_BUTTONS — DOC_01),
+   2-pop, leader frames, TC-stamped h2s, hdr-tc ticker, palette search,
+   back-to-top, tail-pop colophons.
+7. **Retired** the legacy `.hero-film` / `.leader-ring` CSS (zero references
+   remain) and fixed a real 404 bug found in screenshots (leader-frame
+   crosshair pseudos escaped the circle — `position: static` broke their
+   containing block; now `relative` with offsets reset).
+
+**Consistency audit (all verified):** selection = REC red #c81e23 (5.73:1) global;
+sprocket-dotted scrollbar thumbs global; tungsten `:focus-visible` ring global;
+footers carry the tail-leader colophon on 97/97 pages; 404 holds the identity;
+empty states are NO-FOOTAGE slates; `hero-film`/`leader-ring` = 0 references
+anywhere. Reduced-motion: leader frames rest on static READY, playhead/deck
+motion fully gated (verified in headless Chromium with reduced-motion
+emulation). Mobile-first untouched (leader frame hides ≤900px as in wave 36).
+
+**Validation:** `bash scripts/validate.sh` → **13/13 green, ALL STAGES PASS**
+(7,426 links, 0 broken; node --check clean; 56 JSON parse; 11/11 schemas;
+skills byte-identical; prompt-templates == parser; llms.txt zero-diff;
+studio 70/70; agent-workflows 74/74). Headless Chromium screenshots: tool page
+(episode-planner), data view (model-watch), docs pages (api.html,
+craft-not-buttons.html), 404, teardown deck — identity renders, no page errors
+(one console error per page is the sandbox's blocked Google-Fonts fetch,
+environmental; system-font fallbacks hold the layout).
+
+**Commit:** local wave-37 commit (111 files: 9 source + WAVELOG + 102 rebuilt
+site/) → pushed 2026-10-11 as remote commit `TBD` (verified below).
+
+**Standing workstream note:** the episode-pipeline revisit (#6) was due ~wave 37
+but wave 37 carried the identity wave 2 instead — revisit still pending for a
+subsequent wave.
 
 ## Wave 36 — "The Cutting Room" visual identity rework (wave 1) (2026-10-11)
 

@@ -51,12 +51,39 @@
     </div>
   </header>
   <main id="main">
-    <section class="hero hero-film" aria-labelledby="changelog-title">
-      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
+    <section class="hero hero-cutroom" aria-labelledby="changelog-title">
+      <div class="tl-deck" aria-hidden="true">
+        <div class="tl-chrome">
+          <span class="tl-rec"><i></i>REC</span>
+          <span class="tl-tc-live" data-tl-tc>00:00:04:00</span>
+          <span class="tl-pop">2-POP 01:00:06:00 &#183; &#x223F;1kHz</span>
+          <span class="tl-title">CHANGELOG — FEED_01</span>
+        </div>
+        <div class="tl-ruler">
+          <span style="left:0%">00:00:00:00</span><span style="left:20%">00:00:12:00</span><span style="left:40%">00:00:24:00</span><span style="left:60%">00:00:36:00</span><span style="left:80%">00:00:48:00</span><span style="left:100%">00:01:00:00</span>
+        </div>
+        <div class="tl-tracks">
+          <div class="tl-track"><span class="tl-track-label">V2</span>
+            <span class="clip is-blue" style="left:2.0%;width:96.0%">Dated entries</span>
+          </div>
+          <div class="tl-track"><span class="tl-track-label">V1</span>
+            <span class="clip is-gold" style="left:2.0%;width:30.7%">Newest first</span>
+            <span class="clip is-gold" style="left:34.7%;width:30.7%">Every change</span>
+            <span class="clip is-gold" style="left:67.3%;width:30.7%">No rot</span>
+          </div>
+          <div class="tl-track"><span class="tl-track-label">A1</span>
+            <span class="clip is-rec" style="left:2.0%;width:47.0%">Freshness beep</span>
+            <span class="clip " style="left:51.0%;width:47.0%">Stay current</span>
+          </div>
+          <div class="tl-playhead"></div>
+        </div>
+        <div class="leader-frame" data-leader-frame><b>3</b><span class="lf-label">LEADER</span></div>
+      </div>
       <div class="container hero-inner">
         <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Freshness log</span>
         <h1 id="changelog-title">What <span class="accent">changed.</span></h1>
         <p class="lede">AI film tooling rots in months. This page is how the guide stays fresh — every shipped change, dated, newest first.</p>
+        
       </div>
     </section>
     <section class="container" aria-labelledby="process-h">
@@ -65,7 +92,8 @@
         <p>This changelog is rebuilt from the repository's git history on every site build, so it always reflects the latest release. Each entry below is a shipped change with its commit date — not a roadmap, not a promise. When a model price, feature, or platform rule changes in the world, the corresponding chapter or API update appears here with its date, and the affected chapter links its sources.</p>
       </div>
       <h2>Recent changes</h2>
-      <ol class="change-list"><li><span class="change-date">2026-10-12</span> <span class="change-hash">8b89d84</span><p>MERGE waves 33/34/35: fold WAVELOG entries, documentary-ethics chapter build, st3 styles into STUDIO_TMPL</p></li>
+      <ol class="change-list"><li><span class="change-date">2026-10-12</span> <span class="change-hash">d4c8306</span><p>Wave 36: &#x27;The Cutting Room&#x27; visual identity rework (wave 1)</p></li>
+      <li><span class="change-date">2026-10-12</span> <span class="change-hash">8b89d84</span><p>MERGE waves 33/34/35: fold WAVELOG entries, documentary-ethics chapter build, st3 styles into STUDIO_TMPL</p></li>
       <li><span class="change-date">2026-10-12</span> <span class="change-hash">d10a300</span><p>Wave 34: Studio 3.0 — Shot Refinery + plan sharing + draft-cheap/finish-flagship optimizer mode</p></li>
       <li><span class="change-date">2026-10-12</span> <span class="change-hash">f6563d7</span><p>Wave 33: WAVELOG remote commit hash + verification detail</p></li>
       <li><span class="change-date">2026-10-12</span> <span class="change-hash">46ff995</span><p>Wave 35: WAVELOG fragment — fill commit SHAs + remote-push behavior note</p></li>
@@ -78,8 +106,7 @@
       <li><span class="change-date">2026-10-12</span> <span class="change-hash">aa83456</span><p>Wave 31: 8th teardown — Gaudette&#x27;s &#x27;A Face Only a Mother Could Love&#x27; (character sheets first, two-pass voice)</p></li>
       <li><span class="change-date">2026-10-12</span> <span class="change-hash">8f5571f</span><p>Wave 30: WAVELOG remote commit hash + verification detail</p></li>
       <li><span class="change-date">2026-10-12</span> <span class="change-hash">55fb868</span><p>Wave 30: late-Q4 model field sweep — Vidu Q4 pricing correction, 15 record updates, +vivago R1 (30 models)</p></li>
-      <li><span class="change-date">2026-10-12</span> <span class="change-hash">8ca2577</span><p>Wave 29: WAVELOG remote commit hash + verification detail</p></li>
-      <li><span class="change-date">2026-10-12</span> <span class="change-hash">fe3acc3</span><p>Wave 29: episode-pipeline revisit #4 — IMDA+TikTok programme rails, Douyin oversupply economics, AI-label compliance, oversupply-discipline craft judgment</p></li></ol>
+      <li><span class="change-date">2026-10-12</span> <span class="change-hash">8ca2577</span><p>Wave 29: WAVELOG remote commit hash + verification detail</p></li></ol>
       <p class="calc-note" style="margin-bottom:var(--space-7);">Older history lives in the repository's git log. The guide also ships <code>llms.txt</code> so agents can check freshness programmatically.</p>
     </section>
   </main>
@@ -87,7 +114,7 @@
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer"><a href="index.html">Guide</a><a href="skills.html">Skills</a><a href="workshop.html">Workshop</a><a href="quiz.html">Quiz</a><a href="compare.html">Compare</a><a href="gallery.html">Gallery</a><a href="teardown.html">Teardowns</a><a href="model-watch.html">Model watch</a><a href="checks/">Knowledge checks</a><a href="budget.html">Budget</a><a href="optimizer.html">Optimizer</a><a href="shots.html">Shot list</a><a href="style-bible.html">Style bible</a><a href="doctor.html">Doctor</a><a href="linter.html">Linter</a><a href="prompts.html">Prompts</a><a href="models/">Models</a><a href="anatomy.html">Anatomy</a><a href="manifesto.html">Manifesto</a><a href="craft-not-buttons.html">Craft, not buttons</a><a href="recipes.html">Recipes</a><a href="field-guides/">Field guides</a><a href="changelog.html">Changelog</a><a href="skill-spec.html">Skill spec</a><a href="api.html">API</a></nav>
-      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
@@ -97,5 +124,7 @@
     </div>
   </div>
   <script src="assets/js/palette.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
 </body>
 </html>

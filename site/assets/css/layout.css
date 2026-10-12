@@ -58,47 +58,6 @@
 /* ——— Hero ——— */
 .hero { position: relative; overflow: clip; border-bottom: 1px solid var(--line-soft); background: var(--bg-soft); }
 .hero-inner { position: relative; z-index: 2; padding-block: var(--space-7); max-width: 940px; }
-.hero-film {
-  background:
-    radial-gradient(1000px 420px at 50% -12%, rgba(245, 179, 1, 0.14), transparent 62%),
-    radial-gradient(760px 380px at 88% 8%, rgba(230, 36, 41, 0.08), transparent 55%),
-    radial-gradient(140% 90% at 50% 110%, transparent 55%, rgba(0, 0, 0, 0.5) 100%),
-    var(--bg-soft);
-}
-.hero-film::before, .hero-film::after {
-  /* film sprocket strips */
-  content: ""; position: absolute; left: 0; right: 0; height: 30px; background-color: #000;
-  background-image: var(--sprocket);
-  background-size: 26px 30px; background-position: center; background-repeat: repeat-x;
-  z-index: 1;
-}
-.hero-film::before { top: 0; border-bottom: 1px solid var(--line-soft); }
-.hero-film::after { bottom: 0; border-top: 1px solid var(--line-soft); }
-
-/* Film-leader countdown ring — pure decoration (legacy pages) */
-.leader-ring {
-  position: absolute; right: -30px; top: 50%; width: 340px; height: 340px;
-  transform: translateY(-50%); pointer-events: none; opacity: 0.5;
-}
-.leader-ring i { position: absolute; inset: 0; border-radius: 50%; }
-.leader-ring i:nth-child(1) { border: 1px solid var(--line-bright); inset: 24px; }
-.leader-ring i:nth-child(2) { border: 1px dashed rgba(245, 179, 1, 0.4); }
-.leader-ring i:nth-child(3) { border: 1px solid rgba(245, 179, 1, 0.25); inset: 64px; }
-.leader-ring b {
-  position: absolute; inset: 0; display: grid; place-items: center;
-  font-family: var(--font-display); font-weight: 800; font-stretch: 62%;
-  font-size: 6rem; color: rgba(245, 179, 1, 0.32);
-}
-.leader-ring::before, .leader-ring::after {
-  content: ""; position: absolute; background: rgba(245, 179, 1, 0.3);
-}
-.leader-ring::before { left: 50%; top: 8%; bottom: 8%; width: 1px; }
-.leader-ring::after { top: 50%; left: 8%; right: 8%; height: 1px; }
-@media (prefers-reduced-motion: no-preference) {
-  .leader-ring i:nth-child(2) { animation: ring-spin 60s linear infinite; }
-}
-@keyframes ring-spin { to { transform: rotate(360deg); } }
-@media (max-width: 900px) { .leader-ring { display: none; } }
 
 /* Hero entrance — decelerate in, staggered like a slate sequence */
 @media (prefers-reduced-motion: no-preference) {

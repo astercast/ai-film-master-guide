@@ -5,10 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Learn craft, not buttons — AI Film Master Guide</title>
   <meta name="description" content="Vendor-neutral craft decisions for AI filmmaking: what actually matters for text-to-video, image-to-video, upscaling, voice, and editing — and where each decision lives in Kling, Veo, Runway, Luma, Higgsfield, and Seedance. Tools die. Craft transfers.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="assets/css/tokens.css">
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/layout.css">
   <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/motifs.css">
   <link rel="stylesheet" href="assets/css/docs.css">
   <link rel="stylesheet" href="assets/css/print.css">
 </head>
@@ -33,13 +37,42 @@
       <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
         <span aria-hidden="true">⌘K</span> Search
       </button>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
     </div>
   </header>
 
   <main id="main">
-    <section class="hero hero-film" aria-labelledby="cnb-title">
+    <section class="hero hero-cutroom" aria-labelledby="cnb-title">
+      <div class="tl-deck" aria-hidden="true">
+        <div class="tl-chrome">
+          <span class="tl-rec"><i></i>REC</span>
+          <span class="tl-tc-live" data-tl-tc>00:00:04:00</span>
+          <span class="tl-pop">2-POP 01:00:06:00 &#183; &#x223F;1kHz</span>
+          <span class="tl-title">CRAFT_NOT_BUTTONS — DOC_01</span>
+        </div>
+        <div class="tl-ruler">
+          <span style="left:0%">00:00:00:00</span><span style="left:20%">00:00:12:00</span><span style="left:40%">00:00:24:00</span><span style="left:60%">00:00:36:00</span><span style="left:80%">00:00:48:00</span><span style="left:100%">00:01:00:00</span>
+        </div>
+        <div class="tl-tracks">
+          <div class="tl-track"><span class="tl-track-label">V2</span>
+            <span class="clip is-blue" style="left:2%;width:47%">Six tools</span>
+            <span class="clip is-blue" style="left:51%;width:47%">One craft</span>
+          </div>
+          <div class="tl-track"><span class="tl-track-label">V1</span>
+            <span class="clip is-gold" style="left:2%;width:30.6%">The shot</span>
+            <span class="clip is-gold" style="left:34.6%;width:30.6%">The plate</span>
+            <span class="clip is-gold" style="left:67.3%;width:30.6%">The finish</span>
+          </div>
+          <div class="tl-track"><span class="tl-track-label">A1</span>
+            <span class="clip is-rec" style="left:2%;width:47%">The performance</span>
+            <span class="clip" style="left:51%;width:47%">The film</span>
+          </div>
+          <div class="tl-playhead"></div>
+        </div>
+        <div class="leader-frame" data-leader-frame><b>3</b><span class="lf-label">LEADER</span></div>
+      </div>
       <div class="container hero-inner">
-        <span class="hero-kicker">Vendor-neutral</span>
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Vendor-neutral</span>
         <h1 id="cnb-title">Learn craft, <span class="accent">not buttons.</span></h1>
         <p class="lede">Every tool below will be renamed, repriced, or replaced within a year. The decisions underneath them have been stable for a century. This page maps the craft to the controls — so when the buttons move, you don't have to relearn filmmaking.</p>
       </div>
@@ -138,8 +171,10 @@
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer"><a href="index.html">Guide</a><a href="skills.html">Skills</a><a href="workshop.html">Workshop</a><a href="quiz.html">Quiz</a><a href="teardown.html">Teardowns</a><a href="budget.html">Budget</a><a href="manifesto.html">Manifesto</a><a href="craft-not-buttons.html">Craft, not buttons</a><a href="recipes.html">Recipes</a><a href="field-guides/">Field guides</a><a href="changelog.html">Changelog</a><a href="skill-spec.html">Skill spec</a><a href="api.html">API</a></nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
+  <button type="button" class="back-to-top" aria-label="Back to top">&uarr;</button>
   <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
     <div class="palette-box">
       <input id="palette-input" type="search" placeholder="Search chapters, prompts, models…" autocomplete="off" aria-label="Search the guide">
@@ -147,5 +182,7 @@
     </div>
   </div>
   <script src="assets/js/palette.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
 </body>
 </html>

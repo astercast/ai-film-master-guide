@@ -5,10 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>API — AI Film Master Guide</title>
   <meta name="description" content="Machine-readable AI filmmaking data: versioned JSON for models, prompt templates, camera movements, checklists, glossary, teardowns, diagnoses, and model freshness — with JSON schemas and a live try-it console.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="assets/css/tokens.css">
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/motifs.css">
   <link rel="stylesheet" href="assets/css/docs.css">
+  <link rel="stylesheet" href="assets/css/print.css">
   <style>
     .api-console { display: flex; gap: var(--space-4); align-items: flex-end; flex-wrap: wrap; margin: var(--space-4) 0; }
     .api-console .field { flex: 1 1 260px; margin: 0; }
@@ -33,19 +39,53 @@
         <a href="index.html">Guide</a>
         <a href="api.html" aria-current="page">API</a>
       </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">⌘K</span> Search
+      </button>
     </div>
   </header>
 
   <main id="main">
-    <div class="container page-head">
-      <span class="hero-kicker">Machine-readable</span>
-      <h1>The API</h1>
-      <p class="lede">Versioned static JSON for agents and tools, generated from the research artifacts. Start at <code>api/v1/index.json</code>; full reference lives in <code>API.md</code> at the repo root; the operator's manual is <code>AGENT.md</code>.</p>
-    </div>
+    <section class="hero hero-cutroom" aria-labelledby="api-title">
+      <div class="tl-deck" aria-hidden="true">
+        <div class="tl-chrome">
+          <span class="tl-rec"><i></i>REC</span>
+          <span class="tl-tc-live" data-tl-tc>00:00:04:00</span>
+          <span class="tl-pop">2-POP 01:00:06:00 &#183; &#x223F;1kHz</span>
+          <span class="tl-title">API_V1 — DOCS</span>
+        </div>
+        <div class="tl-ruler">
+          <span style="left:0%">00:00:00:00</span><span style="left:20%">00:00:12:00</span><span style="left:40%">00:00:24:00</span><span style="left:60%">00:00:36:00</span><span style="left:80%">00:00:48:00</span><span style="left:100%">00:01:00:00</span>
+        </div>
+        <div class="tl-tracks">
+          <div class="tl-track"><span class="tl-track-label">V2</span>
+            <span class="clip is-blue" style="left:2%;width:47%">JSON Schemas</span>
+            <span class="clip is-blue" style="left:51%;width:47%">llms.txt</span>
+          </div>
+          <div class="tl-track"><span class="tl-track-label">V1</span>
+            <span class="clip is-gold" style="left:2%;width:30.6%">Static JSON</span>
+            <span class="clip is-gold" style="left:34.6%;width:30.6%">Versioned</span>
+            <span class="clip is-gold" style="left:67.3%;width:30.6%">No auth</span>
+          </div>
+          <div class="tl-track"><span class="tl-track-label">A1</span>
+            <span class="clip is-rec" style="left:2%;width:47%">Try-it console</span>
+            <span class="clip" style="left:51%;width:47%">AGENT.md</span>
+          </div>
+          <div class="tl-playhead"></div>
+        </div>
+        <div class="leader-frame" data-leader-frame><b>3</b><span class="lf-label">LEADER</span></div>
+      </div>
+      <div class="container hero-inner">
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Machine-readable</span>
+        <h1 id="api-title">The <span class="accent">API.</span></h1>
+        <p class="lede">Versioned static JSON for agents and tools, generated from the research artifacts. Start at <code>api/v1/index.json</code>; full reference lives in <code>API.md</code> at the repo root; the operator's manual is <code>AGENT.md</code>.</p>
+      </div>
+    </section>
 
     <div class="container">
       <section aria-labelledby="try-h">
-        <h2 id="try-h">Try the API</h2>
+        <h2 id="try-h">Try the API<span class="tc" aria-hidden="true">00:00:45:00</span></h2>
         <div class="card" style="margin-bottom:var(--space-6);">
           <p style="color:var(--ink-dim);margin-top:0;">Pick an endpoint and fetch it live — the console reads the same <code>api/v1/</code> files this page documents. Static JSON: no auth, no keys, no rate limits.</p>
           <form id="api-console" class="api-console">
@@ -61,7 +101,7 @@
       </section>
 
       <section aria-labelledby="endpoints-h">
-        <h2 id="endpoints-h">Endpoints</h2>
+        <h2 id="endpoints-h">Endpoints<span class="tc" aria-hidden="true">00:01:30:00</span></h2>
         <div class="chapter-grid" style="margin-bottom:var(--space-6);">
           <article class="card chapter-card"><h3><code>api/v1/index.json</code></h3><p>Manifest: every endpoint with description, schema URL, updated timestamp, record counts, and deprecation notes. Start here.</p></article>
           <article class="card chapter-card"><h3><code>api/v1/models.json</code></h3><p>29 models with platform, type, credit costs, strengths, weaknesses, best use — plus per-model last-verified dates, status, and an explicit unverified list. Sora is <code>discontinued</code>.</p></article>
@@ -79,7 +119,7 @@
       </section>
 
       <section aria-labelledby="notes-h">
-        <h2 id="notes-h">Usage notes</h2>
+        <h2 id="notes-h">Usage notes<span class="tc" aria-hidden="true">00:02:15:00</span></h2>
         <div class="card" style="margin-bottom:var(--space-6);">
           <p style="color:var(--ink-dim);margin-bottom:var(--space-3);">Credit costs were read from Higgsfield's live pricing page on 2026-10-10 and are denominated in Higgsfield credits per 5 seconds unless noted. <strong>Verify live before budgeting</strong> — the <code>unverified</code> array in <code>models.json</code> lists costs that could not be confirmed.</p>
           <p style="color:var(--ink-dim);margin:0;">Template ids are stable (<code>t1</code>–<code>t15</code> core, <code>a1</code>–<code>a8</code> animated, <code>p1</code>–<code>p8</code> photorealistic). Track is one of <code>core</code>, <code>animated</code>, <code>photorealistic</code>, <code>performance</code>, <code>audio</code>, <code>longform</code>, <code>repair</code>.</p>
@@ -87,7 +127,7 @@
       </section>
 
       <section aria-labelledby="llm-h">
-        <h2 id="llm-h">For language models</h2>
+        <h2 id="llm-h">For language models<span class="tc" aria-hidden="true">00:03:00:00</span></h2>
         <div class="card">
           <p style="color:var(--ink-dim);">Agents should start with <code>llms.txt</code> (index) and <code>llms-full.txt</code> (the full guide text) at the repo root, then <code>AGENT.md</code> — the operator's manual with four end-to-end workflows — then <code>API.md</code>.</p>
         </div>
@@ -99,9 +139,20 @@
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer"><a href="index.html">Guide</a><a href="api.html">API</a></nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
+  <button type="button" class="back-to-top" aria-label="Back to top">&uarr;</button>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
+    <div class="palette-box">
+      <input id="palette-input" type="search" placeholder="Search chapters, prompts, models&hellip;" autocomplete="off" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search the guide"></div>
+    </div>
+  </div>
 
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
   <script>
   (function () {
     "use strict";

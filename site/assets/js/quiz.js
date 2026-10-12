@@ -87,7 +87,7 @@
       takes: Math.max(1, parseFloat(data.get("takes")) || 5)
     };
     if (!ans.usecase || !ans.budget || !ans.look || !ans.audio) {
-      results.innerHTML = '<div class="empty-state"><p>Answer all four questions first.</p></div>';
+      results.innerHTML = '<div class="empty-state"><span class="es-slate">No footage</span><p>Answer all four questions first.</p></div>';
       return;
     }
 

@@ -105,6 +105,74 @@ def nav_html(prefix, current):
 def footer_html(prefix):
     return "".join(f'<a href="{prefix}{href}">{label}</a>' for href, label in FOOTER_ITEMS)
 
+
+def _deck_clips(labels, cls):
+    """Lay clip blocks across a timeline track: even widths, 2% gutters."""
+    n = len(labels)
+    if not n:
+        return ""
+    gap = 2.0
+    w = (100.0 - gap * (n + 1)) / n
+    parts = []
+    for i, lab in enumerate(labels):
+        left = gap + i * (w + gap)
+        parts.append(
+            f'<span class="clip {cls}" style="left:{left:.1f}%;width:{w:.1f}%">{lab}</span>')
+    return "\n            ".join(parts)
+
+
+def hero_cutroom(kicker, h1, lede, deck_title, clips, h1_id, extra=""):
+    """The Cutting Room hero (wave 37): timeline deck + leader frame + hero copy.
+
+    kicker/h1/lede/extra are raw HTML fragments (may carry {placeholders}
+    for the outer .format() call). clips = {"v2": [...], "v1": [...], "a1": [...]}.
+    """
+    v2 = _deck_clips(clips.get("v2", []), "is-blue")
+    v1 = _deck_clips(clips.get("v1", []), "is-gold")
+    a1_labels = clips.get("a1", [])
+    a1 = []
+    n = len(a1_labels)
+    gap = 2.0
+    w = (100.0 - gap * (n + 1)) / n if n else 0
+    for i, lab in enumerate(a1_labels):
+        cls = "is-rec" if i == 0 else ""
+        left = gap + i * (w + gap)
+        a1.append(
+            f'<span class="clip {cls}" style="left:{left:.1f}%;width:{w:.1f}%">{lab}</span>')
+    a1s = "\n            ".join(a1)
+    return f"""<section class="hero hero-cutroom" aria-labelledby="{h1_id}">
+      <div class="tl-deck" aria-hidden="true">
+        <div class="tl-chrome">
+          <span class="tl-rec"><i></i>REC</span>
+          <span class="tl-tc-live" data-tl-tc>00:00:04:00</span>
+          <span class="tl-pop">2-POP 01:00:06:00 &#183; &#x223F;1kHz</span>
+          <span class="tl-title">{deck_title}</span>
+        </div>
+        <div class="tl-ruler">
+          <span style="left:0%">00:00:00:00</span><span style="left:20%">00:00:12:00</span><span style="left:40%">00:00:24:00</span><span style="left:60%">00:00:36:00</span><span style="left:80%">00:00:48:00</span><span style="left:100%">00:01:00:00</span>
+        </div>
+        <div class="tl-tracks">
+          <div class="tl-track"><span class="tl-track-label">V2</span>
+            {v2}
+          </div>
+          <div class="tl-track"><span class="tl-track-label">V1</span>
+            {v1}
+          </div>
+          <div class="tl-track"><span class="tl-track-label">A1</span>
+            {a1s}
+          </div>
+          <div class="tl-playhead"></div>
+        </div>
+        <div class="leader-frame" data-leader-frame><b>3</b><span class="lf-label">LEADER</span></div>
+      </div>
+      <div class="container hero-inner">
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>{kicker}</span>
+        <h1 id="{h1_id}">{h1}</h1>
+        <p class="lede">{lede}</p>
+        {extra}
+      </div>
+    </section>"""
+
 PAGE_TMPL = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -153,7 +221,7 @@ PAGE_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
-      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <button type="button" class="back-to-top" aria-label="Back to top">↑</button>
@@ -203,6 +271,7 @@ INDEX_TMPL = """<!DOCTYPE html>
         <div class="tl-chrome">
           <span class="tl-rec"><i></i>REC</span>
           <span class="tl-tc-live" data-tl-tc>00:00:04:00</span>
+          <span class="tl-pop">2-POP 01:00:06:00 &#183; &#x223F;1kHz</span>
           <span class="tl-title">AI_FILM_MASTER_GUIDE — ASSEMBLY_01</span>
         </div>
         <div class="tl-ruler">
@@ -422,7 +491,7 @@ INDEX_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
-      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
@@ -535,21 +604,10 @@ SKILLS_TMPL = """<!DOCTYPE html>
     </div>
   </header>
   <main id="main">
-    <section class="hero hero-film" aria-labelledby="skills-title">
-      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
-      <div class="container hero-inner">
-        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>For agents &amp; humans</span>
-        <h1 id="skills-title">Task <span class="accent">skills.</span></h1>
-        <p class="lede">Every procedure in the guide as a loadable skill: inputs, steps, worked examples, pitfalls. <span id="skills-count" aria-live="polite"></span></p>
-        <div class="field" style="max-width:480px;">
-          <label for="skills-filter">Filter skills</label>
-          <input class="input" id="skills-filter" type="search" placeholder="e.g. lip sync, BAF, budget…" autocomplete="off">
-        </div>
-      </div>
-    </section>
+    {hero}
     <section class="container" aria-label="Skills">
       <div id="skills-list"></div>
-      <div class="empty-state" id="skills-empty" hidden><p>No skills match that filter.</p></div>
+      <div class="empty-state" id="skills-empty" hidden><span class="es-slate">No footage</span><p>No skills match that filter.</p></div>
       <p class="calc-note" style="margin-bottom:var(--space-7);">Skills live in <code>skills/</code> in the repo and are indexed by <code>skills/index.json</code>. Agents: <code>api/v1/index.json</code> points here.</p>
     </section>
   </main>
@@ -557,10 +615,12 @@ SKILLS_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
-      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <script src="assets/js/skills.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
 </body>
 </html>
 """
@@ -593,14 +653,7 @@ BUDGET_TMPL = """<!DOCTYPE html>
     </div>
   </header>
   <main id="main">
-    <section class="hero hero-film" aria-labelledby="budget-title">
-      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
-      <div class="container hero-inner">
-        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Economics</span>
-        <h1 id="budget-title">Budget <span class="accent">calculator.</span></h1>
-        <p class="lede">Runtime, shot length, model, and discipline in — a cost envelope out. Grounded in the <a href="economics/credit-math.html">credit-math</a> chapter (third-party per-clip estimates, Oct 2026).</p>
-      </div>
-    </section>
+    {hero}
     <section class="container" aria-labelledby="calc-h">
       <h2 id="calc-h">Your production</h2>
       <div class="calc-grid">
@@ -642,10 +695,12 @@ BUDGET_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
-      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <script src="assets/js/budget.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
 </body>
 </html>
 """
@@ -678,14 +733,7 @@ OPTIMIZER_TMPL = """<!DOCTYPE html>
     </div>
   </header>
   <main id="main">
-    <section class="hero hero-film" aria-labelledby="opt-title">
-      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
-      <div class="container hero-inner">
-        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Economics</span>
-        <h1 id="opt-title">Budget <span class="accent">optimizer.</span></h1>
-        <p class="lede">The calculator tells you what one model costs. The optimizer tells you what your film should cost: it splits your runtime into dialogue and non-dialogue buckets and assigns the cheapest model that satisfies your quality bar — computed live from <code>models.json</code>, so the picks stay fresh as the data does.</p>
-      </div>
-    </section>
+    {hero}
     <section class="container" aria-labelledby="opt-h">
       <h2 id="opt-h">Your production</h2>
       <div class="calc-grid">
@@ -731,11 +779,13 @@ OPTIMIZER_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
-      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <script src="assets/js/palette.js"></script>
   <script src="assets/js/optimizer.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
 </body>
 </html>
 """
@@ -768,14 +818,7 @@ DOCTOR_TMPL = """<!DOCTYPE html>
     </div>
   </header>
   <main id="main">
-    <section class="hero hero-film" aria-labelledby="doc-title">
-      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
-      <div class="container hero-inner">
-        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Tools</span>
-        <h1 id="doc-title">Failure <span class="accent">doctor.</span></h1>
-        <p class="lede">Something broke in your footage? Pick the symptom. The doctor gives you the diagnosis in craft terms, the fix that works, and — where one exists — the repair template loaded in the workshop. Every diagnosis is sourced from the guide's chapters.</p>
-      </div>
-    </section>
+    {hero}
     <section class="container" aria-labelledby="doc-pick-h">
       <h2 id="doc-pick-h">What are you seeing?</h2>
       <div class="doc-grid" id="doc-grid" role="group" aria-label="Failure symptoms"></div>
@@ -793,11 +836,13 @@ DOCTOR_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
-      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <script src="assets/js/palette.js"></script>
   <script src="assets/js/doctor.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
 </body>
 </html>
 """
@@ -849,14 +894,7 @@ EPISODEPLANNER_TMPL = """<!DOCTYPE html>
     </div>
   </header>
   <main id="main">
-    <section class="hero hero-film" aria-labelledby="ep-title-h">
-      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
-      <div class="container hero-inner">
-        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Tools</span>
-        <h1 id="ep-title-h">Episode <span class="accent">planner.</span></h1>
-        <p class="lede">A series is a contract with the audience: lock the bible once, plan every episode as a block (one emotion, 3–5 beats, dedicated turn, cliffhanger), and keep an arc log with lessons learned. Everything saves in your browser — nothing leaves your machine.</p>
-      </div>
-    </section>
+    {hero}
     <section class="container" aria-labelledby="eps-h">
       <h2 id="eps-h">1 · Series setup — lock the bible</h2>
       <form class="card calc-form" aria-label="Series setup" onsubmit="return false;">
@@ -983,11 +1021,13 @@ EPISODEPLANNER_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
-      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <script src="assets/js/palette.js"></script>
   <script src="assets/js/episode-planner.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
 </body>
 </html>
 """
@@ -1026,14 +1066,7 @@ HOOKGEN_TMPL = """<!DOCTYPE html>
     </div>
   </header>
   <main id="main">
-    <section class="hero hero-film" aria-labelledby="hg-title">
-      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
-      <div class="container hero-inner">
-        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Tools</span>
-        <h1 id="hg-title">Hook-title <span class="accent">generator.</span></h1>
-        <p class="lede">In the mini-drama genre the caption <em>is</em> the hook. The observed formula — <code>[Episode N] + [one-line emotional stake] + [CTA]</code> — turns one line of stake into five worked caption variants, each with the craft reason it hooks. Name the character every time; never lead with hashtags.</p>
-      </div>
-    </section>
+    {hero}
     <section class="container" aria-labelledby="hg-in-h">
       <h2 id="hg-in-h">Your episode</h2>
       <form class="card calc-form" aria-label="Hook inputs" onsubmit="return false;">
@@ -1078,11 +1111,13 @@ HOOKGEN_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
-      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <script src="assets/js/palette.js"></script>
   <script src="assets/js/hook-gen.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
 </body>
 </html>
 """
@@ -1221,6 +1256,7 @@ STUDIO_TMPL = """<!DOCTYPE html>
         <div class="tl-chrome">
           <span class="tl-rec"><i></i>REC</span>
           <span class="tl-tc-live" data-tl-tc>00:00:04:00</span>
+          <span class="tl-pop">2-POP 01:00:06:00 &#183; &#x223F;1kHz</span>
           <span class="tl-title">STUDIO_03 — PRODUCTION_PACKET</span>
         </div>
         <div class="tl-ruler">
@@ -1392,7 +1428,7 @@ STUDIO_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
-      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <script src="assets/js/palette.js"></script>
@@ -1430,14 +1466,7 @@ LINTER_TMPL = """<!DOCTYPE html>
     </div>
   </header>
   <main id="main">
-    <section class="hero hero-film" aria-labelledby="lint-title">
-      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
-      <div class="container hero-inner">
-        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Tools</span>
-        <h1 id="lint-title">Prompt <span class="accent">linter.</span></h1>
-        <p class="lede">Paste any prompt. The linter checks it against the ten-layer anatomy — which layers are present, which are missing, what each gap costs you on screen — and flags the vague words models can't act on. Heuristic, honest about being heuristic: it checks structure, not taste.</p>
-      </div>
-    </section>
+    {hero}
     <section class="container" aria-labelledby="lint-input-h">
       <h2 id="lint-input-h">Your prompt</h2>
       <label class="visually-hidden" for="lint-input">Prompt text to analyze</label>
@@ -1463,11 +1492,13 @@ LINTER_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
-      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <script src="assets/js/palette.js"></script>
   <script src="assets/js/linter.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
 </body>
 </html>
 """
@@ -1500,14 +1531,7 @@ SHOTS_TMPL = """<!DOCTYPE html>
     </div>
   </header>
   <main id="main">
-    <section class="hero hero-film" aria-labelledby="sh-title">
-      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
-      <div class="container hero-inner">
-        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Tools</span>
-        <h1 id="sh-title">Shot-list <span class="accent">builder.</span></h1>
-        <p class="lede">The pre-production planner the optimizer was missing: list every shot with its model and takes, watch the cost add up live from <code>models.json</code>, then hand the whole plan to the budget optimizer. Lists save in your browser; export the JSON and take it to set.</p>
-      </div>
-    </section>
+    {hero}
     <section class="container" aria-labelledby="sh-add-h">
       <h2 id="sh-add-h">Add a shot</h2>
       <form class="card calc-form" aria-label="Add a shot" onsubmit="return false;">
@@ -1592,11 +1616,13 @@ SHOTS_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
-      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <script src="assets/js/palette.js"></script>
   <script src="assets/js/shots.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
 </body>
 </html>
 """
@@ -1633,14 +1659,7 @@ STYLEBIBLE_TMPL = """<!DOCTYPE html>
     </div>
   </header>
   <main id="main">
-    <section class="hero hero-film" aria-labelledby="sb-title">
-      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
-      <div class="container hero-inner">
-        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Tools</span>
-        <h1 id="sb-title">Style-bible <span class="accent">builder.</span></h1>
-        <p class="lede">Consistency is not a prompt trick — it is a document. Describe your character and world once, lock it into a STYLE LOCK block, and prepend that block verbatim to every generation in the production. Save named bibles in your browser; the <a href="workshop.html">prompt workshop</a> can prepend any saved bible automatically.</p>
-      </div>
-    </section>
+    {hero}
     <section class="container" aria-labelledby="sb-why-h">
       <h2 id="sb-why-h">Why this works</h2>
       <p>Long-form productions survive on reference discipline: one locked description of who and where, reused word-for-word so the model has no room to reinterpret between shots. The <a href="craft/character-consistency.html">character-consistency</a> and <a href="craft/longform-pipelines.html">long-form pipelines</a> chapters cover the system; this tool produces its core artifact. Rule of the lock: <strong>never paraphrase it</strong> — if the model drifts, regenerate the shot, don't rewrite the bible.</p>
@@ -1717,11 +1736,13 @@ STYLEBIBLE_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
-      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <script src="assets/js/palette.js"></script>
   <script src="assets/js/style-bible.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
 </body>
 </html>
 """
@@ -1754,14 +1775,7 @@ ANATOMY_TMPL = """<!DOCTYPE html>
     </div>
   </header>
   <main id="main">
-    <section class="hero hero-film" aria-labelledby="anat-title">
-      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
-      <div class="container hero-inner">
-        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Craft</span>
-        <h1 id="anat-title">Anatomy of <span class="accent">a prompt.</span></h1>
-        <p class="lede">Treat the prompt as a directing system, not a description. Nine layers, in order — plus the exclusion block. Missing layers = randomness. Hover, tap, or focus any layer below to see what it does.</p>
-      </div>
-    </section>
+    {hero}
     <section class="container" aria-labelledby="anat-h">
       <h2 id="anat-h" class="visually-hidden">Prompt anatomy explorer</h2>
       <div class="anatomy-tabs" role="group" aria-label="Explorer mode">
@@ -1795,11 +1809,13 @@ ANATOMY_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
-      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <script src="assets/js/palette.js"></script>
   <script src="assets/js/anatomy.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
 </body>
 </html>
 """
@@ -1861,14 +1877,7 @@ PROMPTS_TMPL = """<!DOCTYPE html>
     </div>
   </header>
   <main id="main">
-    <section class="hero hero-film" aria-labelledby="prompts-title">
-      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>5</b></div>
-      <div class="container hero-inner">
-        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Interactive tool</span>
-        <h1 id="prompts-title">Prompt <span class="accent">library.</span></h1>
-        <p class="lede">All 47 guide templates in one browsable shelf — filter by shot type, camera movement, lighting, and mood, see which of the ten <a href="anatomy.html">prompt-anatomy</a> layers each template demonstrates, then copy, remix, or send any template to the <a href="studio.html">Studio</a> as a shot-prompt starting point.</p>
-      </div>
-    </section>
+    {hero}
     <section class="container" aria-labelledby="pr-filters-h" id="pr-app">
       <div class="card" style="margin-bottom:var(--space-5);">
         <h2 id="pr-filters-h">Find a template</h2>
@@ -1915,7 +1924,7 @@ PROMPTS_TMPL = """<!DOCTYPE html>
       </div>
       <p id="pr-count" role="status"></p>
       <div id="pr-list" class="pr-grid" aria-live="polite"></div>
-      <div class="empty-state" id="pr-empty" hidden><p>No templates match those filters. Clear a filter or try a different search.</p></div>
+      <div class="empty-state" id="pr-empty" hidden><span class="es-slate">No footage</span><p>No templates match those filters. Clear a filter or try a different search.</p></div>
     </section>
     <section class="container" aria-labelledby="pr-more-h">
       <h2 id="pr-more-h">Where to go next</h2>
@@ -1963,7 +1972,7 @@ PROMPTS_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
-      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
@@ -1974,6 +1983,8 @@ PROMPTS_TMPL = """<!DOCTYPE html>
   </div>
   <script src="assets/js/palette.js"></script>
   <script src="assets/js/prompts.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
 </body>
 </html>
 
@@ -2006,14 +2017,7 @@ WORKSHOP_TMPL = """<!DOCTYPE html>
     </div>
   </header>
   <main id="main">
-    <section class="hero hero-film" aria-labelledby="workshop-title">
-      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
-      <div class="container hero-inner">
-        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Interactive tool</span>
-        <h1 id="workshop-title">Prompt <span class="accent">workshop.</span></h1>
-        <p class="lede">Pick a template, a model, and a track — fill the placeholders and copy a production-ready prompt. Every template carries its anatomy notes, so you learn why it works while you use it. New to prompt structure? Start with the <a href="anatomy.html">anatomy explorer</a>.</p>
-      </div>
-    </section>
+    {hero}
     <section class="container" aria-labelledby="ws-pick-h">
       <div class="card" id="ws-pickers" style="margin-bottom:var(--space-5);">
         <h2 id="ws-pick-h">1. Pick your ingredients</h2>
@@ -2052,14 +2056,14 @@ WORKSHOP_TMPL = """<!DOCTYPE html>
           <h2>2. Fill the placeholders</h2>
           <p class="save-meta">Suggested defaults are pre-filled wherever the template's author gave one.</p>
           <div class="placeholder-grid" id="ws-fields"></div>
-          <p class="empty-state" id="ws-fields-empty" hidden>No placeholders in this template.</p>
+          <p class="empty-state" id="ws-fields-empty" hidden><span class="es-slate">No footage</span>No placeholders in this template.</p>
         </div>
         <div>
           <div class="card" id="ws-why" style="margin-bottom:var(--space-5);" aria-live="polite"></div>
           <div class="card">
             <h2>3. Copy your prompt</h2>
             <div class="prompt-preview" id="ws-preview" aria-live="polite"></div>
-            <p class="empty-state" id="ws-preview-empty" hidden>Pick a template to preview your prompt.</p>
+            <p class="empty-state" id="ws-preview-empty" hidden><span class="es-slate">No footage</span>Pick a template to preview your prompt.</p>
             <div class="btn-row">
               <button type="button" class="btn btn-gold" id="ws-copy" disabled>Copy prompt</button>
               <button type="button" class="btn" id="ws-save" disabled>Save this prompt</button>
@@ -2072,7 +2076,7 @@ WORKSHOP_TMPL = """<!DOCTYPE html>
       <h2 id="ws-saves-h">Your saved prompts</h2>
       <p class="section-lede">Saved in this browser only — never sent anywhere. Rate your keepers; the highest-rated float to the top.</p>
       <div id="ws-saves"></div>
-      <div class="empty-state" id="ws-saves-empty" hidden><p>No saved prompts yet. Fill a template above and hit &ldquo;Save this prompt&rdquo;.</p></div>
+      <div class="empty-state" id="ws-saves-empty" hidden><span class="es-slate">No footage</span><p>No saved prompts yet. Fill a template above and hit &ldquo;Save this prompt&rdquo;.</p></div>
       <p class="calc-note" style="margin-bottom:var(--space-7);">Templates and models come from <code>prompt-templates.json</code> and <code>models.json</code> — the same versioned API the guide publishes under <code>api/v1/</code>.</p>
     </section>
   </main>
@@ -2080,7 +2084,7 @@ WORKSHOP_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
-      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
@@ -2091,6 +2095,8 @@ WORKSHOP_TMPL = """<!DOCTYPE html>
   </div>
   <script src="assets/js/palette.js"></script>
   <script src="assets/js/workshop.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
 </body>
 </html>
 """
@@ -2123,14 +2129,7 @@ QUIZ_TMPL = """<!DOCTYPE html>
     </div>
   </header>
   <main id="main">
-    <section class="hero hero-film" aria-labelledby="quiz-title">
-      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
-      <div class="container hero-inner">
-        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Interactive tool</span>
-        <h1 id="quiz-title">Model-picker <span class="accent">quiz.</span></h1>
-        <p class="lede">Five questions. A ranked top 3 with cost math — scored live from <code>models.json</code>, so the picks stay fresh as the data does.</p>
-      </div>
-    </section>
+    {hero}
     <section class="container" aria-labelledby="quiz-form-h">
       <form class="card" id="quiz-form">
         <h2 id="quiz-form-h">1. What&apos;s the job?</h2>
@@ -2183,7 +2182,7 @@ QUIZ_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
-      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
@@ -2194,6 +2193,8 @@ QUIZ_TMPL = """<!DOCTYPE html>
   </div>
   <script src="assets/js/palette.js"></script>
   <script src="assets/js/quiz.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
 </body>
 </html>
 """
@@ -2226,14 +2227,7 @@ COMPARE_TMPL = """<!DOCTYPE html>
     </div>
   </header>
   <main id="main">
-    <section class="hero hero-film" aria-labelledby="cmp-title">
-      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
-      <div class="container hero-inner">
-        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Tools</span>
-        <h1 id="cmp-title">Model <span class="accent">compare.</span></h1>
-        <p class="lede">The quiz picks for you. This page lets you argue with it: put 2–3 models side by side — cost, best use, strengths, weaknesses, native audio, freshness — all rendered live from <code>models.json</code>. The URL updates as you pick, so the comparison is shareable.</p>
-      </div>
-    </section>
+    {hero}
     <section class="container" aria-labelledby="cmp-h">
       <h2 id="cmp-h">Pick your contenders</h2>
       <div class="card" style="margin-bottom:var(--space-6);">
@@ -2262,7 +2256,7 @@ COMPARE_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
-      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search" hidden>
@@ -2273,6 +2267,8 @@ COMPARE_TMPL = """<!DOCTYPE html>
   </div>
   <script src="assets/js/palette.js"></script>
   <script src="assets/js/compare.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
 </body>
 </html>
 """
@@ -2305,14 +2301,7 @@ GALLERY_TMPL = """<!DOCTYPE html>
     </div>
   </header>
   <main id="main">
-    <section class="hero hero-film" aria-labelledby="gal-title">
-      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
-      <div class="container hero-inner">
-        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Workshop</span>
-        <h1 id="gal-title">Prompt <span class="accent">gallery.</span></h1>
-        <p class="lede">Every prompt you've saved and rated in the workshop, in one browsable place. Filter by track and model, sort by rating, jump back into the workshop, or take your collection with you as JSON. Everything lives in your browser — nothing leaves it.</p>
-      </div>
-    </section>
+    {hero}
     <section class="container" aria-labelledby="gal-h">
       <h2 id="gal-h">Your collection</h2>
       <div class="card" style="margin-bottom:var(--space-6);">
@@ -2354,7 +2343,7 @@ GALLERY_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
-      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search" hidden>
@@ -2365,6 +2354,8 @@ GALLERY_TMPL = """<!DOCTYPE html>
   </div>
   <script src="assets/js/palette.js"></script>
   <script src="assets/js/gallery.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
 </body>
 </html>
 """
@@ -2397,14 +2388,7 @@ CHANGELOG_TMPL = """<!DOCTYPE html>
     </div>
   </header>
   <main id="main">
-    <section class="hero hero-film" aria-labelledby="changelog-title">
-      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
-      <div class="container hero-inner">
-        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Freshness log</span>
-        <h1 id="changelog-title">What <span class="accent">changed.</span></h1>
-        <p class="lede">AI film tooling rots in months. This page is how the guide stays fresh — every shipped change, dated, newest first.</p>
-      </div>
-    </section>
+    {hero}
     <section class="container" aria-labelledby="process-h">
       <div class="card" style="margin-bottom:var(--space-6);">
         <h2 id="process-h">Process note</h2>
@@ -2419,7 +2403,7 @@ CHANGELOG_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
-      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
@@ -2429,6 +2413,8 @@ CHANGELOG_TMPL = """<!DOCTYPE html>
     </div>
   </div>
   <script src="assets/js/palette.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
 </body>
 </html>
 """
@@ -2461,14 +2447,7 @@ SKILLSPEC_TMPL = """<!DOCTYPE html>
     </div>
   </header>
   <main id="main">
-    <section class="hero hero-film" aria-labelledby="spec-title">
-      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
-      <div class="container hero-inner">
-        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Agent-native</span>
-        <h1 id="spec-title">Skill schema <span class="accent">spec.</span></h1>
-        <p class="lede">Every one of the {skill_count} skills in <code>skills/</code> follows this exact format — YAML frontmatter plus six Markdown sections. Build to it and your skills slot straight into this library, or any agent framework that reads it.</p>
-      </div>
-    </section>
+    {hero}
     <section class="container" aria-labelledby="spec-body-h">
       <h2 id="spec-body-h" class="sr-only">Specification</h2>
       <div class="prose" style="margin-bottom:var(--space-7);">
@@ -2507,7 +2486,7 @@ SKILLSPEC_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
-      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
@@ -2517,6 +2496,8 @@ SKILLSPEC_TMPL = """<!DOCTYPE html>
     </div>
   </div>
   <script src="assets/js/palette.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
 </body>
 </html>
 """
@@ -2554,6 +2535,7 @@ TEARDOWN_TMPL = """<!DOCTYPE html>
         <div class="tl-chrome">
           <span class="tl-rec"><i></i>REC</span>
           <span class="tl-tc-live" data-tl-tc>00:00:04:00</span>
+          <span class="tl-pop">2-POP 01:00:06:00 &#183; &#x223F;1kHz</span>
           <span class="tl-title">TEARDOWNS — SHOT_BY_SHOT</span>
         </div>
         <div class="tl-ruler">
@@ -2594,7 +2576,7 @@ TEARDOWN_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
-      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
@@ -2638,14 +2620,7 @@ MANIFESTO_TMPL = """<!DOCTYPE html>
     </div>
   </header>
   <main id="main">
-    <section class="hero hero-film" aria-labelledby="man-title">
-      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
-      <div class="container hero-inner">
-        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>The manifesto</span>
-        <h1 id="man-title">This is <span class="accent">not a course.</span></h1>
-        <p class="lede">No cohort. No certificate. No $2,000 upsell. This is a living reference for people making films with AI — and it has opinions.</p>
-      </div>
-    </section>
+    {hero}
     <section class="container" style="margin-bottom:var(--space-7);">
       <div class="prose">
         <h2>What this is</h2>
@@ -2675,7 +2650,7 @@ MANIFESTO_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
-      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
@@ -2685,6 +2660,8 @@ MANIFESTO_TMPL = """<!DOCTYPE html>
     </div>
   </div>
   <script src="assets/js/palette.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
 </body>
 </html>
 """
@@ -2717,18 +2694,7 @@ RECIPES_TMPL = """<!DOCTYPE html>
     </div>
   </header>
   <main id="main">
-    <section class="hero hero-film" aria-labelledby="recipes-title">
-      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
-      <div class="container hero-inner">
-        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Repeatable workflows</span>
-        <h1 id="recipes-title">Shoot <span class="accent">recipes.</span></h1>
-        <p class="lede">The guide's recipe skills as cards: the procedure, the inputs, a worked example, and the pitfalls — for the twelve shots and sequences every AI film needs. <span id="recipes-count" aria-live="polite">{count} recipes</span></p>
-        <div class="field" style="max-width:480px;">
-          <label for="recipes-filter">Filter recipes</label>
-          <input class="input" id="recipes-filter" type="search" placeholder="e.g. dialogue, trailer, horror&hellip;" autocomplete="off">
-        </div>
-      </div>
-    </section>
+    {hero}
     <section class="container" aria-label="Recipes">
       <div class="chapter-grid" id="recipes-list">
 {cards}
@@ -2741,7 +2707,7 @@ RECIPES_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide &mdash; research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
-      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
@@ -2752,6 +2718,8 @@ RECIPES_TMPL = """<!DOCTYPE html>
   </div>
   <script src="assets/js/palette.js"></script>
   <script src="assets/js/recipes.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
 </body>
 </html>
 """
@@ -2779,10 +2747,17 @@ FIELDGUIDE_TMPL = """<!DOCTYPE html>
     </div>
   </header>
   <main id="main" class="fg-body">
+    <div class="sprocket-strip slim no-print" aria-hidden="true"></div>
     <div class="container">
+      <div class="fg-slate no-print" aria-hidden="true">
+        <span class="tl-rec"><i></i>REC</span>
+        <span class="tl-pop">2-POP 01:00:06:00 &#183; &#x223F;1kHz</span>
+        <span class="tl-title">FIELD_GUIDE — PRINT_01</span>
+      </div>
       <p class="crumb no-print"><a href="../index.html">Guide</a> / <a href="index.html">Field guides</a></p>
       <h1>{title}</h1>
       <p class="fg-provenance">{provenance}</p>
+      <p class="no-print"><span class="print-tag is-answer">Answer print</span></p>
       <div class="print-btn-row no-print">
         <button type="button" class="btn btn-gold" onclick="window.print()">Print this guide</button>
         <a class="btn" href="index.html">All field guides</a>
@@ -2797,7 +2772,7 @@ FIELDGUIDE_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
-      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
 </body>
@@ -2832,14 +2807,7 @@ FIELDGUIDES_INDEX_TMPL = """<!DOCTYPE html>
     </div>
   </header>
   <main id="main">
-    <section class="hero hero-film" aria-labelledby="fg-title">
-      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
-      <div class="container hero-inner">
-        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Print-ready</span>
-        <h1 id="fg-title">Field <span class="accent">guides.</span></h1>
-        <p class="lede">One-page references, generated from the guide's own data — dense enough to be useful on set, honest enough to print. Every chapter prints cleanly too: open any chapter and use your browser's print.</p>
-      </div>
-    </section>
+    {hero}
     <section class="container" style="margin-bottom:var(--space-7);">
       <div class="fg-list">
         {cards}
@@ -2850,7 +2818,7 @@ FIELDGUIDES_INDEX_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
-      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
@@ -2860,6 +2828,8 @@ FIELDGUIDES_INDEX_TMPL = """<!DOCTYPE html>
     </div>
   </div>
   <script src="../assets/js/palette.js"></script>
+  <script src="../assets/js/docs.js"></script>
+  <script src="../assets/js/identity.js"></script>
 </body>
 </html>
 """
@@ -2983,7 +2953,14 @@ def build_field_guides(css_links):
              "Dead-eyes markers + the 12-point performance checklist."),
         ])
     (fg_dir / "index.html").write_text(FIELDGUIDES_INDEX_TMPL.format(
-        css=css, cards=cards, sitenav=sitenav, footer=footer))
+            hero=hero_cutroom(
+                kicker="""Print-ready""",
+                h1="""Field <span class="accent">guides.</span>""",
+                lede="""One-page references, generated from the guide's own data — dense enough to be useful on set, honest enough to print. Every chapter prints cleanly too: open any chapter and use your browser's print.""",
+                deck_title="""FIELD_GUIDES — PRINT_01""",
+                clips={"v2": ['Generated pages'], "v1": ['One-page refs', 'Print cleanly', 'On set'], "a1": ['Paper rustle']},
+                h1_id="fg-title",
+                extra=""""""),        css=css, cards=cards, sitenav=sitenav, footer=footer))
 
 
 def parse_recipe(path):
@@ -3078,7 +3055,14 @@ def build_recipes(css_links):
             recipes.append(r)
     cards = "\n".join(recipe_card(r) for r in recipes)
     (SITE / "recipes.html").write_text(RECIPES_TMPL.format(
-        css=css_links, sitenav=nav_html("", "recipes.html"), footer=footer_html(""),
+            hero=hero_cutroom(
+                kicker="""Repeatable workflows""",
+                h1="""Shoot <span class="accent">recipes.</span>""",
+                lede="""The guide's recipe skills as cards: the procedure, the inputs, a worked example, and the pitfalls — for the twelve shots and sequences every AI film needs. <span id="recipes-count" aria-live="polite">{count} recipes</span>""",
+                deck_title="""SHOOT_RECIPES — BIN_01""",
+                clips={"v2": ['Pitfalls'], "v1": ['Twelve shots', 'Procedures', 'Worked examples'], "a1": ['Repeatable', 'Set tone']},
+                h1_id="recipes-title",
+                extra="""<div class="field" style="max-width:480px;"> <label for="recipes-filter">Filter recipes</label> <input class="input" id="recipes-filter" type="search" placeholder="e.g. dialogue, trailer, horror&hellip;" autocomplete="off"> </div>"""),        css=css_links, sitenav=nav_html("", "recipes.html"), footer=footer_html(""),
         cards=cards, count=len(recipes)))
     return recipes
 
@@ -3111,14 +3095,7 @@ MODELWATCH_TMPL = """<!DOCTYPE html>
     </div>
   </header>
   <main id="main">
-    <section class="hero hero-film" aria-labelledby="mw-title">
-      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
-      <div class="container hero-inner">
-        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Trust, dated</span>
-        <h1 id="mw-title">Model <span class="accent">watch.</span></h1>
-        <p class="lede">Every model in the guide's API — what it is, what it costs, what changed, and when we last checked. Generated from <code>models.json</code> at build time, so this page can never drift from the data.</p>
-      </div>
-    </section>
+    {hero}
     <section class="container" aria-label="Model status" style="margin-bottom:var(--space-7);">
       <div class="verify-banner" role="note" aria-label="Verify live before spending">
         <p><strong>Verify live before spending.</strong> Model versions, prices, and availability move monthly — sometimes weekly. Every card below shows its last-verified date. If a card is older than your shoot budget, re-check the vendor's pricing page first.</p>
@@ -3140,7 +3117,7 @@ MODELWATCH_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
-      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <button type="button" class="back-to-top" aria-label="Back to top">&uarr;</button>
@@ -3151,6 +3128,8 @@ MODELWATCH_TMPL = """<!DOCTYPE html>
     </div>
   </div>
   <script src="assets/js/palette.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
   <script>
   (function () {{
     var btns = Array.prototype.slice.call(document.querySelectorAll("[data-mw-filter]"));
@@ -3187,6 +3166,8 @@ def build_model_watch(css_links):
         return (
             f'<article class="mw-card{" is-discontinued" if status == "discontinued" else ""}" data-status="{status}">\n'
             f'  <span class="mw-badge mw-badge-{status}">{badge}</span>\n'
+            f'  <span class="print-tag {"is-workprint" if status == "reported" else "is-answer"}">'
+            f'{"WORKPRINT" if status == "reported" else "ANSWER PRINT"}</span>\n'
             f'  <h3>{html.escape(m["model"])}</h3>\n'
             f'  <p class="mw-platform">{html.escape(str(m.get("platform", "")))} · {html.escape(str(m.get("type", "")))}</p>\n'
             f'  <dl>\n'
@@ -3205,7 +3186,14 @@ def build_model_watch(css_links):
     for m in models:
         counts[m.get("status", "active")] = counts.get(m.get("status", "active"), 0) + 1
     (SITE / "model-watch.html").write_text(MODELWATCH_TMPL.format(
-        css=css_links, sitenav=nav_html("", "model-watch.html"), footer=footer_html(""),
+            hero=hero_cutroom(
+                kicker="""Trust, dated""",
+                h1="""Model <span class="accent">watch.</span>""",
+                lede="""Every model in the guide's API — what it is, what it costs, what changed, and when we last checked. Generated from <code>models.json</code> at build time, so this page can never drift from the data.""",
+                deck_title="""MODEL_WATCH — FEED_01""",
+                clips={"v2": ['Last checked'], "v1": ['What it is', 'What it costs', 'What changed'], "a1": ['Watch beep', 'Never drifts']},
+                h1_id="mw-title",
+                extra=""""""),        css=css_links, sitenav=nav_html("", "model-watch.html"), footer=footer_html(""),
         cards="\n".join(card(m) for m in models),
         total=len(models), n_active=counts.get("active", 0),
         n_reported=counts.get("reported", 0), n_discontinued=counts.get("discontinued", 0),
@@ -3242,16 +3230,7 @@ MODEL_TMPL = """<!DOCTYPE html>
     </div>
   </header>
   <main id="main">
-    <section class="hero hero-film" aria-labelledby="md-title">
-      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
-      <div class="container hero-inner">
-        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Model deep dive</span>
-        <h1 id="md-title">{name}</h1>
-        <p class="lede">{platform} · {mtype}</p>
-        <p><span class="mw-badge mw-badge-{status}">{badge}</span>
-        <span class="card-meta">last verified {verified}</span></p>
-      </div>
-    </section>
+    {hero}
     <section class="container" aria-label="Model specifications">
       <div class="card mw-card">
         <dl>
@@ -3292,7 +3271,7 @@ MODEL_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
-      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <button type="button" class="back-to-top" aria-label="Back to top">&uarr;</button>
@@ -3304,6 +3283,7 @@ MODEL_TMPL = """<!DOCTYPE html>
   </div>
   <script src="../assets/js/palette.js"></script>
   <script src="../assets/js/docs.js"></script>
+  <script src="../assets/js/identity.js"></script>
 </body>
 </html>
 """
@@ -3336,14 +3316,7 @@ MODELS_INDEX_TMPL = """<!DOCTYPE html>
     </div>
   </header>
   <main id="main">
-    <section class="hero hero-film" aria-labelledby="mdi-title">
-      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
-      <div class="container hero-inner">
-        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Reference</span>
-        <h1 id="mdi-title">Model <span class="accent">deep dives.</span></h1>
-        <p class="lede">One page per model: the spec record, worked cost math, prompt tips from the guide's chapters, and honest use-when/avoid-when. Generated from <code>models.json</code> — it can't drift from the data.</p>
-      </div>
-    </section>
+    {hero}
     <section class="container" aria-label="All models">
       <div class="chapter-grid">
 {cards}
@@ -3354,7 +3327,7 @@ MODELS_INDEX_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
-      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <button type="button" class="back-to-top" aria-label="Back to top">&uarr;</button>
@@ -3366,6 +3339,7 @@ MODELS_INDEX_TMPL = """<!DOCTYPE html>
   </div>
   <script src="../assets/js/palette.js"></script>
   <script src="../assets/js/docs.js"></script>
+  <script src="../assets/js/identity.js"></script>
 </body>
 </html>
 """
@@ -3463,8 +3437,22 @@ def build_models(css_links):
             f'<li><a href="{html.escape(u)}" rel="noopener">{html.escape(u.split("/")[2])}</a></li>'
             for u in m.get("sources", []) if u.startswith("http"))
         sources_html = f"<ul>{sources}</ul>" if sources else "<p>Vendor page — verify live.</p>"
+        pt_name = "WORKPRINT" if status == "reported" else "ANSWER PRINT"
+        pt_cls = "is-workprint" if status == "reported" else "is-answer"
+        print_tag_html = f'<span class="print-tag {pt_cls}">{pt_name}</span>'
         (out_dir / f"{slug}.html").write_text(MODEL_TMPL.format(
-            name=html.escape(str(m.get("model", ""))),
+            hero=hero_cutroom(
+                kicker="""Model deep dive""",
+                h1=html.escape(str(m.get("model", ""))),
+                lede=html.escape(str(m.get("platform", ""))) + " · " + html.escape(str(m.get("type", ""))),
+                deck_title="""MODEL — DEEP_DIVE""",
+                clips={"v2": ['Prompt tips'], "v1": ['Spec record', 'Worked cost', 'Avoid-when'], "a1": ['Vendor hum', 'Verify live']},
+                h1_id="md-title",
+                extra=('<p><span class="mw-badge mw-badge-' + status + '">'
+                       + status_badge.get(status, status) + '</span> '
+                       '<span class="card-meta">last verified '
+                       + html.escape(str(m.get("last_verified", "—")))
+                       + '</span> ' + print_tag_html + '</p>')),            name=html.escape(str(m.get("model", ""))),
             platform=html.escape(str(m.get("platform", ""))),
             mtype=html.escape(str(m.get("type", ""))),
             status=status, badge=status_badge.get(status, status),
@@ -3489,7 +3477,14 @@ def build_models(css_links):
         f'{status_badge.get(p["status"], p["status"])}</span></p></article>'
         for p in pages)
     (out_dir / "index.html").write_text(MODELS_INDEX_TMPL.format(
-        css=css_sub, sitenav=nav_html("../", ""), footer=footer_html("../"), cards=cards))
+            hero=hero_cutroom(
+                kicker="""Reference""",
+                h1="""Model <span class="accent">deep dives.</span>""",
+                lede="""One page per model: the spec record, worked cost math, prompt tips from the guide's chapters, and honest use-when/avoid-when. Generated from <code>models.json</code> — it can't drift from the data.""",
+                deck_title="""MODEL_INDEX — BIN_01""",
+                clips={"v2": ['30 records'], "v1": ['Spec records', 'Cost math', 'Use-when'], "a1": ['Data tone', 'models.json']},
+                h1_id="mdi-title",
+                extra=""""""),        css=css_sub, sitenav=nav_html("../", ""), footer=footer_html("../"), cards=cards))
     return pages
 
 
@@ -3520,15 +3515,7 @@ CHECK_TMPL = """<!DOCTYPE html>
     </div>
   </header>
   <main id="main">
-    <section class="hero hero-film" aria-labelledby="check-title">
-      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
-      <div class="container hero-inner">
-        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Knowledge check</span>
-        <h1 id="check-title">{title}</h1>
-        <p class="lede">{n} scenario questions drawn from the chapter. These test understanding, not trivia — every answer explains <em>why</em>. Your score saves in this browser.</p>
-        <p><a class="btn btn-ghost" href="../{chapter_url}">&larr; Back to the chapter</a></p>
-      </div>
-    </section>
+    {hero}
     <section class="container check" data-check="{slug}" aria-label="Quiz questions" style="margin-bottom:var(--space-7);">
       <form id="check-form" novalidate>
         {questions}
@@ -3545,7 +3532,7 @@ CHECK_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
-      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <button type="button" class="back-to-top" aria-label="Back to top">&uarr;</button>
@@ -3557,6 +3544,8 @@ CHECK_TMPL = """<!DOCTYPE html>
   </div>
   <script src="../assets/js/palette.js"></script>
   <script src="../assets/js/checks.js"></script>
+  <script src="../assets/js/docs.js"></script>
+  <script src="../assets/js/identity.js"></script>
 </body>
 </html>
 """
@@ -3589,15 +3578,7 @@ CHECKS_INDEX_TMPL = """<!DOCTYPE html>
     </div>
   </header>
   <main id="main">
-    <section class="hero hero-film" aria-labelledby="checks-title">
-      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
-      <div class="container hero-inner">
-        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>The course-killer</span>
-        <h1 id="checks-title">Knowledge <span class="accent">checks.</span></h1>
-        <p class="lede">Six chapters, {total_q} scenario questions. Not trivia — situations a director actually faces, with every answer explaining why. Pass these and the chapters are yours.</p>
-        <p class="card-meta" id="checks-summary" role="status"></p>
-      </div>
-    </section>
+    {hero}
     <section class="container" aria-label="All knowledge checks" style="margin-bottom:var(--space-7);">
       <div class="checks-grid" id="checks-progress">
 {cards}
@@ -3609,7 +3590,7 @@ CHECKS_INDEX_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
-      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <button type="button" class="back-to-top" aria-label="Back to top">&uarr;</button>
@@ -3621,6 +3602,8 @@ CHECKS_INDEX_TMPL = """<!DOCTYPE html>
   </div>
   <script src="../assets/js/palette.js"></script>
   <script src="../assets/js/checks.js"></script>
+  <script src="../assets/js/docs.js"></script>
+  <script src="../assets/js/identity.js"></script>
 </body>
 </html>
 """
@@ -3648,7 +3631,14 @@ def build_checks(css_links):
                 f'  <p class="check-feedback" hidden></p>\n'
                 f'</fieldset>')
         (out_dir / f"{slug}.html").write_text(CHECK_TMPL.format(
-            title=html.escape(c["title"]), slug=slug, n=len(c["questions"]),
+            hero=hero_cutroom(
+                kicker="""Knowledge check""",
+                h1=html.escape(c["title"]),
+                lede=str(len(c["questions"])) + """ scenario questions drawn from the chapter. These test understanding, not trivia — every answer explains <em>why</em>. Your score saves in this browser.""",
+                deck_title="""KNOWLEDGE_CHECK — REEL_01""",
+                clips={"v2": ['Scenario Qs'], "v1": ['Not trivia', 'Why explained', 'Score saves'], "a1": ['Pencil scratch', 'Six chapters']},
+                h1_id="check-title",
+                extra='<p><a class="btn btn-ghost" href="../' + c["chapter_url"] + '">&larr; Back to the chapter</a></p>'),            title=html.escape(c["title"]), slug=slug, n=len(c["questions"]),
             chapter_url=c["chapter_url"], questions="\n".join(qs),
             css=css_sub, sitenav=nav_html("../", ""), footer=footer_html("../")))
         cards.append(
@@ -3661,7 +3651,14 @@ def build_checks(css_links):
     total_q = sum(len(c["questions"]) for c in checks)
     css_idx = css_links.replace('href="assets/', 'href="../assets/')
     (out_dir / "index.html").write_text(CHECKS_INDEX_TMPL.format(
-        css=css_idx, sitenav=nav_html("../", ""), footer=footer_html("../"),
+            hero=hero_cutroom(
+                kicker="""The course-killer""",
+                h1="""Knowledge <span class="accent">checks.</span>""",
+                lede="Six chapters, " + str(total_q) + """ scenario questions. Not trivia — situations a director actually faces, with every answer explaining why. Pass these and the chapters are yours.""",
+                deck_title="""KNOWLEDGE_CHECKS — REEL_01""",
+                clips={"v2": ['Scenario bank'], "v1": ['Six chapters', 'Situations', 'Pass the chapters'], "a1": ['Exam hall']},
+                h1_id="checks-title",
+                extra="""<p class="card-meta" id="checks-summary" role="status"></p>"""),        css=css_idx, sitenav=nav_html("../", ""), footer=footer_html("../"),
         cards="\n".join(cards), total_q=total_q))
     return checks
 
@@ -3723,6 +3720,7 @@ FOUR_OH_FOUR_TMPL = """<!DOCTYPE html>
         <p class="kicker is-rec">Missing reel</p>
         <h1>That reel <span class="accent">is missing.</span></h1>
         <p class="lede" style="text-align:center;color:var(--ink-dim);max-width:52ch;margin:0 auto var(--space-5);">The footage you asked for never made it to the cutting room. The other 29 chapters, the Studio, and all nine teardowns are still on the shelf.</p>
+        <div class="end-slate" role="img" aria-label="Upside-down end slate: footage pending"><b>SLATED AT TAIL</b><span>FOOTAGE PENDING</span></div>
         <div class="btn-row" style="justify-content:center;">
           <a class="btn btn-gold" href="index.html">Back to the guide</a>
           <a class="btn" href="studio.html">Open the Studio</a>
@@ -3735,7 +3733,7 @@ FOUR_OH_FOUR_TMPL = """<!DOCTYPE html>
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer">{footer}</nav>
-      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
@@ -3825,17 +3823,45 @@ def main():
         total_read=total_read,
         sitenav=nav_html("", "index.html"), footer=footer_html("")))
     (SITE / "budget.html").write_text(BUDGET_TMPL.format(
-        css=css_links, sitenav=nav_html("", ""), footer=footer_html("")))
+            hero=hero_cutroom(
+                kicker="""Economics""",
+                h1="""Budget <span class="accent">calculator.</span>""",
+                lede="""Runtime, shot length, model, and discipline in — a cost envelope out. Grounded in the <a href="economics/credit-math.html">credit-math</a> chapter (third-party per-clip estimates, Oct 2026).""",
+                deck_title="""BUDGET_CALC — TAKE_01""",
+                clips={"v2": ['Credit math'], "v1": ['Runtime', 'Shot length', 'Model pick'], "a1": ['Cost envelope', 'Live total']},
+                h1_id="budget-title",
+                extra=""""""),        css=css_links, sitenav=nav_html("", ""), footer=footer_html("")))
 
     # Budget optimizer page (model mix planner, data-driven from models.json)
     (SITE / "optimizer.html").write_text(OPTIMIZER_TMPL.format(
-        css=css_links, sitenav=nav_html("", ""), footer=footer_html("")))
+            hero=hero_cutroom(
+                kicker="""Economics""",
+                h1="""Budget <span class="accent">optimizer.</span>""",
+                lede="""The calculator tells you what one model costs. The optimizer tells you what your film should cost: it splits your runtime into dialogue and non-dialogue buckets and assigns the cheapest model that satisfies your quality bar — computed live from <code>models.json</code>, so the picks stay fresh as the data does.""",
+                deck_title="""OPTIMIZER — TAKE_01""",
+                clips={"v2": ['Four modes'], "v1": ['Dialogue split', 'Non-dialogue', 'Draft cheap'], "a1": ['Keeper take', 'Finish flagship']},
+                h1_id="opt-title",
+                extra=""""""),        css=css_links, sitenav=nav_html("", ""), footer=footer_html("")))
 
     # Anatomy of a prompt explorer
     (SITE / "anatomy.html").write_text(ANATOMY_TMPL.format(
-        css=css_links, sitenav=nav_html("", ""), footer=footer_html("")))
+            hero=hero_cutroom(
+                kicker="""Craft""",
+                h1="""Anatomy of <span class="accent">a prompt.</span>""",
+                lede="""Treat the prompt as a directing system, not a description. Nine layers, in order — plus the exclusion block. Missing layers = randomness. Hover, tap, or focus any layer below to see what it does.""",
+                deck_title="""PROMPT_ANATOMY — TAKE_01""",
+                clips={"v2": ['Exclusion block'], "v1": ['Nine layers', 'Hover the map', 'In order'], "a1": ["Director's notes"]},
+                h1_id="anat-title",
+                extra=""""""),        css=css_links, sitenav=nav_html("", ""), footer=footer_html("")))
     (SITE / "skills.html").write_text(SKILLS_TMPL.format(
-        css=css_links, sitenav=nav_html("", "skills.html"), footer=footer_html("")))
+            hero=hero_cutroom(
+                kicker="""For agents &amp; humans""",
+                h1="""Task <span class="accent">skills.</span>""",
+                lede="""Every procedure in the guide as a loadable skill: inputs, steps, worked examples, pitfalls. <span id="skills-count" aria-live="polite"></span>""",
+                deck_title="""SKILL_LIBRARY — BIN_01""",
+                clips={"v2": ['231 skills', 'Procedures'], "v1": ['Inputs', 'Steps', 'Worked examples'], "a1": ['Agent room tone', 'Pitfalls']},
+                h1_id="skills-title",
+                extra="""<div class="field" style="max-width:480px;"> <label for="skills-filter">Filter skills</label> <input class="input" id="skills-filter" type="search" placeholder="e.g. lip sync, BAF, budget…" autocomplete="off"> </div>"""),        css=css_links, sitenav=nav_html("", "skills.html"), footer=footer_html("")))
     shutil.copy(ROOT / "skills" / "index.json", SITE / "skills-index.json")
     shutil.copy(ROOT / "api" / "v1" / "prompt-templates.json", SITE / "prompt-templates.json")
     shutil.copy(ROOT / "api" / "v1" / "models.json", SITE / "models.json")
@@ -3844,36 +3870,85 @@ def main():
 
     # Prompt workshop page (data above is what it loads)
     (SITE / "workshop.html").write_text(WORKSHOP_TMPL.format(
-        css=css_links, sitenav=nav_html("", "workshop.html"), footer=footer_html("")))
+            hero=hero_cutroom(
+                kicker="""Interactive tool""",
+                h1="""Prompt <span class="accent">workshop.</span>""",
+                lede="""Pick a template, a model, and a track — fill the placeholders and copy a production-ready prompt. Every template carries its anatomy notes, so you learn why it works while you use it. New to prompt structure? Start with the <a href="anatomy.html">anatomy explorer</a>.""",
+                deck_title="""PROMPT_WORKSHOP — TAKE_01""",
+                clips={"v2": ['Saved prompts'], "v1": ['Pick ingredients', 'Fill placeholders', 'Copy prompt'], "a1": ['Bench tone', 'Production-ready']},
+                h1_id="workshop-title",
+                extra=""""""),        css=css_links, sitenav=nav_html("", "workshop.html"), footer=footer_html("")))
     shutil.copy(ROOT / "prompts-facets.json", SITE / "prompts-facets.json")
 
     # Prompt library explorer (wave 25: searchable/filterable browser over the
     # 47 templates; reads prompt-templates.json + prompts-facets.json live)
     (SITE / "prompts.html").write_text(PROMPTS_TMPL.format(
-        css=css_links, sitenav=nav_html("", "prompts.html"), footer=footer_html("")))
+            hero=hero_cutroom(
+                kicker="""Interactive tool""",
+                h1="""Prompt <span class="accent">library.</span>""",
+                lede="""All 47 guide templates in one browsable shelf — filter by shot type, camera movement, lighting, and mood, see which of the ten <a href="anatomy.html">prompt-anatomy</a> layers each template demonstrates, then copy, remix, or send any template to the <a href="studio.html">Studio</a> as a shot-prompt starting point.""",
+                deck_title="""PROMPT_LIBRARY — BIN_01""",
+                clips={"v2": ['Remix bench'], "v1": ['47 templates', 'Facet filters', 'Anatomy notes'], "a1": ['Shelf tone', 'Copy-ready']},
+                h1_id="prompts-title",
+                extra=""""""),        css=css_links, sitenav=nav_html("", "prompts.html"), footer=footer_html("")))
 
     # Model-picker quiz page
     (SITE / "quiz.html").write_text(QUIZ_TMPL.format(
-        css=css_links, sitenav=nav_html("", "quiz.html"), footer=footer_html("")))
+            hero=hero_cutroom(
+                kicker="""Interactive tool""",
+                h1="""Model-picker <span class="accent">quiz.</span>""",
+                lede="""Five questions. A ranked top 3 with cost math — scored live from <code>models.json</code>, so the picks stay fresh as the data does.""",
+                deck_title="""MODEL_QUIZ — TAKE_01""",
+                clips={"v2": ['Ranked top 3'], "v1": ['Five questions', 'Score live', 'Cost math'], "a1": ['Think music', 'models.json']},
+                h1_id="quiz-title",
+                extra=""""""),        css=css_links, sitenav=nav_html("", "quiz.html"), footer=footer_html("")))
 
     # Model compare tool (side-by-side, shareable URLs)
     (SITE / "compare.html").write_text(COMPARE_TMPL.format(
-        css=css_links, sitenav=nav_html("", "compare.html"), footer=footer_html("")))
+            hero=hero_cutroom(
+                kicker="""Tools""",
+                h1="""Model <span class="accent">compare.</span>""",
+                lede="""The quiz picks for you. This page lets you argue with it: put 2–3 models side by side — cost, best use, strengths, weaknesses, native audio, freshness — all rendered live from <code>models.json</code>. The URL updates as you pick, so the comparison is shareable.""",
+                deck_title="""MODEL_COMPARE — TAKE_01""",
+                clips={"v2": ['Side by side'], "v1": ['Pick contenders', 'Cost', 'Best use'], "a1": ['Debate track', '2–3 models']},
+                h1_id="cmp-title",
+                extra=""""""),        css=css_links, sitenav=nav_html("", "compare.html"), footer=footer_html("")))
 
     # Prompt gallery (workshop saves as a browsable collection)
     (SITE / "gallery.html").write_text(GALLERY_TMPL.format(
-        css=css_links, sitenav=nav_html("", "gallery.html"), footer=footer_html("")))
+            hero=hero_cutroom(
+                kicker="""Workshop""",
+                h1="""Prompt <span class="accent">gallery.</span>""",
+                lede="""Every prompt you've saved and rated in the workshop, in one browsable place. Filter by track and model, sort by rating, jump back into the workshop, or take your collection with you as JSON. Everything lives in your browser — nothing leaves it.""",
+                deck_title="""PROMPT_GALLERY — REEL_01""",
+                clips={"v2": ['Rated selects'], "v1": ['Your collection', 'Filter & sort', 'Jump back'], "a1": ['Selects reel', 'Workshop returns']},
+                h1_id="gal-title",
+                extra=""""""),        css=css_links, sitenav=nav_html("", "gallery.html"), footer=footer_html("")))
 
     # Changelog page — dated entries rebuilt from git history on every build
     (SITE / "changelog.html").write_text(CHANGELOG_TMPL.format(
-        css=css_links, sitenav=nav_html("", "changelog.html"), footer=footer_html(""),
+            hero=hero_cutroom(
+                kicker="""Freshness log""",
+                h1="""What <span class="accent">changed.</span>""",
+                lede="""AI film tooling rots in months. This page is how the guide stays fresh — every shipped change, dated, newest first.""",
+                deck_title="""CHANGELOG — FEED_01""",
+                clips={"v2": ['Dated entries'], "v1": ['Newest first', 'Every change', 'No rot'], "a1": ['Freshness beep', 'Stay current']},
+                h1_id="changelog-title",
+                extra=""""""),        css=css_links, sitenav=nav_html("", "changelog.html"), footer=footer_html(""),
         changelog_rows=changelog_rows()))
 
     # Skill-spec page — schema + one full example skill
     spec_front, spec_body = skill_spec_example()
     skill_index = json.loads((ROOT / "skills" / "index.json").read_text())
     (SITE / "skill-spec.html").write_text(SKILLSPEC_TMPL.format(
-        css=css_links, sitenav=nav_html("", "skill-spec.html"), footer=footer_html(""),
+            hero=hero_cutroom(
+                kicker="""Agent-native""",
+                h1="""Skill schema <span class="accent">spec.</span>""",
+                lede="""Every one of the {skill_count} skills in <code>skills/</code> follows this exact format — YAML frontmatter plus six Markdown sections. Build to it and your skills slot straight into this library, or any agent framework that reads it.""",
+                deck_title="""SKILL_SPEC — DOC_01""",
+                clips={"v2": ['Six sections'], "v1": ['YAML frontmatter', 'Build to it', '231 skills'], "a1": ['Spec tone', 'Machine-readable']},
+                h1_id="spec-title",
+                extra=""""""),        css=css_links, sitenav=nav_html("", "skill-spec.html"), footer=footer_html(""),
         skill_count=len(skill_index.get("skills", [])),
         spec_frontmatter=spec_front, spec_example_body=spec_body))
 
@@ -3885,27 +3960,69 @@ def main():
     # Failure doctor (interactive troubleshooter, data-driven from diagnoses.json)
     shutil.copy(ROOT / "api" / "v1" / "diagnoses.json", SITE / "diagnoses.json")
     (SITE / "doctor.html").write_text(DOCTOR_TMPL.format(
-        css=css_links, sitenav=nav_html("", "doctor.html"), footer=footer_html("")))
+            hero=hero_cutroom(
+                kicker="""Tools""",
+                h1="""Failure <span class="accent">doctor.</span>""",
+                lede="""Something broke in your footage? Pick the symptom. The doctor gives you the diagnosis in craft terms, the fix that works, and — where one exists — the repair template loaded in the workshop. Every diagnosis is sourced from the guide's chapters.""",
+                deck_title="""FAILURE_DOCTOR — TAKE_01""",
+                clips={"v2": ['Symptom index'], "v1": ['Pick symptom', 'Diagnosis', 'The fix'], "a1": ['Flatline', 'Pulse restored']},
+                h1_id="doc-title",
+                extra=""""""),        css=css_links, sitenav=nav_html("", "doctor.html"), footer=footer_html("")))
 
     # Shot-list builder (pre-production planner, hands off to the optimizer)
     (SITE / "shots.html").write_text(SHOTS_TMPL.format(
-        css=css_links, sitenav=nav_html("", "shots.html"), footer=footer_html("")))
+            hero=hero_cutroom(
+                kicker="""Tools""",
+                h1="""Shot-list <span class="accent">builder.</span>""",
+                lede="""The pre-production planner the optimizer was missing: list every shot with its model and takes, watch the cost add up live from <code>models.json</code>, then hand the whole plan to the budget optimizer. Lists save in your browser; export the JSON and take it to set.""",
+                deck_title="""SHOT_BUILDER — TAKE_01""",
+                clips={"v2": ['Saved lists'], "v1": ['Add a shot', 'Model per shot', 'Live cost'], "a1": ['Slate claps', 'models.json hum']},
+                h1_id="sh-title",
+                extra=""""""),        css=css_links, sitenav=nav_html("", "shots.html"), footer=footer_html("")))
 
     # Style-bible builder (consistency system's core artifact; workshop can prepend saved bibles)
     (SITE / "style-bible.html").write_text(STYLEBIBLE_TMPL.format(
-        css=css_links, sitenav=nav_html("", "style-bible.html"), footer=footer_html("")))
+            hero=hero_cutroom(
+                kicker="""Tools""",
+                h1="""Style-bible <span class="accent">builder.</span>""",
+                lede="""Consistency is not a prompt trick — it is a document. Describe your character and world once, lock it into a STYLE LOCK block, and prepend that block verbatim to every generation in the production. Save named bibles in your browser; the <a href="workshop.html">prompt workshop</a> can prepend any saved bible automatically.""",
+                deck_title="""STYLE_BIBLE — LOCK_01""",
+                clips={"v2": ['Saved bibles'], "v1": ['Character lock', 'World lock', 'Style block'], "a1": ['Continuity tone', 'Prepend block']},
+                h1_id="sb-title",
+                extra=""""""),        css=css_links, sitenav=nav_html("", "style-bible.html"), footer=footer_html("")))
 
     # Prompt linter (wave 11: structural analysis against the ten-layer anatomy)
     (SITE / "linter.html").write_text(LINTER_TMPL.format(
-        css=css_links, sitenav=nav_html("", "linter.html"), footer=footer_html("")))
+            hero=hero_cutroom(
+                kicker="""Tools""",
+                h1="""Prompt <span class="accent">linter.</span>""",
+                lede="""Paste any prompt. The linter checks it against the ten-layer anatomy — which layers are present, which are missing, what each gap costs you on screen — and flags the vague words models can't act on. Heuristic, honest about being heuristic: it checks structure, not taste.""",
+                deck_title="""PROMPT_LINTER — TAKE_01""",
+                clips={"v2": ['Ten layers'], "v1": ['Paste prompt', 'Layer check', 'Gaps flagged'], "a1": ['MOS — no audio', 'What gaps cost']},
+                h1_id="lint-title",
+                extra=""""""),        css=css_links, sitenav=nav_html("", "linter.html"), footer=footer_html("")))
 
     # Episode planner (wave 14: mini-drama series setup → episode blocks → arc tracker)
     (SITE / "episode-planner.html").write_text(EPISODEPLANNER_TMPL.format(
-        css=css_links, sitenav=nav_html("", ""), footer=footer_html("")))
+            hero=hero_cutroom(
+                kicker="""Tools""",
+                h1="""Episode <span class="accent">planner.</span>""",
+                lede="""A series is a contract with the audience: lock the bible once, plan every episode as a block (one emotion, 3–5 beats, dedicated turn, cliffhanger), and keep an arc log with lessons learned. Everything saves in your browser — nothing leaves your machine.""",
+                deck_title="""EPISODE_PLANNER — BLOCK_01""",
+                clips={"v2": ['Cast grid', 'Turn markers'], "v1": ['Bible lock', 'Episode blocks', 'Arc log'], "a1": ['Tension bed', 'Cliffhanger sting']},
+                h1_id="ep-title-h",
+                extra=""""""),        css=css_links, sitenav=nav_html("", ""), footer=footer_html("")))
 
     # Hook-title generator (wave 14: [Episode N] + [stake] + [CTA] caption variants)
     (SITE / "hook-generator.html").write_text(HOOKGEN_TMPL.format(
-        css=css_links, sitenav=nav_html("", ""), footer=footer_html("")))
+            hero=hero_cutroom(
+                kicker="""Tools""",
+                h1="""Hook-title <span class="accent">generator.</span>""",
+                lede="""In the mini-drama genre the caption <em>is</em> the hook. The observed formula — <code>[Episode N] + [one-line emotional stake] + [CTA]</code> — turns one line of stake into five worked caption variants, each with the craft reason it hooks. Name the character every time; never lead with hashtags.""",
+                deck_title="""HOOK_GENERATOR — TAKE_01""",
+                clips={"v2": ['Caption stack'], "v1": ['Your episode', 'Five variants', 'CTA cards'], "a1": ['Hook sting', 'Five formulas']},
+                h1_id="hg-title",
+                extra=""""""),        css=css_links, sitenav=nav_html("", ""), footer=footer_html("")))
 
     # Studio (wave 15: flagship "plan my AI film" production-packet simulator)
     (SITE / "studio.html").write_text(STUDIO_TMPL.format(
@@ -3918,7 +4035,14 @@ def main():
 
     # Manifesto page
     (SITE / "manifesto.html").write_text(MANIFESTO_TMPL.format(
-        css=css_links, sitenav=nav_html("", "manifesto.html"), footer=footer_html("")))
+            hero=hero_cutroom(
+                kicker="""The manifesto""",
+                h1="""This is <span class="accent">not a course.</span>""",
+                lede="""No cohort. No certificate. No $2,000 upsell. This is a living reference for people making films with AI — and it has opinions.""",
+                deck_title="""MANIFESTO — REEL_01""",
+                clips={"v2": ['Opinions'], "v1": ['Not a course', 'Living reference', 'Sourced'], "a1": ['Soapbox', 'No upsell']},
+                h1_id="man-title",
+                extra=""""""),        css=css_links, sitenav=nav_html("", "manifesto.html"), footer=footer_html("")))
 
     # Printable field guides (generated from the guide's own data)
     build_field_guides(css_links)

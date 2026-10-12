@@ -80,12 +80,39 @@
     </div>
   </header>
   <main id="main">
-    <section class="hero hero-film" aria-labelledby="prompts-title">
-      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>5</b></div>
+    <section class="hero hero-cutroom" aria-labelledby="prompts-title">
+      <div class="tl-deck" aria-hidden="true">
+        <div class="tl-chrome">
+          <span class="tl-rec"><i></i>REC</span>
+          <span class="tl-tc-live" data-tl-tc>00:00:04:00</span>
+          <span class="tl-pop">2-POP 01:00:06:00 &#183; &#x223F;1kHz</span>
+          <span class="tl-title">PROMPT_LIBRARY — BIN_01</span>
+        </div>
+        <div class="tl-ruler">
+          <span style="left:0%">00:00:00:00</span><span style="left:20%">00:00:12:00</span><span style="left:40%">00:00:24:00</span><span style="left:60%">00:00:36:00</span><span style="left:80%">00:00:48:00</span><span style="left:100%">00:01:00:00</span>
+        </div>
+        <div class="tl-tracks">
+          <div class="tl-track"><span class="tl-track-label">V2</span>
+            <span class="clip is-blue" style="left:2.0%;width:96.0%">Remix bench</span>
+          </div>
+          <div class="tl-track"><span class="tl-track-label">V1</span>
+            <span class="clip is-gold" style="left:2.0%;width:30.7%">47 templates</span>
+            <span class="clip is-gold" style="left:34.7%;width:30.7%">Facet filters</span>
+            <span class="clip is-gold" style="left:67.3%;width:30.7%">Anatomy notes</span>
+          </div>
+          <div class="tl-track"><span class="tl-track-label">A1</span>
+            <span class="clip is-rec" style="left:2.0%;width:47.0%">Shelf tone</span>
+            <span class="clip " style="left:51.0%;width:47.0%">Copy-ready</span>
+          </div>
+          <div class="tl-playhead"></div>
+        </div>
+        <div class="leader-frame" data-leader-frame><b>3</b><span class="lf-label">LEADER</span></div>
+      </div>
       <div class="container hero-inner">
         <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Interactive tool</span>
         <h1 id="prompts-title">Prompt <span class="accent">library.</span></h1>
         <p class="lede">All 47 guide templates in one browsable shelf — filter by shot type, camera movement, lighting, and mood, see which of the ten <a href="anatomy.html">prompt-anatomy</a> layers each template demonstrates, then copy, remix, or send any template to the <a href="studio.html">Studio</a> as a shot-prompt starting point.</p>
+        
       </div>
     </section>
     <section class="container" aria-labelledby="pr-filters-h" id="pr-app">
@@ -134,7 +161,7 @@
       </div>
       <p id="pr-count" role="status"></p>
       <div id="pr-list" class="pr-grid" aria-live="polite"></div>
-      <div class="empty-state" id="pr-empty" hidden><p>No templates match those filters. Clear a filter or try a different search.</p></div>
+      <div class="empty-state" id="pr-empty" hidden><span class="es-slate">No footage</span><p>No templates match those filters. Clear a filter or try a different search.</p></div>
     </section>
     <section class="container" aria-labelledby="pr-more-h">
       <h2 id="pr-more-h">Where to go next</h2>
@@ -182,7 +209,7 @@
     <div class="container footer-grid">
       <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer"><a href="index.html">Guide</a><a href="skills.html">Skills</a><a href="workshop.html">Workshop</a><a href="quiz.html">Quiz</a><a href="compare.html">Compare</a><a href="gallery.html">Gallery</a><a href="teardown.html">Teardowns</a><a href="model-watch.html">Model watch</a><a href="checks/">Knowledge checks</a><a href="budget.html">Budget</a><a href="optimizer.html">Optimizer</a><a href="shots.html">Shot list</a><a href="style-bible.html">Style bible</a><a href="doctor.html">Doctor</a><a href="linter.html">Linter</a><a href="prompts.html">Prompts</a><a href="models/">Models</a><a href="anatomy.html">Anatomy</a><a href="manifesto.html">Manifesto</a><a href="craft-not-buttons.html">Craft, not buttons</a><a href="recipes.html">Recipes</a><a href="field-guides/">Field guides</a><a href="changelog.html">Changelog</a><a href="skill-spec.html">Skill spec</a><a href="api.html">API</a></nav>
-      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
     </div>
   </footer>
   <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
@@ -193,6 +220,8 @@
   </div>
   <script src="assets/js/palette.js"></script>
   <script src="assets/js/prompts.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
 </body>
 </html>
 

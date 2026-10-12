@@ -49,7 +49,65 @@
 .tl-tc-live { color: var(--gold); font-variant-numeric: tabular-nums; font-weight: 600; }
 .tl-rec { display: inline-flex; align-items: center; gap: 8px; color: var(--ember-soft); font-weight: 700; }
 .tl-rec i { width: 10px; height: 10px; border-radius: 50%; background: var(--ember); box-shadow: var(--glow-rec); }
-.tl-title { margin-left: auto; color: var(--muted); }
+.tl-title { margin-left: auto; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* 2-pop sync marker — the head-pop chrome. One frame of 1kHz, 2s before
+   first frame of action (01:00:06:00, film convention). Decorative. */
+.tl-pop {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--tungsten); white-space: nowrap;
+  border: 1px solid var(--amber-deep); border-radius: 4px; padding: 2px 8px;
+  background: rgba(245, 179, 1, 0.06);
+}
+.tl-chrome { flex-wrap: wrap; row-gap: 6px; }
+
+/* Tail pop — the sync marker at the page's tail. Lives in the footer colophon. */
+.footer-colophon .tailpop {
+  font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.2em;
+  color: var(--ember-soft); border: 1px solid var(--ember-deep);
+  border-radius: 4px; padding: 2px 8px; text-transform: uppercase; white-space: nowrap;
+}
+
+/* ——— Upside-down end slate: the native "footage missing" mark ———
+   When a head slate would spoil the take, the clapperboard is held upside
+   down and clapped at the tail. Missing footage gets the same mark. */
+.end-slate {
+  display: inline-block; transform: rotate(180deg);
+  border: 1px solid var(--line-bright); border-radius: var(--radius-s);
+  background:
+    repeating-linear-gradient(-45deg, transparent 0 12px, rgba(230, 36, 41, 0.07) 12px 24px),
+    var(--panel);
+  padding: var(--space-3) var(--space-5); margin-top: var(--space-5);
+  font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.24em;
+  text-transform: uppercase; color: var(--muted); text-align: center;
+}
+.end-slate b {
+  display: block; font-family: var(--font-display); font-weight: 800; font-stretch: 62%;
+  font-size: 1.1rem; letter-spacing: 0.08em; color: var(--ink-dim); margin-bottom: 4px;
+}
+
+/* ——— Field-guide slate: print-first pages get a screen-only masthead ——— */
+.fg-slate {
+  display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap;
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--muted);
+  border: 1px solid var(--line-soft); border-radius: var(--radius-m);
+  background: var(--panel); padding: var(--space-3) var(--space-4);
+  margin: var(--space-4) 0 var(--space-5);
+}
+.fg-slate .tl-rec { display: inline-flex; align-items: center; gap: 8px; color: var(--ember-soft); font-weight: 700; }
+.fg-slate .tl-rec i { width: 10px; height: 10px; border-radius: 50%; background: var(--ember); box-shadow: var(--glow-rec); }
+.fg-slate .tl-title { margin-left: auto; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* ——— Print maturity: WORKPRINT (rough, unverified) vs ANSWER PRINT (clean) ——— */
+.print-tag {
+  display: inline-block; font-family: var(--font-mono); font-size: 0.6rem;
+  letter-spacing: 0.2em; text-transform: uppercase; white-space: nowrap;
+  border: 1px solid var(--line-bright); border-radius: 4px; padding: 2px 8px; color: var(--muted);
+}
+.print-tag.is-workprint { border-color: var(--amber-deep); color: var(--tungsten); background: rgba(245, 179, 1, 0.07); }
+.print-tag.is-answer { border-color: #2c5a78; color: var(--reel); background: rgba(127, 212, 255, 0.06); }
 
 .tl-ruler {
   position: relative; height: 26px;
@@ -218,7 +276,7 @@
 
 /* ——— 404: MISSING REEL ——— */
 .missing-reel { text-align: center; padding-block: var(--space-9); max-width: 640px; margin-inline: auto; }
-.missing-reel .leader-frame { position: static; margin: 0 auto var(--space-5); width: 170px; height: 170px; }
+.missing-reel .leader-frame { position: relative; right: auto; top: auto; margin: 0 auto var(--space-5); width: 170px; height: 170px; }
 .missing-reel .leader-frame b { font-size: 4.6rem; }
 .missing-reel h1 {
   font-family: var(--font-display); font-weight: 800; font-stretch: 62%;

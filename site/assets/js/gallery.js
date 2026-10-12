@@ -114,7 +114,7 @@
     els.count.textContent = out.length + " of " + saves.length + " saved prompt" + (saves.length === 1 ? "" : "s");
     els.grid.innerHTML = out.length
       ? out.map(card).join("")
-      : '<div class="empty-state"><p>No saved prompts match these filters.</p></div>';
+      : '<div class="empty-state"><span class="es-slate">No footage</span><p>No saved prompts match these filters.</p></div>';
   }
 
   els.grid.addEventListener("click", function (ev) {

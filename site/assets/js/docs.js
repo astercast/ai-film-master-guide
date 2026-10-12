@@ -12,10 +12,14 @@
   }
 
   /* Timecode-stamped section headers — the cutting-room signature.
-     Each h2 gets the next mark on the reel: 45 seconds apart, from 00:00:45:00. */
-  var h2s = document.querySelectorAll(".prose h2");
+     Each h2 gets the next mark on the reel: 45 seconds apart, from 00:00:45:00.
+     Chapter pages stamp .prose h2s; tool/data/docs pages stamp their top-level
+     section h2s (same reel, same marks). Skips hidden headers and hero chrome. */
+  var h2s = document.querySelectorAll(".prose h2, main > section h2");
   Array.prototype.forEach.call(h2s, function (h, i) {
     if (h.querySelector(".tc")) return;
+    if (h.classList.contains("visually-hidden")) return;
+    if (h.closest(".hero") || h.closest("[hidden]")) return;
     var stamp = document.createElement("span");
     stamp.className = "tc";
     stamp.setAttribute("aria-hidden", "true");
