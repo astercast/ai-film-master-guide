@@ -20,7 +20,7 @@
 
 **Validation:** Playwright functional suite, all pass — datalist 12 options, template options contextual per format (5 = placeholder + 2 format + 2 any), `{name}` slot fill ("Freeze on Lena's face"), verbatim slot-less templates, two-emotion refusal ("triumph" in beats beside "suspense"), clean saves for all 5 presets with zero false positives, caption draft from block, 6 hook variants with sanitize + length advisory, zero non-environmental console errors (the 3 ERR_TUNNEL_CONNECTION_FAILED are the sandbox's blocked Google-Fonts fetch, same as wave 37). Headless screenshots inspected: planner (desktop + mobile 390px — controls stack clean), hook-generator, chapter worked-example section — Cutting Room identity intact on all. `bash scripts/validate.sh` → ALL STAGES PASS, 0 broken links.
 
-**Commit:** local + remote hashes recorded below after push.
+**Commit:** local `2bbd4514d1c5806dfd5b5a0e1f7f83b2481db97` (18 files) → pushed 2026-10-11 as remote commit `e22ddb42173e5a6e3979665edfa6662631a1c2a0`; remote `main` HEAD matches the pushed SHA; all 11 key files verified present in the remote tree via GitHub Trees API (568 entries, not truncated; blob SHAs match local exactly). Push succeeded on the first attempt — no 400s this wave.
 
 **Next episode-pipeline revisit:** ~wave 41.
 
