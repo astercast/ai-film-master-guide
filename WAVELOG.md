@@ -78,6 +78,15 @@ pass in isolation; not a page bug.
 **Wave 2 candidates:** multilingual detectors, take A/B comparison view,
 "send this take to the Studio" bridge, per-shot regeneration.
 
+**Commit:** local `1068f01b` (107 files: 3 new + WAVELOG + 103 rebuilt
+site/) → pushed 2026-10-12 as remote commit
+`5a3d785a0553bf2cafa204590ab0b03d15a29e93`; remote `main` HEAD matched the
+pushed SHA; GitHub Trees API verified: 615 entries, not truncated, all 9 key
+wave files present, local HEAD tree == remote tree (546/546 blobs, zero
+diffs). Push succeeded on the first attempt — no 400s this wave. Remote
+track verified pre-push: `astercast/ai-film-master-guide` (working repo,
+not `-live`).
+
 ## Standing items (permanent workstreams)
 
 - **Episode pipeline workstream (permanent, from wave 14):** revisit every ~3 waves — new episode formats from what's working, new tools, tighter procedures, worked examples. Goal: best agent-run episode-production system anywhere. (WAVELOG entry each revisit; the research artifact lives at `~/workspace/tiktok-episode-pipeline/PIPELINE.md`.) **Last revisited: wave 38 (2026-10-11) — Adobe in-Premiere multi-model workbench (Stage 6 procedure fork), funnel price tag + Appfigures/MPA reconciliation, voice-consent production gate, "brief to the row" rule, Wan 3.0/Omni Flash/FLUX 3 tiers, planner one-emotion gate + cliffhanger templates + caption draft, hook-gen 6th vote-hook variant, "The Seventh Floor" worked example with real model-cost math. Next revisit ~wave 41.**
