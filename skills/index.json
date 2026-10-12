@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "count": 226,
+  "count": 228,
   "skills": [
     {
       "id": "prompt-t1",
@@ -571,6 +571,18 @@
       "title": "Direct with Runway Gen-4.5",
       "description": "Use Runway Gen-4.5 well: costs, strengths, weaknesses, best use.",
       "path": "skills/models/direct-runway-gen-4-5.md"
+    },
+    {
+      "id": "direct-vidu-q4-preview",
+      "title": "Direct with Vidu Q4 Preview",
+      "description": "Use Vidu Q4 Preview well: costs, strengths, weaknesses, best use.",
+      "path": "skills/models/direct-vidu-q4-preview.md"
+    },
+    {
+      "id": "direct-flux-3-video",
+      "title": "Direct with FLUX 3 Video",
+      "description": "Use FLUX 3 Video well: costs, strengths, weaknesses, best use.",
+      "path": "skills/models/direct-flux-3-video.md"
     },
     {
       "id": "audit-pre-production-checklist",

@@ -1,7 +1,51 @@
 {
   "format": "model-review-queue/1.0",
-  "generated_at": "2026-10-11T22:23:45+00:00",
+  "generated_at": "2026-10-12T01:16:09+00:00",
   "note": "Changed=true means a source page's content signature moved since the last check. This is a review signal, not a confirmed model change (landing pages are marketing copy; diffs may be noise). Promote via the per-item promotion step — never auto-mutate models.json.",
-  "pending": 0,
-  "items": []
+  "pending": 5,
+  "items": [
+    {
+      "model": "Seedance 3.0",
+      "status": "reported",
+      "note": "Wave 21 (2026-10-11): still unconfirmed. Watch ByteDance Seed's public model directory; any official Seedance 3 announcement should flip status to active with full spec/pricing.",
+      "watch": [
+        "seedance 3.0 launch",
+        "bytedance seedance 3 official"
+      ]
+    },
+    {
+      "model": "Kling 4.0",
+      "status": "announced",
+      "note": "Wave 21 (2026-10-11): full model promised 'this October' with no date. Watch kling.ai and the official API docs for a GA model ID; on GA, flip status to active and add pricing.",
+      "watch": [
+        "kling 4.0 general availability",
+        "kling 4.0 API pricing"
+      ]
+    },
+    {
+      "model": "Wan 2.7",
+      "status": "not-in-database",
+      "note": "Wave 21 (2026-10-11): Wan 2.7 (Thinking Mode, t2v/i2v/r2v/videoedit, launched ~April 2026) is missing from models.json — a genuine gap, not added because it predates this wave's scope. Next refresh should verify pricing/specs and add it.",
+      "watch": [
+        "wan 2.7 pricing",
+        "wan 2.7 API availability"
+      ]
+    },
+    {
+      "model": "MiniMax H3",
+      "status": "active",
+      "note": "Wave 21 (2026-10-11): open weights announced 'in the coming days' July 31, 2026 — no public repo confirmed. Watch Hugging Face / MiniMax for the weights drop and license.",
+      "watch": [
+        "minimax H3 open weights release"
+      ]
+    },
+    {
+      "model": "Soul Cinema",
+      "status": "active",
+      "note": "Wave 21 (2026-10-11): now the default image model in Cinema Studio 3.0/3.5; per-image credit cost still unpublished. Watch the Higgsfield pricing page.",
+      "watch": [
+        "higgsfield soul cinema pricing"
+      ]
+    }
+  ]
 }

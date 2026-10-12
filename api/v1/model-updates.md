@@ -5,6 +5,104 @@ every entry in `models.json` was re-verified against October 2026 coverage, and 
 now carries `last_verified`, `status`, `what_changed`, and `sources`. Verify live
 pricing before spending — this file is a snapshot, not a rate card.
 
+## 2026-10-11 — Wave 21: Q4 model refresh
+
+All 29 records re-verified against Oct 2026 coverage. Two models added;
+no status changes; pricing updates below are third-party or vendor numbers
+as labeled — verify live before spending.
+
+### New models (2)
+
+- **Vidu Q4 Preview** (Vidu / Shengshu Technology) — launched Oct 7, 2026
+  (GlobeNewswire). First public preview of Vidu's next-gen flagship:
+  lifelike performances, cinematic 4K 10-bit, up to 15 image references,
+  3 audio references for voice consistency, stable camera moves, strong
+  Chinese text rendering. Launch pricing from **$0.014/s** (preview
+  pricing may rise — verify live). The Studio flags it verify-live until a
+  stable rate card exists.
+- **FLUX 3 Video** (Black Forest Labs) — announced July 23, 2026, public
+  Aug 4, 2026 (BFL's first video model). Up to 20s single take, native
+  1080p, native multilingual audio + lip-sync, start/end frames and
+  ordered keyframes, multi-shot generation, video continuation, strong
+  typography. Draft mode: **$0.06/s 720p** draft, **$0.17/s 720p**,
+  **$0.29/s 1080p** (~$2.90/10s HD). Arena text-to-video #2 (1496 pts,
+  behind Gemini Omni Flash 1512; vendor's preference stats are
+  vendor-run, not independent). 4K and open weights promised "coming
+  soon". The Studio flags it verify-live until rates stabilize.
+
+### Pricing / record changes
+
+- **MiniMax H3** — API rate card now published: **$0.13/s 2K, $0.08/s
+  768p**; H3 Max: $0.08/s 768p, $0.05/s 480p; H3-Max-Turbo and H3 480p
+  $0.038/s vendor-confirmed but unpublished. Open weights announced July
+  31 "in the coming days" — no public weights repo confirmed as of Oct
+  11. H3 is now USD-billed (no platform-credit rate), so the Studio's
+  budget treats it as verify-live and falls through to the next-cheapest
+  priced model. The Night Bus worked example moved its 25 H3 shots to
+  Luma Ray 3.2 (clean $20.48 → **$20.64**; see the pipeline worked
+  example, re-versioned).
+- **Kling 3.0** — Kling API docs pricing confirmed: 3.0 Turbo $0.112/s
+  720p / $0.14/s 1080p (audio included); kling-v3 $0.084/s std, $0.112/s
+  pro, $0.126–0.168/s with audio, $0.42/s 4K; kling-2-5-turbo $0.042/s
+  std / $0.07/s pro. Correction of a circulating claim: Kling 3.0 ranks
+  **12th (not 4th)** on the Artificial Analysis T2V leaderboard
+  (techtimes, single-source flag).
+- **Hailuo 2.3** — direct API rechecked Oct 10, 2026: 768p $0.28/6s,
+  $0.56/10s; 1080p $0.49/6s; Fast $0.19/6s. 2.3 is now MiniMax's LEGACY
+  (V1) API generation.
+- **Gemini Omni** — gemini-omni-1.1-flash GA Aug 27, 2026 (scene
+  extension to 40s in 10s steps, first/last-frame interpolation, 360p–4K
+  resolution ladder, 3s video refs, stateful editing). Preview endpoint
+  deprecated Sept 30, 2026 (404s, no fallback). Resolution ladder:
+  **$0.10/s 720p, $0.03/s 360p draft, $0.15/s 1080p, $0.30/s 4K**
+  (reported benchmarks — verify live). Free 1080p in Google Vids since
+  Sept 23; replaces Veo 3.1 inside the Gemini app. SynthID watermark on
+  all output.
+- **Grok Imagine Video 1.5** — NEW Lite tier Oct 1–8, 2026 (xAI):
+  1–15s, 480p/720p/1080p, native audio, **$0.02/s 480p to $0.14/s
+  1080p**, $0.01/image input. Live on xAI API, Venice, Vercel AI
+  Gateway, OpenRouter; in ComfyUI v0.39.0 partner nodes.
+- **Seedance 2.5** — reached API resellers ~mid-Aug; BytePlus API
+  estimate ~$0.57/s 1080p (third-party estimate — verify live). Arena
+  I2V (Sept 21): ~120 pts above Kling 3.0 Pro (single-source flag).
+  BytePlus terms (Sept 30): Seedance API not available in the US.
+- **Seedance 2.0** — BytePlus API estimate ~$0.37/s 1080p, Mini 720p
+  ~$0.08/s (third-party estimates — verify live).
+- **Runway Gen-4.5** — no new model; still the latest. Gen-4.5: 12
+  credits/s; API $0.12/s; Standard $15/mo / Pro $35/mo / Max $95/mo
+  (Max replaced Unlimited for new subscribers). Runway is becoming a
+  multi-model aggregator (Veo 3.1, Kling 3.0 Pro, Seedance, FLUX,
+  Seedream inside one subscription).
+- **Wan 3.0 / 3.0 Prime** — formally released Aug 24, 2026; remains
+  current. Prime Singapore list: $0.068/s 480p, $0.14/s 720p, $0.28/s
+  1080p (verify live).
+- **Pika 2.5** — no Pika 3.0; Pika rebuilt into a routing studio (Sept
+  2026) across Seedance 2.5, GPT Image 2.5, Grok Imagine 1.5, Gemini 1.1
+  Omni Flash, Nano Banana 2, MiniMax H3. API Club (self-serve,
+  multi-provider) launched Aug 5, 2026.
+- **Luma App / Ray 3.2** — no 3.5; legacy models retired Oct 5, 2026
+  (move to ray-3.2). API standard video $0.06–$1.20/5s (360p–1080p).
+- **Soul Cinema** — now the DEFAULT image model in Cinema Studio 3.0 and
+  3.5's image-mode picker; 3.5 adds 480p/720p/1080p video tiers (up to
+  15s). Per-image cost still unpublished — verify live.
+- **Soul Cast** — AI actors confirmed in Cinema Studio 2.5 and 3.0
+  Business/Team.
+- **LTX-2.5** — open weights confirmed healthy (community running it on
+  Intel Arc pairs, AWS L40S bake-offs); hosted rows from ~44/58 credits.
+
+### Status re-checks (no change)
+
+- **Kling 4.0** — STILL not GA as of Oct 11: only Flash early access
+  (Ultra Yearly, 20s/720p/8-bit SDR); full model "this October", no
+  date; 4K 10-bit HDR still "coming soon"; no API model ID. Status stays
+  `announced`.
+- **Seedance 3.0** — STILL unconfirmed: ByteDance Seed's public
+  directory lists 2.5 as latest. ByteDance's October real-time world
+  model (Bloomberg) is a separate product, not a Seedance 3 release.
+  Status stays `reported`.
+- **Veo 4** — still SEO bait; no Veo 4 in any Google documentation.
+- **Sora 2** — still discontinued (API 410s; "does not come back").
+
 ## Discontinued
 
 - **Sora 2 / Pro / Max (OpenAI)** — **discontinued**. OpenAI announced the shutdown on

@@ -61,16 +61,16 @@
       <div class="card mw-card">
         <dl>
           <dt>Best use</dt><dd>Conversational video generation and prompt-plus-reference clip editing inside Google&#x27;s ecosystem (Gemini app, YouTube Shorts, Google Flow)</dd>
-          <dt>Cost</dt><dd>Gemini Omni Flash API: ~$0.10/s at 720p, token-billed (reported benchmark — verify live)</dd>
+          <dt>Cost</dt><dd>Gemini Omni Flash API: ~$0.10/s at 720p, token-billed (reported benchmark — verify live) RESOLUTION LADDER (reported benchmarks, verify live): 720p ~$0.10/s ($17.50/1M video tokens); 360p draft ~$0.03/s (up to 60% faster); 1080p ~$0.15/s; 4K ~$0.30/s. 1080p/4K are upscaled from 720p. English only fully supported for prompts.</dd>
           <dt>Strength</dt><dd>Unified multimodal creation platform; Omni Flash shipped day one in the Gemini app, YouTube Shorts, and Google Flow; prompt-plus-reference generation and clip editing</dd>
           <dt>Weakness</dt><dd>Token-billed API makes cost math different from per-clip models; verify live before budgeting</dd>
         </dl>
-        <p class="mw-changed"><strong>What changed:</strong> CORRECTION — Google&#x27;s actual next play is Gemini Omni, unveiled at Google I/O 2026 (May 19–20), NOT a &#x27;Veo 4&#x27;. &#x27;Veo 4&#x27; pages ranking on Google are SEO bait; no Google documentation names such a model (verified across three sources). Gemini Omni Flash shipped day one; API since June 30, 2026.</p>
+        <p class="mw-changed"><strong>What changed:</strong> CORRECTION — Google&#x27;s actual next play is Gemini Omni, unveiled at Google I/O 2026 (May 19–20), NOT a &#x27;Veo 4&#x27;. &#x27;Veo 4&#x27; pages ranking on Google are SEO bait; no Google documentation names such a model (verified across three sources). Gemini Omni Flash shipped day one; API since June 30, 2026. 2026-08-27: gemini-omni-1.1-flash went GA (scene extension to 40s in 10s steps with 10s context, first/last-frame interpolation, 360p-4K resolution ladder, 3s video references, stateful multi-turn editing). Preview endpoint gemini-omni-flash-preview deprecated Sept 30, 2026 (404s, no fallback). Sept 23: free 1080p generation in Google Vids for all Google accounts. In the Gemini app, Omni 1.1 Flash replaces Veo 3.1. Adobe Firefly and Figma Weave named as production users. SynthID watermark on all output.</p>
       </div>
     </section>
     <section class="container" aria-labelledby="md-cost-h" style="margin-top:var(--space-6);">
       <h2 id="md-cost-h">Cost math</h2>
-      <p>No published rate in the captured data — <strong>verify live</strong> on the vendor's pricing page before budgeting. Recorded rate string: <code>Gemini Omni Flash API: ~$0.10/s at 720p, token-billed (reported benchmark — verify live)</code></p>
+      <p>No published rate in the captured data — <strong>verify live</strong> on the vendor's pricing page before budgeting. Recorded rate string: <code>Gemini Omni Flash API: ~$0.10/s at 720p, token-billed (reported benchmark — verify live) RESOLUTION LADDER (reported benchmarks, verify live): 720p ~$0.10/s ($17.50/1M video tokens); 360p draft ~$0.03/s (up to 60% faster); 1080p ~$0.15/s; 4K ~$0.30/s. 1080p/4K are upscaled from 720p. English only fully supported for prompts.</code></p>
       <p class="calc-note">USD at $0.0392/credit (Higgsfield Plus plan, observed 2026-10-10). Verify live before budgeting — rates change.</p>
     </section>
     <section class="container" aria-labelledby="md-when-h" style="margin-top:var(--space-6);">
@@ -91,7 +91,7 @@
     </section>
     <section class="container" aria-label="Sources" style="margin-top:var(--space-6);">
       <h2>Sources</h2>
-      <ul><li><a href="https://www.lumeflow.ai/ai-tools/veo-4-release-date/" rel="noopener">www.lumeflow.ai</a></li><li><a href="https://innfactory.ai/en/ai-models/google-veo/" rel="noopener">innfactory.ai</a></li></ul>
+      <ul><li><a href="https://www.lumeflow.ai/ai-tools/veo-4-release-date/" rel="noopener">www.lumeflow.ai</a></li><li><a href="https://innfactory.ai/en/ai-models/google-veo/" rel="noopener">innfactory.ai</a></li><li><a href="https://www.marktechpost.com/2026/08/29/google-ai-releases-gemini-omni-1-1-flash-40-second-scene-extension-first-last-frame-control-and-4k-upscaling/" rel="noopener">www.marktechpost.com</a></li><li><a href="https://omniflash-ai.com/blog/gemini-omni-flash-1-1" rel="noopener">omniflash-ai.com</a></li><li><a href="https://www.unite.ai/google-brings-free-gemini-omni-1-1-video-generation-to-google-vids/" rel="noopener">www.unite.ai</a></li><li><a href="https://www.ffmpeg-micro.com/blog/gemini-omni-flash-preview-is-deprecated-swap-to-omni-1-1-flash" rel="noopener">www.ffmpeg-micro.com</a></li></ul>
       <p style="margin-top:var(--space-5);"><a class="btn btn-ghost" href="index.html">All model deep dives</a> <a class="btn btn-ghost" href="../model-watch.html">Model watch</a> <a class="btn btn-ghost" href="../compare.html">Compare models</a> <a class="btn btn-ghost" href="../quiz.html">Take the quiz</a></p>
     </section>
   </main>

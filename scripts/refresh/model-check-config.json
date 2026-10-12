@@ -166,6 +166,20 @@
       "exclude_from_signature": [
         "github.com/yzrkbys/pika-canvas/commit"
       ]
+    },
+    "Vidu Q4 Preview": {
+      "extra_urls": [
+        "https://www.vidu.com/"
+      ],
+      "news_query": "Vidu Q4 Preview Shengshu",
+      "note": "Added wave 21 (2026-10-11). Launch pricing $0.014/s is preview — watch for final rate card."
+    },
+    "FLUX 3 Video": {
+      "extra_urls": [
+        "https://bfl.ai/"
+      ],
+      "news_query": "FLUX 3 Video Black Forest Labs",
+      "note": "Added wave 21 (2026-10-11). Watch for native 2K/4K and open-weights delivery."
     }
   }
 }

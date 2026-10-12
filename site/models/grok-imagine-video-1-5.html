@@ -61,16 +61,18 @@
       <div class="card mw-card">
         <dl>
           <dt>Best use</dt><dd>Cheap high-volume social video; native-audio dialogue clips</dd>
-          <dt>Cost</dt><dd>API ~$0.08/sec output (~$4.80/min); verify live</dd>
+          <dt>Cost</dt><dd>API ~$0.08/sec output (~$4.80/min); verify live Lite (Oct 2026, verify live): $0.02/s 480p to $0.14/s 1080p; $0.01/image input; 1-15s clips; 16:9, 9:16, 1:1, 4:3, 3:4, 3:2 +1.</dd>
           <dt>Strength</dt><dd>Native audio (dialogue/SFX/music) in one pass; 6-15s clips extendable to 30s; topped the image-to-video arena at launch (third-party)</dd>
           <dt>Weakness</dt><dd>720p (1080p added July 2026); voice-reference gating; younger evidence base</dd>
         </dl>
-        <p class="mw-changed"><strong>What changed:</strong> Renamed: the current product is Grok Imagine Video 1.5 (GA June 16, 2026; July 31, 2026 update added 1080p, text-to-video, voice reference, 7-reference scene control).</p>
+        <p class="mw-changed"><strong>What changed:</strong> Renamed: the current product is Grok Imagine Video 1.5 (GA June 16, 2026; July 31, 2026 update added 1080p, text-to-video, voice reference, 7-reference scene control). 2026-10-01/06: NEW Lite tier — Grok Imagine Video 1.5 Lite (xAI, model id grok-imagine-video-1.5-lite): 1-15s, 480p/720p/1080p (1080p rendered at 720p upscaled), text+image to video, native audio, $0.02/s at 480p to $0.14/s at 1080p, $0.01/image input. Live on xAI API, Venice, Vercel AI Gateway, OpenRouter. Also added to ComfyUI partner nodes (v0.39.0). Headline 1.5 pricing stays $0.08/s.</p>
       </div>
     </section>
     <section class="container" aria-labelledby="md-cost-h" style="margin-top:var(--space-6);">
       <h2 id="md-cost-h">Cost math</h2>
-      <p>No published rate in the captured data — <strong>verify live</strong> on the vendor's pricing page before budgeting. Recorded rate string: <code>API ~$0.08/sec output (~$4.80/min); verify live</code></p>
+      <ul>
+<li><strong>0.01 credits / image</strong> — one image ≈ $0.000; 50 images ≈ $0.02; 500 images ≈ $0.20.</li>
+</ul>
       <p class="calc-note">USD at $0.0392/credit (Higgsfield Plus plan, observed 2026-10-10). Verify live before budgeting — rates change.</p>
     </section>
     <section class="container" aria-labelledby="md-when-h" style="margin-top:var(--space-6);">
@@ -92,7 +94,7 @@
     </section>
     <section class="container" aria-label="Sources" style="margin-top:var(--space-6);">
       <h2>Sources</h2>
-      <ul><li><a href="https://www.europesays.com/ai/127331/" rel="noopener">www.europesays.com</a></li><li><a href="https://theplanettools.ai/blog/xai-grok-imagine-video-1-5-image-to-video-native-audio-arena-june-2026" rel="noopener">theplanettools.ai</a></li></ul>
+      <ul><li><a href="https://www.europesays.com/ai/127331/" rel="noopener">www.europesays.com</a></li><li><a href="https://theplanettools.ai/blog/xai-grok-imagine-video-1-5-image-to-video-native-audio-arena-june-2026" rel="noopener">theplanettools.ai</a></li><li><a href="https://openrouter.ai/x-ai/grok-imagine-video-1.5-lite" rel="noopener">openrouter.ai</a></li><li><a href="https://llmgateway.io/timeline" rel="noopener">llmgateway.io</a></li><li><a href="https://deployedbyai.com/log/b06e09074889/grok-imagine-video-1-5-lite/" rel="noopener">deployedbyai.com</a></li><li><a href="https://whatsnew.fyi/product/comfyui/releases/v0.39.0" rel="noopener">whatsnew.fyi</a></li></ul>
       <p style="margin-top:var(--space-5);"><a class="btn btn-ghost" href="index.html">All model deep dives</a> <a class="btn btn-ghost" href="../model-watch.html">Model watch</a> <a class="btn btn-ghost" href="../compare.html">Compare models</a> <a class="btn btn-ghost" href="../quiz.html">Take the quiz</a></p>
     </section>
   </main>

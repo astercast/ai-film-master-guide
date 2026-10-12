@@ -18,7 +18,7 @@ Base path: `api/v1/`
 | Endpoint | Contents | Records |
 |---|---|---|
 | `index.json` | Manifest: version, endpoints (description, schema URL, updated, counts, notes), documents, skills pointer | 11 |
-| `models.json` | 27 models with platform, type, credit cost, strengths, weaknesses, best use; per-model `last_verified`, `status`, `what_changed`, `sources`; `cost_basis` note; explicit `unverified` list. Sora = `discontinued` (service shut Mar–Sep 2026) | 27 |
+| `models.json` | 29 models with platform, type, credit cost, strengths, weaknesses, best use; per-model `last_verified`, `status`, `what_changed`, `sources`; `cost_basis` note; explicit `unverified` list. Sora = `discontinued` (service shut Mar–Sep 2026) | 29 |
 | `prompt-templates.json` | 47 templates: id, title, track (`core`/`animated`/`photorealistic`/`performance`/`audio`/`longform`/`repair`), prompt, anatomy, use, models | 47 |
 | `camera-movements.json` | 22 camera moves: id, move, prompt_phrasing, when_to_use | 22 |
 | `checklists.json` | Named checklists (pre-production, per-shot, continuity, audio, delivery) with item arrays | 5 |

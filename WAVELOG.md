@@ -4,6 +4,26 @@
 
 - **Episode pipeline workstream (permanent, from wave 14):** revisit every ~3 waves — new episode formats from what's working, new tools, tighter procedures, worked examples. Goal: best agent-run episode-production system anywhere. (WAVELOG entry each revisit; the research artifact lives at `~/workspace/tiktok-episode-pipeline/PIPELINE.md`.) **Last revisited: wave 20 (2026-10-11).**
 
+## Wave 21 — Q4 2026 model data refresh (2026-10-11)
+
+**Research:** all 27 model records re-verified against live Oct 2026 coverage (15 search batches). 27 → **29 models**; no status changes; pricing updates sourced or flagged verify-live; nothing invented.
+
+**Shipped:**
+
+1. **Two genuinely new models** (verified data, own records):
+   - **Vidu Q4 Preview** (Vidu/Shengshu, launched Oct 7, 2026, GlobeNewswire): next-gen flagship — lifelike performances, cinematic 4K 10-bit, 15 image refs, 3 audio refs for voice consistency; launch pricing **$0.014/s**. Studio flags verify-live until the rate card stabilizes.
+   - **FLUX 3 Video** (Black Forest Labs, announced July 23 / public Aug 4, 2026): up to 20s single take, native 1080p + multilingual audio/lip-sync, keyframes, multi-shot, draft mode **$0.06/s 720p draft, $0.17/s 720p, $0.29/s 1080p** (~$2.90/10s HD); Arena T2V #2 (1496 pts, vendor-run stats flagged as such).
+2. **Pricing/capability updates with sources:** MiniMax H3 (published API card: $0.13/s 2K, $0.08/s 768p; H3 Max $0.08/$0.05; open weights still pending — **now USD-billed, no platform-credit rate, so the Studio budgets it as verify-live**); Kling 3.0 (full Kling API docs table; correction: 12th not 4th on Artificial Analysis T2V); Hailuo 2.3 (direct API rechecked Oct 10); Gemini Omni → **1.1 Flash GA** (Aug 27, 2026; preview 404'd Sept 30; resolution ladder $0.10/$0.03/$0.15/$0.30/s; free 1080p in Google Vids; replaces Veo 3.1 in the Gemini app); Grok 1.5 **Lite tier** (Oct 1–8, $0.02/s 480p → $0.14/s 1080p); Seedance 2.0/2.5 (BytePlus API estimates $0.37/$0.57/s 1080p); Runway Gen-4.5 (API $0.12/s, now a multi-model aggregator); Wan 3.0 Prime (Singapore list $0.068–0.28/s); Pika (routing-studio rebuild, API Club); Luma Ray 3.2 (legacy retired Oct 5); Soul Cinema (default image model in Cinema Studio 3.0/3.5); LTX-2.5 (open weights healthy).
+3. **Status re-checks (no change):** Kling 4.0 STILL not GA (Flash only, "this October" no date) — status stays `announced`; Seedance 3.0 STILL unconfirmed (ByteDance's Oct real-time world model is a separate product) — status stays `reported`; Veo 4 still SEO bait; Sora still dead.
+4. **"What changed" report:** new dated section in `api/v1/model-updates.md` (2026-10-11) listing every price/status change with sources.
+5. **Night Bus re-versioned (the point of the workflow tests):** H3's USD-billing dropped it from the Studio's priced pool, so its 25 template slots fell through to Luma Ray 3.2 (0.09 cr/s). `agent-workflows.test.js` workflow 5 updated: clean **$20.64** (was $20.48), 5× $103.20, 20× $412.80, per-episode [3.81, 3.81, 3.53, 5.66, 3.81]; the pipeline `WORKED-EXAMPLE-5-EPISODE.md` doc re-versioned to the same numbers with the new model mix (Luma 28 / Kling 3.0 11 / Hailuo 8 / Wan 2.6 3).
+6. **Model watch:** `model-check-config.json` gained the 2 new models; `model-review-queue.json` now has 5 pending watch items (Seedance 3.0, Kling 4.0 GA, Wan 2.7 gap — launched ~April 2026 and missing from the DB, H3 open weights, Soul Cinema pricing). `build_api.py` assert 27 → 29; AGENT.md/API.md/api.html "27 models" → 29.
+7. **Regenerated:** `api/v1/` (re-stamped), `site/` (27 chapters), `skills/` (226 → **228**, auto-generated `direct-vidu-q4-preview` + `direct-flux-3-video`), `llms.txt`/`llms-full.txt`. No HAND skills added (the two new direct-* skills are generator-built); no AGENT.md endpoint changes (schema unchanged).
+
+**Validation:** `bash scripts/validate.sh` → ALL STAGES PASS post-commit; studio.test.js 32/32; agent-workflows.test.js 60/60 (workflow 5 asserts the new Night Bus numbers); 6,536 links, 0 broken; generator audits clean post-commit.
+
+**Commit:** PENDING
+
 ## Wave 20 — EPISODE PIPELINE revisit #2 (2026-10-11)
 
 **Standing workstream:** second scheduled revisit (wave 17 was #1). Studio 2.0 absorbed into the pipeline doc; one verified new format; the first full worked example with engine-asserted numbers.

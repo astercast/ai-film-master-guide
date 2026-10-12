@@ -252,17 +252,17 @@ const NightBus = Studio.buildSeriesPlan(
     cast: cast, locations: locations, arcs: arcs });
 eq(NightBus.episodeCount, 5, "worked example: 5 episodes");
 eq(NightBus.totalShots, 50, "worked example: 50 shots (5 x 10 at 60s draft)");
-ok(Math.abs(NightBus.budget.clean - 20.48) < 0.011, "worked example: clean $20.48 (got $" + NightBus.budget.clean.toFixed(2) + ")");
-eq(NightBus.budget.five, r2(20.48 * 5), "worked example: 5x envelope $102.40");
-eq(NightBus.budget.twenty, r2(20.48 * 20), "worked example: 20x envelope $409.60");
+ok(Math.abs(NightBus.budget.clean - 20.64) < 0.011, "worked example: clean $20.64 (got $" + NightBus.budget.clean.toFixed(2) + ")");
+eq(NightBus.budget.five, r2(20.64 * 5), "worked example: 5x envelope $103.20");
+eq(NightBus.budget.twenty, r2(20.64 * 20), "worked example: 20x envelope $412.80");
 eq(NightBus.reuse.avoidedCredits, 1.92, "worked example: bible avoids 1.92 credits");
 ok(NightBus.episodes.every((e) => e.arc.skeleton === false), "worked example: bridge arcs attached (no skeletons)");
 ok(NightBus.episodes.every((e) => e.shots.every((x) => x.prompt.startsWith("[SERIES BIBLE"))),
   "worked example: locked DNA on all 50 shots");
 const nbUSD = NightBus.episodes.map((e) => r2(e.budget.lines.reduce((a, l) => a + l.usd, 0)));
-eq(JSON.stringify(nbUSD), JSON.stringify([3.78, 3.77, 3.49, 5.64, 3.78]), "worked example: per-episode USD " + JSON.stringify(nbUSD));
+eq(JSON.stringify(nbUSD), JSON.stringify([3.81, 3.81, 3.53, 5.66, 3.81]), "worked example: per-episode USD " + JSON.stringify(nbUSD));
 eq(NightBus.episodes[0].voiceBudgetSec, 60, "worked example: voice budget 60s = the locked dialogue budget");
-console.log("       Night Bus: 50 shots | clean $20.48 | 5x $102.40 | bible avoided 1.92 credits");
+console.log("       Night Bus: 50 shots | clean $20.64 | 5x $103.20 | bible avoided 1.92 credits");
 
 /* ================================ summary ================================ */
 console.log("");

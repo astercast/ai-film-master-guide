@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FLUX 3 Video — model deep dive — AI Film Master Guide</title>
+  <meta name="description" content="FLUX 3 Video (Black Forest Labs): cost math, prompt tips, and when to use it vs avoid it — from the guide's versioned model data.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/docs.css">
+  <link rel="stylesheet" href="../assets/css/print.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="../index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="../index.html">Guide</a>
+        <a href="../skills.html">Skills</a>
+        <a href="../workshop.html">Workshop</a>
+        <a href="../quiz.html">Quiz</a>
+        <a href="../compare.html">Compare</a>
+        <a href="../gallery.html">Gallery</a>
+        <a href="../teardown.html">Teardowns</a>
+        <a href="../model-watch.html">Model watch</a>
+        <a href="../doctor.html">Doctor</a>
+        <a href="../linter.html">Linter</a>
+        <a href="../models/">Models</a>
+        <a href="../shots.html">Shot list</a>
+        <a href="../style-bible.html">Style bible</a>
+        <a href="../changelog.html">Changelog</a>
+        <a href="../skill-spec.html">Skill spec</a>
+        <a href="../api.html">API</a>
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">&#8984;K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-film" aria-labelledby="md-title">
+      <div class="leader-ring" aria-hidden="true"><i></i><i></i><i></i><b>3</b></div>
+      <div class="container hero-inner">
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Model deep dive</span>
+        <h1 id="md-title">FLUX 3 Video</h1>
+        <p class="lede">Black Forest Labs · video</p>
+        <p><span class="mw-badge mw-badge-active">Active</span>
+        <span class="card-meta">last verified 2026-10-11</span></p>
+      </div>
+    </section>
+    <section class="container" aria-label="Model specifications">
+      <div class="card mw-card">
+        <dl>
+          <dt>Best use</dt><dd>Dialogue-heavy scenes, multi-shot single takes, typography-in-video; draft-then-finish cost control</dd>
+          <dt>Cost</dt><dd>API: $0.06/s 720p draft, $0.17/s 720p, $0.29/s 1080p (~$2.90/10s HD) — verify live</dd>
+          <dt>Strength</dt><dd>Up to 20s single take with native 1080p and native multilingual audio + lip-sync; start/end frames and ordered keyframes; multi-shot generation and video continuation in one take; strong typography; draft mode for cheap iteration; Arena text-to-video #2 (1496 pts, behind Gemini Omni Flash 1512)</dd>
+          <dt>Weakness</dt><dd>Headline preference stats are vendor-run, not independent; native 2K/4K upscale and open weights promised as &#x27;coming soon&#x27; — verify live</dd>
+        </dl>
+        <p class="mw-changed"><strong>What changed:</strong> NEW — Black Forest Labs&#x27; first video model: announced July 23, 2026, public Aug 4, 2026. Single multimodal backbone (image+video+audio) with robotics head; draft mode renders a cheap preview then the same video at full quality.</p>
+      </div>
+    </section>
+    <section class="container" aria-labelledby="md-cost-h" style="margin-top:var(--space-6);">
+      <h2 id="md-cost-h">Cost math</h2>
+      <p>No published rate in the captured data — <strong>verify live</strong> on the vendor's pricing page before budgeting. Recorded rate string: <code>API: $0.06/s 720p draft, $0.17/s 720p, $0.29/s 1080p (~$2.90/10s HD) — verify live</code></p>
+      <p class="calc-note">USD at $0.0392/credit (Higgsfield Plus plan, observed 2026-10-10). Verify live before budgeting — rates change.</p>
+    </section>
+    <section class="container" aria-labelledby="md-when-h" style="margin-top:var(--space-6);">
+      <h2 id="md-when-h">Use it when / avoid it when</h2>
+      <div class="card-grid">
+        <div class="card"><h3>Use it when</h3><p>Dialogue-heavy scenes, multi-shot single takes, typography-in-video; draft-then-finish cost control</p></div>
+        <div class="card"><h3>Avoid it when</h3><p>Headline preference stats are vendor-run, not independent; native 2K/4K upscale and open weights promised as &#x27;coming soon&#x27; — verify live</p></div>
+      </div>
+      <p class="calc-note">Drawn directly from the model's own best-use and weakness fields — the record's words, not ours.</p>
+    </section>
+    <section class="container" aria-labelledby="md-tips-h" style="margin-top:var(--space-6);">
+      <h2 id="md-tips-h">Prompt tips for this model</h2>
+      <ul>
+      <li><strong>Direct the voice, not just the picture.</strong> Native-audio models live or die on voice direction — <a href="../craft/sound-music-audio.html">sound, music &amp; audio</a> covers TTS direction, Voice Bibles, and the two dialogue roads.</li>
+      <li><strong>One action per shot.</strong> Video models execute a single believable verb well; stacked actions collapse — <a href="../craft/directing-performance.html">directing performance</a> and the <a href="../doctor.html">failure doctor</a> show what breaks.</li>
+      <li><strong>Run it through the linter.</strong> <a href="../linter.html">Paste any prompt</a> for this model and check all ten layers before spending credits.</li>
+      <li><strong>Not sure it's the right model?</strong> <a href="../quiz.html">Take the 5-question quiz</a> or <a href="../compare.html">compare it side-by-side</a> with alternatives.</li>
+      </ul>
+    </section>
+    <section class="container" aria-label="Sources" style="margin-top:var(--space-6);">
+      <h2>Sources</h2>
+      <ul><li><a href="https://www.eweek.com/news/black-forest-labs-flux-3-multimodal-ai-robotics/" rel="noopener">www.eweek.com</a></li><li><a href="https://dev.to/leilarowe/flux-3-review-2026-black-forest-labs-multimodal-video-model-priced-per-second-p76" rel="noopener">dev.to</a></li><li><a href="https://www.bottlerocketcontent.com/flux-3-video-black-forest-labs-launch/" rel="noopener">www.bottlerocketcontent.com</a></li><li><a href="https://www.digitaltoday.co.kr/en/view/89607/black-forest-labs-releases-flux-3-video-to-public" rel="noopener">www.digitaltoday.co.kr</a></li><li><a href="https://www.marktechpost.com/2026/07/26/black-forest-labs-releases-flux-3-a-multimodal-flow-model-for-image-video-audio-and-robot-action-prediction/" rel="noopener">www.marktechpost.com</a></li></ul>
+      <p style="margin-top:var(--space-5);"><a class="btn btn-ghost" href="index.html">All model deep dives</a> <a class="btn btn-ghost" href="../model-watch.html">Model watch</a> <a class="btn btn-ghost" href="../compare.html">Compare models</a> <a class="btn btn-ghost" href="../quiz.html">Take the quiz</a></p>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer"><a href="../index.html">Guide</a><a href="../skills.html">Skills</a><a href="../workshop.html">Workshop</a><a href="../quiz.html">Quiz</a><a href="../compare.html">Compare</a><a href="../gallery.html">Gallery</a><a href="../teardown.html">Teardowns</a><a href="../model-watch.html">Model watch</a><a href="../checks/">Knowledge checks</a><a href="../budget.html">Budget</a><a href="../optimizer.html">Optimizer</a><a href="../shots.html">Shot list</a><a href="../style-bible.html">Style bible</a><a href="../doctor.html">Doctor</a><a href="../linter.html">Linter</a><a href="../models/">Models</a><a href="../anatomy.html">Anatomy</a><a href="../manifesto.html">Manifesto</a><a href="../craft-not-buttons.html">Craft, not buttons</a><a href="../recipes.html">Recipes</a><a href="../field-guides/">Field guides</a><a href="../changelog.html">Changelog</a><a href="../skill-spec.html">Skill spec</a><a href="../api.html">API</a></nav>
+    </div>
+  </footer>
+  <button type="button" class="back-to-top" aria-label="Back to top">&uarr;</button>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
+    <div class="palette-box">
+      <input id="palette-input" type="search" placeholder="Search chapters, prompts, models&hellip;" autocomplete="off" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="../assets/js/palette.js"></script>
+  <script src="../assets/js/docs.js"></script>
+</body>
+</html>
