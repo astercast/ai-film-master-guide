@@ -14,7 +14,7 @@ after editing chapters. Open `site/index.html`.
 - `site/teardown.html` — shot-by-shot teardown viewer: Passport Rush, ONEIRIC, the Grok Odyssey $100K winner, Google DeepMind's Dear Upstairs Neighbors, and Fountain 0's Dreams of Violets (75-min Tribeca 2026 AI feature, $2K budget) broken into shots (setup / what works / what breaks / craft lesson, labeled prompt reconstructions); data in `api/v1/teardowns.json`
 - `site/manifesto.html` — positioning: a living free reference, not a course; everything sourced; what it won't do
 - `site/field-guides/` — printable one-pagers generated from the guide's own data: model quick-reference (from `models.json`), prompt anatomy cheat sheet, consistency & dead-eyes checklist
-- `site/api.html` — human-readable API docs
+- `site/api.html` — human-readable API docs + a Try-the-API console (endpoint picker, fetch, pretty-printed JSON), and pointers to `AGENT.md`
 - `site/skills.html` — browsable skills library with live filter
 - `site/budget.html` — interactive credit-budget calculator
 - `site/optimizer.html` — budget optimizer: runtime + dialogue share + quality bar → optimal model mix per bucket from `models.json`, with 5×/20× cost envelopes
@@ -59,7 +59,7 @@ criteria, delivery discipline). No prizes, deadlines, or promotional material.
 Base: `api/v1/` — rebuild with `python3 scripts/build_api.py` (reads the
 research artifacts; outputs committed).
 
-- `api/v1/index.json` — manifest: version, endpoints, observation date, provenance
+- `api/v1/index.json` — manifest: every endpoint with description, schema URL, `updated` timestamp, record counts, deprecation notes; `meta.version` 1.1.0; repo-level agent guide at `AGENT.md`
 - `api/v1/models.json` — 27 models: platform, type, credit costs, strengths, weaknesses, best use, plus per-model `last_verified`, `status` (active/reported/announced/discontinued), `what_changed`, `sources`; explicit `unverified` list. Refreshed 2026-10-11: Sora discontinued, Kling 4.0 announced, MiniMax H3 / Midjourney V1 Video / Seedance 3.0 (reported) added. See `api/v1/model-updates.md`
 - `api/v1/prompt-templates.json` — 47 templates: 15 core (`t1`–`t15`), 8 animated (`a1`–`a8`), 8 photorealistic (`p1`–`p8`), 5 performance (`f1`–`f5`), 4 audio (`s1`–`s4`), 4 longform (`l1`–`l4`), 3 repair (`r1`–`r3`); anatomy, use, models
 - `api/v1/camera-movements.json` — 22-move camera lexicon with prompt phrasing and use cases
@@ -68,11 +68,14 @@ research artifacts; outputs committed).
 - `api/v1/competitions.json` — judged competitions as craft records: what they judge, production constraints, craft lessons; no prizes or deadlines
 - `api/v1/teardowns.json` — shot-by-shot teardowns (Passport Rush, ONEIRIC, Grok Odyssey $100K winner, Dear Upstairs Neighbors, Dreams of Violets): setup, what works, what breaks, craft lesson per shot; prompt reconstructions labeled as analytical, not actual prompts
 - `api/v1/diagnoses.json` — failure-diagnosis map for the Doctor tool: 12 symptoms → craft diagnosis, fixes, repair-template link, source chapters
-- `api/v1/schema/` — JSON Schema (draft-07) for models, prompt templates, camera movements, competitions, teardowns, diagnoses
+- `api/v1/model-checks.json` — model-watch freshness feed: per-model last check, source-signature diffs, news headlines
+- `api/v1/model-review-queue.json` — pending model-watch review items (empty = nothing pending)
+- `api/v1/schema/` — JSON Schema (draft-07) for EVERY endpoint: index, model, prompt-template, camera-movement, checklist, glossary, competition, teardown, diagnosis, model-checks, model-review-queue
+- `AGENT.md` — how an agent uses this repo: base URL pattern, example requests, four end-to-end workflows (Studio planning, prompt linting, model price tracking, mini-drama setup) — executable via `node scripts/agent-workflows.test.js`
 
 ## Skills (agentic task procedures)
 
-217 skills in `skills/` — rebuild with `python3 scripts/build_skills.py`
+222 skills in `skills/` — rebuild with `python3 scripts/build_skills.py`
 (generates from `api/v1/` data + authored procedures; outputs committed).
 `skills/index.json` is the manifest: id, title, description, path per skill.
 
@@ -81,10 +84,10 @@ primary interface for *doing* work; the JSON endpoints are the data layer.
 `api/v1/index.json` points here (`repository`, `skills`, `for_agents`).
 
 Categories: prompts (47), camera (22), models (26), checklists (5),
-longform (12), techniques (7), craft (20), entry (4), workflow (9),
-compare (10), fix (6), budget (3), delivery (3), audio (5), recipes
-(12), styles (8), performance (9), grading (3), distribution (2), legal
-(4).
+longform (12), techniques (7), craft (20), entry (4), workflow (11),
+episodes (3), compare (10), fix (6), budget (3), delivery (3), audio
+(5), recipes (12), styles (8), performance (9), grading (3),
+distribution (2), legal (4).
 
 ## Key facts agents should know
 

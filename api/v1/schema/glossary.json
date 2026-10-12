@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Glossary",
+  "description": "AI film / production terms: term + definition.",
+  "type": "object",
+  "required": [
+    "version",
+    "observed",
+    "terms"
+  ],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "observed": {
+      "format": "date"
+    },
+    "terms": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "term",
+          "definition"
+        ],
+        "properties": {
+          "term": {
+            "type": "string"
+          },
+          "definition": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "Model-watch freshness feed: per-model last check time, source-signature diffs, and news headlines. Maintained by the model-watch refresh loop (scripts/refresh/check_models.py), not by the API generator \u2014 hand-maintained / loop-maintained, preserved across rebuilds.",
+  "properties": {
+    "checked_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "format": {
+      "type": "string"
+    },
+    "models": {
+      "items": {
+        "properties": {
+          "baseline": {
+            "type": "boolean"
+          },
+          "changed": {
+            "type": "boolean"
+          },
+          "last_checked": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "model": {
+            "type": "string"
+          },
+          "news_headlines": {
+            "items": {
+              "properties": {
+                "date": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "title": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "title"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "news_status": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string"
+          },
+          "platform": {
+            "type": "string"
+          },
+          "signal_excerpt": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "signals": {
+            "type": "array"
+          },
+          "source_results": {
+            "items": {
+              "properties": {
+                "chars": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                },
+                "error": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "excluded_from_signature": {
+                  "type": "boolean"
+                },
+                "http_status": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                },
+                "ok": {
+                  "type": "boolean"
+                },
+                "signature": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "url": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "url",
+                "ok"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "source_status": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "model",
+          "last_checked",
+          "changed",
+          "source_status"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "summary": {
+      "properties": {
+        "changed": {
+          "type": "integer"
+        },
+        "models_total": {
+          "type": "integer"
+        },
+        "no_sources": {
+          "type": "integer"
+        },
+        "with_errors": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "models_total",
+        "changed",
+        "with_errors",
+        "no_sources"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "format",
+    "checked_at",
+    "summary",
+    "models"
+  ],
+  "title": "ModelChecks",
+  "type": "object"
+}

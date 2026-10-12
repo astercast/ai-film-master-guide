@@ -1,0 +1,78 @@
+{
+  "version": "1.0.0",
+  "observed": "2026-10-11",
+  "checklists": [
+    {
+      "id": "pre-production-checklist",
+      "name": "Pre-production checklist",
+      "items": [
+        "Logline + one-sentence emotional promise of the film",
+        "Beat sheet: hook (0–10s) → setup → escalation → reversal → button image",
+        "Shot list with one job per shot (framing + single camera move + action)",
+        "Style bible locked (one style line; aspect ratio; grain/grade; lens language)",
+        "Character lock: identity method chosen (Soul ID / Cameo / reference sheet / labels); training photos or sheets prepared",
+        "Location/world lock: reference images or Soul Location generations saved",
+        "Audio plan: music direction (Suno prompts), voice cast (ElevenLabs voices), SFX needs; radio edit script drafted",
+        "Budget: credits per clip estimated from live model table; reroll budget (×3–5 per hero shot); plan tier vs. credit math",
+        "Rights: no real faces/voices as inputs (festival rule); AI-audio rights held; likeness permissions for Soul ID training",
+        "Delivery spec confirmed: ratio (16:9/21:9 festival; 9:16 social), MP4/MOV, up to 4K, watermark/packshot if festival"
+      ]
+    },
+    {
+      "id": "per-shot-checklist-before-every-generation",
+      "name": "Per-shot checklist (before every generation)",
+      "items": [
+        "One subject, one action, one camera move — nothing more",
+        "Identity Block vs Motion Block separated (no appearance in motion, no motion in identity)",
+        "Subject anchored with stable label or @ reference (never pronouns alone)",
+        "Camera phrasing explicit (move + speed + stability + purpose)",
+        "Lighting + style-bible line appended verbatim",
+        "Audio direction included if model supports native audio (dialogue quoted + attributed; SFX named)",
+        "Negative/exclusion handled per model (Runway: none — state desired; Seedance: exclude compositionally)",
+        "Draft at 720p / Fast tier first; hero only after approval",
+        "Duration matched to complexity (short = tighter consistency)"
+      ]
+    },
+    {
+      "id": "consistency-checklist",
+      "name": "Consistency checklist",
+      "items": [
+        "Same character description word-for-word across all prompts (or Soul ID / Cameo / Elements selected)",
+        "Character sheet composite available as @Image1 for new angles",
+        "Last frame of previous clip = start frame of next (relay chaining) OR explicit FLF pair",
+        "Re-anchor original references every few chained generations (don't wait for drift)",
+        "Style bible unchanged since shot 1",
+        "Wardrobe/props continuity verified per shot (front/rear split sheets for hero props)",
+        "Faces: check for drift, merging (multi-person), plasticky wide-shot faces → fix in post",
+        "Grade preview: stills from different models compared side-by-side before final renders"
+      ]
+    },
+    {
+      "id": "audio-checklist",
+      "name": "Audio checklist",
+      "items": [
+        "Radio edit first: story works with eyes closed (dialogue/VO/music/SFX arc)",
+        "Dialogue: clean takes, processing chain (cleanup → high-pass/EQ → compress → de-ess → level)",
+        "Lip sync: correct route (native quotes in-video vs post tool); vocals isolated before lip-sync tools",
+        "Foley/SFX layers: backgrounds → hard FX → Foley; room tone under everything; J/L cuts on transitions",
+        "Music: generated, rights held; structure tags used; 3–4 versions auditioned",
+        "Mix: dialogue -16 to -14 LUFS; ambience -28 to -24 under dialogue; music bed -24 ducked -8 to -10 dB",
+        "Master: -14 LUFS integrated / -1 dBTP true peak (YouTube); alternate master if broadcast (-24)",
+        "QC: earbuds + speakers + mono check; no clipping; no over-denoised \"booth\" voices"
+      ]
+    },
+    {
+      "id": "delivery-checklist",
+      "name": "Delivery checklist",
+      "items": [
+        "Picture lock → color pass (kill AI over-saturation; unified LUT; grain; chromatic aberration)",
+        "VFX cleanup: face fixes, artifact removal, shake/motion to sell movement",
+        "Upscale ONLY final selects (Topaz to 4K; frame-rate tool if slow-mo needed)",
+        "On-screen text/titles added in post (never baked into generation)",
+        "Export: MP4/MOV, target resolution, correct ratio, audio master embedded",
+        "Festival (Higgsfield): watermark + packshot present; public post live on IG/YouTube/X/Reddit (public, no login); all generation on higgsfield.ai; audio AI-generated with rights",
+        "Archive: prompts, seeds, references, project files saved for open-source-style reproducibility"
+      ]
+    }
+  ]
+}

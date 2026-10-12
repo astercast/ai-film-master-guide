@@ -1,0 +1,139 @@
+{
+  "version": "1.0.0",
+  "observed": "2026-10-11",
+  "note": "One motivated move per shot. Combine at most 2-3 bracket commands in Hailuo syntax. Avoid contradictory instructions (e.g., static + orbit). Sources: Kling official camera guide, Runway prompting docs, Veo 3.1 guide, Luma 1.6 motion list, Hailuo [command] syntax, Seedance capability map, Higgsfield WAN camera blog.",
+  "movements": [
+    {
+      "id": "dolly-in-push-in",
+      "move": "Dolly in / Push-in",
+      "prompt_phrasing": "\"Slow dolly-in toward [subject]\" / \"Camera slowly pushes in on [subject] to emphasize [emotion/detail]\" / Hailuo: [Push in]",
+      "when_to_use": "Building intimacy or tension; revealing detail; product glamour (85mm equivalent)"
+    },
+    {
+      "id": "dolly-out-pull-back",
+      "move": "Dolly out / Pull-back",
+      "prompt_phrasing": "\"Slow pull-back revealing [environment]\" / Hailuo: [Pull out]",
+      "when_to_use": "Creating distance, reflection, or scale reveals; ending shots"
+    },
+    {
+      "id": "tracking-shot",
+      "move": "Tracking shot",
+      "prompt_phrasing": "\"Tracking shot alongside [subject] as [action]\" / \"Low aerial tracking\" / Hailuo: [Tracking shot]",
+      "when_to_use": "Following moving subjects (walks, runs, vehicles); matching subject pace sells realism"
+    },
+    {
+      "id": "orbit-arc-shot",
+      "move": "Orbit / Arc shot",
+      "prompt_phrasing": "\"Slow 180-degree orbit around [subject]\" / \"360-degree orbit\" / Luma: \"camera orbit right\"",
+      "when_to_use": "Showcasing a subject from all sides (product, fashion, hero moments); dream sequences"
+    },
+    {
+      "id": "crane-up-crane-down",
+      "move": "Crane up / Crane down",
+      "prompt_phrasing": "\"Crane shot rising from ground level\" / \"Crane up revealing [vista]\" / Luma: \"camera crane up\"",
+      "when_to_use": "Epic reveals; moving from intimate detail to grand scale (or reverse)"
+    },
+    {
+      "id": "pedestal-up-pedestal-down",
+      "move": "Pedestal up / Pedestal down",
+      "prompt_phrasing": "Hailuo: [Pedestal up] / [Pedestal down]; prose: \"camera rises vertically\"",
+      "when_to_use": "Vertical reveals without the swing of a crane; product and architectural shots"
+    },
+    {
+      "id": "truck-left-truck-right",
+      "move": "Truck left / Truck right",
+      "prompt_phrasing": "Hailuo: [Truck left] / [Truck right]; prose: \"camera slides laterally\"",
+      "when_to_use": "Parallax reveals; following action across a scene; keeping framing constant while shifting viewpoint"
+    },
+    {
+      "id": "pan-left-pan-right",
+      "move": "Pan left / Pan right",
+      "prompt_phrasing": "\"Slow, stable pan left across [scene], no sudden motion\" / Hailuo: [Pan left] / Luma: \"camera pan left\"",
+      "when_to_use": "Surveying landscapes; following lateral action; transitions between subjects"
+    },
+    {
+      "id": "tilt-up-tilt-down",
+      "move": "Tilt up / Tilt down",
+      "prompt_phrasing": "\"Camera tilts cautiously, revealing [doorway]\" / Hailuo: [Tilt up] / [Tilt down]",
+      "when_to_use": "Revealing height or depth; horror/suspense reveals; establishing scale"
+    },
+    {
+      "id": "whip-pan",
+      "move": "Whip pan",
+      "prompt_phrasing": "\"Whip pan to [subject]\"",
+      "when_to_use": "Energetic transitions; comedy; action punctuation (use sparingly)"
+    },
+    {
+      "id": "crash-zoom-snap-zoom",
+      "move": "Crash zoom / Snap zoom",
+      "prompt_phrasing": "\"Crash zoom into [subject's] face\"",
+      "when_to_use": "Comedy beats; shock reveals; high-energy punctuation"
+    },
+    {
+      "id": "zoom-in-zoom-out",
+      "move": "Zoom in / Zoom out",
+      "prompt_phrasing": "Hailuo: [Zoom in] / [Zoom out]; prose: \"gradual zoom\"",
+      "when_to_use": "Slow emphasis without moving the camera body; surveillance/documentary feel"
+    },
+    {
+      "id": "rack-focus-focus-pull",
+      "move": "Rack focus / Focus pull",
+      "prompt_phrasing": "\"Rack focus from [foreground] to [background]\" / \"Pull focus from background to label as the camera moves closer\"",
+      "when_to_use": "Shifting story attention between planes; product label reveals; dialogue subtext"
+    },
+    {
+      "id": "handheld-shoulder-cam",
+      "move": "Handheld / Shoulder-cam",
+      "prompt_phrasing": "\"Handheld follow\" / \"Handheld micro-shake\" / \"Shoulder-cam drift\" / Hailuo: [Shake]",
+      "when_to_use": "Documentary realism; urgency; found-footage; killing the over-polished AI look"
+    },
+    {
+      "id": "gimbal-stabilizer-smooth",
+      "move": "Gimbal / Stabilizer smooth",
+      "prompt_phrasing": "\"Smooth gimbal glide\" / \"Stabilized tracking\"",
+      "when_to_use": "Luxury/commercial feel; car spots; fashion; when handheld would read as error"
+    },
+    {
+      "id": "static-locked-off",
+      "move": "Static locked-off",
+      "prompt_phrasing": "\"Static locked-off shot\" / \"Static tripod shot\" / Hailuo: [Static shot]; never \"the camera doesn't move\"",
+      "when_to_use": "Timelapse; dialogue coverage; product stills; letting performance carry the shot"
+    },
+    {
+      "id": "aerial-drone-pull-back",
+      "move": "Aerial / Drone pull-back",
+      "prompt_phrasing": "\"Drone pull-back over [landscape]\" / \"Aerial pan across [city]\"",
+      "when_to_use": "Establishing geography; openings; epic scale"
+    },
+    {
+      "id": "pov",
+      "move": "POV",
+      "prompt_phrasing": "\"First-person POV walking through [space]\"",
+      "when_to_use": "Immersion; horror; action sequences"
+    },
+    {
+      "id": "over-the-shoulder",
+      "move": "Over-the-shoulder",
+      "prompt_phrasing": "\"Over-the-shoulder shot of [subject] facing [scene]\"",
+      "when_to_use": "Dialogue coverage; grounding the viewer in a character's perspective"
+    },
+    {
+      "id": "bird-s-eye-overhead",
+      "move": "Bird's eye / Overhead",
+      "prompt_phrasing": "\"Bird's eye view of [scene]\"",
+      "when_to_use": "Patterns, crowds, tableaus; omniscient storytelling beats"
+    },
+    {
+      "id": "dutch-angle",
+      "move": "Dutch angle",
+      "prompt_phrasing": "\"Tilted Dutch angle, 15 degrees\"",
+      "when_to_use": "Unease, disorientation, psychological tension"
+    },
+    {
+      "id": "slow-motion",
+      "move": "Slow motion",
+      "prompt_phrasing": "\"Slow-motion capture at the moment of [action]\" (Seedance: Standard tier, single key action)",
+      "when_to_use": "Emphasizing peak action; fashion fabric; emotional beats"
+    }
+  ]
+}

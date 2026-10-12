@@ -1,0 +1,434 @@
+{
+  "version": "1.0.0",
+  "observed": "2026-10-11",
+  "cost_basis": "Higgsfield live pricing page https://higgsfield.ai/pricing read 2026-10-10; credits per 5s unless noted; USD derived on Plus plan ($47/1200cr = $0.0392/credit). Verify live before budgeting. Model refresh 2026-10-11: versions, launches, discontinuations and 3 new entrants verified against Oct 2026 coverage; per-model last_verified/status/what_changed/sources added. API benchmark table (REPORTED, not vendor-quoted — Sept 2026, Higgsfield AI-video API price comparison, https://higgsfield.ai/blog/best-ai-video-generation-apis; verify live): per 10s 720p — MiniMax H3 $0.80, Kling 3.0 $0.84, Luma Ray 3.2 $0.90, Runway Gen-4.5 $1.20, Seedance 2.5 $2.31, Veo 3.1 $3.20 (per 8s). Veo 3.1 is the premium API tier. Open-model API floors: LTX 2.5 Fast ~$0.003/s, MiniMax H3 optimized ~$0.01/s. Drafting tiers (Seedance 2.5 Turbo, Gemini Omni Flash at 360p) exist for cents-level prompt testing before hero renders.",
+  "models": [
+    {
+      "best_use": "Fashion/portrait/aesthetic keyframes; character-sheet generation",
+      "est_cost_credits": "0.12 / image",
+      "model": "Soul 2.0",
+      "platform": "Higgsfield",
+      "strength": "Style presets, Color Transfer, cultural fluency, Soul ID slot; 0.12 credits/image",
+      "type": "image",
+      "weakness": "Image only; style range narrower than general models",
+      "last_verified": "2026-10-11",
+      "status": "active",
+      "what_changed": "No successor announced as of Oct 2026; Soul 2.0 remains Higgsfield's current image model.",
+      "sources": [
+        "https://higgsfield.ai/"
+      ]
+    },
+    {
+      "best_use": "Cinematic keyframes, close-ups, film-grain stills for I2V",
+      "est_cost_credits": "not in captured table — verify live",
+      "model": "Soul Cinema",
+      "platform": "Higgsfield",
+      "strength": "Prompt-driven cinematic look, natural grain, era-aware; feeds video models",
+      "type": "image",
+      "weakness": "Preview status at time of research; image only",
+      "last_verified": "2026-10-11",
+      "status": "active",
+      "what_changed": "Launched as a preview on March 4, 2026; per-image pricing still not published — verify live before budgeting.",
+      "sources": [
+        "https://aiforautomation.io/news/2026-03-31-higgsfield-soul-cinema-preview-one-click-cinematic-ai"
+      ]
+    },
+    {
+      "best_use": "Consistent cinematic character identity / AI actors",
+      "est_cost_credits": "~0.125 / image (third-party)",
+      "model": "Soul Cast",
+      "platform": "Higgsfield",
+      "strength": "Archetype-based casting, 16:9, era control",
+      "type": "image",
+      "weakness": "One person per identity; ecosystem-locked",
+      "last_verified": "2026-10-11",
+      "status": "active",
+      "what_changed": "No changes found in Oct 2026 coverage; third-party cost figure retained — verify live.",
+      "sources": []
+    },
+    {
+      "best_use": "Multi-shot narrative, reference-driven continuity, dialogue scenes",
+      "est_cost_credits": "720p ~22/5s, 1080p ~45/5s, 4K ~110/5s, Fast 720p ~12/5s",
+      "model": "Seedance 2.0",
+      "platform": "ByteDance",
+      "strength": "Single-pass multimodal refs (@Image/@Video/@Audio), multi-shot in one call, native synced audio, multilingual lip-sync",
+      "type": "video",
+      "weakness": "Facial micro-acting weakest; drift after chained gens; tiny detail degrades; negation summons",
+      "last_verified": "2026-10-11",
+      "status": "active",
+      "what_changed": "Remains current alongside 2.5; Seedance 3.0 reported (unconfirmed) in early Oct 2026.",
+      "sources": [
+        "https://www.socialmediaexaminer.com/how-to-think-like-a-filmmaker-ai-video-with-seedance/"
+      ]
+    },
+    {
+      "best_use": "Hero multi-shot sequences; Higgsfield default video model",
+      "est_cost_credits": "API ~$2.31/10s 720p (reported Sept 2026 benchmark — verify live); Higgsfield promo ~80 videos on Plus/mo",
+      "model": "Seedance 2.5",
+      "platform": "ByteDance",
+      "strength": "Omni reference mode + start-image; best continuity per community",
+      "type": "video",
+      "weakness": "Premium credit cost; 30-day unlimited promos are business-plan only",
+      "last_verified": "2026-10-11",
+      "status": "active",
+      "what_changed": "Per-second credit cost still not in captured pricing tables — verify live. Seedance 3.0 reported (unconfirmed) Oct 2026. Third-party field notes (Oct 2026) report identity holds up to ~30s on 2.5. Five modes incl. standard/Turbo/Video Edit/Video Extend/Talking Avatar; Turbo drafting tier for cents-level prompt testing (drafting tiers now a workflow); up to 30 reference images in one pass.",
+      "sources": [
+        "https://www.versely.studio/blog/state-of-ai-video-oct-2026",
+        "https://higgsfield.ai/blog/best-ai-video-generation-apis"
+      ]
+    },
+    {
+      "model": "Seedance 3.0",
+      "platform": "ByteDance",
+      "type": "video",
+      "best_use": "Flagship narrative work — if confirmed; otherwise treat as rumor",
+      "est_cost_credits": "not published — verify live",
+      "strength": "Reported Oct 2026 with multimodal reference-first workflow",
+      "weakness": "Unconfirmed on official ByteDance channels as of Oct 11, 2026",
+      "status": "reported",
+      "what_changed": "First reported in third-party indexes early Oct 2026; not confirmed by ByteDance — verify live before planning around it.",
+      "sources": [
+        "https://alltopstartups.com/directory/listing/seedance-3-0-bring-your-ideas-to-life-with-video-generation-with-synchronized-audio/",
+        "https://www.urbansplatter.com/2026/10/when-text-to-video-hits-its-limits-why-reference-driven-ai-filmmaking-deserves-a-closer-look/"
+      ],
+      "last_verified": "2026-10-11"
+    },
+    {
+      "best_use": "Motion-heavy cinematic clips, action, multi-shot, camera direction",
+      "est_cost_credits": "720p ~7/5s (~$0.55/8s), 1080p ~8/5s, 4K ~30/5s; Motion Control 720p ~7, 1080p ~12 ; API $0.84/10s 720p (reported Sept 2026 benchmark)",
+      "model": "Kling 3.0",
+      "platform": "Kuaishou",
+      "strength": "Best-in-class motion/physics; native audio; Motion Control puppetry; Omni multi-shot; 15s",
+      "type": "video",
+      "weakness": "Subtle emotional faces trail Hailuo; fingers/camera drift without control; probabilistic",
+      "last_verified": "2026-10-11",
+      "status": "active",
+      "what_changed": "Kling 4.0 announced Sept 28, 2026 (Flash early access for Ultra Yearly subscribers; full release expected Oct 2026, not yet GA as of Oct 11). 3.0 remains the current GA model. 3.0 Omni (kling-o3) confirmed as a distinct first-frame variant. API benchmark $0.84/10s 720p (reported, Sept 2026). Included in Adobe's Sept 8 in-Premiere multi-model workbench.",
+      "sources": [
+        "https://www.techtimes.com/articles/328285/20260930/kling-40-promises-30-second-4k-video-broadcast-spec-coming-october-not-today.htm",
+        "https://pakera.pk/kling-4-ai-video-pakistan/"
+      ]
+    },
+    {
+      "best_use": "Cheap drafts, fast start-frame animation",
+      "est_cost_credits": "720p ~4/5s (~$0.16/5s), 1080p ~6/5s",
+      "model": "Kling 2.5 Turbo",
+      "platform": "Kuaishou",
+      "strength": "Cheapest usable motion (~4cr/5s 720p)",
+      "type": "video",
+      "weakness": "No native audio; lower fidelity",
+      "last_verified": "2026-10-11",
+      "status": "active",
+      "what_changed": "Unchanged; remains the budget tier.",
+      "sources": []
+    },
+    {
+      "best_use": "Controlled narrative production, cinematic realism, dialogue w/ lip-sync",
+      "est_cost_credits": "720p/1080p ~40/4s (~$3.14/8s); Fast ~16/4s (~$1.26/8s) ; API ~$3.20/8s (reported Sept 2026 benchmark — premium API tier)",
+      "model": "Veo 3.1",
+      "platform": "Google DeepMind",
+      "strength": "Film-grade lighting/prompt adherence, native audio + lip-sync, ingredients (3 refs), first-last frames, scene extension",
+      "type": "video",
+      "weakness": "Most expensive per second; 4-8s clips; fine text issues",
+      "last_verified": "2026-10-11",
+      "status": "active",
+      "what_changed": "Still the latest in the Veo line as of Oct 2026 — no Veo 4 exists (rumor explicitly debunked); Google's new video surface is Gemini Omni Flash, launched at I/O 2026. Veo 3.1 Lite tier added March 2026; Veo 2 shut down June 2026. CORRECTION (Oct 11, 2026): Veo 4 does not exist — 'Veo 4' pages ranking on Google are SEO bait; Google's actual play is Gemini Omni (I/O 2026), now its own record in this file (verified across three sources). Native audio always-on via the Gemini API.",
+      "sources": [
+        "https://www.lumeflow.ai/ai-tools/veo-4-release-date/",
+        "https://mer.vin/2026/09/which-ai-video-models-actually-take-a-first-and-last-frame/",
+        "https://innfactory.ai/en/ai-models/google-veo/"
+      ]
+    },
+    {
+      "best_use": "Budget b-roll, fast iteration of Veo look",
+      "est_cost_credits": "Veo 3.1 Fast ~16/4s; Veo 3 720p ~58/8s; Veo 3 Fast ~22/8s",
+      "model": "Veo 3.1 Fast / Veo 3",
+      "platform": "Google DeepMind",
+      "strength": "Veo quality at ~40% credit cost",
+      "type": "video",
+      "weakness": "Lower fidelity than full 3.1",
+      "last_verified": "2026-10-11",
+      "status": "active",
+      "what_changed": "Veo 2 shut down June 2026; no other changes to the 3.x tiers.",
+      "sources": [
+        "https://mer.vin/2026/09/which-ai-video-models-actually-take-a-first-and-last-frame/"
+      ]
+    },
+    {
+      "best_use": "Smooth camera moves, consistent lighting, talking-head UGC",
+      "est_cost_credits": "720p ~10/4s (~$0.78/8s); Pro 1080p ~50/4s (~$3.92/8s); Max 1080p ~34/4s; Pro Max 1080p ~54/4s",
+      "model": "Sora 2 / Pro / Max",
+      "platform": "OpenAI",
+      "strength": "Scene coherence, Remix consistency branching, Cameo avatars, strong UGC lip-sync",
+      "type": "video",
+      "weakness": "Garbled fine text; multi-person face merging; hand poses",
+      "last_verified": "2026-10-11",
+      "status": "discontinued",
+      "what_changed": "OpenAI discontinued Sora: apps and website closed Apr 26, 2026; Sora 2 API and /v1/videos shut down Sept 24, 2026. No replacement named. Entry kept for historical reference — do not plan new work on it.",
+      "sources": [
+        "https://dev.to/stimlau/sora-vs-runway-openai-killed-sora-now-what-2692",
+        "https://higgsfield.ai/blog/sora-api-migration-guide"
+      ]
+    },
+    {
+      "best_use": "Camera-first directing: precise dolly/orbit/crane paths",
+      "est_cost_credits": "480p ~5/5s, 720p ~7/5s, 1080p ~10/5s",
+      "model": "Wan 2.6",
+      "platform": "Alibaba",
+      "strength": "Physics-based motion paths, inertia/speed curves; shot-type control",
+      "type": "video",
+      "weakness": "No native audio (second pass / LipSync Studio needed)",
+      "last_verified": "2026-10-11",
+      "status": "active",
+      "what_changed": "Unchanged; the 2.x line remains the open-weights option while 3.0 is closed. Oct 2026: Wan 2.2 (Apache 2.0) remains the practical open-weights quality benchmark; LTX line offers licensed-data legal safety for commercial work.",
+      "sources": []
+    },
+    {
+      "best_use": "Next-gen Wan quality when budget allows",
+      "est_cost_credits": "3.0: 480p 5, 720p 8.75, 1080p 17.5 /5s; Prime: 480p 7.5, 720p 15, 1080p 30 /5s ; provider-list API: $0.05/s at 480p, 2–30s with native audio (reported benchmark — verify live)",
+      "model": "Wan 3.0 / 3.0 Prime",
+      "platform": "Alibaba",
+      "strength": "Newest Wan generation on Higgsfield",
+      "type": "video",
+      "weakness": "Premium pricing; Prime 1080p = 30cr/5s",
+      "last_verified": "2026-10-11",
+      "status": "active",
+      "what_changed": "Launched Aug 24, 2026 (closed weights). Third-party resync notes (Aug 2026) report a ~38% price cut on base 3.0 and confirm 3.0 Prime (up to 5x faster iteration) — verify live pricing. Oct 2026 third-party field notes rate Wan 3.0 the budget/fast-drafting pick (from ~6 credits/shot on aggregator hosts). Oct 2026 fuel refresh: formal release confirmed Aug 24, 2026; 2–30s with native audio at $0.05/s at 480p (provider list price) — 'thirty seconds with audio got cheap; a year ago that length and price did not exist together'.",
+      "sources": [
+        "https://medium.com/@lvntblsn/what-is-wan3-0-why-30-seconds-cost-alibaba-its-open-source-crown-12f45dd461fb",
+        "https://github.com/yzrkbys/pika-canvas/commit/4c4a782b81e4cad87590bef6a492669b8e8f04ef",
+        "https://www.versely.studio/blog/state-of-ai-video-oct-2026",
+        "https://www.makeinfluencer.ai/guides/best-ai-video-generators-2026"
+      ]
+    },
+    {
+      "best_use": "Emotional close-ups, subtle facial performance, clean stylized moments",
+      "est_cost_credits": "02: 768p ~6/6s (~$0.24/6s), 1080p ~10/6s; 2.3: 768p ~6/6s, 1080p ~10/6s, Fast 768p ~4/6s",
+      "model": "Hailuo 02 / 2.3",
+      "platform": "MiniMax",
+      "strength": "Expressive physical motion, prompt-to-action fidelity, official [camera command] syntax",
+      "type": "video",
+      "weakness": "6s/10s only; silent variants; not for multi-shot",
+      "last_verified": "2026-10-11",
+      "status": "active",
+      "what_changed": "MiniMax H3 (alias Hailuo 3.0) is the new flagship as of July 31, 2026; 2.3 remains available and holds strong independent scores for physics-led motion and stylized output.",
+      "sources": [
+        "https://www.abnewswire.com/pressreleases/hailuo-video-agent-review-oneclick-video-creation-with-visible-ai-reasoning_839110.html"
+      ]
+    },
+    {
+      "model": "MiniMax H3",
+      "platform": "MiniMax",
+      "type": "video",
+      "best_use": "Native-audio dialogue and multi-shot scenes on a budget; open-weights experimentation",
+      "est_cost_credits": "third-party: ~$0.073–0.12/sec; API benchmark $0.80/10s 720p (reported Sept 2026); optimized third-party inference from $0.01/s — verify live",
+      "strength": "Omni-modal (text+image+video+audio in one context); 2K 4-15s; native stereo audio; instruction-based edits; open weights",
+      "weakness": "Young evidence base; 15s ceiling; no benchmark table at launch",
+      "what_changed": "New flagship released July 31, 2026 (alias Hailuo 3.0, model ID MiniMax-H3), successor to Hailuo 2.3. Open weights released Aug 3, 2026 (base checkpoint; hosted Context-IR/Regenerate-2K stages separate). Native audio now standard across Kling 3.0, Seedance 2.5, MiniMax H3, Wan 3.0, and Veo 3.1 (Oct 2026 coverage).",
+      "sources": [
+        "https://huggingface.co/blog/ResterChed/minimax-h3-hailuo-3-0",
+        "https://pixo.video/blog/what-is-minimax-h3",
+        "https://www.marktechpost.com/2026/08/01/minimax-releases-minimax-h3-an-omni-modal-video-model-that-generates-15-second-2k-clips-with-native-stereo-audio/",
+        "https://magichour.ai/blog/ai-video-model-release-tracker-2026",
+        "https://www.einpresswire.com/article/948320883/protoface-expands-ai-video-api-with-kling-3-0-seedance-2-5-and-google-veo-3-1"
+      ],
+      "last_verified": "2026-10-11",
+      "status": "active"
+    },
+    {
+      "best_use": "Action/sports/physics, fluid dynamics, motion blur",
+      "est_cost_credits": "not in captured Higgsfield table — verify live ; API ~$0.90/10s 720p (reported Sept 2026 benchmark); Luma Plus $30/mo",
+      "model": "Luma App / Ray 3.2",
+      "platform": "Luma",
+      "strength": "12 named camera motions via 'camera' trigger; realistic motion blur ; 16-keyframe support — most of any listed tool in the field roundups (verify against vendor docs)",
+      "type": "video",
+      "weakness": "Higgsfield credit cost not captured — verify availability live",
+      "last_verified": "2026-10-11",
+      "status": "active",
+      "what_changed": "'Dream Machine' product name deprecated (redirects to the Luma App); Ray 3.2 is the current model. Text-to-video and image-to-video generate no native audio. Luma now also bundles third-party models (Veo 3.1, Kling 3.0, Seedance 2.0, ElevenLabs) inside the app. Included in Adobe's Sept 8 in-Premiere multi-model workbench (Firefly/Veo/Runway/Kling/Luma). No new-model announcements in sources reviewed since Ray 3.2 — Luma's documented strength is API + team controls and keyframe control.",
+      "sources": [
+        "https://magichour.ai/blog/kling-vs-pika-vs-luma",
+        "https://thetoolsverse.com/tools/luma-dream-machine-ai-video-generator",
+        "https://www.techtimes.com:443/articles/327054/20260909/adobe-embeds-five-competing-ai-video-models-premiere-killing-round-trip-export.htm"
+      ]
+    },
+    {
+      "best_use": "Stylized/social content, animation styles, fast iteration",
+      "est_cost_credits": "not in captured Higgsfield table — verify live; Pika native: 12-80 credits/gen by tier",
+      "model": "Pika 2.5",
+      "platform": "Pika",
+      "strength": "20+ animation styles, Pikaframes keyframes, Pikadditions/Pikaswaps, built-in lip sync; 25s 1080p",
+      "type": "video",
+      "weakness": "Realism trails Veo/Kling; negative-prompt dependence",
+      "last_verified": "2026-10-11",
+      "status": "active",
+      "what_changed": "No Pika 3.0 as of Oct 2026; 2.5 remains the current model. Pika now also routes third-party models (e.g. Kling 3.0) through its dev API — verify which model a quote applies to.",
+      "sources": [
+        "https://magichour.ai/blog/pika-labs-pricing"
+      ]
+    },
+    {
+      "best_use": "Quick 3s directed shots",
+      "est_cost_credits": "Lite ~3/3s, Turbo ~5/3s, Standard ~7/3s (720p)",
+      "model": "DoP (Lite/Standard/Turbo)",
+      "platform": "Higgsfield",
+      "strength": "Native Higgsfield model, cheap 3s clips",
+      "type": "video",
+      "weakness": "3-second cap; less documented",
+      "last_verified": "2026-10-11",
+      "status": "active",
+      "what_changed": "No changes found in Oct 2026 coverage — verify live.",
+      "sources": []
+    },
+    {
+      "best_use": "Talking-presenter ads with speech + lip-sync + product lock",
+      "est_cost_credits": "~60/12s, ~75/15s (third-party, verify live)",
+      "model": "Marketing Studio video",
+      "platform": "Higgsfield",
+      "strength": "Only package that lip-syncs its own speech; URL-to-video",
+      "type": "video",
+      "weakness": "Highest per-clip image/video cost; presenter ages skew 18-35",
+      "last_verified": "2026-10-11",
+      "status": "active",
+      "what_changed": "No changes found in Oct 2026 coverage; Cinema Studio 3.0/3.5 coexist on the platform (relationship to this entry unconfirmed) — verify live.",
+      "sources": []
+    },
+    {
+      "best_use": "Cheap high-volume social video; native-audio dialogue clips",
+      "est_cost_credits": "API ~$0.08/sec output (~$4.80/min); verify live",
+      "model": "Grok Imagine Video 1.5",
+      "platform": "xAI",
+      "strength": "Native audio (dialogue/SFX/music) in one pass; 6-15s clips extendable to 30s; topped the image-to-video arena at launch (third-party)",
+      "type": "video",
+      "weakness": "720p (1080p added July 2026); voice-reference gating; younger evidence base",
+      "last_verified": "2026-10-11",
+      "status": "active",
+      "what_changed": "Renamed: the current product is Grok Imagine Video 1.5 (GA June 16, 2026; July 31, 2026 update added 1080p, text-to-video, voice reference, 7-reference scene control).",
+      "sources": [
+        "https://www.europesays.com/ai/127331/",
+        "https://theplanettools.ai/blog/xai-grok-imagine-video-1-5-image-to-video-native-audio-arena-june-2026"
+      ]
+    },
+    {
+      "model": "Midjourney V1 Video",
+      "platform": "Midjourney",
+      "type": "video",
+      "best_use": "Stylized/animation shots from stills; distinctive Midjourney aesthetic in motion",
+      "est_cost_credits": "~8x image cost; 5s SD batch = 8 GPU-min; verify live",
+      "strength": "Signature Midjourney look in motion; simple Animate workflow; extend to 21s",
+      "weakness": "Image-to-video only; 480p/720p; no native audio; plan sound separately",
+      "what_changed": "Launched June 18, 2025; still the current video model as of Oct 2026.",
+      "sources": [
+        "https://www.cometapi.com/midjourney-unveils-v1-video/",
+        "https://www.krea.ai/blog/is-midjourney-free-pricing-video-and-free-alternatives-in-2026"
+      ],
+      "last_verified": "2026-10-11",
+      "status": "active"
+    },
+    {
+      "model": "Kling 4.0",
+      "platform": "Kuaishou",
+      "type": "video",
+      "best_use": "Long-take narrative, keyframed sequences, broadcast-aspiring work — once generally available",
+      "est_cost_credits": "not published — verify live",
+      "strength": "REPORTED, NOT CONFIRMED: 30s native clips, up to 10 keyframes, Omni Reference, stereo audio with improved lip-sync; 4K 10-bit HDR promised ('coming soon'). Treat ALL specs as leak-level until GA.",
+      "weakness": "Not generally available as of Oct 11, 2026 — Flash early access for Ultra Yearly subscribers only; 4K 10-bit listed 'coming soon'; no independent benchmark rating yet (full model not shipped)",
+      "status": "announced",
+      "what_changed": "Announced Sept 28, 2026; Kling 4.0 Flash in limited early access for Ultra Yearly subscribers; full model expected Oct 2026, not GA as of Oct 11. Verify live before planning around it. Oct 2026: specs (30s) are preview-leak level — GPTProto cautions they are unverified; do not present as confirmed. Note: Kling 4K is a 3.0 feature (added April 23, 2026), not a 4.0 feature — do not conflate.",
+      "sources": [
+        "https://www.techtimes.com/articles/328285/20260930/kling-40-promises-30-second-4k-video-broadcast-spec-coming-october-not-today.htm",
+        "https://cryptobriefing.com/kuaishou-kling-ai-video-model-hong-kong-ipo/",
+        "https://pakera.pk/kling-4-ai-video-pakistan/",
+        "https://medium.com/@gptproto.team/what-is-kling-4-0-preview-leaks-release-status-what-to-use-now-5d9afa268132"
+      ],
+      "last_verified": "2026-10-11"
+    },
+    {
+      "model": "Gemini Omni",
+      "platform": "Google DeepMind",
+      "type": "video",
+      "best_use": "Conversational video generation and prompt-plus-reference clip editing inside Google's ecosystem (Gemini app, YouTube Shorts, Google Flow)",
+      "est_cost_credits": "Gemini Omni Flash API: ~$0.10/s at 720p, token-billed (reported benchmark — verify live)",
+      "strength": "Unified multimodal creation platform; Omni Flash shipped day one in the Gemini app, YouTube Shorts, and Google Flow; prompt-plus-reference generation and clip editing",
+      "weakness": "Token-billed API makes cost math different from per-clip models; verify live before budgeting",
+      "last_verified": "2026-10-11",
+      "status": "active",
+      "what_changed": "CORRECTION — Google's actual next play is Gemini Omni, unveiled at Google I/O 2026 (May 19–20), NOT a 'Veo 4'. 'Veo 4' pages ranking on Google are SEO bait; no Google documentation names such a model (verified across three sources). Gemini Omni Flash shipped day one; API since June 30, 2026.",
+      "sources": [
+        "https://www.lumeflow.ai/ai-tools/veo-4-release-date/",
+        "https://innfactory.ai/en/ai-models/google-veo/"
+      ]
+    },
+    {
+      "model": "LTX-2.5",
+      "platform": "Lightricks",
+      "type": "video",
+      "best_use": "4K fast-drafting and multi-shot sequences with commercial-legal safety",
+      "est_cost_credits": "Open weights (22B); LTX 2.5 Fast API from ~$0.003/s (reported benchmark — verify live); paid license required above $10M revenue",
+      "strength": "Fast/Pro variants up to 4K; open weights 22B; multi-shot in one pass; LTX line trained on licensed Getty/Shutterstock imagery — legal safety for commercial work",
+      "weakness": "Young evidence base; license traps at revenue scale — read terms before monetizing",
+      "last_verified": "2026-10-11",
+      "status": "active",
+      "what_changed": "Released Aug 11, 2026: Fast/Pro variants, up to 4K, open weights 22B, multi-shot in one pass. Trained on licensed Getty/Shutterstock imagery — the legal-safe open pick for commercial work.",
+      "sources": [
+        "https://magichour.ai/blog/ai-video-model-release-tracker-2026",
+        "https://www.versely.studio/blog/state-of-ai-video-oct-2026",
+        "https://intelligibberish.com/articles/best-local-video-generation-models-by-vram/"
+      ]
+    },
+    {
+      "model": "Vidu S2",
+      "platform": "Vidu",
+      "type": "video",
+      "best_use": "Real-time interactive character video; live-stream editing",
+      "est_cost_credits": "Cheapest paid tier ~$0.05/clip reported — verify live",
+      "strength": "S2-Avatar: interactive character up to 720p; S2-Editing: changes a live stream as it plays",
+      "weakness": "Real-time-first design, not a cinematic hero-shot model; pricing thinly documented — verify live",
+      "last_verified": "2026-10-11",
+      "status": "active",
+      "what_changed": "Launched Sept 15, 2026: real-time S2-Avatar (interactive character up to 720p) and S2-Editing (live stream re-editing).",
+      "sources": [
+        "https://www.versely.studio/blog/state-of-ai-video-oct-2026",
+        "https://higgsfield.ai/blog/best-affordable-ai-video-generators"
+      ]
+    },
+    {
+      "model": "Mirage Tesseract",
+      "platform": "Mirage (formerly Captions)",
+      "type": "suite",
+      "best_use": "Agent-driven editing and motion graphics; free local engine",
+      "est_cost_credits": "Local engine free (reported — verify live)",
+      "strength": "Agent-driven editing and motion-graphics suite with a free local engine",
+      "weakness": "Not a shot-generation model — it belongs to the edit/post stage, not the generation pool; young evidence base",
+      "last_verified": "2026-10-11",
+      "status": "active",
+      "what_changed": "Launched Sept 22, 2026 (Mirage, formerly Captions): agent-driven editing and motion-graphics suite with a free local engine. Typed 'suite' so the Studio never treats it as a per-shot generation model.",
+      "sources": [
+        "https://www.versely.studio/blog/state-of-ai-video-oct-2026"
+      ]
+    },
+    {
+      "model": "Runway Gen-4.5",
+      "platform": "Runway",
+      "type": "video",
+      "best_use": "4K with camera control; enterprise video pipelines; API access to a premium-tier model",
+      "est_cost_credits": "API ~$1.20/10s 720p (reported Sept 2026 benchmark); consumer plans from ~$15/mo — verify live",
+      "strength": "4K with camera control; enterprise NRR reportedly 300%+; $200M ARR with $350M year-end projection (company-claimed); Sept 30, 2026 Summit",
+      "weakness": "No new model in 2026 — Gen-4.5 still latest; premium-tier pricing",
+      "last_verified": "2026-10-11",
+      "status": "active",
+      "what_changed": "Runway shipped NO new model in 2026 — Gen-4.5 remains latest. Sept 2026 news was distribution (its MCP serving other companies' models) and the Sept 30 Summit; research pipeline spans creative video, interactive simulation, and humanoid robotics (world models). Included in Adobe's Sept 8 in-Premiere multi-model workbench.",
+      "sources": [
+        "https://www.versely.studio/blog/state-of-ai-video-oct-2026",
+        "https://www.techtimes.com/articles/326994/20260908/runway-ai-hits-200m-arr-enterprise-video-adoption-triples-existing-spend.htm",
+        "https://www.techtimes.com:443/articles/327054/20260909/adobe-embeds-five-competing-ai-video-models-premiere-killing-round-trip-export.htm"
+      ]
+    }
+  ],
+  "unverified": [
+    "Soul Cinema per-image credit cost",
+    "Seedance 2.5 per-second credit cost",
+    "Luma and Pika credit costs on Higgsfield",
+    "Runway Gen-4/4.5 via Higgsfield (Runway native: ~60 credits/5s Gen-4.5)"
+  ]
+}

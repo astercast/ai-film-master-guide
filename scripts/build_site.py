@@ -3441,6 +3441,7 @@ def main():
 
     # Bundle shared assets + API docs page into site/ so it is self-contained
     shutil.copytree(ROOT / "assets", SITE / "assets", dirs_exist_ok=True)
+    shutil.copytree(ROOT / "api", SITE / "api", dirs_exist_ok=True)
     shutil.copy(ROOT / "api.html", SITE / "api.html")
     print(f"Built {len(flat)} chapters + index + search index -> {SITE}")
 

@@ -4,8 +4,8 @@
 # Stages:
 #   1. JS syntax ......... node --check every .js shipped to the browser
 #   2. JSON parse ........ every JSON file under api/, site/, skills/, scripts/
-#   3. JSON Schema ....... draft-07 validation (models/teardowns/templates/
-#                         camera/competitions/diagnoses) against api/v1/schema/
+#   3. JSON Schema ....... draft-07 validation of EVERY api/v1 endpoint
+#                         against api/v1/schema/ (schemas self-checked too)
 #   4. Relative links .... every href/src in every HTML page resolves on disk
 #   5. Generator audit ... skills/** matches build_skills.py output exactly
 #                         (no hand edits); prompt-templates.json matches the
@@ -16,6 +16,9 @@
 #   7. Studio ............ node unit tests for the studio engine
 #                         (scripts/studio.test.js); studio.html + studio.js
 #                         exist in both assets/js and the built site/
+#   8. Agent workflows .. node scripts/agent-workflows.test.js — the three
+#                         AGENT.md example workflows executed against the
+#                         real local api/v1 JSON files
 #
 # Exit code: 0 only if every stage passes. Anything failing is a real issue
 # to fix, not cosmetic churn.
@@ -28,7 +31,7 @@ cd "$ROOT"
 
 PASS=0
 FAIL=0
-STAGES=7
+STAGES=8
 fail() { echo "  FAIL: $1"; FAIL=$((FAIL+1)); }
 pass() { echo "  ok: $1"; PASS=$((PASS+1)); }
 stage() { echo; echo "[$1/$STAGES] $2"; }
@@ -87,10 +90,15 @@ for fname, key, val, label in checks:
         for e in val.iter_errors(rec):
             failures.append(f"{fname}[{i}] {label}: {e.message}")
 
-# doc-level schemas
+# doc-level schemas (every remaining endpoint)
 for fname, sname in [("competitions.json", "competition.json"),
                      ("teardowns.json", "teardown.json"),
-                     ("diagnoses.json", "diagnosis.json")]:
+                     ("diagnoses.json", "diagnosis.json"),
+                     ("checklists.json", "checklist.json"),
+                     ("glossary.json", "glossary.json"),
+                     ("index.json", "index.json"),
+                     ("model-checks.json", "model-checks.json"),
+                     ("model-review-queue.json", "model-review-queue.json")]:
     for e in schema(sname).iter_errors(doc(fname)):
         failures.append(f"{fname}: {e.message}")
 
@@ -101,7 +109,7 @@ if failures:
     if len(failures) > 20:
         print(f"   ... and {len(failures)-20} more")
     sys.exit(1)
-print("  ok: models/teardowns/templates/camera/competitions/diagnoses validate against draft-07 schemas")
+print("  ok: all 11 endpoints validate against their draft-07 schemas")
 EOF
 [ $? -eq 0 ] && pass "schema validation clean" || FAIL=$((FAIL+1))
 
@@ -201,7 +209,9 @@ generated = {"index.json", "models.json", "prompt-templates.json",
              "camera-movements.json", "checklists.json", "glossary.json",
              "competitions.json",
              "schema/model.json", "schema/prompt-template.json",
-             "schema/camera-movement.json", "schema/competition.json"}
+             "schema/camera-movement.json", "schema/competition.json",
+             "schema/checklist.json", "schema/glossary.json",
+             "schema/index.json"}
 
 unaccounted = []
 for f in sorted((ROOT / "api" / "v1").rglob("*")):
@@ -291,6 +301,17 @@ for d in site/models.json site/prompt-templates.json; do
   if [ ! -f "$d" ]; then fail "$d missing — the Studio cannot plan without it"; STUDIO_OK=0; fi
 done
 if [ "$STUDIO_OK" = 1 ]; then pass "studio.html + studio.js shipped in assets/js and site/, data files present"; fi
+
+# ---------------------------------------------------------------- stage 8 ---
+stage 8 "Agent workflows (AGENT.md examples vs real api/v1 data)"
+WF_OUT=$(node scripts/agent-workflows.test.js 2>&1)
+if echo "$WF_OUT" | tail -1 | grep -q "ALL PASS"; then
+  WF_N=$(echo "$WF_OUT" | grep -c "^ok   -")
+  pass "agent-workflows.test.js: $WF_N assertions pass (horror-short plan, prompt lint, model price track)"
+else
+  fail "agent-workflows.test.js failures:"
+  echo "$WF_OUT" | grep "^FAIL" | head -8 | sed 's/^/    /'
+fi
 
 # ---------------------------------------------------------------- summary ---
 echo

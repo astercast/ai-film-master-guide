@@ -1,0 +1,160 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "APIManifest",
+  "description": "Self-describing manifest of every API endpoint: description, schema URL, updated timestamp, record counts, deprecation notes.",
+  "type": "object",
+  "required": [
+    "name",
+    "version",
+    "observed",
+    "meta",
+    "repository",
+    "for_agents",
+    "provenance",
+    "skills",
+    "endpoints"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "observed": {
+      "format": "date"
+    },
+    "meta": {
+      "type": "object",
+      "required": [
+        "version",
+        "generated",
+        "base",
+        "auth"
+      ],
+      "properties": {
+        "version": {
+          "type": "string"
+        },
+        "generated": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "base": {
+          "type": "string"
+        },
+        "auth": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "repository": {
+      "type": "string"
+    },
+    "for_agents": {
+      "type": "string"
+    },
+    "provenance": {
+      "type": "string"
+    },
+    "skills": {
+      "type": "object",
+      "required": [
+        "directory",
+        "index",
+        "count",
+        "usage"
+      ],
+      "properties": {
+        "directory": {
+          "type": "string"
+        },
+        "index": {
+          "type": "string"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "usage": {
+          "type": "string"
+        }
+      }
+    },
+    "endpoints": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "path",
+          "description",
+          "schema",
+          "updated",
+          "records"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "schema": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "updated": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "records": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "documents": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "path",
+          "description",
+          "updated"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "updated": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "records": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

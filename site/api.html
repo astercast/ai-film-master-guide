@@ -4,12 +4,22 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>API — AI Film Master Guide</title>
-  <meta name="description" content="Machine-readable AI filmmaking data: versioned JSON for models, prompt templates, camera movements, checklists, glossary, and competition craft records — with JSON schemas.">
+  <meta name="description" content="Machine-readable AI filmmaking data: versioned JSON for models, prompt templates, camera movements, checklists, glossary, teardowns, diagnoses, and model freshness — with JSON schemas and a live try-it console.">
   <link rel="stylesheet" href="assets/css/tokens.css">
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/layout.css">
-  <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/docs.css">
+  <style>
+    .api-console { display: flex; gap: var(--space-4); align-items: flex-end; flex-wrap: wrap; margin: var(--space-4) 0; }
+    .api-console .field { flex: 1 1 260px; margin: 0; }
+    .api-status { color: var(--muted); font-size: var(--text-sm); min-height: 1.5em; margin: var(--space-3) 0; }
+    .api-output { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: var(--space-4); overflow: auto; max-height: 60vh; font-family: var(--font-mono); font-size: var(--text-sm); line-height: 1.5; white-space: pre; margin: 0; }
+    .json-key { color: var(--reel); }
+    .json-str { color: var(--ok); }
+    .json-num { color: var(--gold); }
+    .json-bool { color: var(--tungsten); }
+    .json-null { color: var(--muted); }
+  </style>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to API docs</a>
@@ -30,21 +40,41 @@
     <div class="container page-head">
       <span class="hero-kicker">Machine-readable</span>
       <h1>The API</h1>
-      <p class="lede">Versioned static JSON for agents and tools, generated from the research artifacts. Start at <code>api/v1/index.json</code>; full reference lives in <code>API.md</code> at the repo root.</p>
+      <p class="lede">Versioned static JSON for agents and tools, generated from the research artifacts. Start at <code>api/v1/index.json</code>; full reference lives in <code>API.md</code> at the repo root; the operator's manual is <code>AGENT.md</code>.</p>
     </div>
 
     <div class="container">
+      <section aria-labelledby="try-h">
+        <h2 id="try-h">Try the API</h2>
+        <div class="card" style="margin-bottom:var(--space-6);">
+          <p style="color:var(--ink-dim);margin-top:0;">Pick an endpoint and fetch it live — the console reads the same <code>api/v1/</code> files this page documents. Static JSON: no auth, no keys, no rate limits.</p>
+          <form id="api-console" class="api-console">
+            <div class="field">
+              <label for="api-endpoint">Endpoint</label>
+              <select class="input" id="api-endpoint" aria-describedby="api-status"></select>
+            </div>
+            <div class="btn-row"><button class="btn" type="submit">Fetch JSON</button></div>
+          </form>
+          <p id="api-status" class="api-status" role="status" aria-live="polite"></p>
+          <pre id="api-output" class="api-output" tabindex="0" aria-label="API response JSON"><code id="api-output-code">Select an endpoint and press Fetch JSON.</code></pre>
+        </div>
+      </section>
+
       <section aria-labelledby="endpoints-h">
         <h2 id="endpoints-h">Endpoints</h2>
         <div class="chapter-grid" style="margin-bottom:var(--space-6);">
-          <article class="card chapter-card"><h3><code>api/v1/index.json</code></h3><p>Manifest: version, endpoints, observation date, provenance.</p></article>
-          <article class="card chapter-card"><h3><code>api/v1/models.json</code></h3><p>18 models with platform, type, credit costs, strengths, weaknesses, best use — plus an explicit unverified list.</p></article>
+          <article class="card chapter-card"><h3><code>api/v1/index.json</code></h3><p>Manifest: every endpoint with description, schema URL, updated timestamp, record counts, and deprecation notes. Start here.</p></article>
+          <article class="card chapter-card"><h3><code>api/v1/models.json</code></h3><p>27 models with platform, type, credit costs, strengths, weaknesses, best use — plus per-model last-verified dates, status, and an explicit unverified list. Sora is <code>discontinued</code>.</p></article>
           <article class="card chapter-card"><h3><code>api/v1/prompt-templates.json</code></h3><p>47 templates (15 core, 8 animated, 8 photorealistic, 5 performance, 4 audio, 4 longform, 3 repair) with anatomy, use, and model notes.</p></article>
           <article class="card chapter-card"><h3><code>api/v1/camera-movements.json</code></h3><p>22-move camera lexicon with exact prompt phrasing and use cases.</p></article>
           <article class="card chapter-card"><h3><code>api/v1/checklists.json</code></h3><p>Pre-production, per-shot, continuity, audio, and delivery checklists.</p></article>
-          <article class="card chapter-card"><h3><code>api/v1/glossary.json</code></h3><p>60+ AI film and production terms.</p></article>
+          <article class="card chapter-card"><h3><code>api/v1/glossary.json</code></h3><p>79 AI film and production terms.</p></article>
           <article class="card chapter-card"><h3><code>api/v1/competitions.json</code></h3><p>Judged competitions as craft records: what they judge, production constraints, craft lessons. No prizes or deadlines.</p></article>
-          <article class="card chapter-card"><h3><code>api/v1/schema/</code></h3><p>JSON Schema (draft-07) for models, prompt templates, and camera movements.</p></article>
+          <article class="card chapter-card"><h3><code>api/v1/teardowns.json</code></h3><p>5 shot-by-shot teardowns; prompt reconstructions are analytical, not actual prompts.</p></article>
+          <article class="card chapter-card"><h3><code>api/v1/diagnoses.json</code></h3><p>12 failure diagnoses: symptom → craft diagnosis, fixes, repair-template link.</p></article>
+          <article class="card chapter-card"><h3><code>api/v1/model-checks.json</code></h3><p>Model-watch freshness feed: per-model last check, source-signature diffs, news headlines.</p></article>
+          <article class="card chapter-card"><h3><code>api/v1/model-review-queue.json</code></h3><p>Pending model-watch review items. Empty array = nothing pending.</p></article>
+          <article class="card chapter-card"><h3><code>api/v1/schema/</code></h3><p>JSON Schema (draft-07) for every endpoint: index, model, prompt-template, camera-movement, checklist, glossary, competition, teardown, diagnosis, model-checks, model-review-queue.</p></article>
         </div>
       </section>
 
@@ -52,14 +82,14 @@
         <h2 id="notes-h">Usage notes</h2>
         <div class="card" style="margin-bottom:var(--space-6);">
           <p style="color:var(--ink-dim);margin-bottom:var(--space-3);">Credit costs were read from Higgsfield's live pricing page on 2026-10-10 and are denominated in Higgsfield credits per 5 seconds unless noted. <strong>Verify live before budgeting</strong> — the <code>unverified</code> array in <code>models.json</code> lists costs that could not be confirmed.</p>
-          <p style="color:var(--ink-dim);margin:0;">Template ids are stable (<code>t1</code>–<code>t15</code> core, <code>a1</code>–<code>a8</code> animated, <code>p1</code>–<code>p8</code> photorealistic). Track is one of <code>core</code>, <code>animated</code>, <code>photorealistic</code>.</p>
+          <p style="color:var(--ink-dim);margin:0;">Template ids are stable (<code>t1</code>–<code>t15</code> core, <code>a1</code>–<code>a8</code> animated, <code>p1</code>–<code>p8</code> photorealistic). Track is one of <code>core</code>, <code>animated</code>, <code>photorealistic</code>, <code>performance</code>, <code>audio</code>, <code>longform</code>, <code>repair</code>.</p>
         </div>
       </section>
 
       <section aria-labelledby="llm-h">
         <h2 id="llm-h">For language models</h2>
         <div class="card">
-          <p style="color:var(--ink-dim);">Agents should start with <code>llms.txt</code> (index) and <code>llms-full.txt</code> (the full guide text) at the repo root, then <code>API.md</code>.</p>
+          <p style="color:var(--ink-dim);">Agents should start with <code>llms.txt</code> (index) and <code>llms-full.txt</code> (the full guide text) at the repo root, then <code>AGENT.md</code> — the operator's manual with four end-to-end workflows — then <code>API.md</code>.</p>
         </div>
       </section>
     </div>
@@ -71,5 +101,96 @@
       <nav aria-label="Footer"><a href="index.html">Guide</a><a href="api.html">API</a></nav>
     </div>
   </footer>
+
+  <script>
+  (function () {
+    "use strict";
+    var form = document.getElementById("api-console");
+    if (!form) return;
+    var select = document.getElementById("api-endpoint");
+    var status = document.getElementById("api-status");
+    var code = document.getElementById("api-output-code");
+
+    var FALLBACK = [
+      ["index", "api/v1/index.json"],
+      ["models", "api/v1/models.json"],
+      ["prompt-templates", "api/v1/prompt-templates.json"],
+      ["camera-movements", "api/v1/camera-movements.json"],
+      ["checklists", "api/v1/checklists.json"],
+      ["glossary", "api/v1/glossary.json"],
+      ["competitions", "api/v1/competitions.json"],
+      ["teardowns", "api/v1/teardowns.json"],
+      ["diagnoses", "api/v1/diagnoses.json"],
+      ["model-checks", "api/v1/model-checks.json"],
+      ["model-review-queue", "api/v1/model-review-queue.json"]
+    ];
+
+    function setOptions(list) {
+      select.innerHTML = "";
+      list.forEach(function (item) {
+        var o = document.createElement("option");
+        o.value = item[1];
+        o.textContent = item[0] + " — " + item[1];
+        select.appendChild(o);
+      });
+    }
+
+    function esc(s) {
+      return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+
+    function highlight(jsonText) {
+      return esc(jsonText).replace(
+        /("(\\u[a-fA-F0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false)\b|\bnull\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,
+        function (match) {
+          var cls = "json-num";
+          if (/^"/.test(match)) cls = /:$/.test(match) ? "json-key" : "json-str";
+          else if (/true|false/.test(match)) cls = "json-bool";
+          else if (/null/.test(match)) cls = "json-null";
+          return '<span class="' + cls + '">' + match + "</span>";
+        }
+      );
+    }
+
+    setOptions(FALLBACK);
+
+    fetch("api/v1/index.json").then(function (r) {
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      return r.json();
+    }).then(function (man) {
+      var keys = Object.keys(man.endpoints || {});
+      if (keys.length) {
+        setOptions(keys.map(function (k) { return [k, man.endpoints[k].path]; }));
+        status.textContent = "Manifest loaded — " + keys.length +
+          " endpoints, manifest v" + (man.meta && man.meta.version ? man.meta.version : "?") +
+          ". Agent operator's manual: AGENT.md at the repo root.";
+      }
+    }).catch(function () {
+      status.textContent = "Manifest unreachable — showing the built-in endpoint list.";
+    });
+
+    form.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      var url = select.value;
+      status.textContent = "Fetching " + url + " …";
+      var t0 = (window.performance && performance.now) ? performance.now() : 0;
+      fetch(url).then(function (r) {
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        return r.json();
+      }).then(function (data) {
+        var pretty = JSON.stringify(data, null, 2);
+        var ms = (window.performance && performance.now) ? Math.round(performance.now() - t0) : 0;
+        code.innerHTML = highlight(pretty);
+        status.textContent = "Loaded " + url + " (" + pretty.length +
+          " chars, " + ms + " ms). Static JSON — no auth, no rate limits.";
+      }).catch(function (err) {
+        code.textContent = "Fetch failed: " + (err && err.message ? err.message : err);
+        status.textContent = "Could not load " + url + ". The console needs the site served over HTTP " +
+          "(e.g. run `python3 -m http.server` inside site/) — browsers block fetch from file://. " +
+          "The same files live in the repo at api/v1/.";
+      });
+    });
+  })();
+  </script>
 </body>
 </html>

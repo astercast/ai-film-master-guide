@@ -1,0 +1,322 @@
+{
+  "version": "1.0.0",
+  "observed": "2026-10-11",
+  "terms": [
+    {
+      "term": "AI look",
+      "definition": "The over-saturated, over-smooth, plasticky signature of raw generative output; killed in post with grain, aberration, and desaturation."
+    },
+    {
+      "term": "Anamorphic",
+      "definition": "Widescreen lens aesthetic with horizontal flares and oval bokeh; a common prompt tag for cinematic feel."
+    },
+    {
+      "term": "Aspect ratio",
+      "definition": "Frame proportions (16:9, 21:9, 9:16, 1:1); choose before generating — post-cropping destroys composition."
+    },
+    {
+      "term": "Bokeh",
+      "definition": "The aesthetic quality of out-of-focus areas; shallow depth of field renders backgrounds as soft bokeh."
+    },
+    {
+      "term": "Camera path",
+      "definition": "The virtual camera's trajectory through a shot (dolly, orbit, crane); described in prompts or set via camera controls."
+    },
+    {
+      "term": "Canvas",
+      "definition": "Higgsfield's node-graph workspace connecting generation, transformation, and editing steps; graph edits are free."
+    },
+    {
+      "term": "Cel animation",
+      "definition": "Traditional hand-drawn 2D style (one drawing per cel); prompt register for anime work (sakuga, held frames, smears)."
+    },
+    {
+      "term": "Character sheet",
+      "definition": "Composite reference image showing a character from multiple angles (front/side/3-4) used to lock identity."
+    },
+    {
+      "term": "Chiaroscuro",
+      "definition": "High-contrast light/shadow lighting style; a reliable dramatic prompt descriptor."
+    },
+    {
+      "term": "Chromatic aberration",
+      "definition": "Color fringing at high-contrast edges; added in post to mimic real lens physics."
+    },
+    {
+      "term": "Cinema Studio",
+      "definition": "Higgsfield's directing surface: prompt + camera presets, genres, eras, AI cast, grading, multi-reference, co-directing."
+    },
+    {
+      "term": "Claymation",
+      "definition": "Stop-motion animation with clay figures; AI-achieved via style tags (Aardman/Laika look, fingerprints, stepped motion)."
+    },
+    {
+      "term": "Coverage",
+      "definition": "Shooting a scene from multiple angles (wide, close-ups, reverse shots); in AI, generated as separate consistent clips."
+    },
+    {
+      "term": "Cutaway",
+      "definition": "A shot that cuts away from the main action (e.g., an insert) to compress time or add information."
+    },
+    {
+      "term": "dBTP",
+      "definition": "Decibels true peak; mastering ceiling is -1 dBTP so codecs don't clip inter-sample peaks."
+    },
+    {
+      "term": "Depth of field (DOF)",
+      "definition": "Range of the shot in focus; \"shallow DOF\" isolates subjects, \"deep focus\" keeps everything sharp."
+    },
+    {
+      "term": "Drift",
+      "definition": "Identity/appearance shifting across generations; countered with trained IDs, reference sheets, re-anchoring."
+    },
+    {
+      "term": "Dutch angle",
+      "definition": "Tilted camera framing that creates unease; a named compositional preset."
+    },
+    {
+      "term": "Elements",
+      "definition": "Higgsfield's reference system (@ Elements): characters, uploads, and past generations addressable in prompts."
+    },
+    {
+      "term": "Film grain",
+      "definition": "Analog texture overlay; the fastest way to make AI footage feel photographed rather than rendered."
+    },
+    {
+      "term": "First/last frame (FLF)",
+      "definition": "Generation mode that interpolates between a start and end image; used for transitions and match cuts."
+    },
+    {
+      "term": "Foley",
+      "definition": "Performed sound effects (footsteps, cloth, props) recorded or layered to match on-screen action."
+    },
+    {
+      "term": "Genjutsu",
+      "definition": "Higgsfield tool: Motion Transfer or Object Swap on 3–30s source video while keeping camera motion/VFX."
+    },
+    {
+      "term": "Golden hour",
+      "definition": "The warm light around sunrise/sunset; the most-used cinematic lighting descriptor."
+    },
+    {
+      "term": "Higgsfield Audio",
+      "definition": "Higgsfield's voice suite: Voiceover, Change Voice, Translate (multilingual lip sync)."
+    },
+    {
+      "term": "I2V (image-to-video)",
+      "definition": "Animating a still image; the still is an anchor — describe evolution, not a new scene."
+    },
+    {
+      "term": "Identity Block",
+      "definition": "Prompt section holding only static visual descriptors (face, wardrobe, palette); no motion or camera language."
+    },
+    {
+      "term": "Insert",
+      "definition": "A close-up shot of a detail (hands, object, screen) cut into a scene."
+    },
+    {
+      "term": "J-cut",
+      "definition": "Audio of the next shot enters before its picture; masks AI shot transitions."
+    },
+    {
+      "term": "Keyframe",
+      "definition": "A defining still (start, end, or story beat) that generations interpolate between or animate from."
+    },
+    {
+      "term": "L-cut",
+      "definition": "Audio of the current shot lingers over the next shot's picture; masks AI shot transitions."
+    },
+    {
+      "term": "Lip sync",
+      "definition": "Matching mouth movement to dialogue; done natively in-video (quoted dialogue) or as a post pass (Kling/Pika/Higgsfield tools)."
+    },
+    {
+      "term": "Locked-off",
+      "definition": "A completely static camera shot; the correct prompt term (never \"the camera doesn't move\")."
+    },
+    {
+      "term": "LUFS",
+      "definition": "Loudness Units Full Scale; streaming target is -14 LUFS integrated for YouTube/Spotify, -23/-24 for broadcast."
+    },
+    {
+      "term": "LUT",
+      "definition": "Look-Up Table; a reusable color-grade preset applied across clips for unified color."
+    },
+    {
+      "term": "M&E",
+      "definition": "Music and Effects mix (dialogue removed); required for dubbing/localization deliverables."
+    },
+    {
+      "term": "Marketing Studio",
+      "definition": "Higgsfield's ad surface: URL-to-video, UGC talking heads, speech+lip-sync+product-lock packages."
+    },
+    {
+      "term": "Match cut",
+      "definition": "A transition joining two shots via matched motion, shape, or composition."
+    },
+    {
+      "term": "Moodboard",
+      "definition": "A collection of reference images locking a project's visual direction before generation."
+    },
+    {
+      "term": "Motion Block",
+      "definition": "Prompt section holding only temporal/camera language; no character-appearance repetition."
+    },
+    {
+      "term": "Motion Control",
+      "definition": "Transferring motion from a reference video onto a generated character (Kling's \"digital puppetry\")."
+    },
+    {
+      "term": "Multi-shot",
+      "definition": "Generating several labeled shots (Shot 1/2/3) in one call; one action + one camera move per shot."
+    },
+    {
+      "term": "Native audio",
+      "definition": "Sound generated alongside the video by the model (dialogue, SFX, ambience); prompted via quoted dialogue and named sounds."
+    },
+    {
+      "term": "Negative prompt",
+      "definition": "Exclusion input; supported on some models (Veo, Pika, Wan) but backfires on others (Runway, Seedance — use compositional exclusion instead)."
+    },
+    {
+      "term": "Omni reference",
+      "definition": "Seedance/Higgsfield mode using multiple reference inputs in one generation."
+    },
+    {
+      "term": "Painterly",
+      "definition": "Oil-painting-style motion (impasto, brushstrokes, canvas texture); a stylized animation register."
+    },
+    {
+      "term": "Pedestal",
+      "definition": "Vertical camera move (up/down) with the body rising; distinct from crane (arm) and tilt (rotation)."
+    },
+    {
+      "term": "Photorealistic",
+      "definition": "Live-action-look output aiming to be indistinguishable from filmed footage."
+    },
+    {
+      "term": "Practical (lighting)",
+      "definition": "Visible on-set light sources (lamps, signs, fluorescents) that motivate the scene's lighting."
+    },
+    {
+      "term": "Prompt adherence",
+      "definition": "How faithfully a model follows the prompt; tested per model and improved by specificity."
+    },
+    {
+      "term": "Prompt expansion",
+      "definition": "Automatic rewriting/enrichment of short prompts (e.g., Wan's prompt_extend, Gemini enhancement); disable for precise control."
+    },
+    {
+      "term": "Rack focus",
+      "definition": "Shifting focus between foreground and background mid-shot; a named lens-internal move."
+    },
+    {
+      "term": "Radio edit",
+      "definition": "Cutting the story to work as pure audio first, then cutting picture to the audio."
+    },
+    {
+      "term": "Remix",
+      "definition": "Sora 2's branching feature: vary action/subject while keeping style keywords identical for consistent series."
+    },
+    {
+      "term": "Room tone",
+      "definition": "The ambient sound of a location; layered under dialogue to glue cuts together."
+    },
+    {
+      "term": "Sakuga",
+      "definition": "High-energy, fluidly animated cuts in anime; a style keyword for dynamic anime action."
+    },
+    {
+      "term": "Seed",
+      "definition": "The random seed returned per generation; stabilizes but does not lock output — reusing it reduces variance."
+    },
+    {
+      "term": "Seed locking",
+      "definition": "Reusing a seed across generations to hold composition/style steadier (a stabilizer, not a guarantee)."
+    },
+    {
+      "term": "Selects",
+      "definition": "The approved generations kept for the edit; everything else is discarded, never upscaled."
+    },
+    {
+      "term": "Shot-reverse-shot",
+      "definition": "Alternating over-the-shoulder framings of two speakers; the standard dialogue coverage pattern."
+    },
+    {
+      "term": "Shot list",
+      "definition": "The planned sequence of shots with framing, movement, and action per shot; the AI director's shooting plan."
+    },
+    {
+      "term": "Soul Cast",
+      "definition": "Higgsfield's AI-actor casting system: archetype-based consistent cinematic characters."
+    },
+    {
+      "term": "Soul Cinema",
+      "definition": "Higgsfield's cinematic image model: film grain, rich textures, movie-still compositions."
+    },
+    {
+      "term": "Soul HEX",
+      "definition": "Higgsfield's color-lock system: extracts palettes from references and holds them across generations."
+    },
+    {
+      "term": "Soul ID",
+      "definition": "Higgsfield's trained identity layer: 20–80 photos → reusable face across the Soul family and Seedance."
+    },
+    {
+      "term": "Stems",
+      "definition": "Separated mix layers (dialogue, music, effects); kept separable for M&E deliverables."
+    },
+    {
+      "term": "Stop motion",
+      "definition": "Animation from individually posed frames; AI-approximated with stepped-motion and handmade-texture cues."
+    },
+    {
+      "term": "Style bible",
+      "definition": "The single locked style description reused verbatim in every prompt of a project."
+    },
+    {
+      "term": "Supercomputer",
+      "definition": "Higgsfield's agent surface: brief in plain language → it plans steps, picks models, shows cost, executes on approval."
+    },
+    {
+      "term": "T2V (text-to-video)",
+      "definition": "Generating video from a text prompt alone; needs full scene description (40–100 words optimal on Runway)."
+    },
+    {
+      "term": "Timelapse",
+      "definition": "Compressed-time effect; requires a static camera in AI generation."
+    },
+    {
+      "term": "Tracking shot",
+      "definition": "Camera moving alongside or behind a subject, matching its pace."
+    },
+    {
+      "term": "Truck",
+      "definition": "Lateral camera move left/right (body slides); distinct from pan (rotation)."
+    },
+    {
+      "term": "Turbo/Fast tier",
+      "definition": "Lower-cost, faster, lower-fidelity model variants; often without native audio."
+    },
+    {
+      "term": "Uncanny valley",
+      "definition": "The discomfort zone where near-photoreal faces read as wrong; the main risk of the photoreal track."
+    },
+    {
+      "term": "Upscaling",
+      "definition": "Increasing resolution in post (e.g., Topaz Video AI to 4K); done only on final selects."
+    },
+    {
+      "term": "VFX cleanup",
+      "definition": "Post fixes: face replacement, artifact removal, added shake/grain to sell the shot."
+    },
+    {
+      "term": "Volumetric lighting",
+      "definition": "Visible light shafts through haze/dust (god rays); a strong cinematic descriptor."
+    },
+    {
+      "term": "Whip pan",
+      "definition": "A fast blurred pan used as an energetic transition between shots."
+    }
+  ]
+}

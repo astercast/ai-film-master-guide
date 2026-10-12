@@ -51,7 +51,7 @@ TOOLS = [
     ("teardown.html", "shot-by-shot teardown viewer: Passport Rush, ONEIRIC, the Grok Odyssey $100K winner, Google DeepMind's Dear Upstairs Neighbors, and Fountain 0's Dreams of Violets (75-min Tribeca 2026 AI feature, $2K budget) broken into shots (setup / what works / what breaks / craft lesson, labeled prompt reconstructions); data in `api/v1/teardowns.json`"),
     ("manifesto.html", "positioning: a living free reference, not a course; everything sourced; what it won't do"),
     ("field-guides/", "printable one-pagers generated from the guide's own data: model quick-reference (from `models.json`), prompt anatomy cheat sheet, consistency & dead-eyes checklist"),
-    ("api.html", "human-readable API docs"),
+    ("api.html", "human-readable API docs + a Try-the-API console (endpoint picker, fetch, pretty-printed JSON), and pointers to `AGENT.md`"),
     ("skills.html", "browsable skills library with live filter"),
     ("budget.html", "interactive credit-budget calculator"),
     ("optimizer.html", "budget optimizer: runtime + dialogue share + quality bar → optimal model mix per bucket from `models.json`, with 5×/20× cost envelopes"),
@@ -100,9 +100,9 @@ KNOWN_LIMITS = """## Known limitations
 
 # Category display order (counts computed from skills/ on disk).
 CATEGORY_ORDER = ["prompts", "camera", "models", "checklists", "longform",
-                  "techniques", "craft", "entry", "workflow", "compare", "fix",
-                  "budget", "delivery", "audio", "recipes", "styles",
-                  "performance", "grading", "distribution", "legal"]
+                  "techniques", "craft", "entry", "workflow", "episodes",
+                  "compare", "fix", "budget", "delivery", "audio", "recipes",
+                  "styles", "performance", "grading", "distribution", "legal"]
 
 TRACK_ORDER = ["core", "animated", "photorealistic", "performance", "audio",
                "longform", "repair"]
@@ -178,7 +178,7 @@ def build_llms_txt():
 
     teardown_names = ", ".join(TEARDOWN_TITLES.get(t["id"], t["title"]) for t in teardowns)
 
-    out.append("- `api/v1/index.json` — manifest: version, endpoints, observation date, provenance")
+    out.append("- `api/v1/index.json` — manifest: every endpoint with description, schema URL, `updated` timestamp, record counts, deprecation notes; `meta.version` 1.1.0; repo-level agent guide at `AGENT.md`")
     out.append(f"- `api/v1/models.json` — {n_models} models: platform, type, credit costs, strengths, weaknesses, best use, "
                "plus per-model `last_verified`, `status` (active/reported/announced/discontinued), `what_changed`, `sources`; "
                f"explicit `unverified` list. {MODELS_NOTE}")
@@ -190,7 +190,10 @@ def build_llms_txt():
     out.append(f"- `api/v1/teardowns.json` — shot-by-shot teardowns ({teardown_names}): setup, what works, what breaks, craft lesson per shot; "
                "prompt reconstructions labeled as analytical, not actual prompts")
     out.append(f"- `api/v1/diagnoses.json` — failure-diagnosis map for the Doctor tool: {len(diagnoses)} symptoms → craft diagnosis, fixes, repair-template link, source chapters")
-    out.append("- `api/v1/schema/` — JSON Schema (draft-07) for models, prompt templates, camera movements, competitions, teardowns, diagnoses")
+    out.append("- `api/v1/model-checks.json` — model-watch freshness feed: per-model last check, source-signature diffs, news headlines")
+    out.append("- `api/v1/model-review-queue.json` — pending model-watch review items (empty = nothing pending)")
+    out.append("- `api/v1/schema/` — JSON Schema (draft-07) for EVERY endpoint: index, model, prompt-template, camera-movement, checklist, glossary, competition, teardown, diagnosis, model-checks, model-review-queue")
+    out.append("- `AGENT.md` — how an agent uses this repo: base URL pattern, example requests, four end-to-end workflows (Studio planning, prompt linting, model price tracking, mini-drama setup) — executable via `node scripts/agent-workflows.test.js`")
     out.append("")
     out.append("## Skills (agentic task procedures)")
     out.append("")

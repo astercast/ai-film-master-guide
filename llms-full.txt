@@ -2203,7 +2203,7 @@ Do a 20-minute post-mortem while it's fresh: what broke, what the fix was, what 
 - `site/teardown.html` — shot-by-shot teardown viewer: Passport Rush, ONEIRIC, the Grok Odyssey $100K winner, Google DeepMind's Dear Upstairs Neighbors, and Fountain 0's Dreams of Violets (75-min Tribeca 2026 AI feature, $2K budget) broken into shots (setup / what works / what breaks / craft lesson, labeled prompt reconstructions); data in `api/v1/teardowns.json`
 - `site/manifesto.html` — positioning: a living free reference, not a course; everything sourced; what it won't do
 - `site/field-guides/` — printable one-pagers generated from the guide's own data: model quick-reference (from `models.json`), prompt anatomy cheat sheet, consistency & dead-eyes checklist
-- `site/api.html` — human-readable API docs
+- `site/api.html` — human-readable API docs + a Try-the-API console (endpoint picker, fetch, pretty-printed JSON), and pointers to `AGENT.md`
 - `site/skills.html` — browsable skills library with live filter
 - `site/budget.html` — interactive credit-budget calculator
 - `site/optimizer.html` — budget optimizer: runtime + dialogue share + quality bar → optimal model mix per bucket from `models.json`, with 5×/20× cost envelopes

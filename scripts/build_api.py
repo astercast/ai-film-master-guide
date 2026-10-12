@@ -14,7 +14,13 @@ ROOT = Path(__file__).resolve().parent.parent
 ART = Path.home() / "workspace/research_notes/ai-film-mega-research-20261010-0311/artifacts"
 API = ROOT / "api" / "v1"
 VERSION = "1.0.0"
+MANIFEST_VERSION = "1.1.0"  # index.json is the manifest; additive enrichment only
 OBSERVED = "2026-10-11"
+
+
+def utcnow():
+    import datetime
+    return datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
 def parse_prompt_library():
@@ -153,7 +159,8 @@ def main():
     preserved = {}
     for rel in ["teardowns.json", "schema/teardown.json", "model-updates.md",
                 "model-checks.json", "model-review-queue.json",
-                "diagnoses.json", "schema/diagnosis.json"]:
+                "diagnoses.json", "schema/diagnosis.json",
+                "schema/model-checks.json", "schema/model-review-queue.json"]:
         p = API / rel
         if p.exists():
             preserved[rel] = p.read_bytes()
@@ -207,11 +214,127 @@ def main():
     if skills_idx_path.exists():
         skills_index = json.loads(skills_idx_path.read_text())
 
+    generated_at = utcnow()
+
+    # Record counts for the manifest (teardowns/diagnoses/checks/queue are
+    # hand-maintained; read the preserved bytes, not the artifacts).
+    preserved_docs = {}
+    for rel in ["teardowns.json", "diagnoses.json",
+                "model-checks.json", "model-review-queue.json"]:
+        if rel in preserved:
+            preserved_docs[rel] = json.loads(preserved[rel].decode("utf-8"))
+    n_teardowns = len(preserved_docs.get("teardowns.json", {}).get("teardowns", []))
+    n_diagnoses = len(preserved_docs.get("diagnoses.json", {}).get("diagnoses", []))
+    n_checked = preserved_docs.get("model-checks.json", {}).get("summary", {}).get("models_total", 0)
+    n_pending = preserved_docs.get("model-review-queue.json", {}).get("pending", 0)
+
+    def ep(path, description, schema, records, notes=""):
+        return {"path": path, "description": description,
+                "schema": schema, "updated": generated_at,
+                "records": records, "notes": notes}
+
+    endpoints = {
+        "index": ep("api/v1/index.json",
+                    "Manifest: every endpoint with description, schema URL, "
+                    "updated timestamp, record counts, and deprecation notes. "
+                    "Start here.",
+                    "api/v1/schema/index.json", 0,
+                    "Self-describing; meta.version is the manifest version."),
+        "models": ep("api/v1/models.json",
+                     "Model records: platform, type, credit costs, strengths, "
+                     "weaknesses, best use, per-model last_verified, status "
+                     "(active/reported/announced/discontinued), what_changed, "
+                     "sources; explicit unverified list.",
+                     "api/v1/schema/model.json", len(model_data["models"]),
+                     "DEPRECATION: Sora carries status='discontinued' (service "
+                     "shut Mar-Sep 2026; API closed 2026-09-24). Discontinued "
+                     "models are excluded from the Studio and compare-tool "
+                     "pools but kept here for the historical record."),
+        "prompt-templates": ep("api/v1/prompt-templates.json",
+                               "Prompt templates: id, title, track, prompt, "
+                               "anatomy, use, models. Stable ids; [BRACKETS] "
+                               "placeholders.",
+                               "api/v1/schema/prompt-template.json",
+                               len(templates),
+                               "15 core (t1-t15), 8 animated (a1-a8), 8 "
+                               "photorealistic (p1-p8), 5 performance, "
+                               "4 audio, 4 longform, 3 repair."),
+        "camera-movements": ep("api/v1/camera-movements.json",
+                               "Camera lexicon: id, move, prompt_phrasing, "
+                               "when_to_use.",
+                               "api/v1/schema/camera-movement.json",
+                               len(cameras["movements"])),
+        "checklists": ep("api/v1/checklists.json",
+                         "Production checklists (pre-production, per-shot, "
+                         "continuity, audio, delivery) with item arrays.",
+                         "api/v1/schema/checklist.json",
+                         len(checklists)),
+        "glossary": ep("api/v1/glossary.json",
+                       "AI film / production terms: term + definition.",
+                       "api/v1/schema/glossary.json",
+                       len(glossary)),
+        "competitions": ep("api/v1/competitions.json",
+                           "Judged competitions as craft records: what each "
+                           "judges, the production constraints its rules "
+                           "teach, craft lessons from judged work. No prizes, "
+                           "deadlines, or promotional material.",
+                           "api/v1/schema/competition.json",
+                           len(comps)),
+        "teardowns": ep("api/v1/teardowns.json",
+                        "Shot-by-shot teardowns: setup, what works, what "
+                        "breaks, craft lesson per shot; prompt reconstructions "
+                        "are analytical, not actual prompts.",
+                        "api/v1/schema/teardown.json",
+                        n_teardowns),
+        "diagnoses": ep("api/v1/diagnoses.json",
+                        "Failure-diagnosis map for the Doctor tool: symptom -> "
+                        "craft diagnosis, fixes, repair-template link, source "
+                        "chapters.",
+                        "api/v1/schema/diagnosis.json",
+                        n_diagnoses),
+        "model-checks": ep("api/v1/model-checks.json",
+                           "Model-watch freshness feed: per-model last check "
+                           "time, source-signature diffs, news headlines. "
+                           "Maintained by the model-watch refresh loop.",
+                           "api/v1/schema/model-checks.json",
+                           n_checked,
+                           "A 'changed' flag is a review signal, not a "
+                           "confirmed model change — check the review queue "
+                           "before treating it as fact."),
+        "model-review-queue": ep("api/v1/model-review-queue.json",
+                                 "Pending model-watch review items: changed "
+                                 "source signatures awaiting human promotion. "
+                                 "Empty array = nothing pending.",
+                                 "api/v1/schema/model-review-queue.json",
+                                 n_pending),
+    }
+    # Fix the self-referential records count now that the map is complete.
+    endpoints["index"]["records"] = len(endpoints)
+
+    documents = {
+        "model-updates": {"path": "api/v1/model-updates.md",
+                          "description": "Human-readable changelog of model "
+                                         "record updates, with dates and "
+                                         "sources.",
+                          "updated": generated_at, "records": None,
+                          "notes": "Markdown, not JSON — no schema."},
+    }
+
     index = {
         "name": "AI Film Master Guide API",
-        "version": VERSION, "observed": OBSERVED,
+        "version": MANIFEST_VERSION, "observed": OBSERVED,
+        "meta": {
+            "version": MANIFEST_VERSION,
+            "generated": generated_at,
+            "base": "api/v1/",
+            "auth": "none",
+            "notes": "Static files on any static host — no auth, no keys, "
+                     "no rate limits. Breaking changes ship as a new v2/ "
+                     "path, never a silent shape change. Date-only fields "
+                     "are YYYY-MM-DD; timestamps are ISO-8601 UTC.",
+        },
         "repository": "https://github.com/astercast/ai-film-master-guide",
-        "for_agents": "Start at api/v1/index.json. For task procedures, read skills/index.json and load the relevant skill file — skills are the primary agentic interface for doing work, the JSON endpoints are the data layer.",
+        "for_agents": "Start at api/v1/index.json. For task procedures, read skills/index.json and load the relevant skill file — skills are the primary agentic interface for doing work, the JSON endpoints are the data layer. Repo-level agent guide: AGENT.md.",
         "provenance": "Compiled from the 2026-10-10 mega-research pass (Higgsfield pricing page read live; competition details from official sources). Unverified values are listed explicitly, never invented.",
         "skills": {
             "directory": "skills/",
@@ -219,15 +342,8 @@ def main():
             "count": skills_index.get("count", 0),
             "usage": "Each skill is a markdown file with frontmatter (name, description), then: Use when, Inputs, Procedure, Worked example, API references, Pitfalls. Load the skill whose task matches the user's request.",
         },
-        "endpoints": {
-            "index": "api/v1/index.json",
-            "models": "api/v1/models.json",
-            "prompt-templates": "api/v1/prompt-templates.json",
-            "camera-movements": "api/v1/camera-movements.json",
-            "checklists": "api/v1/checklists.json",
-            "glossary": "api/v1/glossary.json",
-            "competitions": "api/v1/competitions.json",
-        },
+        "endpoints": endpoints,
+        "documents": documents,
     }
 
     schemas = {
@@ -286,6 +402,119 @@ def main():
                             "production_constraints": {"type": "array", "items": {"type": "string"}},
                             "craft_lessons": {"type": "array", "items": {"type": "string"}},
                             "sources": {"type": "array", "items": {"type": "string", "format": "uri"}},
+                        },
+                    },
+                },
+            },
+        },
+        "checklist.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "Checklists",
+            "description": "Production checklists (pre-production, per-shot, continuity, audio, delivery) with item arrays.",
+            "type": "object",
+            "required": ["version", "observed", "checklists"],
+            "properties": {
+                "version": {"type": "string"},
+                "observed": {"format": "date"},
+                "checklists": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": ["id", "name", "items"],
+                        "properties": {
+                            "id": {"type": "string"},
+                            "name": {"type": "string"},
+                            "items": {"type": "array", "items": {"type": "string"}},
+                        },
+                    },
+                },
+            },
+        },
+        "glossary.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "Glossary",
+            "description": "AI film / production terms: term + definition.",
+            "type": "object",
+            "required": ["version", "observed", "terms"],
+            "properties": {
+                "version": {"type": "string"},
+                "observed": {"format": "date"},
+                "terms": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": ["term", "definition"],
+                        "properties": {
+                            "term": {"type": "string"},
+                            "definition": {"type": "string"},
+                        },
+                    },
+                },
+            },
+        },
+        "index.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "APIManifest",
+            "description": "Self-describing manifest of every API endpoint: description, schema URL, updated timestamp, record counts, deprecation notes.",
+            "type": "object",
+            "required": ["name", "version", "observed", "meta", "repository",
+                         "for_agents", "provenance", "skills", "endpoints"],
+            "properties": {
+                "name": {"type": "string"},
+                "version": {"type": "string"},
+                "observed": {"format": "date"},
+                "meta": {
+                    "type": "object",
+                    "required": ["version", "generated", "base", "auth"],
+                    "properties": {
+                        "version": {"type": "string"},
+                        "generated": {"type": "string", "format": "date-time"},
+                        "base": {"type": "string"},
+                        "auth": {"type": "string"},
+                        "notes": {"type": "string"},
+                    },
+                },
+                "repository": {"type": "string"},
+                "for_agents": {"type": "string"},
+                "provenance": {"type": "string"},
+                "skills": {
+                    "type": "object",
+                    "required": ["directory", "index", "count", "usage"],
+                    "properties": {
+                        "directory": {"type": "string"},
+                        "index": {"type": "string"},
+                        "count": {"type": "integer"},
+                        "usage": {"type": "string"},
+                    },
+                },
+                "endpoints": {
+                    "type": "object",
+                    "minProperties": 1,
+                    "additionalProperties": {
+                        "type": "object",
+                        "required": ["path", "description", "schema",
+                                     "updated", "records"],
+                        "properties": {
+                            "path": {"type": "string"},
+                            "description": {"type": "string"},
+                            "schema": {"type": ["string", "null"]},
+                            "updated": {"type": "string", "format": "date-time"},
+                            "records": {"type": ["integer", "null"]},
+                            "notes": {"type": "string"},
+                        },
+                    },
+                },
+                "documents": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object",
+                        "required": ["path", "description", "updated"],
+                        "properties": {
+                            "path": {"type": "string"},
+                            "description": {"type": "string"},
+                            "updated": {"type": "string", "format": "date-time"},
+                            "records": {"type": ["integer", "null"]},
+                            "notes": {"type": "string"},
                         },
                     },
                 },
