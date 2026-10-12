@@ -84,4 +84,4 @@
 
 **Validation:** `bash scripts/validate.sh` → ALL STAGES PASS (11 passed, 0 failed); 44 JS files `node --check` clean; 5,936 relative links, 0 broken; studio.test.js 19/19; all 8 genres × 2 tiers build and export clean; every studio.js-referenced element id verified present in studio.html.
 
-**Commit:** `PENDING` — filled after push.
+**Commit:** `568066080fdd7c4609de2650c3cf55f7bd093f7d` ([view](https://github.com/astercast/ai-film-master-guide/commit/568066080fdd7c4609de2650c3cf55f7bd093f7d)) — 13 files, pushed 2026-10-11, all new files verified present in the remote tree via GitHub API.
