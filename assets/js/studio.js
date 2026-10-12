@@ -852,6 +852,10 @@
     L.push("Saved by the bible: " + plan.reuse.lockedAssets + " locked plates generated once " +
       "instead of per episode — ≈" + r2(plan.reuse.avoidedCredits) + " credits (≈" +
       fmtUSD(plan.reuse.avoidedUSD) + ") not spent. " + plan.reuse.rule);
+    L.push("");
+    L.push("### Documented production economics (wave 27 — benchmarks, not predictions)");
+    L.push("");
+    L.push("StoReel Canvas 'Off Campus' experiment (TheWrap, June 2026): 4 one-minute AI episodes in 4 days for ~$150 in credits (≈$37.50/episode); AI series generation ≈$50/min vs live-action ≈$2,000/min; 300–400-word stage-direction prompts per 10–15s clip; character regenerations paid when faces drifted — full teardown in the guide's teardowns.json (`storeel-off-campus`). StoReel's PUGC payout rate: ≈$150/min for creator series it designates. Qidian Interactive's AI studio (Sixth Tone, June 2026): 3–5 retakes per usable shot ('drawing cards'); a 8–10M-yuan, 3-year project rebuilt with AI in 2 months for ≈1M yuan. Compare this packet's per-minute generation cost against the $50/min benchmark before generating.");
     if (plan.budget.verifyLive.length) {
       L.push("");
       L.push("Verify live (no published rate): " + plan.budget.verifyLive.join(", "));
@@ -956,6 +960,8 @@
     H.push("<p>Saved by the bible: " + plan.reuse.lockedAssets + " locked plates generated once — ≈" +
       r2(plan.reuse.avoidedCredits) + " credits (≈" + escHtml(fmtUSD(plan.reuse.avoidedUSD)) +
       ") not spent. " + escHtml(plan.reuse.rule) + "</p>");
+    H.push("<h3>Documented production economics (benchmarks, not predictions)</h3>");
+    H.push("<p>StoReel Canvas 'Off Campus' experiment (TheWrap, June 2026): 4 one-minute AI episodes in 4 days for ~$150 in credits (≈$37.50/episode); AI series generation ≈$50/min vs live-action ≈$2,000/min; 300–400-word stage-direction prompts per 10–15s clip; character regenerations paid when faces drifted. StoReel's PUGC payout rate: ≈$150/min for creator series it designates. Qidian Interactive's AI studio (Sixth Tone, June 2026): 3–5 retakes per usable shot ('drawing cards'); a 8–10M-yuan, 3-year project rebuilt with AI in 2 months for ≈1M yuan. Compare this packet's per-minute generation cost against the $50/min benchmark before generating.</p>");
     H.push("<h2>Schedule</h2>");
     H.push("<table><thead><tr><th scope=\"col\">Phase</th><th scope=\"col\">Days</th><th scope=\"col\">Basis</th></tr></thead><tbody>");
     plan.schedule.phases.forEach(function (p) {

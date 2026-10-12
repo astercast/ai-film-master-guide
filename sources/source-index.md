@@ -94,4 +94,9 @@ Every source consulted, grouped by section, with what was pulled from it.
 - http://pakistanicinema.net/2026/08/02/ainak-wala-jinn-and-the-degradation-of-art-in-film/ — Ainak Wala Jinn controversy (single source)
 - https://en.wikipedia.org/wiki/Sardar_Sarvai_Papanna_(film) — Telugu AI-assisted feature, theatrical Aug 21, 2026
 
+## 7th teardown research (wave 27, 2026-10-11)
+- https://www.thewrap.com/industry-news/tech/off-campus-ai-microdrama-see-the-results-storeel/ — StoReel Canvas "Off Campus" experiment: 4 one-minute AI episodes, 4 days, ~$150 (11,000+ credits, 300 free); Claude 50-page script in 5 min; one-click breakdown into characters + settings + 146 clips of 10–15s; 300–400-word stage-direction prompts per clip (~10 min render per 10s clip); paid character regenerations; wooden acting / vanishing-wall / Steinbeck-to-Steinberg failures; $50/min AI vs $2,000/min live-action; PUGC ~$150/min payouts, 80/20 PUGC split, 100 shows/month goal, 80+ AI originals, Day-7 retention +22% vs live action, CPI $4.63 vs $8–10
+- https://www.thewrap.com/media-platforms/tv/ai-generated-microdramas-could-be-the-future-of-mobile-entertainment/ — AI microdrama industry survey: showrunners feed a page of dialogue ≈ one minute/one episode; engines compatible with Seedance 2.0; scripting 10 days–1 month + 1 month production for in-house content
+- https://www.sixthtone.com/news/1018935 — Qidian Interactive / Yudian studio (Wuxi): premise-from-trends → dialogue → storyboards → 3D spatial arrangement → cliffhanger assessment; 10+ criteria assessment model; three-group flow (characters+settings / generation / edit, 1–2 each) with team-leader review; digital prop room; 3D positioning plug-in; naturalness prompts ("simulate natural daylight" etc.); "drawing cards" discipline (3–5 attempts per usable shot, card operators); 4–5 dramas/day × 30–44 episodes; 1M-yuan AI rebuild of shelved 8–10M-yuan 3-year project in 2 months
+
 ## Pending

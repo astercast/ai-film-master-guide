@@ -464,9 +464,13 @@ test("optimizer: series plans flatten with per-episode breakdown", () => {
   const md = S.seriesToMarkdown(Object.assign({}, sp, { optimizer: opt }));
   assert.ok(md.includes("## Cost optimizer"), "series markdown packet must carry the optimizer section");
   assert.ok(md.includes("Three budget modes"), "series packet must carry the mode comparison");
+  assert.ok(md.includes("Documented production economics"), "series markdown packet must carry the wave-27 benchmark block");
+  assert.ok(md.includes("$50/min benchmark"), "series markdown benchmark block must name the StoReel $50/min figure");
+  assert.ok(md.includes("storeel-off-campus"), "series markdown benchmark block must point at the teardown id");
   const html = S.seriesToHtml(Object.assign({}, sp, { optimizer: opt }));
   assert.ok(html.includes("Cost optimizer"), "series HTML packet must carry the optimizer section");
   assert.ok(html.includes("Biggest single decision"), "series HTML must carry the biggest-decision callout");
+  assert.ok(html.includes("Documented production economics"), "series HTML packet must carry the wave-27 benchmark block");
 });
 
 test("optimizer: film packet markdown carries the optimizer section only when run", () => {

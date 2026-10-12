@@ -31,7 +31,7 @@ Static files — **no auth, no keys, no rate limits**. Works on any static host.
 | `api/v1/checklists.json` | 5 checklists: pre-production, per-shot, continuity, audio, delivery | 5 |
 | `api/v1/glossary.json` | AI film / production terms | 79 |
 | `api/v1/competitions.json` | 2 judged competitions as craft records (no prizes/deadlines) | 2 |
-| `api/v1/teardowns.json` | 6 shot-by-shot teardowns; prompt reconstructions are analytical | 6 |
+| `api/v1/teardowns.json` | 7 shot-by-shot teardowns; prompt reconstructions are analytical | 7 |
 | `api/v1/diagnoses.json` | 12 failure diagnoses: symptom → diagnosis, fixes, repair template | 12 |
 | `api/v1/model-checks.json` | Model-watch freshness feed: per-model last check, source diffs, headlines | 22 checked |
 | `api/v1/model-review-queue.json` | Pending model-watch review items (empty = nothing pending) | 0 pending |

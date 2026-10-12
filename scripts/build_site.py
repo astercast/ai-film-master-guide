@@ -330,7 +330,7 @@ INDEX_TMPL = """<!DOCTYPE html>
             <li><input type="checkbox" class="path-check" id="pc-filmmaker-8" data-step="filmmaker-8" aria-label="Mark complete: Week 10, the 3-minute short"><a href="craft/longform-pipelines.html">Week 10</a> <span class="path-note">milestone: 3-minute short</span></li>
             <li><input type="checkbox" class="path-check" id="pc-filmmaker-9" data-step="filmmaker-9" aria-label="Mark complete: Week 11, competition craft"><a href="higgsfield/competition-entry-craft.html">Week 11</a> <span class="path-note">competition-entry craft</span></li>
             <li><input type="checkbox" class="path-check" id="pc-filmmaker-10" data-step="filmmaker-10" aria-label="Mark complete: Week 12, distribution and rights"><a href="distribution/release-paths.html">Week 12</a> <span class="path-note"><a href="legal/rights-and-disclosure.html">rights</a> + release plan</span></li>
-            <li><input type="checkbox" class="path-check" id="pc-filmmaker-11" data-step="filmmaker-11" aria-label="Mark complete: study the teardowns"><a href="teardown.html">Study</a> <span class="path-note">shot-by-shot teardowns, all six films</span></li>
+            <li><input type="checkbox" class="path-check" id="pc-filmmaker-11" data-step="filmmaker-11" aria-label="Mark complete: study the teardowns"><a href="teardown.html">Study</a> <span class="path-note">shot-by-shot teardowns, all seven films</span></li>
             <li><input type="checkbox" class="path-check" id="pc-filmmaker-12" data-step="filmmaker-12" aria-label="Mark complete: ship the entry"><a href="case-studies/entry-craft-teardowns.html">Ship</a> <span class="path-note">milestone: competition entry submitted</span></li>
           </ol>
         </article>
@@ -3612,8 +3612,8 @@ def main():
     # New pages discoverable through the search palette
     search_index.extend([
         {"url": "teardown.html", "title": "Shot-by-shot teardowns", "section": "Tools",
-         "headings": ["Passport Rush", "ONEIRIC", "The $100K cautionary case", "Dear Upstairs Neighbors", "Dreams of Violets", "The First Honest Day"],
-         "text": "Learn to see: shot-by-shot teardowns of Passport Rush, ONEIRIC, the Grok Odyssey $100K winner, Google DeepMind's Dear Upstairs Neighbors, Fountain 0's Dreams of Violets, and Nikolay Shestak's The First Honest Day ($450K Astana 2026 Grand Prix winner) — what each shot did, what worked, what broke, and the craft lesson, with labeled prompt reconstructions where the production documented its stack."},
+         "headings": ["Passport Rush", "ONEIRIC", "The $100K cautionary case", "Dear Upstairs Neighbors", "Dreams of Violets", "The First Honest Day", "The $150 Microdrama"],
+         "text": "Learn to see: shot-by-shot teardowns of Passport Rush, ONEIRIC, the Grok Odyssey $100K winner, Google DeepMind's Dear Upstairs Neighbors, Fountain 0's Dreams of Violets, Nikolay Shestak's The First Honest Day ($450K Astana 2026 Grand Prix winner), and StoReel's The $150 Microdrama ('Off Campus' experiment — four AI episodes in four days, documented clip by clip) — what each shot did, what worked, what broke, and the craft lesson, with labeled prompt reconstructions where the production documented its stack."},
         {"url": "manifesto.html", "title": "Manifesto", "section": "Meta",
          "headings": ["What this is", "What it costs", "Everything is sourced", "What it won't do", "How to use it", "Who it's for"],
          "text": "This is not a course: the guide's positioning — a living, free, sourced reference. What it costs, what it refuses to do (no hype, no tool worship, no secrets), and how to use it in 10 minutes or 10 hours."},
