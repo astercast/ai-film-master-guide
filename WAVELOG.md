@@ -98,6 +98,13 @@ not be readable from a static fetch — if BFL publishes rates only
 behind the calculator, FLUX's watch needs a readable primary source
 added. LTX-2.5's ltx.io note stands.
 
+**Commit:** local `b2a8e90` → pushed 2026-10-12 as remote commit
+`c6e1f19c1f8c196c44b3aaadcee208e9dda7c892` (gh-push.py, exit 0).
+Verified: a second gh-push run reports no changes vs remote `main`
+(`c6e1f19`) — remote tree == local HEAD tree. Post-commit
+`validate.sh`: **18 passed, 0 failed — ALL STAGES PASS**. Working
+repo only — no `-live` repo touched, no Vercel access.
+
 ## Watchtower 2.4 — Wan 2.7 joins the watch (2026-10-12)
 
 **Assignment:** Rotation 5 — execute the addition Watchtower 2.3 verified
