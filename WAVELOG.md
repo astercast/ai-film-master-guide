@@ -11,9 +11,10 @@ regression sweep, tickets first (the QA book closed empty at
 round 10 — no new tickets at rotation start, so nothing was
 queued ahead of the duties), and the rule-1762 hygiene audit.
 
-**Commit:** local `__LOCAL_SHA__` → pushed 2026-10-13 as remote
-commit `__REMOTE_SHA__` (gh-push.py, exit 0). Verified via the
-Trees API: remote tree == local HEAD tree, __TREE_N__ entries,
+**Commit:** local `c08b60b` → pushed 2026-10-13 as remote
+commit `5116b77776a16feeacf10ef311778aba3014aec3` (gh-push.py,
+exit 0). Verified via the Trees API: remote tree `e689567d…` ==
+local HEAD tree, 768 entries,
 not truncated, all key files present. Working repo only — no
 `-live` repo touched, no Vercel access.
 
@@ -219,13 +220,19 @@ unchanged). New files are all in existing homes:
 generated `site/cuesheet.html`, and one generated skill file
 under `skills/audio/`.
 
-**Validation.** validate.sh **__VALIDATE__** (post-commit run;
-stages 5/6 compare generator output against HEAD by design);
+**Validation.** validate.sh **22/22 — ALL STAGES PASS**
+(post-commit run; stages 5/6 compare generator output against
+HEAD by design; one pin updated by the pass — watchtower.test.js
+now pins the 2.13 final alert set, Veo 3.1 in / Runway Gen-4.5
+out against 2.12 at the same count of 12);
 watchtower 6/6; cuesheet 12/12; continuity 11/11; clearance
 19/19; forge 19/19; studio 70/70; greenlight 29/29;
-agent-workflows all pass; api.test.sh **__APITEST__** (its
-pins updated to this pass: October window 87 → 99; the drift
-pin holds at 12 alerts). Screenshots: cue sheet desktop
+agent-workflows 92 assertions pass; api.test.sh **55/55**
+(its pins updated to this pass: October window 87 → 99; the
+drift pin holds at 12 alerts — the first run read 54/55 on a
+timing flake in the self-tripping rate-limit check, cleared
+55/55 on the immediate rerun; no server code changed this
+rotation). Screenshots: cue sheet desktop
 (default hold verdict and the foley-laid clean verdict),
 mobile, homepage desktop — archived under
 `~/workspace/progress-archive/ai-film-master-guide/rotation-014/`.
