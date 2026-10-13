@@ -1,4 +1,250 @@
-## Watchtower 2.12 — the tenth review pass + Continuity Ledger (2026-10-13)
+## Watchtower 2.13 — the eleventh review pass + Cue Sheet (2026-10-13)
+
+**Assignment:** Rotation 14 — Watchtower 2.13 (the eleventh review
+pass over the 32 watched models; the 3 standing watches get full
+checker-path passes), the flagship the WAVELOG names as next (it
+named none — the choice is stated in Duty 2, before the fact, in
+the rotation-13 manner), the graduated-technique verification for
+the two rotation-13 adoptions now canonical in Fleet Commons
+(View Transitions, scroll-driven animations), the placement
+regression sweep, tickets first (the QA book closed empty at
+round 10 — no new tickets at rotation start, so nothing was
+queued ahead of the duties), and the rule-1762 hygiene audit.
+
+**Commit:** local `__LOCAL_SHA__` → pushed 2026-10-13 as remote
+commit `__REMOTE_SHA__` (gh-push.py, exit 0). Verified via the
+Trees API: remote tree == local HEAD tree, __TREE_N__ entries,
+not truncated, all key files present. Working repo only — no
+`-live` repo touched, no Vercel access.
+
+**Duty 1 — Watchtower 2.13 (eleventh review pass).** All 3
+standing watches stand, content-verified by checker-path probes:
+
+- **Seedance 3.0 — unconfirmed.** Versely's criteria page
+  answered at the 2.11 variant signature (506d7e9d…, 12,513
+  chars) in the pass's runs and in two checker-path probes; read
+  directly it still lists Seedance 3.0 among the models that had
+  been announced by no vendor as of 1 October. The breakread
+  article held its 2.12 re-baseline signature (63a60eae…) all
+  pass — no re-flag. No ByteDance announcement, model card, API
+  ID, or pricing. Watch stays open.
+- **Kling 4.0 — stays "announced".** APIMart's criteria page
+  answered at its baseline signature (fc55ce30…, 136,708 chars)
+  in the pass's runs and in two probes — an eighth consecutive
+  pass at the identical signature — still "API Coming Soon",
+  availability "Not yet", pricing "has not been announced". No
+  GA model ID, no Kuaishou pricing.
+- **Soul Cinema — in-app credit cost still unpublished.**
+  Higgsfield's pricing page answered at the settled 428-char
+  shell (f14e9f4a…) in two checker-path probes, with no credit
+  figure; the API post still lists only the $0.0032/image rate
+  tabled in 2.3 (and returned two different signatures at
+  identical length, 62,719 chars, across the two probes — the
+  per-request variance it has been signature-excluded for since
+  2.4).
+- **FLUX follow-up:** BFL's docs pricing page returned its
+  9,875-char rendering at the 2.6 baseline signature
+  (cb1e92d1…) inside the pass's completed runs and in two
+  probes — an eighth consecutive pass; its table still matches
+  the record exactly.
+- **PixVerse V6 — third clean pass claimed.** Its docs source
+  fetched clean at the baseline signature (95c88c96…, 4,278
+  chars) inside the completed runs and in two probes, all five
+  sources answering — the 2.10 recovery now stands on three
+  consecutive clean passes, one more than 2.12 claimed.
+
+**Flags: 7 raised, 7 dismissed, no record changes.** Run 1
+(14:08–14:18Z) read changed=6, with_errors=0. (a) **Veo 3.1** on
+scriptbyai.com's multi-vendor pricing page: two probes returned
+the flagged signature exactly (7783188d…, 45,760 chars); its Veo
+table carries Google's long-standing published per-second rates
+and the page's own changelog dates its last Veo change to
+31 March 2026 — the −513-char delta sits in other vendors'
+tables. (b) **Wan 3.0** on its Zacks stock-news source, for the
+second consecutive pass: two probes returned the flagged
+signature exactly (38edd398…, 15,897 chars); the article is the
+same 25 August equity story read and dismissed in 2.12.
+**2.13 calibration #1:** the Zacks URL is signature-excluded
+for Wan 3.0 (fetched and recorded every run; its chrome rotates
+between days while staying stable within one), following the
+2.12 magichour precedent. (c) **LTX-2.5** on
+roboticsandautomationnews.com: a −24-char delta on the
+13 August launch article, probes exact; its only money figure
+is the under-$10M free-use threshold already in the record.
+(d) **Runway Gen-4.5** on runwayml.com/pricing: the vendor's own
+page answered at 1,071 chars against a 431-char baseline — both
+renderings are JavaScript app shells (navigation, plan names,
+an SVG path, the static "$12/month" title) with no plan prices
+and no credit rate in either; dismissed as shell variance, no
+exclusion (first flag on this URL — a second earns one); the
+record's figures stay signature-live on the model's remaining
+sources. (e) **FLUX 3 Video** on eWeek: a +1-char variant of the
+July launch article, probes exact. (f) **Wan 2.7** on
+createvision.ai: two probes exact; its 40-credits/s table is
+the reseller's own pool pricing, and its Wan 2.7 facts match
+the record. Run 2 (14:31–14:40Z), the first re-baseline after
+calibration #1, read changed=1 — **FLUX 3 Video** on
+the-decoder.com, a same-length signature swap (3,906 chars)
+in the 5 August GA article's rotating story rails; two probes
+returned the flagged signature exactly, and BFL's docs page
+held baseline in the same run; dismissed. Run 3
+(14:42–14:50Z) read changed=1 — FLUX on eWeek again, fetched
+this time at the pass's *original baseline* signature: the
+page alternates between its two renderings within one pass,
+the 2.12 magichour pattern proved end-to-end. **2.13
+calibration #2:** the eWeek URL is signature-excluded for
+FLUX 3 Video (still fetched and recorded every run; the rate
+stays signature-live on BFL's docs page). Run 4
+(14:56–15:08Z), the final re-baseline, read **changed=0,
+with_errors=0, no_sources=0**, proving both calibrations and
+all seven dismissals together; the queue holds exactly the 3
+standing watches, their notes carrying this pass's re-check
+lines. Final drift: **12 alerts / 5 watch / 15 ok, 0
+unwatched** — identically counted to 2.12's close, the 12
+alerts again exactly the final run's partial records (the
+standing host-gated cohort: Medium ×3 models, MarkTechPost
+×3, GlobeNewswire ×2 models, Morningstar, whatsnew.fyi ×2
+models, europesays, x.ai, midjourney.com — which members fail
+in a given run rotates with the hosts' gates). Unpublished
+rates 5; pricing diff vs the 2026-10-11 baseline 7 rows.
+History 107 → **119 events** (October window 87 → **99**);
+review log 21 → **23 entries** (pass 12 + addendum).
+models.json untouched by the pass. Process: every run was
+launched detached (setsid launcher + PID/status files) after a
+process-table check, exactly one checker verified alive during
+each run. One incident, disclosed: the scratch directory under
+/tmp holding runs 1–3's launcher logs was wiped mid-pass by a
+/tmp cleanup — the feeds themselves live in data/v1/ and were
+never at risk, every run's headline numbers were already read
+off its feed, and run 4 was launched from a durable fleet-ops
+path whose log survives. The launcher discipline now names a
+durable path first, /tmp never.
+
+**Duty 2 — Flagship: the Cue Sheet (`cuesheet.html`).** The
+WAVELOG named no next flagship, so the choice is stated here
+before the fact in the commit record: the guide's tool layer
+covered the script (Clearance), the episode (Forge), the
+models (Showdown), the production (Studio / Green Light), and
+continuity (the Ledger) — the stage with no working tool was
+sound, the chapter that opens "Sound is half the picture" and
+whose checklist lived only as prose at its foot. The Cue Sheet
+is that chapter as a working file: its five pre-mix gates
+(Voice Bible written for every speaking character; dialogue
+route chosen per scene, never mixed mid-scene; score briefed
+per cue to the locked cut; stems kept; generation receipts
+saved), and a production's own scenes logged with the
+chapter's three layers (bed, foley, accents), the dialogue
+route (decoupled when the words must be exact, native for
+short lines, none), and the state today (designed / thin /
+dry). The verdict is computed from the chapter's rules, one of
+them mechanical: a scene with no bed reads dry whatever its
+owner claims, because the bed runs under everything and never
+drops to digital silence; a dry scene stops the mix, a thin
+scene holds it, and a clean sheet still owes the three-way
+listen and the silence test. `build_cuesheet()` in
+`scripts/build_site.py` pre-renders the default sheet (the
+same fictional "Night Bus" production the Ledger tracks, heard
+instead of seen: 5 scenes, 4 designed, the rain stop's foley
+not yet laid — so the first verdict is the honest hold) under
+the same rules `assets/js/cuesheet.js` (`CueSheetEngine`) runs
+in the browser; the page reads identically without JavaScript
+and exports the sheet as markdown. Wired into the nav index,
+the footer, the search index, and the generated llms tool
+list; HAND skill `audio-cue-sheet` (skills 236 → 237);
+`scripts/cuesheet.test.js` (12/12) wired into validate.sh
+stage 7. Playwright-verified over HTTP, desktop 1440 + mobile
+390: zero console messages; laying the rain stop's foley and
+marking the scene designed flips the verdict Hold → Mix clean
+in the live page. Before/after: the sound chapter was a
+read-only page with a checklist at the bottom; the guide now
+has a working cue sheet whose verdict is computed from the
+reader's own scenes (screenshots in
+`~/workspace/progress-archive/ai-film-master-guide/rotation-014/`).
+
+**Duty 3 — Graduated techniques (Commons canonical v1.0.0).**
+Both rotation-13 adoptions are now Fleet Commons canonical
+patterns (`patterns/view-transitions`,
+`patterns/scroll-driven-animations`), extracted by Commons
+from this site's adoption commits — on-touch alignment found
+the local rules byte-equivalent in structure to the canonical
+shapes (same guards, same keyframe values), so the only change
+is citational: the base.css and motifs.css comments now name
+the canonical patterns and record the alignment (comments
+only, behaviour unchanged — the same cited-by-name posture
+Trend took at its wave 35). Behaviour re-verified after this
+rotation's rebuilds, over HTTP in Chromium: on a chapter page
+the progress bar scrubbed 0 → 867px at mid-scroll with
+`animation-timeline: scroll(root)` as its computed timeline
+and no inline transform written (docs.js correctly yields);
+under emulated `prefers-reduced-motion: reduce` the timeline
+rule is inactive (computed `auto`) and docs.js's listener
+drives the bar (inline scaleX(0.578)) — the fallback is
+intact; cross-page navigation works throughout with zero
+console messages; the `@view-transition` rule still sits
+inside the no-preference guard with the reduced-motion block
+stilling the pseudo-elements. No extension this rotation: the
+cutting-room identity gains nothing from shared-element names
+(the duplicate-name risk across ~40 templates stands) or from
+replacing the JS-gated reveal system, and a verification pass
+that invents work would be filler. One correction to the
+rotation-13 record, stated plainly: the progress bar lives on
+the chapter (docs) pages, not literally every page — tool
+pages carry no progress markup, as they did not in rotation
+13; nothing regressed.
+
+**Duty 4 — Regression sweep (placement stack).** After the
+final build, grep-verified over all built pages: **108
+pages** (107 + cuesheet.html, born placed) — OG absolute
+108/108, canonical 108/108, theme-color 108/108, favicon
+links 108/108, robots.txt generated (allow-all, no invented
+sitemap), JSON-LD 44 blocks (unchanged count — the Cue Sheet
+is a tool page and carries canonical + OG only, per the
+honest-JSON-LD rule), 0 invalid JSON-LD blocks, and exactly
+one `<h1>` on every page.
+
+**Rule 1762 hygiene.** Audit of all 686 tracked files: zero
+CR/CRLF in any text file (CR bytes appear only inside files
+.gitattributes marks binary — images, fonts, the favicon).
+Final-newline gaps: 20 files — the 19 frozen wt211/wt212
+adjudication evidence logs, left byte-identical on purpose,
+and `site/search-index.json`, a generator output whose
+generator emits no trailing newline. Every file this rotation
+created or edited by hand is final-newline terminated. The
+LF pin + binary carve-outs in `.gitattributes` are untouched.
+
+**Structure flags for the Release Engineer:** none. No api/
+paths added, removed, or moved (the 6-function map is
+unchanged). New files are all in existing homes:
+`assets/js/cuesheet.js`, `scripts/cuesheet.test.js`, the
+generated `site/cuesheet.html`, and one generated skill file
+under `skills/audio/`.
+
+**Validation.** validate.sh **__VALIDATE__** (post-commit run;
+stages 5/6 compare generator output against HEAD by design);
+watchtower 6/6; cuesheet 12/12; continuity 11/11; clearance
+19/19; forge 19/19; studio 70/70; greenlight 29/29;
+agent-workflows all pass; api.test.sh **__APITEST__** (its
+pins updated to this pass: October window 87 → 99; the drift
+pin holds at 12 alerts). Screenshots: cue sheet desktop
+(default hold verdict and the foley-laid clean verdict),
+mobile, homepage desktop — archived under
+`~/workspace/progress-archive/ai-film-master-guide/rotation-014/`.
+
+**Left open.** The 3 standing watches — all re-checked this
+pass, none moved. The standing partial cohort will keep
+surfacing as alerts while its hosts gate the checker.
+runwayml.com/pricing bears watching for a second flag (its
+shell variance is documented in the review log; a repeat earns
+the signature exclusion the other rotating pages carry).
+PixVerse's docs source now stands on three clean passes. The
+Zacks and eWeek exclusions join the calibration list: if
+either page ever carries a real fact change, the manual rate
+check on the models' remaining sources is the backstop.
+Parked decisions: none this rotation. No fetch-rule skips
+occurred: every fetch used the checker's own path or its probe
+imports; no approval-card source was encountered.
+
+
 
 **Assignment:** Rotation 13 — Watchtower 2.12 (the tenth review pass
 over the 32 watched models; the 3 standing watches get full

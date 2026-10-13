@@ -132,9 +132,11 @@ main section h2 > .tc { margin-left: var(--space-3); }
 }
 
 /* Cross-page view transitions (rotation 13; graduated from the 9th
-   site's test bed — no shared Fleet Commons pattern exists yet, so
-   this follows the fleet idiom Aster set: @view-transition inside
-   the no-preference guard). Shaped as a cut, not a dissolve: the
+   site's test bed — Fleet Commons canonical v1.0.0
+   (patterns/view-transitions), extracted from this adoption;
+   aligned on touch in rotation 14, comments only, behaviour
+   unchanged. The guard is the pattern: @view-transition inside
+   the no-preference guard below). Shaped as a cut, not a dissolve: the
    old reel leaves in 180ms, the new one enters with a 6px settle.
    Progressive enhancement only — browsers without cross-document
    view transitions ignore the rule and navigate as before; the

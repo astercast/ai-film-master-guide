@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "count": 236,
+  "count": 237,
   "skills": [
     {
       "id": "prompt-t1",
@@ -1339,6 +1339,12 @@
       "title": "Run the continuity ledger",
       "description": "The character-consistency chapter as a working ledger: the five pre-generation locks, every lock logged with its state, and the chaining verdict from the rejection rules.",
       "path": "skills/craft/craft-continuity-ledger.md"
+    },
+    {
+      "id": "audio-cue-sheet",
+      "title": "Run the cue sheet",
+      "description": "The sound, music & audio chapter as a working cue sheet: the five pre-mix gates, every scene logged with its three layers and dialogue route, and the mix verdict from the chapter's rules.",
+      "path": "skills/audio/audio-cue-sheet.md"
     },
     {
       "id": "workflow-shot-list",

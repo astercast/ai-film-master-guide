@@ -30,6 +30,7 @@ after editing chapters. Open `site/index.html`.
 - `site/hook-generator.html` — hook-title generator: `[Episode N] + [one-line emotional stake] + [CTA]` → 5 worked caption variants, each with a why-this-hooks note
 - `site/studio.html` — Studio 2.0 — AI-film studio simulator: a standalone film (title, logline, genre/mood, runtime, draft/festival tier) or a serialized series (3–10 episodes, one of the 5 proven serialized format presets: mini-drama / POV micro-series / day-in-the-life / revenge arc / interactive — each pre-filling runtime band, beat structure, hook style, the dialogue-budget rule) in → deterministic production packet — shot list with per-shot prompts built from the 47-template library, per-shot model picks from `models.json` with cost math, budget table with 5×/20× envelopes, shooting schedule, series bible with locked prompt DNA + locked-anchor asset reuse, self-contained HTML/Markdown packet export (download, print), localStorage plans with names, duplicate, delete, continue-planning; one-click 'Send to Studio' bridge from the episode planner
 - `site/greenlight.html` — the green light — a studio meeting, playable: pitch a film concept (title, logline, genre, runtime, resolution, draft/festival ambition) → a six-layer cold read (someone to watch, something happening, a camera decision, light, place and time, a feeling) with a 0–100 score → the shot list from the real 47-template prompt library via the Studio engine → every shot priced from `data/v1/pricing.json` (per-second tiers, low/high ranges, tier + arithmetic shown per shot) → day-by-day schedule → verdict: GREEN LIGHT / CONDITIONAL / BACK TO THE ROOM. The money rule: festival ambition only unlocks flagship pricing when the read clears 55/100 — a cold read gets draft money, stated on the record. Punch-up buttons add craft layer by layer and re-run the plan (watch the money move). Hype hygiene: Veo 4 doesn't exist (SEO bait — verified Oct 2026), Kling 4.0 is announced-not-shipped, Sora discontinued — named and corrected, never priced. Markdown export, print. Takes from the cutting room walk straight in (`assets/js/greenlight.js`, engine unit-tested in `scripts/greenlight.test.js`)
+- `site/cuesheet.html` — the cue sheet — the sound chapter as a working tool: five pre-mix gates (Voice Bible, per-scene dialogue route never mixed mid-scene, score briefed per cue to the locked cut, stems kept, generation receipts saved), every scene logged with its three layers (bed / foley / accents), its dialogue route (decoupled / native / none) and its state (designed / thin / dry); the mix verdict is computed from the chapter's rules — a scene with no bed reads dry whatever its owner claims, a thin scene holds the mix, a clean sheet still owes the three-way listen and the silence test; markdown export (`assets/js/cuesheet.js`, engine unit-tested in `scripts/cuesheet.test.js`)
 - `site/quiz.html` — model-picker quiz: 5 questions → ranked top-3 from `models.json` with cost math, one-click handoff to the workshop
 - `site/compare.html` — model compare: 2–3 models side by side (cost, best use, strengths, weaknesses, native audio, status/last-verified) from `models.json`, shareable via URL params; discontinued excluded
 - `site/gallery.html` — prompt gallery: your workshop-saved prompts (localStorage) browsable, filterable by track/model, sortable by rating, open-in-workshop deep links, JSON export/import
@@ -79,7 +80,7 @@ research artifacts; outputs committed).
 
 ## Skills (agentic task procedures)
 
-236 skills in `skills/` — rebuild with `python3 scripts/build_skills.py`
+237 skills in `skills/` — rebuild with `python3 scripts/build_skills.py`
 (generates from `data/v1/` data + authored procedures; outputs committed).
 `skills/index.json` is the manifest: id, title, description, path per skill.
 
@@ -90,7 +91,7 @@ primary interface for *doing* work; the JSON endpoints are the data layer.
 Categories: prompts (47), camera (22), models (31), checklists (5),
 longform (12), techniques (7), craft (21), entry (4), workflow (13),
 episodes (5), compare (10), fix (6), budget (3), delivery (3), audio
-(5), recipes (12), styles (8), performance (9), grading (3),
+(6), recipes (12), styles (8), performance (9), grading (3),
 distribution (2), legal (5).
 
 ## Key facts agents should know

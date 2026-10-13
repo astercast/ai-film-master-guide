@@ -289,7 +289,10 @@
 .progress-bar { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: var(--z-progress); pointer-events: none; background: rgba(255, 255, 255, 0.05); }
 .progress-bar span { display: block; height: 100%; background: linear-gradient(90deg, var(--amber-deep), var(--gold), var(--tungsten)); transform: scaleX(0); transform-origin: 0 50%; box-shadow: 0 0 12px rgba(245, 179, 1, 0.5); }
 /* Scroll-driven progress (rotation 13; graduated from the 9th site's
-   test bed, fleet idiom per Button Mash's reading progress): where
+   test bed, fleet idiom per Button Mash's reading progress — Fleet
+   Commons canonical v1.0.0 (patterns/scroll-driven-animations,
+   shape 1), extracted from this adoption; aligned on touch in
+   rotation 14, comments only, behaviour unchanged): where
    scroll timelines are supported the bar is scrubbed by the scroll
    itself on the compositor — docs.js detects the same support and
    stops writing transforms, keeping only the timecode readout.

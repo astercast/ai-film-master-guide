@@ -69,6 +69,7 @@ NAV_INDEX = [
         ("greenlight.html", "Green light"),
         ("clearance.html", "Script clearance"),
         ("continuity.html", "Continuity ledger"),
+        ("cuesheet.html", "Cue sheet"),
         ("recipes.html", "Recipes"),
         ("forge.html", "Episode forge"),
     ]),
@@ -103,6 +104,7 @@ FOOTER_ITEMS = [
     ("forge.html", "Episode forge"),
     ("clearance.html", "Script clearance"),
     ("continuity.html", "Continuity ledger"),
+    ("cuesheet.html", "Cue sheet"),
     ("checks/", "Knowledge checks"),
     ("budget.html", "Budget"),
     ("optimizer.html", "Optimizer"),
@@ -3561,6 +3563,278 @@ def build_continuity(css_links):
     return [("continuity.html", "Continuity ledger")]
 
 
+CUESHEET_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cue sheet — AI Film Master Guide</title>
+  <meta name="description" content="The sound, music & audio chapter as a working cue sheet: the five pre-mix gates, every scene logged with its three layers and dialogue route, and the mix verdict computed from the chapter's own rules — no bed means dry, a missing layer holds the mix.">
+  {css}
+  <style>
+    .cs-verdict {{ font-size: 1.05rem; border-left: 3px solid var(--gold); padding-left: var(--space-4); margin-bottom: var(--space-6); }}
+    .cs-held {{ border-left-color: #e88; }}
+    .cs-gate-card, .cs-entry {{ border: 1px solid var(--line); border-radius: 12px; padding: var(--space-4) var(--space-5); margin-bottom: var(--space-4); }}
+    .cs-gate-head, .cs-entry-head {{ display: flex; align-items: baseline; gap: var(--space-3); flex-wrap: wrap; }}
+    .cs-gate-head h4, .cs-entry-head h4 {{ margin: 0; font-size: 1.2rem; }}
+    .cs-num {{ display: inline-block; min-width: 1.7em; text-align: center; background: var(--gold); color: #111; border-radius: 999px; font-weight: 800; padding: .1em .3em; }}
+    .cs-tag {{ margin-left: auto; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }}
+    .cs-what, .cs-detail, .cs-state {{ color: var(--muted); }}
+    .cs-state strong {{ color: var(--text); }}
+    .cs-note {{ font-size: .85rem; }}
+  </style>
+</head>
+<body>
+  <div class="edge-right" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        {sitenav}
+      </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">&#9679;</span> <span class="hdr-tc-val">00:59:52:00</span></span>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">&#8984;K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    {hero}
+    <section class="container" aria-labelledby="cs-h">
+      <h2 id="cs-h">The five gates — before the mix</h2>
+      <p>The sound chapter opens with the claim every AI filmmaker pays to learn: sound is half the picture, and finished films are designed, not slapped together. The five gates below are the chapter's own pre-mix discipline; the full chapter is <a href="craft/sound-music-audio.html">Sound, Music &amp; Audio</a>. Tick a gate when the production has actually done it — the sheet counts what is written down, not intentions.</p>
+      <div id="cs-gates">{cs_gates}</div>
+      <p class="calc-note" id="cs-gates-state" aria-live="polite">{cs_gates_state}</p>
+      <h2>Your cue sheet</h2>
+      <p>Log every scene with the three layers the chapter requires — the ambient bed, the foley that makes movement physical, the accents that land the story beats — and the dialogue route chosen for it: decoupled when the words must be exact, native for short ambient lines, never mixed mid-scene. Mark each scene as it stands today: designed, thin, or dry. One rule is mechanical: a scene with no bed reads dry whatever you claim, because the bed runs under everything and never drops to digital silence. The sheet opens on a worked example — the same small AI short the Continuity Ledger tracks, heard instead of seen — with the rain stop's foley not yet laid, so the first verdict you see is the honest hold.</p>
+      <div class="card" style="margin-bottom:var(--space-6);">
+        <div class="calc-grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
+          <div class="field">
+            <label for="cs-title">Production title</label>
+            <input class="input" type="text" id="cs-title" placeholder="e.g. The Night Bus">
+          </div>
+          <div class="field">
+            <label for="cs-new-scene">New scene</label>
+            <input class="input" type="text" id="cs-new-scene" placeholder="e.g. Sc 6 — Rooftop, dawn">
+          </div>
+          <div class="field">
+            <label for="cs-new-route">Dialogue route</label>
+            <select class="input" id="cs-new-route">{cs_route_options}</select>
+          </div>
+          <div class="field">
+            <label for="cs-new-detail">What the layers are — specifically, physically</label>
+            <input class="input" type="text" id="cs-new-detail" placeholder="e.g. Bed: dawn birds, distant traffic. Foley: gravel steps.">
+          </div>
+          <div class="field">
+            <label for="cs-new-status">State today</label>
+            <select class="input" id="cs-new-status">{cs_status_options}</select>
+          </div>
+          <div class="field">
+            <label>Layers laid</label>
+            <p style="margin:.2em 0;">
+              <label><input type="checkbox" id="cs-new-bed" checked> Bed</label>
+              <label><input type="checkbox" id="cs-new-foley" checked> Foley</label>
+              <label><input type="checkbox" id="cs-new-accents" checked> Accents</label>
+            </p>
+          </div>
+          <div class="field">
+            <label aria-hidden="true">&nbsp;</label>
+            <button type="button" class="btn" id="cs-add">Add scene to the sheet</button>
+          </div>
+        </div>
+        <p class="calc-note" id="cs-msg" hidden></p>
+      </div>
+      <p class="cs-verdict" id="cs-verdict" aria-live="polite">{cs_verdict}</p>
+      <div id="cs-stage">{cs_stage}</div>
+      <div class="card" style="margin-top:var(--space-6);">
+        <h3>Take the sheet</h3>
+        <p>The sheet exports as clean markdown: the five gates with their state, every scene with its route, its layers, and its verdict state, and the mix verdict — the file the mix session starts from.</p>
+        <p><button type="button" class="btn" id="cs-copy">Copy sheet</button> <button type="button" class="btn btn-ghost" id="cs-download">Download sheet (.md)</button></p>
+        <p><a class="btn btn-ghost" href="craft/sound-music-audio.html">Read the sound chapter</a> <a class="btn btn-ghost" href="continuity.html">Continuity ledger</a> <a class="btn btn-ghost" href="studio.html">Studio</a></p>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+    </div>
+  </footer>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search" hidden>
+    <div class="palette-box">
+      <input type="search" id="palette-input" placeholder="Search the guide…" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/cuesheet.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
+</body>
+</html>
+"""
+
+
+# The cue-sheet layer — kept in step with assets/js/cuesheet.js
+# (CueSheetEngine). scripts/cuesheet.test.js pins the engine, and
+# the pre-rendered default sheet below is rendered under the same
+# rules. Source: craft/sound-music-audio.md — its three layers,
+# its dialogue routes, its build order, and its mix QC, quoted in
+# substance.
+CUESHEET_GATES = [
+    dict(id="bible", name="Voice Bible written for every speaking character",
+         what="Register, timbre, tempo, manner — written per character before generating, and referenced by every generation after. Test the voice on the character's hardest line first, not a demo sentence: a voice that collapses on the hardest scene was never cast."),
+    dict(id="routes", name="Dialogue route chosen per scene — never mixed mid-scene",
+         what="Road A, native: the model generates picture plus synced dialogue in one pass — best for short lines and ambient realism. Road B, decoupled: silent clip, separately produced voice, a lip-sync pass that reshapes only the mouth. Rule of thumb: if the words must be exact, take Road B."),
+    dict(id="lockedcut", name="Score briefed per cue, cut to the locked cut",
+         what="Brief by emotional function, not genre — genre, tempo, instrumentation, the cue's job, what to avoid — and generate 3–5 variants per cue to comp. Temp-track discipline: cut to a temp score first, then generate the final score to the locked cut. Never score a moving target."),
+    dict(id="stems", name="Stems kept for the score and the voices",
+         what="Dialogue ducks badly under a full stereo mix; stems let the mix breathe. Keep the score's stems and every voice take separate until the mix is signed off — a bounced stereo pair is a decision you cannot unmake."),
+    dict(id="receipts", name="Generation receipts saved for every AI voice and cue",
+         what="AI-generated music and voices sit in the murkiest rights territory in the guide. Keep the receipts — prompts, dates, tool, terms version — for every generated voice and cue, and read the rights chapter before distributing anything with AI music in it."),
+]
+
+CUESHEET_LAYERS = [("bed", "Bed"), ("foley", "Foley"), ("accents", "Accents")]
+
+CUESHEET_ROUTES = [
+    ("decoupled", "Decoupled — voice built separately, lip-sync pass"),
+    ("native", "Native — model generates picture + dialogue"),
+    ("none", "No dialogue — sound design only"),
+]
+
+CUESHEET_STATUSES = [
+    ("designed", "Designed — built and checked"),
+    ("thin", "Thin — a layer missing or rough"),
+    ("dry", "Dry — drops to digital silence"),
+]
+
+# Mirror of DEFAULT_ENTRIES in assets/js/cuesheet.js.
+CUESHEET_DEFAULT_ENTRIES = [
+    dict(scene="Sc 1 — Depot at night, Mara waits", route="decoupled",
+         detail="Bed: depot room tone, rain on the canopy. Foley: boots on wet concrete, bag set down. Accent: the departure-board flip on her line.",
+         layers=dict(bed=True, foley=True, accents=True), status="designed"),
+    dict(scene="Sc 2 — On the bus, the hardest line", route="decoupled",
+         detail="Voice per the Voice Bible (chest register, unhurried, flat warmth), comped from paragraph takes. Bed: engine idle under everything. Accent: ticket punch on the turn.",
+         layers=dict(bed=True, foley=True, accents=True), status="designed"),
+    dict(scene="Sc 3 — The rain stop", route="decoupled",
+         detail="Bed: rain on the shelter roof, road hiss. Accents: bus sigh and door chime laid. Foley not laid yet — her walk to the shelter is still silent under the bed.",
+         layers=dict(bed=True, foley=False, accents=True), status="thin"),
+    dict(scene="Sc 4 — Depot office, radio voices", route="native",
+         detail="Short native lines only — nothing word-exact in this scene. Bed: office tone, fluorescent hum. Foley: mug, keys, chair. Accent: radio squelch into the reveal.",
+         layers=dict(bed=True, foley=True, accents=True), status="designed"),
+    dict(scene="Sc 5 — Departure, the button", route="none",
+         detail="No dialogue — the scene plays on design alone. Bed: depot tone thinning as the bus pulls out. Foley: steps, door, pull-away. Accent: one brake sigh under the final frame; score enters only after.",
+         layers=dict(bed=True, foley=True, accents=True), status="designed"),
+]
+
+
+def cuesheet_effective(e):
+    """Mirror of CueSheetEngine.effectiveStatus (assets/js/cuesheet.js):
+    no bed reads dry, whatever state was recorded."""
+    if not e.get("layers") or not e["layers"].get("bed"):
+        return "dry"
+    return e.get("status") if e.get("status") in dict(CUESHEET_STATUSES) else "thin"
+
+
+def cuesheet_eval(entries):
+    """Mirror of CueSheetEngine.evaluate (assets/js/cuesheet.js)."""
+    eff = [cuesheet_effective(e) for e in entries]
+    designed = eff.count("designed")
+    thin = eff.count("thin")
+    dry = eff.count("dry")
+    clean = bool(entries) and thin == 0 and dry == 0
+    if not entries:
+        verdict = "No cue sheet yet — nothing is designed, so the film is silent by default. Log the scenes first."
+    elif dry:
+        verdict = (f"Mix stopped — {dry} scene" + (" runs" if dry == 1 else "s run") +
+                   " dry: no ambient bed under the scene, so the cut drops to digital silence. "
+                   "The bed runs under everything; build it first — backgrounds first, hard FX "
+                   "second, foley third — before anything else is judged.")
+    elif thin:
+        verdict = (f"Hold the mix — {thin} scene" + (" is" if thin == 1 else "s are") +
+                   " thin: a layer is missing or rough. Work the build order — dialogue first, "
+                   "then the SFX bed, then music last; a thin scene finished under a full score "
+                   "stays thin.")
+    else:
+        verdict = ("Mix clean — every logged scene carries its three layers on a bed that never "
+                   "drops out. Before calling it done: the three-way listen (headphones, laptop "
+                   "speakers, phone) and the silence test — mute the music, and the scene must "
+                   "still play on dialogue and SFX alone.")
+    return {"total": len(entries), "designed": designed, "thin": thin, "dry": dry,
+            "clean": clean, "verdict": verdict}
+
+
+def build_cuesheet(css_links):
+    """Cue Sheet — the sound, music & audio chapter
+    (craft/sound-music-audio.md) as a working cue sheet: the five
+    pre-mix gates, the production's own scenes with their three
+    layers and dialogue routes, and the mix verdict computed
+    exactly as the chapter's rules state it. The default sheet is
+    pre-rendered here under the same rules assets/js/cuesheet.js
+    runs in the browser; the engine invents no scenes and no
+    states — a scene with no bed reads dry, a thin scene holds
+    the mix, on the record."""
+    def esc(s):
+        return html.escape(str(s if s is not None else ""))
+
+    status_label = dict(CUESHEET_STATUSES)
+    route_label = dict(CUESHEET_ROUTES)
+    gates_html = []
+    for i, s in enumerate(CUESHEET_GATES):
+        gates_html.append(
+            f'<article class="cs-gate-card"><div class="cs-gate-head"><span class="cs-num">{i + 1}</span>'
+            f'<h4>{esc(s["name"])}</h4><span class="cs-tag">Pre-mix gate</span></div>'
+            f'<p class="cs-what">{esc(s["what"])}</p>'
+            f'<p><label><input type="checkbox" data-cs-gate="{esc(s["id"])}"> Done — the gate is written down</label></p></article>')
+    r = cuesheet_eval(CUESHEET_DEFAULT_ENTRIES)
+    stage_html = []
+    for idx, e in enumerate(CUESHEET_DEFAULT_ENTRIES):
+        eff = cuesheet_effective(e)
+        s = (f'<article class="cs-entry"><div class="cs-entry-head"><h4>{esc(e["scene"])}</h4>'
+             f'<span class="cs-tag">{esc((route_label.get(e["route"]) or "—").split(" — ")[0])}</span></div>'
+             f'<p class="cs-detail">{esc(e["detail"])}</p>'
+             f'<p class="cs-layers" role="group" aria-label="Layers present in {esc(e["scene"])}">'
+             + " ".join(
+                 f'<button type="button" class="btn btn-sm{"" if e["layers"].get(lid) else " btn-ghost"}" '
+                 f'data-cs-layer="{idx}:{lid}" aria-pressed="{"true" if e["layers"].get(lid) else "false"}">'
+                 f'{esc(label)}{" ✓" if e["layers"].get(lid) else " —"}</button>'
+                 for lid, label in CUESHEET_LAYERS)
+             + "</p>"
+             f'<p class="cs-state">State: <strong>{esc(status_label.get(eff) or "— no state recorded —")}</strong></p>'
+             f'<p class="cs-states" role="group" aria-label="Set the state for {esc(e["scene"])}">'
+             + " ".join(
+                 f'<button type="button" class="btn btn-sm{"" if e["status"] == sid else " btn-ghost"}" '
+                 f'data-cs-set="{idx}:{sid}">{esc(label)}</button>'
+                 for sid, label in CUESHEET_STATUSES)
+             + "</p>"
+             f'<p><button type="button" class="btn btn-sm btn-ghost" data-cs-del="{idx}">'
+             f'Remove scene</button></p></article>')
+        stage_html.append(s)
+    route_opts = "".join(f'<option value="{esc(k)}">{esc(v)}</option>' for k, v in CUESHEET_ROUTES)
+    status_opts = "".join(f'<option value="{esc(sid)}">{esc(label)}</option>' for sid, label in CUESHEET_STATUSES)
+    (SITE / "cuesheet.html").write_text(CUESHEET_TMPL.format(
+        css=css_links, sitenav=nav_html("", "cuesheet.html"), footer=footer_html(""),
+        hero=hero_cutroom(
+            kicker="""The cutting room""",
+            h1="""Cue <span class="accent">sheet.</span>""",
+            lede="""Sound is half the picture. The five gates before the mix, every scene logged with its three layers — bed, foley, accents — and its dialogue route, and the mix verdict from the sound chapter's own rules: no bed means dry, and a thin scene holds the mix.""",
+            deck_title="""SOUND — THE_CUE_SHEET""",
+            clips={"v2": ['The mix'], "v1": ['Bed', 'Foley', 'Accents'], "a1": ['Dialogue']},
+            h1_id="cs-title-h",
+            extra=""" """),
+        cs_gates="".join(gates_html),
+        cs_gates_state="Gates complete: 0 of 5 — the gates are the discipline before any scene is judged; finish them first.",
+        cs_route_options=route_opts, cs_status_options=status_opts,
+        cs_verdict=html.escape(r["verdict"]), cs_stage="".join(stage_html)))
+    return [("cuesheet.html", "Cue sheet")]
+
+
+
 
 GALLERY_TMPL = """<!DOCTYPE html>
 <html lang="en">
@@ -6176,6 +6450,9 @@ def main():
     # Continuity Ledger (rotation 13 flagship — the consistency chapter as a working ledger)
     build_continuity(css_links)
 
+    # Cue Sheet (rotation 14 flagship — the sound chapter as a working cue sheet)
+    build_cuesheet(css_links)
+
     # Knowledge checks (generated from scripts/checks.json)
     wave7_checks = build_checks(css_links)
 
@@ -6261,6 +6538,9 @@ def main():
         {"url": "continuity.html", "title": "Continuity ledger", "section": "Tools",
          "headings": ["The five locks — before any generation", "Your continuity ledger", "Take the ledger"],
          "text": "The Continuity Ledger: the character-consistency chapter as a working ledger — the identity stack ranked by reliability, wardrobe and props locked verbatim, location master stills, light locked per scene, and the real start frame. Log every lock a film depends on (identity, wardrobe, prop, location, lighting, era / grade) with its state — locked, drifted, or broken — and read the chaining verdict computed from the chapter's rejection rules: a clip fails if the face drifts, the wardrobe changes, or the light flips, and failed clips don't chain, they get re-prompted. Export the ledger as markdown. Chapter: craft/character-consistency.md."},
+        {"url": "cuesheet.html", "title": "Cue sheet", "section": "Tools",
+         "headings": ["The five gates — before the mix", "Your cue sheet", "Take the sheet"],
+         "text": "The Cue Sheet: the sound, music & audio chapter as a working cue sheet — the Voice Bible, the per-scene dialogue route (native or decoupled, never mixed mid-scene), score briefed per cue to the locked cut, stems kept, generation receipts saved. Log every scene with its three layers (bed, foley, accents), its route, and its state — designed, thin, or dry — and read the mix verdict computed from the chapter's rules: a scene with no bed reads dry whatever its owner claims, a thin scene holds the mix, and a clean sheet still owes the three-way listen and the silence test. Export the sheet as markdown. Chapter: craft/sound-music-audio.md."},
         {"url": "showdown.html", "title": "Model showdown", "section": "Tools",
          "headings": ["Lace up two reels", "The rate", "Drift board", "Vs the baseline"],
          "text": "The model showdown: any two of the guide's 32 watched models spliced side by side on the cutting table — published rates tier by tier, source-check health, drift-board severity and alerts, pricing movement against the 2026-10-11 baseline, and the latest Watchtower event for each. Edges are direct comparisons of published values only; a model with no published USD rate is shown as unpublished, never estimated. Generated from models.json, pricing.json, model-checks.json, and model-history.json."},

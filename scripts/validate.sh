@@ -429,6 +429,21 @@ else
   CT_OK=0
 fi
 
+# Cue Sheet: engine + page + chapter (rotation 14 flagship)
+CS_OK=1
+for f in assets/js/cuesheet.js site/cuesheet.html site/assets/js/cuesheet.js site/craft/sound-music-audio.html; do
+  if [ ! -f "$f" ]; then fail "$f missing (rebuild the site)"; CS_OK=0; fi
+done
+CS_OUT=$(node scripts/cuesheet.test.js 2>&1)
+if echo "$CS_OUT" | tail -1 | grep -q "all pass"; then
+  CS_N=$(echo "$CS_OUT" | grep -c "^ok ")
+  pass "cuesheet.test.js: $CS_N engine assertions pass (five pre-mix gates, three layers, no-bed-is-dry rule, mix verdicts, export traces)"
+else
+  fail "cuesheet.test.js failures:"
+  echo "$CS_OUT" | grep "^FAIL" | head -8 | sed 's/^/    /'
+  CS_OK=0
+fi
+
 # Cutting Room → Green Light bridge button present (rendered by cutting-room.js)
 if grep -q "cr-greenlight" assets/js/cutting-room.js && grep -q "cr-greenlight" site/assets/js/cutting-room.js; then
   pass "cutting-room → green-light bridge wired (button + handler)"

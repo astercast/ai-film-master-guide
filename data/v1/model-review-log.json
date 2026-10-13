@@ -1128,6 +1128,87 @@
     }
    ],
    "outcome": "Final re-baseline published (2026-10-13T12:55Z): changed=0, with_errors=0, no_sources=0. The queue holds exactly the 3 standing watches, their notes carrying this pass's re-check lines. Drift: 12 alerts (the 12 partial records above), 5 watch, 15 ok, 0 unwatched; unpublished rates stay 5; pricing diff vs the 2026-10-11 baseline stays 7 rows. History stands at 107 events (87 in the October window); this log at 21 entries. No model record moved in the pass."
+  },
+  {
+   "id": "2026-10-13-review-pass-12",
+   "reviewed_at": "2026-10-13",
+   "reviewer": "Watchtower 2.13 review pass (agent)",
+   "scope": "Eleventh review pass over all 32 watched models: the 3 standing watches (Seedance 3.0 unconfirmed; Kling 4.0 'announced' without a GA model ID or Kuaishou pricing; Soul Cinema's in-app credit cost), the standing FLUX 3 Video rate-source follow-up, PixVerse V6's third-clean-pass question left by 2.12, and every flag the pass's checker runs raised. No model record moved.",
+   "method": "All verdicts rest on disk-verified artifacts: checker runs launched detached (setsid launcher scripts writing PID/status files and logs to a durable fleet-ops path after a /tmp wipe mid-pass destroyed the first runs' scratch logs — the feeds themselves live in data/v1 and were never at risk), with a process-table check before each launch showing zero checker processes and exactly one during each run; and checker-path probes (importing scripts/refresh/check_models.py's own fetch/clean_text) for every adjudication. Run history: run 1 (14:08–14:18Z) completed, changed=6, with_errors=0 — the adjudication run. Run 2 (14:31–14:40Z), the first re-baseline after the 2.13 Zacks calibration, completed with changed=1 (FLUX 3 Video on The Decoder, adjudicated and dismissed below). Run 3 (14:42–14:50Z) completed with changed=1 — FLUX again, on eWeek, which had fetched the pass's original baseline signature: the alternation proof behind the second 2.13 calibration. Run 4, the final re-baseline after both calibrations, is the published feed and is recorded in the addendum.",
+   "flag_reviews": [
+    {
+     "model": "Veo 3.1",
+     "flagged_source": "scriptbyai.com/gpt-gemini-claude-pricing/",
+     "verdict": "dismissed-churn",
+     "basis": "Run 1 flagged the page at 7783188d… (45,760 chars) against 45717f00… (46,273). Two checker-path probes returned the flagged signature exactly. Its Veo 3.1 table (Standard $0.40/s at 720p/1080p, $0.60 at 4K; Fast $0.15/$0.35; Light $0.05/$0.08) carries Google's long-standing published per-second rates, and the page's own changelog dates its last Veo change to 31 March 2026 — the −513-char delta sits in the other vendors' tables the page tracks. No Veo 3.1 fact moved."
+    },
+    {
+     "model": "Wan 3.0 / 3.0 Prime",
+     "flagged_source": "zacks.com/stock/news/2979739/alibabas-wan-30-ai-debut-follows-102b-share-sale-whats-ahead",
+     "verdict": "dismissed-churn-calibrated",
+     "basis": "Second consecutive pass flagging this source (2.12: 9756a800…, 15,877 chars; run 1 here: 38edd398…, 15,897). Two probes returned the flagged signature exactly, and the article is the same 25 August 2026 equity story whose Wan content is the launch coverage already behind the record. Its chrome rotates between days while staying stable within one, so the URL is signature-excluded for this model in the 2.13 calibration (still fetched and recorded every run), following the 2.12 magichour precedent."
+    },
+    {
+     "model": "LTX-2.5",
+     "flagged_source": "roboticsandautomationnews.com/2026/08/13/ltx-launches-new-free-to-use-open-world-model-for-video-and-physical-ai/104079/",
+     "verdict": "dismissed-churn",
+     "basis": "Run 1 flagged the article at 2432801d… (14,203 chars) against b6a3d18f… (14,227) — a −24-char delta. Two probes returned the flagged signature exactly; the article is the 13 August 2026 launch coverage already behind the record, its only money figure the under-$10M-revenue free-use threshold the record already carries."
+    },
+    {
+     "model": "Runway Gen-4.5",
+     "flagged_source": "runwayml.com/pricing",
+     "verdict": "dismissed-shell-variance",
+     "basis": "Run 1 flagged the vendor's own pricing page at a1b50174… (1,071 chars) against a 431-char baseline (4b28e43e…). Both renderings are JavaScript app shells — navigation, plan names, an SVG path, the static '$12/month' title — with no plan prices and no Gen-4.5 credit rate in either; one adjudication probe timed out, the next returned the flagged signature exactly. First flag on this URL: dismissed without exclusion; the record's figures stay signature-live on the model's remaining sources. A second flag earns the exclusion."
+    },
+    {
+     "model": "FLUX 3 Video",
+     "flagged_source": "eweek.com/news/black-forest-labs-flux-3-multimodal-ai-robotics/",
+     "verdict": "dismissed-churn-calibrated",
+     "basis": "Run 1 fetched a +1-char variant (eccde171…, 3,262) against the baseline (4ad61061…, 3,261); two probes returned the variant exactly and the article is the July launch story already behind the record. Run 3 fetched the baseline rendering again — the page alternates renderings within the pass (the 2.12 magichour pattern) — so the URL is signature-excluded for this model in the 2.13 calibration (still fetched and recorded every run). The rate stays signature-live on BFL's docs pricing page, at baseline for an eighth consecutive pass."
+    },
+    {
+     "model": "Wan 2.7",
+     "flagged_source": "createvision.ai/wan-2.7",
+     "verdict": "dismissed-churn",
+     "basis": "Run 1 flagged the reseller's model page at 985bfeab… (67,855 chars) against 4d5b9447… (68,640). Two probes returned the flagged signature exactly. Its credit table (40 credits/s at 720p) is CreateVision's own reseller-pool pricing, not a Wan rate the record rests on, and its Wan 2.7 facts (2–15s, native audio, per-second billing) match the record."
+    },
+    {
+     "model": "FLUX 3 Video",
+     "flagged_source": "the-decoder.com/black-forest-labs-makes-flux-3-video-generally-available-and-claims-it-beats-seedance-2-0/",
+     "verdict": "dismissed-churn",
+     "basis": "Run 2 flagged the GA article at 51544f3b… against ac5ba291…, at identical length (3,906 chars). Two probes returned the flagged signature exactly; the article is the 5 August 2026 general-availability story already behind the record, its pricing lines BFL's launch pricing, and BFL's docs page held baseline in the same run. The same-length swap sits in the page's rotating story rails."
+    }
+   ],
+   "failed_source_reviews": [
+    {
+     "group": "Standing host-gated cohort — unchanged",
+     "models": [
+      "The final run's partial records are the standing cohort (Medium ×3 models, MarkTechPost ×3, GlobeNewswire ×2 models, Morningstar, whatsnew.fyi ×2 models, europesays, x.ai, midjourney.com)"
+     ],
+     "verdict": "watch-intact-no-action",
+     "basis": "Every failure in the final run is a host gate already adjudicated in earlier passes; none touches a decision — every standing watch's criteria page answered through the checker's own path or checker-path probes this pass."
+    }
+   ],
+   "outcome": "All 3 standing watches stand on checker-path evidence gathered this pass: Seedance 3.0 unconfirmed (criteria page at 506d7e9d… in the runs and two probes, still listing it as announced by no vendor as of 1 October); Kling 4.0 stays 'announced' (APIMart at its baseline fc55ce30… for an eighth consecutive pass); Soul Cinema's in-app credit cost still unpublished (428-char shell at f14e9f4a… in probes). FLUX's docs rate source held its baseline rendering (cb1e92d1…, 9,875 chars) inside the completed runs and probes — an eighth consecutive pass. PixVerse V6's docs source fetched clean at its baseline signature (95c88c96…) with all five sources answering — the third consecutive clean pass, claimed here. Flags: 7 raised, 7 dismissed, 2 calibrations (Zacks for Wan 3.0; eWeek for FLUX 3 Video). History 107 → 119 events (October window 87 → 99); this log at 23 entries with the addendum. The final feed is recorded in the pass-12 addendum."
+  },
+  {
+   "id": "2026-10-13-review-pass-12-addendum",
+   "reviewed_at": "2026-10-13",
+   "reviewer": "Watchtower 2.13 review pass (agent)",
+   "scope": "The final re-baseline checker run after pass 12's adjudication and the two 2.13 calibrations (2026-10-13T15:08Z), which set the published feed.",
+   "method": "Single detached checker process (run 4, launched after a ps-verified zero-checker check, exactly one verified during; EXIT 0 read from its on-disk status file). The run diffed against run 3's feed with both calibrations live, so its changed=0 also proves both: the Zacks URL no longer feeds change detection for Wan 3.0, and the alternating eWeek URL no longer feeds it for FLUX 3 Video.",
+   "flag_reviews": [],
+   "failed_source_reviews": [
+    {
+     "group": "Final-run failures — the standing cohort, stamps stay, labelled as observed",
+     "models": [
+      "The final run's partial records are the standing host-gated cohort only (Medium ×3 models, MarkTechPost ×3, GlobeNewswire ×2 models, Morningstar, whatsnew.fyi ×2 models, europesays, x.ai, midjourney.com)"
+     ],
+     "verdict": "watch-intact-no-action",
+     "basis": "Every failure in the final run is a host gate already adjudicated in earlier passes; none touches a decision — every standing watch's criteria page answered this pass."
+    }
+   ],
+   "outcome": "Final feed 2026-10-13T15:08Z: changed=0, with_errors=0, no_sources=0. Drift 12 alerts / 5 watch / 15 ok, 0 unwatched — the alerts are exactly the final run's partial records (the standing host-gated cohort). Unpublished rates 5; pricing diff vs the 2026-10-11 baseline 7 rows. The queue holds exactly the 3 standing watches, their notes carrying this pass's re-check lines."
   }
  ]
 }

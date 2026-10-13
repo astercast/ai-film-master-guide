@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cue sheet — AI Film Master Guide</title>
+  <meta name="description" content="The sound, music & audio chapter as a working cue sheet: the five pre-mix gates, every scene logged with its three layers and dialogue route, and the mix verdict computed from the chapter's own rules — no bed means dry, a missing layer holds the mix.">
+  <link rel="preload" href="assets/fonts/anton-latin-normal-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/fonts.css">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/motifs.css">
+  <link rel="stylesheet" href="assets/css/docs.css">
+  <link rel="stylesheet" href="assets/css/home.css">
+  <link rel="stylesheet" href="assets/css/print.css">
+  <style>
+    .cs-verdict { font-size: 1.05rem; border-left: 3px solid var(--gold); padding-left: var(--space-4); margin-bottom: var(--space-6); }
+    .cs-held { border-left-color: #e88; }
+    .cs-gate-card, .cs-entry { border: 1px solid var(--line); border-radius: 12px; padding: var(--space-4) var(--space-5); margin-bottom: var(--space-4); }
+    .cs-gate-head, .cs-entry-head { display: flex; align-items: baseline; gap: var(--space-3); flex-wrap: wrap; }
+    .cs-gate-head h4, .cs-entry-head h4 { margin: 0; font-size: 1.2rem; }
+    .cs-num { display: inline-block; min-width: 1.7em; text-align: center; background: var(--gold); color: #111; border-radius: 999px; font-weight: 800; padding: .1em .3em; }
+    .cs-tag { margin-left: auto; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+    .cs-what, .cs-detail, .cs-state { color: var(--muted); }
+    .cs-state strong { color: var(--text); }
+    .cs-note { font-size: .85rem; }
+  </style>
+  <meta name="theme-color" content="#090807">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="canonical" href="https://ai-film-master-guide-live.vercel.app/cuesheet">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Cue sheet — AI Film Master Guide">
+  <meta property="og:description" content="The sound, music & audio chapter as a working cue sheet: the five pre-mix gates, every scene logged with its three layers and dialogue route, and the mix verdict computed from the chapter's own rules — no bed means dry, a missing layer holds the mix.">
+  <meta property="og:image" content="https://ai-film-master-guide-live.vercel.app/assets/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cue sheet — AI Film Master Guide">
+  <meta name="twitter:description" content="The sound, music & audio chapter as a working cue sheet: the five pre-mix gates, every scene logged with its three layers and dialogue route, and the mix verdict computed from the chapter's own rules — no bed means dry, a missing layer holds the mix.">
+  <meta name="twitter:image" content="https://ai-film-master-guide-live.vercel.app/assets/og-card.png">
+</head>
+<body>
+  <div class="edge-right" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html">Guide</a>
+        <a href="cutting-room.html">Cutting room</a>
+        <a href="teardown.html">Teardowns</a>
+        <a href="workshop.html">Workshop</a>
+        <a href="models/">Models</a>
+        <a href="compare.html">Compare</a>
+        <details class="nav-idx"><summary class="nav-idx-btn is-current"><span>Index</span><span class="nav-idx-caret" aria-hidden="true">▾</span></summary><div class="nav-idx-panel"><div class="nav-idx-group"><p>On the bench</p><ul><li><a href="prompts.html">Prompts</a></li><li><a href="shots.html">Shot list</a></li><li><a href="style-bible.html">Style bible</a></li><li><a href="budget.html">Budget</a></li><li><a href="optimizer.html">Optimizer</a></li><li><a href="doctor.html">Doctor</a></li><li><a href="linter.html">Linter</a></li><li><a href="greenlight.html">Green light</a></li><li><a href="clearance.html">Script clearance</a></li><li><a href="continuity.html">Continuity ledger</a></li><li><a href="cuesheet.html" aria-current="page">Cue sheet</a></li><li><a href="recipes.html">Recipes</a></li><li><a href="forge.html">Episode forge</a></li></ul></div><div class="nav-idx-group"><p>Study</p><ul><li><a href="manifesto.html">Manifesto</a></li><li><a href="craft-not-buttons.html">Craft, not buttons</a></li><li><a href="field-guides/">Field guides</a></li><li><a href="checks/">Knowledge checks</a></li><li><a href="quiz.html">Quiz</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="model-watch.html">Model watch</a></li><li><a href="showdown.html">Model showdown</a></li></ul></div><div class="nav-idx-group"><p>For agents</p><ul><li><a href="skills.html">Skills</a></li><li><a href="skill-spec.html">Skill spec</a></li><li><a href="api.html">API</a></li><li><a href="changelog.html">Changelog</a></li></ul></div></div></details>
+      </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">&#9679;</span> <span class="hdr-tc-val">00:59:52:00</span></span>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">&#8984;K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-cutroom" aria-labelledby="cs-title-h">
+      <div class="tl-deck" aria-hidden="true">
+        <div class="tl-chrome">
+          <span class="tl-rec"><i></i>REC</span>
+          <span class="tl-tc-live" data-tl-tc>00:00:04:00</span>
+          <span class="tl-pop">2-POP 01:00:06:00 &#183; &#x223F;1kHz</span>
+          <span class="tl-title">SOUND — THE_CUE_SHEET</span>
+        </div>
+        <div class="tl-ruler">
+          <span style="left:0%">00:00:00:00</span><span style="left:20%">00:00:12:00</span><span style="left:40%">00:00:24:00</span><span style="left:60%">00:00:36:00</span><span style="left:80%">00:00:48:00</span><span style="left:100%">00:01:00:00</span>
+        </div>
+        <div class="tl-tracks">
+          <div class="tl-track"><span class="tl-track-label">V2</span>
+            <span class="clip is-blue" style="left:2.0%;width:96.0%">The mix</span>
+          </div>
+          <div class="tl-track"><span class="tl-track-label">V1</span>
+            <span class="clip is-gold" style="left:2.0%;width:30.7%">Bed</span>
+            <span class="clip is-gold" style="left:34.7%;width:30.7%">Foley</span>
+            <span class="clip is-gold" style="left:67.3%;width:30.7%">Accents</span>
+          </div>
+          <div class="tl-track"><span class="tl-track-label">A1</span>
+            <span class="clip is-rec" style="left:2.0%;width:96.0%">Dialogue</span>
+          </div>
+          <div class="tl-playhead"></div>
+        </div>
+        <div class="leader-frame" data-leader-frame><b>3</b><span class="lf-label">LEADER</span></div>
+      </div>
+      <div class="container hero-inner">
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>The cutting room</span>
+        <h1 id="cs-title-h">Cue <span class="accent">sheet.</span></h1>
+        <p class="lede">Sound is half the picture. The five gates before the mix, every scene logged with its three layers — bed, foley, accents — and its dialogue route, and the mix verdict from the sound chapter's own rules: no bed means dry, and a thin scene holds the mix.</p>
+         
+      </div>
+    </section>
+    <section class="container" aria-labelledby="cs-h">
+      <h2 id="cs-h">The five gates — before the mix</h2>
+      <p>The sound chapter opens with the claim every AI filmmaker pays to learn: sound is half the picture, and finished films are designed, not slapped together. The five gates below are the chapter's own pre-mix discipline; the full chapter is <a href="craft/sound-music-audio.html">Sound, Music &amp; Audio</a>. Tick a gate when the production has actually done it — the sheet counts what is written down, not intentions.</p>
+      <div id="cs-gates"><article class="cs-gate-card"><div class="cs-gate-head"><span class="cs-num">1</span><h4>Voice Bible written for every speaking character</h4><span class="cs-tag">Pre-mix gate</span></div><p class="cs-what">Register, timbre, tempo, manner — written per character before generating, and referenced by every generation after. Test the voice on the character&#x27;s hardest line first, not a demo sentence: a voice that collapses on the hardest scene was never cast.</p><p><label><input type="checkbox" data-cs-gate="bible"> Done — the gate is written down</label></p></article><article class="cs-gate-card"><div class="cs-gate-head"><span class="cs-num">2</span><h4>Dialogue route chosen per scene — never mixed mid-scene</h4><span class="cs-tag">Pre-mix gate</span></div><p class="cs-what">Road A, native: the model generates picture plus synced dialogue in one pass — best for short lines and ambient realism. Road B, decoupled: silent clip, separately produced voice, a lip-sync pass that reshapes only the mouth. Rule of thumb: if the words must be exact, take Road B.</p><p><label><input type="checkbox" data-cs-gate="routes"> Done — the gate is written down</label></p></article><article class="cs-gate-card"><div class="cs-gate-head"><span class="cs-num">3</span><h4>Score briefed per cue, cut to the locked cut</h4><span class="cs-tag">Pre-mix gate</span></div><p class="cs-what">Brief by emotional function, not genre — genre, tempo, instrumentation, the cue&#x27;s job, what to avoid — and generate 3–5 variants per cue to comp. Temp-track discipline: cut to a temp score first, then generate the final score to the locked cut. Never score a moving target.</p><p><label><input type="checkbox" data-cs-gate="lockedcut"> Done — the gate is written down</label></p></article><article class="cs-gate-card"><div class="cs-gate-head"><span class="cs-num">4</span><h4>Stems kept for the score and the voices</h4><span class="cs-tag">Pre-mix gate</span></div><p class="cs-what">Dialogue ducks badly under a full stereo mix; stems let the mix breathe. Keep the score&#x27;s stems and every voice take separate until the mix is signed off — a bounced stereo pair is a decision you cannot unmake.</p><p><label><input type="checkbox" data-cs-gate="stems"> Done — the gate is written down</label></p></article><article class="cs-gate-card"><div class="cs-gate-head"><span class="cs-num">5</span><h4>Generation receipts saved for every AI voice and cue</h4><span class="cs-tag">Pre-mix gate</span></div><p class="cs-what">AI-generated music and voices sit in the murkiest rights territory in the guide. Keep the receipts — prompts, dates, tool, terms version — for every generated voice and cue, and read the rights chapter before distributing anything with AI music in it.</p><p><label><input type="checkbox" data-cs-gate="receipts"> Done — the gate is written down</label></p></article></div>
+      <p class="calc-note" id="cs-gates-state" aria-live="polite">Gates complete: 0 of 5 — the gates are the discipline before any scene is judged; finish them first.</p>
+      <h2>Your cue sheet</h2>
+      <p>Log every scene with the three layers the chapter requires — the ambient bed, the foley that makes movement physical, the accents that land the story beats — and the dialogue route chosen for it: decoupled when the words must be exact, native for short ambient lines, never mixed mid-scene. Mark each scene as it stands today: designed, thin, or dry. One rule is mechanical: a scene with no bed reads dry whatever you claim, because the bed runs under everything and never drops to digital silence. The sheet opens on a worked example — the same small AI short the Continuity Ledger tracks, heard instead of seen — with the rain stop's foley not yet laid, so the first verdict you see is the honest hold.</p>
+      <div class="card" style="margin-bottom:var(--space-6);">
+        <div class="calc-grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
+          <div class="field">
+            <label for="cs-title">Production title</label>
+            <input class="input" type="text" id="cs-title" placeholder="e.g. The Night Bus">
+          </div>
+          <div class="field">
+            <label for="cs-new-scene">New scene</label>
+            <input class="input" type="text" id="cs-new-scene" placeholder="e.g. Sc 6 — Rooftop, dawn">
+          </div>
+          <div class="field">
+            <label for="cs-new-route">Dialogue route</label>
+            <select class="input" id="cs-new-route"><option value="decoupled">Decoupled — voice built separately, lip-sync pass</option><option value="native">Native — model generates picture + dialogue</option><option value="none">No dialogue — sound design only</option></select>
+          </div>
+          <div class="field">
+            <label for="cs-new-detail">What the layers are — specifically, physically</label>
+            <input class="input" type="text" id="cs-new-detail" placeholder="e.g. Bed: dawn birds, distant traffic. Foley: gravel steps.">
+          </div>
+          <div class="field">
+            <label for="cs-new-status">State today</label>
+            <select class="input" id="cs-new-status"><option value="designed">Designed — built and checked</option><option value="thin">Thin — a layer missing or rough</option><option value="dry">Dry — drops to digital silence</option></select>
+          </div>
+          <div class="field">
+            <label>Layers laid</label>
+            <p style="margin:.2em 0;">
+              <label><input type="checkbox" id="cs-new-bed" checked> Bed</label>
+              <label><input type="checkbox" id="cs-new-foley" checked> Foley</label>
+              <label><input type="checkbox" id="cs-new-accents" checked> Accents</label>
+            </p>
+          </div>
+          <div class="field">
+            <label aria-hidden="true">&nbsp;</label>
+            <button type="button" class="btn" id="cs-add">Add scene to the sheet</button>
+          </div>
+        </div>
+        <p class="calc-note" id="cs-msg" hidden></p>
+      </div>
+      <p class="cs-verdict" id="cs-verdict" aria-live="polite">Hold the mix — 1 scene is thin: a layer is missing or rough. Work the build order — dialogue first, then the SFX bed, then music last; a thin scene finished under a full score stays thin.</p>
+      <div id="cs-stage"><article class="cs-entry"><div class="cs-entry-head"><h4>Sc 1 — Depot at night, Mara waits</h4><span class="cs-tag">Decoupled</span></div><p class="cs-detail">Bed: depot room tone, rain on the canopy. Foley: boots on wet concrete, bag set down. Accent: the departure-board flip on her line.</p><p class="cs-layers" role="group" aria-label="Layers present in Sc 1 — Depot at night, Mara waits"><button type="button" class="btn btn-sm" data-cs-layer="0:bed" aria-pressed="true">Bed ✓</button> <button type="button" class="btn btn-sm" data-cs-layer="0:foley" aria-pressed="true">Foley ✓</button> <button type="button" class="btn btn-sm" data-cs-layer="0:accents" aria-pressed="true">Accents ✓</button></p><p class="cs-state">State: <strong>Designed — built and checked</strong></p><p class="cs-states" role="group" aria-label="Set the state for Sc 1 — Depot at night, Mara waits"><button type="button" class="btn btn-sm" data-cs-set="0:designed">Designed — built and checked</button> <button type="button" class="btn btn-sm btn-ghost" data-cs-set="0:thin">Thin — a layer missing or rough</button> <button type="button" class="btn btn-sm btn-ghost" data-cs-set="0:dry">Dry — drops to digital silence</button></p><p><button type="button" class="btn btn-sm btn-ghost" data-cs-del="0">Remove scene</button></p></article><article class="cs-entry"><div class="cs-entry-head"><h4>Sc 2 — On the bus, the hardest line</h4><span class="cs-tag">Decoupled</span></div><p class="cs-detail">Voice per the Voice Bible (chest register, unhurried, flat warmth), comped from paragraph takes. Bed: engine idle under everything. Accent: ticket punch on the turn.</p><p class="cs-layers" role="group" aria-label="Layers present in Sc 2 — On the bus, the hardest line"><button type="button" class="btn btn-sm" data-cs-layer="1:bed" aria-pressed="true">Bed ✓</button> <button type="button" class="btn btn-sm" data-cs-layer="1:foley" aria-pressed="true">Foley ✓</button> <button type="button" class="btn btn-sm" data-cs-layer="1:accents" aria-pressed="true">Accents ✓</button></p><p class="cs-state">State: <strong>Designed — built and checked</strong></p><p class="cs-states" role="group" aria-label="Set the state for Sc 2 — On the bus, the hardest line"><button type="button" class="btn btn-sm" data-cs-set="1:designed">Designed — built and checked</button> <button type="button" class="btn btn-sm btn-ghost" data-cs-set="1:thin">Thin — a layer missing or rough</button> <button type="button" class="btn btn-sm btn-ghost" data-cs-set="1:dry">Dry — drops to digital silence</button></p><p><button type="button" class="btn btn-sm btn-ghost" data-cs-del="1">Remove scene</button></p></article><article class="cs-entry"><div class="cs-entry-head"><h4>Sc 3 — The rain stop</h4><span class="cs-tag">Decoupled</span></div><p class="cs-detail">Bed: rain on the shelter roof, road hiss. Accents: bus sigh and door chime laid. Foley not laid yet — her walk to the shelter is still silent under the bed.</p><p class="cs-layers" role="group" aria-label="Layers present in Sc 3 — The rain stop"><button type="button" class="btn btn-sm" data-cs-layer="2:bed" aria-pressed="true">Bed ✓</button> <button type="button" class="btn btn-sm btn-ghost" data-cs-layer="2:foley" aria-pressed="false">Foley —</button> <button type="button" class="btn btn-sm" data-cs-layer="2:accents" aria-pressed="true">Accents ✓</button></p><p class="cs-state">State: <strong>Thin — a layer missing or rough</strong></p><p class="cs-states" role="group" aria-label="Set the state for Sc 3 — The rain stop"><button type="button" class="btn btn-sm btn-ghost" data-cs-set="2:designed">Designed — built and checked</button> <button type="button" class="btn btn-sm" data-cs-set="2:thin">Thin — a layer missing or rough</button> <button type="button" class="btn btn-sm btn-ghost" data-cs-set="2:dry">Dry — drops to digital silence</button></p><p><button type="button" class="btn btn-sm btn-ghost" data-cs-del="2">Remove scene</button></p></article><article class="cs-entry"><div class="cs-entry-head"><h4>Sc 4 — Depot office, radio voices</h4><span class="cs-tag">Native</span></div><p class="cs-detail">Short native lines only — nothing word-exact in this scene. Bed: office tone, fluorescent hum. Foley: mug, keys, chair. Accent: radio squelch into the reveal.</p><p class="cs-layers" role="group" aria-label="Layers present in Sc 4 — Depot office, radio voices"><button type="button" class="btn btn-sm" data-cs-layer="3:bed" aria-pressed="true">Bed ✓</button> <button type="button" class="btn btn-sm" data-cs-layer="3:foley" aria-pressed="true">Foley ✓</button> <button type="button" class="btn btn-sm" data-cs-layer="3:accents" aria-pressed="true">Accents ✓</button></p><p class="cs-state">State: <strong>Designed — built and checked</strong></p><p class="cs-states" role="group" aria-label="Set the state for Sc 4 — Depot office, radio voices"><button type="button" class="btn btn-sm" data-cs-set="3:designed">Designed — built and checked</button> <button type="button" class="btn btn-sm btn-ghost" data-cs-set="3:thin">Thin — a layer missing or rough</button> <button type="button" class="btn btn-sm btn-ghost" data-cs-set="3:dry">Dry — drops to digital silence</button></p><p><button type="button" class="btn btn-sm btn-ghost" data-cs-del="3">Remove scene</button></p></article><article class="cs-entry"><div class="cs-entry-head"><h4>Sc 5 — Departure, the button</h4><span class="cs-tag">No dialogue</span></div><p class="cs-detail">No dialogue — the scene plays on design alone. Bed: depot tone thinning as the bus pulls out. Foley: steps, door, pull-away. Accent: one brake sigh under the final frame; score enters only after.</p><p class="cs-layers" role="group" aria-label="Layers present in Sc 5 — Departure, the button"><button type="button" class="btn btn-sm" data-cs-layer="4:bed" aria-pressed="true">Bed ✓</button> <button type="button" class="btn btn-sm" data-cs-layer="4:foley" aria-pressed="true">Foley ✓</button> <button type="button" class="btn btn-sm" data-cs-layer="4:accents" aria-pressed="true">Accents ✓</button></p><p class="cs-state">State: <strong>Designed — built and checked</strong></p><p class="cs-states" role="group" aria-label="Set the state for Sc 5 — Departure, the button"><button type="button" class="btn btn-sm" data-cs-set="4:designed">Designed — built and checked</button> <button type="button" class="btn btn-sm btn-ghost" data-cs-set="4:thin">Thin — a layer missing or rough</button> <button type="button" class="btn btn-sm btn-ghost" data-cs-set="4:dry">Dry — drops to digital silence</button></p><p><button type="button" class="btn btn-sm btn-ghost" data-cs-del="4">Remove scene</button></p></article></div>
+      <div class="card" style="margin-top:var(--space-6);">
+        <h3>Take the sheet</h3>
+        <p>The sheet exports as clean markdown: the five gates with their state, every scene with its route, its layers, and its verdict state, and the mix verdict — the file the mix session starts from.</p>
+        <p><button type="button" class="btn" id="cs-copy">Copy sheet</button> <button type="button" class="btn btn-ghost" id="cs-download">Download sheet (.md)</button></p>
+        <p><a class="btn btn-ghost" href="craft/sound-music-audio.html">Read the sound chapter</a> <a class="btn btn-ghost" href="continuity.html">Continuity ledger</a> <a class="btn btn-ghost" href="studio.html">Studio</a></p>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer"><a href="index.html">Guide</a><a href="skills.html">Skills</a><a href="workshop.html">Workshop</a><a href="quiz.html">Quiz</a><a href="compare.html">Compare</a><a href="gallery.html">Gallery</a><a href="teardown.html">Teardowns</a><a href="model-watch.html">Model watch</a><a href="showdown.html">Showdown</a><a href="forge.html">Episode forge</a><a href="clearance.html">Script clearance</a><a href="continuity.html">Continuity ledger</a><a href="cuesheet.html">Cue sheet</a><a href="checks/">Knowledge checks</a><a href="budget.html">Budget</a><a href="optimizer.html">Optimizer</a><a href="shots.html">Shot list</a><a href="style-bible.html">Style bible</a><a href="doctor.html">Doctor</a><a href="linter.html">Linter</a><a href="cutting-room.html">Cutting room</a><a href="prompts.html">Prompts</a><a href="models/">Models</a><a href="anatomy.html">Anatomy</a><a href="manifesto.html">Manifesto</a><a href="craft-not-buttons.html">Craft, not buttons</a><a href="recipes.html">Recipes</a><a href="field-guides/">Field guides</a><a href="changelog.html">Changelog</a><a href="skill-spec.html">Skill spec</a><a href="api.html">API</a></nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+    </div>
+  </footer>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search" hidden>
+    <div class="palette-box">
+      <input type="search" id="palette-input" placeholder="Search the guide…" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/cuesheet.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
+</body>
+</html>

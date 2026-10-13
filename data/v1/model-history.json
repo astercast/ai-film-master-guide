@@ -1748,6 +1748,126 @@
    "summary": "Flag dismissed (Watchtower 2.12): the final re-baseline run flagged Seedance 3.0 on breakread.com's ByteDance article, whose signature moved +8 chars (31268bd0…, 9,679 → 63a60eae…, 9,687). Two checker-path adjudication fetches returned the flagged signature exactly, and read in full the article is the same 8 September 2026 story adjudicated in 2.10 — a reported real-time world model built on Seedance technology, launch date uncertain, no Seedance 3.0 announcement, model card, API identifier, or pricing — while the watch's criteria page (Versely) held its signature through the same run. The delta is article chrome. No record change.",
    "confidence": "official",
    "source": "Watchtower 2.12 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-seedance-3-0-watch-stands-2-13",
+   "date": "2026-10-13",
+   "model_id": "seedance-3-0",
+   "model": "Seedance 3.0",
+   "kind": "verification",
+   "summary": "Standing watch stands (Watchtower 2.13): still no official announcement — Versely's state-of-the-field criteria page answered at the 2.11 variant signature (506d7e9d…, 12,513 chars) in this pass's checker runs and in two checker-path probes, and read directly it still lists Seedance 3.0 among the models that 'had been announced by no vendor as of 1 October', with no announcement, no API, and no date. The breakread world-model article held the signature 2.12 re-baselined it at (63a60eae…, 9,687 chars) all pass — no re-flag. Watch stays open.",
+   "confidence": "official",
+   "source": "Watchtower 2.13 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-kling-4-0-watch-stands-2-13",
+   "date": "2026-10-13",
+   "model_id": "kling-4-0",
+   "model": "Kling 4.0",
+   "kind": "verification",
+   "summary": "Standing watch stands (Watchtower 2.13): APIMart's criteria page answered at its baseline signature (fc55ce30…, 136,708 chars) in this pass's checker runs and in two checker-path probes — an eighth consecutive pass at the identical signature — still 'API Coming Soon', availability 'Not yet', pricing 'has not been announced'. No GA model ID and no pricing published by Kuaishou. Watch stays open.",
+   "confidence": "official",
+   "source": "Watchtower 2.13 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-soul-cinema-watch-stands-2-13",
+   "date": "2026-10-13",
+   "model_id": "soul-cinema",
+   "model": "Soul Cinema",
+   "kind": "verification",
+   "summary": "Standing watch stands (Watchtower 2.13): the in-app credit cost is still unpublished — Higgsfield's pricing page answered at the settled 428-char app-shell signature (f14e9f4a…) in two checker-path probes with no credit figure, and the API post's rate table still lists only the $0.0032/image API starting rate tabled in 2.3 (across the two probes the post returned two different signatures at identical length, 62,719 chars — the per-request variance it has been signature-excluded for since 2.4). Watch stays open, still narrowed.",
+   "confidence": "official",
+   "source": "Watchtower 2.13 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-flux-docs-baseline-eighth-pass-2-13",
+   "date": "2026-10-13",
+   "model_id": "flux-3-video",
+   "model": "FLUX 3 Video",
+   "kind": "verification",
+   "summary": "Rate-source stability (Watchtower 2.13): BFL's official docs pricing page returned its 9,875-char rendering at the 2.6 baseline signature (cb1e92d1…) inside this pass's completed runs and in two checker-path probes — an eighth consecutive pass at the baseline — its FLUX 3 Video table still matching the record exactly. No rate changed, no pricing record moved. (The model's MarkTechPost source still 403s — standing cohort.)",
+   "confidence": "official",
+   "source": "Watchtower 2.13 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-pixverse-v6-third-clean-pass-2-13",
+   "date": "2026-10-13",
+   "model_id": "pixverse-v6",
+   "model": "PixVerse V6",
+   "kind": "verification",
+   "summary": "Third clean pass (Watchtower 2.13): PixVerse V6's docs source fetched clean at its baseline signature (95c88c96…, 4,278 chars) inside this pass's completed runs and in two checker-path probes, with all five of the model's sources answering in the runs — the 2.10 recovery now stands on three consecutive clean passes. No record change.",
+   "confidence": "official",
+   "source": "Watchtower 2.13 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-veo-3-1-scriptbyai-flag-dismissed-2-13",
+   "date": "2026-10-13",
+   "model_id": "veo-3-1",
+   "model": "Veo 3.1",
+   "kind": "verification",
+   "summary": "Flag dismissed (Watchtower 2.13): run 1 flagged Veo 3.1 on scriptbyai.com's multi-vendor pricing page (45717f00…, 46,273 chars → 7783188d…, 45,760). Two checker-path probes returned the flagged signature exactly. The page's Veo 3.1 table — Standard $0.40/s (720p and 1080p) and $0.60 (4K), Fast $0.15/$0.35, Light $0.05/$0.08 — carries Google's long-standing published per-second rates, and the page's own changelog dates its last Veo change to 31 March 2026; the −513-char delta sits in the other vendors' tables the page tracks. No Veo 3.1 fact moved; dismissed as other-vendor churn on a shared pricing page.",
+   "confidence": "official",
+   "source": "Watchtower 2.13 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-wan-3-0-zacks-flag-dismissed-calibration-2-13",
+   "date": "2026-10-13",
+   "model_id": "wan-3-0",
+   "model": "Wan 3.0 / 3.0 Prime",
+   "kind": "verification",
+   "summary": "Flag dismissed + calibration (Watchtower 2.13): run 1 flagged Wan 3.0 on the Zacks stock-news article for the second consecutive pass (9756a800…, 15,877 chars in 2.12 → 38edd398…, 15,897 chars in this pass's run 1; two checker-path probes returned the flagged signature exactly). Read in full it is the same 25 August 2026 equity story — Alibaba's Wan 3.0 debut following the $10.2B share sale — whose Wan content is the launch coverage already behind the record. The page's chrome rotates between days while staying stable within one, so the URL is signature-excluded for this model in the 2.13 calibration (still fetched and recorded every run), following the 2.12 magichour precedent. No record change.",
+   "confidence": "official",
+   "source": "Watchtower 2.13 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-ltx-2-5-robotics-flag-dismissed-2-13",
+   "date": "2026-10-13",
+   "model_id": "ltx-2-5",
+   "model": "LTX-2.5",
+   "kind": "verification",
+   "summary": "Flag dismissed (Watchtower 2.13): run 1 flagged LTX-2.5 on roboticsandautomationnews.com's launch article (b6a3d18f…, 14,227 chars → 2432801d…, 14,203 — a −24-char delta). Two checker-path probes returned the flagged signature exactly; the article is the 13 August 2026 LTX-2.5 launch coverage already behind the record, and its only money figure is the under-$10M-revenue free-use threshold the record already carries. Dismissed as page chrome.",
+   "confidence": "official",
+   "source": "Watchtower 2.13 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-runway-pricing-shell-flag-dismissed-2-13",
+   "date": "2026-10-13",
+   "model_id": "runway-gen-4-5",
+   "model": "Runway Gen-4.5",
+   "kind": "verification",
+   "summary": "Flag dismissed (Watchtower 2.13): run 1 flagged Runway Gen-4.5 on runwayml.com/pricing — the vendor's own pricing page answered at 1,071 chars (a1b50174…) against a 431-char baseline (4b28e43e…). Both renderings are JavaScript app shells: navigation, plan names, an SVG path, and the page's static '$12/month' title — no plan prices and no Gen-4.5 credit rate in either. An adjudication probe timed out once, then returned the flagged signature exactly. The record's figures (12 credits/s; API $0.12/s) stay signature-live on the model's remaining sources after the 2.12 magichour calibration. First flag on this URL; dismissed as shell variance, no exclusion — a second flag earns one.",
+   "confidence": "official",
+   "source": "Watchtower 2.13 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-flux-eweek-flag-dismissed-calibration-2-13",
+   "date": "2026-10-13",
+   "model_id": "flux-3-video",
+   "model": "FLUX 3 Video",
+   "kind": "verification",
+   "summary": "Flag dismissed + calibration (Watchtower 2.13): run 1 flagged FLUX 3 Video on eWeek's launch article (4ad61061…, 3,261 chars → eccde171…, 3,262 — a +1-char delta); two probes returned the flagged signature exactly, and the article read in full is the July 2026 FLUX 3 launch story already behind the record. Run 3 then fetched the page at the original baseline signature again — the page alternates between the two renderings within one pass, the 2.12 magichour pattern — so the URL is signature-excluded for this model in the 2.13 calibration (still fetched and recorded every run). The rate itself stays signature-live on BFL's docs pricing page, which held baseline all pass. No record change.",
+   "confidence": "official",
+   "source": "Watchtower 2.13 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-wan-2-7-createvision-flag-dismissed-2-13",
+   "date": "2026-10-13",
+   "model_id": "wan-2-7",
+   "model": "Wan 2.7",
+   "kind": "verification",
+   "summary": "Flag dismissed (Watchtower 2.13): run 1 flagged Wan 2.7 on createvision.ai's model page (4d5b9447…, 68,640 chars → 985bfeab…, 67,855). Two checker-path probes returned the flagged signature exactly. The page's credit table (40 credits/s at 720p) is CreateVision's own reseller-pool pricing, not a Wan rate the record rests on, and its Wan 2.7 facts — 2–15s clips, native audio, per-second billing — match the record. Dismissed as reseller-page churn.",
+   "confidence": "official",
+   "source": "Watchtower 2.13 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-flux-decoder-flag-dismissed-2-13",
+   "date": "2026-10-13",
+   "model_id": "flux-3-video",
+   "model": "FLUX 3 Video",
+   "kind": "verification",
+   "summary": "Flag dismissed (Watchtower 2.13): run 2 flagged FLUX 3 Video on The Decoder's general-availability article (ac5ba291… → 51544f3b…, at identical length, 3,906 chars). Two checker-path probes returned the flagged signature exactly; the article is the 5 August 2026 GA story already behind the record — its pricing lines are BFL's launch pricing, and BFL's docs pricing page held its baseline signature in the same run. The same-length swap sits in the page's rotating story rails. Dismissed as page chrome.",
+   "confidence": "official",
+   "source": "Watchtower 2.13 review pass (2026-10-13) — data/v1/model-review-log.json"
   }
  ]
 }
