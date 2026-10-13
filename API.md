@@ -27,9 +27,9 @@ Base path: `data/v1/`
 | `teardowns.json` | 10 shot-by-shot teardowns; prompt reconstructions are analytical, not actual prompts | 8 |
 | `diagnoses.json` | 12 failure diagnoses: symptom → craft diagnosis, fixes, repair-template link, source chapters | 12 |
 | `model-checks.json` | Model-watch freshness feed: per-model last check, source-signature diffs, news headlines | 31 |
-| `model-review-queue.json` | Pending model-watch review items (empty = nothing pending) | 5 |
-| `model-history.json` | Watchtower 2.0 event log: dated `release`/`status`/`price`/`tier`/`verification`/`coverage` events per model (price events carry `before_usd`/`after_usd` only where the record documents both), plus `pricing_baseline` — the pricing table as curated 2026-10-11, which the drift engine diffs the live table against | 48 |
-| `model-review-log.json` | Watchtower review log: the adjudication record for checker flags and failed sources — each pass re-fetches the flagged URLs and records a verdict with its basis (Watchtower 2.2) | 2 |
+| `model-review-queue.json` | Pending model-watch review items (empty = nothing pending) | 4 |
+| `model-history.json` | Watchtower 2.0 event log: dated `release`/`status`/`price`/`tier`/`verification`/`coverage` events per model (price events carry `before_usd`/`after_usd` only where the record documents both), plus `pricing_baseline` — the pricing table as curated 2026-10-11, which the drift engine diffs the live table against | 53 |
+| `model-review-log.json` | Watchtower review log: the adjudication record for checker flags and failed sources — each pass re-fetches the flagged URLs and records a verdict with its basis (Watchtower 2.2–2.3) | 4 |
 | `pricing.json` | Curated pricing table: 31 models with per-tier USD rates (`unit`: `second`/`clip`/`image`), `usd_low`/`usd_high`, `basis` + `confidence` per tier; `status` live/unpublished/discontinued | 31 |
 | `model-updates.md` | Human-readable model changelog (Markdown document, no schema) | — |
 | `schema/` | JSON Schema (draft-07) for every endpoint: `index`, `model`, `prompt-template`, `camera-movement`, `checklist`, `glossary`, `competition`, `teardown`, `diagnosis`, `model-checks`, `model-review-queue`, `model-history`, `model-review-log` | 13 |

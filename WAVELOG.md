@@ -1,5 +1,111 @@
 # Wave Log — AI Film Master Guide
 
+## Watchtower 2.3 — the second review pass (2026-10-12)
+
+**Assignment:** Rotation 4 — work everything 2.2 left open by design: the
+one fresh Vidu S2 flag, the 5 standing watches, and the 10 adjudicated
+partial records whose third-party sources bot-block the checker.
+Adjudicate against the standing criteria written in advance (no GA model
+ID + no published pricing = stays "announced" — the Kling 4.0 rule),
+record verdicts in the review log + history, keep the drift board honest,
+never promote on third-party churn. Plus the 2.2 process lesson: check
+for a live checker process before starting one — done (`pgrep` clean
+before launch; the re-baseline ran as a single process, ~10.5 min).
+
+**The flag — dismissed with proof.** Vidu S2's flagged page
+(lapaasvoice.com, a third-party blog) was fetched twice: its signature is
+identical across fetches **and identical to the flagged run's stored
+signature** — the "move" was the page settling against the older
+baseline. Its claims (S2-Avatar, S2-Editing, 720p real-time) are the
+record's own launch facts; it publishes no rate; Vidu's official pricing
+page signature never moved (66450841…). No record change.
+
+**The standing watches — one resolved, one verified, one narrowed, two
+unchanged.**
+- **MiniMax H3 — resolved, watch retired.** The drop the watch was set
+  for (open weights, Aug 3, base checkpoint) was already on record; what
+  was missing was the license term the watch asked for. The record now
+  carries it: the H3 Community License excludes local deployment in the
+  US, EU, UK, and South Korea (hosted API unaffected) — per the official
+  Hugging Face model card, corroborated by multiple independent sources.
+- **Wan 2.7 — verified, addition queued.** It clears the desk's criteria:
+  official Alibaba Cloud model IDs (wan2.7-t2v/-i2v/-r2v/-videoedit) and
+  published list pricing (¥0.6/s 720p, ¥1.0/s 1080p; fal hosts the same
+  card at $0.10/$0.15). A new model still enters through the
+  research-artifact chain as its own records change (the PixVerse path),
+  not a review-pass edit — the watch stays open, marked verified.
+- **Soul Cinema — first published rate, watch narrowed.** Higgsfield's
+  own API post tables a **$0.0032/image starting rate** (confirmed with
+  the checker's fetch path, not just search snippets). Tabled in
+  `pricing.json` (tier `api-image`, confidence official) + the model
+  record; the watch narrows to the still-unpublished in-app credit cost.
+- **Kling 4.0 — still announced.** APIMart still lists the API as a
+  preview ("prices and billing rules will be published when access is
+  confirmed"); the hero banner is unchanged; no GA model ID, no pricing.
+  The criteria are the criteria.
+- **Seedance 3.0 — still unconfirmed.** No official ByteDance
+  announcement exists in current coverage; the field is third-party
+  explainers and an unofficial fan site.
+
+**Failed sources — cohort unchanged, one condition settled.** All 14
+re-probed: the 403 bot-blocks (Medium ×3 models, MarkTechPost ×3,
+GlobeNewswire ×2, Morningstar, x.ai, midjourney.com) and the whatsnew.fyi
+429 persist; every partial record still has an official source answering.
+ABNewswire answered in the 00:13Z feed, so **2.2's third-consecutive-
+failure swap condition does not trigger**. The re-baseline run
+(2026-10-13T00:34Z) then produced the pass's one surprise: **Wan 2.6
+all_failed** — all three of its sources timed out in a slow run. All
+three answered on immediate re-probe (200/200/200, exact stored URLs);
+recorded in the review log as a pass-2 addendum, verdict
+recovered-no-action, and the all_failed stamp stays on the feed until
+the next run — weather, honestly labeled.
+
+**Feed state:** changed=0, with_errors=1 (the Wan 2.6 timeout case),
+no_sources=0. Queue: **4 standing watches** (the Vidu flag cleared on
+signature match; the H3 watch retired). Drift: **12 alerts** (11
+adjudicated partials + Wan 2.6), 4 watch, 15 ok, 0 unwatched;
+unpublished rates **6 → 5**; pricing diff vs the 2026-10-11 baseline
+**5 → 6 rows**. History 48 → **53 events** (4 verification + Soul
+Cinema's first price event). Review log: pass 2 + addendum (4 entries).
+
+**One real bug caught by the tests.** The first Soul Cinema cost line
+("API: $0.0032/image…") was parsed by the Studio engine's
+`costPerImage` regex as **0.0032 credits** — a USD figure in a credits
+field — which made Soul Cinema the cheapest still on the board and
+moved the documented Night Bus worked example ($20.64 → $20.42, bible
+avoided 1.92 → 0.05 credits). Caught by `studio.test.js` +
+`agent-workflows.test.js`, fixed at the source: the record now states
+the credit cost is unpublished and gives the API rate as USD per image
+in words. The pricing table — the machine-readable rate — carries the
+figure; the worked examples are untouched and pass as documented.
+
+**Validation:** `scripts/watchtower.test.js` **15/15** (pins moved to
+the new feed: 12 alerts with the exact id set incl. wan-2-6, Soul Cinema
+watch-by-own-tier, diff = 6 rows incl. the api-image tier).
+`tests/api.test.sh` **55/55** (October window 29 → 34, price diff 5 → 6,
+drift alerts 11 → 12). `scripts/studio.test.js` **70/70**,
+`agent-workflows.test.js` all pass. `bash scripts/validate.sh`
+**17 passed, 1 failed** pre-commit — the stage-5 skills zero-diff check,
+the expected uncommitted state (the 2 regenerated skill files carry this
+wave's record edits; goes green on commit, the standing pattern).
+Headless-Chromium screenshots inspected (desktop 1440px + mobile
+390px): cutting-room board intact, freshness badge reads the new
+00:34 UTC feed, drift line reads "12 need review · 4 on watch · 0
+without an automated source watch · 5 without a published rate", drift
+rows carry checked/verified stamps, Soul Cinema's rate on the page.
+AI-ism scan on new copy: clean. Drive-by fix: `api.html` said 29 models;
+it's 31.
+
+**Left open:** the 4 standing watches (Seedance 3.0 confirmation,
+Kling 4.0 GA, Wan 2.7's artifact-chain addition — verified and ready,
+Soul Cinema's in-app credit cost). The 11 partial records will keep
+surfacing as alerts while their third-party sources bot-block the
+checker — adjudicated twice now, documented, honest. Wan 2.6's
+all_failed stamp clears on the next run if the sources answer, as they
+did on re-probe. LTX-2.5's ltx.io note from 2.1 stands.
+
+**Commit:** (recorded below after push)
+
 ## Watchtower 2.2 — the first review pass + signature calibration (2026-10-12)
 
 **Assignment:** Watchtower follow-ups — build what 2.1 left undone. Its

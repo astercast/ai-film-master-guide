@@ -58,7 +58,10 @@ Secrets live only in Vercel, never in either repo.
   never a record change. Flags are adjudicated in
   `data/v1/model-review-log.json` (re-fetch, verdict, basis) before the
   queue clears; the checker re-run after a pass sets the new baseline.
-  Current state: 48 history events, queue at 6 (5 standing watches + 1 fresh flag).
+  Current state (Watchtower 2.3): 53 history events, queue at 4 standing
+  watches (MiniMax H3 watch retired — resolved; Wan 2.7 verified, addition
+  queued as its own artifact-chain records change). Latest feed:
+  changed=0, 12 drift alerts (11 adjudicated partials + 1 timeout case).
 - `vercel.json` in live repo: valid JSON, `outputDirectory: "."`,
   `functions` lists the 5 routes as explicit paths with
   `{"maxDuration": 10}`, crons + headers carried over from the working

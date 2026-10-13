@@ -1147,6 +1147,60 @@
       "summary": "Watchtower calibration: the re-baseline run flagged 17 models, and the flags traced to signature-unstable pages — GitHub blob pages embed per-request nonces (two consecutive fetches, two signatures) and now sit outside the change signature globally, and 26 blog/listing/homepage URLs with rotating rails were excluded per-model. Every source is still fetched and recorded each run; no model record changed.",
       "confidence": "official",
       "source": "Watchtower 2.2 calibration (2026-10-12) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-12-vidu-s2-flag-reviewed",
+      "date": "2026-10-12",
+      "model_id": "vidu-s2",
+      "model": "Vidu S2",
+      "kind": "verification",
+      "summary": "Review pass: the flagged source is a third-party blog post (lapaasvoice.com) whose page is signature-stable across repeat fetches and identical to the flagged run — the move was against the older baseline. Its claims (S2-Avatar, S2-Editing, 720p real-time) match the record, it publishes no rate, and Vidu's official pricing page signature is unchanged. No record change.",
+      "confidence": "official",
+      "source": "Watchtower 2.3 review pass (2026-10-12) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-12-kling-4-0-watch-rechecked",
+      "date": "2026-10-12",
+      "model_id": "kling-4-0",
+      "model": "Kling 4.0",
+      "kind": "verification",
+      "summary": "Standing watch re-checked: APIMart still lists the Kling 4.0 API as a preview ('Not yet... prices and billing rules will be published when access is confirmed') and the klingai.com hero is unchanged. Still no GA model ID in the official API docs and no published pricing — the watch's own criteria. Record stays announced, Flash early access only.",
+      "confidence": "official",
+      "source": "Watchtower 2.3 review pass (2026-10-12) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-12-soul-cinema-first-rate",
+      "date": "2026-10-12",
+      "model_id": "soul-cinema",
+      "model": "Soul Cinema",
+      "kind": "price",
+      "summary": "First published Soul Cinema rate: Higgsfield's own API post lists a $0.0032/image starting rate, now tabled in pricing.json. The in-app per-image credit cost is still unpublished, so the standing watch narrows to that figure.",
+      "tier": "api-image",
+      "before_usd": null,
+      "after_usd": 0.0032,
+      "unit": "image",
+      "confidence": "official",
+      "source": "higgsfield.ai/blog/higgsfield-api (re-fetched 2026-10-12, Watchtower 2.3)"
+    },
+    {
+      "id": "2026-10-12-minimax-h3-license-noted",
+      "date": "2026-10-12",
+      "model_id": "minimax-h3",
+      "model": "MiniMax H3",
+      "kind": "verification",
+      "summary": "Standing watch resolved: the open-weights drop it was set for (Aug 3, 2026, base checkpoint) is already on record, and the record now also carries the license term the watch asked for — the MiniMax H3 Community License excludes local deployment in the US, EU, UK, and South Korea; the hosted API is unaffected. The watch is retired.",
+      "confidence": "official",
+      "source": "Watchtower 2.3 review pass (2026-10-12) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-12-wan-2-7-watch-verified",
+      "date": "2026-10-12",
+      "model_id": null,
+      "model": "Wan 2.7",
+      "kind": "verification",
+      "summary": "Standing watch verified: Wan 2.7 clears the criteria the desk applies — official Alibaba Cloud model IDs (wan2.7-t2v, wan2.7-i2v, wan2.7-r2v, wan2.7-videoedit) and published list pricing (¥0.6/s at 720p, ¥1.0/s at 1080p; hosted on fal at $0.10/s and $0.15/s), confirmed across independent sources. It is not in models.json yet: adding a model goes through the research-artifact chain as its own records change, not a review-pass edit. The watch stays open until the record lands.",
+      "confidence": "reported",
+      "source": "Watchtower 2.3 review pass (2026-10-12) — data/v1/model-review-log.json"
     }
   ]
 }

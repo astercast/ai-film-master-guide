@@ -1,13 +1,13 @@
 {
   "format": "model-review-queue/1.0",
-  "generated_at": "2026-10-13T00:13:08+00:00",
+  "generated_at": "2026-10-13T00:34:14+00:00",
   "note": "Changed=true means a source page's content signature moved since the last check. This is a review signal, not a confirmed model change (landing pages are marketing copy; diffs may be noise). Promote via the per-item promotion step — never auto-mutate models.json. Items with a `status` and no `detected_at` are standing hand-authored watches, preserved across runs by the checker.",
-  "pending": 6,
+  "pending": 4,
   "items": [
     {
       "model": "Seedance 3.0",
       "status": "reported",
-      "note": "Wave 21 (2026-10-11): still unconfirmed. Watch ByteDance Seed's public model directory; any official Seedance 3 announcement should flip status to active with full spec/pricing.",
+      "note": "Wave 21 (2026-10-11): still unconfirmed. Watch ByteDance Seed's public model directory; any official Seedance 3 announcement should flip status to active with full spec/pricing. Re-checked 2026-10-12 (Watchtower 2.3): no official ByteDance announcement exists in current coverage — watch stays open.",
       "watch": [
         "seedance 3.0 launch",
         "bytedance seedance 3 official"
@@ -16,7 +16,7 @@
     {
       "model": "Kling 4.0",
       "status": "announced",
-      "note": "Wave 21 (2026-10-11): full model promised 'this October' with no date. Watch kling.ai and the official API docs for a GA model ID; on GA, flip status to active and add pricing.",
+      "note": "Wave 21 (2026-10-11): full model promised 'this October' with no date. Watch kling.ai and the official API docs for a GA model ID; on GA, flip status to active and add pricing. Re-checked 2026-10-12 (Watchtower 2.3): APIMart still lists the API as a preview with pricing unpublished — criteria unmet, watch stays open.",
       "watch": [
         "kling 4.0 general availability",
         "kling 4.0 API pricing"
@@ -25,120 +25,19 @@
     {
       "model": "Wan 2.7",
       "status": "not-in-database",
-      "note": "Wave 21 (2026-10-11): Wan 2.7 (Thinking Mode, t2v/i2v/r2v/videoedit, launched ~April 2026) is missing from models.json — a genuine gap, not added because it predates this wave's scope. Next refresh should verify pricing/specs and add it.",
+      "note": "Wave 21 (2026-10-11): Wan 2.7 (Thinking Mode, t2v/i2v/r2v/videoedit, launched ~April 2026) is missing from models.json — a genuine gap. VERIFIED 2026-10-12 (Watchtower 2.3): official Alibaba Cloud model IDs (wan2.7-t2v/-i2v/-r2v/-videoedit) and published list pricing (¥0.6/s 720p, ¥1.0/s 1080p) confirmed across independent sources. Next step: add it through the research-artifact chain (artifact-3 -> build_api.py) with full spec/pricing sourcing, as its own records change.",
       "watch": [
         "wan 2.7 pricing",
         "wan 2.7 API availability"
       ]
     },
     {
-      "model": "MiniMax H3",
-      "status": "active",
-      "note": "Wave 21 (2026-10-11): open weights announced 'in the coming days' July 31, 2026 — no public repo confirmed. Watch Hugging Face / MiniMax for the weights drop and license.",
-      "watch": [
-        "minimax H3 open weights release"
-      ]
-    },
-    {
       "model": "Soul Cinema",
       "status": "active",
-      "note": "Wave 21 (2026-10-11): now the default image model in Cinema Studio 3.0/3.5; per-image credit cost still unpublished. Watch the Higgsfield pricing page.",
+      "note": "Wave 21 (2026-10-11): now the default image model in Cinema Studio 3.0/3.5; per-image credit cost still unpublished. Watch the Higgsfield pricing page. Update 2026-10-12 (Watchtower 2.3): Higgsfield's API post now publishes a $0.0032/image starting rate — tabled in pricing.json. The watch narrows to the in-app per-image credit cost.",
       "watch": [
         "higgsfield soul cinema pricing"
       ]
-    },
-    {
-      "model": "Vidu S2",
-      "platform": "Vidu",
-      "detected_at": "2026-10-13T00:11:36+00:00",
-      "what_triggered": "source content signature differs from previous run",
-      "sources_changed": [
-        "https://lapaasvoice.com/vidu-s2-real-time-ai-video-control/"
-      ],
-      "source_results": [
-        {
-          "url": "https://www.versely.studio/blog/state-of-ai-video-oct-2026",
-          "ok": true,
-          "http_status": 200,
-          "signature": "59931bf31d52ff0fa712142118c02d200f24c9a3cdb170d375e27f04f3bbddee",
-          "chars": 12499,
-          "error": null
-        },
-        {
-          "url": "https://higgsfield.ai/blog/best-affordable-ai-video-generators",
-          "ok": true,
-          "http_status": 200,
-          "signature": "33ce4088775c2e0a2e67855fe4041399bc5301f52761d2f0bbfefccf039e3765",
-          "chars": 47390,
-          "error": null,
-          "excluded_from_signature": true
-        },
-        {
-          "url": "https://www.globenewswire.com/news-release/2026/10/07/3376813/0/en/shengshu-technology-launches-vidu-q4-preview-a-next-generation-ai-video-model-built-for-lifelike-performances.html",
-          "ok": false,
-          "http_status": 403,
-          "signature": null,
-          "chars": 0,
-          "error": "HTTPError 403"
-        },
-        {
-          "url": "https://www.prnewswire.com/news-releases/shengshu-technology-unveils-vidu-s2-bringing-real-time-interaction-and-editing-to-ai-video-302879976.html",
-          "ok": true,
-          "http_status": 200,
-          "signature": "88fd1c42055134344e057d1b7adbc7a73284c5c22220fb0e39729adbb6f5e039",
-          "chars": 21220,
-          "error": null
-        },
-        {
-          "url": "https://lapaasvoice.com/vidu-s2-real-time-ai-video-control/",
-          "ok": true,
-          "http_status": 200,
-          "signature": "adcb510eaa39656d4bd6be6e2d473189ada812f51f6fb2f82978694257a24e92",
-          "chars": 7638,
-          "error": null
-        },
-        {
-          "url": "https://www.vidu.com/pricing",
-          "ok": true,
-          "http_status": 200,
-          "signature": "66450841e392f2bd9c666e73db2f4ee9b77e15fead36beacead2c5921033087d",
-          "chars": 141561,
-          "error": null
-        },
-        {
-          "url": "https://platform.vidu.com",
-          "ok": true,
-          "http_status": 200,
-          "signature": "e5e2194684fccdeb1a4e2ad716eed5199bb22a20155a52d1ff0e30e6fe124527",
-          "chars": 145577,
-          "error": null,
-          "excluded_from_signature": true
-        }
-      ],
-      "signal_excerpt": "AI video in October 2026: the Sora API is gone | Versely AI creators : An avatar that posts a video every day An avatar that posts a video for you every day. See how it works Pricing Auto Post AI creators Tools Free Tools Workflows Models Blog Start free Download Sponsored Advertise here ↗ LaunchRanked Launch your product free Your logo here USD 20 /month Your logo here USD 20 /month Your logo her",
-      "signals": [
-        {
-          "name": "price_signal",
-          "matches": [
-            "$0.10",
-            "$0.40",
-            "$0.80",
-            "$0.65",
-            "$0.95"
-          ]
-        },
-        {
-          "name": "version_signal",
-          "matches": [
-            "3.0 Standard",
-            "3.0 Prime",
-            "3.0 Beta",
-            "3.0 beta",
-            "3.1 Lite"
-          ]
-        }
-      ],
-      "promotion": "Agent: verify the flagged URLs, confirm price/version/status change, then update data/v1/models.json (last_verified, status, est_cost_credits, what_changed, sources), re-run scripts/build_api.py, commit, push. This script never edits models.json."
     }
   ]
 }

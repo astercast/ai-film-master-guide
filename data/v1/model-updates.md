@@ -79,6 +79,39 @@ that one fresh flag. Nine `verification` events in
 `model-history.json` carry the verdicts (eight per-model, one for the
 calibration).
 
+## 2026-10-12 — Watchtower 2.3: the second review pass
+
+The 2.2 pass left one fresh flag, five standing watches, and eleven records
+whose third-party sources bot-block the checker. This pass worked all three
+queues; verdicts are in `data/v1/model-review-log.json` (review pass 2).
+
+- **Vidu S2 flag — dismissed, with proof.** The flagged page (a third-party
+  blog) is signature-identical across repeat fetches and identical to the
+  flagged run: the move was against the older baseline. Its claims match the
+  record, and Vidu's official pricing page never moved.
+- **Kling 4.0 — still announced.** Re-checked against the watch's own
+  criteria: APIMart still lists the API as a preview ("prices and billing
+  rules will be published when access is confirmed"), and there is still no
+  GA model ID in the official API docs. The hero banner is not a launch.
+- **Soul Cinema — first published rate.** Higgsfield's own API post tables
+  Soul Cinema at a **$0.0032/image starting rate**; it is now in
+  `pricing.json` and the model record. The in-app credit cost is still
+  unpublished — the standing watch narrows to that figure.
+- **MiniMax H3 — watch resolved and retired.** The open-weights drop the
+  watch was set for (Aug 3, base checkpoint) is on record, and the record now
+  carries the license term too: the H3 Community License excludes local
+  deployment in the US, EU, UK, and South Korea (hosted API unaffected).
+- **Wan 2.7 — verified, addition queued.** Official Alibaba Cloud model IDs
+  (wan2.7-t2v/-i2v/-r2v/-videoedit) and published list pricing (¥0.6/s at
+  720p, ¥1.0/s at 1080p) confirmed across independent sources. It clears the
+  desk's criteria; adding it goes through the research-artifact chain as its
+  own records change, not a review-pass edit.
+- **Failed sources — cohort unchanged.** All 14 were re-probed: the 403
+  bot-blocks (Medium, MarkTechPost, GlobeNewswire, Morningstar, x.ai,
+  midjourney.com) and the whatsnew.fyi rate limit persist, and every partial
+  record still has an official source answering. ABNewswire answered this
+  run, so the swap condition left by 2.2 does not trigger.
+
 ## 2026-10-11 — Wave 30: Late-Q4 field sweep
 
 29 → **30 models** (one added); no status changes. The headline item is a

@@ -60,15 +60,25 @@
             "provider": "Higgsfield",
             "type": "image",
             "status": "active",
-            "pricing_status": "unpublished",
+            "pricing_status": "live",
             "currency": "USD",
-            "tiers": [],
-            "updated_at": "2026-10-11T00:00:00Z",
+            "tiers": [
+                {
+                    "tier": "api-image",
+                    "unit": "image",
+                    "usd_low": 0.0032,
+                    "usd_high": 0.0032,
+                    "basis": "Higgsfield API starting rate, published in Higgsfield's own API post (higgsfield.ai/blog/higgsfield-api, re-fetched 2026-10-12); the in-app per-image credit cost is still not published \u2014 verify live",
+                    "confidence": "official"
+                }
+            ],
+            "updated_at": "2026-10-12T00:00:00Z",
             "source_urls": [
                 "https://aiforautomation.io/news/2026-03-31-higgsfield-soul-cinema-preview-one-click-cinematic-ai",
-                "https://github.com/dsm5e/aso-tracker/blob/HEAD/aso-video/docs/higgsfield-prompts/skills/higgsfield-soul/SKILL.md"
+                "https://github.com/dsm5e/aso-tracker/blob/HEAD/aso-video/docs/higgsfield-prompts/skills/higgsfield-soul/SKILL.md",
+                "https://higgsfield.ai/blog/higgsfield-api"
             ],
-            "note": "Not in the captured pricing table \u2014 verify live."
+            "note": "First published rate (API starting rate) added by Watchtower 2.3; in-app credit cost still unpublished \u2014 verify live."
         },
         {
             "model_id": "dop",

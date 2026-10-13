@@ -43,17 +43,23 @@ function ok(name, fn) {
 }
 
 /* --- pricing diff against the real baseline --------------------------- */
-ok('real diff: exactly the 5 Watchtower 2.0 coverage changes', () => {
+ok('real diff: the 5 Watchtower 2.0 coverage changes + the 2.3 Soul Cinema tier', () => {
   const changes = drift.diffPricing(history.pricing_baseline.entries, pricing.entries);
-  assert.strictEqual(changes.length, 5, JSON.stringify(changes));
+  assert.strictEqual(changes.length, 6, JSON.stringify(changes));
   const kinds = changes.map((c) => c.kind).sort();
-  assert.deepStrictEqual(kinds, ['model-added', 'tier-added', 'tier-added', 'tier-added', 'tier-added']);
+  assert.deepStrictEqual(kinds, ['model-added', 'tier-added', 'tier-added', 'tier-added', 'tier-added', 'tier-added']);
   const added = changes.find((c) => c.kind === 'model-added');
   assert.strictEqual(added.model_id, 'pixverse-v6');
   assert.strictEqual(added.after_low, 0.09, 'new record shows its rate span');
   assert.strictEqual(added.after_high, 0.23);
-  const fluxTiers = changes.filter((c) => c.kind === 'tier-added').map((c) => c.tier).sort();
+  const fluxTiers = changes.filter((c) => c.kind === 'tier-added' && c.model_id === 'flux-3-video').map((c) => c.tier).sort();
   assert.deepStrictEqual(fluxTiers, ['qhd', 'uhd', 'v2v-qhd', 'v2v-uhd']);
+  // Watchtower 2.3 (2026-10-12): Soul Cinema's first published rate —
+  // Higgsfield's own API post lists a $0.0032/image starting rate.
+  const scTier = changes.find((c) => c.kind === 'tier-added' && c.model_id === 'soul-cinema');
+  assert(scTier, 'soul-cinema tier-added missing');
+  assert.strictEqual(scTier.tier, 'api-image');
+  assert.strictEqual(scTier.after_low, 0.0032);
 });
 
 ok('synthetic diff: price-up pct math, tier-removed, model-removed', () => {
@@ -121,30 +127,32 @@ ok('pricing coverage is complete: 31 of 31 models have a pricing record', () => 
 });
 
 /* --- drift on the real data --------------------------------------------- */
-ok('computeDrift: 31 models, 0 unwatched, 6 unpublished, 11 alerts in the post-review records', () => {
-  // Watchtower 2.2 (2026-10-12): the first review pass adjudicated all 8
-  // of the 2.1 run's flags (no record changed — verdicts in
-  // model-review-log.json) and calibrated the signature exclusions
-  // (github.com globally; 26 rotating blog/listing/homepage URLs
-  // per-model). The published feed (2026-10-13T00:13Z) reads changed=1
-  // (Vidu S2, a fresh third-party blog flag queued for the next pass)
-  // and 11 partial records — the adjudicated bot-block cohort, whose
-  // official sources still answer. Drift reads the records, not the
-  // header: 1 changed + 10 error-status = 11 alerts, 0 unwatched.
+ok('computeDrift: 31 models, 0 unwatched, 5 unpublished, 12 alerts in the post-review records', () => {
+  // Watchtower 2.3 (2026-10-12): the second review pass adjudicated the
+  // one open flag (Vidu S2 — dismissed with proof: the flagged page is
+  // signature-identical to its flagged run; verdicts in
+  // model-review-log.json pass 2) and all 5 standing watches. The
+  // re-baseline feed (2026-10-13T00:34Z) reads changed=0, 11 partial
+  // records (the adjudicated bot-block cohort) plus Wan 2.6 all_failed
+  // on run timeouts — recovered on immediate re-probe, recorded in the
+  // pass-2 addendum. Drift reads the records, not the header:
+  // 12 error-status = 12 alerts, 0 unwatched. Soul Cinema's first
+  // published rate is tabled, so unpublished drops 6 -> 5 and the
+  // pricing diff grows to 6 rows.
   const d = drift.computeDrift({ modelsDoc: models, checksDoc: checks,
     pricingDoc: pricing, historyDoc: history, nowMs: NOW });
   assert.strictEqual(d.summary.models_total, 31);
   assert.strictEqual(d.summary.unwatched, 0, JSON.stringify(d.summary));
-  assert.strictEqual(d.summary.pricing_unpublished, 6, JSON.stringify(d.summary));
-  assert.strictEqual(d.summary.alert, 11, JSON.stringify(d.per_model.filter((r) => r.severity === 'alert')));
-  assert.strictEqual(d.summary.price_changes_vs_baseline, 5);
+  assert.strictEqual(d.summary.pricing_unpublished, 5, JSON.stringify(d.summary));
+  assert.strictEqual(d.summary.alert, 12, JSON.stringify(d.per_model.filter((r) => r.severity === 'alert')));
+  assert.strictEqual(d.summary.price_changes_vs_baseline, 6);
   const alertIds = d.per_model.filter((r) => r.severity === 'alert').map((r) => r.model_id).sort();
   assert.deepStrictEqual(alertIds, ['flux-3-video', 'gemini-omni', 'grok-imagine-1-5',
     'kling-4-0', 'luma-ray-3-2', 'midjourney-v1-video', 'minimax-h3',
-    'seedance-3-0', 'vidu-q4-preview', 'vidu-s2', 'wan-3-0']);
+    'seedance-3-0', 'vidu-q4-preview', 'vidu-s2', 'wan-2-6', 'wan-3-0']);
 });
 
-ok('computeDrift: spot severities — PixVerse watched (price moved), Sora ok, Soul Cinema watch (unpublished)', () => {
+ok('computeDrift: spot severities — PixVerse watched (price moved), Sora ok, Soul Cinema watch (own tier moved)', () => {
   const d = drift.computeDrift({ modelsDoc: models, checksDoc: checks,
     pricingDoc: pricing, historyDoc: history, nowMs: NOW });
   const byId = Object.fromEntries(d.per_model.map((r) => [r.model_id, r]));
@@ -158,8 +166,12 @@ ok('computeDrift: spot severities — PixVerse watched (price moved), Sora ok, S
   assert.strictEqual(byId['dop'].severity, 'ok');
   assert.strictEqual(byId['marketing-studio-video'].check_status, 'stable');
   assert.strictEqual(byId['sora-2'].severity, 'ok');
+  // Soul Cinema gained its first published rate in 2.3 (Higgsfield's
+  // API post, $0.0032/image) — no longer "unpublished"; it sits at
+  // watch only because its own new tier is a baseline diff.
   assert.strictEqual(byId['soul-cinema'].severity, 'watch');
-  assert(byId['soul-cinema'].alerts.some((a) => a.includes('No published USD rate')));
+  assert(byId['soul-cinema'].alerts.some((a) => a.includes('Pricing table moved')));
+  assert(!byId['soul-cinema'].alerts.some((a) => a.includes('No published USD rate')));
   // Kling 3.0's Oct 12 flag was adjudicated by the 2.2 review pass (the
   // klingai.com homepage move was the Kling 4.0 hero banner, not a 3.0
   // change; the homepage is signature-excluded). In the published feed

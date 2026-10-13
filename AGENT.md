@@ -34,9 +34,9 @@ Static files — **no auth, no keys, no rate limits**. Works on any static host.
 | `data/v1/teardowns.json` | 10 shot-by-shot teardowns; prompt reconstructions are analytical | 8 |
 | `data/v1/diagnoses.json` | 12 failure diagnoses: symptom → diagnosis, fixes, repair template | 12 |
 | `data/v1/model-checks.json` | Model-watch freshness feed: per-model last check, source diffs, headlines | 31 checked |
-| `data/v1/model-history.json` | Watchtower 2.0 event log: dated status/price/tier/release/verification/coverage events + the 2026-10-11 pricing baseline the drift engine diffs against | 48 events |
-| `data/v1/model-review-queue.json` | Pending model-watch review items (empty = nothing pending) | 5 pending |
-| `data/v1/model-review-log.json` | Watchtower review log: adjudication record for checker flags — every flag re-fetched and given a verdict with its basis before the queue clears (Watchtower 2.2) | 2 passes |
+| `data/v1/model-history.json` | Watchtower 2.0 event log: dated status/price/tier/release/verification/coverage events + the 2026-10-11 pricing baseline the drift engine diffs against | 53 events |
+| `data/v1/model-review-queue.json` | Pending model-watch review items (empty = nothing pending) | 4 pending |
+| `data/v1/model-review-log.json` | Watchtower review log: adjudication record for checker flags — every flag re-fetched and given a verdict with its basis before the queue clears (Watchtower 2.2–2.3) | 4 entries |
 | `data/v1/model-updates.md` | Human-readable model changelog (Markdown, no schema) | — |
 
 Example requests (Node; swap `fs` for `fetch` in a browser):
@@ -131,15 +131,18 @@ covers 0. The test script proves both against the real layer data.
 
 Worked result for Kling 3.0 (real data): `est_cost_credits` "720p ~7/5s",
 `status: "active"`, `last_verified: "2026-10-11"`; check record
-`last_checked: "2026-10-13T00:07:59+00:00"`, `changed: false`,
+`last_checked: "2026-10-13T00:24:42+00:00"`, `changed: false`,
 `source_status: "ok"`. The Oct 12 run flagged this model on the
 klingai.com homepage; the 2.2 review pass adjudicated it (the move was
 the site's Kling 4.0 hero banner, not a 3.0 change — verdict in
 `model-review-log.json`), and the homepage is signature-excluded, so
-the published feed is clean for 3.0. Review queue `pending: 6` — five
+the published feed is clean for 3.0. Review queue `pending: 4` — four
 standing watch items (Seedance 3.0 confirmation, Kling 4.0 GA, the
-Wan 2.7 gap, MiniMax H3 weights, Soul Cinema pricing) plus one fresh
-changed-source flag (Vidu S2) from the Oct 13 run. Latest history
+Wan 2.7 gap — verified in 2.3, addition queued — and Soul Cinema's
+in-app credit cost). The 2.3 pass adjudicated the one fresh flag the
+2.2 feed left (Vidu S2: dismissed — the flagged page is
+signature-identical to its flagged run) and retired the MiniMax H3
+weights watch as resolved. Latest history
 event: `2026-10-12-kling-3-0-flag-reviewed` (verification). Drift
 severity: `ok`.
 Worked pricing result for Vidu Q4 Preview: history event
