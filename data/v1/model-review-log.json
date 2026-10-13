@@ -1439,6 +1439,34 @@
     }
    ],
    "outcome": "Final feed 2026-10-13T20:34Z: changed=0, with_errors=0, no_sources=0. Drift 10 alerts / 6 watch / 16 ok, 0 unwatched — the alert count fell by one against 2.16's close: FLUX 3 Video's sources all answered in the final run, so it sits at watch on its own pricing diff, and the alert set is exactly the final run's ten partial records. Unpublished rates 5; pricing diff vs the 2026-10-11 baseline 7 rows. The queue holds exactly the 3 standing watches, their notes carrying this pass's re-check lines. History 144 → 153 events (October window 124 → 133); review log 30 → 32 entries (pass 16 + addendum)."
+  },
+  {
+   "id": "2026-10-13-review-pass-17",
+   "reviewed_at": "2026-10-13",
+   "reviewer": "Watchtower 2.18 review pass (agent)",
+   "scope": "Sixteenth review pass over all 32 watched models: the 3 standing watches (Seedance 3.0 unconfirmed; Kling 4.0 'announced' without a GA model ID or Kuaishou pricing; Soul Cinema's in-app credit cost), the standing FLUX 3 Video rate-source follow-up (its three known renderings), PixVerse V6's eighth-clean-pass question left by 2.17, and every flag the pass's checker runs raised — this pass, none. No model record moved.",
+   "method": "All verdicts rest on disk-verified artifacts: checker runs launched detached (setsid launcher + VERIFIED/SUSPECT status files, logs on a durable fleet-ops path), with a process-table check before each launch and exactly one checker verified alive during each run; checker-path probes (importing scripts/refresh/check_models.py's own fetch/clean_text/sha256 path, at the config's own defaults) for every standing watch — two probes per criteria page, all saved to disk and read. Run history: run 1 (20:58–21:07Z) completed, changed=0, with_errors=0 — no flag to adjudicate, every criteria page at its recorded baseline. Run 2 (21:13–21:21Z), the confirming re-baseline, also read changed=0, with_errors=0, no_sources=0 and set the published feed. One process incident, disclosed: a backgrounded wait's terminal delivery reported run 2 complete at 21:22:27Z with changed=1 while run 2 was still alive on the process table and its status file did not yet exist — a fabricated delivery of the class disclosed in 2.15/2.16/2.17. It was discarded on the disk check; run 2's real completion (VERIFIED status, 21:21:13Z, changed=0) was read from the on-disk log, status file, and feed checked_at. No verdict rested on anything but on-disk artifacts — the QA corps' round-7 method law, applied throughout.",
+   "flag_reviews": [],
+   "outcome": "Zero flags raised across the pass's two completed runs — the first flag-free pass in the 2.x series' recent record; no calibrations, no dismissals needed. The 3 standing watches stand, each content-verified this pass (Kling 4.0's APIMart page at its baseline signature for a thirteenth consecutive pass; this pass the probes drew the full baseline rendering). BFL's docs page held its 2.16 baseline signature in both runs and both probes; PixVerse V6's docs source stands on eight clean passes."
+  },
+  {
+   "id": "2026-10-13-review-pass-17-addendum",
+   "reviewed_at": "2026-10-13",
+   "reviewer": "Watchtower 2.18 review pass (agent)",
+   "scope": "The confirming re-baseline checker run after pass 17's adjudication, which set the published feed.",
+   "method": "Single detached checker process (run 2), launched after a process-table check showing zero checkers, exactly one verified alive during; completion verified from primary disk artifacts: the launcher's VERIFIED status (exit 0, the log carrying the [model-watch] summary line and the feed's mtime advanced), the run log's summary lines, and the feed's checked_at on disk (2026-10-13T21:21:13Z). A backgrounded delivery claiming this run's completion earlier, at a different time with changed=1, was discarded on the disk check (see pass 17's method). The run diffed against run 1's feed, itself changed=0 against the committed 2.17 baseline, so its changed=0 confirms the whole pass: every signature-live source held its baseline across two full runs and the probe set.",
+   "flag_reviews": [],
+   "failed_source_reviews": [
+    {
+     "group": "Final-run failures — the standing cohort, stamps stay, labelled as observed",
+     "models": [
+      "The final run's partial records are the standing host-gated cohort only (Seedance 3.0, Wan 3.0 / 3.0 Prime, MiniMax H3, Luma App / Ray 3.2, Grok Imagine Video 1.5, Midjourney V1 Video, Kling 4.0, Gemini Omni, Vidu S2, Vidu Q4 Preview, FLUX 3 Video — Medium, MarkTechPost, GlobeNewswire, x.ai, whatsnew.fyi, and europesays gates among them)"
+     ],
+     "verdict": "watch-intact-no-action",
+     "basis": "Every failure in the final run is a host gate already adjudicated in earlier passes; none touches a decision — every standing watch's criteria page answered this pass."
+    }
+   ],
+   "outcome": "Final feed 2026-10-13T21:21Z: changed=0, with_errors=0, no_sources=0. Drift 11 alerts / 5 watch / 16 ok, 0 unwatched — the alert count rose by one against 2.17's close: FLUX 3 Video's MarkTechPost source gated the checker in the final run, returning FLUX to the alert set on its partial record (its rates stay verified on BFL's own docs page, which held f95831ee… all pass); the alert set is exactly the final run's eleven partial records. Unpublished rates 5; pricing diff vs the 2026-10-11 baseline 7 rows. The queue holds exactly the 3 standing watches, their notes carrying this pass's re-check lines. History 153 → 158 events (October window 133 → 138); review log 32 → 34 entries (pass 17 + addendum)."
   }
  ]
 }

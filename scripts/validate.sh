@@ -504,6 +504,21 @@ else
   LF_OK=0
 fi
 
+# The Path: engine + page + curriculum data (rotation 19 flagship)
+PA_OK=1
+for f in assets/js/path.js site/path.html site/assets/js/path.js data/v1/curriculum.json site/data/v1/curriculum.json; do
+  if [ ! -f "$f" ]; then fail "$f missing (rebuild the site)"; PA_OK=0; fi
+done
+PA_OUT=$(node scripts/path.test.js 2>&1)
+if echo "$PA_OUT" | tail -1 | grep -q "all pass"; then
+  PA_N=$(echo "$PA_OUT" | grep -c "^ok ")
+  pass "path.test.js: $PA_N engine assertions pass (six stages, 241 skills exactly once, progress/verdict rules, export traces)"
+else
+  fail "path.test.js failures:"
+  echo "$PA_OUT" | grep "^FAIL" | head -8 | sed 's/^/    /'
+  PA_OK=0
+fi
+
 # Cutting Room → Green Light bridge button present (rendered by cutting-room.js)
 if grep -q "cr-greenlight" assets/js/cutting-room.js && grep -q "cr-greenlight" site/assets/js/cutting-room.js; then
   pass "cutting-room → green-light bridge wired (button + handler)"

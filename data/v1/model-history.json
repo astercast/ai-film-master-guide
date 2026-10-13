@@ -1,6 +1,6 @@
 {
  "format": "model-history/1.0",
- "generated_at": "2026-10-13T20:34:24+00:00",
+ "generated_at": "2026-10-13T21:21:13+00:00",
  "method": "Hand-authored event log. Every event traces to a fact recorded in models.json (what_changed), data/v1/model-updates.md, or this wave's own pricing-table changes. Price events carry a before/after pair only where the record documents both numbers; otherwise the fields are null and the summary says why. The pricing baseline below is the pricing table as curated on 2026-10-11 — the drift engine diffs the live table against it, so a rate that moves from here on is caught mechanically, not by memory.",
  "pricing_baseline": {
   "at": "2026-10-11T00:00:00Z",
@@ -2208,6 +2208,56 @@
    "summary": "Flag dismissed (Watchtower 2.17): run 1 flagged Midjourney V1 Video on Krea's Midjourney pricing/video explainer (81a079c6…, 20,081 chars → d06aa50a…, 20,077). Two checker-path probes returned the flagged signature exactly. Read in full, the page matches the record on every carried point: V1 released June 18, 2025; image-to-video only (no text-to-video); 5-second clips extendable four times to 21 seconds; 480p by default, 720p in Fast Mode on Standard and up; about 8× an image job's cost, SD batch at 8 GPU-minutes. The −4 chars are blog-page churn around unchanged facts. First flag on this URL for this model — no exclusion; a second flag earns one. Dismissed as explainer-page churn.",
    "confidence": "official",
    "source": "Watchtower 2.17 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-seedance-3-0-watch-stands-2-18",
+   "date": "2026-10-13",
+   "model_id": "seedance-3-0",
+   "model": "Seedance 3.0",
+   "kind": "verification",
+   "summary": "Watch stands (Watchtower 2.18): Versely's criteria page answered at the 2.11 variant signature (506d7e9d…, 12,513 chars) in both checker runs and in two checker-path probes — the rendering read directly in 2.13, which still lists Seedance 3.0 among the models announced by no vendor as of 1 October ('there is no announcement, no API and no date'). The breakread article answered at its 2.12 re-baseline signature (63a60eae…) in both runs and both probes. No ByteDance announcement, model card, API ID, or pricing. Watch stays open — unconfirmed.",
+   "confidence": "official",
+   "source": "Watchtower 2.18 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-kling-4-0-watch-stands-2-18",
+   "date": "2026-10-13",
+   "model_id": "kling-4-0",
+   "model": "Kling 4.0",
+   "kind": "verification",
+   "summary": "Watch stands (Watchtower 2.18): APIMart's criteria page answered at its baseline signature (fc55ce30…, 136,708 chars) in both checker runs — a thirteenth consecutive pass at the identical signature — still 'API Coming Soon', availability 'Not yet', pricing 'has not been announced'; its text schedules Kling 4.0 for October 2026 with Flash in limited early access. This pass the two checker-path probes returned the full baseline rendering itself (fc55ce30…), not the smaller rendering the 2.15–2.17 probes drew; read in full, the same criteria text on every point that matters. No GA model ID, no Kuaishou pricing. Watch stays open — announced.",
+   "confidence": "official",
+   "source": "Watchtower 2.18 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-soul-cinema-watch-stands-2-18",
+   "date": "2026-10-13",
+   "model_id": "soul-cinema",
+   "model": "Soul Cinema",
+   "kind": "verification",
+   "summary": "Watch stands (Watchtower 2.18): Higgsfield's pricing page answered at the settled 428-char shell (f14e9f4a…) in two checker-path probes, with no in-app credit figure; the API post, read via checker-path probes, still lists only the $0.0032/image rate tabled in 2.3. The in-app credit cost is still unpublished. Watch stays open.",
+   "confidence": "official",
+   "source": "Watchtower 2.18 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-flux-docs-baseline-holds-2-18",
+   "date": "2026-10-13",
+   "model_id": "flux-3-video",
+   "model": "FLUX 3 Video",
+   "kind": "verification",
+   "summary": "FLUX follow-up (Watchtower 2.18): BFL's docs pricing page answered at its 2.16 baseline signature (f95831ee…, 9,728 chars) in both checker runs, and this pass both checker-path probes returned that same baseline rendering — no flag. The page's three known renderings (cb1e92d1…, f95831ee…, 3f90e01a…) are all on record; the 2.6 decision keeps this primary rate source signature-live, and a future flag is adjudicated against all three. No rate changed.",
+   "confidence": "official",
+   "source": "Watchtower 2.18 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-pixverse-v6-eighth-clean-pass-2-18",
+   "date": "2026-10-13",
+   "model_id": "pixverse-v6",
+   "model": "PixVerse V6",
+   "kind": "verification",
+   "summary": "Eighth clean pass (Watchtower 2.18): PixVerse V6's docs source fetched clean at the baseline signature (95c88c96…, 4,278 chars) in both checker runs and in two checker-path probes, all five sources answering (source_status ok in both runs' feeds) — the 2.10 recovery now stands on eight consecutive clean passes, one more than 2.17 claimed. Record unchanged.",
+   "confidence": "official",
+   "source": "Watchtower 2.18 review pass (2026-10-13) — data/v1/model-review-log.json"
   }
  ]
 }

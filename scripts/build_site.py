@@ -83,6 +83,7 @@ NAV_INDEX = [
         ("field-guides/", "Field guides"),
         ("checks/", "Knowledge checks"),
         ("quiz.html", "Quiz"),
+        ("path.html", "The path"),
         ("gallery.html", "Gallery"),
         ("model-watch.html", "Model watch"),
         ("showdown.html", "Model showdown"),
@@ -113,6 +114,7 @@ FOOTER_ITEMS = [
     ("cut.html", "Cut sheet"),
     ("take.html", "Take sheet"),
     ("longform.html", "Longform sheet"),
+    ("path.html", "The path"),
     ("checks/", "Knowledge checks"),
     ("budget.html", "Budget"),
     ("optimizer.html", "Optimizer"),
@@ -5169,6 +5171,154 @@ def build_longform(css_links):
         long_verdict=html.escape(r["verdict"]), long_stage="".join(stage_html)))
     return [("longform.html", "Longform sheet")]
 
+PATH_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The path — AI Film Master Guide</title>
+  <meta name="description" content="The Path: the guide's 241 skills sequenced into six stages in production order — the prompt and the camera, the style tracks, the models, direction, production, the finish — with per-skill check-off saved in the browser and a milestone per stage.">
+  {css}
+  <style>
+    .pathmap-verdict {{ font-size: 1.05rem; border-left: 3px solid var(--gold); padding-left: var(--space-4); margin-bottom: var(--space-6); }}
+    .pathmap-stage {{ border: 1px solid var(--line); border-radius: 12px; padding: var(--space-4) var(--space-5); margin-bottom: var(--space-4); }}
+    .pathmap-stage summary {{ cursor: pointer; list-style: none; display: flex; align-items: baseline; gap: var(--space-3); flex-wrap: wrap; }}
+    .pathmap-stage summary::-webkit-details-marker {{ display: none; }}
+    .pathmap-stage-head {{ display: flex; align-items: baseline; gap: var(--space-3); flex-wrap: wrap; }}
+    .pathmap-stage-head h3 {{ margin: 0; font-size: 1.25rem; display: inline; }}
+    .pathmap-num {{ display: inline-block; min-width: 1.7em; text-align: center; background: var(--gold); color: #111; border-radius: 999px; font-weight: 800; padding: .1em .3em; }}
+    .pathmap-tag {{ margin-left: auto; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }}
+    .pathmap-focus, .pathmap-milestone, .pathmap-desc {{ color: var(--muted); }}
+    .pathmap-milestone strong {{ color: var(--text); }}
+    .pathmap-bar {{ height: 6px; background: var(--line); border-radius: 999px; overflow: hidden; margin: var(--space-3) 0; }}
+    .pathmap-bar-fill {{ height: 100%; background: var(--gold); width: 0%; }}
+    .pathmap-skill {{ display: flex; gap: var(--space-3); align-items: baseline; padding: .35em 0; border-top: 1px solid var(--line); }}
+    .pathmap-skill-n {{ color: var(--muted); min-width: 2.2em; text-align: right; font-size: .85rem; }}
+    .pathmap-skill-id {{ font-size: .8rem; color: var(--muted); }}
+  </style>
+</head>
+<body>
+  <div class="edge-right" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        {sitenav}
+      </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">&#9679;</span> <span class="hdr-tc-val">00:59:52:00</span></span>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">&#8984;K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    {hero}
+    <section class="container" aria-labelledby="path-h">
+      <h2 id="path-h">The map</h2>
+      <p>Every skill in the guide — 241 — in the order to learn them: six stages, one milestone per stage. Check a skill off only when it has been <strong>done on a real production</strong>; progress is saved in this browser. (Not the homepage's <a href="index.html#paths-h">goal routes</a> — those order a few chapters per goal. This orders the skills themselves. The sequence is data: <code>data/v1/curriculum.json</code>.)</p>
+      <p class="pathmap-verdict" id="path-verdict" aria-live="polite">{path_verdict}</p>
+      <p><strong id="path-overall">{path_overall}</strong></p>
+      <div id="path-stages">{path_stages}</div>
+      <div class="card" style="margin-top:var(--space-6);">
+        <h3>Take the walk</h3>
+        <p>Your walk exports as clean markdown: the six stages with their milestones, every skill with its check state, and your standing — the file a mentor, a collaborator, or an agent can pick up mid-path.</p>
+        <p><button type="button" class="btn" id="path-copy">Copy my walk</button> <button type="button" class="btn btn-ghost" id="path-download">Download my walk (.md)</button> <button type="button" class="btn btn-ghost" id="path-reset">Reset progress</button></p>
+        <p class="calc-note" id="path-msg" hidden></p>
+        <p><a class="btn btn-ghost" href="skills.html">Browse all skills</a> <a class="btn btn-ghost" href="index.html#paths-h">Pick a goal route instead</a></p>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+    </div>
+  </footer>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search" hidden>
+    <div class="palette-box">
+      <input type="search" id="palette-input" placeholder="Search the guide…" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script type="application/json" id="path-curriculum">{path_curriculum_json}</script>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/path.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
+</body>
+</html>
+"""
+
+
+def build_path(css_links):
+    """The Path — the sequenced curriculum (rotation 19 flagship,
+    closing competitor gap T-FILM-5): data/v1/curriculum.json orders
+    all 241 skills into six stages; this page is the stage map.
+    The sequence is hand-authored data, never invented here: the
+    builder reads curriculum.json + skills/index.json and renders
+    every skill exactly as the curriculum orders it, and embeds
+    the curriculum as a JSON island for assets/js/path.js
+    (PathEngine) to compute the walker's standing from. The page
+    reads identically without JavaScript; check-offs persist in
+    the browser under the Path's own localStorage key."""
+    def esc(s):
+        return html.escape(str(s if s is not None else ""))
+
+    curr = json.loads((ROOT / "data" / "v1" / "curriculum.json").read_text())
+    index = json.loads((ROOT / "skills" / "index.json").read_text())
+    by_id = {s["id"]: s for s in index["skills"]}
+    flat = [sid for st in curr["stages"] for sid in st["skills"]]
+    assert len(flat) == 241 and len(set(flat)) == 241, "curriculum must sequence 241 skills exactly once"
+    assert all(sid in by_id for sid in flat), "curriculum names a skill the library does not hold"
+
+    n = 0
+    stage_html = []
+    for st in curr["stages"]:
+        rows = []
+        for sid in st["skills"]:
+            n += 1
+            sk = by_id[sid]
+            rows.append(
+                f'<div class="pathmap-skill"><span class="pathmap-skill-n">{n}</span>'
+                f'<input type="checkbox" id="path-skill-{esc(sid)}" data-path-skill="{esc(sid)}" '
+                f'aria-label="Mark done: {esc(sk["title"])}">'
+                f'<span><a href="skills.html" data-path-title="{esc(sk["title"])}" data-path-title-id="{esc(sid)}">{esc(sk["title"])}</a> '
+                f'<span class="pathmap-skill-id"><code>{esc(sid)}</code></span></span></div>')
+        stage_html.append(
+            f'<details class="pathmap-stage"{" open" if st["n"] == 1 else ""}>'
+            f'<summary class="pathmap-stage-head"><span class="pathmap-num">{st["n"]}</span>'
+            f'<h3 id="path-stage-{esc(st["id"])}">{esc(st["title"])}</h3>'
+            f'<span class="pathmap-tag">{len(st["skills"])} skills</span></summary>'
+            f'<p class="pathmap-focus">{esc(st["focus"])}</p>'
+            f'<p class="pathmap-milestone"><strong>Milestone:</strong> {esc(st["milestone"])}</p>'
+            f'<p><span data-path-stage-progress="{esc(st["id"])}">0 of {len(st["skills"])} complete</span></p>'
+            f'<div class="pathmap-bar" aria-hidden="true"><div class="pathmap-bar-fill" data-path-stage-bar="{esc(st["id"])}"></div></div>'
+            + "".join(rows) + "</details>")
+    first = flat[0]
+    verdict = (f"Not started — 241 skills stand in six stages, in the order to learn them. Begin at Stage 1, "
+               f"skill 1 ({first}): the prompt and the camera are the two languages everything else is spoken in. "
+               f"Check a skill off only when it has been done on a real production.")
+    (SITE / "path.html").write_text(PATH_TMPL.format(
+        css=css_links, sitenav=nav_html("", "path.html"), footer=footer_html(""),
+        hero=hero_cutroom(
+            kicker="""The curriculum""",
+            h1="""The <span class="accent">path.</span>""",
+            lede="""All 241 skills in the guide, in the order to learn them: six stages in production order, a milestone at the end of each, and a check-off for every skill — counted when it is done on a real production, not when it is read.""",
+            deck_title="""WALK — THE_PATH""",
+            clips={"v2": ['The order'], "v1": ['Learn', 'Direct', 'Ship'], "a1": ['The walk']},
+            h1_id="path-title-h",
+            extra=""" """),
+        path_verdict=html.escape(verdict),
+        path_overall="0 of 241 skills done (0%)",
+        path_stages="".join(stage_html),
+        path_curriculum_json=json.dumps(curr, ensure_ascii=False)))
+    return [("path.html", "The path")]
+
 
 GALLERY_TMPL = """<!DOCTYPE html>
 <html lang="en">
@@ -7799,6 +7949,9 @@ def main():
     # Longform Sheet (rotation 18 flagship — the long-form pipelines chapter as a working sheet)
     build_longform(css_links)
 
+    # The Path (rotation 19 flagship — the sequenced curriculum, T-FILM-5)
+    build_path(css_links)
+
     # Knowledge checks (generated from scripts/checks.json)
     wave7_checks = build_checks(css_links)
 
@@ -7896,6 +8049,9 @@ def main():
         {"url": "longform.html", "title": "Longform sheet", "section": "Tools",
          "headings": ["The five gates — before feature lock", "Your longform sheet", "Take the sheet"],
          "text": "The Longform Sheet: the long-form pipelines chapter as a working sheet — the asset registry complete before shot one, every scene stress-tested and storyboarded, the architecture chosen (scene-by-scene chaining, or sequence assembly with a registry wrangler), the dialogue architecture chosen per scene, and lock discipline (the base portrait never re-run, plates carry the look, the Voice Bible verbatim, island prompts). Log every scene with its stress test, its storyboard, its reference (video, text, or none), its dialogue route (native, human-recorded and converted, decoupled, or silent), its draft tier (720p draft, upscaled winner, or full-res generation), its re-rolls, and its route (in production, picture-locked, in generation supervision, or cut from the film) — and read the feature-lock verdict computed from the chapter's rules: a scene generated without its stress test reads untested, a scene chained off a text description reads drifting, a scene generated at full resolution before its winner is chosen reads wasteful, and a clean sheet still owes picture-lock discipline and the 5–20× overhead envelope. Export the sheet as markdown. Chapter: craft/longform-pipelines.md."},
+        {"url": "path.html", "title": "The path", "section": "Tools",
+         "headings": ["The map", "Take the walk"],
+         "text": "The Path: the guide's sequenced curriculum (rotation 19, closing competitor gap T-FILM-5) — all 241 skills in the library ordered exactly once into six stages in production order (First Light — the prompt and the camera; The Look, the Voice — the style tracks; The Instrument — choosing the model; Direction — craft, performance, workflow; Production — recipes, series, the long form; The Finish — repair, grade, deliver, ship), each stage with its focus and its milestone, every skill checkable as it is done on a real production, progress saved in the browser, and the walk exportable as markdown. The sequence is published as data in data/v1/curriculum.json; the companion skill is workflow-walk-the-path. Not the homepage's 'Pick your path' goal routes, which order a handful of chapters per goal — the Path orders the skills themselves."},
         {"url": "cuesheet.html", "title": "Cue sheet", "section": "Tools",
          "headings": ["The five gates — before the mix", "Your cue sheet", "Take the sheet"],
          "text": "The Cue Sheet: the sound, music & audio chapter as a working cue sheet — the Voice Bible, the per-scene dialogue route (native or decoupled, never mixed mid-scene), score briefed per cue to the locked cut, stems kept, generation receipts saved. Log every scene with its three layers (bed, foley, accents), its route, and its state — designed, thin, or dry — and read the mix verdict computed from the chapter's rules: a scene with no bed reads dry whatever its owner claims, a thin scene holds the mix, and a clean sheet still owes the three-way listen and the silence test. Export the sheet as markdown. Chapter: craft/sound-music-audio.md."},

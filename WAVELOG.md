@@ -1,3 +1,250 @@
+## Watchtower 2.18 — the sixteenth review pass + The Path (2026-10-13)
+
+**Assignment:** Rotation 19 — Watchtower 2.18 (the
+sixteenth review pass over the 32 watched models; the 3
+standing watches get full checker-path passes), the
+flagship named before the fact in Duty 2 (closing
+competitor gap T-FILM-5, filed by research cycle 132 and
+verified open on disk by cycles 133–134), LIVE_CHECKLIST
+refreshed to 2.18, the placement regression sweep, the
+rotation-19 Progress Archive capture duty, and — under
+the user's minimal/sleek order landed mid-rotation — the
+flagship built to the minimal bar and a minimal-pass
+scoping note for rotation 20 (Duty 4). Tickets first:
+the QA book was verified empty at rotation start
+(QA-001 through QA-009 all closed; no open ticket names
+this site), so nothing was queued ahead of the duties.
+
+**Duty 1 — Watchtower 2.18 (sixteenth review pass).**
+All 3 standing watches stand, content-verified by
+checker-path probes:
+
+- **Seedance 3.0 — unconfirmed.** Versely's criteria page
+  answered at the 2.11 variant signature (506d7e9d…,
+  12,513 chars) in both completed runs and in two
+  probes — the rendering read directly in 2.13, which
+  still lists Seedance 3.0 among the models announced by
+  no vendor as of 1 October. The breakread article
+  answered at its 2.12 re-baseline signature (63a60eae…)
+  in both runs and both probes. No ByteDance
+  announcement, model card, API ID, or pricing. Watch
+  stays open.
+- **Kling 4.0 — stays "announced".** APIMart's criteria
+  page answered at its baseline signature (fc55ce30…,
+  136,708 chars) in both completed runs — a thirteenth
+  consecutive pass at the identical signature — still
+  "API Coming Soon", availability "Not yet", pricing
+  "has not been announced"; its text schedules Kling 4.0
+  for October 2026 with Flash in limited early access.
+  This pass both probes returned the full baseline
+  rendering itself, not the smaller rendering the
+  2.15–2.17 probes drew; read in full, the same criteria
+  text on every point that matters. No GA model ID, no
+  Kuaishou pricing.
+- **Soul Cinema — in-app credit cost still unpublished.**
+  Higgsfield's pricing page answered at the settled
+  428-char shell (f14e9f4a…) in two checker-path probes,
+  with no credit figure; the API post, read via probes,
+  still lists only the $0.0032/image rate tabled in 2.3.
+- **FLUX follow-up:** BFL's docs pricing page held its
+  2.16 baseline (f95831ee…, 9,728 chars) in both
+  completed checker runs and in both probes — this pass
+  the probes returned the baseline rendering itself. The
+  three known renderings (cb1e92d1…, f95831ee…,
+  3f90e01a…) are all on record; no flag on the rate
+  source.
+- **PixVerse V6 — eighth clean pass claimed.** Its docs
+  source fetched clean at the baseline signature
+  (95c88c96…, 4,278 chars) in both completed runs and
+  in two probes, all five sources answering
+  (source_status ok in both runs' feeds) — the 2.10
+  recovery now stands on eight consecutive clean passes,
+  one more than 2.17 claimed.
+
+**Flags: 0 raised, 0 dismissed, 0 calibrations; no
+record changes.** Run 1 (20:58–21:07Z) read changed=0,
+with_errors=0 — no flag to adjudicate; every criteria
+page stood at its recorded baseline. Run 2
+(21:13–21:21Z), the confirming re-baseline, also read
+**changed=0, with_errors=0, no_sources=0** and set the
+published feed — the first flag-free pass in the 2.x
+series' recent record. Final drift: **11 alerts /
+5 watch / 16 ok, 0 unwatched** — the alert count rose
+by one against 2.17's close (FLUX 3 Video's MarkTechPost
+source gated the checker in the final run, returning
+FLUX to the alert set on its partial record; the alert
+set is exactly the final run's eleven partial records).
+Unpublished rates 5; pricing diff vs the 2026-10-11
+baseline 7 rows. History 153 → **158 events** (October
+window 133 → **138**); review log 32 → **34 entries**
+(pass 17 + addendum). models.json untouched by the
+pass. Process: every checker run was launched detached
+(setsid launcher + VERIFIED/SUSPECT status files, logs
+on a durable fleet-ops path) after a process-table
+check, exactly one checker verified alive during each.
+One incident, disclosed: a backgrounded wait's terminal
+delivery reported run 2 complete at 21:22:27Z with
+changed=1 while run 2 was still alive on the process
+table and its status file did not yet exist — a
+fabricated delivery of the class disclosed in
+2.15/2.16/2.17. It was discarded on the disk check;
+run 2's real completion (VERIFIED status, 21:21:13Z,
+changed=0) was read from the on-disk log, status file,
+and feed checked_at. The QA corps' round-7 method law
+— figures only from direct reads of on-disk files — is
+the countermeasure, applied throughout.
+
+**Duty 2 — Flagship: The Path (`path.html`), closing
+competitor gap T-FILM-5.** Research filed the gap in
+cycle 132 (verified open on disk in cycles 133–134):
+the guide's library held 241 skills and no sequence to
+learn them in — a visitor could browse everything and
+still not know what to do first. The filed builder
+shape was a hand-authored `curriculum.json` ordering
+the skills into ~6 stages plus a stage-map page with
+localStorage check-off; that is what shipped.
+`data/v1/curriculum.json` (hand-authored, on
+`build_api.py`'s preserve list) sequences **all 241
+skills exactly once** into six stages in production
+order: Stage 1 First Light — the prompt and the camera
+(15 core prompts + 22 camera moves, 37); Stage 2 The
+Look, the Voice — the style tracks (25 track prompts +
+8 styles + 7 techniques, 40); Stage 3 The Instrument —
+choosing the model (31 model skills + 10 comparisons,
+41); Stage 4 Direction (22 craft + 9 performance +
+13 workflow, 44); Stage 5 Production (12 recipes +
+5 episodes + 3 studio + 13 longform + 6 audio + 4
+long-form prompts, 43); Stage 6 The Finish (3 repair
+prompts + 6 fix + 4 grading + 5 checklists + 3 budget +
+5 legal + 4 entry + 4 delivery + 2 distribution, 36).
+Each stage carries its focus and a milestone — a
+demonstration, not a date — that says when to move on.
+`build_path()` in `scripts/build_site.py` renders the
+stage map from the curriculum + `skills/index.json`
+and embeds the curriculum as a JSON island;
+`assets/js/path.js` (`PathEngine`) computes the
+walker's standing from it (per-stage progress, current
+stage, next skill, verdict, markdown export), and
+check-offs persist under the Path's own localStorage
+key (`afg-the-path-v1`). The pre-existing homepage
+"Pick your path" section is untouched and linked from
+the page: it orders 4–5 chapters per goal; the Path
+orders the 241 skills themselves — they coexist by
+design, one for a deadline, one for the craft. Wired
+into the nav index, the footer, the search index, and
+the generated llms tool list; HAND companion skill
+`workflow-walk-the-path` in the workflow family
+(skills 241 → 242) — it teaches the walk itself and is
+deliberately not a stop on the path it describes, so
+the coverage law stays exact: `scripts/path.test.js`
+(15/15) asserts every one of the 241 skills appears
+exactly once across the stages, and validate.sh stage 7
+runs it. Built to the minimal bar (Duty 4): stages
+render as collapsed disclosures with only Stage 1 open,
+one check-off per row, no per-skill prose on the page —
+the first viewport is the hero, one short paragraph,
+the verdict, and six stage lines. Playwright-verified
+over HTTP, desktop 1440 + mobile 390, fresh browser per
+session: zero console messages; checking two Stage-1
+skills advances the verdict to Stage 1 with the next
+skill named, the stage bar and counts move, check-offs
+survive a reload, and Stage 6 opens on its summary —
+screenshots in
+`~/workspace/progress-archive/ai-film-master-guide/rotation-019/`,
+homepage capture included this rotation. Before/after:
+the guide had a skills browser with no order; it now
+has a sequenced curriculum whose standing is computed
+from the reader's own walk, published as data an agent
+can follow too.
+
+**Duty 3 — LIVE_CHECKLIST + regression sweep.**
+LIVE_CHECKLIST refreshed to the Watchtower 2.18 state
+(158 history events, 34 review-log entries, latest feed
+2026-10-13T21:21Z, the flag-free-pass and FLUX
+baseline-hold notes, and the Path entry; the free-tier
+audit is unchanged and re-verified against
+`vercel.json`: 6 functions, explicit paths,
+`maxDuration` 10 each, no `runtime` keys). After the
+final build, grep-verified over all built pages:
+**113 pages** (112 + path.html, born placed) — OG
+absolute 113/113, canonical 113/113, theme-color
+113/113, favicon links 113/113, robots.txt generated
+(allow-all, no invented sitemap), JSON-LD 44 blocks
+(unchanged count — the Path is a tool page and carries
+canonical + OG only, per the honest-JSON-LD rule),
+0 invalid JSON-LD blocks, and exactly one `<h1>` on
+every page. Graduated techniques re-verified in the
+served CSS: the progress bar's
+`animation-timeline: scroll(root)` stands in
+`motifs.css`, and the `@view-transition` rules sit
+inside the `prefers-reduced-motion: no-preference`
+guard in `base.css`.
+
+**Duty 4 — Minimal-pass scoping (user order
+2026-10-13, for rotation 20).** The flagship above was
+built to the bar; the rest of the site predates it.
+Busiest surfaces today, in proposed pass order —
+presentation only, all content and functionality kept:
+(1) `index.html` — the first impression carries the
+track picker, all seven goal routes, the chapter grid,
+and the tool shelf at once; the makeover target is a
+3-second hero with the routes and grids behind
+disclosure. (2) `model-watch.html` — four dense panels
+(since-visit, drift board, pricing diff, full event
+log) over 32 model records; disclosure + a summary
+strip would cut its first screen by most of its length.
+(3) `prompts.html` and `skills.html` — the long walls:
+47 template cards and 242 skill rows with full prose;
+row-density + collapsed descriptions, filters first.
+(4) The nine sheet/tool pages (clearance, continuity,
+cuesheet, grade, cut, take, longform, forge, showdown)
+— one shared card pattern, so one family pass: gate
+cards behind disclosure, verdict first, as the Path
+does. (5) `studio.html`, `cutting-room.html`,
+`workshop.html` — dense interactives; hierarchy and
+whitespace only, no behaviour changes. (6) Chapter
+pages last — already the quietest surfaces; a
+typography-and-spacing pass only. The pass itself
+leads rotation 20; it did not displace Duties 1–2 here.
+
+**Rule 1762 hygiene.** Audit of all tracked files:
+zero CR/CRLF in any text file. Every file this rotation
+created or edited by hand is final-newline terminated;
+`site/search-index.json` remains a generator output
+whose generator emits no trailing newline.
+
+**Structure flags for the Release Engineer:** none. No
+api/ paths added, removed, or moved (the 6-function map
+is unchanged). New files are all in existing homes:
+`assets/js/path.js`, `scripts/path.test.js`,
+`data/v1/curriculum.json` (preserve-listed), the
+generated `site/path.html`, and one generated skill
+file under `skills/workflow/`.
+
+**Validation.** validate.sh and api.test.sh results are
+filed in the commit/push record entry below (the
+post-commit run is the one that counts, per the
+generator-audit stages' git-diff design).
+
+**Left open.** The 3 standing watches — all re-checked
+this pass, none moved. The standing partial cohort will
+keep surfacing as alerts while its hosts gate the
+checker. pika.art (Pika) and lapaasvoice (Vidu S2) and
+the Krea explainer (Midjourney) remain on the
+second-flag watch from earlier passes. BFL's docs page:
+baselined at f95831ee… in 2.16 and held there in every
+run and probe since; a move off it is adjudicated
+against all three known renderings. PixVerse's docs
+source now stands on eight clean passes. The 2.17
+calibrations (deployedbyai for Grok, bottlerocketcontent
+for FLUX) stand in the exclusion set — both URLs still
+fetched and recorded every run. The fleet-wide minimal
+pass (Duty 4 scoping) leads rotation 20. Parked
+decisions: none this rotation. No fetch-rule skips
+occurred: every fetch used the checker's own path or
+its probe imports; no approval-card source was
+encountered.
+
 ## Rotation 18 — commit/push record (2026-10-13)
 
 Local `52c38ba` → pushed 2026-10-13 as remote commit

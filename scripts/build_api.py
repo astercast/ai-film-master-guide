@@ -155,7 +155,8 @@ def main():
     # Preserve hand-maintained API files this script does not generate
     # (teardowns.json + its schema are authored by hand, not from artifacts;
     # model-checks.json and model-review-queue.json are maintained by the
-    # model-watch refresh loop, not from artifacts).
+    # model-watch refresh loop, not from artifacts; curriculum.json is the
+    # hand-authored Path sequencing, rotation 19).
     preserved = {}
     for rel in ["teardowns.json", "schema/teardown.json", "model-updates.md",
                 "model-checks.json", "model-review-queue.json",
@@ -163,7 +164,8 @@ def main():
                 "schema/model-checks.json", "schema/model-review-queue.json",
                 "pricing.json", "schema/envelope.json",
                 "model-history.json", "schema/model-history.json",
-                "model-review-log.json", "schema/model-review-log.json"]:
+                "model-review-log.json", "schema/model-review-log.json",
+                "curriculum.json"]:
         p = API / rel
         if p.exists():
             preserved[rel] = p.read_bytes()

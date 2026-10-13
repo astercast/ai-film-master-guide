@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "count": 241,
+  "count": 242,
   "skills": [
     {
       "id": "prompt-t1",
@@ -1369,6 +1369,12 @@
       "title": "Run the longform sheet",
       "description": "The long-form pipelines chapter as a working sheet: the five pre-lock gates, every scene logged with its stress test, storyboard, reference, dialogue route, draft tier, re-rolls, and route, and the feature-lock verdict from the chapter's rules.",
       "path": "skills/longform/longform-assembly-sheet.md"
+    },
+    {
+      "id": "workflow-walk-the-path",
+      "title": "Walk the Path \u2014 the sequenced curriculum",
+      "description": "The guide's 241 skills sequenced into six stages in production order (data/v1/curriculum.json): walk them in order on path.html, check each skill off as it is actually done, and let each stage's milestone \u2014 not the calendar \u2014 say when to move on.",
+      "path": "skills/workflow/workflow-walk-the-path.md"
     },
     {
       "id": "workflow-shot-list",
