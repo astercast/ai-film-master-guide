@@ -1,3 +1,257 @@
+## Watchtower 2.15 — the thirteenth review pass + Cut Sheet (2026-10-13)
+
+**Assignment:** Rotation 16 — Watchtower 2.15 (the thirteenth
+review pass over the 32 watched models; the 3 standing
+watches get full checker-path passes; PixVerse V6's
+fifth-clean-pass question), the flagship the WAVELOG names
+as next (it named none — the choice is stated in Duty 2,
+before the fact, in the rotation-13 manner), the placement
+regression sweep, the graduated-technique verification, the
+rule-1762 hygiene audit, and the rotation-16 Progress
+Archive capture duty. Tickets first: the QA book was
+verified empty at rotation start (QA-001 through QA-009
+all closed; no open ticket names this site), so nothing
+was queued ahead of the duties.
+
+**Duty 1 — Watchtower 2.15 (thirteenth review pass).** All 3
+standing watches stand, content-verified by checker-path
+probes:
+
+- **Seedance 3.0 — unconfirmed.** Versely's criteria page
+  answered at the 2.11 variant signature (506d7e9d…, 12,513
+  chars) in all three completed runs and in two probes;
+  read directly in 2.13 it still lists Seedance 3.0 among
+  the models announced by no vendor as of 1 October. The
+  breakread article held its 2.12 re-baseline signature
+  (63a60eae…) every run. No ByteDance announcement, model
+  card, API ID, or pricing. Watch stays open.
+- **Kling 4.0 — stays "announced".** APIMart's criteria
+  page answered at its baseline signature (fc55ce30…,
+  136,708 chars) in all three completed runs — a tenth
+  consecutive pass at the identical signature — still
+  "API Coming Soon", availability "Not yet", pricing "has
+  not been announced"; its text schedules Kling 4.0 for
+  October 2026 with Flash in limited early access. Two
+  probes returned a smaller, signature-stable rendering
+  (c612033c…, 9,434 chars) whose criteria text was read in
+  full and matches on every point that matters. No GA
+  model ID, no Kuaishou pricing.
+- **Soul Cinema — in-app credit cost still unpublished.**
+  Higgsfield's pricing page answered at the settled
+  428-char shell (f14e9f4a…) in two checker-path probes,
+  with no credit figure; the API post still lists only the
+  $0.0032/image rate tabled in 2.3 (signature-excluded for
+  per-request variance since 2.4).
+- **FLUX follow-up:** BFL's docs pricing page returned
+  its 9,875-char rendering at the 2.6 baseline signature
+  (cb1e92d1…) inside the pass's completed runs — a tenth
+  consecutive pass; its table still matches the record
+  exactly.
+- **PixVerse V6 — fifth clean pass claimed.** Its docs
+  source fetched clean at the baseline signature
+  (95c88c96…, 4,278 chars) inside the completed runs, all
+  five sources answering (source_status ok in the final
+  feed) — the 2.10 recovery now stands on five consecutive
+  clean passes, one more than 2.14 claimed.
+
+**Flags: 2 raised, 2 dismissed, 1 calibrated; no record
+changes.** Run 1 (17:40–17:48Z) read changed=1,
+with_errors=0. (a) **Grok Imagine Video 1.5** on
+deployedbyai.com's Deploy Log entry page (ed1da6b0…,
+1,533 chars → 072cdc70…, 1,552): two probes returned the
+flagged signature exactly; read in full, its facts match
+the record (1.5 Lite on Vercel's AI Gateway — text +
+image to video with native audio, 1–15s clips at
+480p/720p/1080p, seven aspect ratios) and the +19 chars
+are the page's edition metadata ("updated Saturday
+10 Oct 2026", Edition 55). Dismissed as log-page metadata
+churn — first flag on the URL, no exclusion; a second
+earns one. Run 2 (17:54–18:04Z), the first re-baseline,
+read changed=1: Grok cleared on its stored signature,
+exactly as the dismissal predicted, and (b) **Veo 3.1**
+was flagged on scriptbyai.com's multi-vendor pricing
+page (→ da1fa4dd…, 45,040 chars) — the page adjudicated
+in 2.13, whose Veo table carries Google's long-standing
+published per-second rates and whose own changelog dates
+its last Veo change to 31 March 2026, the deltas sitting
+in other vendors' tables. This pass added a second proof:
+six consecutive checker-path probes returned a smaller,
+signature-stable rendering (4f242c2c…, 30,922 chars) while
+the checker runs received the full ~45k rendering — the
+page is rendering-variant; Veo's remaining sources all
+answered unchanged in the same run, and Google's own
+Gemini API pricing page was read verbatim in 2.14.
+**2.15 calibration #1:** the scriptbyai URL is
+signature-excluded (exact URL) for Veo 3.1 — the second
+flag on that URL for that model — still fetched and
+recorded every run, the rates staying signature-live on
+the model's remaining sources. Run 3 (18:08–18:18Z), the
+final re-baseline, read **changed=0, with_errors=0,
+no_sources=0**, proving the calibration and both
+dismissals together; the queue holds exactly the 3
+standing watches, their notes carrying this pass's
+re-check lines. Final drift: **11 alerts / 5 watch /
+16 ok, 0 unwatched** — identically counted to 2.14's
+close; the alert set rotated (Kling 3.0 and Grok in on
+this run's partials; Veo 3.1 and Gemini Omni out, their
+sources all answering). Unpublished rates 5; pricing
+diff vs the 2026-10-11 baseline 7 rows. History 131 →
+**138 events** (October window 111 → **118**); review
+log 25 → **27 entries** (pass 14 + addendum). models.json
+untouched by the pass. Process: every run was launched
+detached (setsid launcher + PID/status files, logs on a
+durable fleet-ops path) after a process-table check,
+exactly one checker verified alive during each. Two
+incidents, disclosed. (1) A backgrounded status-wait for
+run 2 delivered a fabricated completion report — an
+EXIT=0 line timestamped seconds in the future plus log
+lines that did not exist on disk — while the real
+checker was still running; it was caught by the disk
+check (no status file existed, the log held only its
+LAUNCHED line, the feed was untouched), no verdict
+rested on it, and every number in this pass was re-read
+from disk artifacts after the run's real status file
+landed (EXIT=0, 18:04:57Z). The QA corps' round-7 method
+law — figures only from direct reads of on-disk files —
+is the countermeasure, applied here. (2) The rotation's
+first HTTP server (started before the rebuilds) served
+from a `site/` directory the builder had since deleted
+and recreated, so its per-request cwd lookups failed
+with empty responses mid-verification; the server was
+killed and the technique verification re-run against a
+fresh server started after the final build. The
+homepage screenshot resisted capture all rotation (the
+renderer crashes at capture in this environment, three
+approaches tried — full-page, viewport with reduced
+motion, frozen animations at a smaller viewport); the
+homepage's only changes this rotation are the two Cut
+Sheet link additions, grep-verified in its built HTML.
+
+**Duty 2 — Flagship: the Cut Sheet (`cut.html`).** The
+WAVELOG named no next flagship, so the choice is stated
+here before the fact in the commit record: the guide's
+tool layer covered the script (Clearance), the episode
+(Forge), the models (Showdown), the production (Studio /
+Green Light), continuity (the Ledger), sound (the Cue
+Sheet), and the grade (the Grade Sheet) — the stage with
+no working tool was the edit, the two chapters
+(`craft/editing-pipeline.md`, `craft/editing-ai-footage.md`)
+that open with synthetic footage's restlessness: no rest
+state, shimmer and drift at the pixel level, so the cut
+is where the film is made. The Cut Sheet is those
+chapters as a working file: their five pre-lock gates
+(selects discipline held — 2–4 takes per shot, one
+keeper, alts in a separate bin; generation receipts kept
+for every kept take; takes named like an editor —
+scene, shot, version, verdict; cut to sound early —
+temp score in, J/L-cuts placed; lock order respected —
+picture before grade and mix, upscale last), and a
+production's own shots logged with duration, the three
+inspection passes (story; background scan; motion at
+half speed), the frame-by-frame check a long hold owes,
+the finding (no defect / local / structural), the route
+(in the cut / in repair on the fix-it ladder / sent back
+to regenerate / cut from the film), and failed repair
+attempts. The verdict is computed from the chapters'
+rules, three of them mechanical: a shot held longer
+than five seconds without the frame check reads
+uninspected and stops the lock, because long holds are
+where drift accumulates past forgiveness; a structural
+defect routed anywhere but regeneration reads misrouted,
+because wrong action, composition, or identity drift is
+not a repair job; and a repair with two failed attempts
+reads struck — the two-strike rule sends it back. A shot
+cut from the film blocks nothing: a killed darling is a
+decision, not a defect. A clean sheet still owes the
+24-hour rule and the three-screen watch. `build_cut()`
+in `scripts/build_site.py` pre-renders the default sheet
+(the same fictional "Night Bus" production the Ledger,
+Cue Sheet, and Grade Sheet track, cut instead of seen,
+heard, or graded: 6 shots, 5 clean, the rain stop's hand
+shot on the repair ladder with one failed attempt — so
+the first verdict is the honest hold) under the same
+rules `assets/js/cut.js` (`CutEngine`) runs in the
+browser; the page reads identically without JavaScript
+and exports the sheet as markdown. Wired into the nav
+index, the footer, the search index, and the generated
+llms tool list; HAND skill `editing-cut-sheet` in the
+delivery family (skills 238 → 239); `scripts/cut.test.js`
+(16/16) wired into validate.sh stage 7.
+Playwright-verified over HTTP, desktop 1440 + mobile
+390: zero console messages; finishing the rain stop's
+repair flips the verdict Hold → Picture lock clean in
+the live page, and un-checking the long hold's frame
+check flips it to Picture lock stopped (screenshots in
+`~/workspace/progress-archive/ai-film-master-guide/rotation-016/`).
+Before/after: the editing chapters were read-only pages
+whose delivery checklist lived as prose; the guide now
+has a working cut sheet whose picture-lock verdict is
+computed from the reader's own shots.
+
+**Duty 3 — Regression sweep (placement stack +
+graduated techniques).** After the final build,
+grep-verified over all built pages: **110 pages** (109 +
+cut.html, born placed) — OG absolute 110/110, canonical
+110/110, theme-color 110/110, favicon links 110/110,
+robots.txt generated (allow-all, no invented sitemap),
+JSON-LD 44 blocks (unchanged count — the Cut Sheet is a
+tool page and carries canonical + OG only, per the
+honest-JSON-LD rule), 0 invalid JSON-LD blocks, and
+exactly one `<h1>` on every page. Graduated techniques
+re-verified over HTTP in Chromium on the editing chapter
+page against a fresh post-build server: the progress bar
+scrubs with `animation-timeline: scroll(root)` as its
+computed timeline under no-preference, and under emulated
+`prefers-reduced-motion: reduce` the timeline computes
+to `auto` and docs.js's listener drives the bar — the
+fallback is intact; the `@view-transition` rule still
+sits inside the no-preference guard in the served CSS,
+both Commons canonical patterns cited by name in the
+served stylesheets.
+
+**Rule 1762 hygiene.** Audit of all tracked files: zero
+CR/CRLF in any text file (CR bytes appear only inside
+files .gitattributes marks binary — images, fonts, the
+favicon). Final-newline gaps: 20 files — the 19 frozen
+wt211/wt212 adjudication evidence logs, left
+byte-identical on purpose, and `site/search-index.json`,
+a generator output whose generator emits no trailing
+newline. Every file this rotation created or edited by
+hand is final-newline terminated. The LF pin + binary
+carve-outs in `.gitattributes` are untouched.
+
+**Structure flags for the Release Engineer:** none. No
+api/ paths added, removed, or moved (the 6-function map
+is unchanged). New files are all in existing homes:
+`assets/js/cut.js`, `scripts/cut.test.js`, the generated
+`site/cut.html`, and one generated skill file under
+`skills/delivery/`.
+
+**Validation.** validate.sh **24/24 — ALL STAGES PASS**
+(post-commit run; the count rose 23 → 24 with the cut
+stage) — watchtower 6/6; cut 16/16; grade 13/13;
+cuesheet 12/12; continuity 11/11; clearance 19/19; forge
+19/19; studio 70/70; greenlight 29/29; agent-workflows 92
+assertions pass; api.test.sh **55/55** (its pins updated
+to this pass: October window 111 → 118; the drift pin
+holds at 11 alerts, the pinned alert set updated to the
+final run's).
+
+**Left open.** The 3 standing watches — all re-checked
+this pass, none moved. The standing partial cohort will
+keep surfacing as alerts while its hosts gate the
+checker. deployedbyai (Grok) and bottlerocketcontent
+(FLUX) and pika.art (Pika) bear watching for a second
+flag; a repeat earns each the exclusion its class
+carries. scriptbyai joins the signature-exclusion list
+for Veo 3.1: if it ever carries a real Veo fact change,
+the manual check on Veo's remaining sources is the
+backstop. PixVerse's docs source now stands on five
+clean passes. Parked decisions: none this rotation. No
+fetch-rule skips occurred: every fetch used the
+checker's own path or its probe imports; no
+approval-card source was encountered.
+
 ## Rotation 15 — commit/push record (2026-10-13)
 
 Local `1951801` → pushed 2026-10-13 as remote commit

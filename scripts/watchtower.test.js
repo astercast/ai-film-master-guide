@@ -52,32 +52,30 @@ ok('real diff: the 5 Watchtower 2.0 coverage changes + the 2.3 Soul Cinema tier 
   assert(added, 'pixverse-v6 model-added missing');
   assert.strictEqual(added.after_low, 0.09, 'new record shows its rate span');
   assert.strictEqual(added.after_high, 0.23);
-  // Watchtower 2.14 (2026-10-13): the twelfth review pass ran four
-  // completed checker runs (15:44Z adjudication, 16:23Z first
-  // re-baseline, 16:50Z second re-baseline after the first attempt
-  // vanished without writing, 17:03Z final re-baseline) plus
+  // Watchtower 2.15 (2026-10-13): the thirteenth review pass ran
+  // three completed checker runs (17:40Z adjudication, 17:54Z
+  // first re-baseline, 18:08Z final re-baseline) plus
   // checker-path probes for every adjudication. All 3 standing
-  // watches stand (review log pass 13); 7 flags raised, 7 dismissed
-  // (Luma's and Gemini Omni's re-flags in later runs are the same
-  // flags re-raised by the re-baseline mechanics), 5 of them
-  // calibrated signature-excluded (LTX-2.5's launch article and
-  // Runway's own pricing-page shell — both second consecutive
-  // flags; FLUX on The Decoder's story rails — second consecutive;
-  // Luma on mivicai — four signatures within one pass, the 2.12
-  // magichour pattern; Gemini Omni on Google's own pricing page —
-  // five signatures across five fetches at identical length, the
-  // Soul 2.4 per-request-variance pattern, its rate verified
-  // verbatim on the page itself) and 3 dismissed without exclusion
-  // (FLUX on bottlerocket, Gemini's first flag before the pattern
-  // proved out, Pika's homepage rotation — probes exact ×3).
-  // PixVerse V6's docs source fetched clean at its baseline
-  // signature inside the pass's completed runs — the fourth clean
-  // pass. The final feed (2026-10-13T17:13Z): changed=0,
-  // with_errors=0; its 11 partials are the standing host-gated
-  // cohort (which members fail rotates with the hosts: this run
-  // Wan 2.6 carries a partial and Veo 3.1's and Gemini Omni's
-  // sources all answered, swapping the alert set against 2.13's
-  // at a count of 11). Pricing diff stays 7 rows.
+  // watches stand (review log pass 14); 2 flags raised, 2
+  // dismissed: Grok Imagine Video 1.5 on its deployedbyai Deploy
+  // Log page (probes returned the flagged signature exactly; the
+  // +19 chars are the page's edition metadata — first flag, no
+  // exclusion) and Veo 3.1 on scriptbyai's multi-vendor pricing
+  // page (the 2.13-adjudicated page, proved rendering-variant
+  // this pass — six probes at a smaller stable rendering while
+  // the runs received the full ~45k; second flag on the URL, so
+  // calibrated signature-excluded for Veo 3.1, the pass's one
+  // calibration). Kling 4.0's APIMart page held its baseline
+  // signature in all three runs — a tenth consecutive pass;
+  // FLUX's docs page likewise — a tenth. PixVerse V6's docs
+  // source fetched clean at its baseline signature inside the
+  // pass's completed runs — the fifth clean pass. The final
+  // feed (2026-10-13T18:18Z): changed=0, with_errors=0; its 11
+  // partials are the standing host-gated cohort (which members
+  // fail rotates with the hosts: this run Kling 3.0 and Grok
+  // carry partials and Veo 3.1's and Gemini Omni's sources all
+  // answered, swapping the alert set against 2.14's at the same
+  // count of 11). Pricing diff stays 7 rows.
   const d = drift.computeDrift({ modelsDoc: models, checksDoc: checks,
     pricingDoc: pricing, historyDoc: history, nowMs: NOW });
   assert.strictEqual(d.summary.models_total, 32);
@@ -86,8 +84,8 @@ ok('real diff: the 5 Watchtower 2.0 coverage changes + the 2.3 Soul Cinema tier 
   assert.strictEqual(d.summary.alert, 11, JSON.stringify(d.per_model.filter((r) => r.severity === 'alert')));
   assert.strictEqual(d.summary.price_changes_vs_baseline, 7);
   const alertIds = d.per_model.filter((r) => r.severity === 'alert').map((r) => r.model_id).sort();
-  assert.deepStrictEqual(alertIds, ['flux-3-video', 'grok-imagine-1-5', 'kling-4-0',
-    'luma-ray-3-2', 'midjourney-v1-video', 'minimax-h3', 'seedance-3-0', 'vidu-q4-preview', 'vidu-s2', 'wan-2-6', 'wan-3-0']);
+  assert.deepStrictEqual(alertIds, ['flux-3-video', 'grok-imagine-1-5', 'kling-3-0', 'kling-4-0',
+    'luma-ray-3-2', 'midjourney-v1-video', 'minimax-h3', 'seedance-3-0', 'vidu-q4-preview', 'vidu-s2', 'wan-3-0']);
 });
 
 ok('computeDrift: spot severities — PixVerse watched (price moved), Sora ok, Soul Cinema watch (own tier moved)', () => {
@@ -119,10 +117,13 @@ ok('computeDrift: spot severities — PixVerse watched (price moved), Sora ok, S
   // the PixVerse pattern, one generation on.
   assert.strictEqual(byId['wan-2-7'].check_status, 'stable');
   assert.strictEqual(byId['wan-2-7'].severity, 'watch');
-  // Kling 3.0 stayed clean through the whole pass (stable / ok); its
-  // latest event is this pass's verification-kind calibration record.
-  assert.strictEqual(byId['kling-3-0'].severity, 'ok');
-  assert.strictEqual(byId['kling-3-0'].check_status, 'stable');
+  // Kling 3.0 carries a partial in the final run (the rotating
+  // host-gated cohort — the drift engine labels any record with
+  // a failed source 'error'), so it reads alert this pass; its
+  // latest event stays the 2.13 verification-kind calibration
+  // record.
+  assert.strictEqual(byId['kling-3-0'].severity, 'alert');
+  assert.strictEqual(byId['kling-3-0'].check_status, 'error');
   assert.strictEqual(byId['kling-3-0'].latest_event.kind, 'verification');
 });
 

@@ -71,6 +71,7 @@ NAV_INDEX = [
         ("continuity.html", "Continuity ledger"),
         ("cuesheet.html", "Cue sheet"),
         ("grade.html", "Grade sheet"),
+        ("cut.html", "Cut sheet"),
         ("recipes.html", "Recipes"),
         ("forge.html", "Episode forge"),
     ]),
@@ -107,6 +108,7 @@ FOOTER_ITEMS = [
     ("continuity.html", "Continuity ledger"),
     ("cuesheet.html", "Cue sheet"),
     ("grade.html", "Grade sheet"),
+    ("cut.html", "Cut sheet"),
     ("checks/", "Knowledge checks"),
     ("budget.html", "Budget"),
     ("optimizer.html", "Optimizer"),
@@ -4121,6 +4123,354 @@ def build_grade(css_links):
     return [("grade.html", "Grade sheet")]
 
 
+CUT_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cut sheet — AI Film Master Guide</title>
+  <meta name="description" content="The editing chapters as a working cut sheet: the five pre-lock gates, every shot logged with its duration, its three inspection passes, its finding and its route, and the picture-lock verdict computed from the chapters' own rules — the 5-second rule, the structural rule, the two-strike rule.">
+  {css}
+  <style>
+    .cut-verdict {{ font-size: 1.05rem; border-left: 3px solid var(--gold); padding-left: var(--space-4); margin-bottom: var(--space-6); }}
+    .cut-held {{ border-left-color: #e88; }}
+    .cut-gate-card, .cut-entry {{ border: 1px solid var(--line); border-radius: 12px; padding: var(--space-4) var(--space-5); margin-bottom: var(--space-4); }}
+    .cut-gate-head, .cut-entry-head {{ display: flex; align-items: baseline; gap: var(--space-3); flex-wrap: wrap; }}
+    .cut-gate-head h4, .cut-entry-head h4 {{ margin: 0; font-size: 1.2rem; }}
+    .cut-num {{ display: inline-block; min-width: 1.7em; text-align: center; background: var(--gold); color: #111; border-radius: 999px; font-weight: 800; padding: .1em .3em; }}
+    .cut-tag {{ margin-left: auto; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }}
+    .cut-what, .cut-detail, .cut-state, .cut-finding, .cut-route, .cut-attempts {{ color: var(--muted); }}
+    .cut-state strong, .cut-attempts strong {{ color: var(--text); }}
+    .cut-note {{ font-size: .85rem; }}
+  </style>
+</head>
+<body>
+  <div class="edge-right" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        {sitenav}
+      </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">&#9679;</span> <span class="hdr-tc-val">00:59:52:00</span></span>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">&#8984;K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    {hero}
+    <section class="container" aria-labelledby="cut-h">
+      <h2 id="cut-h">The five gates — before picture lock</h2>
+      <p>Synthetic footage has no rest state: a still AI room shimmers, breathes, and drifts at the pixel level, so the cut is where the film is actually made. The five gates below are the editing chapters' own discipline before any shot is judged; the full chapters are <a href="craft/editing-ai-footage.html">Editing AI Footage</a> and <a href="craft/editing-pipeline.html">Editing Pipeline</a>. Tick a gate when the production has actually done it — the sheet counts what is written down, not intentions.</p>
+      <div id="cut-gates">{cut_gates}</div>
+      <p class="calc-note" id="cut-gates-state" aria-live="polite">{cut_gates_state}</p>
+      <h2>Your cut sheet</h2>
+      <p>Log every shot in the cut with its duration, its three inspection passes (the story pass; the background scan — hands at frame edges, background faces, signs, reflections; the motion pass at half speed, where micro-jitter and swimming cloth show), and the frame-by-frame check any hold over five seconds owes at its start, middle, and end. Record what the inspection found — no defect, a local defect (bad frames, one element, jitter), or a structural one (wrong action, wrong composition, identity drift) — and the shot's route: in the cut, in repair on the fix-it ladder (cut around it, re-time, stabilize, composite, grain — bottom-up, stop at the first rung that works), sent back to regenerate, or cut from the film. Three rules are mechanical: a hold over five seconds without the frame check reads uninspected; a structural defect routed anywhere but regeneration reads misrouted; and a repair with two failed attempts reads struck — the two-strike rule sends it back. The sheet opens on a worked example — the same small AI short the Ledger, the Cue Sheet, and the Grade Sheet track, cut instead of seen, heard, or graded — with the rain stop's hand shot on the repair ladder, so the first verdict you see is the honest hold.</p>
+      <div class="card" style="margin-bottom:var(--space-6);">
+        <div class="calc-grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
+          <div class="field">
+            <label for="cut-title">Production title</label>
+            <input class="input" type="text" id="cut-title" placeholder="e.g. The Night Bus">
+          </div>
+          <div class="field">
+            <label for="cut-new-shot">New shot</label>
+            <input class="input" type="text" id="cut-new-shot" placeholder="e.g. Sc 6 · Sh 02 — Rooftop, dawn">
+          </div>
+          <div class="field">
+            <label for="cut-new-duration">Duration (seconds)</label>
+            <input class="input" type="number" id="cut-new-duration" min="0" step="0.1" placeholder="e.g. 3.5">
+          </div>
+          <div class="field">
+            <label for="cut-new-detail">What the inspection found — specifically</label>
+            <input class="input" type="text" id="cut-new-detail" placeholder="e.g. Background scan: sign text holds; half speed: no swim.">
+          </div>
+          <div class="field">
+            <label for="cut-new-defect">Finding</label>
+            <select class="input" id="cut-new-defect">{cut_defect_options}</select>
+          </div>
+          <div class="field">
+            <label for="cut-new-status">Route today</label>
+            <select class="input" id="cut-new-status">{cut_status_options}</select>
+          </div>
+          <div class="field">
+            <label for="cut-new-attempts">Failed repair attempts</label>
+            <input class="input" type="number" id="cut-new-attempts" min="0" max="9" step="1" value="0">
+          </div>
+          <div class="field">
+            <label>Inspection done</label>
+            <p style="margin:.2em 0;">
+              <label><input type="checkbox" id="cut-new-story"> Story</label>
+              <label><input type="checkbox" id="cut-new-background"> Background</label>
+              <label><input type="checkbox" id="cut-new-motion"> Motion</label>
+              <label><input type="checkbox" id="cut-new-framecheck"> Frame check (&gt;5s holds)</label>
+            </p>
+          </div>
+          <div class="field">
+            <label aria-hidden="true">&nbsp;</label>
+            <button type="button" class="btn" id="cut-add">Add shot to the sheet</button>
+          </div>
+        </div>
+        <p class="calc-note" id="cut-msg" hidden></p>
+      </div>
+      <p class="cut-verdict" id="cut-verdict" aria-live="polite">{cut_verdict}</p>
+      <div id="cut-stage">{cut_stage}</div>
+      <div class="card" style="margin-top:var(--space-6);">
+        <h3>Take the sheet</h3>
+        <p>The sheet exports as clean markdown: the five gates with their state, every shot with its duration, its passes, its frame check, its finding, its route, and its repair attempts, and the picture-lock verdict — the file the lock decision is made from.</p>
+        <p><button type="button" class="btn" id="cut-copy">Copy sheet</button> <button type="button" class="btn btn-ghost" id="cut-download">Download sheet (.md)</button></p>
+        <p><a class="btn btn-ghost" href="craft/editing-ai-footage.html">Read the editing chapter</a> <a class="btn btn-ghost" href="grade.html">Grade sheet</a> <a class="btn btn-ghost" href="cuesheet.html">Cue sheet</a></p>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+    </div>
+  </footer>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search" hidden>
+    <div class="palette-box">
+      <input type="search" id="palette-input" placeholder="Search the guide…" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/cut.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
+</body>
+</html>
+"""
+
+
+# The cut-sheet layer — kept in step with assets/js/cut.js
+# (CutEngine). scripts/cut.test.js pins the engine, and the
+# pre-rendered default sheet below is rendered under the
+# same rules. Source: craft/editing-pipeline.md +
+# craft/editing-ai-footage.md — the selects discipline, the
+# inspection pass, the 5-second rule, the fix-it ladder, the
+# regenerate-vs-repair decision, and the delivery rules,
+# quoted in substance.
+CUT_GATES = [
+    dict(id="selects", name="Selects discipline held: 2–4 takes, one keeper",
+         what="Generate 2–4 takes per shot and keep the best one — the first generation is a draft, and takes 2–4 are where the model settles. Past four takes you are usually prompting the wrong thing: go back to the prompt, not the generate button. Only keeps enter the edit; alts live in a separate bin."),
+    dict(id="receipts", name="Generation receipts kept for every kept take",
+         what="For every take you keep, record the model, the prompt (or prompt ID), the seed if the tool exposes one, and the generation date. When a shot needs a re-render three weeks later, the receipt is the difference between matching it and starting over."),
+    dict(id="naming", name="Takes named like an editor, not a prompter",
+         what="Scene, shot, version, verdict: sc03_sh02_v3_keep.mov beats kling_dreamy_final_FINAL2.mp4. The verdict suffix (_keep, _alt, _fix) is the whole system — at 2am you should be able to read the selects bin without opening anything."),
+    dict(id="soundled", name="Cut to sound early: temp score in, J/L-cuts placed",
+         what="Even a rough music bed gives synthetic footage a pulse to cut against; editors who cut AI footage silent tend to cut it metronomically. Let audio lead or lag the picture cut — J-cuts and L-cuts are free professionalism, and they cost nothing."),
+    dict(id="lockorder", name="Lock order respected: picture before grade and mix, upscale last",
+         what="Picture lock comes before color and mix — the grade and the cue sheet both start from the locked cut. One grain goes over the locked timeline, and the upscale is of the final timeline only: never upscale individual clips and re-edit; you pay for pixels you cut."),
+]
+
+CUT_PASSES = [("story", "Story pass"), ("background", "Background scan"),
+              ("motion", "Motion pass (half speed)")]
+
+CUT_DEFECTS = [
+    ("none", "No defect found"),
+    ("local", "Local — bad frames, one element, jitter"),
+    ("structural", "Structural — action, composition, identity"),
+]
+
+CUT_STATUSES = [
+    ("in", "In the cut"),
+    ("repair", "In repair — on the ladder"),
+    ("regen", "Sent back — regenerate"),
+    ("cut", "Cut from the film"),
+]
+
+CUT_EFFECTIVE_LABELS = {
+    "clean": "Clean — in the cut",
+    "repairing": "In repair — on the ladder",
+    "sentback": "Sent back — regenerate",
+    "unchecked": "Unchecked — inspection unfinished",
+    "carrying": "Carrying a defect in the cut",
+    "uninspected": "Uninspected long hold — frame check owed",
+    "misrouted": "Misrouted — structural defect in repair",
+    "struck": "Struck out — two failed repairs",
+    "cut": "Cut from the film",
+}
+
+# Mirror of DEFAULT_ENTRIES in assets/js/cut.js.
+CUT_DEFAULT_ENTRIES = [
+    dict(shot="Sc 1 · Sh 01 — Depot wide, Mara waits", duration=3.5, framecheck=False,
+         detail="Take 2 of 3, the keeper. Story pass: the wait reads. Background: canopy signs hold. Half speed: no swim in the wet concrete.",
+         passes=dict(story=True, background=True, motion=True), defect="none", status="in", attempts=0),
+    dict(shot="Sc 2 · Sh 04 — Window close-up, the hardest line", duration=4.2, framecheck=False,
+         detail="The performance shot — held under five seconds on purpose; an AI face held longer invites the audience to study the render instead of the line.",
+         passes=dict(story=True, background=True, motion=True), defect="none", status="in", attempts=0),
+    dict(shot="Sc 3 · Sh 02 — The rain stop, shelter two-shot hold", duration=6.8, framecheck=True,
+         detail="The film's one long hold, and its cleanest take — earned in the inspection pass and frame-checked at start, middle, and end: no drift past forgiveness.",
+         passes=dict(story=True, background=True, motion=True), defect="none", status="in", attempts=0),
+    dict(shot="Sc 3 · Sh 05 — Hands on the shelter rail", duration=2.4, framecheck=False,
+         detail="Micro-jitter on the rail at half speed — a local defect. On the ladder at rung 2 (re-time at 90%): one attempt smoothed the hands but warped the rail; the next attempt works the trim first, rung 1, before climbing.",
+         passes=dict(story=True, background=True, motion=True), defect="local", status="repair", attempts=1),
+    dict(shot="Sc 4 · Sh 03 — Office pan, radio voices", duration=3.1, framecheck=False,
+         detail="Cut on the pan's motion vector — the match-cut carries the eye past the join. J-cut: the radio voice leads the picture by six frames.",
+         passes=dict(story=True, background=True, motion=True), defect="none", status="in", attempts=0),
+    dict(shot="Sc 5 · Sh 01 — Departure pull-away", duration=4.6, framecheck=False,
+         detail="The button. Background scan caught a warping timetable board in take 1; take 3's board holds. L-cut: the depot ambience lags the cut to black.",
+         passes=dict(story=True, background=True, motion=True), defect="none", status="in", attempts=0),
+]
+
+
+def cut_effective(e):
+    """Mirror of CutEngine.effectiveStatus (assets/js/cut.js):
+    a shot cut from the film blocks nothing; a structural
+    defect not routed to regeneration reads misrouted; two
+    failed repairs read struck; a >5s hold without the frame
+    check reads uninspected."""
+    st = e.get("status") if e.get("status") in dict(CUT_STATUSES) else "in"
+    if st == "cut":
+        return "cut"
+    if e.get("defect") == "structural" and st != "regen":
+        return "misrouted"
+    if st == "repair" and (e.get("attempts") or 0) >= 2:
+        return "struck"
+    if (e.get("duration") or 0) > 5 and not e.get("framecheck"):
+        return "uninspected"
+    if st == "regen":
+        return "sentback"
+    if st == "repair":
+        return "repairing"
+    passes = e.get("passes", {})
+    if not all(passes.get(pid) for pid, _label in CUT_PASSES):
+        return "unchecked"
+    if e.get("defect") and e.get("defect") != "none":
+        return "carrying"
+    return "clean"
+
+
+def cut_eval(entries):
+    """Mirror of CutEngine.evaluate (assets/js/cut.js)."""
+    eff = [cut_effective(e) for e in entries]
+    clean = eff.count("clean")
+    cut = eff.count("cut")
+    held = sum(eff.count(s) for s in ("repairing", "sentback", "unchecked", "carrying"))
+    stopped = sum(eff.count(s) for s in ("misrouted", "struck", "uninspected"))
+    ready = bool(entries) and held == 0 and stopped == 0
+    if not entries:
+        verdict = "No cut sheet yet — the timeline is a pile of generations until the selects are logged. Log every shot in the cut: its duration, its three inspection passes, and what the inspection found."
+    elif eff.count("misrouted"):
+        m = eff.count("misrouted")
+        verdict = (f"Picture lock stopped — {m} shot" + (" carries" if m == 1 else "s carry") +
+                   " a structural defect routed to repair: wrong action, wrong composition, or identity drift "
+                   "through the whole clip is not a repair job. Regenerate — and if the same defect appears "
+                   "in three takes, the problem is upstream: fix the prompt, not the frames.")
+    elif eff.count("struck"):
+        k = eff.count("struck")
+        verdict = (f"Picture lock stopped — {k} shot" + (" has" if k == 1 else "s have") +
+                   " burned two repair attempts: the two-strike rule sends them back to regenerate. "
+                   "A third attempt at fixing a morph almost never works, and it now costs more than "
+                   "a fresh generation.")
+    elif eff.count("uninspected"):
+        u = eff.count("uninspected")
+        verdict = (f"Picture lock stopped — {u} shot" + (" holds" if u == 1 else "s hold") +
+                   " longer than five seconds without the frame-by-frame check: long holds are where "
+                   "drift accumulates past the audience's forgiveness. Inspect the start, middle, and "
+                   "end — or trim the hold under five seconds.")
+    elif held:
+        verdict = (f"Hold picture lock — {held} shot" + (" is" if held == 1 else "s are") +
+                   " not ready: a repair still on the ladder, a shot sent back for regeneration, an "
+                   "inspection unfinished, or a local defect still carried in the cut. Work the ladder "
+                   "bottom-up — cut around it, re-time, stabilize, composite — and stop at the first "
+                   "rung that works.")
+    else:
+        verdict = ("Picture lock clean — every shot in the cut passed the three-eyed inspection, every "
+                   "hold over five seconds is frame-checked, and no defect is being carried or repaired "
+                   "past its second strike. Still owed before delivery: the 24-hour rule — lock it, sleep, "
+                   "watch it fresh — the watch on three screens (phone, laptop, TV), one grain over the "
+                   "locked timeline, and the upscale, last, of the final timeline only.")
+    return {"total": len(entries), "clean": clean, "held": held, "stopped": stopped,
+            "cut": cut, "ready": ready, "verdict": verdict}
+
+
+def build_cut(css_links):
+    """Cut Sheet — the editing chapters (craft/editing-pipeline.md
+    + craft/editing-ai-footage.md) as a working cut sheet: the
+    five pre-lock gates, the production's own shots with their
+    durations, inspection passes, findings, and routes, and the
+    picture-lock verdict computed exactly as the chapters' rules
+    state it. The default sheet is pre-rendered here under the
+    same rules assets/js/cut.js runs in the browser; the engine
+    invents no shots and no states — the 5-second rule, the
+    structural rule, and the two-strike rule are mechanical,
+    on the record."""
+    def esc(s):
+        return html.escape(str(s if s is not None else ""))
+
+    def fmt_dur(d):
+        return "%g" % (d or 0)
+
+    gates_html = []
+    for i, s in enumerate(CUT_GATES):
+        gates_html.append(
+            f'<article class="cut-gate-card"><div class="cut-gate-head"><span class="cut-num">{i + 1}</span>'
+            f'<h4>{esc(s["name"])}</h4><span class="cut-tag">Pre-lock gate</span></div>'
+            f'<p class="cut-what">{esc(s["what"])}</p>'
+            f'<p><label><input type="checkbox" data-cut-gate="{esc(s["id"])}"> Done — the gate is written down</label></p></article>')
+    r = cut_eval(CUT_DEFAULT_ENTRIES)
+    stage_html = []
+    for idx, e in enumerate(CUT_DEFAULT_ENTRIES):
+        eff = cut_effective(e)
+        s = (f'<article class="cut-entry"><div class="cut-entry-head"><h4>{esc(e["shot"])}</h4>'
+             f'<span class="cut-tag">{esc(fmt_dur(e["duration"]))}s</span></div>'
+             f'<p class="cut-detail">{esc(e["detail"])}</p>'
+             f'<p class="cut-passes" role="group" aria-label="Inspection passes done for {esc(e["shot"])}">'
+             + " ".join(
+                 f'<button type="button" class="btn btn-sm{"" if e["passes"].get(pid) else " btn-ghost"}" '
+                 f'data-cut-pass="{idx}:{pid}" aria-pressed="{"true" if e["passes"].get(pid) else "false"}">'
+                 f'{esc(label)}{" ✓" if e["passes"].get(pid) else " —"}</button>'
+                 for pid, label in CUT_PASSES)
+             + f' <button type="button" class="btn btn-sm{"" if e["framecheck"] else " btn-ghost"}" '
+               f'data-cut-frame="{idx}" aria-pressed="{"true" if e["framecheck"] else "false"}">'
+               f'Frame check (holds &gt;5s){" ✓" if e["framecheck"] else " —"}</button></p>'
+             f'<p class="cut-state">State: <strong>{esc(CUT_EFFECTIVE_LABELS.get(eff) or "—")}</strong></p>'
+             f'<p class="cut-finding">Finding: '
+             + " ".join(
+                 f'<button type="button" class="btn btn-sm{"" if e["defect"] == did else " btn-ghost"}" '
+                 f'data-cut-defect="{idx}:{did}">{esc(label.split(" — ")[0])}</button>'
+                 for did, label in CUT_DEFECTS)
+             + "</p>"
+             f'<p class="cut-route">Route: '
+             + " ".join(
+                 f'<button type="button" class="btn btn-sm{"" if e["status"] == sid else " btn-ghost"}" '
+                 f'data-cut-set="{idx}:{sid}">{esc(label)}</button>'
+                 for sid, label in CUT_STATUSES)
+             + "</p>"
+             f'<p class="cut-attempts">Failed repair attempts: <strong>{e["attempts"]}</strong> '
+             f'<button type="button" class="btn btn-sm btn-ghost" data-cut-att="{idx}:-1">−</button> '
+             f'<button type="button" class="btn btn-sm btn-ghost" data-cut-att="{idx}:1">+</button>'
+             f' <span class="cut-note">two failed repairs strike the shot out — regenerate</span></p>'
+             f'<p><button type="button" class="btn btn-sm btn-ghost" data-cut-del="{idx}">'
+             f'Remove shot</button></p></article>')
+        stage_html.append(s)
+    defect_opts = "".join(f'<option value="{esc(k)}">{esc(v)}</option>' for k, v in CUT_DEFECTS)
+    status_opts = "".join(f'<option value="{esc(sid)}">{esc(label)}</option>' for sid, label in CUT_STATUSES)
+    (SITE / "cut.html").write_text(CUT_TMPL.format(
+        css=css_links, sitenav=nav_html("", "cut.html"), footer=footer_html(""),
+        hero=hero_cutroom(
+            kicker="""The cutting room""",
+            h1="""Cut <span class="accent">sheet.</span>""",
+            lede="""Synthetic footage never sits still, so the cut is where the film is made. The five gates before picture lock, every shot logged with its duration, its three inspection passes, its finding, and its route, and the lock verdict from the editing chapters' own rules: the 5-second rule, the structural rule, the two-strike rule.""",
+            deck_title="""EDIT — THE_CUT_SHEET""",
+            clips={"v2": ['The cut'], "v1": ['Selects', 'Inspect', 'Lock'], "a1": ['Temp score']},
+            h1_id="cut-title-h",
+            extra=""" """),
+        cut_gates="".join(gates_html),
+        cut_gates_state="Gates complete: 0 of 5 — the gates are the discipline before any shot is judged; finish them first.",
+        cut_defect_options=defect_opts, cut_status_options=status_opts,
+        cut_verdict=html.escape(r["verdict"]), cut_stage="".join(stage_html)))
+    return [("cut.html", "Cut sheet")]
+
+
 
 
 GALLERY_TMPL = """<!DOCTYPE html>
@@ -6743,6 +7093,9 @@ def main():
     # Grade Sheet (rotation 15 flagship — the color-grading chapter as a working grade sheet)
     build_grade(css_links)
 
+    # Cut Sheet (rotation 16 flagship — the editing chapters as a working cut sheet)
+    build_cut(css_links)
+
     # Knowledge checks (generated from scripts/checks.json)
     wave7_checks = build_checks(css_links)
 
@@ -6831,6 +7184,9 @@ def main():
         {"url": "grade.html", "title": "Grade sheet", "section": "Tools",
          "headings": ["The five gates — before the grade", "Your grade sheet", "Take the sheet"],
          "text": "The Grade Sheet: the color-grading chapter as a working grade sheet — every element assigned to plate or grade, a hero reference chosen per scene, one show look, one grain applied last, pre-grade masters archived. Log every scene with its hero reference, its source (single model, or mixed models with different house grades), and its five matching steps (exposure and white balance, contrast curve, saturation, the de-plasticize texture pass, skin last) — and read the grade verdict computed from the chapter's rules: a scene with no hero reference reads unmatched whatever its owner claims, a scene claimed unified with steps unfinished reads drifting, and a clean sheet still owes the scopes check. Export the sheet as markdown. Chapter: craft/color-grading.md."},
+        {"url": "cut.html", "title": "Cut sheet", "section": "Tools",
+         "headings": ["The five gates — before picture lock", "Your cut sheet", "Take the sheet"],
+         "text": "The Cut Sheet: the editing chapters as a working cut sheet — selects discipline (2–4 takes, one keeper), generation receipts kept, takes named like an editor, cut to sound early, lock order respected (picture before grade and mix, upscale last). Log every shot with its duration, its three inspection passes (story, background scan, motion at half speed), the frame-by-frame check a hold over five seconds owes, its finding (no defect, local, structural), its route (in the cut, in repair on the fix-it ladder, sent back to regenerate, cut from the film), and its failed repair attempts — and read the picture-lock verdict computed from the chapters' rules: a hold over five seconds without the frame check reads uninspected, a structural defect routed to repair reads misrouted, two failed repairs strike a shot out, and a clean sheet still owes the 24-hour rule and the three-screen watch. Export the sheet as markdown. Chapters: craft/editing-ai-footage.md and craft/editing-pipeline.md."},
         {"url": "cuesheet.html", "title": "Cue sheet", "section": "Tools",
          "headings": ["The five gates — before the mix", "Your cue sheet", "Take the sheet"],
          "text": "The Cue Sheet: the sound, music & audio chapter as a working cue sheet — the Voice Bible, the per-scene dialogue route (native or decoupled, never mixed mid-scene), score briefed per cue to the locked cut, stems kept, generation receipts saved. Log every scene with its three layers (bed, foley, accents), its route, and its state — designed, thin, or dry — and read the mix verdict computed from the chapter's rules: a scene with no bed reads dry whatever its owner claims, a thin scene holds the mix, and a clean sheet still owes the three-way listen and the silence test. Export the sheet as markdown. Chapter: craft/sound-music-audio.md."},

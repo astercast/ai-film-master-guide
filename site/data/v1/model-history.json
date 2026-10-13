@@ -1,6 +1,6 @@
 {
  "format": "model-history/1.0",
- "generated_at": "2026-10-13T17:13:26Z",
+ "generated_at": "2026-10-13T18:18:23+00:00",
  "method": "Hand-authored event log. Every event traces to a fact recorded in models.json (what_changed), data/v1/model-updates.md, or this wave's own pricing-table changes. Price events carry a before/after pair only where the record documents both numbers; otherwise the fields are null and the summary says why. The pricing baseline below is the pricing table as curated on 2026-10-11 — the drift engine diffs the live table against it, so a rate that moves from here on is caught mechanically, not by memory.",
  "pricing_baseline": {
   "at": "2026-10-11T00:00:00Z",
@@ -1988,6 +1988,76 @@
    "summary": "Flag dismissed (Watchtower 2.14): run 3 flagged Pika 2.5 on pika.art, the vendor homepage; three checker-path probes returned the flagged signature exactly (cd214343…, 5,606 chars) — the page is signature-stable today, and its model menu (Pika 2.5 and Pikaframes alongside routed third-party models: Seedance 2.5, MiniMax H3, Wan 3.0, Gemini Omni Flash) matches the record: 2.5 remains the current Pika model and the platform routes third-party models. The delta against the stored baseline is homepage marketing rotation. First flag on this URL — no exclusion; a second earns the homepage treatment klingai.com carries. Dismissed as homepage churn.",
    "confidence": "official",
    "source": "Watchtower 2.14 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-seedance-3-0-watch-stands-2-15",
+   "date": "2026-10-13",
+   "model_id": "seedance-3-0",
+   "model": "Seedance 3.0",
+   "kind": "verification",
+   "summary": "Watch stands (Watchtower 2.15): Versely's criteria page answered at the 2.11 variant signature (506d7e9d…, 12,513 chars) in all three of the pass's completed checker runs and in two checker-path probes — the rendering read directly in 2.13, which still lists Seedance 3.0 among the models announced by no vendor as of 1 October. The breakread article held its 2.12 re-baseline signature (63a60eae…) in every run. No ByteDance announcement, model card, API ID, or pricing. Watch stays open — unconfirmed.",
+   "confidence": "official",
+   "source": "Watchtower 2.15 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-kling-4-0-watch-stands-2-15",
+   "date": "2026-10-13",
+   "model_id": "kling-4-0",
+   "model": "Kling 4.0",
+   "kind": "verification",
+   "summary": "Watch stands (Watchtower 2.15): APIMart's criteria page answered at its baseline signature (fc55ce30…, 136,708 chars) in all three of the pass's completed checker runs — a tenth consecutive pass at the identical signature — still 'API Coming Soon', availability 'Not yet', pricing 'has not been announced'; its text schedules Kling 4.0 for October 2026 with Flash in limited early access. Two checker-path probes returned a smaller, signature-stable rendering (c612033c…, 9,434 chars) whose criteria text was read in full and matches on every point that matters. No GA model ID, no Kuaishou pricing. Watch stays open — announced.",
+   "confidence": "official",
+   "source": "Watchtower 2.15 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-soul-cinema-watch-stands-2-15",
+   "date": "2026-10-13",
+   "model_id": "soul-cinema",
+   "model": "Soul Cinema",
+   "kind": "verification",
+   "summary": "Watch stands (Watchtower 2.15): Higgsfield's pricing page answered at the settled 428-char shell (f14e9f4a…) in two checker-path probes, with no in-app credit figure; the API post still lists only the $0.0032/image rate tabled in 2.3 (and stays signature-excluded for its per-request variance, as since 2.4). The in-app credit cost is still unpublished. Watch stays open.",
+   "confidence": "official",
+   "source": "Watchtower 2.15 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-flux-docs-baseline-tenth-pass-2-15",
+   "date": "2026-10-13",
+   "model_id": "flux-3-video",
+   "model": "FLUX 3 Video",
+   "kind": "verification",
+   "summary": "FLUX follow-up (Watchtower 2.15): BFL's docs pricing page returned its 9,875-char rendering at the 2.6 baseline signature (cb1e92d1…) inside the pass's completed runs — a tenth consecutive pass; its table still matches the record exactly. No rate changed.",
+   "confidence": "official",
+   "source": "Watchtower 2.15 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-pixverse-v6-fifth-clean-pass-2-15",
+   "date": "2026-10-13",
+   "model_id": "pixverse-v6",
+   "model": "PixVerse V6",
+   "kind": "verification",
+   "summary": "Fifth clean pass (Watchtower 2.15): PixVerse V6's docs source fetched clean at the baseline signature (95c88c96…, 4,278 chars) inside the pass's completed runs, all five sources answering (source_status ok in the final feed) — the 2.10 recovery now stands on five consecutive clean passes, one more than 2.14 claimed. Record unchanged.",
+   "confidence": "official",
+   "source": "Watchtower 2.15 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-grok-deployedbyai-flag-dismissed-2-15",
+   "date": "2026-10-13",
+   "model_id": "grok-imagine-1-5",
+   "model": "Grok Imagine Video 1.5",
+   "kind": "verification",
+   "summary": "Flag dismissed (Watchtower 2.15): run 1 flagged Grok Imagine Video 1.5 on deployedbyai.com's Deploy Log entry page (ed1da6b0…, 1,533 chars → 072cdc70…, 1,552); two checker-path probes returned the flagged signature exactly. Read in full, the page is the log's entry for the 1.5 Lite gateway launch — its facts match the record (text + image to video with native audio, 1–15s clips at 480p/720p/1080p, seven aspect ratios, on Vercel's AI Gateway) — and the +19 chars are the page's own edition metadata ('updated Saturday 10 Oct 2026', Edition 55). Run 2 read the model unchanged on the stored signature. First flag on this URL — no exclusion; a second earns one. Dismissed as log-page metadata churn.",
+   "confidence": "official",
+   "source": "Watchtower 2.15 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-veo-scriptbyai-flag-dismissed-calibration-2-15",
+   "date": "2026-10-13",
+   "model_id": "veo-3-1",
+   "model": "Veo 3.1",
+   "kind": "verification",
+   "summary": "Flag dismissed + calibration (Watchtower 2.15): run 2 flagged Veo 3.1 on scriptbyai.com's multi-vendor pricing page (→ da1fa4dd…, 45,040 chars) — the page adjudicated in 2.13, whose Veo table carries Google's long-standing published per-second rates and whose own changelog dates its last Veo change to 31 March 2026; the deltas sit in other vendors' tables. This pass the page additionally proved rendering-variant: six consecutive checker-path probes returned a smaller signature-stable rendering (4f242c2c…, 30,922 chars) while the checker runs received the full ~45k rendering. Veo's remaining sources all answered unchanged in the same run, and Google's own Gemini API pricing page was read verbatim in 2.14. This is the second flag on this URL for this model, so the 2.15 calibration signature-excludes it (exact URL) for Veo 3.1 — still fetched and recorded every run; the rates stay signature-live on the model's remaining sources. Run 3, the final re-baseline, read changed=0 with the calibration live. No record change.",
+   "confidence": "official",
+   "source": "Watchtower 2.15 review pass (2026-10-13) — data/v1/model-review-log.json"
   }
  ]
 }

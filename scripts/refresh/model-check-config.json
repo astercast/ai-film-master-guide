@@ -205,7 +205,8 @@
    ],
    "news_query": "Google Veo 3.1 AI video",
    "exclude_from_signature": [
-    "deepmind.google/technologies/veo/"
+    "deepmind.google/technologies/veo/",
+    "scriptbyai.com/gpt-gemini-claude-pricing/"
    ]
   },
   "Veo 3.1 Fast / Veo 3": {

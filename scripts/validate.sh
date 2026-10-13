@@ -459,6 +459,21 @@ else
   GR_OK=0
 fi
 
+# Cut Sheet: engine + page + chapters (rotation 16 flagship)
+CU_OK=1
+for f in assets/js/cut.js site/cut.html site/assets/js/cut.js site/craft/editing-ai-footage.html site/craft/editing-pipeline.html; do
+  if [ ! -f "$f" ]; then fail "$f missing (rebuild the site)"; CU_OK=0; fi
+done
+CU_OUT=$(node scripts/cut.test.js 2>&1)
+if echo "$CU_OUT" | tail -1 | grep -q "all pass"; then
+  CU_N=$(echo "$CU_OUT" | grep -c "^ok ")
+  pass "cut.test.js: $CU_N engine assertions pass (five pre-lock gates, three inspection passes, 5-second rule, structural rule, two-strike rule, picture-lock verdicts, export traces)"
+else
+  fail "cut.test.js failures:"
+  echo "$CU_OUT" | grep "^FAIL" | head -8 | sed 's/^/    /'
+  CU_OK=0
+fi
+
 # Cutting Room → Green Light bridge button present (rendered by cutting-room.js)
 if grep -q "cr-greenlight" assets/js/cutting-room.js && grep -q "cr-greenlight" site/assets/js/cutting-room.js; then
   pass "cutting-room → green-light bridge wired (button + handler)"
