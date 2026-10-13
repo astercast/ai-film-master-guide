@@ -58,27 +58,27 @@ Secrets live only in Vercel, never in either repo.
   never a record change. Flags are adjudicated in
   `data/v1/model-review-log.json` (re-fetch, verdict, basis) before the
   queue clears; the checker re-run after a pass sets the new baseline.
-  Current state (Watchtower 2.7): 77 history events, queue at 3 standing
+  Current state (Watchtower 2.8): 81 history events, queue at 3 standing
   watches (Seedance 3.0, Kling 4.0, and Soul Cinema's in-app credit
-  cost re-checked a fifth pass, unmoved — Kling 4.0's APIMart criteria
-  page is signature-identical to the 2.4/2.5/2.6 baseline). Latest feed
-  (2026-10-13T04:29Z): changed=0, with_errors=0, 7 drift alerts (the
-  partial records still carrying a failed source), 7 on watch incl.
-  Wan 2.7 (baseline + own pricing diff). The partial cohort shrank
-  this pass: MarkTechPost (×3), x.ai, and midjourney.com answered in
-  both runs and on re-probe after 403ing the pre-run probes. One flag
-  in 2.7: FLUX 3 Video, on bfl.ai/pricing — the page served three
-  renderings in one pass (2,249-char shell / 22,122-char full page /
-  4,680-char calculator rendering), rotating in blocks; its full
-  rendering's structured rates match the record, so it is now
-  signature-excluded as an exact URL, still fetched and recorded.
-  FLUX rate watch: BFL's official docs pricing page
-  (docs.bfl.ai/quick_start/pricing) is the signature-live rate source
-  — it held its 9,875-char rendering at the 2.6 baseline signature in
-  every fetch this pass; its FLUX 3 table matches the record exactly,
-  noted in model-check-config.json. A VM reboot killed 2.7's first
-  checker launch mid-run before it wrote output; all published
-  numbers come from single verified post-reboot runs.
+  cost re-checked a sixth pass, unmoved — Kling 4.0's APIMart criteria
+  page is signature-identical to the 2.4/2.5/2.6/2.7 baseline). Latest
+  feed (2026-10-13T05:06Z): changed=0, with_errors=0, 8 drift alerts,
+  6 on watch. The 7 standing partial records are unchanged (Medium
+  ×3, GlobeNewswire, Morningstar 403; whatsnew.fyi 429; europesays.com
+  dropped every try); the sources that recovered in 2.7 (MarkTechPost
+  ×3, x.ai, midjourney.com) held through both runs and on re-probe.
+  PixVerse V6's docs source truncated (IncompleteRead) in both runs
+  and answered only on re-probe, so the final feed carries it as an
+  eighth partial record, labeled as observed. FLUX rate watch: BFL's
+  official docs pricing page (docs.bfl.ai/quick_start/pricing) is the
+  signature-live rate source — it held its 9,875-char rendering at
+  the 2.6 baseline signature in every fetch for a second pass, and
+  its FLUX 3 table matches the record exactly; bfl.ai/pricing is
+  signature-excluded as an exact URL (since 2.7), still fetched and
+  recorded, and stayed on its 4,680-char calculator rendering in
+  this pass's probes. Both of 2.8's checker runs were single and
+  verified under the process rule (none alive before, exactly one
+  after each launch); neither raised a flag.
 - `vercel.json` in live repo: valid JSON, `outputDirectory: "."`,
   `functions` lists the 5 routes as explicit paths with
   `{"maxDuration": 10}`, crons + headers carried over from the working

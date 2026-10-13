@@ -1,5 +1,115 @@
 # Wave Log — AI Film Master Guide
 
+## Watchtower 2.8 — the sixth review pass (2026-10-12)
+
+**Assignment:** Rotation 9 — work the queue Watchtower 2.7 left: the 3
+standing watches (Seedance 3.0 confirmation, Kling 4.0 GA, Soul
+Cinema's in-app credit cost), the 7 adjudicated partial records (9
+failed-source instances across 7 distinct URLs), the FLUX follow-up
+carried since 2.6 (whether the docs.bfl.ai pricing page's two
+renderings alternate between runs), and the open question 2.7 left:
+whether the MarkTechPost / x.ai / midjourney.com answers hold. Kling
+rule unchanged: no GA model ID + no published pricing from Kuaishou
+= stays "announced"; third-party wrapper noise does not count.
+Process rule, stated before any launch: verify no checker is alive
+before launching, verify exactly one is running after.
+
+**The watches — three re-checked, none moved.**
+- **Seedance 3.0:** still no official ByteDance announcement. The
+  state-of-the-field coverage page this watch reads returned a
+  signature identical to the 2.6/2.7 baseline (59931bf3…) and still
+  lists Seedance 3.0 among models that had not been announced by any
+  vendor as of October 1 — no announcement, no API, and no date;
+  nothing from ByteDance Seed's directory.
+- **Kling 4.0:** the criteria source is literally unchanged for a
+  fourth pass — APIMart's page returned a signature identical to the
+  2.4/2.5/2.6/2.7 baseline (fc55ce30…) and still reads "API Coming
+  Soon", answers "Not yet", and states pricing has not been
+  announced. No GA model ID, no Kuaishou-published pricing.
+- **Soul Cinema:** the in-app credit cost is still unpublished.
+  Higgsfield's pricing page returned the same 428-char app shell at
+  the settled 2.6/2.7 signature (f14e9f4a…) with no credit figure; the
+  API post's rate table still lists only the $0.0032/image API
+  starting rate from 2.3 (and returned yet another signature at
+  identical length — already excluded since 2.4).
+
+**FLUX follow-up — the docs page held for a second pass.** Every
+fetch — two consecutive probes, the first checker run, and the
+re-baseline run — returned the 9,875-char rendering at the 2.6
+baseline signature (cb1e92d1…), its table still matching the record
+exactly; the 19,564-char variant was not seen. bfl.ai/pricing stayed
+on its 4,680-char calculator rendering (13ffebdf…) in both probes —
+signature-excluded since 2.7 as an exact URL, still fetched and
+recorded in both runs. The docs page stays signature-live as the
+readable primary rate source. No rate changed, no pricing record
+moved.
+
+**Partials — the standing cohort unchanged, the recovered cohort
+held, one weather case.** All 9 failed-source instances in the 2.7
+baseline feed (7 distinct URLs) were re-probed before the runs and
+again after the first run, and confirmed in both runs: Medium ×3,
+GlobeNewswire (2 models), and Morningstar still 403; whatsnew.fyi
+still 429s the shared ComfyUI page; europesays.com (Grok) dropped
+the connection on every try this pass (pre-run probe, both runs,
+post-run re-probe). The 2.7 question is answered for this pass:
+MarkTechPost (×3 models), x.ai, and midjourney.com answered 200 in
+both runs and on post-run re-probe — four of the five URLs returned
+signatures identical across the run and the re-probe; MiniMax H3's
+MarkTechPost article returned two signatures across fetches, but
+that domain is signature-excluded for H3 since the 2.2 calibration,
+so no flag was raised and no fact on the page contradicts the
+record. The one weather case: PixVerse V6's docs source truncated
+(IncompleteRead) in both runs — the post-run re-probe truncated at
+65,092 bytes on the first try, then answered 200 at the baseline
+signature (95c88c96…) on the second — so the final feed carries
+PixVerse as an eighth partial record, labeled exactly as observed;
+this pass does not claim its recovery. Neither checker run raised a
+changed-source flag (changed=0 in both) — there was no flag to
+adjudicate this pass.
+
+**Process note:** both checker runs ran under the process rule —
+a process-table check counting only python3 checker processes
+showed zero alive before each launch and exactly one running after
+each launch. No duplicate launch, no interruption; every published
+number comes from the two single verified runs (04:53Z and the
+05:06Z re-baseline).
+
+**Feed state:** final re-baseline (2026-10-13T05:06Z): **changed=0,
+with_errors=0, no_sources=0**; queue back to its **3 standing
+watches** (notes carry this pass's re-check lines). Drift: **8
+alerts** (the 7 standing partial records plus PixVerse V6), **6
+watch**, 18 ok, 0 unwatched; unpublished rates **5**; pricing diff
+vs the 2026-10-11 baseline **7 rows**. History 77 → **81 events**
+(3 watch re-checks, the FLUX rate-source stability confirmation);
+the October window holds 61. Review log: pass 7 + addendum (13
+entries total).
+
+**Validation:** `scripts/watchtower.test.js` **15/15** (pins moved
+to the new feed: 8 alerts with the exact id set incl. pixverse-v6;
+PixVerse's spot severity is now alert on its failed check).
+`tests/api.test.sh` **55/55** (October window 57 → 61, drift alerts
+7 → 8). `studio.test.js` **70/70**, `greenlight.test.js` **29/29**,
+`agent-workflows.test.js` all pass. `bash scripts/validate.sh`
+**18 passed, 0 failed — ALL STAGES PASS** pre-commit.
+Headless-Chromium screenshots inspected (desktop 1440px + mobile
+390px): cutting-room board intact, freshness reads the new 05:06
+UTC feed, "32 models checked", "8 need review" and "6 on watch"
+present, no JS errors in the headless console log (the static
+server's /api misses are the designed fallback trigger; the mobile
+hero deck stays cramped — the pre-existing wave-39 quirk,
+untouched). AI-ism scan on new copy: clean (the only scan hit is a
+fetched news headline inside the check feed's data). No TODOs, no
+dead code.
+
+**Left open:** the 3 standing watches — all re-checked this pass,
+none moved. The 8 partial records will keep surfacing as alerts
+while their sources fail the checker — the 7 standing ones
+adjudicated seven passes running now, PixVerse's docs truncations
+new this pass and labeled as weather, not a dead source. Whether
+the MarkTechPost / x.ai / midjourney.com answers hold for a third
+pass is next pass's question; europesays.com stays
+intermittent-to-dropping. LTX-2.5's ltx.io note stands.
+
 ## Watchtower 2.7 — the fifth review pass (2026-10-12)
 
 **Assignment:** Rotation 8 — work the queue Watchtower 2.6 left: the 3

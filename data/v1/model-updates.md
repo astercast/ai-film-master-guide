@@ -299,6 +299,44 @@ addendum).
   and every published number comes from single verified post-reboot
   runs.
 
+## 2026-10-12 — Watchtower 2.8: the sixth review pass
+
+Verdicts are in `data/v1/model-review-log.json` (review pass 7 +
+addendum).
+
+- **Seedance 3.0 — still unconfirmed.** The coverage page this watch
+  reads returned a signature identical to the 2.6/2.7 baseline and
+  still lists Seedance 3.0 among models announced by no vendor as of
+  October 1, with no announcement, no API, and no date. The watch
+  stays open.
+- **Kling 4.0 — still announced.** APIMart's page is signature-
+  identical to the 2.4/2.5/2.6/2.7 baseline for a fourth pass and
+  still lists the API as coming soon with pricing not announced. No
+  GA model ID, no pricing published by Kuaishou. The watch stays open.
+- **Soul Cinema — in-app credit cost still unpublished.** Higgsfield's
+  pricing page returned the same 428-char app shell at the settled
+  signature, and its API post's rate table still lists only the
+  $0.0032/image API starting rate (2.3). The narrowed watch stays open.
+- **FLUX 3 Video — the docs page held for a second pass.** Every fetch
+  returned the 9,875-char rendering at the 2.6 baseline signature,
+  table matching the record, still signature-live; the 19,564-char
+  variant was not seen. bfl.ai/pricing stayed on its 4,680-char
+  calculator rendering in probes — signature-excluded since 2.7, still
+  fetched and recorded every run. No rate changed.
+- **Failed sources — the standing cohort unchanged, the recovered
+  cohort held, one weather case.** Medium (×3), GlobeNewswire, and
+  Morningstar still 403; whatsnew.fyi still 429s; europesays.com
+  dropped every try this pass. MarkTechPost (×3), x.ai, and
+  midjourney.com — the sources that answered in 2.7 after 403ing its
+  probes — answered in both of this pass's runs and on re-probe, so
+  they stay recovered, labeled exactly as observed. PixVerse V6's
+  docs source truncated (IncompleteRead) in both runs and answered
+  only on re-probe (200, baseline signature, second try), so the
+  final feed carries PixVerse as an eighth partial record — drift
+  reads 8 alerts, 6 watch, 18 ok (changed=0, with_errors=0). Both
+  checker runs were single and verified under the process rule; no
+  flags were raised this pass.
+
 ## 2026-10-11 — Wave 30: Late-Q4 field sweep
 
 29 → **30 models** (one added); no status changes. The headline item is a

@@ -633,6 +633,94 @@
       "flag_reviews": [],
       "failed_source_reviews": [],
       "outcome": "Final re-baseline published (2026-10-13T04:29Z): changed=0, with_errors=0, no_sources=0. The queue holds exactly the 3 standing watches, their notes carrying this pass's re-check lines. Drift moved for the first time since 2.4 — because sources answered, not because records changed: 7 alerts (the partial records that still carry a failed source: Grok, Kling 4.0, Luma, Seedance 3.0, Vidu Q4, Vidu S2, Wan 3.0), 7 watch (FLUX 3 Video and Midjourney among them, each now held only by a standing reason — FLUX by its baseline pricing diff, Midjourney by its unpublished rate), 18 ok, 0 unwatched; unpublished rates stay 5; pricing diff vs the 2026-10-11 baseline stays 7 rows. Process note (honest): the pass's first checker launch was killed mid-run by a VM reboot (the machine's uptime restarts 2026-10-13T04:03:02Z, about nine minutes into the run) before the checker wrote any output — the 2.6 baseline feed was untouched on disk afterward, no interleaved or partial output existed to discard, and the probes were re-verified after the reboot. Every published number comes from the two single verified post-reboot runs: the 04:17Z run that raised the FLUX flag (adjudication input) and this 04:29Z re-baseline."
+    },
+    {
+      "id": "2026-10-12-review-pass-7",
+      "reviewed_at": "2026-10-12",
+      "reviewer": "Watchtower 2.8 review pass (agent, following the promotion workflow in scripts/refresh/check_models.py)",
+      "scope": "The sixth review pass: the 3 standing hand-authored watches left by Watchtower 2.7 (Seedance 3.0 confirmation, Kling 4.0 GA, Soul Cinema's in-app credit cost), the 7 adjudicated partial records in the 2.7 baseline feed (9 failed-source instances across 7 distinct URLs), the FLUX follow-up carried since 2.6 (whether the docs.bfl.ai pricing page's two renderings alternate), the open question 2.7 left (whether the MarkTechPost / x.ai / midjourney.com answers hold), and the one source that failed in this pass's own runs (PixVerse V6's docs).",
+      "method": "Standing watches were re-checked against the criteria written into their queue notes in advance (for Kling 4.0: a GA model ID in the official API docs or published pricing from Kuaishou — third-party wrapper noise does not count; for Seedance 3.0: an official ByteDance announcement; for Soul Cinema: a Higgsfield-published in-app credit cost). Criteria sources were re-fetched with the checker's own fetch path (scripts/refresh/check_models.py fetch/clean_text) on 2026-10-12 and compared against the stored baseline signatures. Every failed source on the partial records was re-probed the same way, before the runs and again after the first run. No model or pricing record changes without first-party evidence. Process rule applied to both checker runs: no checker process was alive before either launch and exactly one was running after each launch (process-table check counting only python3 checker processes).",
+      "flag_reviews": [],
+      "failed_source_reviews": [
+        {
+          "group": "Persistent bot-blocks on third-party coverage (HTTP 403) — unchanged on re-probe and in both runs",
+          "models": [
+            "Seedance 3.0",
+            "Wan 3.0 / 3.0 Prime",
+            "Kling 4.0",
+            "Vidu S2",
+            "Vidu Q4 Preview"
+          ],
+          "verdict": "watch-intact-no-action",
+          "basis": "Re-probed 2026-10-12 before the runs and again after the first run, and confirmed in both checker runs: Medium (3 models: Seedance 3.0, Wan 3.0, Kling 4.0), GlobeNewswire (1 distinct URL, 2 models), and Morningstar (1) all still 403 the checker's user agent — the same failure every pass since 2.2. Every one is third-party coverage, and in all 7 standing partial records at least one official source still answers, so nothing went dark. The failures stay on the records, honestly, as 'partial'."
+        },
+        {
+          "group": "Still failing — rate limit and a wire that dropped every try this pass",
+          "models": [
+            "Luma App / Ray 3.2",
+            "Grok Imagine Video 1.5"
+          ],
+          "verdict": "watch-intact-no-action",
+          "basis": "whatsnew.fyi still rate-limits (429) the shared ComfyUI release page both models watch, in probes and both runs. europesays.com (Grok) dropped the connection on every attempt this pass — the pre-run probe, both checker runs, and the post-run re-probe (RemoteDisconnected each time) — the same intermittent wire as 2.6/2.7, not a confirmed dead source: it answered as recently as the 2.6 pass. It stays a failed source on Grok's record, honestly labeled. Both are third-party surfaces; each model's official sources answer."
+        },
+        {
+          "group": "PixVerse V6 docs — truncated reads in both runs, answered on re-probe, partial in the final feed",
+          "models": [
+            "PixVerse V6"
+          ],
+          "verdict": "watch-intact-no-action",
+          "basis": "docs.platform.pixverse.ai truncated its response in this pass's first run (IncompleteRead), answered the post-run re-probe only on the second try (the first re-probe truncated at 65,092 bytes read; the second returned 200 at the baseline signature, 95c88c96…, 4,278 chars), then truncated again in the re-baseline run (IncompleteRead, 32,324 bytes read). The same truncated-read weather hit this source in 2.7's first run. The source is alive — it answered on re-probe, and PixVerse's other sources answered in both runs — but the final run did not fetch it clean, so this pass does not claim recovery: the final feed carries PixVerse V6 as partial, honestly labeled, and the record's data is unchanged."
+        },
+        {
+          "group": "The cohort that recovered in 2.7 — answers held this pass",
+          "models": [
+            "MiniMax H3",
+            "Gemini Omni",
+            "FLUX 3 Video",
+            "Grok Imagine Video 1.5",
+            "Midjourney V1 Video"
+          ],
+          "verdict": "recovered-no-action",
+          "basis": "Labeled exactly as observed: MarkTechPost (×3 models), x.ai, and midjourney.com answered 200 in both checker runs and on post-run re-probe. Four of the five URLs returned signatures identical across the first run and the re-probe (Gemini Omni's MarkTechPost article 539e26e4…, FLUX 3 Video's 79ddb41b…, x.ai f2bcce33…, midjourney.com 8eed3d26…). MiniMax H3's MarkTechPost article returned two different signatures across fetches (739f2061… in the first run, 968537bb… on re-probe) — that domain is signature-excluded for H3 since the 2.2 calibration, so no flag was raised and no fact on the page contradicts the record. Whether the bot-blocks stay lifted is next pass's question; this pass claims only that the answers held through both runs and the re-probes."
+        }
+      ],
+      "standing_watch_reviews": [
+        {
+          "model": "Seedance 3.0",
+          "model_id": "seedance-3-0",
+          "verdict": "watch-intact-no-action",
+          "basis": "Re-checked 2026-10-12: no official ByteDance announcement of a Seedance 3.0 exists. The state-of-the-field coverage page this watch reads (versely.studio's October review) returned a signature identical to the 2.6 and 2.7 baselines (59931bf3…, twice) and still lists Seedance 3.0 among models that had not been announced by any vendor as of October 1 — 'there is no announcement, no API and no date'. Nothing from ByteDance Seed's own directory. The record's standing position (reported, unconfirmed) is unchanged and the watch stays open."
+        },
+        {
+          "model": "Kling 4.0",
+          "model_id": "kling-4-0",
+          "verdict": "watch-intact-no-action",
+          "basis": "Re-checked against the criteria the watch wrote in advance, and the primary criteria source is literally unchanged for a fourth pass: APIMart's Kling 4.0 page returned a signature identical to the 2.4, 2.5, 2.6, and 2.7 baselines (fc55ce30…, twice) and still reads 'API Coming Soon', 'Can I use the Kling 4.0 API on APIMart now? Not yet…', and 'APIMart pricing for Kling 4.0 and Flash has not been announced.' No GA model ID, no pricing published by Kuaishou — neither criterion is met: the record stays 'announced' and the watch stays open."
+        },
+        {
+          "model": "Soul Cinema",
+          "model_id": "soul-cinema",
+          "verdict": "watch-intact-no-action",
+          "basis": "The narrowed watch asks for Higgsfield's own in-app per-image credit cost. Still unpublished: Higgsfield's pricing page returned the same 428-char app shell at the settled signature from 2.6/2.7 (f14e9f4a…, twice) with no Soul Cinema credit figure on it, and the API post's rate table — re-read this pass — still lists Soul Cinema only at the $0.0032/image API starting rate tabled in 2.3 (the post returned yet another signature at identical length, 63,349 chars; already signature-excluded since 2.4). Nothing new to table; the watch stays open, still narrowed."
+        },
+        {
+          "model": "FLUX 3 Video",
+          "model_id": "flux-3-video",
+          "verdict": "watch-intact-rate-source-stable",
+          "basis": "The follow-up carried since 2.6: does the docs.bfl.ai pricing page alternate between its two renderings between runs? For a second pass it did not. Every fetch — two consecutive probes, the first checker run, and the re-baseline run — returned the 9,875-char rendering at the 2.6 baseline signature (cb1e92d1…), and its FLUX 3 Video table still matches the record (text/image-to-video $0.06/s draft, $0.17 hd, $0.29 fhd, $0.40 qhd, $0.80 uhd; video continuation $0.12/s draft, $0.41 / $0.53 / $0.65 / $0.95). The 19,564-char variant was not seen. bfl.ai/pricing stayed on the 4,680-char calculator rendering (13ffebdf…) in both probes — signature-excluded since 2.7, still fetched and recorded every run. The docs page stays signature-live as the readable primary rate source."
+        }
+      ],
+      "outcome": "No promotions. Zero records in models.json or pricing.json changed: all three standing watches re-checked and unmoved (Seedance 3.0 still has no official announcement, Kling 4.0 still meets neither GA criterion — its APIMart criteria page is byte-identical to the 2.4/2.5/2.6/2.7 baseline — and Soul Cinema's in-app credit cost is still unpublished). Neither checker run raised a changed-source flag (changed=0 in both). The FLUX docs page held its baseline rendering for a second pass. The partial cohort: the 7 standing records are unchanged (Medium ×3, GlobeNewswire, Morningstar 403; whatsnew.fyi 429; europesays.com dropped every try), the sources that recovered in 2.7 held through both runs and re-probes, and PixVerse V6 joined the partial records on truncated docs reads in both runs — answered on re-probe, not recovered in the final run, labeled as observed. The checker re-run after adjudication is recorded in the addendum; the final published feed is changed=0, with_errors=0, queue at its 3 standing watches."
+    },
+    {
+      "id": "2026-10-12-review-pass-7-addendum",
+      "reviewed_at": "2026-10-12",
+      "reviewer": "Watchtower 2.8 review pass (agent)",
+      "scope": "The checker re-run after review pass 7's adjudication (2026-10-13T05:06Z), which set the published baseline.",
+      "method": "Single checker process for the re-baseline (verified no other checker was alive before launch and exactly one was running after — the 2.2 process lesson, applied to both of this pass's runs; no duplicate launch and no interruption this pass). The standing queue notes carried this pass's re-check lines into the run.",
+      "flag_reviews": [],
+      "failed_source_reviews": [],
+      "outcome": "Final re-baseline published (2026-10-13T05:06Z): changed=0, with_errors=0, no_sources=0. The queue holds exactly the 3 standing watches, their notes carrying this pass's re-check lines. Drift: 8 alerts (the 7 standing partial records — Grok, Kling 4.0, Luma, Seedance 3.0, Vidu Q4, Vidu S2, Wan 3.0 — plus PixVerse V6, partial on truncated docs reads in both of this pass's runs), 6 watch, 18 ok, 0 unwatched; unpublished rates stay 5; pricing diff vs the 2026-10-11 baseline stays 7 rows. Every published number comes from the two single verified runs of this pass: the 04:53Z run (changed=0; PixVerse docs truncated) and this 05:06Z re-baseline."
     }
   ]
 }

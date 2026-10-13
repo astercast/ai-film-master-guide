@@ -1,6 +1,6 @@
 {
   "format": "model-checks/1.0",
-  "checked_at": "2026-10-13T04:29:06+00:00",
+  "checked_at": "2026-10-13T05:06:09+00:00",
   "summary": {
     "models_total": 32,
     "changed": 0,
@@ -12,7 +12,7 @@
       "model": "Soul 2.0",
       "platform": "Higgsfield",
       "type": "image",
-      "last_checked": "2026-10-13T04:19:21+00:00",
+      "last_checked": "2026-10-13T04:54:51+00:00",
       "changed": false,
       "baseline": false,
       "source_status": "ok",
@@ -21,8 +21,8 @@
           "url": "https://higgsfield.ai/",
           "ok": true,
           "http_status": 200,
-          "signature": "26065cb43b32e6ea4b31601d576a5aa65e30a53223df0fce4194de324834f90e",
-          "chars": 3414,
+          "signature": "219366e17aa9f79db756d4c2ecc0e3e005e462d78e55456de0d1ce1c5c4df2c8",
+          "chars": 3465,
           "error": null,
           "excluded_from_signature": true
         },
@@ -30,8 +30,8 @@
           "url": "https://github.com/osidemedia/higgsfield-ai-prompt-skill/blob/HEAD/skills/higgsfield-models/SKILL.md",
           "ok": true,
           "http_status": 200,
-          "signature": "3b1f4f566b47208457d27ca89b3c684cfd50ac8b0d8867782b9db052fba7bdae",
-          "chars": 85761,
+          "signature": "e7746c7b6b4171b3af1ccacabb0f570f6f36a982c6b9bc096a961825b56b6f64",
+          "chars": 85779,
           "error": null,
           "excluded_from_signature": true
         }
@@ -90,7 +90,7 @@
       "model": "Soul Cinema",
       "platform": "Higgsfield",
       "type": "image",
-      "last_checked": "2026-10-13T04:19:31+00:00",
+      "last_checked": "2026-10-13T04:55:08+00:00",
       "changed": false,
       "baseline": false,
       "source_status": "ok",
@@ -107,8 +107,8 @@
           "url": "https://github.com/dsm5e/aso-tracker/blob/HEAD/aso-video/docs/higgsfield-prompts/skills/higgsfield-soul/SKILL.md",
           "ok": true,
           "http_status": 200,
-          "signature": "310508fbe892cab8dd37eff2fc1dac14123956e17330affae56a950f9b2f1097",
-          "chars": 88962,
+          "signature": "b3802b4315b52b976d813d65169484223e02cfbabad64c687d43f0eafa3fbbf9",
+          "chars": 88980,
           "error": null,
           "excluded_from_signature": true
         },
@@ -116,8 +116,8 @@
           "url": "https://higgsfield.ai/blog/higgsfield-api",
           "ok": true,
           "http_status": 200,
-          "signature": "4c79ab0531701b5496ca758e9c1a9dd62da458445e14ed46f3eb519051a11800",
-          "chars": 63349,
+          "signature": "0de0c51745d60c833ab21005e6f5cd94ff177908c56f582f86d1074ca7add797",
+          "chars": 62719,
           "error": null,
           "excluded_from_signature": true
         }
@@ -141,16 +141,48 @@
           ]
         }
       ],
-      "news_status": "failed",
-      "news_headlines": [],
-      "note": "Watchtower 2.4 calibration (2026-10-12): Higgsfield's API post — the page carrying Soul Cinema's $0.0032/image rate — is signature-unstable by proof: two consecutive fetches with the checker's fetch path returned two different signatures at identical length (63,349 chars); the page embeds a rotating prompt-library payload. Excluded from the signature (the same treatment Marketing Studio already has for this URL), still fetched and recorded every run, and its rate table is read at every review pass.",
-      "news_error": "timeout"
+      "news_status": "ok",
+      "news_headlines": [
+        {
+          "title": "What Is Higgsfield AI? Uses, Features &amp; Pricing The Hype Magazine: Unveiling the Pulse of Urban Culture - From Hip Hop to Hollywood! Explore a Diverse Tapestry of Stories, Interviews, and Impactful Editorials Spanning Fashion, Gaming, Movies, MMA, EDM - The Hype Magazine",
+          "date": "Sat, 10 Oct 2026 14:18:41 GMT"
+        },
+        {
+          "title": "Higgsfield AI Review: I Made AI Films on a Budget Laptop - Unite.AI",
+          "date": "Mon, 27 Apr 2026 07:00:00 GMT"
+        },
+        {
+          "title": "Meet Hell Grind, The First Feature Film \"Created Entirely On The Higgsfield AI Platform\" - CGMagazine",
+          "date": "Tue, 19 May 2026 07:00:00 GMT"
+        },
+        {
+          "title": "Higgsfield launches crowdsourced AI TV pilot where influencers are AI film stars - GamesBeat",
+          "date": "Tue, 07 Apr 2026 07:00:00 GMT"
+        },
+        {
+          "title": "Trailer Launched For History-Making AI Feature Film, Hell Grind - SciFiNow",
+          "date": "Thu, 21 May 2026 07:00:00 GMT"
+        },
+        {
+          "title": "Artificial intelligence shot a full-length movie in two weeks - hi-Tech.ua",
+          "date": "Thu, 28 May 2026 07:00:00 GMT"
+        },
+        {
+          "title": "Higgsfield Launches Industry-First Crowdsourced AI TV Pilot Where Influencers Become AI Film Stars - TNGlobal",
+          "date": "Fri, 10 Apr 2026 07:00:00 GMT"
+        },
+        {
+          "title": "AI makes a feature film in 14 days: Higgsfield shares its $500,000 filmmaking process with creators - CNBC TV18",
+          "date": "Wed, 05 Aug 2026 07:00:00 GMT"
+        }
+      ],
+      "note": "Watchtower 2.4 calibration (2026-10-12): Higgsfield's API post — the page carrying Soul Cinema's $0.0032/image rate — is signature-unstable by proof: two consecutive fetches with the checker's fetch path returned two different signatures at identical length (63,349 chars); the page embeds a rotating prompt-library payload. Excluded from the signature (the same treatment Marketing Studio already has for this URL), still fetched and recorded every run, and its rate table is read at every review pass."
     },
     {
       "model": "Soul Cast",
       "platform": "Higgsfield",
       "type": "image",
-      "last_checked": "2026-10-13T04:20:14+00:00",
+      "last_checked": "2026-10-13T04:55:29+00:00",
       "changed": false,
       "baseline": false,
       "source_status": "ok",
@@ -159,8 +191,8 @@
           "url": "https://github.com/steven-3352/case-study/blob/HEAD/.agents/skills/higgsfield-soul/SKILL.md",
           "ok": true,
           "http_status": 200,
-          "signature": "dc1bd9d869cc7f7f70dc7903d342cb137ad93f0f80e12e64228a74ce48a66ac5",
-          "chars": 89858,
+          "signature": "a240f57baede090a7afc2567990e5451986731b86ac71cc77d8289d0b3451338",
+          "chars": 89875,
           "error": null,
           "excluded_from_signature": true
         },
@@ -168,8 +200,8 @@
           "url": "https://higgsfield.ai/",
           "ok": true,
           "http_status": 200,
-          "signature": "59a0c37002fd448cbc5a3aaef61b080a1fa149f1fed3a9766918a5534967be01",
-          "chars": 3179,
+          "signature": "322ae73b80494cddbd11f89a86f5ce2461b758706a8b703ea6d9e93e4115f25f",
+          "chars": 3309,
           "error": null,
           "excluded_from_signature": true
         }
@@ -225,7 +257,7 @@
       "model": "Seedance 2.0",
       "platform": "ByteDance",
       "type": "video",
-      "last_checked": "2026-10-13T04:20:25+00:00",
+      "last_checked": "2026-10-13T04:55:39+00:00",
       "changed": false,
       "baseline": false,
       "source_status": "ok",
@@ -307,7 +339,7 @@
       "model": "Seedance 2.5",
       "platform": "ByteDance",
       "type": "video",
-      "last_checked": "2026-10-13T04:20:34+00:00",
+      "last_checked": "2026-10-13T04:55:48+00:00",
       "changed": false,
       "baseline": false,
       "source_status": "ok",
@@ -324,8 +356,8 @@
           "url": "https://higgsfield.ai/blog/best-ai-video-generation-apis",
           "ok": true,
           "http_status": 200,
-          "signature": "9064cefc3f76803ab539bdf3a4e5fc7ba8aff0a98be7f380c76c3dd8d8fca37a",
-          "chars": 57222,
+          "signature": "37837e3d56efaa374835fb537e0d65814308ca91dd201632b4589dfecbd00c67",
+          "chars": 56592,
           "error": null,
           "excluded_from_signature": true
         },
@@ -349,8 +381,8 @@
           "url": "https://github.com/devlinmarsh/seedance-2-5-api-quickstart/blob/HEAD/README.md",
           "ok": true,
           "http_status": 200,
-          "signature": "0f969a264772cd743f3653b40d4b6ea582708eb0e5afdc5b138e061e59c73114",
-          "chars": 2360,
+          "signature": "e1117c5d0d71d2c2bcdce31124b395639b7df72471476a0089ad25b2be452260",
+          "chars": 2377,
           "error": null,
           "excluded_from_signature": true
         },
@@ -397,12 +429,12 @@
           "date": "Mon, 03 Aug 2026 07:00:00 GMT"
         },
         {
-          "title": "Runway Resources | Seedance 2.5 Prompts: Structure and Technique - Runway",
-          "date": "Fri, 25 Sep 2026 07:00:00 GMT"
-        },
-        {
           "title": "Motion Picture Association Strikes Deal with ByteDance for IP Protections in AI Video, Image Models - Variety",
           "date": "Mon, 17 Aug 2026 07:00:00 GMT"
+        },
+        {
+          "title": "Runway Resources | Seedance 2.5 Prompts: Structure and Technique - Runway",
+          "date": "Fri, 25 Sep 2026 07:00:00 GMT"
         },
         {
           "title": "After Chaos Of Cruise Vs Pitt AI Deepfakes, Seedance 2.5 Is Now Blocking Hollywood Rip-Offs - Deadline",
@@ -427,7 +459,7 @@
       "model": "Seedance 3.0",
       "platform": "ByteDance",
       "type": "video",
-      "last_checked": "2026-10-13T04:20:54+00:00",
+      "last_checked": "2026-10-13T04:56:11+00:00",
       "changed": false,
       "baseline": false,
       "source_status": "partial",
@@ -506,6 +538,10 @@
           "date": "Sat, 14 Feb 2026 08:00:00 GMT"
         },
         {
+          "title": "Seedance 2.5 vs MiniMax H3 vs Wan 3.0: Which New AI Video Model Actually Deserves Your Money? - BBN Times",
+          "date": "Sat, 05 Sep 2026 14:04:24 GMT"
+        },
+        {
           "title": "This New AI Video Tool From China’s Bytedance Is Wowing Early Users - CNET",
           "date": "Wed, 11 Feb 2026 08:00:00 GMT"
         },
@@ -524,10 +560,6 @@
         {
           "title": "ByteDance Seedance 3.0 Reportedly In Development, May Usher In AI-Powered 'Feature Film Era' - NDTV Profit",
           "date": "Tue, 17 Feb 2026 08:00:00 GMT"
-        },
-        {
-          "title": "ByteDance Seedance 2.5 API Goes Live – 30-Second Single-Shot Clips, 50 Reference Inputs, and 3D Camera Blockouts - CineD",
-          "date": "Tue, 21 Jul 2026 07:00:00 GMT"
         }
       ]
     },
@@ -535,7 +567,7 @@
       "model": "Kling 3.0",
       "platform": "Kuaishou",
       "type": "video",
-      "last_checked": "2026-10-13T04:21:13+00:00",
+      "last_checked": "2026-10-13T04:56:25+00:00",
       "changed": false,
       "baseline": false,
       "source_status": "ok",
@@ -560,8 +592,8 @@
           "url": "https://github.com/vericontext/vibeframe/blob/HEAD/.agents/references/providers/kling.md",
           "ok": true,
           "http_status": 200,
-          "signature": "7270a7193b2fd61809cb5cdec9cb08b93dcaeffe773f6a90b4ccc2370ef540b7",
-          "chars": 2836,
+          "signature": "0d953b92073e0af46b7a9f8f9473469de40960727c1003708854e76d8274d578",
+          "chars": 2855,
           "error": null,
           "excluded_from_signature": true
         },
@@ -638,12 +670,12 @@
           "date": "Wed, 17 Jun 2026 07:00:00 GMT"
         },
         {
-          "title": "Sora 2 vs Veo 3.1 vs Kling 3.0: OpenAI Exits Sept 24 [2026] - tech-insider.org",
-          "date": "Tue, 22 Sep 2026 07:00:00 GMT"
-        },
-        {
           "title": "Seedance 2.5 vs Kling 3.0: Which AI Video Workflow Fits Tech Teams Better? - FindArticles",
           "date": "Thu, 13 Aug 2026 07:00:00 GMT"
+        },
+        {
+          "title": "Sora 2 vs Veo 3.1 vs Kling 3.0: OpenAI Exits Sept 24 [2026] - tech-insider.org",
+          "date": "Tue, 22 Sep 2026 07:00:00 GMT"
         }
       ],
       "note": "klingai.com excluded from the signature from 2026-10-12 (Watchtower 2.1): the homepage's rotating marketing copy moved once and flagged all three Kling models in a single run — verified-noisy, same treatment as hailuoai.video and lumalabs.ai. Still fetched and recorded every run."
@@ -652,7 +684,7 @@
       "model": "Kling 2.5 Turbo",
       "platform": "Kuaishou",
       "type": "video",
-      "last_checked": "2026-10-13T04:21:36+00:00",
+      "last_checked": "2026-10-13T04:56:45+00:00",
       "changed": false,
       "baseline": false,
       "source_status": "ok",
@@ -661,8 +693,8 @@
           "url": "https://github.com/vericontext/vibeframe/blob/HEAD/.agents/references/providers/kling.md",
           "ok": true,
           "http_status": 200,
-          "signature": "75e5e0edb64a6703f901e1200b90cee7de9710c0e48b4cf0a4c170279ed6c953",
-          "chars": 2827,
+          "signature": "0d953b92073e0af46b7a9f8f9473469de40960727c1003708854e76d8274d578",
+          "chars": 2855,
           "error": null,
           "excluded_from_signature": true
         },
@@ -697,16 +729,16 @@
           "date": "Thu, 19 Mar 2026 07:00:00 GMT"
         },
         {
+          "title": "iMini AI Integrates Kling 2.5 Turbo and Wan 2.6 for Next-Gen AI Video Creation - The National Law Review",
+          "date": "Fri, 26 Dec 2025 08:00:00 GMT"
+        },
+        {
           "title": "Fast AI Video APIs in 2026: What Sub-Second Generation Actually Changes - Techloy",
           "date": "Wed, 30 Sep 2026 10:15:40 GMT"
         },
         {
           "title": "A Developer’s Guide to Integrating the Kling 2.6 API, with Practical Notes from Using Kie.ai - Technology Org",
           "date": "Wed, 10 Dec 2025 08:00:00 GMT"
-        },
-        {
-          "title": "Best AI Video Generators in 2026: 14 Tools Compared - Kingy AI",
-          "date": "Sun, 21 Jun 2026 07:00:00 GMT"
         },
         {
           "title": "Kling AI released new Video 2.6 model with native audio - TestingCatalog AI News",
@@ -719,7 +751,7 @@
       "model": "Veo 3.1",
       "platform": "Google DeepMind",
       "type": "video",
-      "last_checked": "2026-10-13T04:21:51+00:00",
+      "last_checked": "2026-10-13T04:56:59+00:00",
       "changed": false,
       "baseline": false,
       "source_status": "ok",
@@ -768,8 +800,8 @@
           "url": "https://github.com/popschlock/promptfu/blob/HEAD/skills/promptfu/models/google/veo-3-1.md",
           "ok": true,
           "http_status": 200,
-          "signature": "e7b70060bad029b89a4c5a5b388da98b6bae382aae1b3dd0e5038004b1506900",
-          "chars": 8799,
+          "signature": "864478b020f93637d83b76f1dbd03a2783d0f662d12d2508cb44ee125a85a253",
+          "chars": 8807,
           "error": null,
           "excluded_from_signature": true
         },
@@ -785,8 +817,8 @@
           "url": "https://deepmind.google/technologies/veo/",
           "ok": true,
           "http_status": 200,
-          "signature": "6ba6a28e25de2450a15f2343402cdae9581e73efd2ee2554b2805a03a3ffc7d8",
-          "chars": 23673,
+          "signature": "d0b81ab84bc77883145c69532395715bf57bd2cb415b406d3663551d2deee7a5",
+          "chars": 22581,
           "error": null,
           "excluded_from_signature": true
         }
@@ -854,7 +886,7 @@
       "model": "Veo 3.1 Fast / Veo 3",
       "platform": "Google DeepMind",
       "type": "video",
-      "last_checked": "2026-10-13T04:22:30+00:00",
+      "last_checked": "2026-10-13T04:57:30+00:00",
       "changed": false,
       "baseline": false,
       "source_status": "ok",
@@ -879,8 +911,8 @@
           "url": "https://deepmind.google/technologies/veo/",
           "ok": true,
           "http_status": 200,
-          "signature": "6ba6a28e25de2450a15f2343402cdae9581e73efd2ee2554b2805a03a3ffc7d8",
-          "chars": 23673,
+          "signature": "d0b81ab84bc77883145c69532395715bf57bd2cb415b406d3663551d2deee7a5",
+          "chars": 22581,
           "error": null,
           "excluded_from_signature": true
         }
@@ -919,6 +951,10 @@
           "date": "Wed, 01 Apr 2026 07:00:00 GMT"
         },
         {
+          "title": "Google Unveils Cheaper AI Video Model to Expand Adoption - Yahoo Finance",
+          "date": "Tue, 31 Mar 2026 07:00:00 GMT"
+        },
+        {
           "title": "Google Veo 3: What It Is, What It Can Do, and How to Use It for Video Generation - Coursera",
           "date": "Fri, 31 Jul 2026 07:00:00 GMT"
         },
@@ -937,10 +973,6 @@
         {
           "title": "Google introduces a new video generation model as OpenAI shutters Sora app - Android Authority",
           "date": "Tue, 31 Mar 2026 07:00:00 GMT"
-        },
-        {
-          "title": "Google commits to video generation, announces Veo 3.1 Lite - 9to5Google",
-          "date": "Tue, 31 Mar 2026 07:00:00 GMT"
         }
       ]
     },
@@ -948,7 +980,7 @@
       "model": "Sora 2 / Pro / Max",
       "platform": "OpenAI",
       "type": "video",
-      "last_checked": "2026-10-13T04:22:41+00:00",
+      "last_checked": "2026-10-13T04:57:42+00:00",
       "changed": false,
       "baseline": false,
       "source_status": "ok",
@@ -965,8 +997,8 @@
           "url": "https://higgsfield.ai/blog/sora-api-migration-guide",
           "ok": true,
           "http_status": 200,
-          "signature": "2517e90a799dd5068301a8defe34404ee6354200c3d5acf947dae8212c53ce06",
-          "chars": 62022,
+          "signature": "875a2c09006ed95017381d980bc2e364c20ba2c254f45895d2476d831b20daa9",
+          "chars": 61392,
           "error": null,
           "excluded_from_signature": true
         },
@@ -1013,12 +1045,12 @@
           "date": "Mon, 12 Oct 2026 14:00:00 GMT"
         },
         {
-          "title": "OpenAI's shelved Sora may return as AI for filmmakers - 디지털투데이",
-          "date": "Mon, 12 Oct 2026 20:39:36 GMT"
-        },
-        {
           "title": "OpenAI shutting down Sora video-generating app - NBC News",
           "date": "Tue, 24 Mar 2026 07:00:00 GMT"
+        },
+        {
+          "title": "OpenAI's shelved Sora may return as AI for filmmakers - 디지털투데이",
+          "date": "Mon, 12 Oct 2026 20:39:36 GMT"
         },
         {
           "title": "OpenAI drops AI video tool Sora, startling Disney, sources say - Reuters",
@@ -1043,7 +1075,7 @@
       "model": "Wan 2.6",
       "platform": "Alibaba",
       "type": "video",
-      "last_checked": "2026-10-13T04:22:53+00:00",
+      "last_checked": "2026-10-13T04:57:51+00:00",
       "changed": false,
       "baseline": false,
       "source_status": "ok",
@@ -1091,6 +1123,10 @@
           "date": "Wed, 31 Dec 2025 08:00:00 GMT"
         },
         {
+          "title": "Wan 3.0 Review: Specs, Pricing, Access &amp; Reality Check - Kingy AI",
+          "date": "Thu, 06 Aug 2026 07:00:00 GMT"
+        },
+        {
           "title": "The “Effects Layer” for Image-to-Video: What wan-effects Does (and When to Use It) - HackerNoon",
           "date": "Fri, 30 Jan 2026 08:00:00 GMT"
         },
@@ -1103,8 +1139,8 @@
           "date": "Tue, 16 Dec 2025 08:00:00 GMT"
         },
         {
-          "title": "Wan 3.0 Review: Specs, Pricing, Access &amp; Reality Check - Kingy AI",
-          "date": "Thu, 06 Aug 2026 07:00:00 GMT"
+          "title": "OpenAI answers Google with major image upgrade - The Rundown AI",
+          "date": "Wed, 17 Dec 2025 08:00:00 GMT"
         },
         {
           "title": "Deepfake Detection Accuracy Falls 49% in a Year of AI Video Progress - Unite.AI",
@@ -1113,10 +1149,6 @@
         {
           "title": "Alibaba releases part of its image and video generation AI 'Wan 2.1' as open source - GIGAZINE",
           "date": "Thu, 27 Feb 2025 08:00:00 GMT"
-        },
-        {
-          "title": "Is OpenArt AI Worth It? An Honest Analysis for Affiliate Marketers - AFFiNCO",
-          "date": "Sun, 29 Mar 2026 07:00:00 GMT"
         }
       ],
       "note": "No source URLs; official Wan (Alibaba) site. Watchtower 2.2 calibration, third pass (2026-10-12): the abnewswire.com press-release page (and, for Grok, llmgateway.io's live timeline) in this entry's exclude_from_signature is a rotating-rail surface — the wire dropped or 503'd the checker in two runs, then served a moved page in the next. Excluded from the signature, still fetched and recorded every run. Watchtower 2.5 calibration (2026-10-12): the upgrademag.com Wan 2.7 launch report in this entry's exclude_from_signature flagged in two consecutive checker runs on intermittent variant fetches — the settled page is signature-consistent across repeated fetches (16136 chars) and its launch facts match the record, but single fetches in a run occasionally return a variant (rotating headlines rail). Excluded from the signature, still fetched and recorded every run."
@@ -1125,7 +1157,7 @@
       "model": "Wan 3.0 / 3.0 Prime",
       "platform": "Alibaba",
       "type": "video",
-      "last_checked": "2026-10-13T04:23:02+00:00",
+      "last_checked": "2026-10-13T04:58:00+00:00",
       "changed": false,
       "baseline": false,
       "source_status": "partial",
@@ -1142,8 +1174,8 @@
           "url": "https://github.com/yzrkbys/pika-canvas/commit/4c4a782b81e4cad87590bef6a492669b8e8f04ef",
           "ok": true,
           "http_status": 200,
-          "signature": "7052ae52a180a9646be632d3eeb12e383906e90a8e68cd47786b7b3ad7a86fea",
-          "chars": 4607,
+          "signature": "800c3f1755494ff2d60d3d0ec2f3faf4439863dce9756e6e4a66c01246712639",
+          "chars": 4625,
           "error": null,
           "excluded_from_signature": true
         },
@@ -1183,8 +1215,8 @@
           "url": "https://openrouter.ai/alibaba/wan-3.0",
           "ok": true,
           "http_status": 200,
-          "signature": "75d2c15951976d7948c277f0e2dc0dd69391496d194e0ba5aa355eb993c1788c",
-          "chars": 64373,
+          "signature": "026936c304366107cc9abd69dedf57421ed71bd9013e9f477f17dd0d8a229d6a",
+          "chars": 64322,
           "error": null,
           "excluded_from_signature": true
         },
@@ -1261,7 +1293,7 @@
       "model": "Hailuo 02 / 2.3",
       "platform": "MiniMax",
       "type": "video",
-      "last_checked": "2026-10-13T04:23:21+00:00",
+      "last_checked": "2026-10-13T04:58:26+00:00",
       "changed": false,
       "baseline": false,
       "source_status": "ok",
@@ -1303,8 +1335,8 @@
           "url": "https://hailuoai.video/",
           "ok": true,
           "http_status": 200,
-          "signature": "08d622831d315033fbc9d059ff56bcdddae28afc7e66535a92da714013457121",
-          "chars": 113153,
+          "signature": "463c1e99868a92234de3892d18f8b685f065db2f906e9998904988f121c406d5",
+          "chars": 45137,
           "error": null,
           "excluded_from_signature": true
         }
@@ -1319,12 +1351,6 @@
             "$0.32",
             "$0.33",
             "$0.56"
-          ]
-        },
-        {
-          "name": "version_signal",
-          "matches": [
-            "V3.1"
           ]
         }
       ],
@@ -1369,7 +1395,7 @@
       "model": "MiniMax H3",
       "platform": "MiniMax",
       "type": "video",
-      "last_checked": "2026-10-13T04:23:33+00:00",
+      "last_checked": "2026-10-13T04:58:42+00:00",
       "changed": false,
       "baseline": false,
       "source_status": "ok",
@@ -1412,7 +1438,7 @@
           "url": "https://www.einpresswire.com/article/948320883/protoface-expands-ai-video-api-with-kling-3-0-seedance-2-5-and-google-veo-3-1",
           "ok": true,
           "http_status": 200,
-          "signature": "a66980125116ac0b684be58227d9563a361c83780cf3addb8380d4d80f2603f6",
+          "signature": "233411d690e58b853873212d0a788a002a5266e4e03ac35bbda452e1eb060830",
           "chars": 10057,
           "error": null,
           "excluded_from_signature": true
@@ -1421,8 +1447,8 @@
           "url": "https://github.com/monid-ai/monid/blob/HEAD/openspec/changes/add-connector-minimax/design.md",
           "ok": true,
           "http_status": 200,
-          "signature": "47a9dfb48338eda359fa2cf35724103c41f115705314341c218029c83a4537bb",
-          "chars": 2297,
+          "signature": "0bba7bea8da67495c680e52eec3840b0d51d0d0b3aa7d364d4f474b589ae190d",
+          "chars": 2320,
           "error": null,
           "excluded_from_signature": true
         },
@@ -1492,10 +1518,6 @@
           "date": "Sat, 29 Aug 2026 07:00:00 GMT"
         },
         {
-          "title": "Seedance 2.5 vs MiniMax H3 vs Wan 3.0: Which New AI Video Model Actually Deserves Your Money? - BBN Times",
-          "date": "Sat, 05 Sep 2026 14:04:24 GMT"
-        },
-        {
           "title": "MiniMax H3: New Multimodal AI Sparks Bold Buzz - Techgenyz",
           "date": "Thu, 30 Jul 2026 07:00:00 GMT"
         },
@@ -1505,7 +1527,11 @@
         },
         {
           "title": "MiniMax H3 Review: 2K AI Video With Audio From Your Own Reference Art - nerdbot",
-          "date": "Thu, 03 Sep 2026 07:00:00 GMT"
+          "date": "Fri, 04 Sep 2026 05:40:53 GMT"
+        },
+        {
+          "title": "MiniMax H3: 2K AI Video With Native Audio and Open Weights - Pasquale Pillitteri",
+          "date": "Sat, 01 Aug 2026 07:00:00 GMT"
         }
       ],
       "note": "Watchtower 2.2 calibration (2026-10-12): the page(s) named in this entry's exclude_from_signature moved between same-day checker runs on rotating page chrome/rails, not on facts — excluded from the signature, still fetched and recorded every run. Watchtower 2.2 calibration, third pass (2026-10-12): the abnewswire.com press-release page (and, for Grok, llmgateway.io's live timeline) in this entry's exclude_from_signature is a rotating-rail surface — the wire dropped or 503'd the checker in two runs, then served a moved page in the next. Excluded from the signature, still fetched and recorded every run."
@@ -1514,7 +1540,7 @@
       "model": "Luma App / Ray 3.2",
       "platform": "Luma",
       "type": "video",
-      "last_checked": "2026-10-13T04:23:55+00:00",
+      "last_checked": "2026-10-13T04:59:14+00:00",
       "changed": false,
       "baseline": false,
       "source_status": "partial",
@@ -1563,7 +1589,7 @@
           "url": "https://lumalabs.ai/",
           "ok": true,
           "http_status": 200,
-          "signature": "5b34229be31ed9d895d2db017da998affe43a0ff3f23cca9c2058667bffa7c38",
+          "signature": "a3ed77cd007a66159fe214753a6e493e161e872da352876cd267ab6bde141edd",
           "chars": 10995,
           "error": null,
           "excluded_from_signature": true
@@ -1622,7 +1648,7 @@
       "model": "Pika 2.5",
       "platform": "Pika",
       "type": "video",
-      "last_checked": "2026-10-13T04:24:10+00:00",
+      "last_checked": "2026-10-13T04:59:41+00:00",
       "changed": false,
       "baseline": false,
       "source_status": "ok",
@@ -1648,7 +1674,7 @@
           "url": "https://magichour.ai/blog/ai-video-api-magic-hour-vs-runway-vs-pika",
           "ok": true,
           "http_status": 200,
-          "signature": "1a2e9c6ca492a7b1379662b4d54f96dd0168bb019a7041b7fbda92705c406d14",
+          "signature": "260427b4890d276802b18d4eeee9abb5bc1fb801f279cdfe24b8b8ff427e4de6",
           "chars": 79262,
           "error": null,
           "excluded_from_signature": true
@@ -1722,7 +1748,7 @@
       "model": "DoP (Lite/Standard/Turbo)",
       "platform": "Higgsfield",
       "type": "video",
-      "last_checked": "2026-10-13T04:24:23+00:00",
+      "last_checked": "2026-10-13T05:00:01+00:00",
       "changed": false,
       "baseline": false,
       "source_status": "ok",
@@ -1731,8 +1757,8 @@
           "url": "https://higgsfield.ai/creator-hub/help-center/ai-models/how-do-i-use-dop",
           "ok": true,
           "http_status": 200,
-          "signature": "5babbf6d8244c9b04681cbba30705e8ed9c1e13b535f1ac9c51622bffc7566d4",
-          "chars": 75392,
+          "signature": "1314e3c491bae9049dccc6478e7d93ccbb701974a45d8a7e2e9ba2cbd494a302",
+          "chars": 74762,
           "error": null,
           "excluded_from_signature": true
         }
@@ -1780,7 +1806,7 @@
       "model": "Marketing Studio video",
       "platform": "Higgsfield",
       "type": "video",
-      "last_checked": "2026-10-13T04:24:28+00:00",
+      "last_checked": "2026-10-13T05:00:13+00:00",
       "changed": false,
       "baseline": false,
       "source_status": "ok",
@@ -1789,8 +1815,8 @@
           "url": "https://higgsfield.ai/blog/higgsfield-api",
           "ok": true,
           "http_status": 200,
-          "signature": "f5f08cad748c080c7d3cdaa1e4814d3dd93fd13c10d7efbbb12940688f0c8f5a",
-          "chars": 63349,
+          "signature": "495fe1260ddc1f83ef260ece665a32f2a808ba581963d4e9d48e030fcc878bd4",
+          "chars": 62719,
           "error": null,
           "excluded_from_signature": true
         },
@@ -1863,7 +1889,7 @@
       "model": "Grok Imagine Video 1.5",
       "platform": "xAI",
       "type": "video",
-      "last_checked": "2026-10-13T04:24:41+00:00",
+      "last_checked": "2026-10-13T05:00:37+00:00",
       "changed": false,
       "baseline": false,
       "source_status": "partial",
@@ -1888,8 +1914,8 @@
           "url": "https://openrouter.ai/x-ai/grok-imagine-video-1.5-lite",
           "ok": true,
           "http_status": 200,
-          "signature": "b9ca0d27299b6b06e38e7696ee21a9eab11eb2f3ad1d04d4327af4fa706bd7bf",
-          "chars": 68557,
+          "signature": "da9c62a5050e9aace4cf16dcbb9616473353f937e571c25dbcac2e5147c239f0",
+          "chars": 46523,
           "error": null,
           "excluded_from_signature": true
         },
@@ -1922,7 +1948,7 @@
           "url": "https://sloptvnews.com/grok-imagine-video-1-5-lite-pricing/",
           "ok": true,
           "http_status": 200,
-          "signature": "bf8a64eea3f313b6cc901d1c8673b784a010f14efda6cd79ff47b3a9e8579a06",
+          "signature": "476ec96172fe14f0dfa228f7141bd9b6b58009fc72c104e663e3db25a8767f4b",
           "chars": 5635,
           "error": null,
           "excluded_from_signature": true
@@ -1963,7 +1989,7 @@
             "version 1.0",
             "3.1 Lite",
             "1.5 Lite",
-            "2.1 Turbo"
+            "4.20 Beta"
           ]
         }
       ],
@@ -2008,7 +2034,7 @@
       "model": "Midjourney V1 Video",
       "platform": "Midjourney",
       "type": "video",
-      "last_checked": "2026-10-13T04:25:11+00:00",
+      "last_checked": "2026-10-13T05:01:08+00:00",
       "changed": false,
       "baseline": false,
       "source_status": "ok",
@@ -2017,7 +2043,7 @@
           "url": "https://www.cometapi.com/midjourney-unveils-v1-video/",
           "ok": true,
           "http_status": 200,
-          "signature": "6bdc5e00450b3f669a7e643c47e4b1dda4c3ff32060d4a4a69ad5b0adaefa6b7",
+          "signature": "088653e6d3fe392d4419d1f012fafc29524d0be01399b6023ecf756e836642f1",
           "chars": 10559,
           "error": null,
           "excluded_from_signature": true
@@ -2109,7 +2135,7 @@
       "model": "Kling 4.0",
       "platform": "Kuaishou",
       "type": "video",
-      "last_checked": "2026-10-13T04:25:22+00:00",
+      "last_checked": "2026-10-13T05:01:22+00:00",
       "changed": false,
       "baseline": false,
       "source_status": "partial",
@@ -2166,8 +2192,8 @@
           "url": "https://www.orcarouter.ai/blog/kling-4-0-release-date",
           "ok": true,
           "http_status": 200,
-          "signature": "5420c5d7e2adfc9681817719835c6663020247517ca2f90dace7e057b00da02a",
-          "chars": 16194,
+          "signature": "6ae3b3625403518c33d0b9549295e69b371ad01a3eb686879c537a8d55d549a4",
+          "chars": 16193,
           "error": null,
           "excluded_from_signature": true
         },
@@ -2235,16 +2261,16 @@
           "date": "Mon, 12 Oct 2026 06:14:13 GMT"
         },
         {
+          "title": "Why is Kuaishou Technology stock rallying today? - Investing.com",
+          "date": "Tue, 06 Oct 2026 07:04:20 GMT"
+        },
+        {
           "title": "Kuaishou Keling releases Kling 4.0: up to 30 seconds of generation, accelerating its pursuit of ByteDance's Seedance. - 富途牛牛",
           "date": "Mon, 28 Sep 2026 17:25:05 GMT"
         },
         {
           "title": "Kuaishou’s AI video spinoff unveils new model in ByteDance chase - The Star",
           "date": "Tue, 29 Sep 2026 07:00:00 GMT"
-        },
-        {
-          "title": "Why is Kuaishou Technology stock rallying today? By Investing.com - Investing.com Nigeria",
-          "date": "Tue, 06 Oct 2026 04:10:37 GMT"
         },
         {
           "title": "Kuaishou’s Kling unveils new model ahead of potential IPO - Tech in Asia",
@@ -2261,7 +2287,7 @@
       "model": "Gemini Omni",
       "platform": "Google DeepMind",
       "type": "video",
-      "last_checked": "2026-10-13T04:26:11+00:00",
+      "last_checked": "2026-10-13T05:02:10+00:00",
       "changed": false,
       "baseline": false,
       "source_status": "ok",
@@ -2396,7 +2422,7 @@
       "model": "LTX-2.5",
       "platform": "Lightricks",
       "type": "video",
-      "last_checked": "2026-10-13T04:26:36+00:00",
+      "last_checked": "2026-10-13T05:02:46+00:00",
       "changed": false,
       "baseline": false,
       "source_status": "ok",
@@ -2430,8 +2456,8 @@
           "url": "https://github.com/red-weasel/machx-inference-engine/blob/HEAD/docs/ltx25/LTX25_ON_ARC.md",
           "ok": true,
           "http_status": 200,
-          "signature": "dbcc040fb3d372b366ac53aa5e3127127c0166a2d65a541cd1fbf5dcc65b1f5e",
-          "chars": 9414,
+          "signature": "f84662d3df769f03fb97398ff5022672f5df4962865f5adc6b33ef67d7f57e03",
+          "chars": 9426,
           "error": null,
           "excluded_from_signature": true
         },
@@ -2447,8 +2473,8 @@
           "url": "https://github.com/nicholashui/common-agent-structure/blob/HEAD/spec/ltx_operation_guide.md",
           "ok": true,
           "http_status": 200,
-          "signature": "580827310ec2bf74cd73cba98a690f1140b497a00cb5821e445383e3c7055671",
-          "chars": 89112,
+          "signature": "567a4d626bf011d7743532a50872bc41a722c916e1d65643df4b94ef1a203470",
+          "chars": 89130,
           "error": null,
           "excluded_from_signature": true
         },
@@ -2456,8 +2482,8 @@
           "url": "https://www.runcomfy.com/models/lightricks/ltx-2.5/image-to-video/fast",
           "ok": true,
           "http_status": 200,
-          "signature": "a991864279ce6e1fc147754dfaacd53f027dcb542c1d20fb057077ed53917f60",
-          "chars": 13245,
+          "signature": "98ef10ce317a9ab4cc84577cea4f0f59563e26b99573fa5f46c76cea95136ad7",
+          "chars": 13310,
           "error": null,
           "excluded_from_signature": true
         },
@@ -2543,7 +2569,7 @@
       "model": "Vidu S2",
       "platform": "Vidu",
       "type": "video",
-      "last_checked": "2026-10-13T04:27:01+00:00",
+      "last_checked": "2026-10-13T05:03:20+00:00",
       "changed": false,
       "baseline": false,
       "source_status": "partial",
@@ -2560,8 +2586,8 @@
           "url": "https://higgsfield.ai/blog/best-affordable-ai-video-generators",
           "ok": true,
           "http_status": 200,
-          "signature": "b2dc3e25492d17faeeea004c062541785a1d01bf54e02bf052cee8c0b1883cf4",
-          "chars": 47390,
+          "signature": "2cc7de982caa018e9ef5005734ef2f4338bef05512967b5cddb90364e7ac26d5",
+          "chars": 46760,
           "error": null,
           "excluded_from_signature": true
         },
@@ -2671,7 +2697,7 @@
       "model": "Mirage Tesseract",
       "platform": "Mirage (formerly Captions)",
       "type": "suite",
-      "last_checked": "2026-10-13T04:27:39+00:00",
+      "last_checked": "2026-10-13T05:03:49+00:00",
       "changed": false,
       "baseline": false,
       "source_status": "ok",
@@ -2697,7 +2723,7 @@
           "url": "https://www.webdisclosure.com/press-release/mirage-introduces-tesseract-a-video-creative-suite-built-for-ai-agents-zPS3ERdoUFK",
           "ok": true,
           "http_status": 200,
-          "signature": "bcaa79f2775b62ffdf69999c629a710d2e14813015a94f0a8bf7c89dd92fa25c",
+          "signature": "01c35040b02706f849f715e0595b288d8d7351bd8c2b3f2e235192640e1b9a5a",
           "chars": 4243,
           "error": null,
           "excluded_from_signature": true
@@ -2750,7 +2776,7 @@
       "model": "Runway Gen-4.5",
       "platform": "Runway",
       "type": "video",
-      "last_checked": "2026-10-13T04:27:48+00:00",
+      "last_checked": "2026-10-13T05:04:04+00:00",
       "changed": false,
       "baseline": false,
       "source_status": "ok",
@@ -2845,10 +2871,6 @@
           "date": "Mon, 01 Dec 2025 08:00:00 GMT"
         },
         {
-          "title": "ByteDance, Runway and Luma Now Split the AI Video Market OpenAI Left Behind - Startup Fortune",
-          "date": "Fri, 18 Sep 2026 07:00:00 GMT"
-        },
-        {
           "title": "Runway Gen-4.5 Image to Video Tool - Newsshooter",
           "date": "Wed, 21 Jan 2026 08:00:00 GMT"
         },
@@ -2867,6 +2889,10 @@
         {
           "title": "Generative AI Startup Runway Releases Gen-4.5 Video Model - AI Business",
           "date": "Mon, 01 Dec 2025 22:23:21 GMT"
+        },
+        {
+          "title": "ByteDance, Runway and Luma Now Split the AI Video Market OpenAI Left Behind - Startup Fortune",
+          "date": "Fri, 18 Sep 2026 07:00:00 GMT"
         }
       ],
       "note": "Watched since 2026-10-12 (Watchtower 2.1) on Runway's official pricing page: plan credit bundles and the Gen-4.5 credit rate are published there, so a signature move is worth a manual rate check. Runway shipped no new model in 2026; the watch also catches the day that changes."
@@ -2875,7 +2901,7 @@
       "model": "Vidu Q4 Preview",
       "platform": "Vidu / Shengshu Technology",
       "type": "video",
-      "last_checked": "2026-10-13T04:28:04+00:00",
+      "last_checked": "2026-10-13T05:04:27+00:00",
       "changed": false,
       "baseline": false,
       "source_status": "partial",
@@ -2900,8 +2926,8 @@
           "url": "https://usanewshour.com/shengshu-technology-launches-vidu-q4-preview-a-next-generation-ai-video-model-built-for-lifelike-performances/396369/",
           "ok": true,
           "http_status": 200,
-          "signature": "a186c334604cc9ab891ede70f387a6242eef4630869abee892d7f8fc3664d687",
-          "chars": 5970,
+          "signature": "9d6094519848d78f2cca12e476b1bfd2e288cb019c9954ed0a2e57efcf20080b",
+          "chars": 5834,
           "error": null,
           "excluded_from_signature": true
         },
@@ -2909,7 +2935,7 @@
           "url": "https://sloptvnews.com/vidu-q4-preview-price-per-second-launch-promo-vs-list/",
           "ok": true,
           "http_status": 200,
-          "signature": "e78dd315588d6033d2d4d6275982aa995e2607d43946354cf3f6e9da890f6319",
+          "signature": "e493d41d6de996bc49cb08e7c5286bc478eff2e3a5a6b1ba6bd16cbe377ee7cf",
           "chars": 7546,
           "error": null,
           "excluded_from_signature": true
@@ -2932,7 +2958,7 @@
           "excluded_from_signature": true
         }
       ],
-      "signal_excerpt": "Shengshu Technology Launches Vidu Q4 Preview, A Next-Generation AI Video Model Built for Lifelike Performances | USA Newshour MONDAY, OCTOBER 12, 2026 &#9776; Business Cinema Celeb Corner Movies TV Talk Music OTT Showbiz Tech Apps Cyber Security Gadgets Gaming Hardware Internet Social Media Lifestyle Beauty Fashion Health &amp; Fitness Food &amp; Drinks Travel Money Economy Forex Markets People Na",
+      "signal_excerpt": "Shengshu Technology Launches Vidu Q4 Preview, A Next-Generation AI Video Model Built for Lifelike Performances | USA Newshour TUESDAY, OCTOBER 13, 2026 &#9776; Business Cinema Celeb Corner Movies TV Talk Music OTT Showbiz Tech Apps Cyber Security Gadgets Gaming Hardware Internet Social Media Lifestyle Beauty Fashion Health &amp; Fitness Food &amp; Drinks Travel Money Economy Forex Markets People N",
       "signals": [
         {
           "name": "price_signal",
@@ -2977,7 +3003,7 @@
       "model": "FLUX 3 Video",
       "platform": "Black Forest Labs",
       "type": "video",
-      "last_checked": "2026-10-13T04:28:21+00:00",
+      "last_checked": "2026-10-13T05:04:55+00:00",
       "changed": false,
       "baseline": false,
       "source_status": "ok",
@@ -3011,7 +3037,7 @@
           "url": "https://www.digitaltoday.co.kr/en/view/89607/black-forest-labs-releases-flux-3-video-to-public",
           "ok": true,
           "http_status": 200,
-          "signature": "44cd93129aa6aaf61bbcb23e33635731a53130902b44f58c211e24af53f791ae",
+          "signature": "bfcea7e2311b3a11d78f4df8220ff54472ad5a66360208c6d093932049055d2d",
           "chars": 6652,
           "error": null,
           "excluded_from_signature": true
@@ -3095,24 +3121,24 @@
           "date": "Thu, 08 Oct 2026 00:31:32 GMT"
         },
         {
-          "title": "FLUX 3 Image Launches: Specs, Pricing, Benchmarks and Model Comparisons - Kingy AI",
-          "date": "Thu, 01 Oct 2026 07:00:00 GMT"
-        },
-        {
           "title": "Black Forest Labs Unveils FLUX 3 AI: Ditches Stills for Video—And Robot Hands - Decrypt",
           "date": "Thu, 23 Jul 2026 07:00:00 GMT"
         },
         {
-          "title": "Black Forest Labs makes FLUX 3 Video generally available and claims it beats Seedance 2.0 - The Decoder",
-          "date": "Wed, 05 Aug 2026 07:00:00 GMT"
-        },
-        {
-          "title": "Germany's Black Forest Labs Unveils 7B-Parameter Robot Control AI \"FLUX 3 Action,\" Tops Benchmark Rankings - BigGo Finance",
-          "date": "Fri, 25 Sep 2026 09:35:00 GMT"
+          "title": "Flux 3 generates videos with native audio up to 20 seconds long, a first for Black Forest Labs - the-decoder.com",
+          "date": "Thu, 23 Jul 2026 07:00:00 GMT"
         },
         {
           "title": "FLUX 3 Multimodal AI: How Black Forest Labs’ Model Beats Seedance 2.0 and Grok - SitePoint",
           "date": "Sat, 01 Aug 2026 07:00:00 GMT"
+        },
+        {
+          "title": "ICYMI: Black Forest Labs opens FLUX 3 Video early access - TestingCatalog AI News",
+          "date": "Sun, 26 Jul 2026 07:00:00 GMT"
+        },
+        {
+          "title": "FLUX 3 Image Launches: Specs, Pricing, Benchmarks and Model Comparisons - Kingy AI",
+          "date": "Thu, 01 Oct 2026 07:00:00 GMT"
         }
       ],
       "note": "Added wave 21 (2026-10-11). Watch for native 2K/4K and open-weights delivery. Pricing page added 2026-10-12 (Watchtower 2.1): BFL publishes per-second rates there, so the pricing table now has a primary source to diff against. Watchtower 2.2 calibration (2026-10-12): the page(s) named in this entry's exclude_from_signature moved between same-day checker runs on rotating page chrome/rails, not on facts — excluded from the signature, still fetched and recorded every run. Watchtower 2.2 calibration, second pass (2026-10-12): the surface named in this entry's exclude_from_signature moved again in the calibrated re-run on rotating rails/homepage copy — excluded (a trailing \"$\" means exact-URL), still fetched and recorded every run. The dev.to FLUX 3 review joined the exclusions in the same pass — a blog-platform page whose rails rotate; its quoted rates ($0.40 QHD, $0.80 UHD) match the record, and bfl.ai/pricing itself did not move. Watchtower 2.6 (2026-10-12): bfl.ai/pricing is now a JS calculator shell whose static fetch carries no per-second video rate (2,249 chars), so BFL's official docs pricing page (docs.bfl.ai/quick_start/pricing) joins as a readable primary rate source — probed with the checker's own fetch path before being written down: 200, signature-identical across consecutive fetches, and its FLUX 3 Video table matches the record exactly (the page serves two renderings — the probe's 19,564-char variant and the 9,875-char variant the re-baseline run recorded, itself stable across three later fetches; the rate table is the same in both) (t2v/i2v $0.06 draft / $0.17 hd / $0.29 fhd / $0.40 qhd / $0.80 uhd; v2v $0.12 draft / $0.41 / $0.53 / $0.65 / $0.95). Signature-live, not excluded: a rate move there should flag. bfl.ai/pricing stays signature-live alongside it (the 2.2 anchor decision). Watchtower 2.7 (2026-10-12): bfl.ai/pricing served three different renderings within one pass — the 2,249-char calculator shell baselined in 2.6, a 22,122-char full rendering (five consecutive probe fetches, signature cb65d074…; its structured FLUX 3 Video offers match the record exactly), and a 4,680-char calculator rendering (13ffebdf…, the run's fetch plus six consecutive probes) that carries no per-second rate in its cleaned text. The renderings rotate in blocks, so the page can never hold a signature across runs — it joins this entry's exclude_from_signature as an exact-URL entry, still fetched and recorded every run. The readable rate watch is unaffected: docs.bfl.ai/quick_start/pricing stayed on its 9,875-char rendering (cb1e92d1…) across every probe and both runs this pass and remains signature-live."
@@ -3121,7 +3147,7 @@
       "model": "vivago R1",
       "platform": "HiDream.ai",
       "type": "suite",
-      "last_checked": "2026-10-13T04:28:42+00:00",
+      "last_checked": "2026-10-13T05:05:26+00:00",
       "changed": false,
       "baseline": false,
       "source_status": "ok",
@@ -3130,8 +3156,8 @@
           "url": "https://lifestyle.nextmentors.com/story/878361/hidream-ai-makes-vivago-r1-available-globally-for-end-to-end-ai-video-production/",
           "ok": true,
           "http_status": 200,
-          "signature": "eb05d72a3c3ab06da78248507efddbb8b7baff6c42eebf4c2c41df7c9e32b473",
-          "chars": 6104,
+          "signature": "a7f3fb0a91f4c643c961e0583358e3c7bcbdd28870e493b7698d447e5b15fa96",
+          "chars": 6022,
           "error": null,
           "excluded_from_signature": true
         },
@@ -3159,10 +3185,10 @@
       "model": "PixVerse V6",
       "platform": "AIsphere",
       "type": "video",
-      "last_checked": "2026-10-13T04:28:46+00:00",
+      "last_checked": "2026-10-13T05:05:33+00:00",
       "changed": false,
       "baseline": false,
-      "source_status": "ok",
+      "source_status": "partial",
       "source_results": [
         {
           "url": "https://www.yottalabs.ai/post/pixverse-v6-vs-c1-differences-api-2026",
@@ -3190,11 +3216,11 @@
         },
         {
           "url": "https://docs.platform.pixverse.ai",
-          "ok": true,
-          "http_status": 200,
-          "signature": "95c88c96a13d7aa257e0d7fb7a8394a3ec7a52765c5ea80c3bf90ff16b890779",
-          "chars": 4278,
-          "error": null
+          "ok": false,
+          "http_status": null,
+          "signature": null,
+          "chars": 0,
+          "error": "IncompleteRead: IncompleteRead(32324 bytes read)"
         },
         {
           "url": "https://pixverse.ai",
@@ -3238,7 +3264,7 @@
       "model": "Wan 2.7",
       "platform": "Alibaba",
       "type": "video",
-      "last_checked": "2026-10-13T04:28:56+00:00",
+      "last_checked": "2026-10-13T05:05:53+00:00",
       "changed": false,
       "baseline": false,
       "source_status": "ok",
@@ -3323,12 +3349,12 @@
           "date": "Sat, 04 Apr 2026 07:00:00 GMT"
         },
         {
-          "title": "Seedance 2.5 vs MiniMax H3 vs Wan 3.0: Which New AI Video Model Actually Deserves Your Money? - BBN Times",
-          "date": "Sat, 05 Sep 2026 14:04:24 GMT"
-        },
-        {
           "title": "Happy Horse 1.0 Storms the Video Arena: Mystery Dark Horse Tops the Global Leaderboard - 24-7 Press Release",
           "date": "Thu, 09 Apr 2026 07:00:00 GMT"
+        },
+        {
+          "title": "Seedance 2.5 vs MiniMax H3 vs Wan 3.0: Which New AI Video Model Actually Deserves Your Money? - BBN Times",
+          "date": "Sat, 05 Sep 2026 14:04:24 GMT"
         },
         {
           "title": "Behind Seedance ByteDance's Explosive Popularity: The $5 Billion Unicorn Powering Its Success - 36Kr",
