@@ -58,19 +58,21 @@ Secrets live only in Vercel, never in either repo.
   never a record change. Flags are adjudicated in
   `data/v1/model-review-log.json` (re-fetch, verdict, basis) before the
   queue clears; the checker re-run after a pass sets the new baseline.
-  Current state (Watchtower 2.5): 68 history events, queue at 3 standing
+  Current state (Watchtower 2.6): 73 history events, queue at 3 standing
   watches (Seedance 3.0, Kling 4.0, and Soul Cinema's in-app credit
-  cost re-checked a third pass, unmoved — Kling 4.0's APIMart criteria
-  page is signature-identical to the 2.4 baseline; Wan 2.7's
-  post-addition watch confirmed stable on its own criteria sources).
-  Latest feed (2026-10-13T02:57Z): changed=0, with_errors=0, 11 drift
-  alerts (the adjudicated partial cohort, same id set as 2.4), 5 on
-  watch incl. Wan 2.7 (baseline + own pricing diff). One calibration
-  in 2.5: the upgrademag Wan 2.7 launch report is signature-excluded
-  for both Wan models (intermittent variant fetches; still fetched
-  and recorded). BFL's pricing page is now a JS calculator shell —
-  FLUX rates stay signature-live there by design, but future rate
-  moves may not be readable from a static fetch.
+  cost re-checked a fourth pass, unmoved — Kling 4.0's APIMart criteria
+  page is signature-identical to the 2.4/2.5 baseline). Latest feed
+  (2026-10-13T03:43Z): changed=0, with_errors=0, 11 drift alerts (the
+  adjudicated partial cohort, same id set as 2.4), 5 on watch incl.
+  Wan 2.7 (baseline + own pricing diff). One flag in 2.6: Higgsfield's
+  pricing shell moved on nav chrome for Marketing Studio — settled,
+  figure-free, dismissed, still signature-live. FLUX rate watch
+  repaired in 2.6: bfl.ai/pricing is a JS calculator shell a static
+  fetch cannot read, so BFL's official docs pricing page
+  (docs.bfl.ai/quick_start/pricing) is now a signature-live rate
+  source alongside it — its FLUX 3 table matches the record exactly;
+  the page serves two renderings with the same table (both stable in
+  testing), noted in model-check-config.json.
 - `vercel.json` in live repo: valid JSON, `outputDirectory: "."`,
   `functions` lists the 5 routes as explicit paths with
   `{"maxDuration": 10}`, crons + headers carried over from the working

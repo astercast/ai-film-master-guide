@@ -1,6 +1,6 @@
 {
   "format": "model-history/1.0",
-  "generated_at": "2026-10-13T02:57:42Z",
+  "generated_at": "2026-10-13T03:43:05Z",
   "method": "Hand-authored event log. Every event traces to a fact recorded in models.json (what_changed), data/v1/model-updates.md, or this wave's own pricing-table changes. Price events carry a before/after pair only where the record documents both numbers; otherwise the fields are null and the summary says why. The pricing baseline below is the pricing table as curated on 2026-10-11 — the drift engine diffs the live table against it, so a rate that moves from here on is caught mechanically, not by memory.",
   "pricing_baseline": {
     "at": "2026-10-11T00:00:00Z",
@@ -1358,6 +1358,56 @@
       "summary": "Review pass: BFL's official pricing page was redesigned from a static rate table (22,122 chars) to a JS calculator shell (2,249 chars) whose fetched text carries no per-second video rate — nothing on it contradicts the record's FLUX 3 rates, which stand as documented from the September 10 listing. The URL stays signature-live by design: it is the primary rate source, and a readable rate move should flag.",
       "confidence": "official",
       "source": "Watchtower 2.5 review pass (2026-10-12) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-12-seedance-3-0-watch-rechecked-2-6",
+      "date": "2026-10-12",
+      "model_id": "seedance-3-0",
+      "model": "Seedance 3.0",
+      "kind": "verification",
+      "summary": "Standing watch re-checked (Watchtower 2.6): still no official ByteDance announcement — the release tracker's daily inspection still rests on its Oct 6 catalog check listing Seedance 2.5 as current, and current coverage agrees no announcement, API, or date exists. The record's standing position (reported, unconfirmed) is unchanged and the watch stays open.",
+      "confidence": "official",
+      "source": "Watchtower 2.6 review pass (2026-10-12) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-12-kling-4-0-watch-rechecked-2-6",
+      "date": "2026-10-12",
+      "model_id": "kling-4-0",
+      "model": "Kling 4.0",
+      "kind": "verification",
+      "summary": "Standing watch re-checked (Watchtower 2.6): APIMart's criteria page returned a signature identical to the 2.4/2.5 baseline and still reads 'API Coming Soon' with pricing not announced; current coverage still describes Flash-only subscriber access and no published API pricing. No GA model ID and no published pricing from Kuaishou — the record stays 'announced' and the watch stays open.",
+      "confidence": "official",
+      "source": "Watchtower 2.6 review pass (2026-10-12) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-12-soul-cinema-watch-rechecked-2-6",
+      "date": "2026-10-12",
+      "model_id": "soul-cinema",
+      "model": "Soul Cinema",
+      "kind": "verification",
+      "summary": "Standing watch re-checked (Watchtower 2.6): the in-app per-image credit cost is still not published by Higgsfield — its pricing page is a 428-char app shell with no credit figure, and the API post's rate table still lists only the $0.0032/image API starting rate tabled in Watchtower 2.3. The only credit figures in circulation remain third-party (~0.125 credits/image). The narrowed watch stays open.",
+      "confidence": "official",
+      "source": "Watchtower 2.6 review pass (2026-10-12) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-12-flux-3-video-docs-rate-source-2-6",
+      "date": "2026-10-12",
+      "model_id": "flux-3-video",
+      "model": "FLUX 3 Video",
+      "kind": "coverage",
+      "summary": "Readable primary rate source added (Watchtower 2.6): bfl.ai/pricing is now a JS calculator shell a static fetch cannot read rates from, so BFL's official docs pricing page (docs.bfl.ai/quick_start/pricing) joins the watch as a signature-live source. Probed with the checker's fetch path first — its FLUX 3 Video table matches the record exactly ($0.06 draft / $0.17 hd / $0.29 fhd / $0.40 qhd / $0.80 uhd for text/image-to-video; $0.12 draft / $0.41 / $0.53 / $0.65 / $0.95 for video continuation), so no rate changed. bfl.ai/pricing stays signature-live alongside it.",
+      "confidence": "official",
+      "source": "Watchtower 2.6 review pass (2026-10-12) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-12-marketing-studio-flag-reviewed-2-6",
+      "date": "2026-10-12",
+      "model_id": "marketing-studio-video",
+      "model": "Marketing Studio video",
+      "kind": "verification",
+      "summary": "Review pass: the flagged source is Higgsfield's pricing page, a 428-char app shell whose text is a navigation list with no plan, credit, or rate figure on it. Its signature moved once on nav chrome and then held across three fresh fetches and the re-baseline run; nothing on it contradicts the record, whose per-clip credit costs remain third-party as documented. The URL stays signature-live and the record stands.",
+      "confidence": "official",
+      "source": "Watchtower 2.6 review pass (2026-10-12) — data/v1/model-review-log.json"
     }
   ]
 }

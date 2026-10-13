@@ -1,5 +1,114 @@
 # Wave Log — AI Film Master Guide
 
+## Watchtower 2.6 — the fourth review pass (2026-10-12)
+
+**Assignment:** Rotation 7 — work the queue Watchtower 2.5 left: the 3
+standing watches (Seedance 3.0 confirmation, Kling 4.0 GA, Soul
+Cinema's in-app credit cost), the 11 adjudicated partial records, and
+the one watch-quality item 2.5 named: bfl.ai/pricing is now a JS
+calculator shell, so FLUX 3 Video's rate watch needs a readable
+primary source or an honest log that none exists. Kling rule
+unchanged: no GA model ID + no published pricing from Kuaishou =
+stays "announced", however loud the third-party noise gets.
+
+**The watches — three re-checked, none moved.**
+- **Seedance 3.0:** still no official ByteDance announcement. The
+  dedicated release tracker is unchanged since 2.5 — its daily
+  inspection still rests on the Oct 6 catalog check (ByteDance's
+  catalog and visual blog both list 2.5) — and current coverage
+  agrees no announcement, API, or date exists.
+- **Kling 4.0:** the criteria source is again literally unchanged —
+  APIMart's page returned a signature identical to the 2.4/2.5
+  baseline (fc55ce30…) and still reads "API Coming Soon", "Not yet",
+  pricing "not been announced". Coverage still describes Flash-only
+  subscriber access; third-party API wrappers on other pipelines are
+  not Kuaishou pricing and carry no GA model ID — noise, adjudicated
+  as such.
+- **Soul Cinema:** the in-app credit cost is still unpublished.
+  Higgsfield's pricing page is a 428-char app shell with no credit
+  figure; the API post's rate table still lists only the $0.0032/image
+  API starting rate from 2.3 (and returned yet another signature at
+  identical length — already excluded since 2.4).
+
+**FLUX rate source — found, probed, wired in.** BFL's official docs
+publish the full rate card on a page a static fetch can read:
+`docs.bfl.ai/quick_start/pricing`. Probed with the checker's own
+fetch path before being written down — 200, signature-identical
+across consecutive fetches — and its FLUX 3 Video table matches the
+record exactly ($0.06 draft / $0.17 hd / $0.29 fhd / $0.40 qhd /
+$0.80 uhd for text/image-to-video; $0.12 draft / $0.41 / $0.53 /
+$0.65 / $0.95 for video continuation), so no rate changed and no
+pricing record moved. It joins FLUX 3 Video's `extra_urls` as a
+signature-live primary source; bfl.ai/pricing stays signature-live
+alongside it (the 2.2 anchor decision). One honest wrinkle: the docs
+page serves two renderings — the probe's 19,564-char variant and the
+9,875-char variant the re-baseline run recorded (cb1e92d1…), itself
+stable across three later fetches — with the same table in both. If
+the renderings alternate between runs it will flag, and a future
+pass can adjudicate it then.
+
+**One fresh flag, adjudicated.** The surviving run flagged Marketing
+Studio on Higgsfield's pricing page: the 428-char shell's signature
+moved once against the 2.5 baseline on nav chrome (new product names
+in the shell's nav list) and then held — three fresh fetches and the
+re-baseline run all return f14e9f4a… at identical length. The shell's
+text carries no plan, credit, or rate figure at all, so nothing
+contradicts the record. Dismissed; the URL stays signature-live.
+
+**Partials — cohort unchanged, one wire still flaky, two timeouts.**
+All 14 failed-source instances (12 distinct URLs) re-probed: Medium
+×3, MarkTechPost ×3, GlobeNewswire, Morningstar, x.ai, and
+midjourney.com still 403; whatsnew.fyi still 429s the shared ComfyUI
+page. europesays.com (Grok) dropped the first re-probe, answered 200
+on the second (13,347 chars), then dropped again in the re-baseline
+run — intermittent, stays failed, honestly labeled, same pattern as
+2.5. Two run-weather timeouts recovered on re-probe: higgsfield.ai
+for Soul 2.0 (200 twice; final feed carries the model ok) and
+techtimes.com for Kling 4.0 (200 twice, signature identical to the
+2.5 baseline).
+
+**Process note (honest):** the pass's first launch duplicated — two
+checker processes ran concurrently against the same files, the 2.2
+failure mode recurring despite the pre-launch `pgrep` check (the
+duplication came from the launch itself). The interleaved output was
+not used as a baseline: the surviving feed (changed=1) served only as
+adjudication input, the transient flags in the discarded run's log
+were re-checked on fresh fetches against the 2.5 baseline (every
+non-excluded source matched), and every published number comes from
+the single verified re-baseline run. Recorded in the review log's
+pass-5 addendum.
+
+**Feed state:** final re-baseline (2026-10-13T03:43Z): **changed=0,
+with_errors=0, no_sources=0**; queue back to its **3 standing
+watches** (notes carry this pass's re-check lines). Drift unchanged
+from 2.4/2.5: **11 alerts** (same id set), **5 watch**, 16 ok, 0
+unwatched; unpublished rates **5**; pricing diff vs the 2026-10-11
+baseline **7 rows**. History 68 → **73 events** (3 watch re-checks,
+the FLUX docs-source coverage event, the Marketing Studio flag
+verdict); the October window holds 53. Review log: pass 5 + addendum
+(9 entries total).
+
+**Validation:** `scripts/watchtower.test.js` **15/15**.
+`tests/api.test.sh` **55/55** (October window 48 → 53).
+`studio.test.js` **70/70**, `greenlight.test.js` **29/29**,
+`agent-workflows.test.js` all pass. `bash scripts/validate.sh`
+**18 passed, 0 failed — ALL STAGES PASS** pre-commit.
+Headless-Chromium (Playwright) screenshots inspected (desktop 1440px
++ mobile 390px): cutting-room board intact, freshness reads the new
+03:43 UTC feed, "32 models checked", "11 need review" and "73 events"
+present, zero page errors (the two /api 404 resource logs per view on
+the plain static server are the designed fallback trigger; the mobile
+hero deck stays cramped — the pre-existing wave-39 quirk, untouched).
+AI-ism scan on new copy: clean. No TODOs, no dead code.
+
+**Left open:** the 3 standing watches — all re-checked this pass,
+none moved. The 11 partial records will keep surfacing as alerts
+while their third-party sources bot-block the checker — adjudicated
+five passes running now, documented, honest. One new watch-quality
+note: the BFL docs pricing page serves two renderings; if they start
+alternating between runs it will flag for a future pass. LTX-2.5's
+ltx.io note stands.
+
 ## Watchtower 2.5 — the third review pass (2026-10-12)
 
 **Assignment:** Rotation 6 — work the queue Watchtower 2.4 left: the 3

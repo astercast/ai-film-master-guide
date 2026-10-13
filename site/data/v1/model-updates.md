@@ -204,6 +204,53 @@ confirmed stable. Verdicts are in `data/v1/model-review-log.json`
   Marketing Studio partial — recovered on re-probe and in the final
   feed (changed=0, with_errors=0).
 
+## 2026-10-12 — Watchtower 2.6: the fourth review pass
+
+No model-record changes. The three standing watches were re-checked
+against their own criteria, the eleven partial records' failed sources
+were re-probed, and the one watch-quality item 2.5 left open — a
+readable FLUX rate source — is closed. Verdicts are in
+`data/v1/model-review-log.json` (review pass 5 + addendum).
+
+- **Seedance 3.0 — still unconfirmed.** The release tracker is
+  unchanged: its daily inspection still rests on the Oct 6 catalog
+  check, and ByteDance's catalog still lists Seedance 2.5 as current.
+  No announcement, no API, no date. The watch stays open.
+- **Kling 4.0 — still announced.** APIMart's page is signature-
+  identical to the 2.4/2.5 baseline and still reads "API Coming Soon"
+  with pricing not announced. Flash-only subscriber access, no GA
+  model ID, no published pricing from Kuaishou — third-party wrappers
+  are not either. The watch stays open.
+- **Soul Cinema — in-app credit cost still unpublished.** Higgsfield's
+  pricing page is a 428-char app shell with no credit figure, and its
+  API post's rate table still lists only the $0.0032/image API
+  starting rate (2.3). The narrowed watch stays open.
+- **FLUX 3 Video — a readable rate source again.** BFL's pricing page
+  is a JS calculator a static fetch cannot read, so the watch now also
+  runs on BFL's official docs pricing page (docs.bfl.ai/quick_start/
+  pricing), probed with the checker's fetch path before being written
+  down. Its FLUX 3 table matches the record exactly — $0.06/s draft,
+  $0.17 hd, $0.29 fhd, $0.40 qhd, $0.80 uhd for text/image-to-video;
+  $0.12 draft and $0.41 / $0.53 / $0.65 / $0.95 for video continuation
+  — so no rate changed. The page serves two renderings with the same
+  table (both signature-stable in testing); bfl.ai/pricing stays
+  signature-live alongside it.
+- **One fresh flag, dismissed.** Marketing Studio's flag was
+  Higgsfield's pricing shell: its signature moved once on navigation
+  chrome — the shell's text is a nav list with no figures on it — and
+  then held across repeated fetches and the re-baseline run. No
+  record change; the URL stays signature-live.
+- **Failed sources — cohort unchanged, one wire still flaky.** The
+  403 bot-blocks and the whatsnew.fyi 429 persist, fourth pass
+  running. europesays.com answered once in three tries (dropped the
+  other two) — intermittent, stays failed, honestly labeled. Two
+  run-weather timeouts (Soul 2.0's homepage, Kling 4.0's TechTimes
+  source) recovered on re-probe; the final feed reads changed=0,
+  with_errors=0. One process note, recorded in the review log: the
+  pass's first launch duplicated the checker (the 2.2 failure mode);
+  the interleaved output was discarded as a baseline and every
+  published number comes from a single verified re-run.
+
 ## 2026-10-11 — Wave 30: Late-Q4 field sweep
 
 29 → **30 models** (one added); no status changes. The headline item is a
