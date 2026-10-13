@@ -1488,6 +1488,56 @@
       "summary": "Rate-source stability confirmed (Watchtower 2.8): BFL's official docs pricing page returned its 9,875-char rendering at the 2.6 baseline signature (cb1e92d1…) in probes and in both checker runs, and its FLUX 3 Video table still matches the record exactly. The 19,564-char variant was not seen for a second pass. bfl.ai/pricing, signature-excluded since 2.7, stayed on its 4,680-char calculator rendering in probes and was still fetched and recorded in both runs. No rate changed.",
       "confidence": "official",
       "source": "Watchtower 2.8 review pass (2026-10-12) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-12-seedance-3-0-watch-rechecked-2-9",
+      "date": "2026-10-12",
+      "model_id": "seedance-3-0",
+      "model": "Seedance 3.0",
+      "kind": "verification",
+      "summary": "Standing watch re-checked (Watchtower 2.9): still no official ByteDance announcement — the state-of-the-field coverage page this watch reads returned a signature identical to the 2.6/2.7/2.8 baseline (59931bf3…) in probes and in both checker runs and still lists Seedance 3.0 among models announced by no vendor as of October 1, with no announcement, no API, and no date. The watch stays open.",
+      "confidence": "official",
+      "source": "Watchtower 2.9 review pass (2026-10-12) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-12-kling-4-0-watch-rechecked-2-9",
+      "date": "2026-10-12",
+      "model_id": "kling-4-0",
+      "model": "Kling 4.0",
+      "kind": "verification",
+      "summary": "Standing watch re-checked (Watchtower 2.9): APIMart's criteria page returned a signature identical to the 2.4–2.8 baseline (fc55ce30…) in probes and in both checker runs and still reads 'API Coming Soon', 'Not yet', pricing 'not been announced'. No GA model ID, no pricing published by Kuaishou — the record stays 'announced' and the watch stays open.",
+      "confidence": "official",
+      "source": "Watchtower 2.9 review pass (2026-10-12) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-12-soul-cinema-watch-rechecked-2-9",
+      "date": "2026-10-12",
+      "model_id": "soul-cinema",
+      "model": "Soul Cinema",
+      "kind": "verification",
+      "summary": "Standing watch re-checked (Watchtower 2.9): the in-app per-image credit cost is still not published by Higgsfield — its pricing page returned the same 428-char app shell at the settled signature (f14e9f4a…) with no credit figure, and the API post's rate table still lists only the $0.0032/image API starting rate tabled in Watchtower 2.3. The narrowed watch stays open.",
+      "confidence": "official",
+      "source": "Watchtower 2.9 review pass (2026-10-12) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-12-flux-3-video-rate-source-stable-2-9",
+      "date": "2026-10-12",
+      "model_id": "flux-3-video",
+      "model": "FLUX 3 Video",
+      "kind": "verification",
+      "summary": "Rate-source stability confirmed for a third pass (Watchtower 2.9): BFL's official docs pricing page returned its 9,875-char rendering at the 2.6 baseline signature (cb1e92d1…) in probes and in both checker runs, and its FLUX 3 Video table still matches the record exactly. The 19,564-char variant was not seen. bfl.ai/pricing served its 22,122-char full rendering (cb65d074…) this pass — signature-excluded since 2.7, still fetched and recorded every run. No rate changed.",
+      "confidence": "official",
+      "source": "Watchtower 2.9 review pass (2026-10-12) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-12-veo-3-1-flag-reviewed-2-9",
+      "date": "2026-10-12",
+      "model_id": "veo-3-1",
+      "model": "Veo 3.1",
+      "kind": "verification",
+      "summary": "Checker flag reviewed and dismissed (Watchtower 2.9): the first run flagged a third-party pricing roundup (scriptbyai.com); re-fetched twice, the page is signature-stable and identical to the flagged run's stored signature (45717f00…), and its Veo 3.1 table ($0.40/s standard, $0.60 4K; $0.15/$0.35 fast; $0.05/$0.08 lite) matches the record exactly — the move was the page's living LLM tables settling against the older baseline, the 2.5 pattern. No record change.",
+      "confidence": "official",
+      "source": "Watchtower 2.9 review pass (2026-10-12) — data/v1/model-review-log.json"
     }
   ]
 }

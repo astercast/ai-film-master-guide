@@ -133,19 +133,22 @@ ok('pricing coverage is complete: 32 of 32 models have a pricing record', () => 
 });
 
 /* --- drift on the real data --------------------------------------------- */
-ok('computeDrift: 32 models, 0 unwatched, 5 unpublished, 8 alerts in the post-review records', () => {
+ok('computeDrift: 32 models, 0 unwatched, 5 unpublished, 10 alerts in the post-review records', () => {
   // Watchtower 2.4 (2026-10-12): Wan 2.7 added through the artifact chain
   // (models 31 -> 32) and baselined by this pass's checker run; the three
   // remaining standing watches re-checked, none moved (verdicts in
-  // model-review-log.json pass 3). Watchtower 2.8's re-baseline feed
-  // (2026-10-13T05:06Z) reads changed=0, with_errors=0: the alerts are
-  // the 8 partial records carrying a failed source — the 7 standing
+  // model-review-log.json pass 3). Watchtower 2.9's re-baseline feed
+  // (2026-10-13T06:06Z) reads changed=0, with_errors=0: the alerts are
+  // the 10 partial records carrying a failed source — the 7 standing
   // records (Medium ×3, GlobeNewswire, Morningstar 403s; whatsnew.fyi
-  // 429; europesays dropped) plus PixVerse V6, whose docs source
-  // truncated (IncompleteRead) in both of 2.8's runs and answered only
-  // on re-probe, so the final feed carries it partial, labeled as
-  // observed. The sources that recovered in 2.7 (MarkTechPost ×3,
-  // x.ai, midjourney.com) held through both 2.8 runs and re-probes —
+  // 429; europesays dropped), PixVerse V6 (its docs source fetched
+  // clean at the baseline signature in 2.9's second run but truncated
+  // again in the final run, so no recovery is claimed — labeled as
+  // observed), and the two Veo records, each partial on one final-run
+  // weather failure (a mer.vin timeout, a dropped dev.to fetch) that
+  // recovered on immediate re-probe at baseline signatures. The
+  // sources that recovered in 2.7 (MarkTechPost ×3, x.ai,
+  // midjourney.com) held through all three 2.9 runs and re-probes —
   // MiniMax H3, Gemini Omni, and Midjourney stay non-partial
   // (Midjourney at watch on its unpublished rate; FLUX at watch on
   // its pricing diff). Pricing diff stays 7 rows.
@@ -154,11 +157,11 @@ ok('computeDrift: 32 models, 0 unwatched, 5 unpublished, 8 alerts in the post-re
   assert.strictEqual(d.summary.models_total, 32);
   assert.strictEqual(d.summary.unwatched, 0, JSON.stringify(d.summary));
   assert.strictEqual(d.summary.pricing_unpublished, 5, JSON.stringify(d.summary));
-  assert.strictEqual(d.summary.alert, 8, JSON.stringify(d.per_model.filter((r) => r.severity === 'alert')));
+  assert.strictEqual(d.summary.alert, 10, JSON.stringify(d.per_model.filter((r) => r.severity === 'alert')));
   assert.strictEqual(d.summary.price_changes_vs_baseline, 7);
   const alertIds = d.per_model.filter((r) => r.severity === 'alert').map((r) => r.model_id).sort();
   assert.deepStrictEqual(alertIds, ['grok-imagine-1-5', 'kling-4-0', 'luma-ray-3-2',
-    'pixverse-v6', 'seedance-3-0', 'vidu-q4-preview', 'vidu-s2', 'wan-3-0']);
+    'pixverse-v6', 'seedance-3-0', 'veo-3-1', 'veo-3-1-fast', 'vidu-q4-preview', 'vidu-s2', 'wan-3-0']);
 });
 
 ok('computeDrift: spot severities — PixVerse watched (price moved), Sora ok, Soul Cinema watch (own tier moved)', () => {
@@ -169,8 +172,10 @@ ok('computeDrift: spot severities — PixVerse watched (price moved), Sora ok, S
   // Through 2.7 its severity was watch only because its pricing record
   // is itself one of the 5 baseline diffs. In 2.8 its docs source
   // truncated (IncompleteRead) in both checker runs and answered only
-  // on re-probe, so the final feed carries it partial: check_status
-  // error, severity alert — labeled as observed, not claimed recovered.
+  // on re-probe; in 2.9 it fetched clean at the baseline signature in
+  // the second run but truncated again in the final run, so the feed
+  // still carries it partial: check_status error, severity alert —
+  // labeled as observed, not claimed recovered.
   assert.strictEqual(byId['pixverse-v6'].check_status, 'error');
   assert.strictEqual(byId['pixverse-v6'].severity, 'alert');
   // The two zero-source records of the Oct 11 feed are watched and clean.

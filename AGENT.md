@@ -34,9 +34,9 @@ Static files — **no auth, no keys, no rate limits**. Works on any static host.
 | `data/v1/teardowns.json` | 10 shot-by-shot teardowns; prompt reconstructions are analytical | 8 |
 | `data/v1/diagnoses.json` | 12 failure diagnoses: symptom → diagnosis, fixes, repair template | 12 |
 | `data/v1/model-checks.json` | Model-watch freshness feed: per-model last check, source diffs, headlines | 32 checked |
-| `data/v1/model-history.json` | Watchtower 2.0 event log: dated status/price/tier/release/verification/coverage events + the 2026-10-11 pricing baseline the drift engine diffs against | 81 events |
+| `data/v1/model-history.json` | Watchtower 2.0 event log: dated status/price/tier/release/verification/coverage events + the 2026-10-11 pricing baseline the drift engine diffs against | 86 events |
 | `data/v1/model-review-queue.json` | Pending model-watch review items (empty = nothing pending) | 3 pending |
-| `data/v1/model-review-log.json` | Watchtower review log: adjudication record for checker flags — every flag re-fetched and given a verdict with its basis before the queue clears (Watchtower 2.2–2.8) | 13 entries |
+| `data/v1/model-review-log.json` | Watchtower review log: adjudication record for checker flags — every flag re-fetched and given a verdict with its basis before the queue clears (Watchtower 2.2–2.9) | 15 entries |
 | `data/v1/model-updates.md` | Human-readable model changelog (Markdown, no schema) | — |
 
 Example requests (Node; swap `fs` for `fetch` in a browser):
@@ -179,7 +179,27 @@ every try), the sources that recovered in 2.7 (MarkTechPost ×3, x.ai,
 midjourney.com) held through both runs and on re-probe, and PixVerse
 V6's docs source truncated in both runs and answered only on re-probe,
 so the final feed carries 8 partial records (drift 8 alerts / 6 watch
-/ 18 ok). Latest history
+/ 18 ok). Watchtower 2.9 (the seventh review pass) re-checked the
+three watches again — none had moved (Kling 4.0's APIMart criteria
+page is signature-identical to the 2.4–2.8 baseline for a fifth
+pass; the FLUX docs pricing page held its baseline rendering for a
+third pass) — adjudicated two fresh flags raised by its own runs
+(Veo 3.1's pricing-roundup page, stable at its flagged signature
+with a Veo table matching the record; FLUX 3 Video's flag, a
+one-character delta in a third-party news story), and re-probed the
+8 partial records: the 7 standing ones are unchanged, the sources
+recovered in 2.7 held for a second pass, PixVerse V6's docs source
+fetched clean at its baseline signature in the second run but
+truncated again in the final run (no recovery claimed), and the
+final run's two Veo weather failures (a mer.vin timeout, a dev.to
+drop) recovered on re-probe at baseline signatures, so the final
+feed carries 10 partial records (drift 10 alerts / 6 watch / 16 ok).
+The same pass shipped the Model Showdown (`showdown.html`): any two
+of the 32 models spliced side by side — published rates, check
+health, drift state, baseline movement — rendered from the same
+four Watchtower artifacts, with edges stated only where two
+published values compare directly and unpublished rates shown as
+unpublished. Latest history
 event: `2026-10-12-kling-3-0-flag-reviewed` (verification). Drift
 severity: `ok`.
 Worked pricing result for Vidu Q4 Preview: history event

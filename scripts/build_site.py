@@ -77,6 +77,7 @@ NAV_INDEX = [
         ("quiz.html", "Quiz"),
         ("gallery.html", "Gallery"),
         ("model-watch.html", "Model watch"),
+        ("showdown.html", "Model showdown"),
     ]),
     ("For agents", [
         ("skills.html", "Skills"),
@@ -95,6 +96,7 @@ FOOTER_ITEMS = [
     ("gallery.html", "Gallery"),
     ("teardown.html", "Teardowns"),
     ("model-watch.html", "Model watch"),
+    ("showdown.html", "Showdown"),
     ("checks/", "Knowledge checks"),
     ("budget.html", "Budget"),
     ("optimizer.html", "Optimizer"),
@@ -2677,7 +2679,7 @@ COMPARE_TMPL = """<!DOCTYPE html>
       <p class="empty-state" id="cmp-error" hidden></p>
       <p class="calc-note" id="cmp-note">Pick at least two models to compare.</p>
       <div id="cmp-results" aria-live="polite"></div>
-      <p style="margin-top:var(--space-6);"><a class="btn btn-ghost" href="quiz.html">&larr; Take the model-picker quiz</a> <a class="btn btn-ghost" href="model-watch.html">Model watch</a></p>
+      <p style="margin-top:var(--space-6);"><a class="btn btn-ghost" href="quiz.html">&larr; Take the model-picker quiz</a> <a class="btn btn-ghost" href="model-watch.html">Model watch</a> <a class="btn btn-ghost" href="showdown.html">Model showdown</a></p>
     </section>
   </main>
   <footer class="site-footer">
@@ -2695,6 +2697,109 @@ COMPARE_TMPL = """<!DOCTYPE html>
   </div>
   <script src="assets/js/palette.js"></script>
   <script src="assets/js/compare.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
+</body>
+</html>
+"""
+
+SHOWDOWN_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Model showdown — AI Film Master Guide</title>
+  <meta name="description" content="Two AI film models on the cutting table: published rates, source-check health, drift-board state, and pricing movement against the 2026-10-11 baseline — every figure from the Watchtower record, nothing scored or estimated.">
+  {css}
+  <style>
+    .sd-reels {{ display: grid; grid-template-columns: 1fr auto 1fr; gap: var(--space-4); align-items: stretch; margin-bottom: var(--space-5); }}
+    .sd-reel {{ position: relative; border: 1px solid var(--line); border-radius: 12px; padding: calc(var(--space-5) + 12px) var(--space-5) var(--space-5); overflow: hidden; }}
+    .sd-reel::before {{ content: ""; position: absolute; inset: 0 0 auto 0; height: 14px; background-image: radial-gradient(circle, var(--line) 2.2px, transparent 2.6px); background-size: 18px 14px; background-position: center; }}
+    .sd-reel h3 {{ margin: var(--space-2) 0 var(--space-1); font-size: 1.6rem; }}
+    .sd-splice {{ align-self: center; border: 1px solid var(--gold); border-radius: 999px; padding: .35em .9em; color: var(--gold); font-weight: 800; letter-spacing: .12em; }}
+    .sd-table {{ border-top: 2px solid var(--gold); }}
+    .sd-row {{ display: grid; grid-template-columns: 1fr 9.5rem 1fr; border-bottom: 1px solid var(--line); }}
+    .sd-cell {{ padding: var(--space-4); }}
+    .sd-cell p {{ margin: 0 0 var(--space-2); }}
+    .sd-cell p:last-child {{ margin-bottom: 0; }}
+    .sd-cell-a {{ border-right: 1px dashed var(--line); }}
+    .sd-cell-b {{ border-left: 1px dashed var(--line); }}
+    .sd-lab {{ display: flex; align-items: center; justify-content: center; text-align: center; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); padding: var(--space-4) var(--space-2); }}
+    .sd-edge {{ display: inline-block; background: var(--gold); color: #111; border-radius: 999px; font-size: .72rem; font-weight: 700; padding: .1em .6em; margin-left: .4em; white-space: nowrap; }}
+    .sd-tiers, .sd-alerts {{ margin: 0; padding-left: 1.1em; }}
+    .sd-tiers li, .sd-alerts li {{ margin-bottom: var(--space-1); }}
+    .sd-unpub {{ font-weight: 700; }}
+    .sd-conf {{ color: var(--muted); font-size: .85em; }}
+    .sd-verdict {{ border-left: 3px solid var(--gold); padding-left: var(--space-4); font-size: 1.05rem; margin-bottom: var(--space-6); }}
+    .sd-feed {{ color: var(--muted); }}
+    @media (max-width: 720px) {{
+      .sd-row {{ grid-template-columns: 1fr 1fr; }}
+      .sd-lab {{ grid-column: 1 / -1; order: -1; justify-content: flex-start; padding-bottom: 0; }}
+      .sd-reels {{ grid-template-columns: 1fr; }}
+      .sd-splice {{ justify-self: center; }}
+    }}
+  </style>
+</head>
+<body>
+  <div class="edge-right" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        {sitenav}
+      </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">&#8984;K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    {hero}
+    <section class="container" aria-labelledby="sd-h">
+      <h2 id="sd-h">Lace up two reels</h2>
+      <p class="sd-feed">{sd_feed}</p>
+      <div class="card" style="margin-bottom:var(--space-6);">
+        <div class="calc-grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
+          <div class="field">
+            <label for="sd-a">Reel A</label>
+            <select class="input" id="sd-a">{sd_options_a}</select>
+          </div>
+          <div class="field">
+            <label for="sd-b">Reel B</label>
+            <select class="input" id="sd-b">{sd_options_b}</select>
+          </div>
+          <div class="field">
+            <label aria-hidden="true">&nbsp;</label>
+            <button type="button" class="btn btn-ghost" id="sd-swap">Swap reels</button>
+          </div>
+        </div>
+      </div>
+      <p class="sd-verdict" id="sd-verdict" aria-live="polite">{sd_verdict}</p>
+      <div id="sd-stage">{sd_stage}</div>
+      <p style="margin-top:var(--space-6);"><a class="btn btn-ghost" href="model-watch.html">Model watch</a> <a class="btn btn-ghost" href="compare.html">Compare 2–3 models</a> <a class="btn btn-ghost" href="quiz.html">Take the model-picker quiz</a></p>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+    </div>
+  </footer>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search" hidden>
+    <div class="palette-box">
+      <input type="search" id="palette-input" placeholder="Search the guide…" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script type="application/json" id="sd-data">{sd_data}</script>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/showdown.js"></script>
   <script src="assets/js/docs.js"></script>
   <script src="assets/js/identity.js"></script>
 </body>
@@ -4063,6 +4168,364 @@ MODELS_INDEX_TMPL = """<!DOCTYPE html>
 """
 
 
+def build_showdown(css_links):
+    """Model showdown page — two models on the cutting table.
+
+    Generated from the same four Watchtower artifacts as the model-watch
+    page (models.json + pricing.json + model-checks.json +
+    model-history.json). Every model's showdown record is embedded as a
+    JSON island; assets/js/showdown.js renders any pairing from it, and
+    the default pairing is pre-rendered here under the same rules, so the
+    page reads identically with or without JavaScript. An "edge" is a
+    direct comparison of two published values — nothing is scored,
+    estimated, or invented, and an unpublished rate stays unpublished.
+    """
+    import datetime as _dt
+
+    doc = json.loads((ROOT / "data" / "v1" / "models.json").read_text())
+    models = doc["models"]
+    checks = json.loads((ROOT / "data" / "v1" / "model-checks.json").read_text())
+    pricing = json.loads((ROOT / "data" / "v1" / "pricing.json").read_text())
+    history = json.loads((ROOT / "data" / "v1" / "model-history.json").read_text())
+
+    checks_by_name = {r["model"]: r for r in checks.get("models", [])}
+    pricing_by_name = {e["model"]: e for e in pricing.get("entries", [])}
+    ref_day = _dt.date.fromisoformat(str(history.get("generated_at", "2026-10-12"))[:10])
+    baseline_day = str(history["pricing_baseline"]["at"])[:10]
+
+    def money(v):
+        if v is None:
+            return "—"
+        return "$" + (f"{v:.4f}".rstrip("0").rstrip(".") if v < 0.1 and v != 0 else f"{v:.2f}")
+
+    def money_range(lo, hi):
+        if lo is None:
+            return "—"
+        return money(lo) if lo == hi else f"{money(lo)}–{money(hi)}"
+
+    def fmt_day(iso):
+        d = _dt.date.fromisoformat(str(iso)[:10])
+        return d.strftime("%b ") + str(d.day) + d.strftime(", %Y")
+
+    def diff_pricing(baseline_entries, current_entries):
+        base = {e["model_id"]: e for e in baseline_entries}
+        cur = {e["model_id"]: e for e in current_entries}
+        out = []
+        for mid, c in cur.items():
+            b = base.get(mid)
+            if b is None:
+                lows = [t["usd_low"] for t in c.get("tiers", [])]
+                highs = [t["usd_high"] for t in c.get("tiers", [])]
+                out.append({"model_id": mid, "model": c["model"], "tier": None,
+                            "kind": "model-added", "before_low": None, "before_high": None,
+                            "after_low": min(lows) if lows else None,
+                            "after_high": max(highs) if highs else None, "pct": None})
+                continue
+            bt = {(t["tier"], t["unit"]): t for t in b.get("tiers", [])}
+            ct = {(t["tier"], t["unit"]): t for t in c.get("tiers", [])}
+            for k, t in ct.items():
+                o = bt.get(k)
+                if o is None:
+                    out.append({"model_id": mid, "model": c["model"], "tier": t["tier"],
+                                "kind": "tier-added", "before_low": None, "before_high": None,
+                                "after_low": t["usd_low"], "after_high": t["usd_high"], "pct": None})
+                elif o["usd_low"] != t["usd_low"] or o["usd_high"] != t["usd_high"]:
+                    bmid = (o["usd_low"] + o["usd_high"]) / 2
+                    cmid = (t["usd_low"] + t["usd_high"]) / 2
+                    out.append({"model_id": mid, "model": c["model"], "tier": t["tier"],
+                                "kind": "price-up" if cmid > bmid else "price-down",
+                                "before_low": o["usd_low"], "before_high": o["usd_high"],
+                                "after_low": t["usd_low"], "after_high": t["usd_high"],
+                                "pct": round((cmid - bmid) / bmid * 100, 2) if bmid > 0 else None})
+            for k, t in bt.items():
+                if k not in ct:
+                    out.append({"model_id": mid, "model": c["model"], "tier": t["tier"],
+                                "kind": "tier-removed", "before_low": t["usd_low"],
+                                "before_high": t["usd_high"], "after_low": None,
+                                "after_high": None, "pct": None})
+        for mid, b in base.items():
+            if mid not in cur:
+                out.append({"model_id": mid, "model": b["model"], "tier": None,
+                            "kind": "model-removed", "before_low": None, "before_high": None,
+                            "after_low": None, "after_high": None, "pct": None})
+        out.sort(key=lambda c: (c["model_id"], c["tier"] or ""))
+        return out
+
+    price_changes = diff_pricing(history["pricing_baseline"]["entries"], pricing.get("entries", []))
+    moved_ids = {c["model_id"] for c in price_changes}
+    moves_by_id = {}
+    for c in price_changes:
+        was = "not in the table" if c["kind"] in ("tier-added", "model-added") else money_range(c["before_low"], c["before_high"])
+        now = "removed" if c["kind"] in ("tier-removed", "model-removed") else money_range(c["after_low"], c["after_high"])
+        if c["kind"] == "model-added":
+            what = "Model added to the pricing table"
+        elif c["kind"] == "model-removed":
+            what = "Model removed from the pricing table"
+        elif c["kind"] == "tier-added":
+            what = f"Tier added: {c['tier']}"
+        elif c["kind"] == "tier-removed":
+            what = f"Tier removed: {c['tier']}"
+        else:
+            what = c["tier"] + (f" {'+' if (c['pct'] or 0) > 0 else ''}{c['pct']}%" if c["pct"] is not None else "")
+        moves_by_id.setdefault(c["model_id"], []).append({"what": what, "was": was, "now": now})
+
+    latest_event = {}
+    for e in history.get("events", []):
+        if not e.get("model_id"):
+            continue
+        prev = latest_event.get(e["model_id"])
+        if prev is None or e["date"] > prev["date"]:
+            latest_event[e["model_id"]] = e
+
+    def check_status(rec):
+        if rec is None:
+            return "unwatched"
+        if rec.get("changed"):
+            return "changed"
+        srcs = rec.get("source_results") or []
+        if not srcs:
+            return "unwatched"
+        if rec.get("source_status") == "error" or any(not s.get("ok") for s in srcs):
+            return "error"
+        return "stable"
+
+    status_label = {"active": "Active", "reported": "Reported — unconfirmed",
+                    "announced": "Announced — not GA", "discontinued": "Discontinued"}
+
+    records = []
+    for m in models:
+        entry = pricing_by_name.get(m["model"])
+        mid = entry["model_id"] if entry else re.sub(r"[^a-z0-9]+", "-", m["model"].lower()).strip("-")
+        rec = checks_by_name.get(m["model"])
+        cs = check_status(rec)
+        pstat = entry["pricing_status"] if entry else "missing"
+        try:
+            stale = (ref_day - _dt.date.fromisoformat(str(m.get("last_verified"))[:10])).days
+        except Exception:
+            stale = None
+        alerts = []
+        if cs == "changed":
+            alerts.append("Source check flagged a change — queued for review. This record still shows the last verified data.")
+        elif cs == "error":
+            alerts.append("The last automated source check failed — this record shows the last verified data.")
+        elif cs == "unwatched":
+            alerts.append("No automated source watch yet — verified by hand on the wave cadence.")
+        if pstat == "unpublished" and m.get("status") != "discontinued":
+            alerts.append("No published USD rate — verify live before budgeting.")
+        if pstat == "missing":
+            alerts.append("No pricing record — verify live before budgeting.")
+        if stale is not None and stale > 14:
+            alerts.append(f"Record last verified {stale} days ago — re-check before a paid shoot.")
+        if mid in moved_ids:
+            alerts.append(f"Pricing table moved against the {baseline_day} baseline — see the pricing changes.")
+        severity = "alert" if cs in ("changed", "error") else ("watch" if alerts else "ok")
+        srcs = (rec.get("source_results") or []) if rec else []
+        ev = latest_event.get(mid)
+        records.append({
+            "id": mid, "name": m["model"], "platform": m.get("platform", ""),
+            "type": m.get("type", ""), "status": m.get("status", "active"),
+            "status_label": status_label.get(m.get("status", "active"), m.get("status", "active")),
+            "last_verified": m.get("last_verified"), "best_use": m.get("best_use"),
+            "strength": m.get("strength"), "weakness": m.get("weakness"),
+            "cost_line": m.get("est_cost_credits"), "pricing_status": pstat,
+            "tiers": [{"tier": t["tier"], "unit": t["unit"], "low": t["usd_low"],
+                       "high": t["usd_high"], "confidence": t.get("confidence", "")}
+                      for t in (entry.get("tiers", []) if entry else [])],
+            "check_status": cs,
+            "sources_ok": sum(1 for s in srcs if s.get("ok")), "sources_total": len(srcs),
+            "last_checked": (str(rec["last_checked"])[:10] if rec and rec.get("last_checked") else None),
+            "severity": severity, "alerts": alerts,
+            "price_moves": moves_by_id.get(mid, []),
+            "latest_event": ({"date": ev["date"], "kind": ev["kind"], "summary": ev["summary"]} if ev else None),
+            "deep_dive": f"models/{model_slug(m['model'])}.html",
+        })
+    by_id = {r["id"]: r for r in records}
+
+    def cheapest_by_unit(r):
+        out = {}
+        for t in r["tiers"]:
+            mid_v = (t["low"] + t["high"]) / 2
+            if t["unit"] not in out or mid_v < out[t["unit"]]:
+                out[t["unit"]] = mid_v
+        return out
+
+    def compute_edges(a, b):
+        e = {"rate": {}, "sources": None, "fresh": None, "drift": None}
+        ca, cb = cheapest_by_unit(a), cheapest_by_unit(b)
+        for u, v in ca.items():
+            if u in cb and cb[u] != v:
+                e["rate"][u] = "a" if v < cb[u] else "b"
+        if a["sources_total"] and b["sources_total"]:
+            fa = a["sources_ok"] / a["sources_total"]
+            fb = b["sources_ok"] / b["sources_total"]
+            if fa != fb:
+                e["sources"] = "a" if fa > fb else "b"
+        if a["last_verified"] and b["last_verified"] and a["last_verified"] != b["last_verified"]:
+            e["fresh"] = "a" if a["last_verified"] > b["last_verified"] else "b"
+        if len(a["alerts"]) != len(b["alerts"]):
+            e["drift"] = "a" if len(a["alerts"]) < len(b["alerts"]) else "b"
+        return e
+
+    def chip(text):
+        return f' <span class="sd-edge">{html.escape(text)}</span>'
+
+    def rate_cell(m, side, edges):
+        if m["pricing_status"] == "unpublished":
+            return ('<p class="sd-unpub">Unpublished — no USD rate on record.</p>'
+                    "<p>The guide does not estimate one. Verify live before budgeting.</p>")
+        if m["pricing_status"] == "missing" or not m["tiers"]:
+            return ('<p class="sd-unpub">No pricing record.</p>'
+                    "<p>Verify live before budgeting.</p>")
+        cheapest = cheapest_by_unit(m)
+        items = []
+        for t in m["tiers"]:
+            c = (chip(f"lowest {t['unit']} rate")
+                 if edges["rate"].get(t["unit"]) == side
+                 and (t["low"] + t["high"]) / 2 == cheapest[t["unit"]] else "")
+            items.append(f"<li><strong>{html.escape(t['tier'])}</strong> — "
+                         f"{html.escape(money_range(t['low'], t['high']))} / {html.escape(t['unit'])} "
+                         f'<span class="sd-conf">({html.escape(t["confidence"])})</span>{c}</li>')
+        out = '<ul class="sd-tiers">' + "".join(items) + "</ul>"
+        if m["cost_line"]:
+            out += f"<p>On the record: {html.escape(m['cost_line'])}</p>"
+        return out
+
+    def check_cell(m, side, edges):
+        word = {"stable": "Stable — every watched source answered",
+                "changed": "Changed — a watched source moved; queued for review",
+                "error": "Check failed — a watched source did not answer",
+                "unwatched": "No automated source watch"}[m["check_status"]]
+        s = f"<p><strong>{html.escape(word)}.</strong></p>"
+        if m["sources_total"]:
+            c = chip("more sources answering") if edges["sources"] == side else ""
+            s += f"<p>Sources answering: {m['sources_ok']} of {m['sources_total']}{c}</p>"
+        if m["last_checked"]:
+            s += f"<p>Last checked {html.escape(fmt_day(m['last_checked']))}.</p>"
+        return s
+
+    def drift_cell(m, side, edges):
+        word = {"alert": "Review", "watch": "Watch", "ok": "Clear"}[m["severity"]]
+        c = chip("cleaner drift board") if edges["drift"] == side else ""
+        s = f'<p><span class="wt-sev wt-sev-{m["severity"]}">{word}</span>{c}</p>'
+        if m["alerts"]:
+            s += '<ul class="sd-alerts">' + "".join(f"<li>{html.escape(t)}</li>" for t in m["alerts"]) + "</ul>"
+        else:
+            s += "<p>No open alerts on the drift board.</p>"
+        return s
+
+    def moves_cell(m):
+        if not m["price_moves"]:
+            return f"<p>No movement against the {html.escape(fmt_day(baseline_day))} pricing baseline.</p>"
+        return ('<ul class="sd-alerts">' + "".join(
+            f"<li>{html.escape(mv['what'])} — was {html.escape(mv['was'])}, now {html.escape(mv['now'])}.</li>"
+            for mv in m["price_moves"]) + "</ul>")
+
+    def event_cell(m):
+        ev = m["latest_event"]
+        if not ev:
+            return "<p>No events in the Watchtower log yet.</p>"
+        return (f"<p><strong>{html.escape(ev['kind'])}</strong> · {html.escape(fmt_day(ev['date']))}</p>"
+                f"<p>{html.escape(ev['summary'])}</p>")
+
+    def reel_head(m):
+        return ('<div class="sd-reel-head">'
+                f'<span class="mw-badge mw-badge-{html.escape(m["status"])}">{html.escape(m["status_label"])}</span>'
+                f"<h3>{html.escape(m['name'])}</h3>"
+                f'<p class="mw-platform">{html.escape(m["platform"])} · {html.escape(m["type"])}</p>'
+                f'<p class="sd-reel-links"><a href="{html.escape(m["deep_dive"])}">Deep dive</a> · '
+                '<a href="model-watch.html">Model watch</a></p></div>')
+
+    def row(label, a_html, b_html):
+        return (f'<div class="sd-row"><div class="sd-cell sd-cell-a">{a_html}</div>'
+                f'<div class="sd-lab">{html.escape(label)}</div>'
+                f'<div class="sd-cell sd-cell-b">{b_html}</div></div>')
+
+    def verdict(a, b, edges):
+        lines = []
+        for u, side in edges["rate"].items():
+            w, l = (a, b) if side == "a" else (b, a)
+            lines.append(f"<strong>{html.escape(w['name'])}</strong> carries the lower entry "
+                         f"per-{html.escape(u)} rate of the two; <strong>{html.escape(l['name'])}</strong> "
+                         "starts higher on that unit.")
+        if a["pricing_status"] == "unpublished" and b["pricing_status"] != "unpublished":
+            lines.append(f"<strong>{html.escape(a['name'])}</strong> has no published USD rate — its cost "
+                         "cannot be compared from the record, and the guide does not guess one.")
+        if b["pricing_status"] == "unpublished" and a["pricing_status"] != "unpublished":
+            lines.append(f"<strong>{html.escape(b['name'])}</strong> has no published USD rate — its cost "
+                         "cannot be compared from the record, and the guide does not guess one.")
+        if edges["sources"]:
+            sw = a if edges["sources"] == "a" else b
+            lines.append(f"<strong>{html.escape(sw['name'])}</strong> has more of its watched sources "
+                         f"answering ({sw['sources_ok']} of {sw['sources_total']}).")
+        if edges["drift"]:
+            dw = a if edges["drift"] == "a" else b
+            lines.append(f"<strong>{html.escape(dw['name'])}</strong> sits cleaner on the drift board — "
+                         "fewer open alerts.")
+        if not lines:
+            lines.append("On the published record these two are level — no rate, source, or freshness "
+                         "edge separates them. The difference is in the rows.")
+        return " ".join(lines)
+
+    def stage_html(a, b):
+        edges = compute_edges(a, b)
+        out = ('<div class="sd-reels"><div class="sd-reel">' + reel_head(a) + "</div>"
+               '<div class="sd-splice" aria-hidden="true">VS</div>'
+               '<div class="sd-reel">' + reel_head(b) + "</div></div>")
+        out += '<div class="sd-table">'
+        out += row("Status", f"<p><strong>{html.escape(a['status_label'])}</strong></p>",
+                   f"<p><strong>{html.escape(b['status_label'])}</strong></p>")
+        out += row("The rate", rate_cell(a, "a", edges), rate_cell(b, "b", edges))
+        out += row("Best use", f"<p>{html.escape(a['best_use'] or '—')}</p>",
+                   f"<p>{html.escape(b['best_use'] or '—')}</p>")
+        out += row("Strength", f"<p>{html.escape(a['strength'] or '—')}</p>",
+                   f"<p>{html.escape(b['strength'] or '—')}</p>")
+        out += row("Weakness", f"<p>{html.escape(a['weakness'] or '—')}</p>",
+                   f"<p>{html.escape(b['weakness'] or '—')}</p>")
+        out += row("Source check", check_cell(a, "a", edges), check_cell(b, "b", edges))
+        out += row("Drift board", drift_cell(a, "a", edges), drift_cell(b, "b", edges))
+        out += row("Vs the baseline", moves_cell(a), moves_cell(b))
+        out += row("Record verified",
+                   f"<p>{html.escape(fmt_day(a['last_verified'])) if a['last_verified'] else '—'}"
+                   f"{chip('verified more recently') if edges['fresh'] == 'a' else ''}</p>",
+                   f"<p>{html.escape(fmt_day(b['last_verified'])) if b['last_verified'] else '—'}"
+                   f"{chip('verified more recently') if edges['fresh'] == 'b' else ''}</p>")
+        out += row("Latest event", event_cell(a), event_cell(b))
+        out += "</div>"
+        return out, edges
+
+    a0 = by_id.get("veo-3-1") or records[0]
+    b0 = by_id.get("kling-3-0") or records[1]
+    stage, edges0 = stage_html(a0, b0)
+
+    def options(sel):
+        return "".join(f'<option value="{html.escape(r["id"])}"'
+                       f'{" selected" if r["id"] == sel else ""}>{html.escape(r["name"])}</option>'
+                       for r in records)
+
+    ck_when = str(checks.get("checked_at", "")).replace("T", " ").replace("+00:00", " UTC")
+    ck_sum = checks.get("summary", {})
+    feed_line = (f"Built from the published check feed of {ck_when or 'unknown time'} — "
+                 f"{ck_sum.get('models_total', len(models))} models, {ck_sum.get('changed', 0)} changed, "
+                 f"{ck_sum.get('with_errors', 0)} check errors. Every figure below is the record, "
+                 "not a rating: rates are the published ones, and a model with no published rate says so.")
+    island = {"feed": {"checked_at": checks.get("checked_at"), "baseline_day": baseline_day},
+              "models": records}
+    (SITE / "showdown.html").write_text(SHOWDOWN_TMPL.format(
+        css=css_links, sitenav=nav_html("", "showdown.html"), footer=footer_html(""),
+        hero=hero_cutroom(
+            kicker="""The cutting table""",
+            h1="""Model <span class="accent">showdown.</span>""",
+            lede="""Two reels on the table, spliced side by side. Published rates, source-check health, drift-board state, and pricing movement against the October 11 baseline — every figure from the Watchtower record. No scores, no estimates: where a rate is unpublished, the table says so.""",
+            deck_title="""SHOWDOWN — REEL_A / REEL_B""",
+            clips={"v2": ['The rate'], "v1": ['Reel A', 'Reel B'], "a1": ['The verdict']},
+            h1_id="sd-title",
+            extra=""" """),
+        sd_feed=html.escape(feed_line), sd_options_a=options(a0["id"]),
+        sd_options_b=options(b0["id"]), sd_verdict=verdict(a0, b0, edges0),
+        sd_stage=stage, sd_data=json.dumps(island, ensure_ascii=False)))
+    return [("showdown.html", "Model showdown")]
+
+
 def model_slug(name):
     s = re.sub(r"[^a-z0-9]+", "-", str(name).lower()).strip("-")
     return s or "model"
@@ -4823,6 +5286,9 @@ def main():
     # Model freshness page (generated from data/v1/models.json)
     build_model_watch(css_links)
 
+    # Model showdown page (two models on the cutting table, Watchtower data)
+    build_showdown(css_links)
+
     # Knowledge checks (generated from scripts/checks.json)
     wave7_checks = build_checks(css_links)
 
@@ -4899,6 +5365,9 @@ def main():
         {"url": "model-watch.html", "title": "Model watch", "section": "Tools",
          "headings": ["Since your last visit", "Drift board", "Pricing changes", "The log"],
          "text": "The Watchtower 2.0: every model in the guide with live status, drift alerts, pricing changes diffed against the 2026-10-11 baseline, and what changed since your last visit: Sora discontinued, Kling 4.0 announced, the Vidu Q4 rate-card correction, PixVerse V6 added. Generated from models.json, model-checks.json, pricing.json, and model-history.json."},
+        {"url": "showdown.html", "title": "Model showdown", "section": "Tools",
+         "headings": ["Lace up two reels", "The rate", "Drift board", "Vs the baseline"],
+         "text": "The model showdown: any two of the guide's 32 watched models spliced side by side on the cutting table — published rates tier by tier, source-check health, drift-board severity and alerts, pricing movement against the 2026-10-11 baseline, and the latest Watchtower event for each. Edges are direct comparisons of published values only; a model with no published USD rate is shown as unpublished, never estimated. Generated from models.json, pricing.json, model-checks.json, and model-history.json."},
         {"url": "linter.html", "title": "Prompt linter", "section": "Tools",
          "headings": ["Your prompt", "Analysis", "The ten layers"],
          "text": "Prompt linter: paste any prompt and get a structural analysis against the ten-layer prompt anatomy — layers present/missing, vague words flagged, concrete fix per gap, one-click handoff to the workshop. Heuristic: checks structure, not taste."},

@@ -337,6 +337,59 @@ addendum).
   checker runs were single and verified under the process rule; no
   flags were raised this pass.
 
+## 2026-10-12 — Watchtower 2.9: the seventh review pass
+
+Verdicts are in `data/v1/model-review-log.json` (review pass 8 +
+addendum). This pass also shipped the Model Showdown page
+(`showdown.html`): any two of the 32 watched models spliced side by
+side on the cutting table — published rates, source-check health,
+drift-board state, and pricing movement against the October 11
+baseline, all rendered from the same Watchtower record as this page.
+
+- **Seedance 3.0 — still unconfirmed.** The coverage page this watch
+  reads returned a signature identical to the 2.6/2.7/2.8 baseline in
+  probes and in all three runs and still lists Seedance 3.0 among
+  models announced by no vendor as of October 1, with no
+  announcement, no API, and no date. The watch stays open.
+- **Kling 4.0 — still announced.** APIMart's page is signature-
+  identical to the 2.4–2.8 baseline for a fifth pass and still lists
+  the API as coming soon with pricing not announced. No GA model ID,
+  no pricing published by Kuaishou. The watch stays open.
+- **Soul Cinema — in-app credit cost still unpublished.** Higgsfield's
+  pricing page returned the same 428-char app shell at the settled
+  signature, and its API post's rate table still lists only the
+  $0.0032/image API starting rate (2.3). The narrowed watch stays open.
+- **FLUX 3 Video — the docs page held for a third pass.** Every fetch
+  returned the 9,875-char rendering at the 2.6 baseline signature,
+  table matching the record, still signature-live; the 19,564-char
+  variant was not seen. bfl.ai/pricing served its 22,122-char full
+  rendering this pass — signature-excluded since 2.7, still fetched
+  and recorded every run. A fresh flag on eWeek's launch story (a
+  one-character delta in a third-party article that publishes no
+  rate) was adjudicated and dismissed. No rate changed.
+- **Veo 3.1 — one flag, dismissed with proof.** The first run flagged
+  a third-party pricing roundup; re-fetched twice, the page is
+  signature-stable at the flagged signature and its Veo table
+  ($0.40/s standard, $0.60 4K; $0.15/$0.35 fast; $0.05/$0.08 lite)
+  matches the record exactly — the 2.5 pattern. No record change.
+- **Failed sources — the standing cohort unchanged, the recovered
+  cohort held a second pass, and the final run had weather.** Medium
+  (×3), GlobeNewswire, and Morningstar still 403; whatsnew.fyi still
+  429s; europesays.com dropped every try. MarkTechPost (×3), x.ai,
+  and midjourney.com answered in all three runs and on every probe,
+  so they stay recovered, labeled exactly as observed. LTX-2.5's
+  GitHub spec source dropped once in the first run and answered on
+  re-probe at its baseline signature. PixVerse V6's docs source
+  fetched clean at its baseline signature in the second run but
+  truncated again in the final run, so it stays a partial record —
+  no recovery claimed. The final run also dropped one source each
+  for the two Veo records (a mer.vin timeout, a dev.to drop); both
+  answered twice on re-probe at their baseline signatures, and the
+  partial stamps stay on the feed until the next run, honestly
+  labeled. Final feed: changed=0, with_errors=0 — drift reads 10
+  alerts, 6 watch, 16 ok. All three checker runs were single and
+  verified under the process rule.
+
 ## 2026-10-11 — Wave 30: Late-Q4 field sweep
 
 29 → **30 models** (one added); no status changes. The headline item is a
