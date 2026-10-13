@@ -68,6 +68,7 @@ NAV_INDEX = [
         ("linter.html", "Linter"),
         ("greenlight.html", "Green light"),
         ("recipes.html", "Recipes"),
+        ("forge.html", "Episode forge"),
     ]),
     ("Study", [
         ("manifesto.html", "Manifesto"),
@@ -97,6 +98,7 @@ FOOTER_ITEMS = [
     ("teardown.html", "Teardowns"),
     ("model-watch.html", "Model watch"),
     ("showdown.html", "Showdown"),
+    ("forge.html", "Episode forge"),
     ("checks/", "Knowledge checks"),
     ("budget.html", "Budget"),
     ("optimizer.html", "Optimizer"),
@@ -2806,6 +2808,290 @@ SHOWDOWN_TMPL = """<!DOCTYPE html>
 </html>
 """
 
+
+FORGE_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Episode forge — AI Film Master Guide</title>
+  <meta name="description" content="Forge one mini-drama episode: an 8-beat, 3-act arc from the guide's craft chapters, every beat matched to a real template from the guide's own 47-template library, with teardown field lessons and a clean exportable plan. Where the library has no template for a beat, the Forge says so.">
+  {css}
+  <style>
+    .fg-summary {{ font-size: 1.05rem; border-left: 3px solid var(--gold); padding-left: var(--space-4); margin-bottom: var(--space-6); }}
+    .fg-act {{ margin: var(--space-6) 0 var(--space-3); letter-spacing: .1em; text-transform: uppercase; font-size: .85rem; color: var(--gold); }}
+    .fg-beat {{ border: 1px solid var(--line); border-radius: 12px; padding: var(--space-4) var(--space-5); margin-bottom: var(--space-4); }}
+    .fg-beat-head {{ display: flex; align-items: baseline; gap: var(--space-3); flex-wrap: wrap; }}
+    .fg-beat-head h4 {{ margin: 0; font-size: 1.25rem; }}
+    .fg-num {{ display: inline-block; min-width: 1.7em; text-align: center; background: var(--gold); color: #111; border-radius: 999px; font-weight: 800; padding: .1em .3em; }}
+    .fg-tag {{ margin-left: auto; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }}
+    .fg-tag-none {{ color: #e88; }}
+    .fg-craft {{ color: var(--muted); }}
+    .fg-prompt {{ white-space: pre-wrap; word-break: break-word; background: color-mix(in srgb, var(--gold) 6%, transparent); border: 1px solid var(--line); border-radius: 8px; padding: var(--space-3); font-size: .92rem; }}
+    .fg-anatomy, .fg-models, .fg-lesson {{ color: var(--muted); }}
+    .fg-lesson strong {{ color: var(--text); }}
+  </style>
+</head>
+<body>
+  <div class="edge-right" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        {sitenav}
+      </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">&#8984;K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    {hero}
+    <section class="container" aria-labelledby="fg-h">
+      <h2 id="fg-h">Set the episode</h2>
+      <p>One episode, one emotion, eight beats. The Forge lays the arc the craft chapters teach, then walks the guide's own template library beat by beat and attaches the template that fits — scored on the template's own facets (shot type, camera movement, mood) and its stated use. A beat the library does not cover is named, not papered over.</p>
+      <div class="card" style="margin-bottom:var(--space-6);">
+        <div class="calc-grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
+          <div class="field">
+            <label for="fg-title">Series title</label>
+            <input class="input" type="text" id="fg-title" placeholder="e.g. Night Taxi">
+          </div>
+          <div class="field">
+            <label for="fg-episode">Episode</label>
+            <input class="input" type="number" id="fg-episode" min="1" value="1">
+          </div>
+          <div class="field">
+            <label for="fg-format">Format</label>
+            <select class="input" id="fg-format">{fg_format_options}</select>
+          </div>
+          <div class="field">
+            <label for="fg-emotion">One emotion</label>
+            <select class="input" id="fg-emotion">{fg_emotion_options}</select>
+          </div>
+          <div class="field" style="grid-column:1/-1;">
+            <label for="fg-premise">Premise — one line, one stake</label>
+            <input class="input" type="text" id="fg-premise" placeholder="e.g. A toddler rides a night taxi alone to find her father">
+          </div>
+          <div class="field">
+            <label aria-hidden="true">&nbsp;</label>
+            <button type="button" class="btn" id="fg-forge">Forge the episode</button>
+          </div>
+        </div>
+      </div>
+      <p class="fg-summary" id="fg-summary" aria-live="polite">{fg_summary}</p>
+      <div id="fg-stage">{fg_stage}</div>
+      <div class="card" style="margin-top:var(--space-6);">
+        <h3>Take the plan</h3>
+        <p>The plan exports as clean markdown: every beat, its craft note, the real template and prompt, the shortlisted models, and the field lesson where a teardown is linked. Gates G2 and G4 ride along — an episode is not forged until it can pass them.</p>
+        <p><button type="button" class="btn" id="fg-copy">Copy plan</button> <button type="button" class="btn btn-ghost" id="fg-download">Download plan (.md)</button></p>
+        <p class="calc-note" id="fg-msg" hidden></p>
+        <p><a class="btn btn-ghost" href="episode-planner.html">Episode planner — lock the series bible</a> <a class="btn btn-ghost" href="prompts.html">Prompt library</a> <a class="btn btn-ghost" href="teardown.html">Teardowns</a></p>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+    </div>
+  </footer>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search" hidden>
+    <div class="palette-box">
+      <input type="search" id="palette-input" placeholder="Search the guide…" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script type="application/json" id="fg-data">{fg_data}</script>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/forge.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
+</body>
+</html>
+"""
+
+
+# The Forge arc — kept byte-identical in spirit with assets/js/forge.js
+# (ARC there is the runtime copy; forge.test.js pins its behaviour, and the
+# pre-rendered default plan below is screenshot-checked against it).
+FORGE_ARC = [
+    dict(id="hook", act="Act 1 — Cold open", name="The hook",
+         craft="Hook line in the first 3 seconds; caption and opening shot say the same thing (genre anatomy, Episodic Short-Form).",
+         shotTypes=["establishing", "wide"], movements=["dolly-out-pull-back", "crane-up-crane-down"],
+         moods=["expansive", "majestic", "tense"], useKeys=["opening", "hook"]),
+    dict(id="stake", act="Act 1 — Cold open", name="The stake",
+         craft="One want, visible on screen: the protagonist wants something concrete (Story Structure — the short-film engine).",
+         shotTypes=["two-shot", "medium"], movements=["static-locked-off"],
+         moods=["conversational", "intimate", "grounded"], useKeys=["conversation", "dialogue"]),
+    dict(id="escalation", act="Act 2 — Escalation", name="Escalation",
+         craft="The want meets the obstacle; each shot raises the stakes or deepens the world (Story Structure — the judged-short template).",
+         shotTypes=["tracking", "wide"], movements=["tracking-shot", "dolly-in-push-in"],
+         moods=["kinetic", "tense", "dramatic"], useKeys=["chases", "action", "montage"]),
+    dict(id="turn", act="Act 2 — Escalation", name="The turn",
+         craft="One turn — the moment everything changes; a dedicated shot for the emotional turn (Story Structure; gate G4, Episodic Short-Form).",
+         shotTypes=["close-up", "medium"], movements=["dolly-in-push-in"],
+         moods=["dramatic", "intimate", "somber"], useKeys=["emotional"]),
+    dict(id="complication", act="Act 2 — Escalation", name="The complication",
+         craft="The plan fails or the truth lands — pressure builds before the reversal (Story Structure — the judged-short template).",
+         shotTypes=["close-up", "two-shot"], movements=["static-locked-off", "handheld"],
+         moods=["unsettling", "tense", "somber"], useKeys=["horror", "suspense", "dialogue"]),
+    dict(id="reversal", act="Act 3 — Reversal & button", name="The reversal",
+         craft="The reversal: the choice gets made. Most AI-film losers are tech demos with no second act — this is the second act (Story Structure).",
+         shotTypes=["close-up", "tracking"], movements=["tracking-shot", "orbit-arc-shot"],
+         moods=["dramatic", "kinetic", "triumphant"], useKeys=["emotional", "action", "transformation"]),
+    dict(id="button", act="Act 3 — Reversal & button", name="The button",
+         craft="One final image that reframes everything before it. End on the image, not on explanation (Story Structure — the judged-short template).",
+         shotTypes=["wide", "establishing"], movements=["static-locked-off", "dolly-out-pull-back"],
+         moods=["dreamlike", "somber", "expansive"], useKeys=["transition", "transformation"]),
+    dict(id="cliffhanger", act="Act 3 — Reversal & button", name="The cliffhanger",
+         craft="Ends mid-beat or on an unanswered question — never the resolution. The resolution is what Episode N+1 is (genre anatomy, Episodic Short-Form).",
+         shotTypes=["close-up", "medium"], movements=["static-locked-off"],
+         moods=["tense", "unsettling", "dramatic"], useKeys=["reaction", "listening", "emotional"]),
+]
+FORGE_EMOTION_MOODS = {
+    "longing": ["dreamlike", "nostalgic", "intimate"], "dread": ["unsettling", "tense", "somber"],
+    "grief": ["somber", "intimate", "nostalgic"], "relief": ["warm", "dreamlike", "grounded"],
+    "triumph": ["kinetic", "dramatic", "expansive"], "suspense": ["tense", "unsettling", "dramatic"],
+    "comfort": ["warm", "intimate", "grounded"], "heartbreak": ["somber", "dramatic", "intimate"],
+    "defiance": ["dramatic", "kinetic", "grounded"], "tenderness": ["intimate", "warm", "dreamlike"],
+    "guilt": ["somber", "unsettling", "intimate"], "joy": ["playful", "warm", "expansive"],
+}
+FORGE_FORMATS = [("minidrama", "Mini-drama"), ("pov", "POV series"), ("daylife", "Day-in-the-life"),
+                 ("revenge", "Revenge arc"), ("interactive", "Interactive")]
+FORGE_MIN_SCORE = 3
+
+
+def forge_score(beat, tpl, facet, emotion_moods):
+    if not facet:
+        return 0
+    s = 0
+    if facet.get("shot_type") in beat["shotTypes"]:
+        s += 3
+    if facet.get("movement") in beat["movements"]:
+        s += 2
+    if facet.get("mood") in beat["moods"]:
+        s += 2
+    if facet.get("mood") in emotion_moods:
+        s += 1
+    hay = ((tpl.get("use") or "") + " " + (tpl.get("anatomy") or "")).lower()
+    s += min(sum(1 for k in beat["useKeys"] if k in hay), 2)
+    return s
+
+
+def forge_plan(templates, facets, teardowns, emotion):
+    """Mirror of ForgeEngine.buildPlan (assets/js/forge.js) for the
+    pre-rendered default plan — same arc, same scoring, same tie-break."""
+    emotion_moods = FORGE_EMOTION_MOODS.get(emotion, [])
+    used = set()
+    beats = []
+    for beat in FORGE_ARC:
+        best, best_score = None, -1
+        for tpl in templates:
+            if tpl["id"] in used:
+                continue
+            sc = forge_score(beat, tpl, facets.get(tpl["id"]), emotion_moods)
+            if sc > best_score or (sc == best_score and best and tpl["id"] < best["id"]):
+                best, best_score = tpl, sc
+        if best is None or best_score < FORGE_MIN_SCORE:
+            beats.append({"beat": beat, "covered": False, "score": max(best_score, 0),
+                          "template": None, "teardown": None})
+            continue
+        used.add(best["id"])
+        td = None
+        for tid in (facets.get(best["id"]) or {}).get("teardowns", []):
+            if tid in teardowns:
+                td = teardowns[tid]
+                break
+        beats.append({"beat": beat, "covered": True, "score": best_score,
+                      "template": best, "teardown": td})
+    return beats
+
+
+def build_forge(css_links):
+    """Episode Forge page — a serialized mini-drama episode planner built
+    from the guide's own craft data: the 47-template library
+    (prompt-templates.json), its facets (prompts-facets.json), and the
+    teardown lessons (teardowns.json). The arc and its craft notes quote
+    craft/story-structure.md and craft/episodic-shortform.md. Every
+    template attached to a beat is a real library record, matched by a
+    deterministic score; a beat under the bar renders as uncovered —
+    nothing is invented. The default plan is pre-rendered here under the
+    same rules assets/js/forge.js runs in the browser."""
+    templates = json.loads((ROOT / "data" / "v1" / "prompt-templates.json").read_text())["templates"]
+    facets = json.loads((ROOT / "prompts-facets.json").read_text())["facets"]
+    td_doc = json.loads((ROOT / "data" / "v1" / "teardowns.json").read_text())["teardowns"]
+    teardowns = {}
+    for t in td_doc:
+        shots = t.get("shots") or []
+        teardowns[t["id"]] = {"id": t["id"], "title": t.get("title", t["id"]),
+                              "lesson": (shots[0].get("lesson", "") if shots else "")}
+    island = {"templates": templates, "facets": facets, "teardowns": teardowns}
+
+    beats = forge_plan(templates, facets, teardowns, "longing")
+    covered = sum(1 for b in beats if b["covered"])
+    summary = (f"Episode 1 · Mini-drama · one emotion: longing · {covered} of {len(beats)} "
+               f"beats covered by the library"
+               + (" — the rest are named as uncovered below; the Forge invents nothing."
+                  if covered < len(beats) else "."))
+
+    def esc(s):
+        return html.escape(str(s if s is not None else ""))
+
+    stage = []
+    act = ""
+    for i, b in enumerate(beats):
+        beat = b["beat"]
+        if beat["act"] != act:
+            act = beat["act"]
+            stage.append(f'<h3 class="fg-act">{esc(act)}</h3>')
+        tag = (f'<span class="fg-tag">{esc(b["template"]["id"])} · match {b["score"]}</span>'
+               if b["covered"] else '<span class="fg-tag fg-tag-none">no library template</span>')
+        s = (f'<article class="fg-beat"><div class="fg-beat-head"><span class="fg-num">{i + 1}</span>'
+             f'<h4>{esc(beat["name"])}</h4>{tag}</div>'
+             f'<p class="fg-craft">{esc(beat["craft"])}</p>')
+        if not b["covered"]:
+            s += ('<p class="fg-none">The guide\u2019s library has no template that covers this beat. '
+                  'Write it by hand or take it to the <a href="workshop.html">prompt workshop</a> — '
+                  'the Forge does not invent one.</p>')
+        else:
+            t = b["template"]
+            s += (f'<p class="fg-tpl"><strong>{esc(t["title"])}</strong> — {esc(t.get("use") or "")}</p>'
+                  f'<p class="fg-anatomy">{esc(t.get("anatomy") or "")}</p>'
+                  f'<pre class="fg-prompt">{esc(t.get("prompt") or "")}</pre>')
+            if t.get("models"):
+                s += f'<p class="fg-models">Shortlisted models: {esc(", ".join(t["models"]))}</p>'
+            if b["teardown"]:
+                s += (f'<p class="fg-lesson"><strong>Field lesson — {esc(b["teardown"]["title"])}:</strong> '
+                      f'{esc(b["teardown"]["lesson"])} <a href="teardown.html">Teardowns</a></p>')
+        s += "</article>"
+        stage.append(s)
+
+    fmt_opts = "".join(f'<option value="{v}"{" selected" if v == "minidrama" else ""}>{label}</option>'
+                       for v, label in FORGE_FORMATS)
+    emo_opts = "".join(f'<option value="{e}"{" selected" if e == "longing" else ""}>{e}</option>'
+                       for e in FORGE_EMOTION_MOODS)
+    (SITE / "forge.html").write_text(FORGE_TMPL.format(
+        css=css_links, sitenav=nav_html("", "forge.html"), footer=footer_html(""),
+        hero=hero_cutroom(
+            kicker="""The cutting room""",
+            h1="""Episode <span class="accent">forge.</span>""",
+            lede="""One episode on the anvil: an eight-beat, three-act arc from the guide's craft chapters, with a real library template hammered onto every beat it fits — and an honest gap named where none does. Export the plan and shoot it.""",
+            deck_title="""FORGE — EPISODE_ARC""",
+            clips={"v2": ['The arc'], "v1": ['Hook', 'Turn', 'Cliffhanger'], "a1": ['The plan']},
+            h1_id="fg-title-h",
+            extra=""" """),
+        fg_format_options=fmt_opts, fg_emotion_options=emo_opts,
+        fg_summary=html.escape(summary), fg_stage="".join(stage),
+        fg_data=json.dumps(island, ensure_ascii=False)))
+    return [("forge.html", "Episode forge")]
+
+
 GALLERY_TMPL = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5289,6 +5575,9 @@ def main():
     # Model showdown page (two models on the cutting table, Watchtower data)
     build_showdown(css_links)
 
+    # Episode Forge page (mini-drama episode planner, library-matched arc)
+    build_forge(css_links)
+
     # Knowledge checks (generated from scripts/checks.json)
     wave7_checks = build_checks(css_links)
 
@@ -5365,6 +5654,9 @@ def main():
         {"url": "model-watch.html", "title": "Model watch", "section": "Tools",
          "headings": ["Since your last visit", "Drift board", "Pricing changes", "The log"],
          "text": "The Watchtower 2.0: every model in the guide with live status, drift alerts, pricing changes diffed against the 2026-10-11 baseline, and what changed since your last visit: Sora discontinued, Kling 4.0 announced, the Vidu Q4 rate-card correction, PixVerse V6 added. Generated from models.json, model-checks.json, pricing.json, and model-history.json."},
+        {"url": "forge.html", "title": "Episode forge", "section": "Tools",
+         "headings": ["Set the episode", "The hook", "The turn", "The cliffhanger", "Take the plan"],
+         "text": "The Episode Forge: a serialized mini-drama episode planner built from the guide's own craft data. An eight-beat, three-act arc (cold open, escalation, reversal and button, folded into the mini-drama genre anatomy — hook in the first 3 seconds, one emotion per episode, a dedicated turn shot, a cliffhanger that is never the resolution) with every beat matched to a real template from the guide's 47-template prompt library, scored on the template's own facets and stated use, with teardown field lessons attached through the facets' own links. A beat the library does not cover is named as uncovered — no template is invented. Export a clean markdown episode plan with the G2/G4 episode gates."},
         {"url": "showdown.html", "title": "Model showdown", "section": "Tools",
          "headings": ["Lace up two reels", "The rate", "Drift board", "Vs the baseline"],
          "text": "The model showdown: any two of the guide's 32 watched models spliced side by side on the cutting table — published rates tier by tier, source-check health, drift-board severity and alerts, pricing movement against the 2026-10-11 baseline, and the latest Watchtower event for each. Edges are direct comparisons of published values only; a model with no published USD rate is shown as unpublished, never estimated. Generated from models.json, pricing.json, model-checks.json, and model-history.json."},

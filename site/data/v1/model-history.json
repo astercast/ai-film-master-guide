@@ -1,6 +1,6 @@
 {
   "format": "model-history/1.0",
-  "generated_at": "2026-10-13T03:43:05Z",
+  "generated_at": "2026-10-13T07:37:55Z",
   "method": "Hand-authored event log. Every event traces to a fact recorded in models.json (what_changed), data/v1/model-updates.md, or this wave's own pricing-table changes. Price events carry a before/after pair only where the record documents both numbers; otherwise the fields are null and the summary says why. The pricing baseline below is the pricing table as curated on 2026-10-11 — the drift engine diffs the live table against it, so a rate that moves from here on is caught mechanically, not by memory.",
   "pricing_baseline": {
     "at": "2026-10-11T00:00:00Z",
@@ -1538,6 +1538,66 @@
       "summary": "Checker flag reviewed and dismissed (Watchtower 2.9): the first run flagged a third-party pricing roundup (scriptbyai.com); re-fetched twice, the page is signature-stable and identical to the flagged run's stored signature (45717f00…), and its Veo 3.1 table ($0.40/s standard, $0.60 4K; $0.15/$0.35 fast; $0.05/$0.08 lite) matches the record exactly — the move was the page's living LLM tables settling against the older baseline, the 2.5 pattern. No record change.",
       "confidence": "official",
       "source": "Watchtower 2.9 review pass (2026-10-12) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-13-seedance-3-0-watch-rechecked-2-10",
+      "date": "2026-10-13",
+      "model_id": "seedance-3-0",
+      "model": "Seedance 3.0",
+      "kind": "verification",
+      "summary": "Standing watch re-checked (Watchtower 2.10): still no official ByteDance announcement — the state-of-the-field coverage page this watch reads returned a signature identical to the 2.6–2.9 baseline (59931bf3…) in the checker run and still lists Seedance 3.0 among models announced by no vendor as of October 1, with no announcement, no API, and no date. The record's standing position (reported, unconfirmed) is unchanged and the watch stays open.",
+      "confidence": "official",
+      "source": "Watchtower 2.10 review pass (2026-10-13) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-13-kling-4-0-watch-rechecked-2-10",
+      "date": "2026-10-13",
+      "model_id": "kling-4-0",
+      "model": "Kling 4.0",
+      "kind": "verification",
+      "summary": "Standing watch re-checked (Watchtower 2.10): APIMart's criteria page returned a signature identical to the 2.4–2.9 baseline (fc55ce30…) in the checker run — a sixth pass — and still reads 'API Coming Soon', answers 'Not yet', and states pricing has not been announced. No GA model ID, no pricing published by Kuaishou — the record stays 'announced' and the watch stays open.",
+      "confidence": "official",
+      "source": "Watchtower 2.10 review pass (2026-10-13) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-13-soul-cinema-watch-rechecked-2-10",
+      "date": "2026-10-13",
+      "model_id": "soul-cinema",
+      "model": "Soul Cinema",
+      "kind": "verification",
+      "summary": "Standing watch re-checked (Watchtower 2.10): the in-app per-image credit cost is still not published by Higgsfield — its pricing page returned the same 428-char app shell at the settled signature (f14e9f4a…) in two probes with no credit figure, and the API post's rate table still lists only the $0.0032/image API starting rate tabled in Watchtower 2.3. The narrowed watch stays open.",
+      "confidence": "official",
+      "source": "Watchtower 2.10 review pass (2026-10-13) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-13-flux-3-video-rate-source-stable-2-10",
+      "date": "2026-10-13",
+      "model_id": "flux-3-video",
+      "model": "FLUX 3 Video",
+      "kind": "verification",
+      "summary": "Rate-source stability confirmed for a fourth pass (Watchtower 2.10): BFL's official docs pricing page returned its 9,875-char rendering at the 2.6 baseline signature (cb1e92d1…) in the checker runs and in two probes, and its FLUX 3 Video table ($0.17/$0.29/$0.40/$0.80 per second t2v/i2v; v2v $0.41/$0.53/$0.65/$0.95) still matches the record exactly. The 19,564-char variant was not seen. This pass's FLUX flag — eWeek's launch/robotics story at a fresh chrome variant (4ad61061…, 3,261 chars, stable across the run and two probes) — was adjudicated and dismissed: the story publishes no per-second rate and the rate source never moved.",
+      "confidence": "official",
+      "source": "Watchtower 2.10 review pass (2026-10-13) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-13-seedance-3-0-flag-reviewed-2-10",
+      "date": "2026-10-13",
+      "model_id": "seedance-3-0",
+      "model": "Seedance 3.0",
+      "kind": "verification",
+      "summary": "Checker flag reviewed and dismissed (Watchtower 2.10): the flagged source is a third-party article (breakread.com, September 8, 2026, reporting Bloomberg coverage) about a reported ByteDance real-time world model built on Seedance technology — signature-stable at dd63241d… (9,701 chars) across the run and two re-probes. It is not a Seedance 3.0 announcement: no model card, no API identifier, no pricing, and no first-party statement. No ByteDance source moved; the record stays reported/unconfirmed and the standing watch stays open.",
+      "confidence": "official",
+      "source": "Watchtower 2.10 review pass (2026-10-13) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-13-pixverse-v6-recovered-2-10",
+      "date": "2026-10-13",
+      "model_id": "pixverse-v6",
+      "model": "PixVerse V6",
+      "kind": "verification",
+      "summary": "Partial record recovered (Watchtower 2.10): PixVerse's official docs source — the source that truncated through 2.8 and again in 2.9's final run — fetched clean in both of this pass's checker runs at the baseline signature (95c88c96…, 4,278 chars), with all five of the model's sources answering. Per the criterion stated in 2.9 (recovery only on a clean final-run fetch at a verifiable signature), the recovery is claimed now: the record is stable in the published feed, its severity watch only on its own baseline pricing diff, the PixVerse pattern.",
+      "confidence": "official",
+      "source": "Watchtower 2.10 review pass (2026-10-13) — data/v1/model-review-log.json"
     }
   ]
 }

@@ -390,6 +390,61 @@ baseline, all rendered from the same Watchtower record as this page.
   alerts, 6 watch, 16 ok. All three checker runs were single and
   verified under the process rule.
 
+## 2026-10-13 — Watchtower 2.10: the eighth review pass
+
+Verdicts are in `data/v1/model-review-log.json` (review pass 9 +
+addendum). This pass also shipped the Episode Forge (`forge.html`):
+an 8-beat, 3-act mini-drama episode planner that walks the guide's
+own 47-template library beat by beat and attaches the real template
+that fits — a beat the library does not cover is named, not papered
+over — with teardown field lessons and a clean exportable plan.
+
+- **Seedance 3.0 — still unconfirmed.** The coverage page this watch
+  reads returned a signature identical to the 2.6–2.9 baseline in the
+  checker run and still lists Seedance 3.0 among models announced by
+  no vendor as of October 1. This pass's one Seedance flag — a
+  third-party article about a reported ByteDance real-time world
+  model built on Seedance technology — is not a Seedance 3.0
+  announcement and was adjudicated and dismissed. The watch stays open.
+- **Kling 4.0 — still announced.** APIMart's page is signature-
+  identical to the 2.4–2.9 baseline for a sixth pass and still lists
+  the API as coming soon with pricing not announced. No GA model ID,
+  no pricing published by Kuaishou. The watch stays open.
+- **Soul Cinema — in-app credit cost still unpublished.** Higgsfield's
+  pricing page returned the same 428-char app shell at the settled
+  signature, and its API post's rate table still lists only the
+  $0.0032/image API starting rate (2.3). The narrowed watch stays open.
+- **FLUX 3 Video — the docs page held for a fourth pass.** Every fetch
+  returned the 9,875-char rendering at the 2.6 baseline signature,
+  table matching the record, still signature-live. A fresh flag on
+  eWeek's launch story (a chrome variant of the same story flagged
+  in 2.9; the story publishes no rate) was adjudicated and dismissed.
+  No rate changed.
+- **PixVerse V6 — recovered.** The docs source that truncated through
+  2.8 and again in 2.9's final run fetched clean at its baseline
+  signature in both of this pass's runs, with all five sources
+  answering. Per the criterion stated in 2.9, the recovery is
+  claimed: the record is stable, severity watch only on its own
+  baseline pricing diff.
+- **Failed sources — the standing cohort unchanged, the recovered
+  cohort broke, and the Veo stamps cleared.** Medium (×3),
+  GlobeNewswire, and Morningstar still 403; whatsnew.fyi still 429s;
+  europesays.com dropped every try. Both Veo records read clean in
+  both runs, clearing 2.9's weather stamps. Against that, the
+  sources recovered in 2.7 broke this pass: MarkTechPost 403'd
+  Gemini Omni's and FLUX 3 Video's articles in both runs (MiniMax
+  H3's article on the same host flipped — 403 in both runs, 200 at
+  its baseline signature between them), x.ai 403'd for Grok, and
+  midjourney.com 403'd for Midjourney — all labeled as observed, no
+  record contradicted. The first run's five weather records (GitHub
+  503s, timeouts) all recovered on re-probe and read clean in the
+  final run. Final feed: changed=0, with_errors=0 — drift reads 11
+  alerts, 5 watch, 16 ok. Both checker runs were single and verified
+  under the process rule; the pass's feeds were re-baselined from
+  scratch after its first builder parked mid-build, and the one feed
+  that work left behind (an unverified partial run) was discarded,
+  never adjudicated.
+
 ## 2026-10-11 — Wave 30: Late-Q4 field sweep
 
 29 → **30 models** (one added); no status changes. The headline item is a

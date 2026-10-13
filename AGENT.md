@@ -34,9 +34,9 @@ Static files — **no auth, no keys, no rate limits**. Works on any static host.
 | `data/v1/teardowns.json` | 10 shot-by-shot teardowns; prompt reconstructions are analytical | 8 |
 | `data/v1/diagnoses.json` | 12 failure diagnoses: symptom → diagnosis, fixes, repair template | 12 |
 | `data/v1/model-checks.json` | Model-watch freshness feed: per-model last check, source diffs, headlines | 32 checked |
-| `data/v1/model-history.json` | Watchtower 2.0 event log: dated status/price/tier/release/verification/coverage events + the 2026-10-11 pricing baseline the drift engine diffs against | 86 events |
+| `data/v1/model-history.json` | Watchtower 2.0 event log: dated status/price/tier/release/verification/coverage events + the 2026-10-11 pricing baseline the drift engine diffs against | 92 events |
 | `data/v1/model-review-queue.json` | Pending model-watch review items (empty = nothing pending) | 3 pending |
-| `data/v1/model-review-log.json` | Watchtower review log: adjudication record for checker flags — every flag re-fetched and given a verdict with its basis before the queue clears (Watchtower 2.2–2.9) | 15 entries |
+| `data/v1/model-review-log.json` | Watchtower review log: adjudication record for checker flags — every flag re-fetched and given a verdict with its basis before the queue clears (Watchtower 2.2–2.10) | 17 entries |
 | `data/v1/model-updates.md` | Human-readable model changelog (Markdown, no schema) | — |
 
 Example requests (Node; swap `fs` for `fetch` in a browser):
@@ -194,7 +194,32 @@ truncated again in the final run (no recovery claimed), and the
 final run's two Veo weather failures (a mer.vin timeout, a dev.to
 drop) recovered on re-probe at baseline signatures, so the final
 feed carries 10 partial records (drift 10 alerts / 6 watch / 16 ok).
-The same pass shipped the Model Showdown (`showdown.html`): any two
+Watchtower 2.10 (the eighth review pass) re-checked the three
+watches again — none had moved (Kling 4.0's APIMart criteria page
+is signature-identical to the 2.4–2.9 baseline for a sixth pass;
+the FLUX docs pricing page held its baseline rendering for a
+fourth pass) — adjudicated two fresh flags raised by its own
+first run (Seedance 3.0's flagged article reports a ByteDance
+real-time world model built on Seedance technology, not a
+Seedance 3.0 announcement; FLUX 3 Video's flag is a chrome
+variant of the eWeek story flagged in 2.9, which publishes no
+rate), recovered PixVerse V6 under the criterion stated in 2.9
+(its docs source fetched clean at its baseline signature in both
+runs, the final run included), cleared the two Veo weather
+stamps from 2.9, and re-probed the partial records: the 7
+standing ones are unchanged, but the cohort recovered in 2.7
+broke — MarkTechPost 403'd Gemini Omni's and FLUX's articles in
+both runs (MiniMax H3's flipped: 403 in both runs, 200 at its
+baseline signature between them), x.ai 403'd for Grok, and
+midjourney.com 403'd for Midjourney — so the final feed carries
+11 partial records (drift 11 alerts / 5 watch / 16 ok). The same
+rotation shipped the Episode Forge (`forge.html`): an 8-beat,
+3-act mini-drama episode planner that matches every beat against
+the guide's own 47-template library (prompt-templates.json +
+prompts-facets.json), attaches teardown lessons through the
+facets' own links, names any beat the library does not cover
+instead of inventing a template, and exports the plan as
+markdown. The same pass shipped the Model Showdown (`showdown.html`): any two
 of the 32 models spliced side by side — published rates, check
 health, drift state, baseline movement — rendered from the same
 four Watchtower artifacts, with edges stated only where two

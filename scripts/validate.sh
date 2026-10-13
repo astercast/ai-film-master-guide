@@ -384,6 +384,21 @@ else
   fail "model-watch.html missing Watchtower 2.0 panels"; WT_OK=0
 fi
 
+# Episode Forge: engine + page + real library data
+FG_OK=1
+for f in assets/js/forge.js site/forge.html site/assets/js/forge.js; do
+  if [ ! -f "$f" ]; then fail "$f missing (rebuild the site)"; FG_OK=0; fi
+done
+FG_OUT=$(node scripts/forge.test.js 2>&1)
+if echo "$FG_OUT" | tail -1 | grep -q "all pass"; then
+  FG_N=$(echo "$FG_OUT" | grep -c "^ok ")
+  pass "forge.test.js: $FG_N engine assertions pass (8-beat arc, deterministic library matching, no invented templates, export traces)"
+else
+  fail "forge.test.js failures:"
+  echo "$FG_OUT" | grep "^FAIL" | head -8 | sed 's/^/    /'
+  FG_OK=0
+fi
+
 # Cutting Room → Green Light bridge button present (rendered by cutting-room.js)
 if grep -q "cr-greenlight" assets/js/cutting-room.js && grep -q "cr-greenlight" site/assets/js/cutting-room.js; then
   pass "cutting-room → green-light bridge wired (button + handler)"

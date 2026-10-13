@@ -4,7 +4,7 @@
   "observed": "2026-10-11",
   "meta": {
     "version": "1.1.0",
-    "generated": "2026-10-13T06:11:02Z",
+    "generated": "2026-10-13T07:39:03Z",
     "base": "data/v1/",
     "auth": "none",
     "notes": "Static files on any static host — no auth, no keys, no rate limits. Breaking changes ship as a new v2/ path, never a silent shape change. Date-only fields are YYYY-MM-DD; timestamps are ISO-8601 UTC."
@@ -23,7 +23,7 @@
       "path": "data/v1/index.json",
       "description": "Manifest: every endpoint with description, schema URL, updated timestamp, record counts, and deprecation notes. Start here.",
       "schema": "data/v1/schema/index.json",
-      "updated": "2026-10-13T06:11:02Z",
+      "updated": "2026-10-13T07:39:03Z",
       "records": 13,
       "notes": "Self-describing; meta.version is the manifest version."
     },
@@ -31,7 +31,7 @@
       "path": "data/v1/models.json",
       "description": "Model records: platform, type, credit costs, strengths, weaknesses, best use, per-model last_verified, status (active/reported/announced/discontinued), what_changed, sources; explicit unverified list.",
       "schema": "data/v1/schema/model.json",
-      "updated": "2026-10-13T06:11:02Z",
+      "updated": "2026-10-13T07:39:03Z",
       "records": 32,
       "notes": "DEPRECATION: Sora carries status='discontinued' (service shut Mar-Sep 2026; API closed 2026-09-24). Discontinued models are excluded from the Studio and compare-tool pools but kept here for the historical record."
     },
@@ -39,7 +39,7 @@
       "path": "data/v1/prompt-templates.json",
       "description": "Prompt templates: id, title, track, prompt, anatomy, use, models. Stable ids; [BRACKETS] placeholders.",
       "schema": "data/v1/schema/prompt-template.json",
-      "updated": "2026-10-13T06:11:02Z",
+      "updated": "2026-10-13T07:39:03Z",
       "records": 47,
       "notes": "15 core (t1-t15), 8 animated (a1-a8), 8 photorealistic (p1-p8), 5 performance, 4 audio, 4 longform, 3 repair."
     },
@@ -47,7 +47,7 @@
       "path": "data/v1/camera-movements.json",
       "description": "Camera lexicon: id, move, prompt_phrasing, when_to_use.",
       "schema": "data/v1/schema/camera-movement.json",
-      "updated": "2026-10-13T06:11:02Z",
+      "updated": "2026-10-13T07:39:03Z",
       "records": 22,
       "notes": ""
     },
@@ -55,7 +55,7 @@
       "path": "data/v1/checklists.json",
       "description": "Production checklists (pre-production, per-shot, continuity, audio, delivery) with item arrays.",
       "schema": "data/v1/schema/checklist.json",
-      "updated": "2026-10-13T06:11:02Z",
+      "updated": "2026-10-13T07:39:03Z",
       "records": 5,
       "notes": ""
     },
@@ -63,7 +63,7 @@
       "path": "data/v1/glossary.json",
       "description": "AI film / production terms: term + definition.",
       "schema": "data/v1/schema/glossary.json",
-      "updated": "2026-10-13T06:11:02Z",
+      "updated": "2026-10-13T07:39:03Z",
       "records": 79,
       "notes": ""
     },
@@ -71,7 +71,7 @@
       "path": "data/v1/competitions.json",
       "description": "Judged competitions as craft records: what each judges, the production constraints its rules teach, craft lessons from judged work. No prizes, deadlines, or promotional material.",
       "schema": "data/v1/schema/competition.json",
-      "updated": "2026-10-13T06:11:02Z",
+      "updated": "2026-10-13T07:39:03Z",
       "records": 2,
       "notes": ""
     },
@@ -79,7 +79,7 @@
       "path": "data/v1/teardowns.json",
       "description": "Shot-by-shot teardowns: setup, what works, what breaks, craft lesson per shot; prompt reconstructions are analytical, not actual prompts.",
       "schema": "data/v1/schema/teardown.json",
-      "updated": "2026-10-13T06:11:02Z",
+      "updated": "2026-10-13T07:39:03Z",
       "records": 10,
       "notes": ""
     },
@@ -87,7 +87,7 @@
       "path": "data/v1/diagnoses.json",
       "description": "Failure-diagnosis map for the Doctor tool: symptom -> craft diagnosis, fixes, repair-template link, source chapters.",
       "schema": "data/v1/schema/diagnosis.json",
-      "updated": "2026-10-13T06:11:02Z",
+      "updated": "2026-10-13T07:39:03Z",
       "records": 12,
       "notes": ""
     },
@@ -95,7 +95,7 @@
       "path": "data/v1/model-checks.json",
       "description": "Model-watch freshness feed: per-model last check time, source-signature diffs, news headlines. Maintained by the model-watch refresh loop.",
       "schema": "data/v1/schema/model-checks.json",
-      "updated": "2026-10-13T06:11:02Z",
+      "updated": "2026-10-13T07:39:03Z",
       "records": 32,
       "notes": "A 'changed' flag is a review signal, not a confirmed model change — check the review queue before treating it as fact."
     },
@@ -103,15 +103,15 @@
       "path": "data/v1/model-history.json",
       "description": "Watchtower 2.0 event log: dated status, price, tier, release, verification, and coverage events for every tracked model, plus the pricing baseline the drift engine diffs the live pricing table against. Hand-authored — every event traces to models.json or model-updates.md.",
       "schema": "data/v1/schema/model-history.json",
-      "updated": "2026-10-13T06:11:02Z",
-      "records": 86,
+      "updated": "2026-10-13T07:39:03Z",
+      "records": 92,
       "notes": "Price events carry before/after only where the record documents both numbers. The baseline is the pricing table as curated 2026-10-11."
     },
     "model-review-queue": {
       "path": "data/v1/model-review-queue.json",
       "description": "Pending model-watch review items: changed source signatures awaiting human promotion. Empty array = nothing pending.",
       "schema": "data/v1/schema/model-review-queue.json",
-      "updated": "2026-10-13T06:11:02Z",
+      "updated": "2026-10-13T07:39:03Z",
       "records": 3,
       "notes": ""
     },
@@ -119,8 +119,8 @@
       "path": "data/v1/model-review-log.json",
       "description": "Watchtower review log: the adjudication record for checker flags and failed sources. Each pass re-fetches the flagged URLs and records a verdict with its basis — a cleared queue is an audited queue. Hand-authored.",
       "schema": "data/v1/schema/model-review-log.json",
-      "updated": "2026-10-13T06:11:02Z",
-      "records": 15,
+      "updated": "2026-10-13T07:39:03Z",
+      "records": 17,
       "notes": "Nothing in models.json moves without a verdict here (or a documented promotion in model-updates.md)."
     }
   },
@@ -128,7 +128,7 @@
     "model-updates": {
       "path": "data/v1/model-updates.md",
       "description": "Human-readable changelog of model record updates, with dates and sources.",
-      "updated": "2026-10-13T06:11:02Z",
+      "updated": "2026-10-13T07:39:03Z",
       "records": null,
       "notes": "Markdown, not JSON — no schema."
     }
