@@ -1,3 +1,20 @@
+## Rotation 15 — commit/push record (2026-10-13)
+
+Local `1951801` → pushed 2026-10-13 as remote commit
+`d4273a47c0b626331ce6686f0f9835da4554a408` (gh-push.py, exit
+0; push log `~/workspace/fleet-ops/push-logs/film-rotation15-push1.log`).
+Verified via the Trees API: remote tree `e5338dd4…` ==
+local HEAD tree, 776 entries, not truncated, all key files
+present (site/grade.html, assets/js/grade.js,
+scripts/grade.test.js, skills/grading/grade-sheet.md,
+WAVELOG.md, data/v1/model-history.json). Post-commit
+validation: validate.sh **23/23 — ALL STAGES PASS** (stage
+7 now includes grade.test.js 13/13; watchtower 6/6;
+cuesheet 12/12; continuity 11/11; clearance 19/19; forge
+19/19; studio 70/70; greenlight 29/29; agent-workflows 92
+assertions); api.test.sh **55/55**. Working repo only — no
+`-live` repo touched, no Vercel access.
+
 ## Watchtower 2.14 — the twelfth review pass + Grade Sheet (2026-10-13)
 
 **Assignment:** Rotation 15 — Watchtower 2.14 (the twelfth
@@ -13,7 +30,9 @@ the QA book was verified empty at rotation start (QA-001
 through QA-009 all closed; no open ticket names this site),
 so nothing was queued ahead of the duties.
 
-**Commit:** recorded in the follow-up entry after the push.
+**Commit:** local `1951801` → pushed as remote
+`d4273a47c0b626331ce6686f0f9835da4554a408` (see the
+commit/push record entry at the head of this file).
 
 **Duty 1 — Watchtower 2.14 (twelfth review pass).** All 3
 standing watches stand, content-verified by checker-path
@@ -252,12 +271,13 @@ is unchanged). New files are all in existing homes:
 generated `site/grade.html`, and one generated skill
 file under `skills/grading/`.
 
-**Validation.** validate.sh and api.test.sh results are
-recorded in the follow-up entry after the push
-(post-commit runs; stages 5/6 compare generator output
-against HEAD by design). Pre-commit: grade 13/13 inside
-stage 7, watchtower 6/6, api.test.sh 55/55 on its updated
-pins (October window 99 → 111; drift alerts 12 → 11).
+**Validation.** validate.sh **23/23 — ALL STAGES PASS**
+(post-commit run; the count rose 22 → 23 with the grade
+stage) — watchtower 6/6; grade 13/13; cuesheet 12/12;
+continuity 11/11; clearance 19/19; forge 19/19; studio
+70/70; greenlight 29/29; agent-workflows 92 assertions
+pass; api.test.sh **55/55** (its pins updated to this
+pass: October window 99 → 111; drift alerts 12 → 11).
 
 **Left open.** The 3 standing watches — all re-checked
 this pass, none moved. The standing partial cohort will
