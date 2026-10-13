@@ -154,6 +154,11 @@ wrote a LAUNCHED line into run 4's log at 17:09:48Z and
 vanished without a process or a feed write; run 4's
 EXIT=0 status and changed=0 feed are the run of record,
 verified against the single live checker throughout.
+**Attribution correction (rotation 16, wave engine):**
+the "unidentified" 17:09:48Z duplicate launch was the
+rotation-15 completion builder's own briefly-launched
+duplicate checker — killed within ~2 minutes, before
+any write; no unidentified process touched the pass.
 
 **Duty 2 — Flagship: the Grade Sheet (`grade.html`).**
 The WAVELOG named no next flagship, so the choice is
