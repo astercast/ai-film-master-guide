@@ -100,10 +100,12 @@ bot-block the checker — adjudicated, documented, and honest; if
 ABNewswire fails a third consecutive weekly run it should be swapped
 for another wire copy. LTX-2.5's ltx.io note from 2.1 stands.
 
-**Commit:** local `<filled in after commit>` → pushed as remote
-`<filled in after push>` (gh-push.py). Verified: remote tree == local
-HEAD tree. Working repo only — no `-live` repo touched, no Vercel
-access.
+**Commit:** local `a01db55` → pushed 2026-10-12 as remote commit
+`cb98cee46cf8da18cb76e34828d7a8db0254ed1a` (gh-push.py, exit 0).
+Verified: a second gh-push run reports no changes vs remote `main`
+(`cb98cee`) — remote tree == local HEAD tree. Post-commit
+`validate.sh`: **18 passed, 0 failed — ALL STAGES PASS**. Working
+repo only — no `-live` repo touched, no Vercel access.
 
 ## Watchtower 2.1 — close the watch gap (2026-10-12)
 
