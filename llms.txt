@@ -79,7 +79,7 @@ research artifacts; outputs committed).
 
 ## Skills (agentic task procedures)
 
-235 skills in `skills/` — rebuild with `python3 scripts/build_skills.py`
+236 skills in `skills/` — rebuild with `python3 scripts/build_skills.py`
 (generates from `data/v1/` data + authored procedures; outputs committed).
 `skills/index.json` is the manifest: id, title, description, path per skill.
 
@@ -88,7 +88,7 @@ primary interface for *doing* work; the JSON endpoints are the data layer.
 `data/v1/index.json` points here (`repository`, `skills`, `for_agents`).
 
 Categories: prompts (47), camera (22), models (31), checklists (5),
-longform (12), techniques (7), craft (20), entry (4), workflow (13),
+longform (12), techniques (7), craft (21), entry (4), workflow (13),
 episodes (5), compare (10), fix (6), budget (3), delivery (3), audio
 (5), recipes (12), styles (8), performance (9), grading (3),
 distribution (2), legal (5).

@@ -414,6 +414,21 @@ else
   CL_OK=0
 fi
 
+# Continuity Ledger: engine + page + chapter (rotation 13 flagship)
+CT_OK=1
+for f in assets/js/continuity.js site/continuity.html site/assets/js/continuity.js site/craft/character-consistency.html; do
+  if [ ! -f "$f" ]; then fail "$f missing (rebuild the site)"; CT_OK=0; fi
+done
+CT_OUT=$(node scripts/continuity.test.js 2>&1)
+if echo "$CT_OUT" | tail -1 | grep -q "all pass"; then
+  CT_N=$(echo "$CT_OUT" | grep -c "^ok ")
+  pass "continuity.test.js: $CT_N engine assertions pass (five pre-generation locks, rejection-rule verdicts, export traces)"
+else
+  fail "continuity.test.js failures:"
+  echo "$CT_OUT" | grep "^FAIL" | head -8 | sed 's/^/    /'
+  CT_OK=0
+fi
+
 # Cutting Room → Green Light bridge button present (rendered by cutting-room.js)
 if grep -q "cr-greenlight" assets/js/cutting-room.js && grep -q "cr-greenlight" site/assets/js/cutting-room.js; then
   pass "cutting-room → green-light bridge wired (button + handler)"

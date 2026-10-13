@@ -1053,6 +1053,81 @@
     }
    ],
    "outcome": "Final re-baseline published (2026-10-13T11:03Z): changed=0, with_errors=7, no_sources=0. The queue holds exactly the 3 standing watches, their notes carrying this pass's re-check lines. Drift: 23 alerts (every record carrying a failed source through the egress collapse — the 2.10 set of 11 included, all weather-stamped this pass), 1 watch (Soul Cinema, on its own pricing diff alone), 8 ok, 0 unwatched; unpublished rates stay 5; pricing diff vs the 2026-10-11 baseline stays 7 rows. History stands at 99 events (79 in the October window); this log at 19 entries. No model record moved in the pass."
+  },
+  {
+   "id": "2026-10-13-review-pass-11",
+   "reviewed_at": "2026-10-13",
+   "reviewer": "Watchtower 2.12 review pass (agent)",
+   "scope": "Tenth review pass over all 32 watched models: the 3 standing watches (Seedance 3.0 unconfirmed; Kling 4.0 'announced' without a GA model ID or Kuaishou pricing; Soul Cinema's in-app credit cost), the standing FLUX 3 Video rate-source follow-up, PixVerse V6's second-clean-pass question left by 2.11, and every flag the pass's checker runs raised. No model record moved.",
+   "method": "All verdicts rest on disk-verified artifacts: checker runs launched detached (setsid launcher scripts writing PID/start/done files under /tmp and logs under logs/wt212-*.log in the repo), with a process-table check before each launch showing zero checker processes and exactly one during each run; and checker-path probes (importing scripts/refresh/check_models.py's own fetch) for every adjudication. Run history: run 1 (12:06–12:16Z) completed, changed=2, with_errors=0 — the adjudication run. Run 2 (12:22–12:31Z) completed, changed=0, with_errors=0. Run 3 (12:34–12:44Z), the first re-baseline after the 2.12 calibration, completed with changed=1 (a fresh Seedance 3.0 flag, adjudicated and dismissed below) — so a further run 4 was required and is the published feed, recorded in the addendum. One process near-miss, disclosed: the run-3 pre-launch pgrep pattern matched the launching shell's own command line and printed a false 'still alive'; a ps listing verified exactly one checker (the new run) before any verdict rested on it.",
+   "flag_reviews": [
+    {
+     "model": "Wan 3.0 / 3.0 Prime",
+     "flagged_source": "zacks.com/stock/news/2979739/alibabas-wan-30-ai-debut-follows-102b-share-sale-whats-ahead",
+     "verdict": "dismissed-churn",
+     "basis": "Run 1 flagged the source at 9756a800… (15,877 chars) against a 15,847-char baseline — a +30-char delta. Two checker-path adjudication fetches returned the flagged signature exactly, and the article is a 25 August 2026 equity story (Alibaba's Wan 3.0 debut following a $10.2B share sale); its Wan content is the launch coverage already behind the record and carries no spec, rate, or status fact that moves it. The model's OpenRouter page also moved, on a signature-excluded rendering; its Medium source still 403s (standing cohort). Dismissed as page chrome; no calibration — the page is signature-stable at its new signature."
+    },
+    {
+     "model": "Runway Gen-4.5",
+     "flagged_source": "magichour.ai/blog/runway-gen-45-pricing",
+     "verdict": "dismissed-churn-calibrated",
+     "basis": "Run 1 fetched a new rendering (a84522ba…, 22,395 chars) against the baseline 4571fe2d… (22,892 chars). Two checker-path probes both returned the baseline rendering exactly, and run 2 fetched the new variant again — the page alternates renderings within a single pass (the 2.7 FLUX pattern). The baseline rendering's figures — Gen-4.5 at 12 credits per generated second and API $0.12/s — match the record exactly. Dismissed as rendering rotation; the URL is signature-excluded for this model in the 2.12 calibration (still fetched and recorded every run; the rate stays signature-live on the model's remaining sources)."
+    },
+    {
+     "model": "Seedance 3.0",
+     "flagged_source": "breakread.com/bytedance-ai-real-time-world-model/",
+     "verdict": "dismissed-not-an-announcement",
+     "basis": "Run 3 flagged the source at 63a60eae… (9,687 chars) against 31268bd0… (9,679 chars) — a +8-char delta. Two checker-path adjudication fetches returned the flagged signature exactly, and the article is the same 8 September 2026 story adjudicated in 2.10: a reported ByteDance real-time world model built on Seedance technology, its launch date stated as uncertain — no Seedance 3.0 announcement, model card, API identifier, or pricing. The watch's criteria page (Versely) held its signature in the same run and still lists Seedance 3.0 as announced by no vendor as of 1 October. Dismissed; no calibration — the page is signature-stable at its new signature, and the duplicate queue item the flag created was removed on this verdict."
+    }
+   ],
+   "failed_source_reviews": [
+    {
+     "group": "Standing host-gated cohort — unchanged",
+     "models": [
+      "Seedance 3.0 (Medium)",
+      "Wan 3.0 / 3.0 Prime (Medium)",
+      "Kling 4.0 (Medium)",
+      "MiniMax H3 (MarkTechPost)",
+      "Gemini Omni (MarkTechPost)",
+      "FLUX 3 Video (MarkTechPost)",
+      "Luma App / Ray 3.2 (whatsnew.fyi)",
+      "Grok Imagine Video 1.5 (europesays, whatsnew.fyi, x.ai)",
+      "Midjourney V1 Video (midjourney.com)",
+      "Vidu S2 (GlobeNewswire)",
+      "Vidu Q4 Preview (GlobeNewswire, Morningstar)"
+     ],
+     "verdict": "watch-intact-no-action",
+     "basis": "Every standing failed source failed the same way in the pass's completed runs (403 / 429 / dropped connection) as in passes 2.4–2.11. These are host gates against the checker, adjudicated ten passes running; no failure touches a standing verdict, each of which rests on sources that answered and were read."
+    },
+    {
+     "group": "Runway Gen-4.5 — Versely truncation in the final run",
+     "models": [
+      "Runway Gen-4.5"
+     ],
+     "verdict": "watch-intact-no-action",
+     "basis": "The shared Versely criteria page truncated (IncompleteRead, 0 bytes) for Runway in run 1 and again in the final run, while answering at its recorded signature for the other models carrying it in the same runs — per-request variance on one host, labelled as observed on the published feed. It is not one of Runway's rate sources of record, and no Runway verdict in this pass rests on it."
+    }
+   ],
+   "outcome": "All 3 standing watches stand on checker-path evidence gathered this pass: Seedance 3.0 unconfirmed (criteria page at 506d7e9d… in both first runs and two probes, still listing it as announced by no vendor as of 1 October); Kling 4.0 stays 'announced' (APIMart at its baseline fc55ce30… for a seventh consecutive pass); Soul Cinema's in-app credit cost still unpublished (428-char shell at f14e9f4a… in runs and probes). FLUX's docs rate source held its baseline rendering (cb1e92d1…, 9,875 chars) inside the completed runs — a seventh consecutive pass. PixVerse V6's docs source fetched clean at its baseline signature (95c88c96…) inside both of the pass's first two completed runs with all five sources answering, so the second clean pass 2.11 could not claim is claimed here. Flags: 3 raised, 3 dismissed, 1 calibration (magichour). History 99 → 107 events (October window 79 → 87); this log at 21 entries with the addendum. The final feed is recorded in the pass-11 addendum."
+  },
+  {
+   "id": "2026-10-13-review-pass-11-addendum",
+   "reviewed_at": "2026-10-13",
+   "reviewer": "Watchtower 2.12 review pass (agent)",
+   "scope": "The final re-baseline checker run after pass 11's adjudication and the 2.12 calibration (2026-10-13T12:55Z), which set the published feed.",
+   "method": "Single detached checker process (run 4, launched 12:46Z after a ps-verified zero-checker check, exactly one verified during; EXIT 0 read from its on-disk log). The run diffed against run 3's feed with the calibration live and the dismissed breakread signature as its baseline, so its changed=0 also proves both: the magichour URL no longer feeds change detection for Runway Gen-4.5, and the breakread flag does not re-raise.",
+   "flag_reviews": [],
+   "failed_source_reviews": [
+    {
+     "group": "Final-run failures — the standing cohort plus one truncation, stamps stay, labelled as observed",
+     "models": [
+      "12 records carry at least one failed source — the standing host-gated cohort (Medium ×3 models, MarkTechPost ×3, GlobeNewswire ×2 models, Morningstar, whatsnew.fyi ×2 models, europesays, x.ai, midjourney.com) plus Runway Gen-4.5's Versely truncation"
+     ],
+     "verdict": "watch-intact-no-action",
+     "basis": "Every failure in the final run is a host gate or a single-host truncation already adjudicated in pass 11; none touches a decision — every standing watch and follow-up verdict rests on checker-path probes and run sources that answered and were read (Versely for Seedance, APIMart for Kling, Higgsfield for Soul Cinema, BFL docs for FLUX, PixVerse docs)."
+    }
+   ],
+   "outcome": "Final re-baseline published (2026-10-13T12:55Z): changed=0, with_errors=0, no_sources=0. The queue holds exactly the 3 standing watches, their notes carrying this pass's re-check lines. Drift: 12 alerts (the 12 partial records above), 5 watch, 15 ok, 0 unwatched; unpublished rates stay 5; pricing diff vs the 2026-10-11 baseline stays 7 rows. History stands at 107 events (87 in the October window); this log at 21 entries. No model record moved in the pass."
   }
  ]
 }

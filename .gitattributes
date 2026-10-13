@@ -1,0 +1,13 @@
+# Rule 1762 (fleet research): LF-only line endings, repo-wide.
+# Every text file is stored and checked out with LF, whatever the
+# platform; binary assets are marked so no conversion ever touches them.
+* text eol=lf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.pdf binary

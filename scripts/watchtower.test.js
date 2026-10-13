@@ -52,30 +52,33 @@ ok('real diff: the 5 Watchtower 2.0 coverage changes + the 2.3 Soul Cinema tier 
   assert(added, 'pixverse-v6 model-added missing');
   assert.strictEqual(added.after_low, 0.09, 'new record shows its rate span');
   assert.strictEqual(added.after_high, 0.23);
-  // Watchtower 2.11 (2026-10-13): the ninth review pass ran through a
-  // day-long collapse of this machine's egress proxy plus two VM
-  // reboots; its final re-baseline (run D, 11:03Z) read changed=0,
-  // with_errors=7 and weather-stamped 23 records. Hours later the
-  // repo's own refresh lane (scripts/refresh/refresh.sh) re-ran the
-  // checker as the egress recovered and landed the feed these pins
-  // assert (2026-10-13T11:35Z): changed=0, with_errors=0, 21 ok /
-  // 11 partial — the partials are the standing host-gated cohort
-  // (Medium ×3, GlobeNewswire, Morningstar 403s; whatsnew.fyi 429;
-  // europesays dropped; MarkTechPost gating on H3 / Gemini Omni /
-  // FLUX; x.ai on Grok; midjourney.com on Midjourney). The alert set
-  // is exactly the 2.10 set. All 3 standing watches stand (review
-  // log pass 10); all 4 flags the pass raised were dismissed.
-  // Pricing diff stays 7 rows.
+  // Watchtower 2.12 (2026-10-13): the tenth review pass ran four
+  // checker runs (12:06Z adjudication, 12:22Z re-baseline, 12:34Z
+  // first post-calibration run, 12:46Z final re-baseline) plus
+  // checker-path probes for every adjudication. All 3 standing
+  // watches stand (review log pass 11); 3 flags raised, 3 dismissed
+  // (Wan 3.0's Zacks chrome, Runway's magichour rendering
+  // alternation — calibrated signature-excluded, the 2.7 FLUX
+  // precedent — and Seedance 3.0's breakread world-model story,
+  // the 2.10 verdict on a +8-char delta). PixVerse V6's docs
+  // source fetched clean at its baseline signature inside both of
+  // the pass's first two completed runs — the second clean pass
+  // 2.11 could not claim. The final feed (2026-10-13T12:55Z):
+  // changed=0, with_errors=0; its 12 partials are the standing
+  // host-gated cohort (Medium x3, MarkTechPost x3, GlobeNewswire
+  // x2 models, Morningstar, whatsnew.fyi, europesays, x.ai,
+  // midjourney.com) plus Runway's Versely truncation. Pricing
+  // diff stays 7 rows.
   const d = drift.computeDrift({ modelsDoc: models, checksDoc: checks,
     pricingDoc: pricing, historyDoc: history, nowMs: NOW });
   assert.strictEqual(d.summary.models_total, 32);
   assert.strictEqual(d.summary.unwatched, 0, JSON.stringify(d.summary));
   assert.strictEqual(d.summary.pricing_unpublished, 5, JSON.stringify(d.summary));
-  assert.strictEqual(d.summary.alert, 11, JSON.stringify(d.per_model.filter((r) => r.severity === 'alert')));
+  assert.strictEqual(d.summary.alert, 12, JSON.stringify(d.per_model.filter((r) => r.severity === 'alert')));
   assert.strictEqual(d.summary.price_changes_vs_baseline, 7);
   const alertIds = d.per_model.filter((r) => r.severity === 'alert').map((r) => r.model_id).sort();
   assert.deepStrictEqual(alertIds, ['flux-3-video', 'gemini-omni', 'grok-imagine-1-5', 'kling-4-0',
-    'luma-ray-3-2', 'midjourney-v1-video', 'minimax-h3', 'seedance-3-0', 'vidu-q4-preview', 'vidu-s2', 'wan-3-0']);
+    'luma-ray-3-2', 'midjourney-v1-video', 'minimax-h3', 'runway-gen-4-5', 'seedance-3-0', 'vidu-q4-preview', 'vidu-s2', 'wan-3-0']);
 });
 
 ok('computeDrift: spot severities — PixVerse watched (price moved), Sora ok, Soul Cinema watch (own tier moved)', () => {
@@ -83,12 +86,12 @@ ok('computeDrift: spot severities — PixVerse watched (price moved), Sora ok, S
     pricingDoc: pricing, historyDoc: history, nowMs: NOW });
   const byId = Object.fromEntries(d.per_model.map((r) => [r.model_id, r]));
   // PixVerse V6 recovered in 2.10 (docs source clean at the baseline
-  // signature in both runs). In 2.11 its docs source answered at the
-  // baseline signature (95c88c96…) in an inter-run probe but timed
-  // out inside both of the pass's completed runs; the refresh-lane
-  // re-run that set this feed (2026-10-13T11:35Z) fetched it clean,
-  // so the record is stable again and its severity is watch only on
-  // its own baseline pricing diff — the PixVerse pattern.
+  // signature in both runs); in 2.11 it answered only in an
+  // inter-run probe. In 2.12 its docs source fetched clean at the
+  // baseline signature (95c88c96…) inside both of the pass's first
+  // two completed runs — the second clean pass — so the record is
+  // stable and its severity is watch only on its own baseline
+  // pricing diff — the PixVerse pattern.
   assert.strictEqual(byId['pixverse-v6'].check_status, 'stable');
   assert.strictEqual(byId['pixverse-v6'].severity, 'watch');
   // The two zero-source records of the Oct 11 feed are watched and clean.

@@ -1,6 +1,6 @@
 {
  "format": "model-history/1.0",
- "generated_at": "2026-10-13T07:37:55Z",
+ "generated_at": "2026-10-13T12:36:00Z",
  "method": "Hand-authored event log. Every event traces to a fact recorded in models.json (what_changed), data/v1/model-updates.md, or this wave's own pricing-table changes. Price events carry a before/after pair only where the record documents both numbers; otherwise the fields are null and the summary says why. The pricing baseline below is the pricing table as curated on 2026-10-11 — the drift engine diffs the live table against it, so a rate that moves from here on is caught mechanically, not by memory.",
  "pricing_baseline": {
   "at": "2026-10-11T00:00:00Z",
@@ -1668,6 +1668,86 @@
    "summary": "Docs-source state (Watchtower 2.11, stated plainly): PixVerse's official docs source answered at its baseline signature (95c88c96…, 4,278 chars) in a checker's-path probe between this pass's runs, but timed out inside both completed runs, so the published feed carries a partial stamp for PixVerse this pass and NO second clean run pass is claimed. The 2.10 recovery stands on 2.10's two clean runs plus today's probe evidence; the record itself is unchanged and its severity, when the docs source answers, remains watch only on its own baseline pricing diff.",
    "confidence": "official",
    "source": "Watchtower 2.11 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-seedance-3-0-still-unconfirmed-2-12",
+   "date": "2026-10-13",
+   "model_id": "seedance-3-0",
+   "model": "Seedance 3.0",
+   "kind": "verification",
+   "summary": "Standing watch re-checked (Watchtower 2.12, tenth review pass): Versely's state-of-the-field criteria page answered at the variant signature first seen in 2.11 (506d7e9d…, 12,513 chars) in both completed checker runs and in two checker-path probes, and read directly it still lists Seedance 3.0 among the models that had been announced by no vendor as of 1 October. No ByteDance announcement, model card, API ID, or pricing. Watch stays open; no record change.",
+   "confidence": "official",
+   "source": "Watchtower 2.12 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-kling-4-0-still-announced-2-12",
+   "date": "2026-10-13",
+   "model_id": "kling-4-0",
+   "model": "Kling 4.0",
+   "kind": "verification",
+   "summary": "Standing watch re-checked (Watchtower 2.12): APIMart's criteria page answered at its long-standing baseline signature (fc55ce30…, 136,708 chars) in both completed checker runs — a seventh pass at the identical signature — still reading 'API Coming Soon', availability 'Not yet', and pricing 'has not been announced'. No GA model ID and no Kuaishou-published pricing, so under the standing rule the model stays 'announced'. No record change.",
+   "confidence": "official",
+   "source": "Watchtower 2.12 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-soul-cinema-credit-cost-unpublished-2-12",
+   "date": "2026-10-13",
+   "model_id": "soul-cinema",
+   "model": "Soul Cinema",
+   "kind": "verification",
+   "summary": "Standing watch re-checked (Watchtower 2.12): Higgsfield's pricing page answered at the settled 428-char app-shell signature (f14e9f4a…) in both completed runs and in two checker-path probes, still publishing no in-app credit figure; the API post (signature-excluded since 2.4) still lists only the $0.0032/image API starting rate tabled in 2.3. The in-app credit cost remains unpublished. No record change.",
+   "confidence": "official",
+   "source": "Watchtower 2.12 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-wan-3-0-zacks-flag-dismissed-2-12",
+   "date": "2026-10-13",
+   "model_id": "wan-3-0",
+   "model": "Wan 3.0 / 3.0 Prime",
+   "kind": "verification",
+   "summary": "Flag dismissed (Watchtower 2.12): the adjudication run flagged Wan 3.0 on its Zacks stock-news source (Alibaba's Wan 3.0 debut / $10.2B share sale, 25 August 2026). Two checker-path adjudication fetches returned the flagged signature exactly (9756a800…, 15,877 chars, +30 on the 15,847-char baseline — page chrome on an equity story), and the article's Wan content is the launch coverage already behind the record; no spec, rate, or status fact on it moves the record. The model's Medium source still 403s (standing cohort) and its OpenRouter page moved only on a signature-excluded rendering. No record change.",
+   "confidence": "official",
+   "source": "Watchtower 2.12 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-runway-magichour-alternation-calibrated-2-12",
+   "date": "2026-10-13",
+   "model_id": "runway-gen-4-5",
+   "model": "Runway Gen-4.5",
+   "kind": "verification",
+   "summary": "Flag dismissed + churn calibration (Watchtower 2.12): the adjudication run flagged Runway Gen-4.5 on magichour.ai's pricing blog at a new signature (a84522ba…, 22,395 chars), but two checker-path probes both returned the long-standing baseline rendering exactly (4571fe2d…, 22,892 chars) — and the re-baseline run fetched the new variant again, proving the page alternates renderings within a single pass (the 2.7 FLUX pattern). The baseline rendering's figures (12 credits per second; API $0.12/s) match the record exactly. The URL is now signature-excluded for this model in the checker config — still fetched and recorded every run; the rate stays signature-live on the model's remaining sources. No record change.",
+   "confidence": "official",
+   "source": "Watchtower 2.12 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-pixverse-v6-second-clean-pass-2-12",
+   "date": "2026-10-13",
+   "model_id": "pixverse-v6",
+   "model": "PixVerse V6",
+   "kind": "verification",
+   "summary": "Second clean pass claimed (Watchtower 2.12): PixVerse V6's official docs source fetched clean at its baseline signature (95c88c96…, 4,278 chars) inside both completed checker runs of this pass, with all five sources answering — the second-clean-run evidence 2.11 could not claim (its docs source answered only in an inter-run probe that pass). The 2.10 recovery is now backed by two consecutive clean passes. Record unchanged; severity remains watch only on its own baseline pricing diff.",
+   "confidence": "official",
+   "source": "Watchtower 2.12 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-flux-docs-baseline-seventh-pass-2-12",
+   "date": "2026-10-13",
+   "model_id": "flux-3-video",
+   "model": "FLUX 3 Video",
+   "kind": "verification",
+   "summary": "Rate-source stability (Watchtower 2.12): BFL's official docs pricing page returned its 9,875-char rendering at the 2.6 baseline signature (cb1e92d1…) inside this pass's completed runs — a seventh consecutive pass at the baseline — its FLUX 3 Video table still matching the record exactly; the 19,564-char variant was not seen. No rate changed, no pricing record moved. (The model's MarkTechPost source still 403s — standing cohort.)",
+   "confidence": "official",
+   "source": "Watchtower 2.12 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-seedance-3-0-breakread-flag-dismissed-2-12",
+   "date": "2026-10-13",
+   "model_id": "seedance-3-0",
+   "model": "Seedance 3.0",
+   "kind": "verification",
+   "summary": "Flag dismissed (Watchtower 2.12): the final re-baseline run flagged Seedance 3.0 on breakread.com's ByteDance article, whose signature moved +8 chars (31268bd0…, 9,679 → 63a60eae…, 9,687). Two checker-path adjudication fetches returned the flagged signature exactly, and read in full the article is the same 8 September 2026 story adjudicated in 2.10 — a reported real-time world model built on Seedance technology, launch date uncertain, no Seedance 3.0 announcement, model card, API identifier, or pricing — while the watch's criteria page (Versely) held its signature through the same run. The delta is article chrome. No record change.",
+   "confidence": "official",
+   "source": "Watchtower 2.12 review pass (2026-10-13) — data/v1/model-review-log.json"
   }
  ]
 }

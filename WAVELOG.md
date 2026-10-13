@@ -1,3 +1,228 @@
+## Watchtower 2.12 — the tenth review pass + Continuity Ledger (2026-10-13)
+
+**Assignment:** Rotation 13 — Watchtower 2.12 (the tenth review pass
+over the 32 watched models; the 3 standing watches get full
+checker-path passes), the flagship the WAVELOG names as next, the
+two graduated technique adoptions from the 9th-site test bed (View
+Transitions, scroll-driven animations), the rotation-12 regression
+sweep, tickets first (QA-002, QA-009), and the rule-1762 hygiene
+audit.
+
+**Tickets.** QA-009 was closed by the QA corps' round-9
+close-verification at `5ed2f2e` before this rotation started (the
+skill-spec generator fix; this rotation's post-build census
+re-confirms exactly one `<h1>` on all 107 built pages). QA-002 was
+narrowed by round 9 to its remainder — the empty root `api/`
+directory — which this rotation removed from disk (it was
+untracked, 0 files in git, held no functions and deployed nothing;
+sources remain in `server/api/` + `server/lib/`, build copies in
+`site/api/` + `site/lib/`; no api/ path was added or removed in
+git, so there is nothing for the Release Engineer's push kit to
+re-map).
+
+**Duty 1 — Watchtower 2.12 (tenth review pass).** All 3 standing
+watches stand, content-verified by checker-path probes:
+
+- **Seedance 3.0 — unconfirmed.** Versely's criteria page answered
+  at the variant signature first seen in 2.11 (506d7e9d…, 12,513
+  chars) in both completed runs and in two checker-path probes;
+  read directly it still lists Seedance 3.0 among the models that
+  had been announced by no vendor as of 1 October. No ByteDance
+  announcement, model card, API ID, or pricing. Watch stays open.
+- **Kling 4.0 — stays "announced".** APIMart's criteria page
+  answered at its baseline signature (fc55ce30…, 136,708 chars) in
+  both completed runs — a seventh consecutive pass at the
+  identical signature — still "API Coming Soon", availability
+  "Not yet", pricing "has not been announced". No GA model ID, no
+  Kuaishou pricing.
+- **Soul Cinema — in-app credit cost still unpublished.**
+  Higgsfield's pricing page answered at the settled 428-char shell
+  (f14e9f4a…) in both completed runs and in two probes, with no
+  credit figure; the API post still lists only the $0.0032/image
+  rate tabled in 2.3.
+- **FLUX follow-up:** BFL's docs pricing page returned its
+  9,875-char rendering at the 2.6 baseline signature (cb1e92d1…)
+  inside this pass's completed runs — a seventh consecutive pass;
+  its table still matches the record exactly.
+- **PixVerse V6 — second clean pass claimed.** Its docs source
+  fetched clean at the baseline signature (95c88c96…, 4,278 chars)
+  inside both completed runs, all five sources answering — the
+  evidence 2.11 explicitly could not claim. The 2.10 recovery now
+  stands on two consecutive clean passes.
+
+**Flags: 3 raised, 3 dismissed, no record changes.** Run 1
+(12:06–12:16Z) read changed=2, with_errors=0. (a) **Wan 3.0** on
+its Zacks stock-news source: two adjudication fetches returned
+the flagged signature exactly (9756a800…, 15,877 chars — a
++30-char chrome delta on an August equity story whose Wan
+content is the launch coverage already behind the record).
+(b) **Runway Gen-4.5** on magichour.ai's pricing blog: the run
+fetched a new variant (a84522ba…, 22,395 chars); two probes both
+returned the long-standing baseline rendering exactly
+(4571fe2d…, 22,892 chars), whose figures (12 credits/s; API
+$0.12/s) match the record; the next run fetched the new variant
+again — the page alternates renderings within a pass.
+**2.12 calibration:** magichour.ai/blog/runway-gen-45-pricing is
+signature-excluded for Runway Gen-4.5 (fetched and recorded every
+run; the rate stays signature-live on the model's remaining
+sources), following the 2.7 FLUX precedent. Run 2 (12:22–12:31Z,
+pre-calibration) read changed=0, with_errors=0. Run 3
+(12:34–12:44Z), the first re-baseline after calibration, raised
+the pass's third flag — **Seedance 3.0** on breakread.com, whose
+signature moved +8 chars (9,679 → 9,687): two adjudication
+fetches returned the flagged signature exactly, and the article
+is the same 8 September world-model story dismissed in 2.10 —
+no announcement, no model card, no API, no pricing — while the
+Versely criteria page held its signature in the same run. The
+duplicate queue item was removed on the verdict and run 4
+(12:46–12:55Z), the final re-baseline, read **changed=0,
+with_errors=0, no_sources=0**, proving the calibration and the
+dismissal together; the queue holds exactly the 3 standing
+watches, their notes carrying this pass's re-check lines. Final
+drift: **12 alerts / 5 watch / 15 ok, 0 unwatched** — the 12
+alerts are exactly the final run's partial records: the standing
+host-gated cohort (Medium ×3 models, MarkTechPost ×3,
+GlobeNewswire ×2 models, Morningstar, whatsnew.fyi ×2 models,
+europesays, x.ai, midjourney.com) plus Runway Gen-4.5's Versely
+truncation (IncompleteRead in runs 1 and 4, while the same page
+answered for its other models — per-request variance, labelled
+as observed). Unpublished rates 5; pricing diff vs the
+2026-10-11 baseline 7 rows. History 99 → **107 events**
+(October window 79 → **87**); review log 19 → **21 entries**
+(pass 11 + addendum). models.json untouched by the pass.
+Process: every run was launched detached (setsid launcher +
+PID/status files) after a process-table check; exactly one
+checker was verified alive during each run. One near-miss,
+disclosed: the run-3 pre-launch check's pgrep pattern matched
+the launching shell's own command line and printed a false
+"still alive" — a `ps` listing confirmed exactly one checker
+(the new run) before any verdict rested on it.
+
+**Duty 2 — Flagship: the Continuity Ledger (`continuity.html`).**
+The WAVELOG named no next flagship, so the choice is stated here
+before the fact in the commit record: the guide's tool layer
+already covers the script (Clearance), the episode (Forge), the
+models (Showdown), and the money (Studio / Green Light) — the
+production stage with no working tool was continuity, the failure
+mode the guide's own character-consistency chapter opens with:
+"This is where most festival entries die." The Ledger is that
+chapter as a working file: its five pre-generation locks
+(identity system chosen and trained; wardrobe description locked
+verbatim; location master stills approved; light direction +
+time of day locked per scene; start frame real, never invented),
+each with the chapter's substance (the identity stack ranked by
+reliability, the verbatim rule, the master-still rule, the
+approved-frame library). A production logs its own locks —
+subject, kind (identity / wardrobe / prop / location / lighting /
+era-grade), the verbatim wording or reference, and the state
+today (locked / drifted / broken) — and the verdict is computed
+from the chapter's rejection rules: a broken lock stops the chain
+(failed clips don't chain; they get re-prompted), a drifted lock
+holds the next generation, all-locked reads clean.
+`build_continuity()` in `scripts/build_site.py` pre-renders the
+default ledger (a worked 6-lock example: 5 locked, 1 wardrobe
+lock drifted, so the first verdict is the honest hold) under the
+same rules `assets/js/continuity.js` (`ContinuityEngine`) runs in
+the browser; the page reads identically without JavaScript and
+exports the ledger as markdown. Wired into the nav index, the
+footer, and the search index; HAND skill `craft-continuity-ledger`
+(skills 235 → 236); `scripts/continuity.test.js` (11/11) wired
+into validate.sh stage 7. Playwright-verified desktop 1440 +
+mobile 390: zero console messages; re-locking the drifted
+wardrobe lock in the live page flips the verdict Hold →
+Continuity clean. Before/after: the consistency chapter was a
+read-only page with a checklist at the bottom; the guide now has
+a working ledger whose verdict is computed from the reader's own
+locks (screenshots in
+`~/workspace/progress-archive/ai-film-master-guide/rotation-013/`).
+The mobile hero deck on the new page shows the shared
+hero template's standing cramped-ruler quirk (identical on
+clearance.html at HEAD — documented since 2.9, not introduced
+here).
+
+**Duty 3 — Technique adoptions (9th-site test bed, GRADUATE).**
+Fleet Commons holds no shared pattern for either technique yet
+(checked `~/workspace/fleet-commons/patterns/` — the extraction
+queue lists them as awaiting verdicts), so both follow the fleet
+idioms other sites set. **(a) View Transitions — adopted
+site-wide** in `assets/css/base.css`, Aster's idiom: `@view-transition
+{ navigation: auto; }` inside the `prefers-reduced-motion:
+no-preference` guard, shaped to the cutting room as a cut, not a
+dissolve — `::view-transition-old(root)` leaves in 180ms,
+`::view-transition-new(root)` enters with a 6px settle in 260ms.
+Cross-document, progressive: unsupported browsers navigate
+exactly as before, and the reduced-motion rules still the
+pseudo-elements. **(b) Scroll-driven animations — adopted
+selectively** on the one surface that already had a scroll job:
+the reading-progress bar (present on every page via the shared
+header block). `assets/css/motifs.css` now scrubs it with
+`animation-timeline: scroll(root)` inside
+`@supports (animation-timeline: scroll())` + the no-preference
+guard (Button Mash's reading-progress idiom); `docs.js` detects
+the same support and stops writing transforms, keeping only the
+playhead timecode readout. Without support the JS listener
+drives the bar exactly as before — zero-loss degradation.
+**Deliberately NOT adopted:** named shared-element transitions
+(`view-transition-name` on the header or cards) — the site's ~40
+templates each own their header markup, several pages repeat
+candidate elements (duplicate names abort a transition), and the
+root cut carries the identity without that risk; scroll-driven
+entrance reveals in place of the existing IntersectionObserver
+system — the IO reveal is JS-gated so no-JS keeps every card
+visible, a property a view()-timeline replacement would have to
+re-prove for no gain over choreography that already works;
+`@property` and Speculation Rules — not in this rotation's
+graduated pair and no Commons pattern exists for either.
+
+**Duty 4 — Regression sweep (rotation-12 placement stack).**
+After the final build, grep-verified over all built pages:
+**107 pages** (106 + continuity.html) — OG absolute 107/107,
+canonical 107/107, theme-color 107/107, favicon links 107/107,
+robots.txt generated (allow-all, no invented sitemap), JSON-LD
+44 blocks (unchanged count — continuity is a tool page and
+carries canonical + OG only, per the honest-JSON-LD rule), 0
+invalid JSON-LD blocks, and exactly one `<h1>` on every page.
+
+**Rule 1762 hygiene.** Audit of all 666 tracked files: zero
+CR/CRLF anywhere. Final-newline gaps: 31 files — 9 hand-maintained
+files terminated this rotation (vercel.json, prompts-facets.json,
+scripts/checks.json, data/v1/diagnoses.json + 5 schema files);
+the rest are generator outputs whose generators emit no trailing
+newline (site/ copies, search-index.json, the preserved
+history/review-log JSONs' site copies — the data/v1 originals of
+the two Watchtower logs were terminated by this pass's own
+edits) and the frozen wt211 adjudication evidence logs, left
+byte-identical on purpose. `.gitattributes` added, pinning
+`* text eol=lf` with binary marks for image/font/icon assets.
+
+**Structure flags for the Release Engineer:** none. No api/
+paths added, removed, or moved (the 6-function map is unchanged;
+the removed root `api/` was untracked and empty). New files are
+all in existing homes: `assets/js/continuity.js`,
+`scripts/continuity.test.js`, `.gitattributes`, and the generated
+`site/continuity.html`.
+
+**Validation.** validate.sh **21/21** (post-commit run; stages 5/6 compare generator output against HEAD by design, so the two generator-freshness stages only pass on a committed tree); watchtower 6/6;
+continuity 11/11; clearance 19/19; forge 19/19; studio 70/70;
+greenlight 29/29; agent-workflows all pass; api.test.sh **55/55**
+(its pins updated to this pass: October window 79 → 87, drift
+alerts 11 → 12). Screenshots: continuity desktop + mobile
+(default hold verdict and the re-locked clean verdict),
+model-watch board, homepage mobile — archived under
+`~/workspace/progress-archive/ai-film-master-guide/rotation-013/`.
+
+**Left open.** The 3 standing watches — all re-checked this pass,
+none moved. The standing partial cohort will keep surfacing as
+alerts while its hosts gate the checker. MagicHour's rendering
+alternation is calibrated out of change detection; if it ever
+serves a third rendering with different figures, the manual
+rate check is the backstop (its record figures were verified
+against the baseline rendering this pass). PixVerse's docs
+source bears watching for a third clean pass. LTX-2.5's ltx.io
+note stands. Parked decisions: none this rotation. No fetch-rule
+skips occurred: every fetch used the checker's own path or its
+probe imports; no approval-card source was encountered.
+
 # Wave Log — AI Film Master Guide
 
 ## Watchtower 2.11 — the ninth review pass + Script Clearance (2026-10-13)

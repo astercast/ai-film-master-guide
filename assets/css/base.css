@@ -130,3 +130,19 @@ main section h2 > .tc { margin-left: var(--space-3); }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* Cross-page view transitions (rotation 13; graduated from the 9th
+   site's test bed — no shared Fleet Commons pattern exists yet, so
+   this follows the fleet idiom Aster set: @view-transition inside
+   the no-preference guard). Shaped as a cut, not a dissolve: the
+   old reel leaves in 180ms, the new one enters with a 6px settle.
+   Progressive enhancement only — browsers without cross-document
+   view transitions ignore the rule and navigate as before; the
+   reduced-motion block above also stills the pseudo-elements. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+  ::view-transition-old(root) { animation: vt-cut-out 0.18s ease-in both; }
+  ::view-transition-new(root) { animation: vt-cut-in 0.26s ease-out both; }
+}
+@keyframes vt-cut-out { to { opacity: 0; } }
+@keyframes vt-cut-in { from { opacity: 0; transform: translateY(6px); } }

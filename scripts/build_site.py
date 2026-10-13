@@ -68,6 +68,7 @@ NAV_INDEX = [
         ("linter.html", "Linter"),
         ("greenlight.html", "Green light"),
         ("clearance.html", "Script clearance"),
+        ("continuity.html", "Continuity ledger"),
         ("recipes.html", "Recipes"),
         ("forge.html", "Episode forge"),
     ]),
@@ -101,6 +102,7 @@ FOOTER_ITEMS = [
     ("showdown.html", "Showdown"),
     ("forge.html", "Episode forge"),
     ("clearance.html", "Script clearance"),
+    ("continuity.html", "Continuity ledger"),
     ("checks/", "Knowledge checks"),
     ("budget.html", "Budget"),
     ("optimizer.html", "Optimizer"),
@@ -3332,6 +3334,233 @@ def build_clearance(css_links):
 
 
 
+CONTINUITY_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Continuity ledger — AI Film Master Guide</title>
+  <meta name="description" content="The character-consistency chapter as a working ledger: the five pre-generation locks, every character, wardrobe, prop, location and lighting lock logged with its state, and the chaining verdict computed from the chapter's own rejection rules.">
+  {css}
+  <style>
+    .ct-verdict {{ font-size: 1.05rem; border-left: 3px solid var(--gold); padding-left: var(--space-4); margin-bottom: var(--space-6); }}
+    .ct-held {{ border-left-color: #e88; }}
+    .ct-lock-card, .ct-entry {{ border: 1px solid var(--line); border-radius: 12px; padding: var(--space-4) var(--space-5); margin-bottom: var(--space-4); }}
+    .ct-lock-head, .ct-entry-head {{ display: flex; align-items: baseline; gap: var(--space-3); flex-wrap: wrap; }}
+    .ct-lock-head h4, .ct-entry-head h4 {{ margin: 0; font-size: 1.2rem; }}
+    .ct-num {{ display: inline-block; min-width: 1.7em; text-align: center; background: var(--gold); color: #111; border-radius: 999px; font-weight: 800; padding: .1em .3em; }}
+    .ct-tag {{ margin-left: auto; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }}
+    .ct-what, .ct-lock, .ct-state {{ color: var(--muted); }}
+    .ct-state strong {{ color: var(--text); }}
+  </style>
+</head>
+<body>
+  <div class="edge-right" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        {sitenav}
+      </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">&#9679;</span> <span class="hdr-tc-val">00:59:52:00</span></span>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">&#8984;K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    {hero}
+    <section class="container" aria-labelledby="ct-h">
+      <h2 id="ct-h">The five locks — before any generation</h2>
+      <p>The consistency chapter opens with the sentence every AI filmmaker learns the expensive way: this is where most festival entries die. The five locks below are the chapter's own pre-generation checklist; the full chapter is <a href="craft/character-consistency.html">Character Consistency</a>. Tick a lock when the production has actually done it — the ledger counts what is written down, not intentions.</p>
+      <div id="ct-locks">{ct_locks}</div>
+      <p class="calc-note" id="ct-locks-state" aria-live="polite">{ct_locks_state}</p>
+      <h2>Your continuity ledger</h2>
+      <p>Log every lock the film depends on — a face, a wardrobe line pasted verbatim, a hero prop, a location master still, the light of a scene, the era and grade. Mark each one as it stands today: locked, drifted, or broken. The verdict follows the chapter's rejection rules: a clip fails if the face drifts, the wardrobe changes, or the light flips — and failed clips don't chain, they get re-prompted. The ledger opens on a worked example: a small AI short with one wardrobe lock drifted, so the first verdict you see is the honest hold.</p>
+      <div class="card" style="margin-bottom:var(--space-6);">
+        <div class="calc-grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
+          <div class="field">
+            <label for="ct-title">Production title</label>
+            <input class="input" type="text" id="ct-title" placeholder="e.g. The Night Bus">
+          </div>
+          <div class="field">
+            <label for="ct-new-subject">New lock — subject</label>
+            <input class="input" type="text" id="ct-new-subject" placeholder="e.g. Mara Venn — wardrobe, night scenes">
+          </div>
+          <div class="field">
+            <label for="ct-new-kind">Lock kind</label>
+            <select class="input" id="ct-new-kind">{ct_kind_options}</select>
+          </div>
+          <div class="field">
+            <label for="ct-new-lock">The lock itself — verbatim wording or reference</label>
+            <input class="input" type="text" id="ct-new-lock" placeholder="e.g. Character sheet v3 + Soul ID, 42 photos">
+          </div>
+          <div class="field">
+            <label for="ct-new-status">State today</label>
+            <select class="input" id="ct-new-status">{ct_status_options}</select>
+          </div>
+          <div class="field">
+            <label aria-hidden="true">&nbsp;</label>
+            <button type="button" class="btn" id="ct-add">Add lock to the ledger</button>
+          </div>
+        </div>
+        <p class="calc-note" id="ct-msg" hidden></p>
+      </div>
+      <p class="ct-verdict" id="ct-verdict" aria-live="polite">{ct_verdict}</p>
+      <div id="ct-stage">{ct_stage}</div>
+      <div class="card" style="margin-top:var(--space-6);">
+        <h3>Take the ledger</h3>
+        <p>The ledger exports as clean markdown: the five-lock checklist with its state, every logged lock with its state and verbatim wording, and the chaining verdict — the file the next shoot day starts from.</p>
+        <p><button type="button" class="btn" id="ct-copy">Copy ledger</button> <button type="button" class="btn btn-ghost" id="ct-download">Download ledger (.md)</button></p>
+        <p><a class="btn btn-ghost" href="craft/character-consistency.html">Read the consistency chapter</a> <a class="btn btn-ghost" href="style-bible.html">Style bible</a> <a class="btn btn-ghost" href="forge.html">Episode forge</a></p>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+    </div>
+  </footer>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search" hidden>
+    <div class="palette-box">
+      <input type="search" id="palette-input" placeholder="Search the guide…" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/continuity.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
+</body>
+</html>
+"""
+
+
+# The continuity layer — kept in step with assets/js/continuity.js
+# (ContinuityEngine). scripts/continuity.test.js pins the engine, and
+# the pre-rendered default ledger below is rendered under the same
+# rules. Source: craft/character-consistency.md — its checklist, its
+# identity stack, and its rejection rules, quoted in substance.
+CONTINUITY_LOCKS = [
+    dict(id="identity", name="Identity system chosen and trained",
+         what="The identity stack, ranked by reliability: trained identity (Soul ID) first, then the character sheet as reference, then a per-generation reference upload. Text description alone is the weakest — never rely on prose to hold a face across 50 shots."),
+    dict(id="wardrobe", name="Wardrobe description locked, verbatim",
+         what="Write the wardrobe once, in exact language, and paste it verbatim into every prompt. A mid-film wardrobe change is a new locked description — never improvised per shot. Props get the same treatment: one description, reused exactly."),
+    dict(id="locations", name="Location master stills approved",
+         what="Generate and approve a master still of each location first. Every shot in that location starts from it or references it."),
+    dict(id="light", name="Light direction + time of day locked per scene",
+         what="Lock time of day and light direction per scene — \u201cgolden-hour side light from frame left\u201d in every prompt of the scene. Pick the era and colour palette up front; don't grade shot-by-shot and hope."),
+    dict(id="startframe", name="Start frame is real, never invented",
+         what="Every clip starts from the last frame of the previous approved clip, or from the approved-frame library. Never fabricate a start frame. One human per start frame on character-led work — crowded frames multiply failure modes."),
+]
+
+CONTINUITY_KINDS = ["identity", "wardrobe", "prop", "location", "lighting", "era / grade"]
+
+CONTINUITY_STATUSES = [
+    ("locked", "Locked — holds"),
+    ("drifted", "Drifted — off the lock"),
+    ("broken", "Broken — fails the rejection rules"),
+]
+
+# Mirror of DEFAULT_ENTRIES in assets/js/continuity.js.
+CONTINUITY_DEFAULT_ENTRIES = [
+    dict(subject="Mara Venn — face", kind="identity", lock="Character sheet v3 (front / 3-4 / side) + Soul ID trained on 42 photos", status="locked"),
+    dict(subject="Mara Venn — wardrobe, scenes 1–6", kind="wardrobe", lock="\u201cworn brown leather jacket, white t-shirt, dark jeans, scuffed boots\u201d — pasted verbatim", status="drifted"),
+    dict(subject="Ledger prop (hero)", kind="prop", lock="One description, reused exactly: \u201cbrass-bound ledger, cracked spine, red ribbon marker\u201d", status="locked"),
+    dict(subject="Night-bus interior", kind="location", lock="Master still NB-MASTER-02 approved; every interior shot references it", status="locked"),
+    dict(subject="Bus scenes — light", kind="lighting", lock="Night; sodium practicals from frame right; no daylight plates", status="locked"),
+    dict(subject="Era / grade — whole film", kind="era / grade", lock="Early-90s palette locked up front; grade applied to the cut, not per shot", status="locked"),
+]
+
+
+def continuity_eval(entries):
+    """Mirror of ContinuityEngine.evaluate (assets/js/continuity.js)."""
+    drifted = [e for e in entries if e.get("status") == "drifted"]
+    broken = [e for e in entries if e.get("status") == "broken"]
+    clean = bool(entries) and not drifted and not broken
+    if not entries:
+        verdict = "No ledger yet — nothing is locked, so nothing can hold. Log the production's locks first."
+    elif broken:
+        n = len(broken)
+        verdict = (f"Chain stopped — {n} broken lock" + ("" if n == 1 else "s") +
+                   ". Under the chapter's rejection rules a clip fails if the face drifts, "
+                   "the wardrobe changes, or the light flips; failed clips don't chain — "
+                   "they get re-prompted from the last approved frame.")
+    elif drifted:
+        n = len(drifted)
+        verdict = (f"Hold — {n} lock" + (" has" if n == 1 else "s have") +
+                   " drifted off the locked wording or reference. Re-lock before the next "
+                   "generation: drift compounds shot over shot, and the next clip chains "
+                   "from this one.")
+    else:
+        verdict = ("Continuity clean — every logged lock holds. Chain from the approved "
+                   "frames and keep logging: a lock that is not in the ledger is not locked.")
+    return {"total": len(entries), "locked": len(entries) - len(drifted) - len(broken),
+            "drifted": len(drifted), "broken": len(broken), "clean": clean,
+            "verdict": verdict}
+
+
+def build_continuity(css_links):
+    """Continuity Ledger — the character-consistency chapter
+    (craft/character-consistency.md) as a working ledger: the five
+    pre-generation locks, the production's own logged locks with
+    their observed states, and the chaining verdict computed exactly
+    as the chapter's rejection rules state it. The default ledger is
+    pre-rendered here under the same rules assets/js/continuity.js
+    runs in the browser; the engine invents no locks and no states —
+    a drifted or broken lock holds or stops the chain, on the record."""
+    def esc(s):
+        return html.escape(str(s if s is not None else ""))
+
+    status_label = dict(CONTINUITY_STATUSES)
+    locks_html = []
+    for i, s in enumerate(CONTINUITY_LOCKS):
+        locks_html.append(
+            f'<article class="ct-lock-card"><div class="ct-lock-head"><span class="ct-num">{i + 1}</span>'
+            f'<h4>{esc(s["name"])}</h4><span class="ct-tag">Pre-generation lock</span></div>'
+            f'<p class="ct-what">{esc(s["what"])}</p>'
+            f'<p><label><input type="checkbox" data-ct-lock="{esc(s["id"])}"> Done — the lock is written down</label></p></article>')
+    r = continuity_eval(CONTINUITY_DEFAULT_ENTRIES)
+    stage_html = []
+    for idx, e in enumerate(CONTINUITY_DEFAULT_ENTRIES):
+        s = (f'<article class="ct-entry"><div class="ct-entry-head"><h4>{esc(e["subject"])}</h4>'
+             f'<span class="ct-tag">{esc(e["kind"])}</span></div>'
+             f'<p class="ct-lock">Lock: {esc(e["lock"])}</p>'
+             f'<p class="ct-state">State: <strong>{esc(status_label.get(e["status"]) or "— no state recorded —")}</strong></p>'
+             f'<p class="ct-states" role="group" aria-label="Set the state for {esc(e["subject"])}">'
+             + " ".join(
+                 f'<button type="button" class="btn btn-sm{"" if e["status"] == sid else " btn-ghost"}" '
+                 f'data-ct-set="{idx}:{sid}">{esc(label)}</button>'
+                 for sid, label in CONTINUITY_STATUSES)
+             + "</p>"
+             f'<p><button type="button" class="btn btn-sm btn-ghost" data-ct-del="{idx}">'
+             f'Remove lock</button></p></article>')
+        stage_html.append(s)
+    kind_opts = "".join(f'<option value="{esc(k)}">{esc(k)}</option>' for k in CONTINUITY_KINDS)
+    status_opts = "".join(f'<option value="{esc(sid)}">{esc(label)}</option>' for sid, label in CONTINUITY_STATUSES)
+    (SITE / "continuity.html").write_text(CONTINUITY_TMPL.format(
+        css=css_links, sitenav=nav_html("", "continuity.html"), footer=footer_html(""),
+        hero=hero_cutroom(
+            kicker="""The cutting room""",
+            h1="""Continuity <span class="accent">ledger.</span>""",
+            lede="""Keeping people and worlds stable across shots is where most festival entries die. The five locks before any generation, every lock your film depends on logged with its state today, and the chaining verdict from the chapter's own rejection rules: failed clips don't chain — they get re-prompted.""",
+            deck_title="""CONTINUITY — THE_LEDGER""",
+            clips={"v2": ['The locks'], "v1": ['Face', 'Wardrobe', 'Light'], "a1": ['The chain']},
+            h1_id="ct-title-h",
+            extra=""" """),
+        ct_locks="".join(locks_html),
+        ct_locks_state="Checklist complete: 0 of 5 — the checklist is the gate before any generation; finish it first.",
+        ct_kind_options=kind_opts, ct_status_options=status_opts,
+        ct_verdict=html.escape(r["verdict"]), ct_stage="".join(stage_html)))
+    return [("continuity.html", "Continuity ledger")]
+
+
 
 GALLERY_TMPL = """<!DOCTYPE html>
 <html lang="en">
@@ -5944,6 +6173,9 @@ def main():
     # Script Clearance desk (research cycle 81, rules 1358-1367)
     build_clearance(css_links)
 
+    # Continuity Ledger (rotation 13 flagship — the consistency chapter as a working ledger)
+    build_continuity(css_links)
+
     # Knowledge checks (generated from scripts/checks.json)
     wave7_checks = build_checks(css_links)
 
@@ -6026,6 +6258,9 @@ def main():
         {"url": "clearance.html", "title": "Script clearance desk", "section": "Tools",
          "headings": ["The ten steps — the file itself", "Your clearance file", "Take the file"],
          "text": "The Script Clearance desk: the clearance layer from research cycle 81 (rules 1358–1367) as a working file — the clearance report, the annotation guide, researched names and permitted numbers, chain of title and the copyright report, the title report, release coverage, the featured-object caution, the living report, the recorded decision, and the final check at the E&O / distribution gate. Log a production's items, close every flag with a recorded decision, and read the gate verdict computed from your own entries; export the file as markdown. Chapter: legal/script-clearance.md."},
+        {"url": "continuity.html", "title": "Continuity ledger", "section": "Tools",
+         "headings": ["The five locks — before any generation", "Your continuity ledger", "Take the ledger"],
+         "text": "The Continuity Ledger: the character-consistency chapter as a working ledger — the identity stack ranked by reliability, wardrobe and props locked verbatim, location master stills, light locked per scene, and the real start frame. Log every lock a film depends on (identity, wardrobe, prop, location, lighting, era / grade) with its state — locked, drifted, or broken — and read the chaining verdict computed from the chapter's rejection rules: a clip fails if the face drifts, the wardrobe changes, or the light flips, and failed clips don't chain, they get re-prompted. Export the ledger as markdown. Chapter: craft/character-consistency.md."},
         {"url": "showdown.html", "title": "Model showdown", "section": "Tools",
          "headings": ["Lace up two reels", "The rate", "Drift board", "Vs the baseline"],
          "text": "The model showdown: any two of the guide's 32 watched models spliced side by side on the cutting table — published rates tier by tier, source-check health, drift-board severity and alerts, pricing movement against the 2026-10-11 baseline, and the latest Watchtower event for each. Edges are direct comparisons of published values only; a model with no published USD rate is shown as unpublished, never estimated. Generated from models.json, pricing.json, model-checks.json, and model-history.json."},

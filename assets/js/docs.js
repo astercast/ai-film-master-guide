@@ -31,12 +31,18 @@
   var progress = document.querySelector(".progress-bar span");
   var progressTc = document.querySelector(".progress-tc");
   if (progress) {
+    /* Scroll-driven where supported (motifs.css: animation-timeline:
+       scroll(root) scrubs the bar on the compositor) — then this
+       listener keeps only the timecode readout and never writes the
+       transform. Without support it drives the bar as before. */
+    var cssDriven = !reduceMotion && window.CSS && CSS.supports &&
+      CSS.supports("animation-timeline: scroll()");
     var ticking = false;
     var update = function () {
       var h = document.documentElement;
       var max = h.scrollHeight - h.clientHeight;
       var p = max > 0 ? h.scrollTop / max : 0;
-      progress.style.transform = "scaleX(" + p.toFixed(4) + ")";
+      if (!cssDriven) progress.style.transform = "scaleX(" + p.toFixed(4) + ")";
       if (progressTc) {
         /* The chapter is the reel: map scroll progress to a 10-minute reel. */
         progressTc.textContent = tcFromSeconds(p * 600);

@@ -1,0 +1,5 @@
+[model-watch] 32 models | changed=2 | with_errors=0 | no_sources=0
+  REVIEW: Wan 3.0 / 3.0 Prime — source content signature differs from previous run
+  REVIEW: Runway Gen-4.5 — source content signature differs from previous run
+[model-watch] wrote model-checks.json, model-review-queue.json
+EXIT=0

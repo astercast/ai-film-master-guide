@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Continuity ledger — AI Film Master Guide</title>
+  <meta name="description" content="The character-consistency chapter as a working ledger: the five pre-generation locks, every character, wardrobe, prop, location and lighting lock logged with its state, and the chaining verdict computed from the chapter's own rejection rules.">
+  <link rel="preload" href="assets/fonts/anton-latin-normal-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/fonts.css">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/motifs.css">
+  <link rel="stylesheet" href="assets/css/docs.css">
+  <link rel="stylesheet" href="assets/css/home.css">
+  <link rel="stylesheet" href="assets/css/print.css">
+  <style>
+    .ct-verdict { font-size: 1.05rem; border-left: 3px solid var(--gold); padding-left: var(--space-4); margin-bottom: var(--space-6); }
+    .ct-held { border-left-color: #e88; }
+    .ct-lock-card, .ct-entry { border: 1px solid var(--line); border-radius: 12px; padding: var(--space-4) var(--space-5); margin-bottom: var(--space-4); }
+    .ct-lock-head, .ct-entry-head { display: flex; align-items: baseline; gap: var(--space-3); flex-wrap: wrap; }
+    .ct-lock-head h4, .ct-entry-head h4 { margin: 0; font-size: 1.2rem; }
+    .ct-num { display: inline-block; min-width: 1.7em; text-align: center; background: var(--gold); color: #111; border-radius: 999px; font-weight: 800; padding: .1em .3em; }
+    .ct-tag { margin-left: auto; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+    .ct-what, .ct-lock, .ct-state { color: var(--muted); }
+    .ct-state strong { color: var(--text); }
+  </style>
+  <meta name="theme-color" content="#090807">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="canonical" href="https://ai-film-master-guide-live.vercel.app/continuity">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Continuity ledger — AI Film Master Guide">
+  <meta property="og:description" content="The character-consistency chapter as a working ledger: the five pre-generation locks, every character, wardrobe, prop, location and lighting lock logged with its state, and the chaining verdict computed from the chapter's own rejection rules.">
+  <meta property="og:image" content="https://ai-film-master-guide-live.vercel.app/assets/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Continuity ledger — AI Film Master Guide">
+  <meta name="twitter:description" content="The character-consistency chapter as a working ledger: the five pre-generation locks, every character, wardrobe, prop, location and lighting lock logged with its state, and the chaining verdict computed from the chapter's own rejection rules.">
+  <meta name="twitter:image" content="https://ai-film-master-guide-live.vercel.app/assets/og-card.png">
+</head>
+<body>
+  <div class="edge-right" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html">Guide</a>
+        <a href="cutting-room.html">Cutting room</a>
+        <a href="teardown.html">Teardowns</a>
+        <a href="workshop.html">Workshop</a>
+        <a href="models/">Models</a>
+        <a href="compare.html">Compare</a>
+        <details class="nav-idx"><summary class="nav-idx-btn is-current"><span>Index</span><span class="nav-idx-caret" aria-hidden="true">▾</span></summary><div class="nav-idx-panel"><div class="nav-idx-group"><p>On the bench</p><ul><li><a href="prompts.html">Prompts</a></li><li><a href="shots.html">Shot list</a></li><li><a href="style-bible.html">Style bible</a></li><li><a href="budget.html">Budget</a></li><li><a href="optimizer.html">Optimizer</a></li><li><a href="doctor.html">Doctor</a></li><li><a href="linter.html">Linter</a></li><li><a href="greenlight.html">Green light</a></li><li><a href="clearance.html">Script clearance</a></li><li><a href="continuity.html" aria-current="page">Continuity ledger</a></li><li><a href="recipes.html">Recipes</a></li><li><a href="forge.html">Episode forge</a></li></ul></div><div class="nav-idx-group"><p>Study</p><ul><li><a href="manifesto.html">Manifesto</a></li><li><a href="craft-not-buttons.html">Craft, not buttons</a></li><li><a href="field-guides/">Field guides</a></li><li><a href="checks/">Knowledge checks</a></li><li><a href="quiz.html">Quiz</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="model-watch.html">Model watch</a></li><li><a href="showdown.html">Model showdown</a></li></ul></div><div class="nav-idx-group"><p>For agents</p><ul><li><a href="skills.html">Skills</a></li><li><a href="skill-spec.html">Skill spec</a></li><li><a href="api.html">API</a></li><li><a href="changelog.html">Changelog</a></li></ul></div></div></details>
+      </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">&#9679;</span> <span class="hdr-tc-val">00:59:52:00</span></span>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">&#8984;K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-cutroom" aria-labelledby="ct-title-h">
+      <div class="tl-deck" aria-hidden="true">
+        <div class="tl-chrome">
+          <span class="tl-rec"><i></i>REC</span>
+          <span class="tl-tc-live" data-tl-tc>00:00:04:00</span>
+          <span class="tl-pop">2-POP 01:00:06:00 &#183; &#x223F;1kHz</span>
+          <span class="tl-title">CONTINUITY — THE_LEDGER</span>
+        </div>
+        <div class="tl-ruler">
+          <span style="left:0%">00:00:00:00</span><span style="left:20%">00:00:12:00</span><span style="left:40%">00:00:24:00</span><span style="left:60%">00:00:36:00</span><span style="left:80%">00:00:48:00</span><span style="left:100%">00:01:00:00</span>
+        </div>
+        <div class="tl-tracks">
+          <div class="tl-track"><span class="tl-track-label">V2</span>
+            <span class="clip is-blue" style="left:2.0%;width:96.0%">The locks</span>
+          </div>
+          <div class="tl-track"><span class="tl-track-label">V1</span>
+            <span class="clip is-gold" style="left:2.0%;width:30.7%">Face</span>
+            <span class="clip is-gold" style="left:34.7%;width:30.7%">Wardrobe</span>
+            <span class="clip is-gold" style="left:67.3%;width:30.7%">Light</span>
+          </div>
+          <div class="tl-track"><span class="tl-track-label">A1</span>
+            <span class="clip is-rec" style="left:2.0%;width:96.0%">The chain</span>
+          </div>
+          <div class="tl-playhead"></div>
+        </div>
+        <div class="leader-frame" data-leader-frame><b>3</b><span class="lf-label">LEADER</span></div>
+      </div>
+      <div class="container hero-inner">
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>The cutting room</span>
+        <h1 id="ct-title-h">Continuity <span class="accent">ledger.</span></h1>
+        <p class="lede">Keeping people and worlds stable across shots is where most festival entries die. The five locks before any generation, every lock your film depends on logged with its state today, and the chaining verdict from the chapter's own rejection rules: failed clips don't chain — they get re-prompted.</p>
+         
+      </div>
+    </section>
+    <section class="container" aria-labelledby="ct-h">
+      <h2 id="ct-h">The five locks — before any generation</h2>
+      <p>The consistency chapter opens with the sentence every AI filmmaker learns the expensive way: this is where most festival entries die. The five locks below are the chapter's own pre-generation checklist; the full chapter is <a href="craft/character-consistency.html">Character Consistency</a>. Tick a lock when the production has actually done it — the ledger counts what is written down, not intentions.</p>
+      <div id="ct-locks"><article class="ct-lock-card"><div class="ct-lock-head"><span class="ct-num">1</span><h4>Identity system chosen and trained</h4><span class="ct-tag">Pre-generation lock</span></div><p class="ct-what">The identity stack, ranked by reliability: trained identity (Soul ID) first, then the character sheet as reference, then a per-generation reference upload. Text description alone is the weakest — never rely on prose to hold a face across 50 shots.</p><p><label><input type="checkbox" data-ct-lock="identity"> Done — the lock is written down</label></p></article><article class="ct-lock-card"><div class="ct-lock-head"><span class="ct-num">2</span><h4>Wardrobe description locked, verbatim</h4><span class="ct-tag">Pre-generation lock</span></div><p class="ct-what">Write the wardrobe once, in exact language, and paste it verbatim into every prompt. A mid-film wardrobe change is a new locked description — never improvised per shot. Props get the same treatment: one description, reused exactly.</p><p><label><input type="checkbox" data-ct-lock="wardrobe"> Done — the lock is written down</label></p></article><article class="ct-lock-card"><div class="ct-lock-head"><span class="ct-num">3</span><h4>Location master stills approved</h4><span class="ct-tag">Pre-generation lock</span></div><p class="ct-what">Generate and approve a master still of each location first. Every shot in that location starts from it or references it.</p><p><label><input type="checkbox" data-ct-lock="locations"> Done — the lock is written down</label></p></article><article class="ct-lock-card"><div class="ct-lock-head"><span class="ct-num">4</span><h4>Light direction + time of day locked per scene</h4><span class="ct-tag">Pre-generation lock</span></div><p class="ct-what">Lock time of day and light direction per scene — “golden-hour side light from frame left” in every prompt of the scene. Pick the era and colour palette up front; don&#x27;t grade shot-by-shot and hope.</p><p><label><input type="checkbox" data-ct-lock="light"> Done — the lock is written down</label></p></article><article class="ct-lock-card"><div class="ct-lock-head"><span class="ct-num">5</span><h4>Start frame is real, never invented</h4><span class="ct-tag">Pre-generation lock</span></div><p class="ct-what">Every clip starts from the last frame of the previous approved clip, or from the approved-frame library. Never fabricate a start frame. One human per start frame on character-led work — crowded frames multiply failure modes.</p><p><label><input type="checkbox" data-ct-lock="startframe"> Done — the lock is written down</label></p></article></div>
+      <p class="calc-note" id="ct-locks-state" aria-live="polite">Checklist complete: 0 of 5 — the checklist is the gate before any generation; finish it first.</p>
+      <h2>Your continuity ledger</h2>
+      <p>Log every lock the film depends on — a face, a wardrobe line pasted verbatim, a hero prop, a location master still, the light of a scene, the era and grade. Mark each one as it stands today: locked, drifted, or broken. The verdict follows the chapter's rejection rules: a clip fails if the face drifts, the wardrobe changes, or the light flips — and failed clips don't chain, they get re-prompted. The ledger opens on a worked example: a small AI short with one wardrobe lock drifted, so the first verdict you see is the honest hold.</p>
+      <div class="card" style="margin-bottom:var(--space-6);">
+        <div class="calc-grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
+          <div class="field">
+            <label for="ct-title">Production title</label>
+            <input class="input" type="text" id="ct-title" placeholder="e.g. The Night Bus">
+          </div>
+          <div class="field">
+            <label for="ct-new-subject">New lock — subject</label>
+            <input class="input" type="text" id="ct-new-subject" placeholder="e.g. Mara Venn — wardrobe, night scenes">
+          </div>
+          <div class="field">
+            <label for="ct-new-kind">Lock kind</label>
+            <select class="input" id="ct-new-kind"><option value="identity">identity</option><option value="wardrobe">wardrobe</option><option value="prop">prop</option><option value="location">location</option><option value="lighting">lighting</option><option value="era / grade">era / grade</option></select>
+          </div>
+          <div class="field">
+            <label for="ct-new-lock">The lock itself — verbatim wording or reference</label>
+            <input class="input" type="text" id="ct-new-lock" placeholder="e.g. Character sheet v3 + Soul ID, 42 photos">
+          </div>
+          <div class="field">
+            <label for="ct-new-status">State today</label>
+            <select class="input" id="ct-new-status"><option value="locked">Locked — holds</option><option value="drifted">Drifted — off the lock</option><option value="broken">Broken — fails the rejection rules</option></select>
+          </div>
+          <div class="field">
+            <label aria-hidden="true">&nbsp;</label>
+            <button type="button" class="btn" id="ct-add">Add lock to the ledger</button>
+          </div>
+        </div>
+        <p class="calc-note" id="ct-msg" hidden></p>
+      </div>
+      <p class="ct-verdict" id="ct-verdict" aria-live="polite">Hold — 1 lock has drifted off the locked wording or reference. Re-lock before the next generation: drift compounds shot over shot, and the next clip chains from this one.</p>
+      <div id="ct-stage"><article class="ct-entry"><div class="ct-entry-head"><h4>Mara Venn — face</h4><span class="ct-tag">identity</span></div><p class="ct-lock">Lock: Character sheet v3 (front / 3-4 / side) + Soul ID trained on 42 photos</p><p class="ct-state">State: <strong>Locked — holds</strong></p><p class="ct-states" role="group" aria-label="Set the state for Mara Venn — face"><button type="button" class="btn btn-sm" data-ct-set="0:locked">Locked — holds</button> <button type="button" class="btn btn-sm btn-ghost" data-ct-set="0:drifted">Drifted — off the lock</button> <button type="button" class="btn btn-sm btn-ghost" data-ct-set="0:broken">Broken — fails the rejection rules</button></p><p><button type="button" class="btn btn-sm btn-ghost" data-ct-del="0">Remove lock</button></p></article><article class="ct-entry"><div class="ct-entry-head"><h4>Mara Venn — wardrobe, scenes 1–6</h4><span class="ct-tag">wardrobe</span></div><p class="ct-lock">Lock: “worn brown leather jacket, white t-shirt, dark jeans, scuffed boots” — pasted verbatim</p><p class="ct-state">State: <strong>Drifted — off the lock</strong></p><p class="ct-states" role="group" aria-label="Set the state for Mara Venn — wardrobe, scenes 1–6"><button type="button" class="btn btn-sm btn-ghost" data-ct-set="1:locked">Locked — holds</button> <button type="button" class="btn btn-sm" data-ct-set="1:drifted">Drifted — off the lock</button> <button type="button" class="btn btn-sm btn-ghost" data-ct-set="1:broken">Broken — fails the rejection rules</button></p><p><button type="button" class="btn btn-sm btn-ghost" data-ct-del="1">Remove lock</button></p></article><article class="ct-entry"><div class="ct-entry-head"><h4>Ledger prop (hero)</h4><span class="ct-tag">prop</span></div><p class="ct-lock">Lock: One description, reused exactly: “brass-bound ledger, cracked spine, red ribbon marker”</p><p class="ct-state">State: <strong>Locked — holds</strong></p><p class="ct-states" role="group" aria-label="Set the state for Ledger prop (hero)"><button type="button" class="btn btn-sm" data-ct-set="2:locked">Locked — holds</button> <button type="button" class="btn btn-sm btn-ghost" data-ct-set="2:drifted">Drifted — off the lock</button> <button type="button" class="btn btn-sm btn-ghost" data-ct-set="2:broken">Broken — fails the rejection rules</button></p><p><button type="button" class="btn btn-sm btn-ghost" data-ct-del="2">Remove lock</button></p></article><article class="ct-entry"><div class="ct-entry-head"><h4>Night-bus interior</h4><span class="ct-tag">location</span></div><p class="ct-lock">Lock: Master still NB-MASTER-02 approved; every interior shot references it</p><p class="ct-state">State: <strong>Locked — holds</strong></p><p class="ct-states" role="group" aria-label="Set the state for Night-bus interior"><button type="button" class="btn btn-sm" data-ct-set="3:locked">Locked — holds</button> <button type="button" class="btn btn-sm btn-ghost" data-ct-set="3:drifted">Drifted — off the lock</button> <button type="button" class="btn btn-sm btn-ghost" data-ct-set="3:broken">Broken — fails the rejection rules</button></p><p><button type="button" class="btn btn-sm btn-ghost" data-ct-del="3">Remove lock</button></p></article><article class="ct-entry"><div class="ct-entry-head"><h4>Bus scenes — light</h4><span class="ct-tag">lighting</span></div><p class="ct-lock">Lock: Night; sodium practicals from frame right; no daylight plates</p><p class="ct-state">State: <strong>Locked — holds</strong></p><p class="ct-states" role="group" aria-label="Set the state for Bus scenes — light"><button type="button" class="btn btn-sm" data-ct-set="4:locked">Locked — holds</button> <button type="button" class="btn btn-sm btn-ghost" data-ct-set="4:drifted">Drifted — off the lock</button> <button type="button" class="btn btn-sm btn-ghost" data-ct-set="4:broken">Broken — fails the rejection rules</button></p><p><button type="button" class="btn btn-sm btn-ghost" data-ct-del="4">Remove lock</button></p></article><article class="ct-entry"><div class="ct-entry-head"><h4>Era / grade — whole film</h4><span class="ct-tag">era / grade</span></div><p class="ct-lock">Lock: Early-90s palette locked up front; grade applied to the cut, not per shot</p><p class="ct-state">State: <strong>Locked — holds</strong></p><p class="ct-states" role="group" aria-label="Set the state for Era / grade — whole film"><button type="button" class="btn btn-sm" data-ct-set="5:locked">Locked — holds</button> <button type="button" class="btn btn-sm btn-ghost" data-ct-set="5:drifted">Drifted — off the lock</button> <button type="button" class="btn btn-sm btn-ghost" data-ct-set="5:broken">Broken — fails the rejection rules</button></p><p><button type="button" class="btn btn-sm btn-ghost" data-ct-del="5">Remove lock</button></p></article></div>
+      <div class="card" style="margin-top:var(--space-6);">
+        <h3>Take the ledger</h3>
+        <p>The ledger exports as clean markdown: the five-lock checklist with its state, every logged lock with its state and verbatim wording, and the chaining verdict — the file the next shoot day starts from.</p>
+        <p><button type="button" class="btn" id="ct-copy">Copy ledger</button> <button type="button" class="btn btn-ghost" id="ct-download">Download ledger (.md)</button></p>
+        <p><a class="btn btn-ghost" href="craft/character-consistency.html">Read the consistency chapter</a> <a class="btn btn-ghost" href="style-bible.html">Style bible</a> <a class="btn btn-ghost" href="forge.html">Episode forge</a></p>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer"><a href="index.html">Guide</a><a href="skills.html">Skills</a><a href="workshop.html">Workshop</a><a href="quiz.html">Quiz</a><a href="compare.html">Compare</a><a href="gallery.html">Gallery</a><a href="teardown.html">Teardowns</a><a href="model-watch.html">Model watch</a><a href="showdown.html">Showdown</a><a href="forge.html">Episode forge</a><a href="clearance.html">Script clearance</a><a href="continuity.html">Continuity ledger</a><a href="checks/">Knowledge checks</a><a href="budget.html">Budget</a><a href="optimizer.html">Optimizer</a><a href="shots.html">Shot list</a><a href="style-bible.html">Style bible</a><a href="doctor.html">Doctor</a><a href="linter.html">Linter</a><a href="cutting-room.html">Cutting room</a><a href="prompts.html">Prompts</a><a href="models/">Models</a><a href="anatomy.html">Anatomy</a><a href="manifesto.html">Manifesto</a><a href="craft-not-buttons.html">Craft, not buttons</a><a href="recipes.html">Recipes</a><a href="field-guides/">Field guides</a><a href="changelog.html">Changelog</a><a href="skill-spec.html">Skill spec</a><a href="api.html">API</a></nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+    </div>
+  </footer>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search" hidden>
+    <div class="palette-box">
+      <input type="search" id="palette-input" placeholder="Search the guide…" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/continuity.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "count": 235,
+  "count": 236,
   "skills": [
     {
       "id": "prompt-t1",
@@ -1333,6 +1333,12 @@
       "title": "Run the script-clearance file",
       "description": "The ten-step clearance file (rules 1358\u20131367): report, annotation guide, chain of title, title report, releases, and the E&O gate.",
       "path": "skills/legal/legal-script-clearance.md"
+    },
+    {
+      "id": "craft-continuity-ledger",
+      "title": "Run the continuity ledger",
+      "description": "The character-consistency chapter as a working ledger: the five pre-generation locks, every lock logged with its state, and the chaining verdict from the rejection rules.",
+      "path": "skills/craft/craft-continuity-ledger.md"
     },
     {
       "id": "workflow-shot-list",
