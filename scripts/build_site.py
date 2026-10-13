@@ -3777,11 +3777,19 @@ def build_model_watch(css_links):
         elif severity == "watch":
             n_watch += 1
         if severity != "ok":
+            rec = checks_by_name.get(m["model"])
+            meta = []
+            if rec and rec.get("last_checked"):
+                meta.append(f'checked {fmt_day(str(rec["last_checked"])[:10])}')
+            if m.get("last_verified"):
+                meta.append(f'record verified {fmt_day(str(m["last_verified"])[:10])}')
+            meta_html = (f'<span class="wt-drift-meta">{html.escape(" · ".join(meta))}</span>'
+                         if meta else "")
             drift_rows.append(
                 f'<li class="wt-drift-row is-{severity}">'
                 f'<span class="wt-sev wt-sev-{severity}">{"Review" if severity == "alert" else "Watch"}</span>'
                 f'<span class="wt-drift-body"><strong>{html.escape(m["model"])}</strong> — '
-                f'{html.escape(" ".join(alerts))}</span></li>')
+                f'{html.escape(" ".join(alerts))}</span>{meta_html}</li>')
         m["_drift"] = {"mid": mid, "check": cs, "pricing": pstat,
                        "latest": latest_event.get(mid)}
     drift_line = (f"{len(models)} models tracked · {n_alert} need review · {n_watch} on watch · "

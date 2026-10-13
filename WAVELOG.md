@@ -1,5 +1,110 @@
 # Wave Log — AI Film Master Guide
 
+## Watchtower 2.2 — the first review pass + signature calibration (2026-10-12)
+
+**Assignment:** Watchtower follow-ups — build what 2.1 left undone. Its
+"Left open" named exactly one piece of work: the 8 changed-source queue
+items and 8 failed-source records awaiting a human/agent review pass
+(the standing promotion workflow), deliberately not promoted by 2.1.
+2.2 works that queue end to end, adds the adjudication record the
+workflow was missing, and — when the re-baseline run exposed it —
+calibrates the change signature itself.
+
+**The review pass.** Every flagged URL was re-fetched with the
+checker's own fetch path and read against the model's record; every
+failed source was re-probed. **Verdict: no promotions, zero records
+changed.** All 8 flags were third-party churn: a startup-directory
+listing (Seedance 3.0), the already-excluded klingai.com homepage
+(Kling 3.0 + 2.5 Turbo), an ABNewswire press-release review (Hailuo),
+two Magic Hour roundups whose figures match the records they were
+checked against (Luma, Pika), a CometAPI aggregator post (Midjourney —
+excluded in this pass), and **Kling 4.0**, the one flag that looked
+like news: the klingai.com hero leads with 4.0 and the IPO coverage is
+real, but there is still no GA model ID in the official API docs and
+no published pricing — the two criteria the standing watch wrote down
+in advance — so the record stays **announced** and the watch stays
+open. The 13 partial records split into persistent 403 bot-blocks on
+third-party coverage (Medium, MarkTechPost, GlobeNewswire — an official
+source answered for every model), transient timeouts that recovered on
+re-probe, and one flaky wire (ABNewswire). Verdicts are durable:
+**`data/v1/model-review-log.json`** (new, hand-authored, schema +
+`build_api.py` preserve list + manifest endpoint — 12 → 13 endpoints),
+8 per-model `verification` events in `model-history.json`, and a
+2.2 section in `model-updates.md`.
+
+**The calibration catch.** The re-baseline run flagged 17 models —
+nearly the same set on a second clean run, which ruled out network
+weather and pointed at the surfaces. Proof: fetching one flagged
+GitHub blob page twice in a row returned **two different signatures**
+(the pages embed per-request nonces; they can never be
+signature-stable). Across three calibration passes: **github.com
+excluded from the signature globally** (config `defaults`, merged by
+`check_models.py`), **26 rotating blog/listing/homepage URLs excluded
+per-model** (Higgsfield blog + help-center, OpenRouter live listings,
+Magic Hour's tracker, the ABNewswire wire, syndicated story rails),
+each with a dated note, every source still fetched and recorded every
+run. One checker improvement came out of it: an exclusion entry ending
+in `$` anchors to the exact URL, so bfl.ai's homepage could be
+excluded while its pricing page stayed signature-live (it never
+moved). Published feed (2026-10-13T00:13Z): **changed=1** (Vidu S2, a
+fresh third-party blog flag from the final run, queued for the next
+pass), **with_errors=0, no_sources=0**, queue back to its 5 standing
+watches + that one flag. Drift: **16 alerts → 11** (1 changed + the 10
+adjudicated partials), 4 watch, 16 ok, 0 unwatched.
+
+**Freshness surfacing.** Drift-board rows (pre-render in
+`build_site.py` + live re-render in `model-watch.js`, new
+`.wt-drift-meta` style) now carry a mono stamp — *checked Oct 13, 2026
+· record verified Oct 11, 2026* — so a row's staleness is readable at
+a glance instead of inferred from wording. The drift payload already
+carried both timestamps; nothing in the API shape changed.
+
+**One real bug fixed.** `/api/health` gave `pricing.json` a 24h SLA,
+but pricing is a curated wave-cadence artifact (like models.json, 7d):
+its `generated_at` is a curation date, so health flipped to degraded
+forever from day two — the assertion in `tests/api.test.sh` crossed
+the line mid-wave on wall clock alone. SLA is now 7 days with the
+reason in a comment; the freshness-resolution regression check stands.
+
+**Docs:** AGENT.md (counts 48 events / 6 pending, review-log row,
+workflow 3 worked example rewritten for the adjudicated feed),
+API.md + api.html (counts, review-log rows, schema list 12 → 13),
+GO_LIVE.md + LIVE_CHECKLIST.md (preserve list + review discipline +
+current state), `build_llms.py` data list. History is now 48 events;
+the October window holds 29.
+
+**Validation:** `scripts/watchtower.test.js` **15/15** (pins moved to
+the published feed: 11 alerts with the exact id set, Kling 3.0
+stable/ok with the verification as its latest event).
+`tests/api.test.sh` **55/55** (October window 20 → 29, drift alerts
+16 → 11, health freshness green after the SLA fix).
+`bash scripts/validate.sh` **17 passed, 1 failed** pre-commit — the
+stage-6 llms zero-diff check, the expected uncommitted state (goes
+green on commit, the standing pattern). Headless-Chromium screenshots
+inspected (desktop 1440px + mobile 390px): cutting-room board intact,
+honest `cached` badges on the static server, since-panel counts the 9
+new verification events, drift rows carry the new stamps, no overflow.
+AI-ism scan on new copy: clean. No TODOs, no dead code.
+
+**Process note (honest):** the first re-baseline attempt ran two
+checker processes concurrently (a backgrounded exec reported
+completion while its process was still alive, and a second was
+launched against the same files). The duplicate was killed, the 2.1
+feed was restored from backup, and every published number comes from
+single clean runs — the duplicate's output was discarded unread.
+
+**Left open:** the Vidu S2 flag (lapaasvoice.com move, final run) and
+the 5 standing watches await the next review pass. The 10 partial
+records will keep surfacing as alerts while their third-party sources
+bot-block the checker — adjudicated, documented, and honest; if
+ABNewswire fails a third consecutive weekly run it should be swapped
+for another wire copy. LTX-2.5's ltx.io note from 2.1 stands.
+
+**Commit:** local `<filled in after commit>` → pushed as remote
+`<filled in after push>` (gh-push.py). Verified: remote tree == local
+HEAD tree. Working repo only — no `-live` repo touched, no Vercel
+access.
+
 ## Watchtower 2.1 — close the watch gap (2026-10-12)
 
 **Assignment:** Watchtower 2.0 shipped the drift engine but left 11 of 31

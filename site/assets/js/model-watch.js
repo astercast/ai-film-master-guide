@@ -205,11 +205,16 @@
       if (driftList && payload.drift_alerts) {
         var alerts = payload.drift_alerts;
         driftList.innerHTML = alerts.map(function (r) {
+          var meta = [];
+          if (r.last_checked) meta.push("checked " + fmtDay(r.last_checked));
+          if (r.last_verified) meta.push("record verified " + fmtDay(r.last_verified + "T00:00:00Z"));
           return "<li class=\"wt-drift-row is-" + esc(r.severity) + "\">" +
             "<span class=\"wt-sev wt-sev-" + esc(r.severity) + "\">" +
             (r.severity === "alert" ? "Review" : "Watch") + "</span>" +
             "<span class=\"wt-drift-body\"><strong>" + esc(r.name) + "</strong> — " +
-            esc((r.alerts || []).join(" ")) + "</span></li>";
+            esc((r.alerts || []).join(" ")) + "</span>" +
+            (meta.length ? "<span class=\"wt-drift-meta\">" + esc(meta.join(" · ")) + "</span>" : "") +
+            "</li>";
         }).join("") || "<li class=\"wt-drift-row is-ok\">Nothing needs a human today. " +
           "Every watched source answered, every record is inside its verification window.</li>";
         if (driftLine && payload.drift_summary) {

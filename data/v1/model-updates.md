@@ -39,6 +39,46 @@ next run (still fetched and recorded, like hailuoai.video before it); and
 the review queue now keeps its five standing hand-authored watches across
 checker runs instead of being overwritten.
 
+## 2026-10-12 — Watchtower 2.2: the first review pass
+
+The 2.1 run left 8 changed-source flags and 13 records with a failed source
+queued for review. This pass worked the queue the way the workflow prescribes:
+every flagged URL re-fetched with the checker's own fetch path and read
+against the model's record, every failed source re-probed, and a verdict
+written down for each one in the new `data/v1/model-review-log.json`.
+
+**No model record changed.** All 8 flags resolved as third-party churn:
+a startup-directory listing (Seedance 3.0), the already-excluded klingai.com
+homepage (Kling 3.0, Kling 2.5 Turbo), a press-release review on a wire that
+no longer answers the checker (Hailuo), two competitor-blog roundups whose
+figures match the records they were checked against (Luma, Pika), and an
+aggregator post that moved twice in an hour on site chrome alone (Midjourney
+— the URL joins the signature-exclusion list). The one flag that looked like
+news, **Kling 4.0**, does not clear the bar its standing watch set in advance:
+the klingai.com hero leads with 4.0, but there is still no GA model ID in
+the official API docs and no published pricing — so the record stays
+**announced** (Flash early access only), and the watch stays open.
+
+The 13 partial records split into persistent bot-blocks on third-party
+coverage (Medium, MarkTechPost, GlobeNewswire — 403s in every case, with at
+least one official source per model still answering), transient timeouts
+that recovered on re-probe, and one flaky wire (ABNewswire).
+
+The re-baseline run then flagged 17 models at once — and that turned out to
+be the calibration catch of the pass. Two consecutive fetches of one flagged
+GitHub page returned two different signatures: GitHub blob pages embed
+per-request nonces, so they can never be signature-stable. `github.com` is
+now excluded from the change signature globally, and 26 blog/listing/homepage URLs
+whose related-content rails rotate between fetches (Higgsfield's blog,
+OpenRouter's live model pages, Magic Hour's release tracker, wire-service
+reprints) are excluded per-model — every one still fetched and recorded each
+run. With the calibrations in, the published feed reads 1 changed (Vidu S2, on
+a third-party blog move in the final run — queued for the next pass),
+0 errors, 0 unwatched, and the queue sits at its 5 standing watches plus
+that one fresh flag. Nine `verification` events in
+`model-history.json` carry the verdicts (eight per-model, one for the
+calibration).
+
 ## 2026-10-11 — Wave 30: Late-Q4 field sweep
 
 29 → **30 models** (one added); no status changes. The headline item is a

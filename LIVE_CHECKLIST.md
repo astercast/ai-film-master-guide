@@ -51,8 +51,14 @@ Secrets live only in Vercel, never in either repo.
   `api/` where Vercel would deploy them as functions (2026-10-12).
 - Generator scripts emit static data to `data/v1/` only
   (`scripts/build_api.py`); any new hand-maintained `data/v1/` file (e.g.
-  `model-history.json`) must join `build_api.py`'s preserve list or the
-  next rebuild deletes it (2026-10-12).
+  `model-history.json`, `model-review-log.json` + its schema, Watchtower
+  2.2) must join `build_api.py`'s preserve list or the next rebuild
+  deletes it (2026-10-12).
+- Watchtower review discipline (2.2): a checker flag is a review signal,
+  never a record change. Flags are adjudicated in
+  `data/v1/model-review-log.json` (re-fetch, verdict, basis) before the
+  queue clears; the checker re-run after a pass sets the new baseline.
+  Current state: 48 history events, queue at 6 (5 standing watches + 1 fresh flag).
 - `vercel.json` in live repo: valid JSON, `outputDirectory: "."`,
   `functions` lists the 5 routes as explicit paths with
   `{"maxDuration": 10}`, crons + headers carried over from the working

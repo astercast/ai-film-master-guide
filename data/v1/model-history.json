@@ -1,7 +1,7 @@
 {
   "format": "model-history/1.0",
-  "generated_at": "2026-10-12T23:00:05Z",
-  "method": "Hand-authored event log. Every event traces to a fact recorded in models.json (what_changed), data/v1/model-updates.md, or this wave's own pricing-table changes. Price events carry a before/after pair only where the record documents both numbers; otherwise the fields are null and the summary says why. The pricing baseline below is the pricing table as curated on 2026-10-11 \u2014 the drift engine diffs the live table against it, so a rate that moves from here on is caught mechanically, not by memory.",
+  "generated_at": "2026-10-13T00:13:08Z",
+  "method": "Hand-authored event log. Every event traces to a fact recorded in models.json (what_changed), data/v1/model-updates.md, or this wave's own pricing-table changes. Price events carry a before/after pair only where the record documents both numbers; otherwise the fields are null and the summary says why. The pricing baseline below is the pricing table as curated on 2026-10-11 — the drift engine diffs the live table against it, so a rate that moves from here on is caught mechanically, not by memory.",
   "pricing_baseline": {
     "at": "2026-10-11T00:00:00Z",
     "label": "Pricing table as curated 2026-10-11 (Watchtower Wave A)",
@@ -632,7 +632,7 @@
       "model_id": "midjourney-v1-video",
       "model": "Midjourney V1 Video",
       "kind": "release",
-      "summary": "Midjourney V1 Video launched: image-to-video only, 5s clips extendable to 21s, no native audio. Still the current Midjourney video model \u2014 no V2 announced as of Oct 2026.",
+      "summary": "Midjourney V1 Video launched: image-to-video only, 5s clips extendable to 21s, no native audio. Still the current Midjourney video model — no V2 announced as of Oct 2026.",
       "status_after": "active",
       "confidence": "reported",
       "source": "models.json what_changed (re-verified 2026-10-11)"
@@ -643,7 +643,7 @@
       "model_id": "soul-cinema",
       "model": "Soul Cinema",
       "kind": "release",
-      "summary": "Soul Cinema launched as a preview: one-click cinematic stills for image-to-video pipelines. Per-image pricing was not published at launch and still is not \u2014 the record stays verify-live.",
+      "summary": "Soul Cinema launched as a preview: one-click cinematic stills for image-to-video pipelines. Per-image pricing was not published at launch and still is not — the record stays verify-live.",
       "status_after": "active",
       "confidence": "reported",
       "source": "models.json what_changed (re-verified 2026-10-11)"
@@ -654,7 +654,7 @@
       "model_id": "pixverse-v6",
       "model": "PixVerse V6",
       "kind": "release",
-      "summary": "PixVerse V6 launched with native audio in the same pass, 1\u201315s clips at up to 1080p, and 20+ prompt-driven camera controls. Sibling C1 followed on April 7 for action and VFX work.",
+      "summary": "PixVerse V6 launched with native audio in the same pass, 1–15s clips at up to 1080p, and 20+ prompt-driven camera controls. Sibling C1 followed on April 7 for action and VFX work.",
       "status_after": "active",
       "confidence": "reported",
       "source": "models.json what_changed (added 2026-10-12)"
@@ -665,7 +665,7 @@
       "model_id": "sora-2",
       "model": "Sora 2 / Pro / Max",
       "kind": "status",
-      "summary": "OpenAI closed the Sora apps and website. The API kept running for five more months \u2014 a staged shutdown, not a single date. New work should not have been planned on it from this day.",
+      "summary": "OpenAI closed the Sora apps and website. The API kept running for five more months — a staged shutdown, not a single date. New work should not have been planned on it from this day.",
       "status_before": "active",
       "status_after": "discontinued",
       "confidence": "reported",
@@ -698,7 +698,7 @@
       "model_id": "minimax-h3",
       "model": "MiniMax H3",
       "kind": "release",
-      "summary": "MiniMax H3 (alias Hailuo 3.0) released as the new flagship: omni-modal context, 2K clips of 4\u201315s, native stereo audio. Hailuo 02 / 2.3 became the legacy generation the same day. Open weights were announced 'in the coming days' \u2014 no public repo confirmed as of Oct 11.",
+      "summary": "MiniMax H3 (alias Hailuo 3.0) released as the new flagship: omni-modal context, 2K clips of 4–15s, native stereo audio. Hailuo 02 / 2.3 became the legacy generation the same day. Open weights were announced 'in the coming days' — no public repo confirmed as of Oct 11.",
       "status_after": "active",
       "confidence": "official",
       "source": "models.json what_changed (re-verified 2026-10-11)"
@@ -720,7 +720,7 @@
       "model_id": "flux-3-video",
       "model": "FLUX 3 Video",
       "kind": "tier",
-      "summary": "FLUX Video Upscale shipped: 1.5\u20133x upscaling to 4K for clips up to 20s.",
+      "summary": "FLUX Video Upscale shipped: 1.5–3x upscaling to 4K for clips up to 20s.",
       "confidence": "reported",
       "source": "data/v1/model-updates.md, wave 30 (2026-10-11)"
     },
@@ -730,7 +730,7 @@
       "model_id": "wan-3-0",
       "model": "Wan 3.0 / 3.0 Prime",
       "kind": "release",
-      "summary": "Wan 3.0 formally released (public beta since August 6): native 30-second generations at 30fps \u2014 not stitched clips \u2014 with native audio. Alibaba Cloud Model Studio list: $0.05/s at 480p, $0.10/s at 720p, $0.20/s at 1080p. Third-party resync notes the same month report a ~38% cut on base 3.0 since launch; no absolute launch card was published, so the guide records the cut as reported, not as a rate.",
+      "summary": "Wan 3.0 formally released (public beta since August 6): native 30-second generations at 30fps — not stitched clips — with native audio. Alibaba Cloud Model Studio list: $0.05/s at 480p, $0.10/s at 720p, $0.20/s at 1080p. Third-party resync notes the same month report a ~38% cut on base 3.0 since launch; no absolute launch card was published, so the guide records the cut as reported, not as a rate.",
       "status_after": "active",
       "confidence": "reported",
       "source": "models.json what_changed (re-verified 2026-10-11)"
@@ -741,7 +741,7 @@
       "model_id": "gemini-omni",
       "model": "Gemini Omni",
       "kind": "release",
-      "summary": "gemini-omni-1.1-flash went GA: scene extension to 40s in 10s steps, first/last-frame interpolation, a 360p\u20134K ladder, and stateful multi-turn editing. In the Gemini app, Omni 1.1 Flash replaces Veo 3.1; the Veo API continues separately.",
+      "summary": "gemini-omni-1.1-flash went GA: scene extension to 40s in 10s steps, first/last-frame interpolation, a 360p–4K ladder, and stateful multi-turn editing. In the Gemini app, Omni 1.1 Flash replaces Veo 3.1; the Veo API continues separately.",
       "status_after": "active",
       "confidence": "reported",
       "source": "models.json what_changed (re-verified 2026-10-11)"
@@ -752,7 +752,7 @@
       "model_id": "minimax-h3",
       "model": "MiniMax H3",
       "kind": "tier",
-      "summary": "H3 Max gained native 1080p and a Turbo tier, per Krea's September 9 changelog. Single secondary source \u2014 the guide's H3 figures stay unchanged until a second confirmation lands.",
+      "summary": "H3 Max gained native 1080p and a Turbo tier, per Krea's September 9 changelog. Single secondary source — the guide's H3 figures stay unchanged until a second confirmation lands.",
       "confidence": "reported",
       "source": "models.json what_changed (re-verified 2026-10-11)"
     },
@@ -776,7 +776,7 @@
       "model_id": "vidu-s2",
       "model": "Vidu S2",
       "kind": "release",
-      "summary": "Vidu S2 official details confirmed: S2-Avatar runs real-time at 720p (up from S1's 540p) with mid-session reference-image swaps and live-stream editing. A different product class from rendered clips \u2014 budget it differently.",
+      "summary": "Vidu S2 official details confirmed: S2-Avatar runs real-time at 720p (up from S1's 540p) with mid-session reference-image swaps and live-stream editing. A different product class from rendered clips — budget it differently.",
       "status_after": "active",
       "confidence": "official",
       "source": "data/v1/model-updates.md, wave 30 (2026-10-11)"
@@ -798,7 +798,7 @@
       "model_id": "sora-2",
       "model": "Sora 2 / Pro / Max",
       "kind": "status",
-      "summary": "The Sora 2 API and /v1/videos shut down, completing the discontinuation that began with the April app closures. Routes return 410 \u2014 they do not come back. The record stays in the guide for the historical record only.",
+      "summary": "The Sora 2 API and /v1/videos shut down, completing the discontinuation that began with the April app closures. Routes return 410 — they do not come back. The record stays in the guide for the historical record only.",
       "status_before": "active",
       "status_after": "discontinued",
       "confidence": "reported",
@@ -810,7 +810,7 @@
       "model_id": "kling-4-0",
       "model": "Kling 4.0",
       "kind": "status",
-      "summary": "Kling 4.0 announced: Flash early access for Ultra Yearly subscribers, full release promised 'this October' \u2014 a month, not a date. No GA model ID, no API pricing, no independent benchmarks as of Oct 11. Status stays announced; do not plan shoots on it.",
+      "summary": "Kling 4.0 announced: Flash early access for Ultra Yearly subscribers, full release promised 'this October' — a month, not a date. No GA model ID, no API pricing, no independent benchmarks as of Oct 11. Status stays announced; do not plan shoots on it.",
       "status_after": "announced",
       "confidence": "reported",
       "source": "models.json what_changed (re-verified 2026-10-11)"
@@ -851,7 +851,7 @@
       "model_id": "seedance-2-5",
       "model": "Seedance 2.5",
       "kind": "verification",
-      "summary": "BytePlus official rates re-read and confirmed \u2014 no change: $0.1028/s at 480p, $0.2311/s at 720p, $0.5686/s at 1080p. A confirmation is recorded as an event because budgets were built on these numbers; if they move, this is the baseline they move from.",
+      "summary": "BytePlus official rates re-read and confirmed — no change: $0.1028/s at 480p, $0.2311/s at 720p, $0.5686/s at 1080p. A confirmation is recorded as an event because budgets were built on these numbers; if they move, this is the baseline they move from.",
       "confidence": "official",
       "source": "data/v1/model-updates.md, wave 30 (2026-10-11)"
     },
@@ -887,7 +887,7 @@
       "model_id": "vivago-r1",
       "model": "vivago R1",
       "kind": "release",
-      "summary": "vivago R1 made available globally: a conversational production agent (script, storyboard, generation, edit in one run, up to 5-minute videos). Single-source launch coverage and no published rate card \u2014 verify live before planning around it.",
+      "summary": "vivago R1 made available globally: a conversational production agent (script, storyboard, generation, edit in one run, up to 5-minute videos). Single-source launch coverage and no published rate card — verify live before planning around it.",
       "status_after": "active",
       "confidence": "reported",
       "source": "data/v1/model-updates.md, wave 30 (2026-10-11)"
@@ -908,7 +908,7 @@
       "model_id": "pixverse-v6",
       "model": "PixVerse V6",
       "kind": "coverage",
-      "summary": "PixVerse V6 added to the guide. A completeness audit found it was the most conspicuous uncovered model in the field: launched March 30, 2026, with an Artificial Analysis image-to-video Elo of 1,343 (April 2026) \u2014 and no record here. Now tracked like everything else.",
+      "summary": "PixVerse V6 added to the guide. A completeness audit found it was the most conspicuous uncovered model in the field: launched March 30, 2026, with an Artificial Analysis image-to-video Elo of 1,343 (April 2026) — and no record here. Now tracked like everything else.",
       "status_after": "active",
       "confidence": "reported",
       "source": "models.json (added 2026-10-12)"
@@ -919,7 +919,7 @@
       "model_id": "pixverse-v6",
       "model": "PixVerse V6",
       "kind": "price",
-      "summary": "PixVerse V6 pricing record added, closing the last gap in the pricing table (30 of 31 models covered became 31 of 31). Gateway-reported rates: about $0.09/s at 720p with audio, $0.18\u20130.23/s at 1080p. Third-party figures \u2014 verify live before budgeting.",
+      "summary": "PixVerse V6 pricing record added, closing the last gap in the pricing table (30 of 31 models covered became 31 of 31). Gateway-reported rates: about $0.09/s at 720p with audio, $0.18–0.23/s at 1080p. Third-party figures — verify live before budgeting.",
       "tier": "720p",
       "before_usd": null,
       "after_usd": 0.09,
@@ -933,7 +933,7 @@
       "model_id": "flux-3-video",
       "model": "FLUX 3 Video",
       "kind": "coverage",
-      "summary": "FLUX 3's QHD, UHD, and video-to-video tiers added to the pricing table. They had been documented in the model record since the September 10 listing but never made it into the table the budget tools read \u2014 exactly the kind of silent gap the Watchtower diff now catches.",
+      "summary": "FLUX 3's QHD, UHD, and video-to-video tiers added to the pricing table. They had been documented in the model record since the September 10 listing but never made it into the table the budget tools read — exactly the kind of silent gap the Watchtower diff now catches.",
       "confidence": "reported",
       "source": "Watchtower 2.0 pricing-coverage audit (2026-10-12)"
     },
@@ -976,7 +976,7 @@
       "model_id": "mirage-tesseract",
       "model": "Mirage Tesseract",
       "kind": "coverage",
-      "summary": "Automated source watch added: the official Tesseract product page at mirage.app. A free local engine has no rate card to diff; the watch tracks scope changes \u2014 export limits, account requirements, agent integrations.",
+      "summary": "Automated source watch added: the official Tesseract product page at mirage.app. A free local engine has no rate card to diff; the watch tracks scope changes — export limits, account requirements, agent integrations.",
       "status_after": "active",
       "confidence": "reported",
       "source": "Watchtower 2.1 check run (2026-10-12)"
@@ -1042,7 +1042,7 @@
       "model_id": "dop",
       "model": "DoP (Lite/Standard/Turbo)",
       "kind": "coverage",
-      "summary": "Automated source watch added: Higgsfield's help-center DoP guide. DoP had a full record and no sources at all \u2014 the last of the guide's models in that state alongside Marketing Studio. Tier and preset changes now have an official page to diff against.",
+      "summary": "Automated source watch added: Higgsfield's help-center DoP guide. DoP had a full record and no sources at all — the last of the guide's models in that state alongside Marketing Studio. Tier and preset changes now have an official page to diff against.",
       "status_after": "active",
       "confidence": "reported",
       "source": "Watchtower 2.1 check run (2026-10-12)"
@@ -1057,6 +1057,96 @@
       "status_after": "active",
       "confidence": "reported",
       "source": "Watchtower 2.1 check run (2026-10-12)"
+    },
+    {
+      "id": "2026-10-12-seedance-3-0-flag-reviewed",
+      "date": "2026-10-12",
+      "model_id": "seedance-3-0",
+      "model": "Seedance 3.0",
+      "kind": "verification",
+      "summary": "Review pass on the Oct 12 checker flag: the moved source is a third-party startup directory listing, not a ByteDance page — no official announcement, model card, or pricing exists. Record stays reported/unconfirmed.",
+      "confidence": "official",
+      "source": "Watchtower 2.2 review pass (2026-10-12) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-12-kling-3-0-flag-reviewed",
+      "date": "2026-10-12",
+      "model_id": "kling-3-0",
+      "model": "Kling 3.0",
+      "kind": "verification",
+      "summary": "Review pass: the flagged klingai.com homepage moved on its Kling 4.0 hero banner — nothing about 3.0 changed. The homepage is signature-excluded from this run on; the record stands.",
+      "confidence": "official",
+      "source": "Watchtower 2.2 review pass (2026-10-12) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-12-kling-2-5-turbo-flag-reviewed",
+      "date": "2026-10-12",
+      "model_id": "kling-2-5-turbo",
+      "model": "Kling 2.5 Turbo",
+      "kind": "verification",
+      "summary": "Review pass: the same klingai.com homepage move as Kling 3.0 — one rotating hero flagged every Kling model watching it. Homepage signature-excluded from this run on; the record stands.",
+      "confidence": "official",
+      "source": "Watchtower 2.2 review pass (2026-10-12) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-12-hailuo-2-3-flag-reviewed",
+      "date": "2026-10-12",
+      "model_id": "hailuo-2-3",
+      "model": "Hailuo 02 / 2.3",
+      "kind": "verification",
+      "summary": "Review pass: the moved source is an ABNewswire press-release review of the Hailuo Video Agent — third-party wire copy that no longer answers the checker at all. No MiniMax source moved; the record stands.",
+      "confidence": "official",
+      "source": "Watchtower 2.2 review pass (2026-10-12) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-12-luma-ray-3-2-flag-reviewed",
+      "date": "2026-10-12",
+      "model_id": "luma-ray-3-2",
+      "model": "Luma App / Ray 3.2",
+      "kind": "verification",
+      "summary": "Review pass: the moved source is a competitor's comparison post (Magic Hour); its Luma figures match the plans already on record. No Luma source moved; the record stands.",
+      "confidence": "official",
+      "source": "Watchtower 2.2 review pass (2026-10-12) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-12-pika-2-5-flag-reviewed",
+      "date": "2026-10-12",
+      "model_id": "pika-2-5",
+      "model": "Pika 2.5",
+      "kind": "verification",
+      "summary": "Review pass: the moved source is Magic Hour's Pika pricing roundup — $10 Starter, $35 Creator, the plans already on record. The record stands.",
+      "confidence": "official",
+      "source": "Watchtower 2.2 review pass (2026-10-12) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-12-midjourney-v1-video-flag-reviewed",
+      "date": "2026-10-12",
+      "model_id": "midjourney-v1-video",
+      "model": "Midjourney V1 Video",
+      "kind": "verification",
+      "summary": "Review pass: the moved source is a CometAPI aggregator post that moved twice in an hour on site chrome alone; it joins the signature-exclusion list. No Midjourney source moved; the record stands.",
+      "confidence": "official",
+      "source": "Watchtower 2.2 review pass (2026-10-12) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-12-kling-4-0-flag-reviewed",
+      "date": "2026-10-12",
+      "model_id": "kling-4-0",
+      "model": "Kling 4.0",
+      "kind": "verification",
+      "summary": "Review pass: the flagged sources are the klingai.com 4.0 hero and IPO coverage of the Sept 28 unveil. Still no GA model ID in the official API docs and no published pricing — the standing watch's own criteria for flipping this record. Record stays announced, Flash early access only.",
+      "confidence": "official",
+      "source": "Watchtower 2.2 review pass (2026-10-12) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-12-watchtower-calibration",
+      "date": "2026-10-12",
+      "model_id": null,
+      "model": "All models",
+      "kind": "verification",
+      "summary": "Watchtower calibration: the re-baseline run flagged 17 models, and the flags traced to signature-unstable pages — GitHub blob pages embed per-request nonces (two consecutive fetches, two signatures) and now sit outside the change signature globally, and 26 blog/listing/homepage URLs with rotating rails were excluded per-model. Every source is still fetched and recorded each run; no model record changed.",
+      "confidence": "official",
+      "source": "Watchtower 2.2 calibration (2026-10-12) — data/v1/model-review-log.json"
     }
   ]
 }

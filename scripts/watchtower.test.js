@@ -121,26 +121,27 @@ ok('pricing coverage is complete: 31 of 31 models have a pricing record', () => 
 });
 
 /* --- drift on the real data --------------------------------------------- */
-ok('computeDrift: 31 models, 0 unwatched, 6 unpublished, 16 alerts in the Oct 12 records', () => {
-  // Watchtower 2.1 (2026-10-12) put all 31 models under automated watch:
-  // the 9 models absent from the Oct 11 feed gained records, and DoP +
-  // Marketing Studio — records with zero sources — gained official ones.
-  // The first full run flagged 8 moved sources and 8 more models carry a
-  // failed source (status "partial"); the feed header's with_errors counts
-  // only all-sources-failed models (0), so drift reads the records, not
-  // the header — hence 16 alerts and 0 unwatched.
+ok('computeDrift: 31 models, 0 unwatched, 6 unpublished, 11 alerts in the post-review records', () => {
+  // Watchtower 2.2 (2026-10-12): the first review pass adjudicated all 8
+  // of the 2.1 run's flags (no record changed — verdicts in
+  // model-review-log.json) and calibrated the signature exclusions
+  // (github.com globally; 26 rotating blog/listing/homepage URLs
+  // per-model). The published feed (2026-10-13T00:13Z) reads changed=1
+  // (Vidu S2, a fresh third-party blog flag queued for the next pass)
+  // and 11 partial records — the adjudicated bot-block cohort, whose
+  // official sources still answer. Drift reads the records, not the
+  // header: 1 changed + 10 error-status = 11 alerts, 0 unwatched.
   const d = drift.computeDrift({ modelsDoc: models, checksDoc: checks,
     pricingDoc: pricing, historyDoc: history, nowMs: NOW });
   assert.strictEqual(d.summary.models_total, 31);
   assert.strictEqual(d.summary.unwatched, 0, JSON.stringify(d.summary));
   assert.strictEqual(d.summary.pricing_unpublished, 6, JSON.stringify(d.summary));
-  assert.strictEqual(d.summary.alert, 16, JSON.stringify(d.per_model.filter((r) => r.severity === 'alert')));
+  assert.strictEqual(d.summary.alert, 11, JSON.stringify(d.per_model.filter((r) => r.severity === 'alert')));
   assert.strictEqual(d.summary.price_changes_vs_baseline, 5);
   const alertIds = d.per_model.filter((r) => r.severity === 'alert').map((r) => r.model_id).sort();
   assert.deepStrictEqual(alertIds, ['flux-3-video', 'gemini-omni', 'grok-imagine-1-5',
-    'hailuo-2-3', 'kling-2-5-turbo', 'kling-3-0', 'kling-4-0', 'luma-ray-3-2',
-    'midjourney-v1-video', 'minimax-h3', 'pika-2-5', 'seedance-3-0',
-    'vidu-q4-preview', 'vidu-s2', 'wan-2-6', 'wan-3-0']);
+    'kling-4-0', 'luma-ray-3-2', 'midjourney-v1-video', 'minimax-h3',
+    'seedance-3-0', 'vidu-q4-preview', 'vidu-s2', 'wan-3-0']);
 });
 
 ok('computeDrift: spot severities — PixVerse watched (price moved), Sora ok, Soul Cinema watch (unpublished)', () => {
@@ -159,11 +160,14 @@ ok('computeDrift: spot severities — PixVerse watched (price moved), Sora ok, S
   assert.strictEqual(byId['sora-2'].severity, 'ok');
   assert.strictEqual(byId['soul-cinema'].severity, 'watch');
   assert(byId['soul-cinema'].alerts.some((a) => a.includes('No published USD rate')));
-  // Kling 3.0's klingai.com signature moved in the Oct 12 run (the
-  // homepage has since been excluded as verified-noisy for future runs).
-  assert.strictEqual(byId['kling-3-0'].severity, 'alert');
-  assert.strictEqual(byId['kling-3-0'].check_status, 'changed');
-  assert.strictEqual(byId['kling-3-0'].latest_event.kind, 'tier');
+  // Kling 3.0's Oct 12 flag was adjudicated by the 2.2 review pass (the
+  // klingai.com homepage move was the Kling 4.0 hero banner, not a 3.0
+  // change; the homepage is signature-excluded). In the published feed
+  // the model is stable and clear, and its latest event is the review
+  // verdict itself.
+  assert.strictEqual(byId['kling-3-0'].severity, 'ok');
+  assert.strictEqual(byId['kling-3-0'].check_status, 'stable');
+  assert.strictEqual(byId['kling-3-0'].latest_event.kind, 'verification');
 });
 
 ok('computeDrift: a flagged check raises an alert with the review wording', () => {

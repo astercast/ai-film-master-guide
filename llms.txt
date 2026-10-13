@@ -73,7 +73,8 @@ research artifacts; outputs committed).
 - `data/v1/model-checks.json` — model-watch freshness feed: per-model last check, source-signature diffs, news headlines
 - `data/v1/model-review-queue.json` — pending model-watch review items (empty = nothing pending)
 - `data/v1/model-history.json` — Watchtower 2.0 event log: dated status/price/tier/release/verification/coverage events per model + the 2026-10-11 pricing baseline the drift engine diffs the live pricing table against
-- `data/v1/schema/` — JSON Schema (draft-07) for EVERY endpoint: index, model, prompt-template, camera-movement, checklist, glossary, competition, teardown, diagnosis, model-checks, model-review-queue, model-history
+- `data/v1/model-review-log.json` — Watchtower review log: the adjudication record for checker flags — every flag re-fetched and given a verdict with its basis before the queue clears (Watchtower 2.2)
+- `data/v1/schema/` — JSON Schema (draft-07) for EVERY endpoint: index, model, prompt-template, camera-movement, checklist, glossary, competition, teardown, diagnosis, model-checks, model-review-queue, model-history, model-review-log
 - `AGENT.md` — how an agent uses this repo: base URL pattern, example requests, five end-to-end workflows (Studio planning, prompt linting, model price tracking, mini-drama series setup, microdrama run economics) — executable via `node scripts/agent-workflows.test.js`
 
 ## Skills (agentic task procedures)

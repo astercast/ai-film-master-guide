@@ -233,6 +233,7 @@ if inputs won't load.
 - **Generator gotcha (fixed 2026-10-11):** `build_api.py` wipes `data/v1/`
   and restores only its `preserved` list — `pricing.json`,
   `schema/envelope.json`, `model-checks.json`, `model-review-queue.json`,
+  `model-history.json`, `model-review-log.json` (Watchtower 2.2),
   `diagnoses.json` + schemas are all on that list now. Any new
   hand-maintained `data/v1/` file must be added there or the next rebuild
   deletes it.

@@ -162,7 +162,8 @@ def main():
                 "diagnoses.json", "schema/diagnosis.json",
                 "schema/model-checks.json", "schema/model-review-queue.json",
                 "pricing.json", "schema/envelope.json",
-                "model-history.json", "schema/model-history.json"]:
+                "model-history.json", "schema/model-history.json",
+                "model-review-log.json", "schema/model-review-log.json"]:
         p = API / rel
         if p.exists():
             preserved[rel] = p.read_bytes()
@@ -223,7 +224,7 @@ def main():
     preserved_docs = {}
     for rel in ["teardowns.json", "diagnoses.json",
                 "model-checks.json", "model-review-queue.json",
-                "model-history.json"]:
+                "model-history.json", "model-review-log.json"]:
         if rel in preserved:
             preserved_docs[rel] = json.loads(preserved[rel].decode("utf-8"))
     n_teardowns = len(preserved_docs.get("teardowns.json", {}).get("teardowns", []))
@@ -231,6 +232,7 @@ def main():
     n_checked = preserved_docs.get("model-checks.json", {}).get("summary", {}).get("models_total", 0)
     n_pending = preserved_docs.get("model-review-queue.json", {}).get("pending", 0)
     n_events = len(preserved_docs.get("model-history.json", {}).get("events", []))
+    n_reviews = len(preserved_docs.get("model-review-log.json", {}).get("reviews", []))
 
     def ep(path, description, schema, records, notes=""):
         return {"path": path, "description": description,
@@ -323,6 +325,17 @@ def main():
                                  "Empty array = nothing pending.",
                                  "data/v1/schema/model-review-queue.json",
                                  n_pending),
+        "model-review-log": ep("data/v1/model-review-log.json",
+                               "Watchtower review log: the adjudication "
+                               "record for checker flags and failed sources. "
+                               "Each pass re-fetches the flagged URLs and "
+                               "records a verdict with its basis — a cleared "
+                               "queue is an audited queue. Hand-authored.",
+                               "data/v1/schema/model-review-log.json",
+                               n_reviews,
+                               "Nothing in models.json moves without a "
+                               "verdict here (or a documented promotion in "
+                               "model-updates.md)."),
     }
     # Fix the self-referential records count now that the map is complete.
     endpoints["index"]["records"] = len(endpoints)

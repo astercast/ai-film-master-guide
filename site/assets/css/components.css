@@ -484,6 +484,10 @@ details:not(.nav-idx):not(.bin):not(.path-row)[open] { border-color: var(--line-
 .wt-sev-alert { color: var(--ember-soft); border-color: var(--ember); }
 .wt-sev-watch { color: var(--gold); border-color: var(--gold); }
 .wt-drift-body { flex: 1 1 420px; }
+.wt-drift-meta {
+  flex: 1 1 100%; font-family: var(--font-mono); font-size: 0.72rem;
+  letter-spacing: 0.04em; color: var(--muted);
+}
 
 .wt-price { margin-bottom: var(--space-5); }
 .wt-price .num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }

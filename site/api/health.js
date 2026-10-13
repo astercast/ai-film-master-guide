@@ -42,7 +42,10 @@ module.exports = function (req, res) {
   };
   var fresh = {
     'model-checks.json': freshnessOf('../data/v1/model-checks.json', 86400),
-    'pricing.json': freshnessOf('../data/v1/pricing.json', 86400),
+    // pricing.json is a curated artifact on the same wave cadence as
+    // models.json (its generated_at is the curation date) — a 24h SLA made
+    // health report degraded forever from day two. 7 days, like models.
+    'pricing.json': freshnessOf('../data/v1/pricing.json', 604800),
     // models.json is a research artifact refreshed by the wave engine (weekly
     // deep-research cadence), not the daily cron — its SLA is 7 days.
     'models.json': freshnessOf('../data/v1/models.json', 604800),

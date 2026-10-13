@@ -237,7 +237,25 @@ def main():
         # and current run and they differ. URLs on the per-model
         # exclude_from_signature list (verified-noisy rotating marketing pages) are
         # fetched and recorded but never drive changed.
-        excluded = cfg.get("exclude_from_signature", [])
+        # Signature exclusions: the defaults-level list (config `defaults` —
+        # e.g. github.com, whose blob pages embed per-request nonces and can
+        # never be signature-stable; proven in the Watchtower 2.2 calibration
+        # by fetching one page twice and getting two signatures) merged with
+        # this model's own exclude_from_signature list. Matching is by
+        # substring, except an entry ending in "$" anchors to the exact URL
+        # (so a vendor homepage can be excluded without also excluding its
+        # pricing page, which shares the prefix).
+        excluded = list(defaults.get("exclude_from_signature", [])) + \
+            cfg.get("exclude_from_signature", [])
+
+        def is_excluded(url):
+            for x in excluded:
+                if x.endswith("$"):
+                    if url == x[:-1]:
+                        return True
+                elif x in url:
+                    return True
+            return False
         old = prev.get(name)
         old_sigs = {}
         if old:
@@ -248,7 +266,7 @@ def main():
         for res in rec["source_results"]:
             if not res["ok"]:
                 continue
-            if any(x in res["url"] for x in excluded):
+            if is_excluded(res["url"]):
                 res["excluded_from_signature"] = True
                 continue
             old_sig = old_sigs.get(res["url"])

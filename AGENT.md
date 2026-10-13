@@ -34,8 +34,9 @@ Static files — **no auth, no keys, no rate limits**. Works on any static host.
 | `data/v1/teardowns.json` | 10 shot-by-shot teardowns; prompt reconstructions are analytical | 8 |
 | `data/v1/diagnoses.json` | 12 failure diagnoses: symptom → diagnosis, fixes, repair template | 12 |
 | `data/v1/model-checks.json` | Model-watch freshness feed: per-model last check, source diffs, headlines | 31 checked |
-| `data/v1/model-history.json` | Watchtower 2.0 event log: dated status/price/tier/release/verification/coverage events + the 2026-10-11 pricing baseline the drift engine diffs against | 39 events |
-| `data/v1/model-review-queue.json` | Pending model-watch review items (empty = nothing pending) | 13 pending |
+| `data/v1/model-history.json` | Watchtower 2.0 event log: dated status/price/tier/release/verification/coverage events + the 2026-10-11 pricing baseline the drift engine diffs against | 48 events |
+| `data/v1/model-review-queue.json` | Pending model-watch review items (empty = nothing pending) | 5 pending |
+| `data/v1/model-review-log.json` | Watchtower review log: adjudication record for checker flags — every flag re-fetched and given a verdict with its basis before the queue clears (Watchtower 2.2) | 2 passes |
 | `data/v1/model-updates.md` | Human-readable model changelog (Markdown, no schema) | — |
 
 Example requests (Node; swap `fs` for `fetch` in a browser):
@@ -114,9 +115,9 @@ covers 0. The test script proves both against the real layer data.
    implementation, unit-tested in `scripts/watchtower.test.js`.)
 3. `model-checks.json` → the model's check record: `last_checked`,
    `changed`, `source_status`, plus fresh `news_headlines`. Read the
-   per-model records, not the header summary — the Oct 12 feed's header
+   per-model records, not the header summary — the feed's header
    reports `with_errors: 0`, but that counter only counts models whose
-   *every* source failed; 13 models carry at least one failed source
+   *every* source failed; 11 models carry at least one failed source
    (`source_status: "partial"`), which the drift engine correctly
    surfaces as alerts. Since Watchtower 2.1 (2026-10-12) every one of
    the 31 models has a check record — there is no unwatched model left.
@@ -124,20 +125,23 @@ covers 0. The test script proves both against the real layer data.
    awaiting human promotion, plus standing hand-authored watch items
    (a `status`, no `detected_at` — the checker preserves those across
    runs). A `changed: true` flag is a **review signal**, not a confirmed
-   model change — never auto-mutate on it.
+   model change — never auto-mutate on it. Adjudicated flags live in
+   `model-review-log.json`: every verdict with the evidence behind it
+   (Watchtower 2.2 review pass + signature calibration).
 
 Worked result for Kling 3.0 (real data): `est_cost_credits` "720p ~7/5s",
 `status: "active"`, `last_verified: "2026-10-11"`; check record
-`last_checked: "2026-10-12T22:49:39+00:00"`, `changed: true` — the
-klingai.com homepage signature moved. That page is a rotating marketing
-surface (it flagged all three Kling models in the same run), so it is
-excluded from the signature from the next run; the flag stands in this
-feed as a review signal, not a Kling 3.0 change. Review queue
-`pending: 13` — five standing watch items (Seedance 3.0 confirmation,
-Kling 4.0 GA, the Wan 2.7 gap, MiniMax H3 weights, Soul Cinema pricing)
-plus eight changed-source items from the Oct 12 run. Latest history
-event: `2026-06-17-kling-30-turbo-ga` (tier). Drift severity: `alert`
-(the flagged check; the record itself is unchanged).
+`last_checked: "2026-10-13T00:07:59+00:00"`, `changed: false`,
+`source_status: "ok"`. The Oct 12 run flagged this model on the
+klingai.com homepage; the 2.2 review pass adjudicated it (the move was
+the site's Kling 4.0 hero banner, not a 3.0 change — verdict in
+`model-review-log.json`), and the homepage is signature-excluded, so
+the published feed is clean for 3.0. Review queue `pending: 6` — five
+standing watch items (Seedance 3.0 confirmation, Kling 4.0 GA, the
+Wan 2.7 gap, MiniMax H3 weights, Soul Cinema pricing) plus one fresh
+changed-source flag (Vidu S2) from the Oct 13 run. Latest history
+event: `2026-10-12-kling-3-0-flag-reviewed` (verification). Drift
+severity: `ok`.
 Worked pricing result for Vidu Q4 Preview: history event
 `2026-10-07-vidu-q4-rate-card` — the $0.014/s launch headline was a
 promotional off-peak floor; the official card lists $0.045/s at 540p
