@@ -1353,10 +1353,10 @@
      "model": "FLUX 3 Video",
      "flagged_source": "docs.bfl.ai/quick_start/pricing",
      "verdict": "dismissed-churn (2.16)",
-     "basis": "Run 1 flagged BFL's docs pricing page at f95831ee… (9,728 chars) against the ten-pass baseline cb1e92d1… (9,875); two checker-path probes returned the flagged signature exactly, and run 2 held it as the new baseline. Read in full, its FLUX 3 Video table matches the record on every carried tier (t2v/i2v $0.17/$0.29/$0.40/$0.80 per second, draft $0.06/s, v2v QHD $0.65/s, UHD $0.95/s); the −147 chars are restructuring around the rates (FLUX 3 Image per-image table, fine-tuned-endpoint beta section). First flag at the new signature — no exclusion; a flap back or another move earns one."
+     "basis": "Run 1 flagged BFL's docs pricing page at f95831ee… (9,728 chars) against the ten-pass baseline cb1e92d1… (9,875), and run 2 held the same signature. Two checker-path probes returned a different rendering (3f90e01a…, 7,057 chars) — not the flagged signature (corrected; see the pass-15 correction entry): the page serves multiple renderings, as recorded since 2.6. The probe rendering was read in full; its FLUX 3 Video table matches the record on every carried tier (t2v/i2v $0.17/$0.29/$0.40/$0.80 per second, draft $0.06/s, v2v QHD $0.65/s, UHD $0.95/s). No exclusion: the desk's 2.6 decision keeps this primary rate source signature-live so a rate move flags; the known renderings are now cb1e92d1…, f95831ee…, and 3f90e01a…."
     }
    ],
-   "outcome": "One flag raised across the pass's two completed runs, one dismissed, no calibrations; no model record moved. The 3 standing watches stand, each content-verified this pass. FLUX's docs source baselined at a new signature with its table verified verbatim; PixVerse V6's docs source stands on six clean passes."
+   "outcome": "One flag raised across the pass's two completed runs, one dismissed, no calibrations; no model record moved. The 3 standing watches stand, each content-verified this pass. FLUX's docs page proved rendering-variant again (checker runs at f95831ee…, probes at 3f90e01a…; the probe rendering's table verified in full); PixVerse V6's docs source stands on six clean passes."
   },
   {
    "id": "2026-10-13-review-pass-15-addendum",
@@ -1376,6 +1376,16 @@
     }
    ],
    "outcome": "Final feed 2026-10-13T19:05Z: changed=0, with_errors=0, no_sources=0. Drift 11 alerts / 5 watch / 16 ok, 0 unwatched — identically counted to 2.15's close; the alert set rotated by one (Gemini Omni in on this run's partials; Kling 3.0 out, its sources all answering). Unpublished rates 5; pricing diff vs the 2026-10-11 baseline 7 rows. The queue holds exactly the 3 standing watches, their notes carrying this pass's re-check lines."
+  },
+  {
+   "id": "2026-10-13-review-pass-15-correction",
+   "reviewed_at": "2026-10-13",
+   "reviewer": "Watchtower 2.16 review pass (agent) — correction",
+   "scope": "Correction to pass 15's FLUX 3 Video adjudication record, filed after the pass's own probe exec delivered its output late (after the rotation's commits had already pushed).",
+   "method": "The late delivery (the probe session's terminal output, received after the rotation report) was checked against the on-disk artifacts: the saved probe text at ~/workspace/fleet-ops/watchtower-runs/wt216/flux-docs.txt hashes to 3f90e01a… (7,057 chars), and both checker runs' feeds on disk carry f95831ee… (9,728 chars) for the same URL. Pass 15's flag basis, the two FLUX history events, the WAVELOG entry, the LIVE_CHECKLIST note, and the watchtower test comment have been corrected in place; this entry is the audit trail for those edits. No verdict, feed, count, or queue content changes: the dismissal rested on the probe rendering's rate table, read in full, which matches the record — the error was in which signature the probes were recorded as returning.",
+   "flag_reviews": [],
+   "failed_source_reviews": [],
+   "outcome": "Correction filed. The FLUX flag stays dismissed with no calibration (the 2.6 signature-live decision for this primary rate source stands); the page's three known renderings (cb1e92d1…, f95831ee…, 3f90e01a…) are on record for the next pass's adjudication. Review log 29 → 30 entries; all other 2.16 numbers unchanged."
   }
  ]
 }

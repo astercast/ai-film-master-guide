@@ -58,11 +58,13 @@ ok('real diff: the 5 Watchtower 2.0 coverage changes + the 2.3 Soul Cinema tier 
   // adjudication. All 3 standing watches stand (review log
   // pass 15); 1 flag raised, 1 dismissed: FLUX 3 Video on
   // BFL's own docs pricing page (cb1e92d1… after ten passes →
-  // f95831ee…; two probes returned the flagged signature
-  // exactly and run 2 held it; read in full, its rate table
-  // matches the record on every carried tier — page
-  // restructuring, not a rate change; first flag at the new
-  // signature, no exclusion, no calibration this pass).
+  // f95831ee… in both runs; two probes returned a second
+  // rendering (3f90e01a…, 7,057 chars) — the page is
+  // rendering-variant again, as recorded since 2.6; the
+  // probe rendering, read in full, matches the record on
+  // every carried tier — rendering rotation, not a rate
+  // change; no exclusion (the 2.6 decision keeps this
+  // primary rate source signature-live), no calibration).
   // Kling 4.0's APIMart page held its baseline signature in
   // both runs — an eleventh consecutive pass. PixVerse V6's
   // docs source fetched clean at its baseline signature

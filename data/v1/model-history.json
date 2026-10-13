@@ -2065,7 +2065,7 @@
    "model_id": "seedance-3-0",
    "model": "Seedance 3.0",
    "kind": "verification",
-   "summary": "Watch stands (Watchtower 2.16): Versely's criteria page answered at the 2.11 variant signature (506d7e9d…, 12,513 chars) in both of the pass's completed checker runs — the rendering read directly in 2.13, which still lists Seedance 3.0 among the models announced by no vendor as of 1 October; a checker-path probe truncated once (IncompleteRead) and then returned the same variant signature. The breakread article answered at its 2.12 re-baseline signature (63a60eae…) in run 1. No ByteDance announcement, model card, API ID, or pricing. Watch stays open — unconfirmed.",
+   "summary": "Watch stands (Watchtower 2.16): Versely's criteria page answered at the 2.11 variant signature (506d7e9d…, 12,513 chars) in both of the pass's completed checker runs — the rendering read directly in 2.13, which still lists Seedance 3.0 among the models announced by no vendor as of 1 October; one of two checker-path probes truncated (IncompleteRead) and the other returned the same variant signature. The breakread article answered at its 2.12 re-baseline signature (63a60eae…) in run 1. No ByteDance announcement, model card, API ID, or pricing. Watch stays open — unconfirmed.",
    "confidence": "official",
    "source": "Watchtower 2.16 review pass (2026-10-13) — data/v1/model-review-log.json"
   },
@@ -2095,7 +2095,7 @@
    "model_id": "flux-3-video",
    "model": "FLUX 3 Video",
    "kind": "verification",
-   "summary": "FLUX follow-up (Watchtower 2.16): BFL's docs pricing page moved off its ten-pass baseline — cb1e92d1… (9,875 chars) → f95831ee… (9,728 chars) in run 1, stable at the new signature in two checker-path probes and in run 2. Read in full, its FLUX 3 Video table matches the record exactly (t2v/i2v $0.17/$0.29/$0.40/$0.80 per second by resolution, draft $0.06/s, v2v QHD $0.65/s and UHD $0.95/s); the delta is page restructuring around the rates (the FLUX 3 Image and fine-tuned-endpoint sections), not a rate change. The new signature is the baseline from this pass. No rate changed.",
+   "summary": "FLUX follow-up (Watchtower 2.16, corrected): BFL's docs pricing page moved off its ten-pass baseline in the checker runs — cb1e92d1… (9,875 chars) → f95831ee… (9,728 chars) in both run 1 and run 2 — while two checker-path probes the same day returned a second, shorter rendering (3f90e01a…, 7,057 chars): the page is rendering-variant again, as first recorded in 2.6. The probe rendering was read in full; its FLUX 3 Video table matches the record exactly (t2v/i2v $0.17/$0.29/$0.40/$0.80 per second by resolution, draft $0.06/s, v2v QHD $0.65/s and UHD $0.95/s). No rate changed. The checker feed baselines f95831ee… from this pass; 3f90e01a… is on record as a known rendering.",
    "confidence": "official",
    "source": "Watchtower 2.16 review pass (2026-10-13) — data/v1/model-review-log.json"
   },
@@ -2115,7 +2115,7 @@
    "model_id": "flux-3-video",
    "model": "FLUX 3 Video",
    "kind": "verification",
-   "summary": "Flag dismissed (Watchtower 2.16): run 1 flagged FLUX 3 Video on BFL's own docs pricing page (cb1e92d1…, 9,875 chars → f95831ee…, 9,728). Two checker-path probes returned the flagged signature exactly, and run 2 held it. Read in full, the page's FLUX 3 Video rate table matches the record on every tier the record carries; the −147 chars are restructuring (FLUX 3 Image per-image table, fine-tuned-endpoint beta section) around unchanged rates. First flag at the new signature — no exclusion; if the page flaps back to the old signature or moves again, that repeat earns the exclusion its class carries. Dismissed as docs-page restructuring.",
+   "summary": "Flag dismissed (Watchtower 2.16, corrected): run 1 flagged FLUX 3 Video on BFL's own docs pricing page (cb1e92d1…, 9,875 chars → f95831ee…, 9,728), and run 2 held the same signature. Two checker-path probes returned a different rendering (3f90e01a…, 7,057 chars), not the flagged one — the page serves multiple renderings, as recorded since 2.6. The probe rendering was read in full: its FLUX 3 Video rate table matches the record on every tier the record carries. No exclusion: the desk's 2.6 decision keeps this primary rate source signature-live precisely so a rate move flags; the variance is on record (cb1e92d1…, f95831ee…, 3f90e01a…), and a future flag is adjudicated against all three renderings. Dismissed as docs-page rendering rotation.",
    "confidence": "official",
    "source": "Watchtower 2.16 review pass (2026-10-13) — data/v1/model-review-log.json"
   }

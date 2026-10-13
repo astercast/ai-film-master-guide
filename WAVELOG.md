@@ -1,3 +1,36 @@
+## Rotation 17 — correction (2026-10-13)
+
+Filed after the rotation's pushes, on evidence that
+arrived late: the Watchtower probe exec's terminal
+output was delivered only after the record commit had
+pushed, and it contradicts one detail of the FLUX
+adjudication as filed. Pass 15's record said two
+checker-path probes returned the flagged docs-page
+signature (f95831ee…) exactly. They did not: the saved
+probe text on disk hashes to 3f90e01a… (7,057 chars) —
+a second, shorter rendering of BFL's docs pricing
+page — while both checker runs carry f95831ee…
+(9,728 chars). The verdict is unchanged and its basis
+stands: the dismissal rested on the probe rendering's
+rate table, read in full, which matches the record on
+every carried tier, and the page has been recorded as
+multi-rendering since 2.6, when the desk deliberately
+kept this primary rate source signature-live (no
+calibration then, none now; the three known renderings
+are on record for the next pass). What was wrong was
+only the recorded probe signature. Corrected in place:
+the review-log pass-15 basis (plus a pass-15 correction
+entry, review log 29 → 30), the two FLUX history
+events, the LIVE_CHECKLIST 2.16 note, the
+watchtower.test.js comment, and this WAVELOG's Duty 1
+text (including the Seedance probe order: probe 1
+returned the variant signature, probe 2 truncated).
+All other 2.16 numbers — final feed, drift, history
+144, queue, validation — are unchanged. This
+correction rides its own commit immediately after
+`b76aad6`; its push is recorded in the coordinator
+report.
+
 ## Rotation 17 — commit/push record (2026-10-13)
 
 Local `40923fb` → pushed 2026-10-13 as remote commit
@@ -37,9 +70,9 @@ checker-path probes:
 
 - **Seedance 3.0 — unconfirmed.** Versely's criteria page
   answered at the 2.11 variant signature (506d7e9d…,
-  12,513 chars) in both completed runs; a probe truncated
-  once (IncompleteRead) and then returned the same variant
-  signature — the rendering read directly in 2.13, which
+  12,513 chars) in both completed runs; one of two probes
+  truncated (IncompleteRead) and the other returned the
+  same variant signature — the rendering read directly in 2.13, which
   still lists Seedance 3.0 among the models announced by
   no vendor as of 1 October. The breakread article
   answered at its 2.12 re-baseline signature (63a60eae…)
@@ -81,15 +114,19 @@ checker-path probes:
 **Flags: 1 raised, 1 dismissed, 0 calibrations; no
 record changes.** Run 1 (18:41–18:52Z) read changed=1,
 with_errors=0: **FLUX 3 Video** on BFL's own docs
-pricing page. Two probes returned the flagged signature
-exactly and run 2 held it. Read in full, the page's
-FLUX 3 Video table matches the record on every carried
-tier (t2v/i2v $0.17/$0.29/$0.40/$0.80 per second, draft
-$0.06/s, v2v QHD $0.65/s, UHD $0.95/s); the −147 chars
-are restructuring around the rates (the FLUX 3 Image
-per-image table, the fine-tuned-endpoint beta section).
-First flag at the new signature — no exclusion; a flap
-back to the old signature or another move earns one.
+pricing page. Run 2 held the flagged signature; two
+checker-path probes returned a different rendering
+(3f90e01a…, 7,057 chars) — the page serves multiple
+renderings, as recorded since 2.6 (corrected; see the
+correction entry above). The probe rendering, read in
+full, matches the record's FLUX 3 Video table on every
+carried tier (t2v/i2v $0.17/$0.29/$0.40/$0.80 per
+second, draft $0.06/s, v2v QHD $0.65/s, UHD $0.95/s).
+No exclusion and no calibration: the desk's 2.6
+decision keeps this primary rate source signature-live
+precisely so a rate move flags; the known renderings
+(cb1e92d1…, f95831ee…, 3f90e01a…) are on record, and a
+future flag is adjudicated against all three.
 Run 2 (18:57–19:05Z), the re-baseline, read
 **changed=0, with_errors=0, no_sources=0**, proving the
 dismissal; the queue holds exactly the 3 standing
@@ -101,7 +138,8 @@ partials; Kling 3.0 out, its sources all answering).
 Unpublished rates 5; pricing diff vs the 2026-10-11
 baseline 7 rows. History 138 → **144 events** (October
 window 118 → **124**); review log 27 → **29 entries**
-(pass 15 + addendum). models.json untouched by the
+(pass 15 + addendum; 30 with the correction entry filed
+above). models.json untouched by the
 pass. Process: every checker run was launched detached
 (setsid launcher + PID/status files, logs on a durable
 fleet-ops path) after a process-table check, exactly
