@@ -1,3 +1,283 @@
+## Watchtower 2.14 — the twelfth review pass + Grade Sheet (2026-10-13)
+
+**Assignment:** Rotation 15 — Watchtower 2.14 (the twelfth
+review pass over the 32 watched models; the 3 standing
+watches get full checker-path passes; PixVerse V6's
+fourth-clean-pass question), the flagship the WAVELOG names
+as next (it named none — the choice is stated in Duty 2,
+before the fact, in the rotation-13 manner), the r82 board
+re-verification from research cycle 81's flag, the placement
+regression sweep, the rule-1762 hygiene audit, and the
+rotation-15 Progress Archive capture duty. Tickets first:
+the QA book was verified empty at rotation start (QA-001
+through QA-009 all closed; no open ticket names this site),
+so nothing was queued ahead of the duties.
+
+**Commit:** recorded in the follow-up entry after the push.
+
+**Duty 1 — Watchtower 2.14 (twelfth review pass).** All 3
+standing watches stand, content-verified by checker-path
+probes:
+
+- **Seedance 3.0 — unconfirmed.** Versely's criteria page
+  answered at the 2.11 variant signature (506d7e9d…, 12,513
+  chars) in the pass's completed runs and in two probes;
+  read directly in 2.13 it still lists Seedance 3.0 among
+  the models announced by no vendor as of 1 October. The
+  breakread article held its 2.12 re-baseline signature
+  (63a60eae…) all pass. No ByteDance announcement, model
+  card, API ID, or pricing. Watch stays open.
+- **Kling 4.0 — stays "announced".** APIMart's criteria
+  page answered at its baseline signature (fc55ce30…,
+  136,708 chars) in the pass's runs and in two probes — a
+  ninth consecutive pass at the identical signature — still
+  "API Coming Soon", availability "Not yet", pricing not
+  announced; its text schedules Kling 4.0 for October 2026
+  with Flash in limited early access, the announced state
+  the record already carries. No GA model ID, no Kuaishou
+  pricing.
+- **Soul Cinema — in-app credit cost still unpublished.**
+  Higgsfield's pricing page answered at the settled
+  428-char shell (f14e9f4a…) in two probes, with no credit
+  figure; the API post still lists only the $0.0032/image
+  rate tabled in 2.3 (and returned a different signature at
+  identical length, 62,719 chars, on every fetch this pass
+  — the per-request variance it has been signature-excluded
+  for since 2.4).
+- **FLUX follow-up:** BFL's docs pricing page returned
+  its 9,875-char rendering at the 2.6 baseline signature
+  (cb1e92d1…) inside the pass's completed runs and in two
+  probes — a ninth consecutive pass; its table still
+  matches the record exactly.
+- **PixVerse V6 — fourth clean pass claimed.** Its docs
+  source fetched clean at the baseline signature
+  (95c88c96…, 4,278 chars) inside the completed runs and
+  in two probes, all five sources answering — the 2.10
+  recovery now stands on four consecutive clean passes,
+  one more than 2.13 claimed.
+
+**Flags: 7 raised, 7 dismissed, 5 of them calibrated; no
+record changes.** Run 1 (15:44–15:54Z) read changed=4,
+with_errors=0. (a) **LTX-2.5** on
+roboticsandautomationnews.com, second consecutive pass:
+probes returned a third signature (48a217ae…, 14,169
+chars) against run 1's 2f64eaef… and the baseline's
+2432801d… — never signature-stable; its only money figure
+is the under-$10M threshold already in the record.
+**2.14 calibration #1:** the URL is signature-excluded
+for LTX-2.5 (fetched and recorded every run), following
+the 2.13 Zacks/eWeek precedent. (b) **Runway Gen-4.5** on
+runwayml.com/pricing, second consecutive pass: run 1
+fetched a 420-char shell, probes returned 1,142 and 992
+chars at two further signatures — every rendering a JS
+app shell with no prices, as read in 2.13. **2.14
+calibration #2:** the exact URL is signature-excluded
+for Runway Gen-4.5 — the second flag 2.13 said would earn
+it; the record's figures stay signature-live on the
+model's remaining sources. (c) **FLUX 3 Video** on
+the-decoder.com, second consecutive pass: a same-length
+swap (3,906 chars), probes exact, in the GA article's
+rotating story rails. **2.14 calibration #3:** the URL
+is signature-excluded for FLUX 3 Video; the rate stays
+live on BFL's docs page. (d) **FLUX 3 Video** on
+bottlerocketcontent.com: a +5-char delta on the 4 August
+launch article, probes exact, its $0.06/$0.17 pricing
+lines matching the record — dismissed, first flag on the
+URL, no exclusion. (e) **Luma App / Ray 3.2** on
+mivicai.com: four signatures within the pass (baseline
+ade39dfc…, run 1 f6583f76…, probes cabb6b55…, run 2 at a
+new signature again) with facts matching the record —
+the 2.12 magichour alternation pattern proved end-to-end
+when run 2 (16:23–16:33Z) re-flagged it. **2.14
+calibration #4:** the URL is signature-excluded for Luma.
+Run 2 also raised (f) **Gemini Omni** on Google's own
+Gemini API pricing page (+8,124 chars): read in full, its
+Omni Flash table matches the record exactly ($1.50 input,
+$17.50 per 1M video-output tokens, 5,792 tokens/s of
+720p, ≈$0.10/s) — page growth, not a rate move. Run 3
+(16:41Z) vanished without a trace (pid file written, log
+empty, feed untouched — the 2.11 run-1b pattern) and was
+relaunched improved as run 3b (16:50–17:00Z; the wrapper
+timestamps its own start into the log, python unbuffered),
+which raised (g) **Pika 2.5** on pika.art (three probes
+returned the flagged signature exactly, cd214343…, 5,606
+chars; its model menu matches the record — dismissed as
+homepage rotation, first flag, no exclusion) and
+re-flagged Gemini Omni at a fifth distinct signature.
+**2.14 calibration #5:** the Gemini API pricing URL is
+signature-excluded (exact URL) for Gemini Omni — five
+fetches, five signatures at effectively identical length
+is the Soul 2.4 per-request-variance pattern; still
+fetched and recorded every run, and the manual rate read
+of that page (done this pass, verbatim match) is now the
+standing backstop for the model. Run 4 (17:03–17:13Z),
+the final re-baseline, read **changed=0, with_errors=0,
+no_sources=0**, proving all five calibrations and all
+seven dismissals together; the queue holds exactly the 3
+standing watches, their notes carrying this pass's
+re-check lines. Final drift: **11 alerts / 5 watch /
+16 ok, 0 unwatched** — the count moved 12 → 11 against
+2.13 because the standing host-gated cohort's membership
+rotates (this run Wan 2.6 carries a partial while Veo
+3.1's and Gemini Omni's sources all answered).
+Unpublished rates 5; pricing diff vs the 2026-10-11
+baseline 7 rows. History 119 → **131 events** (October
+window 99 → **111**); review log 23 → **25 entries**
+(pass 13 + addendum). models.json untouched by the pass.
+Process: every completed run was launched detached
+(setsid launcher + PID/status files, logs on a durable
+fleet-ops path) after a process-table check, exactly one
+checker verified alive during each. Two anomalies,
+disclosed: run 3's vanishing (above — the improved
+relaunch is the countermeasure, per the standing
+stuck-rule), and an unidentified duplicate launch that
+wrote a LAUNCHED line into run 4's log at 17:09:48Z and
+vanished without a process or a feed write; run 4's
+EXIT=0 status and changed=0 feed are the run of record,
+verified against the single live checker throughout.
+
+**Duty 2 — Flagship: the Grade Sheet (`grade.html`).**
+The WAVELOG named no next flagship, so the choice is
+stated here before the fact in the commit record: the
+guide's tool layer covered the script (Clearance), the
+episode (Forge), the models (Showdown), the production
+(Studio / Green Light), continuity (the Ledger), and
+sound (the Cue Sheet) — the post-production stage with
+no working tool was the grade, the chapter that opens
+with 40 colorists who never met and whose checklist
+lived only as prose at its foot. The Grade Sheet is
+that chapter as a working file: its five pre-grade
+gates (every element assigned to plate or grade; hero
+reference chosen for every scene; one show look locked,
+scene variations only; grain philosophy decided — one
+grain, applied last; pre-grade masters archived), and a
+production's own scenes logged with the hero reference
+each is matched to, the source (one model, or several
+with different house grades), and the five matching
+steps in the chapter's order (exposure + white balance,
+contrast curve, saturation, the de-plasticize texture
+pass, skin last). The verdict is computed from the
+chapter's rules, two of them mechanical: a scene with
+no hero reference reads unmatched whatever its owner
+claims, because unification is matching to a reference;
+and a scene claimed unified with steps unfinished reads
+drifting, because the creative look never goes on before
+the match; an unmatched scene stops the grade, a
+drifting scene holds it, and a clean sheet still owes
+the scopes check (blacks reach black, skin on the
+skin-tone line, no channel clips). `build_grade()` in
+`scripts/build_site.py` pre-renders the default sheet
+(the same fictional "Night Bus" production the Ledger
+and the Cue Sheet track, graded instead of seen or
+heard: 5 scenes, 4 unified, the rain stop shot across
+two models with its saturation unmatched — so the first
+verdict is the honest hold) under the same rules
+`assets/js/grade.js` (`GradeEngine`) runs in the
+browser; the page reads identically without JavaScript
+and exports the sheet as markdown. Wired into the nav
+index, the footer, the search index, and the generated
+llms tool list; HAND skill `grade-sheet` in the grading
+family (skills 237 → 238); `scripts/grade.test.js`
+(13/13) wired into validate.sh stage 7.
+Playwright-verified over HTTP, desktop 1440 + mobile
+390: zero console messages; finishing the rain stop's
+stack flips the verdict Hold → Grade clean in the live
+page, and adding a scene with no hero reference flips
+it to Grade stopped. Before/after: the grading chapter
+was a read-only page with a checklist at the bottom;
+the guide now has a working grade sheet whose verdict
+is computed from the reader's own scenes (screenshots +
+a verdict-flip clip in
+`~/workspace/progress-archive/ai-film-master-guide/rotation-015/`).
+
+**Duty 3 — Research flag (a): the r82 board.** The
+tasking flag said the AI Video AA T2V board moved at
+research r82 and any copy quoting r63 values is stale.
+Verified across the guide's source docs, model records,
+and generated API: the board table in
+`field/2026-developments.md` already carries the exact
+r82 values (Wan 3.0 1156, Utopai X 1148, Seedance 2.5
+1143, H3 1140, H3 Max 1133, FLUX 3 1129, Kling 3.0 Omni
+#15 1015, Pro #16 1000, Vidu Q3 Pro 942, Turbo 912 — the
+rotation-12 correction), the built field page serves
+them, and the r63 numbers survive only in the table's
+labelled stale column and in superseded-claim history
+sentences. No stale copy found; nothing to update.
+Verified negative, reported as one.
+
+**Duty 4 — Regression sweep (placement stack +
+graduated techniques).** After the final build,
+grep-verified over all built pages: **109 pages** (108 +
+grade.html, born placed) — OG absolute 109/109,
+canonical 109/109, theme-color 109/109, favicon links
+109/109, robots.txt generated (allow-all, no invented
+sitemap), JSON-LD 44 blocks (unchanged count — the
+Grade Sheet is a tool page and carries canonical + OG
+only, per the honest-JSON-LD rule), 0 invalid JSON-LD
+blocks, and exactly one `<h1>` on every page. Graduated
+techniques re-verified over HTTP in Chromium on the
+color-grading chapter page: the progress bar scrubbed
+with `animation-timeline: scroll(root)` as its computed
+timeline (925px wide at mid-scroll, no inline transform
+written — docs.js correctly yields); under emulated
+`prefers-reduced-motion: reduce` the timeline computes
+to `auto` and docs.js's listener drives the bar (inline
+scaleX tracking scroll 0.127 → 0.794 → 1 across the
+page) — the fallback is intact; the `@view-transition`
+rule still sits inside the no-preference guard in the
+served CSS, both Commons canonical patterns
+(`patterns/view-transitions`,
+`patterns/scroll-driven-animations`) cited by name in
+the served stylesheets. Precision kept from rotation
+14: the progress bar lives on chapter/docs pages, not
+literally every page.
+
+**Rule 1762 hygiene.** Audit of all tracked files: zero
+CR/CRLF in any text file (CR bytes appear only inside
+files .gitattributes marks binary — images, fonts, the
+favicon). Final-newline gaps: 20 files — the 19 frozen
+wt211/wt212 adjudication evidence logs, left
+byte-identical on purpose, and `site/search-index.json`,
+a generator output whose generator emits no trailing
+newline. Every file this rotation created or edited by
+hand is final-newline terminated. The LF pin + binary
+carve-outs in `.gitattributes` (png/jpg/jpeg/gif/webp/
+ico/woff/woff2/pdf) were verified before touching and
+are untouched.
+
+**Structure flags for the Release Engineer:** none. No
+api/ paths added, removed, or moved (the 6-function map
+is unchanged). New files are all in existing homes:
+`assets/js/grade.js`, `scripts/grade.test.js`, the
+generated `site/grade.html`, and one generated skill
+file under `skills/grading/`.
+
+**Validation.** validate.sh and api.test.sh results are
+recorded in the follow-up entry after the push
+(post-commit runs; stages 5/6 compare generator output
+against HEAD by design). Pre-commit: grade 13/13 inside
+stage 7, watchtower 6/6, api.test.sh 55/55 on its updated
+pins (October window 99 → 111; drift alerts 12 → 11).
+
+**Left open.** The 3 standing watches — all re-checked
+this pass, none moved. The standing partial cohort will
+keep surfacing as alerts while its hosts gate the
+checker. Five pages joined the signature-exclusion list
+this pass (roboticsandautomationnews for LTX-2.5,
+runwayml.com/pricing for Runway Gen-4.5, the-decoder for
+FLUX 3 Video, mivicai for Luma, and the Gemini API
+pricing page for Gemini Omni); if any ever carries a
+real fact change, the manual check on the models'
+remaining sources — for Gemini Omni, the manual rate
+read of the pricing page itself, verified verbatim this
+pass — is the backstop. bottlerocketcontent (FLUX) and
+pika.art (Pika) bear watching for a second flag; a repeat
+earns each the exclusion its class carries. PixVerse's
+docs source now stands on four clean passes. Parked
+decisions: none this rotation. No fetch-rule skips
+occurred: every fetch used the checker's own path or its
+probe imports; no approval-card source was encountered.
+
 ## Watchtower 2.13 — the eleventh review pass + Cue Sheet (2026-10-13)
 
 **Assignment:** Rotation 14 — Watchtower 2.13 (the eleventh review

@@ -1,6 +1,6 @@
 {
  "format": "model-history/1.0",
- "generated_at": "2026-10-13T12:36:00Z",
+ "generated_at": "2026-10-13T17:13:26Z",
  "method": "Hand-authored event log. Every event traces to a fact recorded in models.json (what_changed), data/v1/model-updates.md, or this wave's own pricing-table changes. Price events carry a before/after pair only where the record documents both numbers; otherwise the fields are null and the summary says why. The pricing baseline below is the pricing table as curated on 2026-10-11 — the drift engine diffs the live table against it, so a rate that moves from here on is caught mechanically, not by memory.",
  "pricing_baseline": {
   "at": "2026-10-11T00:00:00Z",
@@ -1868,6 +1868,126 @@
    "summary": "Flag dismissed (Watchtower 2.13): run 2 flagged FLUX 3 Video on The Decoder's general-availability article (ac5ba291… → 51544f3b…, at identical length, 3,906 chars). Two checker-path probes returned the flagged signature exactly; the article is the 5 August 2026 GA story already behind the record — its pricing lines are BFL's launch pricing, and BFL's docs pricing page held its baseline signature in the same run. The same-length swap sits in the page's rotating story rails. Dismissed as page chrome.",
    "confidence": "official",
    "source": "Watchtower 2.13 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-seedance-3-0-watch-stands-2-14",
+   "date": "2026-10-13",
+   "model_id": "seedance-3-0",
+   "model": "Seedance 3.0",
+   "kind": "verification",
+   "summary": "Watch stands (Watchtower 2.14): Versely's state-of-the-field criteria page answered at the 2.11 variant signature (506d7e9d…, 12,513 chars) in the pass's completed checker runs and in two checker-path probes — the same rendering read directly in 2.13, which still lists Seedance 3.0 among the models announced by no vendor as of 1 October. The breakread article held its 2.12 re-baseline signature (63a60eae…) in the runs and both probes. No ByteDance announcement, model card, API ID, or pricing. Watch stays open — unconfirmed.",
+   "confidence": "official",
+   "source": "Watchtower 2.14 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-kling-4-0-watch-stands-2-14",
+   "date": "2026-10-13",
+   "model_id": "kling-4-0",
+   "model": "Kling 4.0",
+   "kind": "verification",
+   "summary": "Watch stands (Watchtower 2.14): APIMart's criteria page answered at its baseline signature (fc55ce30…, 136,708 chars) in the pass's runs and in two checker-path probes — a ninth consecutive pass at the identical signature — still 'API Coming Soon', availability 'Not yet', pricing not announced; its text says Kling 4.0 is scheduled for October 2026 with Flash in limited early access, which is the announced state the record already carries. No GA model ID, no Kuaishou pricing. Watch stays open — announced.",
+   "confidence": "official",
+   "source": "Watchtower 2.14 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-soul-cinema-watch-stands-2-14",
+   "date": "2026-10-13",
+   "model_id": "soul-cinema",
+   "model": "Soul Cinema",
+   "kind": "verification",
+   "summary": "Watch stands (Watchtower 2.14): Higgsfield's pricing page answered at the settled 428-char shell (f14e9f4a…) in two checker-path probes, with no in-app credit figure; the API post still lists only the $0.0032/image rate tabled in 2.3 (and returned a different signature at identical length, 62,719 chars, on every fetch this pass — the per-request variance it has been signature-excluded for since 2.4). The in-app credit cost is still unpublished. Watch stays open.",
+   "confidence": "official",
+   "source": "Watchtower 2.14 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-flux-docs-baseline-ninth-pass-2-14",
+   "date": "2026-10-13",
+   "model_id": "flux-3-video",
+   "model": "FLUX 3 Video",
+   "kind": "verification",
+   "summary": "FLUX follow-up (Watchtower 2.14): BFL's docs pricing page returned its 9,875-char rendering at the 2.6 baseline signature (cb1e92d1…) inside the pass's completed runs and in two checker-path probes — a ninth consecutive pass; its FLUX 3 Video table still matches the record exactly. No rate changed.",
+   "confidence": "official",
+   "source": "Watchtower 2.14 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-pixverse-v6-fourth-clean-pass-2-14",
+   "date": "2026-10-13",
+   "model_id": "pixverse-v6",
+   "model": "PixVerse V6",
+   "kind": "verification",
+   "summary": "Fourth clean pass (Watchtower 2.14): PixVerse V6's docs source fetched clean at the baseline signature (95c88c96…, 4,278 chars) inside the pass's completed runs and in two checker-path probes, all five sources answering — the 2.10 recovery now stands on four consecutive clean passes, one more than 2.13 claimed. Record unchanged.",
+   "confidence": "official",
+   "source": "Watchtower 2.14 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-luma-mivicai-flag-dismissed-calibration-2-14",
+   "date": "2026-10-13",
+   "model_id": "luma-ray-3-2",
+   "model": "Luma App / Ray 3.2",
+   "kind": "verification",
+   "summary": "Flag dismissed + calibration (Watchtower 2.14): the mivicai.com Ray 3.2 article returned four different signatures within one pass — the 2.13 baseline (ade39dfc…, 17,046 chars), run 1 (f6583f76…, 16,918), two checker-path probes (cabb6b55…, 17,023), and run 2 at a new signature again. Read in full, its facts match the record: Ray 3.2 is Luma's current model, served on the Luma Agents API, developer access credit/usage-based. The page alternates renderings within a pass — the 2.12 magichour pattern — so the URL is signature-excluded for this model in the 2.14 calibration (still fetched and recorded every run). No record change.",
+   "confidence": "official",
+   "source": "Watchtower 2.14 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-ltx-2-5-robotics-flag-dismissed-calibration-2-14",
+   "date": "2026-10-13",
+   "model_id": "ltx-2-5",
+   "model": "LTX-2.5",
+   "kind": "verification",
+   "summary": "Flag dismissed + calibration (Watchtower 2.14): run 1 flagged LTX-2.5 on roboticsandautomationnews.com's 13 August launch article for the second consecutive pass (2432801d…, 14,203 chars → 2f64eaef…, 14,165); two checker-path probes returned a third signature (48a217ae…, 14,169 chars), so the page is never signature-stable. Read in full, its only money figure is the under-$10M free-use threshold already in the record. The URL is signature-excluded for this model in the 2.14 calibration (still fetched and recorded every run), following the 2.13 Zacks/eWeek precedent. No record change.",
+   "confidence": "official",
+   "source": "Watchtower 2.14 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-runway-pricing-shell-flag-dismissed-calibration-2-14",
+   "date": "2026-10-13",
+   "model_id": "runway-gen-4-5",
+   "model": "Runway Gen-4.5",
+   "kind": "verification",
+   "summary": "Flag dismissed + calibration (Watchtower 2.14): runwayml.com/pricing flagged for the second consecutive pass — run 1 fetched a 420-char shell (95b43e21…) against the 1,071-char baseline, and two checker-path probes returned 1,142 and 992 chars at two further signatures; every rendering is a JavaScript app shell with no plan prices and no credit rate, as read in full in 2.13. This is the second flag 2.13 said would earn the exclusion: the URL is signature-excluded (exact URL) for this model in the 2.14 calibration, still fetched and recorded every run; the record's figures (12 credits/s; API $0.12/s) stay signature-live on the model's remaining sources. No record change.",
+   "confidence": "official",
+   "source": "Watchtower 2.14 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-flux-bottlerocket-flag-dismissed-2-14",
+   "date": "2026-10-13",
+   "model_id": "flux-3-video",
+   "model": "FLUX 3 Video",
+   "kind": "verification",
+   "summary": "Flag dismissed (Watchtower 2.14): run 1 flagged FLUX 3 Video on bottlerocketcontent.com's launch article (f3127725…, 7,486 chars → cc8e7415…, 7,491 — a +5-char delta); two checker-path probes returned the flagged signature exactly. The article is the 4 August 2026 launch story already behind the record, and its pricing lines ($0.06/s draft, from $0.17/s full quality) match the record's FLUX rates. First flag on this URL — no exclusion; a second earns one. Dismissed as page chrome.",
+   "confidence": "official",
+   "source": "Watchtower 2.14 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-flux-decoder-flag-dismissed-calibration-2-14",
+   "date": "2026-10-13",
+   "model_id": "flux-3-video",
+   "model": "FLUX 3 Video",
+   "kind": "verification",
+   "summary": "Flag dismissed + calibration (Watchtower 2.14): run 1 flagged FLUX 3 Video on the-decoder.com's GA article for the second consecutive pass — a same-length signature swap (51544f3b… → d7add57c…, 3,906 chars), two checker-path probes returning the flagged signature exactly, in the 5 August GA article whose rotating story rails produced the identical pattern in 2.13. The URL is signature-excluded for this model in the 2.14 calibration (still fetched and recorded every run); the rate stays signature-live on BFL's docs page, at baseline for a ninth consecutive pass. No record change.",
+   "confidence": "official",
+   "source": "Watchtower 2.14 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-gemini-omni-pricing-flag-dismissed-calibration-2-14",
+   "date": "2026-10-13",
+   "model_id": "gemini-omni",
+   "model": "Gemini Omni",
+   "kind": "verification",
+   "summary": "Flag dismissed + calibration (Watchtower 2.14): runs 2 and 3 flagged Gemini Omni on Google's own Gemini API pricing page (7981d153…, 58,539 chars → 3497fc8b…, 66,663 → d85a32e1…, 66,665), and two checker-path probes returned two further signatures at 66,663 (d401b69d…, a729b63f…) — five fetches, five signatures, at effectively identical length: the page carries per-request variance and can never be signature-stable (the Soul Cinema API-post pattern, excluded since 2.4). Read in full, its Gemini Omni Flash table matches the record exactly: $1.50 input, $17.50 per 1M video-output tokens, 5,792 tokens per second of 720p, 'approximately $0.10 per second' under Standard pricing; the page growth around the rate is new model sections, not a rate move. The URL is signature-excluded (exact URL) for this model in the 2.14 calibration, still fetched and recorded every run; the manual rate read of that page is now the standing backstop for this model. No record change.",
+   "confidence": "official",
+   "source": "Watchtower 2.14 review pass (2026-10-13) — data/v1/model-review-log.json"
+  },
+  {
+   "id": "2026-10-13-pika-homepage-flag-dismissed-2-14",
+   "date": "2026-10-13",
+   "model_id": "pika-2-5",
+   "model": "Pika 2.5",
+   "kind": "verification",
+   "summary": "Flag dismissed (Watchtower 2.14): run 3 flagged Pika 2.5 on pika.art, the vendor homepage; three checker-path probes returned the flagged signature exactly (cd214343…, 5,606 chars) — the page is signature-stable today, and its model menu (Pika 2.5 and Pikaframes alongside routed third-party models: Seedance 2.5, MiniMax H3, Wan 3.0, Gemini Omni Flash) matches the record: 2.5 remains the current Pika model and the platform routes third-party models. The delta against the stored baseline is homepage marketing rotation. First flag on this URL — no exclusion; a second earns the homepage treatment klingai.com carries. Dismissed as homepage churn.",
+   "confidence": "official",
+   "source": "Watchtower 2.14 review pass (2026-10-13) — data/v1/model-review-log.json"
   }
  ]
 }

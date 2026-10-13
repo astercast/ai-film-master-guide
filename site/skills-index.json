@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "count": 237,
+  "count": 238,
   "skills": [
     {
       "id": "prompt-t1",
@@ -1345,6 +1345,12 @@
       "title": "Run the cue sheet",
       "description": "The sound, music & audio chapter as a working cue sheet: the five pre-mix gates, every scene logged with its three layers and dialogue route, and the mix verdict from the chapter's rules.",
       "path": "skills/audio/audio-cue-sheet.md"
+    },
+    {
+      "id": "grade-sheet",
+      "title": "Run the grade sheet",
+      "description": "The color-grading chapter as a working grade sheet: the five pre-grade gates, every scene logged with its hero reference, source, and five matching steps, and the grade verdict from the chapter's rules.",
+      "path": "skills/grading/grade-sheet.md"
     },
     {
       "id": "workflow-shot-list",

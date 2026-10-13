@@ -444,6 +444,21 @@ else
   CS_OK=0
 fi
 
+# Grade Sheet: engine + page + chapter (rotation 15 flagship)
+GR_OK=1
+for f in assets/js/grade.js site/grade.html site/assets/js/grade.js site/craft/color-grading.html; do
+  if [ ! -f "$f" ]; then fail "$f missing (rebuild the site)"; GR_OK=0; fi
+done
+GR_OUT=$(node scripts/grade.test.js 2>&1)
+if echo "$GR_OUT" | tail -1 | grep -q "all pass"; then
+  GR_N=$(echo "$GR_OUT" | grep -c "^ok ")
+  pass "grade.test.js: $GR_N engine assertions pass (five pre-grade gates, five matching steps, no-reference-is-unmatched rule, grade verdicts, export traces)"
+else
+  fail "grade.test.js failures:"
+  echo "$GR_OUT" | grep "^FAIL" | head -8 | sed 's/^/    /'
+  GR_OK=0
+fi
+
 # Cutting Room → Green Light bridge button present (rendered by cutting-room.js)
 if grep -q "cr-greenlight" assets/js/cutting-room.js && grep -q "cr-greenlight" site/assets/js/cutting-room.js; then
   pass "cutting-room → green-light bridge wired (button + handler)"

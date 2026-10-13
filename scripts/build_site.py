@@ -70,6 +70,7 @@ NAV_INDEX = [
         ("clearance.html", "Script clearance"),
         ("continuity.html", "Continuity ledger"),
         ("cuesheet.html", "Cue sheet"),
+        ("grade.html", "Grade sheet"),
         ("recipes.html", "Recipes"),
         ("forge.html", "Episode forge"),
     ]),
@@ -105,6 +106,7 @@ FOOTER_ITEMS = [
     ("clearance.html", "Script clearance"),
     ("continuity.html", "Continuity ledger"),
     ("cuesheet.html", "Cue sheet"),
+    ("grade.html", "Grade sheet"),
     ("checks/", "Knowledge checks"),
     ("budget.html", "Budget"),
     ("optimizer.html", "Optimizer"),
@@ -3834,6 +3836,291 @@ def build_cuesheet(css_links):
     return [("cuesheet.html", "Cue sheet")]
 
 
+GRADE_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Grade sheet — AI Film Master Guide</title>
+  <meta name="description" content="The color-grading chapter as a working grade sheet: the five pre-grade gates, every scene logged with its hero reference, its source, and its five matching steps, and the grade verdict computed from the chapter's own rules — no reference means unmatched, unfinished steps hold the grade.">
+  {css}
+  <style>
+    .gr-verdict {{ font-size: 1.05rem; border-left: 3px solid var(--gold); padding-left: var(--space-4); margin-bottom: var(--space-6); }}
+    .gr-held {{ border-left-color: #e88; }}
+    .gr-gate-card, .gr-entry {{ border: 1px solid var(--line); border-radius: 12px; padding: var(--space-4) var(--space-5); margin-bottom: var(--space-4); }}
+    .gr-gate-head, .gr-entry-head {{ display: flex; align-items: baseline; gap: var(--space-3); flex-wrap: wrap; }}
+    .gr-gate-head h4, .gr-entry-head h4 {{ margin: 0; font-size: 1.2rem; }}
+    .gr-num {{ display: inline-block; min-width: 1.7em; text-align: center; background: var(--gold); color: #111; border-radius: 999px; font-weight: 800; padding: .1em .3em; }}
+    .gr-tag {{ margin-left: auto; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }}
+    .gr-what, .gr-detail, .gr-state {{ color: var(--muted); }}
+    .gr-state strong {{ color: var(--text); }}
+    .gr-note {{ font-size: .85rem; }}
+  </style>
+</head>
+<body>
+  <div class="edge-right" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        {sitenav}
+      </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">&#9679;</span> <span class="hdr-tc-val">00:59:52:00</span></span>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">&#8984;K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    {hero}
+    <section class="container" aria-labelledby="gr-h">
+      <h2 id="gr-h">The five gates — before the grade</h2>
+      <p>Every AI generation arrives with its own built-in grade — the model's idea of what "cinematic" looks like, baked into the pixels. On a multi-shot production that is 40 different colorists who never met; the colorist's job is unification. The five gates below are the grading chapter's own discipline before any scene is touched; the full chapter is <a href="craft/color-grading.html">Color Grading AI Footage</a>. Tick a gate when the production has actually done it — the sheet counts what is written down, not intentions.</p>
+      <div id="gr-gates">{gr_gates}</div>
+      <p class="calc-note" id="gr-gates-state" aria-live="polite">{gr_gates_state}</p>
+      <h2>Your grade sheet</h2>
+      <p>Log every scene with its hero reference (one shot per scene that every other shot is matched to), its source (one model, or several — different models carry different house grades, and mixed scenes unify harder), and the five matching steps in order: exposure and white balance, contrast curve, saturation, then the de-plasticize texture pass (fine grain, a whisper of chromatic aberration, soften — never sharpen), skin last and on a big screen. Mark each scene as it stands today: unified, drifting, or unmatched. Two rules are mechanical: a scene with no hero reference reads unmatched whatever you claim, because unification is matching to a reference; and a scene claimed unified with steps unfinished reads drifting, because the creative look never goes on before the match. The sheet opens on a worked example — the same small AI short the Ledger and the Cue Sheet track, graded instead of seen or heard — with the rain stop shot across two models and its saturation unmatched, so the first verdict you see is the honest hold.</p>
+      <div class="card" style="margin-bottom:var(--space-6);">
+        <div class="calc-grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
+          <div class="field">
+            <label for="gr-title">Production title</label>
+            <input class="input" type="text" id="gr-title" placeholder="e.g. The Night Bus">
+          </div>
+          <div class="field">
+            <label for="gr-new-scene">New scene</label>
+            <input class="input" type="text" id="gr-new-scene" placeholder="e.g. Sc 6 — Rooftop, dawn">
+          </div>
+          <div class="field">
+            <label for="gr-new-source">Source</label>
+            <select class="input" id="gr-new-source">{gr_source_options}</select>
+          </div>
+          <div class="field">
+            <label for="gr-new-detail">What the match is — specifically, on the scopes</label>
+            <input class="input" type="text" id="gr-new-detail" placeholder="e.g. Hero: the doorway wide. Blacks matched, skin on the line.">
+          </div>
+          <div class="field">
+            <label for="gr-new-status">State today</label>
+            <select class="input" id="gr-new-status">{gr_status_options}</select>
+          </div>
+          <div class="field">
+            <label>Reference + steps done</label>
+            <p style="margin:.2em 0;">
+              <label><input type="checkbox" id="gr-new-reference" checked> Hero reference</label>
+              <label><input type="checkbox" id="gr-new-exposure"> Exposure</label>
+              <label><input type="checkbox" id="gr-new-contrast"> Contrast</label>
+              <label><input type="checkbox" id="gr-new-saturation"> Saturation</label>
+              <label><input type="checkbox" id="gr-new-texture"> Texture</label>
+              <label><input type="checkbox" id="gr-new-skin"> Skin</label>
+            </p>
+          </div>
+          <div class="field">
+            <label aria-hidden="true">&nbsp;</label>
+            <button type="button" class="btn" id="gr-add">Add scene to the sheet</button>
+          </div>
+        </div>
+        <p class="calc-note" id="gr-msg" hidden></p>
+      </div>
+      <p class="gr-verdict" id="gr-verdict" aria-live="polite">{gr_verdict}</p>
+      <div id="gr-stage">{gr_stage}</div>
+      <div class="card" style="margin-top:var(--space-6);">
+        <h3>Take the sheet</h3>
+        <p>The sheet exports as clean markdown: the five gates with their state, every scene with its source, its reference, its steps, and its verdict state, and the grade verdict — the file the grading session starts from.</p>
+        <p><button type="button" class="btn" id="gr-copy">Copy sheet</button> <button type="button" class="btn btn-ghost" id="gr-download">Download sheet (.md)</button></p>
+        <p><a class="btn btn-ghost" href="craft/color-grading.html">Read the grading chapter</a> <a class="btn btn-ghost" href="cuesheet.html">Cue sheet</a> <a class="btn btn-ghost" href="continuity.html">Continuity ledger</a></p>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+    </div>
+  </footer>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search" hidden>
+    <div class="palette-box">
+      <input type="search" id="palette-input" placeholder="Search the guide…" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/grade.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
+</body>
+</html>
+"""
+
+
+# The grade-sheet layer — kept in step with assets/js/grade.js
+# (GradeEngine). scripts/grade.test.js pins the engine, and
+# the pre-rendered default sheet below is rendered under the
+# same rules. Source: craft/color-grading.md — its two places
+# color lives, its unification pass, its de-plasticize stack,
+# its show look, its scopes discipline, and its delivery
+# rules, quoted in substance.
+GRADE_GATES = [
+    dict(id="plategrade", name="Every element assigned: plate or grade",
+         what="Decide per element which place its color lives. What you bake into the plate — lens character, palette direction, texture, time of day — you don't have to fix; anything the video model keeps dropping belongs in the plate, and anything that must move across the whole film belongs in the grade."),
+    dict(id="reference", name="Hero reference chosen for every scene",
+         what="Pick one hero shot per scene as the reference and match every other shot to it — scopes, not eyes. Do the unification pass over the location set before generating where possible: it is cheaper than discovering the mismatch in the grade."),
+    dict(id="showlook", name="One show look locked — scene variations only",
+         what="One look for the film, with scene-level variations — not a new look per scene. Work in passes: primary (whole image), then secondaries (skin, sky, key objects), then texture. Restraint wins: halation and bloom flatter AI highlights, which tend to clip harshly."),
+    dict(id="grain", name="Grain philosophy decided — one grain, applied last",
+         what="One grain for the film, applied at the end, over everything — it is the final unifier. Decide it before the first scene is graded, not after the last one looks different from the rest."),
+    dict(id="masters", name="Pre-grade masters archived",
+         what="Keep the pre-grade masters. When the festival asks for a revision, you re-grade — you don't re-generate. Archive the masters with the project, at delivery resolution, before the creative look goes on."),
+]
+
+GRADE_STEPS = [("exposure", "Exposure + white balance"), ("contrast", "Contrast curve"),
+               ("saturation", "Saturation (desat 10–20%)"), ("texture", "Texture (grain · CA · soften)"),
+               ("skin", "Skin, last, big screen")]
+
+GRADE_SOURCES = [
+    ("single", "Single model — one house grade"),
+    ("mixed", "Mixed models — house grades differ"),
+]
+
+GRADE_STATUSES = [
+    ("unified", "Unified — matched to the reference"),
+    ("drifting", "Drifting — partly matched"),
+    ("unmatched", "Unmatched — its own built-in grade"),
+]
+
+# Mirror of DEFAULT_ENTRIES in assets/js/grade.js.
+GRADE_DEFAULT_ENTRIES = [
+    dict(scene="Sc 1 — Depot at night, Mara waits", source="single", reference=True,
+         detail="Hero: the wide under the canopy. Generations matched on scopes — blacks reach black, sodium practicals held off the skin line.",
+         steps=dict(exposure=True, contrast=True, saturation=True, texture=True, skin=True), status="unified"),
+    dict(scene="Sc 2 — On the bus, the hardest line", source="single", reference=True,
+         detail="Hero: her close-up at the window. One model's house grade throughout; desaturated 15%, one grain over the scene, skin checked on the big screen.",
+         steps=dict(exposure=True, contrast=True, saturation=True, texture=True, skin=True), status="unified"),
+    dict(scene="Sc 3 — The rain stop", source="mixed", reference=True,
+         detail="Shot across two models — the walk on one, the shelter two-shot on another, and their house grades disagree on saturation. Exposure and contrast matched to the shelter hero; saturation, texture and the skin pass not done yet.",
+         steps=dict(exposure=True, contrast=True, saturation=False, texture=False, skin=False), status="unified"),
+    dict(scene="Sc 4 — Depot office, radio voices", source="single", reference=True,
+         detail="Hero: the desk two-shot. Fluorescent green pulled off the skin line on the vectorscope before the creative look went on.",
+         steps=dict(exposure=True, contrast=True, saturation=True, texture=True, skin=True), status="unified"),
+    dict(scene="Sc 5 — Departure, the button", source="single", reference=True,
+         detail="Hero: the pull-away wide. The show look's night variation only — same primary, cooler secondaries; grain is the film's one grain, applied last.",
+         steps=dict(exposure=True, contrast=True, saturation=True, texture=True, skin=True), status="unified"),
+]
+
+
+def grade_effective(e):
+    """Mirror of GradeEngine.effectiveStatus (assets/js/grade.js):
+    no hero reference reads unmatched; claimed unified with
+    steps unfinished reads drifting."""
+    if not e.get("reference"):
+        return "unmatched"
+    st = e.get("status") if e.get("status") in dict(GRADE_STATUSES) else "drifting"
+    steps_done = sum(1 for lid, _label in GRADE_STEPS if e.get("steps", {}).get(lid))
+    if st == "unified" and steps_done < len(GRADE_STEPS):
+        return "drifting"
+    return st
+
+
+def grade_eval(entries):
+    """Mirror of GradeEngine.evaluate (assets/js/grade.js)."""
+    eff = [grade_effective(e) for e in entries]
+    unified = eff.count("unified")
+    drifting = eff.count("drifting")
+    unmatched = eff.count("unmatched")
+    clean = bool(entries) and drifting == 0 and unmatched == 0
+    if not entries:
+        verdict = "No grade sheet yet — every generation is still wearing its own built-in grade, so the film is 40 colorists who never met. Log the scenes first."
+    elif unmatched:
+        verdict = (f"Grade stopped — {unmatched} scene" + (" has" if unmatched == 1 else "s have") +
+                   " no hero reference: unification is matching to a reference, and there is nothing "
+                   "to match to. Choose the hero shot first; if two models won't match after that, "
+                   "re-generate the outlier rather than torturing the grade.")
+    elif drifting:
+        verdict = (f"Hold the grade — {drifting} scene" + (" is" if drifting == 1 else "s are") +
+                   " drifting: the matching steps are unfinished. Finish the unification pass first "
+                   "(exposure and white balance, contrast curve, saturation — scopes, not eyes), then "
+                   "the de-plasticize stack in order, skin last; a creative look laid over an "
+                   "unmatched scene has to be laid again.")
+    else:
+        verdict = ("Grade clean — every logged scene is matched to its hero reference, all five steps "
+                   "down. Before delivery: the scopes check (blacks actually reach black, skin tones "
+                   "on the skin-tone line, no channel clips), broadcast-safe levels, one grain over "
+                   "everything at the end — and the pre-grade masters stay archived.")
+    return {"total": len(entries), "unified": unified, "drifting": drifting,
+            "unmatched": unmatched, "clean": clean, "verdict": verdict}
+
+
+def build_grade(css_links):
+    """Grade Sheet — the color-grading chapter
+    (craft/color-grading.md) as a working grade sheet: the five
+    pre-grade gates, the production's own scenes with their
+    hero references, sources, and five matching steps, and the
+    grade verdict computed exactly as the chapter's rules state
+    it. The default sheet is pre-rendered here under the same
+    rules assets/js/grade.js runs in the browser; the engine
+    invents no scenes and no states — no reference reads
+    unmatched, unfinished steps hold the grade, on the record."""
+    def esc(s):
+        return html.escape(str(s if s is not None else ""))
+
+    status_label = dict(GRADE_STATUSES)
+    source_label = dict(GRADE_SOURCES)
+    gates_html = []
+    for i, s in enumerate(GRADE_GATES):
+        gates_html.append(
+            f'<article class="gr-gate-card"><div class="gr-gate-head"><span class="gr-num">{i + 1}</span>'
+            f'<h4>{esc(s["name"])}</h4><span class="gr-tag">Pre-grade gate</span></div>'
+            f'<p class="gr-what">{esc(s["what"])}</p>'
+            f'<p><label><input type="checkbox" data-gr-gate="{esc(s["id"])}"> Done — the gate is written down</label></p></article>')
+    r = grade_eval(GRADE_DEFAULT_ENTRIES)
+    stage_html = []
+    for idx, e in enumerate(GRADE_DEFAULT_ENTRIES):
+        eff = grade_effective(e)
+        s = (f'<article class="gr-entry"><div class="gr-entry-head"><h4>{esc(e["scene"])}</h4>'
+             f'<span class="gr-tag">{esc((source_label.get(e["source"]) or "—").split(" — ")[0])}</span></div>'
+             f'<p class="gr-detail">{esc(e["detail"])}</p>'
+             f'<p class="gr-steps" role="group" aria-label="Matching steps done in {esc(e["scene"])}">'
+             + " ".join(
+                 f'<button type="button" class="btn btn-sm{"" if e["steps"].get(lid) else " btn-ghost"}" '
+                 f'data-gr-step="{idx}:{lid}" aria-pressed="{"true" if e["steps"].get(lid) else "false"}">'
+                 f'{esc(label)}{" ✓" if e["steps"].get(lid) else " —"}</button>'
+                 for lid, label in GRADE_STEPS)
+             + "</p>"
+             f'<p class="gr-ref"><button type="button" class="btn btn-sm{"" if e["reference"] else " btn-ghost"}" '
+             f'data-gr-ref="{idx}" aria-pressed="{"true" if e["reference"] else "false"}">Hero reference'
+             f'{" ✓ chosen" if e["reference"] else " — not chosen"}</button></p>'
+             f'<p class="gr-state">State: <strong>{esc(status_label.get(eff) or "— no state recorded —")}</strong></p>'
+             f'<p class="gr-states" role="group" aria-label="Set the state for {esc(e["scene"])}">'
+             + " ".join(
+                 f'<button type="button" class="btn btn-sm{"" if e["status"] == sid else " btn-ghost"}" '
+                 f'data-gr-set="{idx}:{sid}">{esc(label)}</button>'
+                 for sid, label in GRADE_STATUSES)
+             + "</p>"
+             f'<p><button type="button" class="btn btn-sm btn-ghost" data-gr-del="{idx}">'
+             f'Remove scene</button></p></article>')
+        stage_html.append(s)
+    source_opts = "".join(f'<option value="{esc(k)}">{esc(v)}</option>' for k, v in GRADE_SOURCES)
+    status_opts = "".join(f'<option value="{esc(sid)}">{esc(label)}</option>' for sid, label in GRADE_STATUSES)
+    (SITE / "grade.html").write_text(GRADE_TMPL.format(
+        css=css_links, sitenav=nav_html("", "grade.html"), footer=footer_html(""),
+        hero=hero_cutroom(
+            kicker="""The cutting room""",
+            h1="""Grade <span class="accent">sheet.</span>""",
+            lede="""Every generation arrives wearing its own grade. The five gates before the grade, every scene logged with its hero reference, its source, and its five matching steps, and the grade verdict from the grading chapter's own rules: no reference means unmatched, and unfinished steps hold the grade.""",
+            deck_title="""COLOR — THE_GRADE_SHEET""",
+            clips={"v2": ['The grade'], "v1": ['Unify', 'De-plasticize', 'Skin'], "a1": ['Scopes']},
+            h1_id="gr-title-h",
+            extra=""" """),
+        gr_gates="".join(gates_html),
+        gr_gates_state="Gates complete: 0 of 5 — the gates are the discipline before any scene is judged; finish them first.",
+        gr_source_options=source_opts, gr_status_options=status_opts,
+        gr_verdict=html.escape(r["verdict"]), gr_stage="".join(stage_html)))
+    return [("grade.html", "Grade sheet")]
+
+
 
 
 GALLERY_TMPL = """<!DOCTYPE html>
@@ -6453,6 +6740,9 @@ def main():
     # Cue Sheet (rotation 14 flagship — the sound chapter as a working cue sheet)
     build_cuesheet(css_links)
 
+    # Grade Sheet (rotation 15 flagship — the color-grading chapter as a working grade sheet)
+    build_grade(css_links)
+
     # Knowledge checks (generated from scripts/checks.json)
     wave7_checks = build_checks(css_links)
 
@@ -6538,6 +6828,9 @@ def main():
         {"url": "continuity.html", "title": "Continuity ledger", "section": "Tools",
          "headings": ["The five locks — before any generation", "Your continuity ledger", "Take the ledger"],
          "text": "The Continuity Ledger: the character-consistency chapter as a working ledger — the identity stack ranked by reliability, wardrobe and props locked verbatim, location master stills, light locked per scene, and the real start frame. Log every lock a film depends on (identity, wardrobe, prop, location, lighting, era / grade) with its state — locked, drifted, or broken — and read the chaining verdict computed from the chapter's rejection rules: a clip fails if the face drifts, the wardrobe changes, or the light flips, and failed clips don't chain, they get re-prompted. Export the ledger as markdown. Chapter: craft/character-consistency.md."},
+        {"url": "grade.html", "title": "Grade sheet", "section": "Tools",
+         "headings": ["The five gates — before the grade", "Your grade sheet", "Take the sheet"],
+         "text": "The Grade Sheet: the color-grading chapter as a working grade sheet — every element assigned to plate or grade, a hero reference chosen per scene, one show look, one grain applied last, pre-grade masters archived. Log every scene with its hero reference, its source (single model, or mixed models with different house grades), and its five matching steps (exposure and white balance, contrast curve, saturation, the de-plasticize texture pass, skin last) — and read the grade verdict computed from the chapter's rules: a scene with no hero reference reads unmatched whatever its owner claims, a scene claimed unified with steps unfinished reads drifting, and a clean sheet still owes the scopes check. Export the sheet as markdown. Chapter: craft/color-grading.md."},
         {"url": "cuesheet.html", "title": "Cue sheet", "section": "Tools",
          "headings": ["The five gates — before the mix", "Your cue sheet", "Take the sheet"],
          "text": "The Cue Sheet: the sound, music & audio chapter as a working cue sheet — the Voice Bible, the per-scene dialogue route (native or decoupled, never mixed mid-scene), score briefed per cue to the locked cut, stems kept, generation receipts saved. Log every scene with its three layers (bed, foley, accents), its route, and its state — designed, thin, or dry — and read the mix verdict computed from the chapter's rules: a scene with no bed reads dry whatever its owner claims, a thin scene holds the mix, and a clean sheet still owes the three-way listen and the silence test. Export the sheet as markdown. Chapter: craft/sound-music-audio.md."},

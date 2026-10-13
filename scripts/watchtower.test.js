@@ -52,35 +52,42 @@ ok('real diff: the 5 Watchtower 2.0 coverage changes + the 2.3 Soul Cinema tier 
   assert(added, 'pixverse-v6 model-added missing');
   assert.strictEqual(added.after_low, 0.09, 'new record shows its rate span');
   assert.strictEqual(added.after_high, 0.23);
-  // Watchtower 2.13 (2026-10-13): the eleventh review pass ran four
-  // checker runs (14:08Z adjudication, 14:31Z re-baseline, 14:42Z
-  // second re-baseline, 14:56Z final re-baseline) plus checker-path
-  // probes for every adjudication. All 3 standing watches stand
-  // (review log pass 12); 7 flags raised, 7 dismissed (Veo 3.1's
-  // shared-pricing-page churn, Wan 3.0's Zacks chrome — calibrated
-  // signature-excluded after two consecutive passes, LTX-2.5's
-  // launch-article chrome, Runway's own pricing-page shell
-  // variance, FLUX on eWeek — calibrated after run 3 proved the
-  // page alternates renderings within a pass, the 2.12 magichour
-  // pattern — plus FLUX on The Decoder's story rails and Wan 2.7's
-  // reseller page). PixVerse V6's docs source fetched clean at its
-  // baseline signature inside the pass's completed runs — the
-  // third clean pass. The final feed (2026-10-13T15:08Z):
-  // changed=0, with_errors=0; its 12 partials are the standing
-  // host-gated cohort (which members fail rotates with the hosts:
-  // this run Veo 3.1 carries a partial and Runway Gen-4.5's
-  // sources all answered, swapping one alert id against 2.12's
-  // set at the same count of 12). Pricing diff stays 7 rows.
+  // Watchtower 2.14 (2026-10-13): the twelfth review pass ran four
+  // completed checker runs (15:44Z adjudication, 16:23Z first
+  // re-baseline, 16:50Z second re-baseline after the first attempt
+  // vanished without writing, 17:03Z final re-baseline) plus
+  // checker-path probes for every adjudication. All 3 standing
+  // watches stand (review log pass 13); 7 flags raised, 7 dismissed
+  // (Luma's and Gemini Omni's re-flags in later runs are the same
+  // flags re-raised by the re-baseline mechanics), 5 of them
+  // calibrated signature-excluded (LTX-2.5's launch article and
+  // Runway's own pricing-page shell — both second consecutive
+  // flags; FLUX on The Decoder's story rails — second consecutive;
+  // Luma on mivicai — four signatures within one pass, the 2.12
+  // magichour pattern; Gemini Omni on Google's own pricing page —
+  // five signatures across five fetches at identical length, the
+  // Soul 2.4 per-request-variance pattern, its rate verified
+  // verbatim on the page itself) and 3 dismissed without exclusion
+  // (FLUX on bottlerocket, Gemini's first flag before the pattern
+  // proved out, Pika's homepage rotation — probes exact ×3).
+  // PixVerse V6's docs source fetched clean at its baseline
+  // signature inside the pass's completed runs — the fourth clean
+  // pass. The final feed (2026-10-13T17:13Z): changed=0,
+  // with_errors=0; its 11 partials are the standing host-gated
+  // cohort (which members fail rotates with the hosts: this run
+  // Wan 2.6 carries a partial and Veo 3.1's and Gemini Omni's
+  // sources all answered, swapping the alert set against 2.13's
+  // at a count of 11). Pricing diff stays 7 rows.
   const d = drift.computeDrift({ modelsDoc: models, checksDoc: checks,
     pricingDoc: pricing, historyDoc: history, nowMs: NOW });
   assert.strictEqual(d.summary.models_total, 32);
   assert.strictEqual(d.summary.unwatched, 0, JSON.stringify(d.summary));
   assert.strictEqual(d.summary.pricing_unpublished, 5, JSON.stringify(d.summary));
-  assert.strictEqual(d.summary.alert, 12, JSON.stringify(d.per_model.filter((r) => r.severity === 'alert')));
+  assert.strictEqual(d.summary.alert, 11, JSON.stringify(d.per_model.filter((r) => r.severity === 'alert')));
   assert.strictEqual(d.summary.price_changes_vs_baseline, 7);
   const alertIds = d.per_model.filter((r) => r.severity === 'alert').map((r) => r.model_id).sort();
-  assert.deepStrictEqual(alertIds, ['flux-3-video', 'gemini-omni', 'grok-imagine-1-5', 'kling-4-0',
-    'luma-ray-3-2', 'midjourney-v1-video', 'minimax-h3', 'seedance-3-0', 'veo-3-1', 'vidu-q4-preview', 'vidu-s2', 'wan-3-0']);
+  assert.deepStrictEqual(alertIds, ['flux-3-video', 'grok-imagine-1-5', 'kling-4-0',
+    'luma-ray-3-2', 'midjourney-v1-video', 'minimax-h3', 'seedance-3-0', 'vidu-q4-preview', 'vidu-s2', 'wan-2-6', 'wan-3-0']);
 });
 
 ok('computeDrift: spot severities — PixVerse watched (price moved), Sora ok, Soul Cinema watch (own tier moved)', () => {
