@@ -109,6 +109,13 @@ note: the BFL docs pricing page serves two renderings; if they start
 alternating between runs it will flag for a future pass. LTX-2.5's
 ltx.io note stands.
 
+**Commit:** local `bb72d36` → pushed 2026-10-12 as remote commit
+`bccbe252ee341e5adb827a22f1aa0081d9086fe0` (gh-push.py, exit 0).
+Verified: a second gh-push run reports no changes vs remote `main`
+(`bccbe25`) — remote tree == local HEAD tree (`f2a683e3`). Post-commit
+`validate.sh`: **18 passed, 0 failed — ALL STAGES PASS**. Working
+repo only — no `-live` repo touched, no Vercel access.
+
 ## Watchtower 2.5 — the third review pass (2026-10-12)
 
 **Assignment:** Rotation 6 — work the queue Watchtower 2.4 left: the 3
