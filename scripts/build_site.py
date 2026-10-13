@@ -72,6 +72,7 @@ NAV_INDEX = [
         ("cuesheet.html", "Cue sheet"),
         ("grade.html", "Grade sheet"),
         ("cut.html", "Cut sheet"),
+        ("take.html", "Take sheet"),
         ("recipes.html", "Recipes"),
         ("forge.html", "Episode forge"),
     ]),
@@ -109,6 +110,7 @@ FOOTER_ITEMS = [
     ("cuesheet.html", "Cue sheet"),
     ("grade.html", "Grade sheet"),
     ("cut.html", "Cut sheet"),
+    ("take.html", "Take sheet"),
     ("checks/", "Knowledge checks"),
     ("budget.html", "Budget"),
     ("optimizer.html", "Optimizer"),
@@ -4473,6 +4475,346 @@ def build_cut(css_links):
 
 
 
+TAKE_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Take sheet — AI Film Master Guide</title>
+  <meta name="description" content="The directing-performance chapter as a working take sheet: the five pre-lock gates, every performance beat logged with its direction, eyeline, dead-eyes check, framing, and route, and the performance-lock verdict computed from the chapter's own rules — the label rule, the three-rehearsal rule, the close-up rule.">
+  {css}
+  <style>
+    .take-verdict {{ font-size: 1.05rem; border-left: 3px solid var(--gold); padding-left: var(--space-4); margin-bottom: var(--space-6); }}
+    .take-held {{ border-left-color: #e88; }}
+    .take-gate-card, .take-entry {{ border: 1px solid var(--line); border-radius: 12px; padding: var(--space-4) var(--space-5); margin-bottom: var(--space-4); }}
+    .take-gate-head, .take-entry-head {{ display: flex; align-items: baseline; gap: var(--space-3); flex-wrap: wrap; }}
+    .take-gate-head h4, .take-entry-head h4 {{ margin: 0; font-size: 1.2rem; }}
+    .take-num {{ display: inline-block; min-width: 1.7em; text-align: center; background: var(--gold); color: #111; border-radius: 999px; font-weight: 800; padding: .1em .3em; }}
+    .take-tag {{ margin-left: auto; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }}
+    .take-what, .take-detail, .take-state, .take-mode, .take-framing, .take-route, .take-attempts, .take-checks {{ color: var(--muted); }}
+    .take-state strong, .take-attempts strong {{ color: var(--text); }}
+    .take-note {{ font-size: .85rem; }}
+  </style>
+</head>
+<body>
+  <div class="edge-right" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        {sitenav}
+      </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">&#9679;</span> <span class="hdr-tc-val">00:59:52:00</span></span>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">&#8984;K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    {hero}
+    <section class="container" aria-labelledby="take-h">
+      <h2 id="take-h">The five gates — before performance lock</h2>
+      <p>AI models don't act: they render plausible arrangements of pixels that read as acting when the direction is specific enough, and collapse into mannequin theater when it isn't. The five gates below are the directing chapter's own discipline before any beat is judged; the full chapter is <a href="craft/directing-performance.html">Directing Performance in AI Video</a>. Tick a gate when the production has actually done it — the sheet counts what is written down, not intentions.</p>
+      <div id="take-gates">{take_gates}</div>
+      <p class="calc-note" id="take-gates-state" aria-live="polite">{take_gates_state}</p>
+      <h2>Your take sheet</h2>
+      <p>Log every performance beat with its direction — a playable tactic (a task a body can do: scene event, motive, goal, obstacle, tactic) or an emotion label (an adjective, which is not direction) — its eyeline target named or not, its dead-eyes check (microsaccades, the Duchenne smile, fluctuating asymmetry, pupillary response), its framing and whether that framing sits on an emotional peak, its failed rehearsals, and its route: in rehearsal (720p drafts as takes), Scene-Locked (photograph the performance, don't regenerate it), to be simplified, or hybrid (a real performer at the emotional core). Three rules are mechanical: a beat directed by emotion label reads undirected; a beat still re-rolling after three failed rehearsals reads overdue — simplify the shot, not the actor; and a close-up spent away from an emotional peak reads misspent. The sheet opens on a worked example — the same small AI short the Ledger, the Cue Sheet, the Grade Sheet, and the Cut Sheet track, performed instead of seen, heard, graded, or cut — with the depot-office reaction still in rehearsal, so the first verdict you see is the honest hold.</p>
+      <div class="card" style="margin-bottom:var(--space-6);">
+        <div class="calc-grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
+          <div class="field">
+            <label for="take-title">Production title</label>
+            <input class="input" type="text" id="take-title" placeholder="e.g. The Night Bus">
+          </div>
+          <div class="field">
+            <label for="take-new-shot">New performance beat</label>
+            <input class="input" type="text" id="take-new-shot" placeholder="e.g. Sc 6 · Sh 02 — Rooftop, dawn">
+          </div>
+          <div class="field">
+            <label for="take-new-detail">The direction, specifically — the tactic and the channel</label>
+            <input class="input" type="text" id="take-new-detail" placeholder="e.g. Tactic: she is stalling — hands busy with the strap, eyes on his hands.">
+          </div>
+          <div class="field">
+            <label for="take-new-mode">Direction</label>
+            <select class="input" id="take-new-mode">{take_mode_options}</select>
+          </div>
+          <div class="field">
+            <label for="take-new-framing">Framing</label>
+            <select class="input" id="take-new-framing">{take_framing_options}</select>
+          </div>
+          <div class="field">
+            <label for="take-new-status">Route today</label>
+            <select class="input" id="take-new-status">{take_status_options}</select>
+          </div>
+          <div class="field">
+            <label for="take-new-attempts">Failed rehearsals</label>
+            <input class="input" type="number" id="take-new-attempts" min="0" max="9" step="1" value="0">
+          </div>
+          <div class="field">
+            <label>Checks done</label>
+            <p style="margin:.2em 0;">
+              <label><input type="checkbox" id="take-new-eyeline"> Eyeline named</label>
+              <label><input type="checkbox" id="take-new-deadeyes"> Dead-eyes check</label>
+              <label><input type="checkbox" id="take-new-peak"> Emotional peak</label>
+            </p>
+          </div>
+          <div class="field">
+            <label aria-hidden="true">&nbsp;</label>
+            <button type="button" class="btn" id="take-add">Add beat to the sheet</button>
+          </div>
+        </div>
+        <p class="calc-note" id="take-msg" hidden></p>
+      </div>
+      <p class="take-verdict" id="take-verdict" aria-live="polite">{take_verdict}</p>
+      <div id="take-stage">{take_stage}</div>
+      <div class="card" style="margin-top:var(--space-6);">
+        <h3>Take the sheet</h3>
+        <p>The sheet exports as clean markdown: the five gates with their state, every beat with its direction, eyeline, dead-eyes check, framing, peak, failed rehearsals, and route, and the performance-lock verdict — the file the lock decision is made from.</p>
+        <p><button type="button" class="btn" id="take-copy">Copy sheet</button> <button type="button" class="btn btn-ghost" id="take-download">Download sheet (.md)</button></p>
+        <p><a class="btn btn-ghost" href="craft/directing-performance.html">Read the directing chapter</a> <a class="btn btn-ghost" href="cut.html">Cut sheet</a> <a class="btn btn-ghost" href="continuity.html">Continuity ledger</a></p>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+    </div>
+  </footer>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search" hidden>
+    <div class="palette-box">
+      <input type="search" id="palette-input" placeholder="Search the guide…" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/take.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
+</body>
+</html>
+"""
+
+
+# The take-sheet layer — kept in step with assets/js/take.js
+# (TakeEngine). scripts/take.test.js pins the engine, and the
+# pre-rendered default sheet below is rendered under the
+# same rules. Source: craft/directing-performance.md — direct,
+# don't describe; give the eyes a job; the director's read;
+# one tactic per shot; ration the close-up; the dead-eyes
+# checklist; rehearsal as a department; Scene Lock, quoted
+# in substance.
+TAKE_GATES = [
+    dict(id="tactics", name="Every beat rewritten as a playable tactic",
+         what="Direct, don't describe: replace every emotion label with a task a body can do — scene event, motive, goal, obstacle, tactic. Models can't render 'devastated'; they can render a jaw set and eyes fixed on a door."),
+    dict(id="eyelines", name="Eyelines named per beat — every pair of eyes has a job",
+         what="Dead, glassy eyes are never fixed with lighting — they're fixed by giving the eyes a job. Name the eyeline target per beat; eyes move between targets (avert, hold, search, track) and never stare into the middle distance."),
+    dict(id="directorsread", name="Director's read written: shared event + a channel per character",
+         what="Everyone in the scene lives through the same event, but each character carries it in a different physical channel — grief in her hands, in his jaw, in the kid's feet. Write the event once, then assign each character their channel."),
+    dict(id="identity", name="Identity locked — the face anchor is never re-run",
+         what="Consistent identity reads as good acting; a face that drifts 5% reads as a bad performance. Lock the face anchor, never re-run the base portrait, and make state changes (dirt, wounds, tears) masked integrations, not re-generations."),
+    dict(id="restraint", name="Restraint pass done: negative constraints, subtext, under-directed faces",
+         what="Models default to theatrical. Strip it: negative constraints (no eyebrow raises, no wide-eyed gasps), subtext instead of stated emotion, environment carrying mood — and deliberately under-direct the face where the model finds expression better itself."),
+]
+
+TAKE_MODES = [
+    ("tactic", "Playable tactic — a task a body can do"),
+    ("label", "Emotion label — an adjective, not a task"),
+]
+
+TAKE_FRAMINGS = [("wide", "Wide"), ("medium", "Medium"), ("closeup", "Close-up")]
+
+TAKE_STATUSES = [
+    ("rehearsing", "In rehearsal — drafts as takes"),
+    ("locked", "Scene-Locked — photograph it, don't regenerate it"),
+    ("simplify", "Simplify the shot"),
+    ("hybrid", "Hybrid — a real performer at the core"),
+]
+
+TAKE_EFFECTIVE_LABELS = {
+    "clean": "Clean — Scene-Locked",
+    "rehearsing": "In rehearsal — drafts as takes",
+    "simplifying": "Simplifying — the shot changes, not the actor",
+    "unchecked": "Unchecked — eyeline or dead-eyes check unfinished",
+    "undirected": "Undirected — an emotion label is not a task",
+    "overdue": "Overdue — three failed rehearsals",
+    "misspent": "Misspent close-up — no peak under it",
+    "hybrid": "Hybrid — a real performer at the core",
+}
+
+# Mirror of DEFAULT_ENTRIES in assets/js/take.js.
+TAKE_DEFAULT_ENTRIES = [
+    dict(shot="Sc 1 · Sh 01 — Depot wide, Mara waits", mode="tactic", eyeline=True, deadeyes=True,
+         framing="wide", peak=False, attempts=0, status="locked",
+         detail="Tactic: she is keeping herself ready to leave — coat on, bag zipped, eyes tracking the arrivals board, then the door. Grief lives in her hands: the ticket folded and re-folded."),
+    dict(shot="Sc 2 · Sh 04 — Window close-up, the hardest line", mode="tactic", eyeline=True, deadeyes=True,
+         framing="closeup", peak=True, attempts=0, status="locked",
+         detail="The film's one close-up, spent on its peak. Tactic: she is trying not to cry in front of him — jaw set, eyes on the window catch until the line lands. The voice carries; the face supports."),
+    dict(shot="Sc 3 · Sh 02 — The rain stop, shelter two-shot", mode="tactic", eyeline=True, deadeyes=True,
+         framing="medium", peak=False, attempts=0, status="locked",
+         detail="Director's read: the same late bus, two channels — Mara's stillness against the driver's restless weight-shifting. Eyelines cross only once, on the headlights."),
+    dict(shot="Sc 4 · Sh 02 — Depot office, the driver hears the radio", mode="tactic", eyeline=True, deadeyes=True,
+         framing="medium", peak=False, attempts=1, status="rehearsing",
+         detail="The listener's reaction shot — AI renders listening better than complex feeling, and this one is not there yet: the first 720p rehearsal read blank, the second (eyeline moved to the radio speaker, thumb rubbing the ring) reads rehearsing, not locked. One failed rehearsal; re-direct with a changed variable, never the same prompt hoping."),
+    dict(shot="Sc 4 · Sh 03 — Office pan, radio voices", mode="tactic", eyeline=True, deadeyes=True,
+         framing="medium", peak=False, attempts=0, status="locked",
+         detail="No face carries this beat — the radio does. Faces under-directed on purpose; the restraint pass stripped two eyebrow raises the model offered on its own."),
+    dict(shot="Sc 5 · Sh 01 — Departure pull-away", mode="tactic", eyeline=True, deadeyes=True,
+         framing="wide", peak=False, attempts=0, status="locked",
+         detail="The button is a wide: she keeps finding reasons to stand closer to the kerb; he keeps noticing and not moving away. Dead-eyes check passed at distance — no stare, eyeline on the bus until it fills the frame."),
+]
+
+
+def take_effective(e):
+    """Mirror of TakeEngine.effectiveStatus (assets/js/take.js):
+    a hybrid beat blocks nothing; an emotion label reads
+    undirected; three failed rehearsals still re-rolling read
+    overdue; a close-up away from its peak reads misspent."""
+    st = e.get("status") if e.get("status") in dict(TAKE_STATUSES) else "rehearsing"
+    if st == "hybrid":
+        return "hybrid"
+    if e.get("mode") != "tactic":
+        return "undirected"
+    if st == "rehearsing" and (e.get("attempts") or 0) >= 3:
+        return "overdue"
+    if e.get("framing") == "closeup" and not e.get("peak"):
+        return "misspent"
+    if st == "simplify":
+        return "simplifying"
+    if st == "rehearsing":
+        return "rehearsing"
+    if not e.get("eyeline") or not e.get("deadeyes"):
+        return "unchecked"
+    return "clean"
+
+
+def take_eval(entries):
+    """Mirror of TakeEngine.evaluate (assets/js/take.js)."""
+    eff = [take_effective(e) for e in entries]
+    clean = eff.count("clean")
+    hybrid = eff.count("hybrid")
+    held = sum(eff.count(s) for s in ("rehearsing", "simplifying", "unchecked"))
+    stopped = sum(eff.count(s) for s in ("undirected", "overdue", "misspent"))
+    ready = bool(entries) and held == 0 and stopped == 0
+    if not entries:
+        verdict = "No take sheet yet — undirected generations are mannequin theater until the beats are directed. Log every performance beat: its tactic, its eyeline, its framing, and its route."
+    elif eff.count("undirected"):
+        m = eff.count("undirected")
+        verdict = (f"Performance lock stopped — {m} beat" + (" is" if m == 1 else "s are") +
+                   " directed by emotion label: models can't render 'devastated' — they can render a jaw set and eyes on a door. "
+                   "Rewrite each label as a playable tactic: scene event, motive, goal, obstacle, tactic.")
+    elif eff.count("overdue"):
+        k = eff.count("overdue")
+        verdict = (f"Performance lock stopped — {k} beat" + (" has" if k == 1 else "s have") +
+                   " burned three rehearsals: the three-rehearsal rule means simplify the shot, not the actor. "
+                   "Change a variable — a new tactic, a new eyeline — or simplify the shot; never re-roll the same prompt hoping.")
+    elif eff.count("misspent"):
+        u = eff.count("misspent")
+        verdict = (f"Performance lock stopped — {u} close-up" + (" is" if u == 1 else "s are") +
+                   " spent away from an emotional peak: micro-acting is the weakest link in every current model, and a "
+                   "pushed-in over-directed close-up exposes every flaw. Ration close-ups to the peaks, or widen the framing.")
+    elif held:
+        verdict = (f"Hold performance lock — {held} beat" + (" is" if held == 1 else "s are") +
+                   " not ready: a take still in rehearsal, a simplification still owed, or the eyeline / dead-eyes check "
+                   "unfinished. Review drafts as rehearsals — does the tactic read, do the eyes have a job, does the turn land in the cut?")
+    else:
+        verdict = ("Performance lock clean — every beat is a playable tactic, every pair of eyes has a job, every "
+                   "close-up sits on its peak, and every approved take is Scene-Locked. Still owed: photograph the "
+                   "locked performance from new angles, don't regenerate it — the model must stop reinterpreting "
+                   "gestures, pauses, and props after approval — and keep synthetic performers inside edited, controlled contexts.")
+    return {"total": len(entries), "clean": clean, "held": held, "stopped": stopped,
+            "hybrid": hybrid, "ready": ready, "verdict": verdict}
+
+
+def build_take(css_links):
+    """Take Sheet — the directing-performance chapter
+    (craft/directing-performance.md) as a working take sheet:
+    the five pre-lock gates, the production's own performance
+    beats with their direction, eyelines, dead-eyes checks,
+    framings, and routes, and the performance-lock verdict
+    computed exactly as the chapter's rules state it. The
+    default sheet is pre-rendered here under the same rules
+    assets/js/take.js runs in the browser; the engine invents
+    no beats and no states — the label rule, the
+    three-rehearsal rule, and the close-up rule are
+    mechanical, on the record."""
+    def esc(s):
+        return html.escape(str(s if s is not None else ""))
+
+    gates_html = []
+    for i, s in enumerate(TAKE_GATES):
+        gates_html.append(
+            f'<article class="take-gate-card"><div class="take-gate-head"><span class="take-num">{i + 1}</span>'
+            f'<h4>{esc(s["name"])}</h4><span class="take-tag">Pre-lock gate</span></div>'
+            f'<p class="take-what">{esc(s["what"])}</p>'
+            f'<p><label><input type="checkbox" data-take-gate="{esc(s["id"])}"> Done — the gate is written down</label></p></article>')
+    r = take_eval(TAKE_DEFAULT_ENTRIES)
+    stage_html = []
+    for idx, e in enumerate(TAKE_DEFAULT_ENTRIES):
+        eff = take_effective(e)
+        s = (f'<article class="take-entry"><div class="take-entry-head"><h4>{esc(e["shot"])}</h4>'
+             f'<span class="take-tag">{esc(dict(TAKE_FRAMINGS).get(e["framing"]) or "—")}</span></div>'
+             f'<p class="take-detail">{esc(e["detail"])}</p>'
+             f'<p class="take-checks" role="group" aria-label="Performance checks for {esc(e["shot"])}">'
+             f'<button type="button" class="btn btn-sm{"" if e["eyeline"] else " btn-ghost"}" '
+             f'data-take-eye="{idx}" aria-pressed="{"true" if e["eyeline"] else "false"}">'
+             f'Eyeline named{" ✓" if e["eyeline"] else " —"}</button> '
+             f'<button type="button" class="btn btn-sm{"" if e["deadeyes"] else " btn-ghost"}" '
+             f'data-take-dead="{idx}" aria-pressed="{"true" if e["deadeyes"] else "false"}">'
+             f'Dead-eyes check{" ✓" if e["deadeyes"] else " —"}</button> '
+             f'<button type="button" class="btn btn-sm{"" if e["peak"] else " btn-ghost"}" '
+             f'data-take-peak="{idx}" aria-pressed="{"true" if e["peak"] else "false"}">'
+             f'Emotional peak{" ✓" if e["peak"] else " —"}</button></p>'
+             f'<p class="take-state">State: <strong>{esc(TAKE_EFFECTIVE_LABELS.get(eff) or "—")}</strong></p>'
+             f'<p class="take-mode">Direction: '
+             + " ".join(
+                 f'<button type="button" class="btn btn-sm{"" if e["mode"] == mid else " btn-ghost"}" '
+                 f'data-take-mode="{idx}:{mid}">{esc(label.split(" — ")[0])}</button>'
+                 for mid, label in TAKE_MODES)
+             + "</p>"
+             f'<p class="take-framing">Framing: '
+             + " ".join(
+                 f'<button type="button" class="btn btn-sm{"" if e["framing"] == fid else " btn-ghost"}" '
+                 f'data-take-frame="{idx}:{fid}">{esc(label)}</button>'
+                 for fid, label in TAKE_FRAMINGS)
+             + "</p>"
+             f'<p class="take-route">Route: '
+             + " ".join(
+                 f'<button type="button" class="btn btn-sm{"" if e["status"] == sid else " btn-ghost"}" '
+                 f'data-take-set="{idx}:{sid}">{esc(label.split(" — ")[0])}</button>'
+                 for sid, label in TAKE_STATUSES)
+             + "</p>"
+             f'<p class="take-attempts">Failed rehearsals: <strong>{e["attempts"]}</strong> '
+             f'<button type="button" class="btn btn-sm btn-ghost" data-take-att="{idx}:-1">−</button> '
+             f'<button type="button" class="btn btn-sm btn-ghost" data-take-att="{idx}:1">+</button>'
+             f' <span class="take-note">three failed rehearsals simplify the shot — not the actor</span></p>'
+             f'<p><button type="button" class="btn btn-sm btn-ghost" data-take-del="{idx}">'
+             f'Remove beat</button></p></article>')
+        stage_html.append(s)
+    mode_opts = "".join(f'<option value="{esc(k)}">{esc(v)}</option>' for k, v in TAKE_MODES)
+    framing_opts = "".join(f'<option value="{esc(k)}">{esc(v)}</option>' for k, v in TAKE_FRAMINGS)
+    status_opts = "".join(f'<option value="{esc(sid)}">{esc(label)}</option>' for sid, label in TAKE_STATUSES)
+    (SITE / "take.html").write_text(TAKE_TMPL.format(
+        css=css_links, sitenav=nav_html("", "take.html"), footer=footer_html(""),
+        hero=hero_cutroom(
+            kicker="""The rehearsal room""",
+            h1="""Take <span class="accent">sheet.</span>""",
+            lede="""Models don't act — direction makes pixels read as acting. The five gates before performance lock, every beat logged with its tactic, its eyeline, its dead-eyes check, its framing, and its route, and the lock verdict from the directing chapter's own rules: the label rule, the three-rehearsal rule, the close-up rule.""",
+            deck_title="""PERFORM — THE_TAKE_SHEET""",
+            clips={"v2": ['The take'], "v1": ['Direct', 'Rehearse', 'Lock'], "a1": ['The read']},
+            h1_id="take-title-h",
+            extra=""" """),
+        take_gates="".join(gates_html),
+        take_gates_state="Gates complete: 0 of 5 — the gates are the discipline before any beat is judged; finish them first.",
+        take_mode_options=mode_opts, take_framing_options=framing_opts,
+        take_status_options=status_opts,
+        take_verdict=html.escape(r["verdict"]), take_stage="".join(stage_html)))
+    return [("take.html", "Take sheet")]
+
 GALLERY_TMPL = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7096,6 +7438,9 @@ def main():
     # Cut Sheet (rotation 16 flagship — the editing chapters as a working cut sheet)
     build_cut(css_links)
 
+    # Take Sheet (rotation 17 flagship — the directing-performance chapter as a working take sheet)
+    build_take(css_links)
+
     # Knowledge checks (generated from scripts/checks.json)
     wave7_checks = build_checks(css_links)
 
@@ -7187,6 +7532,9 @@ def main():
         {"url": "cut.html", "title": "Cut sheet", "section": "Tools",
          "headings": ["The five gates — before picture lock", "Your cut sheet", "Take the sheet"],
          "text": "The Cut Sheet: the editing chapters as a working cut sheet — selects discipline (2–4 takes, one keeper), generation receipts kept, takes named like an editor, cut to sound early, lock order respected (picture before grade and mix, upscale last). Log every shot with its duration, its three inspection passes (story, background scan, motion at half speed), the frame-by-frame check a hold over five seconds owes, its finding (no defect, local, structural), its route (in the cut, in repair on the fix-it ladder, sent back to regenerate, cut from the film), and its failed repair attempts — and read the picture-lock verdict computed from the chapters' rules: a hold over five seconds without the frame check reads uninspected, a structural defect routed to repair reads misrouted, two failed repairs strike a shot out, and a clean sheet still owes the 24-hour rule and the three-screen watch. Export the sheet as markdown. Chapters: craft/editing-ai-footage.md and craft/editing-pipeline.md."},
+        {"url": "take.html", "title": "Take sheet", "section": "Tools",
+         "headings": ["The five gates — before performance lock", "Your take sheet", "Take the sheet"],
+         "text": "The Take Sheet: the directing-performance chapter as a working take sheet — every beat rewritten as a playable tactic, eyelines named per beat, the director's read (shared event plus a physical channel per character), identity locked, the restraint pass. Log every performance beat with its direction (playable tactic or emotion label), its eyeline, its dead-eyes check, its framing and whether it sits on an emotional peak, its failed rehearsals, and its route (in rehearsal, Scene-Locked, simplify the shot, hybrid) — and read the performance-lock verdict computed from the chapter's rules: an emotion label reads undirected, three failed rehearsals read overdue (simplify the shot, not the actor), a close-up away from its peak reads misspent, and a clean sheet still owes Scene Lock discipline. Export the sheet as markdown. Chapter: craft/directing-performance.md."},
         {"url": "cuesheet.html", "title": "Cue sheet", "section": "Tools",
          "headings": ["The five gates — before the mix", "Your cue sheet", "Take the sheet"],
          "text": "The Cue Sheet: the sound, music & audio chapter as a working cue sheet — the Voice Bible, the per-scene dialogue route (native or decoupled, never mixed mid-scene), score briefed per cue to the locked cut, stems kept, generation receipts saved. Log every scene with its three layers (bed, foley, accents), its route, and its state — designed, thin, or dry — and read the mix verdict computed from the chapter's rules: a scene with no bed reads dry whatever its owner claims, a thin scene holds the mix, and a clean sheet still owes the three-way listen and the silence test. Export the sheet as markdown. Chapter: craft/sound-music-audio.md."},
