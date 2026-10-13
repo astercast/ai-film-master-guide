@@ -20,6 +20,14 @@ sources remain in `server/api/` + `server/lib/`, build copies in
 git, so there is nothing for the Release Engineer's push kit to
 re-map).
 
+**Commit:** local `5781406` → pushed 2026-10-13 as remote commit
+`ab90318d6eede7f4d51df222840f9a898a0ec954` (gh-push.py, exit 0).
+Verified via the Trees API: remote tree `80d15679…` == local HEAD
+tree, 762 entries, not truncated, all key files present (the
+no-change gh-push verification runs exit 120 with an empty log —
+superseded by the direct API check). Working repo only — no
+`-live` repo touched, no Vercel access.
+
 **Duty 1 — Watchtower 2.12 (tenth review pass).** All 3 standing
 watches stand, content-verified by checker-path probes:
 
