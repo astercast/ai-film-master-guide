@@ -104,7 +104,12 @@ checker — adjudicated twice now, documented, honest. Wan 2.6's
 all_failed stamp clears on the next run if the sources answer, as they
 did on re-probe. LTX-2.5's ltx.io note from 2.1 stands.
 
-**Commit:** (recorded below after push)
+**Commit:** local `de28db5` → pushed 2026-10-12 as remote commit
+`10ec9e9c3da62f7d330328955bbabbc78b2893a2` (gh-push.py, exit 0).
+Verified: a second gh-push run reports no changes vs remote `main`
+(`10ec9e9`) — remote tree == local HEAD tree. Post-commit
+`validate.sh`: **18 passed, 0 failed — ALL STAGES PASS**. Working
+repo only — no `-live` repo touched, no Vercel access.
 
 ## Watchtower 2.2 — the first review pass + signature calibration (2026-10-12)
 
