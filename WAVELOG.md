@@ -1,5 +1,174 @@
 # Wave Log — AI Film Master Guide
 
+## Watchtower 2.9 — the seventh review pass + Model Showdown (2026-10-12)
+
+**Assignment:** Rotation 10 — work the queue Watchtower 2.8 left: the 3
+standing watches (Seedance 3.0 confirmation, Kling 4.0 GA, Soul
+Cinema's in-app credit cost), the 8 partial records (the 7 standing
+records plus PixVerse V6, which joined in 2.8 on truncated docs
+reads), and the FLUX follow-up carried since 2.6 (whether the
+docs.bfl.ai pricing page's two renderings alternate between runs).
+Kling rule unchanged: no GA model ID + no published pricing from
+Kuaishou = stays "announced". PixVerse criterion, stated in advance:
+a recovery is claimed only if the final run fetches its docs source
+clean at a verifiable signature. Process rule, stated before any
+launch: verify no checker is alive before launching, verify exactly
+one is running after. Plus the rotation's flagship: a Model
+Showdown page, built to the raised design bar.
+
+**The watches — three re-checked, none moved.**
+- **Seedance 3.0:** still no official ByteDance announcement. The
+  state-of-the-field coverage page this watch reads returned a
+  signature identical to the 2.6/2.7/2.8 baseline (59931bf3…) in the
+  pre-run probe, all three checker runs, and both post-run probes,
+  and still lists Seedance 3.0 among models that had not been
+  announced by any vendor as of October 1 — no announcement, no API,
+  and no date; nothing from ByteDance Seed's directory.
+- **Kling 4.0:** the criteria source is literally unchanged for a
+  fifth pass — APIMart's page returned a signature identical to the
+  2.4–2.8 baseline (fc55ce30…) in probes and all three runs and still
+  reads "API Coming Soon", answers "Not yet", and states pricing has
+  not been announced. No GA model ID, no Kuaishou-published pricing.
+- **Soul Cinema:** the in-app credit cost is still unpublished.
+  Higgsfield's pricing page returned the same 428-char app shell at
+  the settled signature (f14e9f4a…) in probes and all three runs with
+  no credit figure; the API post's rate table still lists only the
+  $0.0032/image API starting rate from 2.3 (fresh signatures at
+  identical length — already excluded since 2.4).
+
+**FLUX follow-up — the docs page held for a third pass.** Every
+fetch — pre-run probe, all three checker runs, post-run probes —
+returned the 9,875-char rendering at the 2.6 baseline signature
+(cb1e92d1…), its table still matching the record exactly; the
+19,564-char variant was not seen. bfl.ai/pricing served its
+22,122-char full rendering (cb65d074…) in this pass's probes and
+runs — signature-excluded since 2.7 as an exact URL, still fetched
+and recorded every run. The docs page stays signature-live as the
+readable primary rate source. No rate changed, no pricing record
+moved.
+
+**Two fresh flags, both raised by this pass's own runs, both
+dismissed with proof.** The first run flagged **Veo 3.1** on
+scriptbyai.com's pricing roundup: re-fetched twice, the page is
+signature-stable and identical to the flagged run's stored
+signature (45717f00…), and its Veo 3.1 table ($0.40/s standard,
+$0.60 4K; $0.15/$0.35 fast; $0.05/$0.08 lite) matches the record's
+tiers exactly — the churn is the page's living LLM token tables,
+the 2.5 pattern. The second run flagged **FLUX 3 Video** on
+eWeek's launch/robotics story: re-fetched twice, stable at the
+flagged signature (eccde171…, 3,262 chars vs 3,261 at baseline —
+a one-character delta in article chrome); the story publishes no
+per-second rate and FLUX's rate source (the docs page) never moved.
+
+**Partials — the standing cohort unchanged, the recovered cohort
+held a second pass, PixVerse not recovered, the final run had
+weather.** All standing failed sources were re-probed before the
+runs, between them, and after each: Medium ×3, GlobeNewswire (2
+models), and Morningstar still 403; whatsnew.fyi still 429s the
+shared ComfyUI page; europesays.com (Grok) dropped the connection
+on every try this pass. The 2.8 question is answered for this pass:
+MarkTechPost (×3 models), x.ai, and midjourney.com answered 200 in
+all three runs and every probe — four of the five URLs
+signature-identical across probes; MiniMax H3's MarkTechPost
+article still varies (signature-excluded for H3 since 2.2; no fact
+on it contradicts the record). LTX-2.5's GitHub spec source dropped
+in the first run, answered three consecutive re-probes at the exact
+2.8 baseline signature (567a4d62…), and answered again in runs two
+and three — weather. **PixVerse V6:** its docs source truncated in
+the first run (IncompleteRead, 81,476 bytes), fetched clean at the
+baseline signature (95c88c96…) in the second run — and truncated
+again in the final run (32,324 bytes, the same truncated length as
+one of 2.8's runs). Per the criterion stated in advance, the
+published feed claims no recovery: PixVerse stays partial, labeled
+exactly as observed. The final run also dropped one source each for
+the two Veo records (a mer.vin timeout, a dev.to drop); both
+answered twice on immediate re-probe at signatures identical to
+their 2.8 baselines, and — per the 2.3 precedent — their partial
+stamps stay on the published feed until the next run, honestly
+labeled.
+
+**Process note:** all three checker runs ran under the process rule
+— a process-table check counting only python3 checker processes
+showed zero alive before each launch and exactly one running after
+each launch. No duplicate launch, no interruption; every published
+number comes from the three single verified runs (05:31Z, 05:47Z,
+and the 06:06Z re-baseline), cross-checked against the on-disk
+feeds and probe logs at each step.
+
+**The flagship — Model Showdown (`showdown.html`).** Any two of the
+32 watched models spliced side by side on the cutting table, like
+two reels: status, the published rate tier by tier, best use,
+strength, weakness, source-check health (sources answering x of y,
+last checked), drift-board severity with its alerts, pricing
+movement against the 2026-10-11 baseline, record-verified date, and
+the latest Watchtower event — driven entirely by the same four
+artifacts as the board (models.json, pricing.json, model-checks.json,
+model-history.json). `build_site.py`'s `build_showdown` pre-renders
+the default pairing (Veo 3.1 vs Kling 3.0) and embeds all 32 records
+as a JSON island; `assets/js/showdown.js` renders any pairing from
+it (shareable `?a=&b=` URLs, swap button), so the page reads
+identically with or without JavaScript. Edges are direct comparisons
+of published values only — the lowest entry rate per shared unit,
+more sources answering, a cleaner drift board, a fresher
+verification — stated in a verdict strip and as chips on the exact
+tier that earns them (a screenshot review caught the chip on every
+tier of the winning unit; it now marks only the cheapest tier,
+where the comparison actually lives). A model with no published USD
+rate renders "Unpublished — no USD rate on record" and the guide
+does not estimate one (Seedance 3.0 vs Kling 4.0 is the honest
+showcase: both unpublished, both stated). Wired into the index nav,
+the footer, the search index, and the compare page's link row;
+LIVE_CHECKLIST.md carries the generator-safety note.
+
+**Feed state:** final re-baseline (2026-10-13T06:06Z): **changed=0,
+with_errors=0, no_sources=0**; queue back to its **3 standing
+watches** (notes carry this pass's re-check lines). Drift: **10
+alerts** (the 7 standing partial records plus PixVerse V6 and the
+two Veo weather partials), **6 watch**, 16 ok, 0 unwatched;
+unpublished rates **5**; pricing diff vs the 2026-10-11 baseline
+**7 rows**. History 81 → **86 events** (3 watch re-checks, the FLUX
+rate-source stability confirmation, the Veo flag verdict); the
+October window holds 66. Review log: pass 8 + addendum (15 entries
+total).
+
+**Validation:** `scripts/watchtower.test.js` **15/15** (pins moved
+to the new feed: 10 alerts with the exact id set incl. veo-3-1 and
+veo-3-1-fast). `tests/api.test.sh` **55/55** (October window 61 →
+66, drift alerts 8 → 10). `studio.test.js` **70/70**,
+`greenlight.test.js` **29/29**, `agent-workflows.test.js` all pass.
+`bash scripts/validate.sh` **18 passed, 0 failed — ALL STAGES PASS**
+pre-commit and again after the showdown chip fix. Headless-Chromium
+(Playwright) screenshots inspected (desktop 1440px + mobile 390px):
+cutting-room board intact, freshness reads the new 06:06 UTC feed,
+"32 models checked" and "10 need review" present; the showdown
+renders with real data at the default pairing, at a URL-param
+pairing (Wan 2.7 vs Soul Cinema), and at the both-unpublished
+pairing (Seedance 3.0 vs Kling 4.0), with zero console messages on
+every showdown view and only the two designed /api 404 fallback
+logs on the board (the mobile hero deck stays cramped — the
+pre-existing wave-39 quirk, untouched). Final-state shots archived
+to `~/workspace/progress-archive/ai-film-master-guide/rotation-010/`
+(hero, board, showdown; desktop + mobile, dated 2026-10-13).
+AI-ism scan on new copy: clean. No TODOs, no dead code.
+
+**Left open:** the 3 standing watches — all re-checked this pass,
+none moved. The 10 partial records will keep surfacing as alerts
+while their sources fail the checker — the 7 standing ones
+adjudicated eight passes running now, PixVerse's docs truncations
+labeled as weather, not a dead source, and the two Veo stamps
+expected to clear on the next run if their sources answer, as they
+did on re-probe. Whether the MarkTechPost / x.ai / midjourney.com
+answers hold for a third pass is next pass's question;
+europesays.com stays intermittent-to-dropping. LTX-2.5's ltx.io
+note stands.
+
+**Commit:** local `0922ef5` → pushed 2026-10-12 as remote commit
+`b6bd8635f94c65c854e61cc410129239dcc24805` (gh-push.py, exit 0).
+Verified: a second gh-push run reports no changes vs remote `main`
+(`b6bd863`) — remote tree == local HEAD tree (`2b1edd61`), working
+tree clean. Working repo only — no `-live` repo touched, no Vercel
+access.
+
 ## Watchtower 2.8 — the sixth review pass (2026-10-12)
 
 **Assignment:** Rotation 9 — work the queue Watchtower 2.7 left: the 3
