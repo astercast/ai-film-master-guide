@@ -1,3 +1,23 @@
+## Rotation 16 — commit/push record (2026-10-13)
+
+Local `a883df1` → pushed 2026-10-13 as remote commit
+`100a01194ada61fd7401e14662bf4e33bf6b08bf` (gh-push.py, exit
+0; push log `~/workspace/fleet-ops/push-logs/film-rotation16-push1.log`).
+Verified via the Trees API: remote tree `e99b7fc0…` ==
+local HEAD tree, 778 entries, not truncated, all key files
+present (site/cut.html, assets/js/cut.js,
+scripts/cut.test.js, skills/delivery/editing-cut-sheet.md,
+WAVELOG.md, data/v1/model-history.json, LIVE_CHECKLIST.md).
+Post-commit validation: validate.sh **24/24 — ALL STAGES
+PASS** (stage 7 now includes cut.test.js 16/16; watchtower
+6/6; grade 13/13; cuesheet 12/12; continuity 11/11;
+clearance 19/19; forge 19/19; studio 70/70; greenlight
+29/29; agent-workflows 92 assertions); api.test.sh
+**55/55** (log
+`~/workspace/fleet-ops/film-rotation16/validate.log`).
+Working repo only — no `-live` repo touched, no Vercel
+access.
+
 ## Watchtower 2.15 — the thirteenth review pass + Cut Sheet (2026-10-13)
 
 **Assignment:** Rotation 16 — Watchtower 2.15 (the thirteenth
