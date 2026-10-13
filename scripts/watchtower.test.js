@@ -137,25 +137,26 @@ ok('computeDrift: 32 models, 0 unwatched, 5 unpublished, 11 alerts in the post-r
   // Watchtower 2.4 (2026-10-12): Wan 2.7 added through the artifact chain
   // (models 31 -> 32) and baselined by this pass's checker run; the three
   // remaining standing watches re-checked, none moved (verdicts in
-  // model-review-log.json pass 3). The pass's first run flagged Soul
-  // Cinema on Higgsfield's API post — adjudicated as signature churn
-  // with proof (two fetches, two signatures; the rate on the page is
-  // unchanged) and the URL signature-excluded for the model. The
-  // re-baseline feed (2026-10-13T01:01Z) reads changed=0, with_errors=0:
-  // the 11 partial records (the adjudicated bot-block cohort) are the
-  // alerts, and Wan 2.6's 2.3 all_failed stamp cleared — all three of
-  // its sources answered. Pricing diff grows to 7 rows (Wan 2.7
-  // model-added).
+  // model-review-log.json pass 3). Watchtower 2.7's re-baseline feed
+  // (2026-10-13T04:29Z) reads changed=0, with_errors=0: the alerts are
+  // the 7 partial records still carrying a failed source (Medium ×3,
+  // GlobeNewswire, Morningstar 403s; whatsnew.fyi 429; europesays
+  // dropped). The cohort shrank from 11 because MarkTechPost (×3),
+  // x.ai, and midjourney.com answered in both of 2.7's runs and on
+  // re-probe after 403ing the pre-run probes — MiniMax H3, Gemini
+  // Omni, and Midjourney are no longer partial (Midjourney sits at
+  // watch on its unpublished rate; FLUX at watch on its pricing diff,
+  // its bfl.ai/pricing flag adjudicated as block-rotating renderings
+  // and the URL signature-excluded). Pricing diff stays 7 rows.
   const d = drift.computeDrift({ modelsDoc: models, checksDoc: checks,
     pricingDoc: pricing, historyDoc: history, nowMs: NOW });
   assert.strictEqual(d.summary.models_total, 32);
   assert.strictEqual(d.summary.unwatched, 0, JSON.stringify(d.summary));
   assert.strictEqual(d.summary.pricing_unpublished, 5, JSON.stringify(d.summary));
-  assert.strictEqual(d.summary.alert, 11, JSON.stringify(d.per_model.filter((r) => r.severity === 'alert')));
+  assert.strictEqual(d.summary.alert, 7, JSON.stringify(d.per_model.filter((r) => r.severity === 'alert')));
   assert.strictEqual(d.summary.price_changes_vs_baseline, 7);
   const alertIds = d.per_model.filter((r) => r.severity === 'alert').map((r) => r.model_id).sort();
-  assert.deepStrictEqual(alertIds, ['flux-3-video', 'gemini-omni', 'grok-imagine-1-5',
-    'kling-4-0', 'luma-ray-3-2', 'midjourney-v1-video', 'minimax-h3',
+  assert.deepStrictEqual(alertIds, ['grok-imagine-1-5', 'kling-4-0', 'luma-ray-3-2',
     'seedance-3-0', 'vidu-q4-preview', 'vidu-s2', 'wan-3-0']);
 });
 

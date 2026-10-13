@@ -58,21 +58,27 @@ Secrets live only in Vercel, never in either repo.
   never a record change. Flags are adjudicated in
   `data/v1/model-review-log.json` (re-fetch, verdict, basis) before the
   queue clears; the checker re-run after a pass sets the new baseline.
-  Current state (Watchtower 2.6): 73 history events, queue at 3 standing
+  Current state (Watchtower 2.7): 77 history events, queue at 3 standing
   watches (Seedance 3.0, Kling 4.0, and Soul Cinema's in-app credit
-  cost re-checked a fourth pass, unmoved — Kling 4.0's APIMart criteria
-  page is signature-identical to the 2.4/2.5 baseline). Latest feed
-  (2026-10-13T03:43Z): changed=0, with_errors=0, 11 drift alerts (the
-  adjudicated partial cohort, same id set as 2.4), 5 on watch incl.
-  Wan 2.7 (baseline + own pricing diff). One flag in 2.6: Higgsfield's
-  pricing shell moved on nav chrome for Marketing Studio — settled,
-  figure-free, dismissed, still signature-live. FLUX rate watch
-  repaired in 2.6: bfl.ai/pricing is a JS calculator shell a static
-  fetch cannot read, so BFL's official docs pricing page
-  (docs.bfl.ai/quick_start/pricing) is now a signature-live rate
-  source alongside it — its FLUX 3 table matches the record exactly;
-  the page serves two renderings with the same table (both stable in
-  testing), noted in model-check-config.json.
+  cost re-checked a fifth pass, unmoved — Kling 4.0's APIMart criteria
+  page is signature-identical to the 2.4/2.5/2.6 baseline). Latest feed
+  (2026-10-13T04:29Z): changed=0, with_errors=0, 7 drift alerts (the
+  partial records still carrying a failed source), 7 on watch incl.
+  Wan 2.7 (baseline + own pricing diff). The partial cohort shrank
+  this pass: MarkTechPost (×3), x.ai, and midjourney.com answered in
+  both runs and on re-probe after 403ing the pre-run probes. One flag
+  in 2.7: FLUX 3 Video, on bfl.ai/pricing — the page served three
+  renderings in one pass (2,249-char shell / 22,122-char full page /
+  4,680-char calculator rendering), rotating in blocks; its full
+  rendering's structured rates match the record, so it is now
+  signature-excluded as an exact URL, still fetched and recorded.
+  FLUX rate watch: BFL's official docs pricing page
+  (docs.bfl.ai/quick_start/pricing) is the signature-live rate source
+  — it held its 9,875-char rendering at the 2.6 baseline signature in
+  every fetch this pass; its FLUX 3 table matches the record exactly,
+  noted in model-check-config.json. A VM reboot killed 2.7's first
+  checker launch mid-run before it wrote output; all published
+  numbers come from single verified post-reboot runs.
 - `vercel.json` in live repo: valid JSON, `outputDirectory: "."`,
   `functions` lists the 5 routes as explicit paths with
   `{"maxDuration": 10}`, crons + headers carried over from the working

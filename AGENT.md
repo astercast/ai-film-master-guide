@@ -34,9 +34,9 @@ Static files — **no auth, no keys, no rate limits**. Works on any static host.
 | `data/v1/teardowns.json` | 10 shot-by-shot teardowns; prompt reconstructions are analytical | 8 |
 | `data/v1/diagnoses.json` | 12 failure diagnoses: symptom → diagnosis, fixes, repair template | 12 |
 | `data/v1/model-checks.json` | Model-watch freshness feed: per-model last check, source diffs, headlines | 32 checked |
-| `data/v1/model-history.json` | Watchtower 2.0 event log: dated status/price/tier/release/verification/coverage events + the 2026-10-11 pricing baseline the drift engine diffs against | 73 events |
+| `data/v1/model-history.json` | Watchtower 2.0 event log: dated status/price/tier/release/verification/coverage events + the 2026-10-11 pricing baseline the drift engine diffs against | 77 events |
 | `data/v1/model-review-queue.json` | Pending model-watch review items (empty = nothing pending) | 3 pending |
-| `data/v1/model-review-log.json` | Watchtower review log: adjudication record for checker flags — every flag re-fetched and given a verdict with its basis before the queue clears (Watchtower 2.2–2.6) | 9 entries |
+| `data/v1/model-review-log.json` | Watchtower review log: adjudication record for checker flags — every flag re-fetched and given a verdict with its basis before the queue clears (Watchtower 2.2–2.7) | 11 entries |
 | `data/v1/model-updates.md` | Human-readable model changelog (Markdown, no schema) | — |
 
 Example requests (Node; swap `fs` for `fetch` in a browser):
@@ -117,7 +117,7 @@ covers 0. The test script proves both against the real layer data.
    `changed`, `source_status`, plus fresh `news_headlines`. Read the
    per-model records, not the header summary — the feed's header
    reports `with_errors: 0`, but that counter only counts models whose
-   *every* source failed; 11 models carry at least one failed source
+   *every* source failed; 7 models carry at least one failed source
    (`source_status: "partial"`), which the drift engine correctly
    surfaces as alerts. Since Watchtower 2.1 (2026-10-12) every one of
    the 32 models has a check record — there is no unwatched model left.
@@ -158,7 +158,17 @@ re-probed all 11 partial records (the 403 cohort is unchanged;
 europesays.com intermittent again), and closed 2.5's FLUX watch-quality
 item: BFL's official docs pricing page is now a signature-live rate
 source whose table matches the record exactly, since bfl.ai/pricing
-is a JS calculator a static fetch cannot read. Latest history
+is a JS calculator a static fetch cannot read. Watchtower 2.7 (the
+fifth review pass) re-checked the three watches again — none had moved
+(Kling 4.0's APIMart criteria page is signature-identical to the
+2.4/2.5/2.6 baseline) — answered 2.6's FLUX follow-up (the docs pricing
+page did not alternate this pass; it held its 9,875-char rendering at
+the baseline signature in every fetch, while bfl.ai/pricing rotated
+three renderings in blocks and is now signature-excluded as an exact
+URL, still fetched and recorded), and re-probed all 11 partial records:
+MarkTechPost (×3), x.ai, and midjourney.com answered in both runs and
+on re-probe after 403ing the probes, so the final feed carries 7
+partial records (drift 7 alerts / 7 watch / 18 ok). Latest history
 event: `2026-10-12-kling-3-0-flag-reviewed` (verification). Drift
 severity: `ok`.
 Worked pricing result for Vidu Q4 Preview: history event

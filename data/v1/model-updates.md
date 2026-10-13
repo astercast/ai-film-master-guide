@@ -251,6 +251,54 @@ readable FLUX rate source — is closed. Verdicts are in
   the interleaved output was discarded as a baseline and every
   published number comes from a single verified re-run.
 
+## 2026-10-12 — Watchtower 2.7: the fifth review pass
+
+No model-record changes. The three standing watches were re-checked
+against their own criteria, the eleven partial records' failed sources
+were re-probed, and the FLUX follow-up 2.6 left open — whether BFL's
+docs pricing page alternates between its two renderings — is answered.
+Verdicts are in `data/v1/model-review-log.json` (review pass 6 +
+addendum).
+
+- **Seedance 3.0 — still unconfirmed.** The coverage page this watch
+  reads returned a signature identical to the 2.6 baseline and still
+  lists Seedance 3.0 among models with no vendor announcement, no
+  API, and no date. The watch stays open.
+- **Kling 4.0 — still announced.** APIMart's page is signature-
+  identical to the 2.4/2.5/2.6 baseline and still lists the API as
+  coming soon with pricing not announced. The loudest third-party
+  wrapper states its routes run on its existing pipeline until direct
+  access opens — not Kuaishou pricing, no GA model ID. The watch
+  stays open.
+- **Soul Cinema — in-app credit cost still unpublished.** Higgsfield's
+  pricing page returned the same 428-char app shell at the settled
+  signature, and its API post's rate table still lists only the
+  $0.0032/image API starting rate (2.3). The narrowed watch stays open.
+- **FLUX 3 Video — the docs page held; its sibling page rotated.**
+  docs.bfl.ai/quick_start/pricing did not alternate this pass: every
+  fetch returned the 9,875-char rendering at the 2.6 baseline
+  signature, table matching the record, still signature-live. The
+  alternation arrived on bfl.ai/pricing instead — three renderings in
+  one pass (the 2,249-char shell, a 22,122-char full page whose
+  structured FLUX 3 offers match the record exactly, and a 4,680-char
+  calculator rendering with no per-second rate), rotating in blocks.
+  It is now signature-excluded as an exact URL, still fetched and
+  recorded every run; no rate changed.
+- **Failed sources — the cohort shrank, honestly.** Medium (×3),
+  GlobeNewswire, and Morningstar still 403; whatsnew.fyi still 429s;
+  europesays.com dropped every try this pass (seven attempts, zero
+  answers — stays failed). But MarkTechPost (×3), x.ai, and
+  midjourney.com answered in both checker runs and on re-probe after
+  403ing the pre-run probes, so the final feed carries 7 partial
+  records instead of 11 — drift reads 7 alerts, 7 watch, 18 ok. Two
+  first-run weather failures (a TechTimes 520 for Runway, a truncated
+  PixVerse docs read) recovered on re-probe and in the final feed
+  (changed=0, with_errors=0). One process note, recorded in the
+  review log: a VM reboot killed the pass's first checker launch
+  mid-run before it wrote any output; the 2.6 baseline was untouched
+  and every published number comes from single verified post-reboot
+  runs.
+
 ## 2026-10-11 — Wave 30: Late-Q4 field sweep
 
 29 → **30 models** (one added); no status changes. The headline item is a

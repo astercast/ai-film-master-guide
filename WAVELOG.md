@@ -1,5 +1,122 @@
 # Wave Log — AI Film Master Guide
 
+## Watchtower 2.7 — the fifth review pass (2026-10-12)
+
+**Assignment:** Rotation 8 — work the queue Watchtower 2.6 left: the 3
+standing watches (Seedance 3.0 confirmation, Kling 4.0 GA, Soul
+Cinema's in-app credit cost), the 11 adjudicated partial records, and
+the FLUX follow-up 2.6 named: the docs.bfl.ai pricing page wired in as
+FLUX 3 Video's readable rate source serves two renderings — watch
+whether they alternate between runs. Kling rule unchanged: no GA
+model ID + no published pricing from Kuaishou = stays "announced";
+third-party wrapper noise does not count. Process rule, stated before
+any launch: verify no checker is alive before launching, verify
+exactly one is running after.
+
+**The watches — three re-checked, none moved.**
+- **Seedance 3.0:** still no official ByteDance announcement. The
+  state-of-the-field coverage page this watch reads returned a
+  signature identical to the 2.6 baseline and still lists Seedance
+  3.0 among models with no vendor announcement, no API, and no date;
+  current coverage shows the same third-party field, nothing from
+  ByteDance Seed's directory.
+- **Kling 4.0:** the criteria source is literally unchanged for a
+  third pass — APIMart's page returned a signature identical to the
+  2.4/2.5/2.6 baseline (fc55ce30…) and still lists the API as coming
+  soon, answers "Not yet", and states pricing has not been announced.
+  The loudest wrapper this pass states in its own README that its
+  Kling 4 routes run on its existing pipeline until direct access
+  opens — wrapper noise by its own admission, not Kuaishou pricing,
+  no GA model ID.
+- **Soul Cinema:** the in-app credit cost is still unpublished.
+  Higgsfield's pricing page returned the same 428-char app shell at
+  the settled 2.6 signature (f14e9f4a…) with no credit figure; the API
+  post's rate table still lists only the $0.0032/image API starting
+  rate from 2.3 (and returned yet another signature at identical
+  length — already excluded since 2.4).
+
+**FLUX follow-up — the docs page held; its sibling rotated.** The
+docs pricing page did not alternate this pass: four probes, one extra
+probe, and both checker runs all returned the 9,875-char rendering at
+the 2.6 baseline signature (cb1e92d1…), its table still matching the
+record; the 19,564-char variant was not seen. The alternation arrived
+on bfl.ai/pricing instead. The pass's first post-reboot run flagged
+FLUX 3 Video on that URL, and probing caught three renderings in one
+pass: the 2,249-char shell baselined in 2.6, a 22,122-char full
+rendering (five consecutive fetches, cb65d074…) whose structured
+FLUX 3 Video offers match the record exactly, and a 4,680-char
+calculator rendering (13ffebdf… — the run's fetch plus six
+consecutive probes) carrying no per-second rate. The renderings
+rotate in blocks, so the page cannot hold a signature across runs.
+Adjudicated as rendering rotation, not a rate move: bfl.ai/pricing
+joins FLUX's signature exclusions as an exact-URL entry (still
+fetched and recorded every run; the 2.2 anchor call is reversed on
+evidence — the docs page, signature-live, is now the readable primary
+rate source). No rate changed, no pricing record moved.
+
+**Partials — the cohort shrank, labeled exactly as observed.** All 15
+failed-source instances in the 2.6 baseline feed (13 distinct URLs)
+were re-probed. Still failing everywhere: Medium ×3, GlobeNewswire
+(2 models), Morningstar (403); whatsnew.fyi still 429s the shared
+ComfyUI page; europesays.com (Grok) dropped on all seven attempts
+this pass — worse than 2.6's one-in-three, same intermittent wire,
+stays failed. The change: MarkTechPost (×3 models), x.ai, and
+midjourney.com still 403'd the pre-run probes, then answered 200 in
+the first run, again on post-run re-probe (twice each), and again in
+the re-baseline — so MiniMax H3, Gemini Omni, FLUX 3 Video, and
+Midjourney are no longer partial in the final feed; this pass claims
+only that they answered, not that the blocks are gone for good. Two
+first-run weather failures recovered on re-probe and in the final
+feed: a TechTimes 520 for Runway Gen-4.5 and a truncated PixVerse
+docs read (IncompleteRead; 200 on the second try).
+
+**Process note (honest):** the pass's first checker launch was killed
+mid-run by a VM reboot (uptime restarts 2026-10-13T04:03:02Z, about
+nine minutes in) before the checker wrote any output — the 2.6
+baseline feed was verified untouched on disk afterward, no partial
+or interleaved output existed to discard, and the probe evidence was
+re-verified after the reboot. Both published runs were launched
+under the process rule (process-table check counting only python3
+checker processes: zero alive before each launch, exactly one after)
+and ran single to completion.
+
+**Feed state:** final re-baseline (2026-10-13T04:29Z): **changed=0,
+with_errors=0, no_sources=0**; queue back to its **3 standing
+watches** (notes carry this pass's re-check lines). Drift moved for
+the first time since 2.4 — because sources answered, not because
+records changed: **7 alerts** (the partial records still carrying a
+failed source), **7 watch**, 18 ok, 0 unwatched; unpublished rates
+**5**; pricing diff vs the 2026-10-11 baseline **7 rows**. History
+73 → **77 events** (3 watch re-checks, the FLUX flag verdict); the
+October window holds 57. Review log: pass 6 + addendum (11 entries
+total).
+
+**Validation:** `scripts/watchtower.test.js` **15/15** (pins moved to
+the new feed: 7 alerts with the exact id set). `tests/api.test.sh`
+**55/55** (October window 53 → 57, drift alerts 11 → 7).
+`studio.test.js` **70/70**, `greenlight.test.js` **29/29**,
+`agent-workflows.test.js` all pass. `bash scripts/validate.sh`
+**18 passed, 0 failed — ALL STAGES PASS** pre-commit.
+Headless-Chromium (Playwright) screenshots inspected (desktop 1440px
++ mobile 390px): cutting-room board intact, freshness reads the new
+04:29 UTC feed, "32 models checked", "7 need review" and "7 on watch"
+present, zero page errors (the two /api 404 resource logs per view on
+the plain static server are the designed fallback trigger; the mobile
+hero deck stays cramped — the pre-existing wave-39 quirk, untouched).
+AI-ism scan on new copy: clean. No TODOs, no dead code.
+
+**Left open:** the 3 standing watches — all re-checked this pass,
+none moved. The 7 remaining partial records will keep surfacing as
+alerts while their third-party sources fail the checker —
+adjudicated six passes running now, documented, honest. Whether the
+MarkTechPost / x.ai / midjourney.com answers hold is next pass's
+question; europesays.com stays intermittent-to-dropping. LTX-2.5's
+ltx.io note stands.
+
+**Commit:** recorded in the follow-up WAVELOG commit, per the standing
+pattern. Working repo only — no `-live` repo touched, no Vercel
+access.
+
 ## Watchtower 2.6 — the fourth review pass (2026-10-12)
 
 **Assignment:** Rotation 7 — work the queue Watchtower 2.5 left: the 3
