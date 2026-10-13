@@ -82,10 +82,12 @@ while their third-party sources bot-block the checker — adjudicated
 three passes running now, documented, honest. LTX-2.5's ltx.io note
 stands.
 
-**Commit:** local `<pending>` → pushed 2026-10-12 (gh-push.py).
-Verified: a second gh-push run reports no changes — remote tree ==
-local HEAD tree. Working repo only — no `-live` repo touched, no
-Vercel access.
+**Commit:** local `40f17d0` → pushed 2026-10-12 as remote commit
+`1713e588aa42eef90f3464784e400e950fc0b48a` (gh-push.py, exit 0).
+Verified: a second gh-push run reports no changes vs remote `main`
+(`1713e58`) — remote tree == local HEAD tree. Post-commit
+`validate.sh`: **18 passed, 0 failed — ALL STAGES PASS**. Working
+repo only — no `-live` repo touched, no Vercel access.
 
 ## Watchtower 2.3 — the second review pass (2026-10-12)
 
