@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "count": 240,
+  "count": 241,
   "skills": [
     {
       "id": "prompt-t1",
@@ -1363,6 +1363,12 @@
       "title": "Run the take sheet",
       "description": "The directing-performance chapter as a working take sheet: the five pre-lock gates, every performance beat logged with its direction, eyeline, dead-eyes check, framing, and route, and the performance-lock verdict from the chapter's rules.",
       "path": "skills/craft/directing-take-sheet.md"
+    },
+    {
+      "id": "longform-assembly-sheet",
+      "title": "Run the longform sheet",
+      "description": "The long-form pipelines chapter as a working sheet: the five pre-lock gates, every scene logged with its stress test, storyboard, reference, dialogue route, draft tier, re-rolls, and route, and the feature-lock verdict from the chapter's rules.",
+      "path": "skills/longform/longform-assembly-sheet.md"
     },
     {
       "id": "workflow-shot-list",

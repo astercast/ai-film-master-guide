@@ -1386,6 +1386,59 @@
    "flag_reviews": [],
    "failed_source_reviews": [],
    "outcome": "Correction filed. The FLUX flag stays dismissed with no calibration (the 2.6 signature-live decision for this primary rate source stands); the page's three known renderings (cb1e92d1…, f95831ee…, 3f90e01a…) are on record for the next pass's adjudication. Review log 29 → 30 entries; all other 2.16 numbers unchanged."
+  },
+  {
+   "id": "2026-10-13-review-pass-16",
+   "reviewed_at": "2026-10-13",
+   "reviewer": "Watchtower 2.17 review pass (agent)",
+   "scope": "Fifteenth review pass over all 32 watched models: the 3 standing watches (Seedance 3.0 unconfirmed; Kling 4.0 'announced' without a GA model ID or Kuaishou pricing; Soul Cinema's in-app credit cost), the standing FLUX 3 Video rate-source follow-up (its three known renderings), PixVerse V6's seventh-clean-pass question left by 2.16, and every flag the pass's checker runs raised. No model record moved.",
+   "method": "All verdicts rest on disk-verified artifacts: checker runs launched detached (setsid launcher + status files, logs on a durable fleet-ops path), with a process-table check before each launch and exactly one checker verified alive during each run; checker-path probes (importing scripts/refresh/check_models.py's own fetch/clean_text/sha256 path) for every adjudication — two probes per criteria page, all saved to disk and read. Run history: run 1 (19:54–20:03Z) completed, changed=1, with_errors=0 — the first adjudication run (Midjourney V1 Video on Krea's explainer). Run 2 (20:08–20:15Z), the first re-baseline, read changed=1: Midjourney cleared on its stored signature, exactly as its dismissal predicted, and Grok Imagine Video 1.5 was flagged on deployedbyai.com's Deploy Log entry page — that page's second flag (2.15's was its first), adjudicated in this pass with the calibration the standing ruling carries. Run 3 (20:17–20:25Z), the second re-baseline, read changed=2: Grok cleared under its new calibration, and two fresh flags surfaced — FLUX 3 Video on bottlerocketcontent.com's launch article (that article's second flag; adjudicated here with calibration #2) and Vidu S2 on lapaasvoice.com's explainer (adjudicated here, dismissed, first counted flag). Run 4, the final re-baseline, completed with changed=0 and set the published feed (see the addendum). One process incident, disclosed: the rotation's first launcher launch was refused by its own duplicate-checker guard — the guard's pattern matched the launching shell's own command text, which contained the checker's path (the same false-positive class as 2.16's incident 1, arriving this time through the exec wrapper's command line rather than the guard's own text). Caught before any checker started; the guard was rewritten to a bracket-pattern pgrep that cannot match the launcher invocation, and the relaunch verified exactly one checker alive. No verdict rested on anything but on-disk artifacts.",
+   "flag_reviews": [
+    {
+     "model": "Midjourney V1 Video",
+     "flagged_source": "krea.ai/blog/is-midjourney-free-pricing-video-and-free-alternatives-in-2026",
+     "verdict": "dismissed-churn (2.17)",
+     "basis": "Run 1 flagged Krea's Midjourney explainer at d06aa50a… (20,077 chars) against the baseline 81a079c6… (20,081); two checker-path probes returned the flagged signature exactly. Read in full, the page matches the record on every carried point (V1, June 18 2025; image-to-video only; 5s extendable four times to 21s; 480p default / 720p Fast on Standard+; ~8× image cost; SD batch 8 GPU-minutes). The −4 chars are blog-page churn around unchanged facts. First flag on this URL for this model — no exclusion; a second flag earns one."
+    },
+    {
+     "model": "Grok Imagine Video 1.5",
+     "flagged_source": "deployedbyai.com/log/b06e09074889/grok-imagine-video-1-5-lite/",
+     "verdict": "dismissed-churn + calibrated (2.17)",
+     "basis": "Run 2 flagged the Deploy Log entry page at 52ae0ec7… (1,559 chars) against 072cdc70… (1,552) — the signature 2.15's dismissal set as its baseline, so this is the page's second flag (2.15: ed1da6b0… → 072cdc70…, dismissed, first flag, no exclusion, a second earns one). Two checker-path probes returned the flagged signature exactly; read in full, the page matches the record on every carried point (1.5 Lite on Vercel's AI Gateway; text + image to video with native audio; 1–15s at 480p/720p/1080p; seven aspect ratios) — the same verbatim read as 2.15. The +7 chars are log-page edition furniture. Dismissed as metadata churn; 2.17 calibration #1: the URL is signature-excluded (exact URL) for Grok — still fetched and recorded every run, the model's facts staying signature-live on its remaining sources (theplanettools, venice)."
+    },
+    {
+     "model": "FLUX 3 Video",
+     "flagged_source": "bottlerocketcontent.com/flux-3-video-black-forest-labs-launch/",
+     "verdict": "dismissed-churn + calibrated (2.17)",
+     "basis": "Run 3 flagged the launch article at f9793af9… (7,486 chars) against cc8e7415… (7,491) — the signature 2.14's dismissal set as its baseline, so this is the article's second flag (2.14: f3127725… → cc8e7415…, a +5-char delta, dismissed). Two checker-path probes returned the flagged signature exactly; read in full, the article matches the record on every carried point (the 4 August 2026 launch story; draft $0.06/s, full from $0.17/s; up to 20s). BFL's docs page held f95831ee… in the same run. Dismissed as article churn; 2.17 calibration #2: the URL is signature-excluded (exact URL) for FLUX 3 Video — still fetched and recorded every run, rates staying signature-live on BFL's own sources."
+    },
+    {
+     "model": "Vidu S2",
+     "flagged_source": "lapaasvoice.com/vidu-s2-real-time-ai-video-control/",
+     "verdict": "dismissed-churn (2.17)",
+     "basis": "Run 3 flagged the S2 explainer at 2d5c1921… (7,655 chars) against 7d9bf2d6… (7,636); two checker-path probes returned the flagged signature exactly. Read in full, the post matches the record on every carried point (S2-Avatar interactive characters at real-time 720p; S2-Editing references applied to a live stream) with no postdating price or version fact; Vidu's official pricing page held 66450841… in the same run. The +19 chars are blog churn. The page's pass-2 appearance was a baseline-settling artifact rather than a counted churn flag, so this is its first counted flag — no exclusion; a second earns one."
+    }
+   ],
+   "outcome": "Four flags raised across the pass's four completed runs, four dismissed, two calibrations (deployedbyai for Grok; bottlerocketcontent for FLUX 3 Video); no model record moved. The 3 standing watches stand, each content-verified this pass. BFL's docs page held its 2.16 baseline signature in the checker run (its second known rendering answered the probes, as recorded); PixVerse V6's docs source stands on seven clean passes."
+  },
+  {
+   "id": "2026-10-13-review-pass-16-addendum",
+   "reviewed_at": "2026-10-13",
+   "reviewer": "Watchtower 2.17 review pass (agent)",
+   "scope": "The final re-baseline checker run after pass 16's adjudication, which set the published feed.",
+   "method": "Single detached checker process (run 4), launched after a process-table check showing zero checkers, exactly one verified alive during; completion verified from primary disk artifacts: the launcher's VERIFIED status (exit 0, the log carrying the [model-watch] summary line and the feed's mtime advanced), the run log's summary lines, and the feed's checked_at on disk. The run diffed against run 3's feed with all four dismissals and both calibrations recorded, so its changed=0 also proves them: the Krea page held its new baseline, Grok and FLUX cleared under their exclusions, the lapaas page held its new signature as the stored baseline, and no other signature-live source moved.",
+   "flag_reviews": [],
+   "failed_source_reviews": [
+    {
+     "group": "Final-run failures — the standing cohort, stamps stay, labelled as observed",
+     "models": [
+      "The final run's partial records are the standing host-gated cohort only (Seedance 3.0, Wan 3.0 / 3.0 Prime, MiniMax H3, Luma App / Ray 3.2, Grok Imagine Video 1.5, Midjourney V1 Video, Kling 4.0, Gemini Omni, Vidu S2, Vidu Q4 Preview — Medium, GlobeNewswire, x.ai, whatsnew.fyi, and europesays gates among them)"
+     ],
+     "verdict": "watch-intact-no-action",
+     "basis": "Every failure in the final run is a host gate already adjudicated in earlier passes; none touches a decision — every standing watch's criteria page answered this pass."
+    }
+   ],
+   "outcome": "Final feed 2026-10-13T20:34Z: changed=0, with_errors=0, no_sources=0. Drift 10 alerts / 6 watch / 16 ok, 0 unwatched — the alert count fell by one against 2.16's close: FLUX 3 Video's sources all answered in the final run, so it sits at watch on its own pricing diff, and the alert set is exactly the final run's ten partial records. Unpublished rates 5; pricing diff vs the 2026-10-11 baseline 7 rows. The queue holds exactly the 3 standing watches, their notes carrying this pass's re-check lines. History 144 → 153 events (October window 124 → 133); review log 30 → 32 entries (pass 16 + addendum)."
   }
  ]
 }

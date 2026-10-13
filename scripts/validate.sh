@@ -489,6 +489,21 @@ else
   TK_OK=0
 fi
 
+# Longform Sheet: engine + page + chapter (rotation 18 flagship)
+LF_OK=1
+for f in assets/js/longform.js site/longform.html site/assets/js/longform.js site/craft/longform-pipelines.html; do
+  if [ ! -f "$f" ]; then fail "$f missing (rebuild the site)"; LF_OK=0; fi
+done
+LF_OUT=$(node scripts/longform.test.js 2>&1)
+if echo "$LF_OUT" | tail -1 | grep -q "all pass"; then
+  LF_N=$(echo "$LF_OUT" | grep -c "^ok ")
+  pass "longform.test.js: $LF_N engine assertions pass (five pre-lock gates, stress-test rule, chaining rule, draft rule, feature-lock verdicts, export traces)"
+else
+  fail "longform.test.js failures:"
+  echo "$LF_OUT" | grep "^FAIL" | head -8 | sed 's/^/    /'
+  LF_OK=0
+fi
+
 # Cutting Room → Green Light bridge button present (rendered by cutting-room.js)
 if grep -q "cr-greenlight" assets/js/cutting-room.js && grep -q "cr-greenlight" site/assets/js/cutting-room.js; then
   pass "cutting-room → green-light bridge wired (button + handler)"

@@ -73,6 +73,7 @@ NAV_INDEX = [
         ("grade.html", "Grade sheet"),
         ("cut.html", "Cut sheet"),
         ("take.html", "Take sheet"),
+        ("longform.html", "Longform sheet"),
         ("recipes.html", "Recipes"),
         ("forge.html", "Episode forge"),
     ]),
@@ -111,6 +112,7 @@ FOOTER_ITEMS = [
     ("grade.html", "Grade sheet"),
     ("cut.html", "Cut sheet"),
     ("take.html", "Take sheet"),
+    ("longform.html", "Longform sheet"),
     ("checks/", "Knowledge checks"),
     ("budget.html", "Budget"),
     ("optimizer.html", "Optimizer"),
@@ -4815,6 +4817,359 @@ def build_take(css_links):
         take_verdict=html.escape(r["verdict"]), take_stage="".join(stage_html)))
     return [("take.html", "Take sheet")]
 
+LONG_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Longform sheet — AI Film Master Guide</title>
+  <meta name="description" content="The long-form pipelines chapter as a working sheet: the five pre-lock gates, every scene logged with its stress test, storyboard, reference, dialogue route, draft tier, re-rolls, and route, and the feature-lock verdict computed from the chapter's own rules — the stress-test rule, the chaining rule, the draft rule.">
+  {css}
+  <style>
+    .long-verdict {{ font-size: 1.05rem; border-left: 3px solid var(--gold); padding-left: var(--space-4); margin-bottom: var(--space-6); }}
+    .long-held {{ border-left-color: #e88; }}
+    .long-gate-card, .long-entry {{ border: 1px solid var(--line); border-radius: 12px; padding: var(--space-4) var(--space-5); margin-bottom: var(--space-4); }}
+    .long-gate-head, .long-entry-head {{ display: flex; align-items: baseline; gap: var(--space-3); flex-wrap: wrap; }}
+    .long-gate-head h4, .long-entry-head h4 {{ margin: 0; font-size: 1.2rem; }}
+    .long-num {{ display: inline-block; min-width: 1.7em; text-align: center; background: var(--gold); color: #111; border-radius: 999px; font-weight: 800; padding: .1em .3em; }}
+    .long-tag {{ margin-left: auto; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }}
+    .long-what, .long-detail, .long-state, .long-ref, .long-dialogue, .long-tier, .long-route, .long-rerolls, .long-checks {{ color: var(--muted); }}
+    .long-state strong, .long-rerolls strong {{ color: var(--text); }}
+    .long-note {{ font-size: .85rem; }}
+  </style>
+</head>
+<body>
+  <div class="edge-right" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        {sitenav}
+      </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">&#9679;</span> <span class="hdr-tc-val">00:59:52:00</span></span>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">&#8984;K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    {hero}
+    <section class="container" aria-labelledby="long-h">
+      <h2 id="long-h">The five gates — before feature lock</h2>
+      <p>Short films are won with great prompts; long films are won with systems. The five gates below are the long-form chapter's own discipline before any scene is judged; the full chapter is <a href="craft/longform-pipelines.html">Long-Form Pipelines: Making AI Films That Survive 90 Minutes</a>. Tick a gate when the production has actually done it — the sheet counts what is written down, not intentions.</p>
+      <div id="long-gates">{long_gates}</div>
+      <p class="calc-note" id="long-gates-state" aria-live="polite">{long_gates_state}</p>
+      <h2>Your longform sheet</h2>
+      <p>Log every scene with its stress test (Goal, Obstacle, Tactic, Reversal, Value Shift — with a verdict and fixes) done or not, its storyboard done or not, its reference — a video reference (the previous scene's finished video or a previz), a text description only, or none yet — its dialogue route (native speech, human-recorded and AI-converted, decoupled TTS, or no dialogue), its draft tier (720p draft, an upscaled winner, or full-res generation), its re-roll count, and its route: in production, picture-locked, in generation supervision (the scheduled QC/re-generation pass after the rough cut), or cut from the film. Three rules are mechanical: a scene generated without its stress test reads untested; a scene chained off a text description reads drifting, because a text description drifts over generations and a video reference doesn't; and a scene generated at full resolution before its winner is chosen reads wasteful — draft at 720p, upscale winners only. The sheet opens on a worked example — the same fictional production the other sheets track, built long as a 24-minute film — with the depot-office sequence in generation supervision, so the first verdict you see is the honest hold.</p>
+      <div class="card" style="margin-bottom:var(--space-6);">
+        <div class="calc-grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
+          <div class="field">
+            <label for="long-title">Production title</label>
+            <input class="input" type="text" id="long-title" placeholder="e.g. The Night Bus (long form)">
+          </div>
+          <div class="field">
+            <label for="long-new-scene">New scene</label>
+            <input class="input" type="text" id="long-new-scene" placeholder="e.g. Seq 7 — The dawn platform">
+          </div>
+          <div class="field">
+            <label for="long-new-detail">The scene, specifically — its seam, its reference, its budget</label>
+            <input class="input" type="text" id="long-new-detail" placeholder="e.g. Chains off Seq 6's finished video; the room is the re-roll budget, not the spectacle.">
+          </div>
+          <div class="field">
+            <label for="long-new-ref">Reference</label>
+            <select class="input" id="long-new-ref">{long_ref_options}</select>
+          </div>
+          <div class="field">
+            <label for="long-new-dialogue">Dialogue route</label>
+            <select class="input" id="long-new-dialogue">{long_dialogue_options}</select>
+          </div>
+          <div class="field">
+            <label for="long-new-tier">Draft tier</label>
+            <select class="input" id="long-new-tier">{long_tier_options}</select>
+          </div>
+          <div class="field">
+            <label for="long-new-status">Route today</label>
+            <select class="input" id="long-new-status">{long_status_options}</select>
+          </div>
+          <div class="field">
+            <label for="long-new-rerolls">Re-rolls so far</label>
+            <input class="input" type="number" id="long-new-rerolls" min="0" max="99" step="1" value="0">
+          </div>
+          <div class="field">
+            <label>Checks done</label>
+            <p style="margin:.2em 0;">
+              <label><input type="checkbox" id="long-new-stress"> Stress test</label>
+              <label><input type="checkbox" id="long-new-board"> Storyboard</label>
+            </p>
+          </div>
+          <div class="field">
+            <label aria-hidden="true">&nbsp;</label>
+            <button type="button" class="btn" id="long-add">Add scene to the sheet</button>
+          </div>
+        </div>
+        <p class="calc-note" id="long-msg" hidden></p>
+      </div>
+      <p class="long-verdict" id="long-verdict" aria-live="polite">{long_verdict}</p>
+      <div id="long-stage">{long_stage}</div>
+      <div class="card" style="margin-top:var(--space-6);">
+        <h3>Take the sheet</h3>
+        <p>The sheet exports as clean markdown: the five gates with their state, every scene with its stress test, storyboard, reference, dialogue route, draft tier, re-rolls, and route, and the feature-lock verdict — the file the lock decision is made from.</p>
+        <p><button type="button" class="btn" id="long-copy">Copy sheet</button> <button type="button" class="btn btn-ghost" id="long-download">Download sheet (.md)</button></p>
+        <p><a class="btn btn-ghost" href="craft/longform-pipelines.html">Read the long-form chapter</a> <a class="btn btn-ghost" href="take.html">Take sheet</a> <a class="btn btn-ghost" href="continuity.html">Continuity ledger</a></p>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+    </div>
+  </footer>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search" hidden>
+    <div class="palette-box">
+      <input type="search" id="palette-input" placeholder="Search the guide…" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/longform.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
+</body>
+</html>
+"""
+
+
+# The longform-sheet layer — kept in step with assets/js/longform.js
+# (LongformEngine). scripts/longform.test.js pins the engine, and
+# the pre-rendered default sheet below is rendered under the same
+# rules. Source: craft/longform-pipelines.md — assets before
+# shots; the stress test; the chaining rule; dialogue at scale;
+# draft at 720p, upscale winners; generation supervision as a
+# scheduled pass; picture lock, quoted in substance.
+LONG_GATES = [
+    dict(id="registry", name="Asset registry complete before shot one",
+         what="Every character, location, and prop named, versioned, and locked in the registry before the first shot is generated. State changes (scar, haircut, dirt, wardrobe) get a new @-tag — state is an asset, never an overwrite."),
+    dict(id="stresstest", name="Every scene stress-tested and storyboarded",
+         what="Goal, Obstacle, Tactic, Reversal, Value Shift — with a verdict and fixes, scene by scene, then storyboarded step by step. Only on the storyboard does it become clear how good a scene really is; a weak scene's cost is discovered after it is generated."),
+    dict(id="architecture", name="Architecture chosen: chaining, or sequence assembly with a wrangler",
+         what="Solo or small team: scene-by-scene chaining — each new scene's reference is the previous scene's finished video. Team of five-plus: sequence assembly, but only if someone owns the registry full-time; without a wrangler, parallel generation produces parallel continuities."),
+    dict(id="dialogue", name="Dialogue architecture chosen per scene, not per film",
+         what="Native speech, human-recorded and AI-converted, or decoupled TTS — chosen per scene. Budget the continuity and re-roll effort on ordinary rooms, not spectacle: the one-room dialogue scene is the hardest task in the record, harder than the space battle."),
+    dict(id="lockdiscipline", name="Lock discipline written: base never re-run, plates carry the look, Voice Bible verbatim",
+         what="The base portrait is never re-run through any model. The look lives in the asset plate, not the video prompt. The Voice Bible is pasted into every generation verbatim — not even a synonym changed. Every prompt is an island: everything re-stated, every time."),
+]
+
+LONG_REFS = [
+    ("video", "Video reference — previous finished scene or previz"),
+    ("text", "Text description only"),
+    ("none", "No reference yet"),
+]
+
+LONG_DIALOGUES = [
+    ("native", "Native — speech generated with the shot"),
+    ("converted", "Human-recorded, AI-converted"),
+    ("decoupled", "Decoupled — TTS / synthetic, married in the edit"),
+    ("silent", "No dialogue — picture and sound design only"),
+]
+
+LONG_TIERS = [("draft", "720p draft"), ("winner", "Winner — upscaled after lock"), ("fullres", "Full-res generation")]
+
+LONG_STATUSES = [
+    ("building", "In production"),
+    ("locked", "Picture-Locked"),
+    ("supervision", "In generation supervision — the scheduled post-rough-cut QC pass"),
+    ("cut", "Cut from the film"),
+]
+
+LONG_EFFECTIVE_LABELS = {
+    "clean": "Clean — Picture-Locked",
+    "building": "In production",
+    "supervision": "In generation supervision — scheduled QC pass",
+    "unchecked": "Unchecked — storyboard or reference unfinished",
+    "untested": "Untested — generated without its stress test",
+    "drifting": "Drifting — a text description is not an anchor",
+    "wasteful": "Wasteful — full-res before the winner is chosen",
+    "cutscene": "Cut from the film — a decision, not a defect",
+}
+
+# Mirror of DEFAULT_ENTRIES in assets/js/longform.js.
+LONG_DEFAULT_ENTRIES = [
+    dict(scene="Seq 1 — Depot at night, Mara waits", stress=True, board=True,
+         ref="video", dialogue="decoupled", tier="winner", rerolls=6, status="locked",
+         detail="The opening sequence chains off the previz. Stress test: want (the last bus) against obstacle (the board goes dark) — reversal lands on the driver's arrival. Drafted at 720p, winner upscaled after lock; the plate carries the depot's sodium look."),
+    dict(scene="Seq 2 — The window, the hardest line", stress=True, board=True,
+         ref="video", dialogue="converted", tier="winner", rerolls=11, status="locked",
+         detail="The dialogue-dense sequence, so the performance is human-recorded and converted — timing and breath are human decisions, conversion only changes timbre. Eleven re-rolls, inside the chapter's 5–20× envelope, spent here and not on spectacle."),
+    dict(scene="Seq 3 — The rain stop, two-hander", stress=True, board=True,
+         ref="video", dialogue="native", tier="winner", rerolls=8, status="locked",
+         detail="Sparse dialogue, the acting is the point — native speech, lip-sync and timing born together, the Voice Bible pasted verbatim into every generation. The blocking diagram was attached last among the references, drawn from the camera's side."),
+    dict(scene="Seq 4 — Depot office, the radio news", stress=True, board=True,
+         ref="video", dialogue="decoupled", tier="draft", rerolls=7, status="supervision",
+         detail="In generation supervision — the scheduled QC/re-generation pass after the rough cut, not continuous re-rolling. Two shots drifted at the seam (the office rearranged itself between generations; the depth map is now in the folder) and are being re-generated against the previous scene's finished video."),
+    dict(scene="Seq 5 — The night road, montage", stress=True, board=True,
+         ref="video", dialogue="silent", tier="winner", rerolls=5, status="locked",
+         detail="No dialogue — picture and sound design carry it. Cut on the dialogue rule's inverse: J-cuts from the radio carry the seams, because action continuity is exactly what the models are worst at."),
+    dict(scene="Seq 6 — Departure at dawn, the button", stress=True, board=True,
+         ref="video", dialogue="converted", tier="winner", rerolls=9, status="locked",
+         detail="The closing sequence chains off Seq 5's finished video. The base portraits were never re-run; dawn is a new tagged state on the locked plates, integrated with masks around the base pixels."),
+]
+
+
+def long_effective(e):
+    """Mirror of LongformEngine.effectiveStatus (assets/js/longform.js):
+    a cut scene blocks nothing; a scene with no stress test reads
+    untested; a text reference reads drifting; full-res generation
+    before the winner reads wasteful."""
+    st = e.get("status") if e.get("status") in dict(LONG_STATUSES) else "building"
+    if st == "cut":
+        return "cutscene"
+    if not e.get("stress"):
+        return "untested"
+    if e.get("ref") == "text":
+        return "drifting"
+    if e.get("tier") == "fullres":
+        return "wasteful"
+    if st == "supervision":
+        return "supervision"
+    if st == "building":
+        return "building"
+    if not e.get("board") or e.get("ref") not in dict(LONG_REFS) or e.get("ref") == "none":
+        return "unchecked"
+    return "clean"
+
+
+def long_eval(entries):
+    """Mirror of LongformEngine.evaluate (assets/js/longform.js)."""
+    eff = [long_effective(e) for e in entries]
+    clean = eff.count("clean")
+    cut = eff.count("cutscene")
+    held = sum(eff.count(s) for s in ("building", "supervision", "unchecked"))
+    stopped = sum(eff.count(s) for s in ("untested", "drifting", "wasteful"))
+    ready = bool(entries) and held == 0 and stopped == 0
+    if not entries:
+        verdict = "No longform sheet yet — a feature built on prompts alone drifts by scene three. Log every scene: its stress test, its reference, its dialogue route, its draft tier, and its route."
+    elif eff.count("untested"):
+        m = eff.count("untested")
+        verdict = (f"Feature lock stopped — {m} scene" + (" was" if m == 1 else "s were") +
+                   " generated without a stress test: Goal, Obstacle, Tactic, Reversal, Value Shift, with a verdict and fixes, "
+                   "then storyboard it. A weak scene's cost is only discovered after it is generated — stress-test it before a single credit is spent.")
+    elif eff.count("drifting"):
+        k = eff.count("drifting")
+        verdict = (f"Feature lock stopped — {k} scene" + (" is" if k == 1 else "s are") +
+                   " chained off a text description: a text description drifts over generations — a video reference doesn't. "
+                   "Chain each scene off the previous scene's finished video or a previz; what you want goes in the reference.")
+    elif eff.count("wasteful"):
+        u = eff.count("wasteful")
+        verdict = (f"Feature lock stopped — {u} scene" + (" is" if u == 1 else "s are") +
+                   " being generated at full resolution before the winner is chosen: draft at 720p and upscale winners only. "
+                   "At feature scale that is the difference between a $3,000 and a $30,000 compute bill — and the re-roll budget belongs to the ordinary rooms.")
+    elif held:
+        verdict = (f"Hold feature lock — {held} scene" + (" is" if held == 1 else "s are") +
+                   " not ready: still in production, in the scheduled generation-supervision pass, or missing its storyboard or "
+                   "video reference. Drift is cumulative, not linear — a seam left unchecked is paid for in every scene after it.")
+    else:
+        verdict = ("Feature lock clean — every scene stress-tested and storyboarded, every seam chained off a video reference, "
+                   "every winner drafted at 720p and upscaled only after lock. Still owed: picture lock means no new generations "
+                   "except emergencies, with notice to color and sound — and a compute budget carried at the 5–20× overhead envelope, never the clean-pass number.")
+    return {"total": len(entries), "clean": clean, "held": held, "stopped": stopped,
+            "cut": cut, "ready": ready, "verdict": verdict}
+
+
+def build_longform(css_links):
+    """Longform Sheet — the long-form pipelines chapter
+    (craft/longform-pipelines.md) as a working sheet: the five
+    pre-lock gates, the production's own scenes with their stress
+    tests, storyboards, references, dialogue routes, draft tiers,
+    and routes, and the feature-lock verdict computed exactly as
+    the chapter's rules state it. The default sheet is pre-rendered
+    here under the same rules assets/js/longform.js runs in the
+    browser; the engine invents no scenes and no states — the
+    stress-test rule, the chaining rule, and the draft rule are
+    mechanical, on the record."""
+    def esc(s):
+        return html.escape(str(s if s is not None else ""))
+
+    gates_html = []
+    for i, s in enumerate(LONG_GATES):
+        gates_html.append(
+            f'<article class="long-gate-card"><div class="long-gate-head"><span class="long-num">{i + 1}</span>'
+            f'<h4>{esc(s["name"])}</h4><span class="long-tag">Pre-lock gate</span></div>'
+            f'<p class="long-what">{esc(s["what"])}</p>'
+            f'<p><label><input type="checkbox" data-long-gate="{esc(s["id"])}"> Done — the gate is written down</label></p></article>')
+    r = long_eval(LONG_DEFAULT_ENTRIES)
+    stage_html = []
+    for idx, e in enumerate(LONG_DEFAULT_ENTRIES):
+        eff = long_effective(e)
+        s = (f'<article class="long-entry"><div class="long-entry-head"><h4>{esc(e["scene"])}</h4>'
+             f'<span class="long-tag">{esc(dict(LONG_TIERS).get(e["tier"]) or "—")}</span></div>'
+             f'<p class="long-detail">{esc(e["detail"])}</p>'
+             f'<p class="long-checks" role="group" aria-label="Pipeline checks for {esc(e["scene"])}">'
+             f'<button type="button" class="btn btn-sm{"" if e["stress"] else " btn-ghost"}" '
+             f'data-long-stress="{idx}" aria-pressed="{"true" if e["stress"] else "false"}">'
+             f'Stress test{" ✓" if e["stress"] else " —"}</button> '
+             f'<button type="button" class="btn btn-sm{"" if e["board"] else " btn-ghost"}" '
+             f'data-long-board="{idx}" aria-pressed="{"true" if e["board"] else "false"}">'
+             f'Storyboard{" ✓" if e["board"] else " —"}</button></p>'
+             f'<p class="long-state">State: <strong>{esc(LONG_EFFECTIVE_LABELS.get(eff) or "—")}</strong></p>'
+             f'<p class="long-ref">Reference: '
+             + " ".join(
+                 f'<button type="button" class="btn btn-sm{"" if e["ref"] == rid else " btn-ghost"}" '
+                 f'data-long-ref="{idx}:{rid}">{esc(label.split(" — ")[0])}</button>'
+                 for rid, label in LONG_REFS)
+             + "</p>"
+             f'<p class="long-dialogue">Dialogue: '
+             + " ".join(
+                 f'<button type="button" class="btn btn-sm{"" if e["dialogue"] == did else " btn-ghost"}" '
+                 f'data-long-dial="{idx}:{did}">{esc(label.split(" — ")[0])}</button>'
+                 for did, label in LONG_DIALOGUES)
+             + "</p>"
+             f'<p class="long-tier">Draft tier: '
+             + " ".join(
+                 f'<button type="button" class="btn btn-sm{"" if e["tier"] == tid else " btn-ghost"}" '
+                 f'data-long-tier="{idx}:{tid}">{esc(label)}</button>'
+                 for tid, label in LONG_TIERS)
+             + "</p>"
+             f'<p class="long-route">Route: '
+             + " ".join(
+                 f'<button type="button" class="btn btn-sm{"" if e["status"] == sid else " btn-ghost"}" '
+                 f'data-long-set="{idx}:{sid}">{esc(label.split(" — ")[0])}</button>'
+                 for sid, label in LONG_STATUSES)
+             + "</p>"
+             f'<p class="long-rerolls">Re-rolls: <strong>{e["rerolls"]}</strong> '
+             f'<button type="button" class="btn btn-sm btn-ghost" data-long-att="{idx}:-1">−</button> '
+             f'<button type="button" class="btn btn-sm btn-ghost" data-long-att="{idx}:1">+</button>'
+             f' <span class="long-note">the documented regime is 5–20× overhead — the envelope is the budget</span></p>'
+             f'<p><button type="button" class="btn btn-sm btn-ghost" data-long-del="{idx}">'
+             f'Remove scene</button></p></article>')
+        stage_html.append(s)
+    ref_opts = "".join(f'<option value="{esc(k)}">{esc(v)}</option>' for k, v in LONG_REFS)
+    dialogue_opts = "".join(f'<option value="{esc(k)}">{esc(v)}</option>' for k, v in LONG_DIALOGUES)
+    tier_opts = "".join(f'<option value="{esc(k)}">{esc(v)}</option>' for k, v in LONG_TIERS)
+    status_opts = "".join(f'<option value="{esc(sid)}">{esc(label)}</option>' for sid, label in LONG_STATUSES)
+    (SITE / "longform.html").write_text(LONG_TMPL.format(
+        css=css_links, sitenav=nav_html("", "longform.html"), footer=footer_html(""),
+        hero=hero_cutroom(
+            kicker="""The feature floor""",
+            h1="""Longform <span class="accent">sheet.</span>""",
+            lede="""Long films are won with systems, not prompts. The five gates before feature lock, every scene logged with its stress test, its reference, its dialogue route, its draft tier, and its route, and the lock verdict from the long-form chapter's own rules: the stress-test rule, the chaining rule, the draft rule.""",
+            deck_title="""ASSEMBLE — THE_LONGFORM_SHEET""",
+            clips={"v2": ['The feature'], "v1": ['Register', 'Chain', 'Lock'], "a1": ['The system']},
+            h1_id="long-title-h",
+            extra=""" """),
+        long_gates="".join(gates_html),
+        long_gates_state="Gates complete: 0 of 5 — the gates are the discipline before any scene is judged; finish them first.",
+        long_ref_options=ref_opts, long_dialogue_options=dialogue_opts,
+        long_tier_options=tier_opts, long_status_options=status_opts,
+        long_verdict=html.escape(r["verdict"]), long_stage="".join(stage_html)))
+    return [("longform.html", "Longform sheet")]
+
+
 GALLERY_TMPL = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7441,6 +7796,9 @@ def main():
     # Take Sheet (rotation 17 flagship — the directing-performance chapter as a working take sheet)
     build_take(css_links)
 
+    # Longform Sheet (rotation 18 flagship — the long-form pipelines chapter as a working sheet)
+    build_longform(css_links)
+
     # Knowledge checks (generated from scripts/checks.json)
     wave7_checks = build_checks(css_links)
 
@@ -7535,6 +7893,9 @@ def main():
         {"url": "take.html", "title": "Take sheet", "section": "Tools",
          "headings": ["The five gates — before performance lock", "Your take sheet", "Take the sheet"],
          "text": "The Take Sheet: the directing-performance chapter as a working take sheet — every beat rewritten as a playable tactic, eyelines named per beat, the director's read (shared event plus a physical channel per character), identity locked, the restraint pass. Log every performance beat with its direction (playable tactic or emotion label), its eyeline, its dead-eyes check, its framing and whether it sits on an emotional peak, its failed rehearsals, and its route (in rehearsal, Scene-Locked, simplify the shot, hybrid) — and read the performance-lock verdict computed from the chapter's rules: an emotion label reads undirected, three failed rehearsals read overdue (simplify the shot, not the actor), a close-up away from its peak reads misspent, and a clean sheet still owes Scene Lock discipline. Export the sheet as markdown. Chapter: craft/directing-performance.md."},
+        {"url": "longform.html", "title": "Longform sheet", "section": "Tools",
+         "headings": ["The five gates — before feature lock", "Your longform sheet", "Take the sheet"],
+         "text": "The Longform Sheet: the long-form pipelines chapter as a working sheet — the asset registry complete before shot one, every scene stress-tested and storyboarded, the architecture chosen (scene-by-scene chaining, or sequence assembly with a registry wrangler), the dialogue architecture chosen per scene, and lock discipline (the base portrait never re-run, plates carry the look, the Voice Bible verbatim, island prompts). Log every scene with its stress test, its storyboard, its reference (video, text, or none), its dialogue route (native, human-recorded and converted, decoupled, or silent), its draft tier (720p draft, upscaled winner, or full-res generation), its re-rolls, and its route (in production, picture-locked, in generation supervision, or cut from the film) — and read the feature-lock verdict computed from the chapter's rules: a scene generated without its stress test reads untested, a scene chained off a text description reads drifting, a scene generated at full resolution before its winner is chosen reads wasteful, and a clean sheet still owes picture-lock discipline and the 5–20× overhead envelope. Export the sheet as markdown. Chapter: craft/longform-pipelines.md."},
         {"url": "cuesheet.html", "title": "Cue sheet", "section": "Tools",
          "headings": ["The five gates — before the mix", "Your cue sheet", "Take the sheet"],
          "text": "The Cue Sheet: the sound, music & audio chapter as a working cue sheet — the Voice Bible, the per-scene dialogue route (native or decoupled, never mixed mid-scene), score briefed per cue to the locked cut, stems kept, generation receipts saved. Log every scene with its three layers (bed, foley, accents), its route, and its state — designed, thin, or dry — and read the mix verdict computed from the chapter's rules: a scene with no bed reads dry whatever its owner claims, a thin scene holds the mix, and a clean sheet still owes the three-way listen and the silence test. Export the sheet as markdown. Chapter: craft/sound-music-audio.md."},

@@ -1,3 +1,283 @@
+## Watchtower 2.17 — the fifteenth review pass + Longform Sheet (2026-10-13)
+
+**Assignment:** Rotation 18 — Watchtower 2.17 (the
+fifteenth review pass over the 32 watched models; the 3
+standing watches get full checker-path passes), the
+flagship named before the fact in Duty 2 (in the
+rotation-13 manner), LIVE_CHECKLIST refreshed to 2.17, the
+placement regression sweep, and the rotation-18 Progress
+Archive capture duty. Tickets first: the QA book was
+verified empty at rotation start (QA-001 through QA-009
+all closed; no open ticket names this site), so nothing
+was queued ahead of the duties.
+
+**Duty 1 — Watchtower 2.17 (fifteenth review pass).**
+All 3 standing watches stand, content-verified by
+checker-path probes:
+
+- **Seedance 3.0 — unconfirmed.** Versely's criteria page
+  answered at the 2.11 variant signature (506d7e9d…,
+  12,513 chars) in the pass's first checker run and in
+  two probes — the rendering read directly in 2.13, which
+  still lists Seedance 3.0 among the models announced by
+  no vendor as of 1 October. The breakread article
+  answered at its 2.12 re-baseline signature (63a60eae…)
+  in the run and in both probes. No ByteDance
+  announcement, model card, API ID, or pricing. Watch
+  stays open.
+- **Kling 4.0 — stays "announced".** APIMart's criteria
+  page answered at its baseline signature (fc55ce30…,
+  136,708 chars) in the pass's first checker run — a
+  twelfth consecutive pass at the identical signature —
+  still "API Coming Soon", availability "Not yet",
+  pricing "has not been announced"; its text schedules
+  Kling 4.0 for October 2026 with Flash in limited early
+  access. Two probes returned the smaller rendering at
+  the identical signature to 2.15/2.16's probes
+  (c612033c…, 9,434 chars), read in full: the same
+  criteria text on every point that matters. No GA model
+  ID, no Kuaishou pricing.
+- **Soul Cinema — in-app credit cost still unpublished.**
+  Higgsfield's pricing page answered at the settled
+  428-char shell (f14e9f4a…) in two checker-path probes,
+  with no credit figure; the API post, read via probes,
+  still lists only the $0.0032/image rate tabled in 2.3.
+- **FLUX follow-up:** BFL's docs pricing page held its
+  2.16 baseline (f95831ee…, 9,728 chars) in every
+  completed checker run — no flag on the rate source.
+  Two probes again returned the second known rendering
+  (3f90e01a…, 7,057 chars); the three known renderings
+  (cb1e92d1…, f95831ee…, 3f90e01a…) are all on record.
+- **PixVerse V6 — seventh clean pass claimed.** Its docs
+  source fetched clean at the baseline signature
+  (95c88c96…, 4,278 chars) in the pass's first checker
+  run and in two probes, all five sources answering
+  (source_status ok in the run's feed) — the 2.10
+  recovery now stands on seven consecutive clean passes,
+  one more than 2.16 claimed.
+
+**Flags: 4 raised, 4 dismissed, 2 calibrations; no
+record changes.** Run 1 (19:54–20:03Z) read changed=1,
+with_errors=0: **Midjourney V1 Video** on Krea's
+Midjourney explainer (81a079c6…, 20,081 chars →
+d06aa50a…, 20,077). Two probes returned the flagged
+signature exactly; read in full, the page matches the
+record on every carried point (V1, June 18 2025;
+image-to-video only; 5s extendable four times to 21s;
+480p default / 720p Fast on Standard+; ~8× image cost;
+SD batch 8 GPU-minutes). The −4 chars are blog-page
+churn — first flag on this URL for this model, no
+exclusion; a second earns one. Run 2 (20:08–20:15Z),
+the first re-baseline, read changed=1: Midjourney
+cleared on its stored signature, exactly as the
+dismissal predicted, and **Grok Imagine Video 1.5** was
+flagged on deployedbyai.com's Deploy Log entry page
+(072cdc70…, 1,552 → 52ae0ec7…, 1,559) — that page's
+second flag (2.15's was its first, dismissed there as
+edition-metadata churn with a second earning the
+exclusion). Two probes returned the flagged signature
+exactly; read in full, its facts match the record
+verbatim (1.5 Lite on Vercel's AI Gateway, text + image
+to video with native audio, 1–15s at 480p/720p/1080p,
+seven aspect ratios) — the same read as 2.15.
+**2.17 calibration #1:** the deployedbyai URL is
+signature-excluded (exact URL) for Grok — still fetched
+and recorded every run, the model's facts staying
+signature-live on its remaining sources. Run 3
+(20:17–20:25Z), the second re-baseline, read changed=2:
+Grok cleared under its calibration, and two fresh flags
+surfaced. (a) **FLUX 3 Video** on
+bottlerocketcontent.com's launch article (cc8e7415…,
+7,491 → f9793af9…, 7,486) — the article's second flag
+(2.14's was its first). Two probes returned the flagged
+signature exactly; read in full, the article matches the
+record on every carried point (the 4 August 2026 launch
+story; draft $0.06/s, full from $0.17/s; up to 20s).
+**2.17 calibration #2:** the bottlerocketcontent URL is
+signature-excluded (exact URL) for FLUX 3 Video — still
+fetched and recorded every run; FLUX's rates stay
+signature-live on BFL's own docs and pricing sources,
+which held f95831ee… in the same run. (b) **Vidu S2**
+on lapaasvoice.com's S2 explainer (7d9bf2d6…, 7,636 →
+2d5c1921…, 7,655). Two probes returned the flagged
+signature exactly; read in full, the post matches the
+record on every carried point (S2-Avatar interactive
+characters at real-time 720p; S2-Editing references
+applied to a live stream), publishes no postdating
+price or version fact, and Vidu's official pricing page
+held its baseline (66450841…) in the same run. The
+page's pass-2 appearance was a baseline-settling
+artifact, not a counted churn flag, so this in-pass
+move is its first counted flag — dismissed, no
+exclusion; a second earns one. Run 4 (20:27–20:34Z),
+the final re-baseline, read **changed=0, with_errors=0,
+no_sources=0**, proving both calibrations and all four
+dismissals together; the queue holds exactly the 3
+standing watches, their notes carrying this pass's
+re-check lines. Final drift: **10 alerts / 6 watch / 16
+ok, 0 unwatched** — the alert count fell by one against
+2.16's close (FLUX 3 Video's sources all answered in
+the final run, so it sits at watch on its own pricing
+diff; the alert set is exactly the final run's ten
+partial records). Unpublished rates 5; pricing diff vs
+the 2026-10-11 baseline 7 rows. History 144 → **153
+events** (October window 124 → **133**); review log 30
+→ **32 entries** (pass 16 + addendum). models.json
+untouched by the pass. Process: every checker run was
+launched detached (setsid launcher + VERIFIED/SUSPECT
+status files, logs on a durable fleet-ops path) after a
+process-table check, exactly one checker verified alive
+during each. One incident, disclosed: the rotation's
+first launcher launch was refused by its own
+duplicate-checker guard — the guard's pattern matched
+the launching shell's own command text, which contained
+the checker's path (the same false-positive class as
+2.16's incident 1, arriving this time through the exec
+wrapper's command line). Caught before any checker
+started; the guard was rewritten to a bracket-pattern
+pgrep that cannot match the launcher invocation, and
+every later launch verified exactly one checker alive.
+The QA corps' round-7 method law — figures only from
+direct reads of on-disk files — is the countermeasure,
+applied throughout.
+
+**Duty 2 — Flagship: the Longform Sheet
+(`longform.html`).** Named before building, in the
+rotation-13 manner: the guide's tool layer covered the
+script (Clearance), the episode (Forge), the models
+(Showdown), the production (Studio / Green Light),
+continuity (the Ledger), sound (the Cue Sheet), the
+grade (the Grade Sheet), the edit (the Cut Sheet), and
+performance (the Take Sheet) — and the chapters in the
+guide's own order that already hold working tools run
+from story (the Studio/Forge planners) and cinematic
+language (the Shot List) through character, directing,
+color, sound, and editing. The first chapter in that
+order with chapters but no working tool was long-form
+pipelines (`craft/longform-pipelines.md`), the chapter
+that opens: short films are won with great prompts,
+long films are won with systems. The Longform Sheet is
+that chapter as a working file: its five pre-lock gates
+(the asset registry complete before shot one; every
+scene stress-tested and storyboarded; the architecture
+chosen — scene-by-scene chaining, or sequence assembly
+with a registry wrangler; the dialogue architecture
+chosen per scene, not per film; lock discipline written
+— the base portrait never re-run, plates carry the
+look, the Voice Bible verbatim, island prompts), and a
+production's own scenes logged with their stress test
+and storyboard, their reference (video, text, or none),
+their dialogue route (native, human-recorded and
+converted, decoupled, or silent), their draft tier
+(720p draft, upscaled winner, or full-res generation),
+their re-roll count, and their route (in production,
+picture-locked, in generation supervision, or cut from
+the film). The verdict is computed from the chapter's
+rules, three of them mechanical: a scene generated
+without its stress test reads untested, because a weak
+scene's cost is only discovered after it is generated;
+a scene chained off a text description reads drifting,
+because a text description drifts over generations and
+a video reference doesn't; and a scene generated at
+full resolution before its winner is chosen reads
+wasteful, because the rule is draft at 720p and upscale
+winners only. A scene cut from the film blocks nothing:
+a killed sequence is a decision, not a defect. A clean
+sheet still owes picture-lock discipline — no new
+generations except emergencies, with notice to color
+and sound — and the 5–20× overhead envelope.
+`build_longform()` in `scripts/build_site.py`
+pre-renders the default sheet (the same fictional
+"Night Bus" production the Ledger, Cue Sheet, Grade
+Sheet, Cut Sheet, and Take Sheet track, built long as a
+24-minute film instead of a short: 6 sequences, 5
+picture-locked clean, the depot-office sequence in
+generation supervision — the scheduled post-rough-cut
+QC pass — so the first verdict is the honest hold)
+under the same rules `assets/js/longform.js`
+(`LongformEngine`) runs in the browser; the page reads
+identically without JavaScript and exports the sheet as
+markdown. Wired into the nav index, the footer, the
+search index, and the generated llms tool list; HAND
+skill `longform-assembly-sheet` in the longform family
+(skills 240 → 241); `scripts/longform.test.js` (15/15)
+wired into validate.sh stage 7. Playwright-verified
+over HTTP, desktop 1440 + mobile 390, fresh browser per
+session: zero console messages; locking the
+supervision sequence flips the verdict Hold → Feature
+lock clean in the live page, un-checking the first
+sequence's stress test flips it to Feature lock stopped
+(untested), and switching its reference to a text
+description flips it to stopped (drifting) —
+screenshots in
+`~/workspace/progress-archive/ai-film-master-guide/rotation-018/`,
+homepage capture included this rotation. Before/after:
+the long-form chapter was a read-only page whose
+checklist lived as prose; the guide now has a working
+longform sheet whose feature-lock verdict is computed
+from the reader's own scenes.
+
+**Duty 3 — LIVE_CHECKLIST + regression sweep.**
+LIVE_CHECKLIST refreshed to the Watchtower 2.17 state
+(153 history events, 32 review-log entries, latest feed
+2026-10-13T20:34Z, the two 2.17 calibrations and the
+FLUX baseline-hold note, and the Longform Sheet entry;
+the free-tier audit is unchanged and re-verified
+against `vercel.json`: 6 functions, explicit paths,
+`maxDuration` 10 each, no `runtime` keys). After the
+final build, grep-verified over all built pages:
+**112 pages** (111 + longform.html, born placed) — OG
+absolute 112/112, canonical 112/112, theme-color
+112/112, favicon links 112/112, robots.txt generated
+(allow-all, no invented sitemap), JSON-LD 44 blocks
+(unchanged count — the Longform Sheet is a tool page
+and carries canonical + OG only, per the honest-JSON-LD
+rule), 0 invalid JSON-LD blocks, and exactly one `<h1>`
+on every page. Graduated techniques re-verified in the
+served CSS: the progress bar's
+`animation-timeline: scroll(root)` stands in
+`motifs.css`, and the `@view-transition` rules sit
+inside the `prefers-reduced-motion: no-preference`
+guard in `base.css`.
+
+**Rule 1762 hygiene.** Audit of all tracked files:
+zero CR/CRLF in any text file (CR bytes appear only
+inside files .gitattributes marks binary — images,
+fonts, the favicon). Every file this rotation created
+or edited by hand is final-newline terminated;
+`site/search-index.json` remains a generator output
+whose generator emits no trailing newline.
+
+**Structure flags for the Release Engineer:** none. No
+api/ paths added, removed, or moved (the 6-function map
+is unchanged). New files are all in existing homes:
+`assets/js/longform.js`, `scripts/longform.test.js`, the
+generated `site/longform.html`, and one generated skill
+file under `skills/longform/`.
+
+**Validation.** validate.sh and api.test.sh results are
+filed in the commit/push record entry below (the
+post-commit run is the one that counts, per the
+generator-audit stages' git-diff design).
+
+**Left open.** The 3 standing watches — all re-checked
+this pass, none moved. The standing partial cohort will
+keep surfacing as alerts while its hosts gate the
+checker. pika.art (Pika) and now lapaasvoice (Vidu S2)
+and the Krea explainer (Midjourney) bear watching for a
+second flag; a repeat earns each the exclusion its
+class carries. BFL's docs page: baselined at f95831ee…
+in 2.16 and held there in every run this pass; a move
+off it is adjudicated against all three known
+renderings. PixVerse's docs source now stands on seven
+clean passes. The two 2.17 calibrations (deployedbyai
+for Grok, bottlerocketcontent for FLUX) join the
+standing exclusion set — both URLs still fetched and
+recorded every run. Parked decisions: none this
+rotation. No fetch-rule skips occurred: every fetch
+used the checker's own path or its probe imports; no
+approval-card source was encountered.
+
 ## Rotation 17 — correction (2026-10-13)
 
 Filed after the rotation's pushes, on evidence that

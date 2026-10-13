@@ -84,7 +84,7 @@ import json,sys; e=json.load(sys.stdin); d=e['data']
 ids=[x['id'] for x in d['events']]
 assert '2026-10-07-vidu-q4-rate-card' in ids, ids
 assert '2026-09-28-kling-40-announced' not in ids
-assert d['counts']['total']==len(d['events']) and d['counts']['total']==124, d['counts']
+assert d['counts']['total']==len(d['events']) and d['counts']['total']==133, d['counts']
 assert d['since']=='2026-10-01' and d['baseline_at'].startswith('2026-10-11')\""
 chk "models-changes future window empty" bash -c "curl -sf '$BASE/api/models-changes?since=2999-01-01' | python3 -c \"
 import json,sys; e=json.load(sys.stdin); assert e['data']['counts']['total']==0 and e['data']['events']==[]\""

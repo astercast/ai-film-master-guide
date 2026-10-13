@@ -52,38 +52,40 @@ ok('real diff: the 5 Watchtower 2.0 coverage changes + the 2.3 Soul Cinema tier 
   assert(added, 'pixverse-v6 model-added missing');
   assert.strictEqual(added.after_low, 0.09, 'new record shows its rate span');
   assert.strictEqual(added.after_high, 0.23);
-  // Watchtower 2.16 (2026-10-13): the fourteenth review pass ran
-  // two completed checker runs (18:41Z adjudication, 18:57Z
-  // re-baseline) plus checker-path probes for every
-  // adjudication. All 3 standing watches stand (review log
-  // pass 15); 1 flag raised, 1 dismissed: FLUX 3 Video on
-  // BFL's own docs pricing page (cb1e92d1… after ten passes →
-  // f95831ee… in both runs; two probes returned a second
-  // rendering (3f90e01a…, 7,057 chars) — the page is
-  // rendering-variant again, as recorded since 2.6; the
-  // probe rendering, read in full, matches the record on
-  // every carried tier — rendering rotation, not a rate
-  // change; no exclusion (the 2.6 decision keeps this
-  // primary rate source signature-live), no calibration).
-  // Kling 4.0's APIMart page held its baseline signature in
-  // both runs — an eleventh consecutive pass. PixVerse V6's
-  // docs source fetched clean at its baseline signature
-  // inside both runs — the sixth clean pass. The final feed
-  // (2026-10-13T19:05Z): changed=0, with_errors=0; its 11
-  // partials are the standing host-gated cohort (which members
-  // fail rotates with the hosts: this run Gemini Omni carries
-  // a partial and Kling 3.0's sources all answered, swapping
-  // the alert set against 2.15's at the same count of 11).
-  // Pricing diff stays 7 rows.
+  // Watchtower 2.17 (2026-10-13): the fifteenth review pass ran
+  // four completed checker runs (19:54Z, 20:08Z, 20:17Z
+  // adjudication/re-baselines, 20:27Z final) plus checker-path
+  // probes for every adjudication. All 3 standing watches stand
+  // (review log pass 16); 4 flags raised, 4 dismissed, 2
+  // calibrations: Midjourney V1 Video on Krea's explainer
+  // (81a079c6… → d06aa50a…, −4 chars; probes returned the
+  // flagged signature exactly; read in full, its facts match
+  // the record on every carried point — first flag, no
+  // exclusion); Grok Imagine Video 1.5 on deployedbyai's
+  // Deploy Log page (second flag after 2.15 — dismissed and
+  // calibrated: exact URL signature-excluded); FLUX 3 Video
+  // on bottlerocketcontent's launch article (second flag
+  // after 2.14 — dismissed and calibrated likewise; BFL's
+  // docs page held its 2.16 baseline f95831ee… all pass);
+  // Vidu S2 on lapaasvoice's explainer (+19 chars, facts
+  // verbatim — first counted flag, no exclusion). Kling
+  // 4.0's APIMart page held its baseline signature — a
+  // twelfth consecutive pass. PixVerse V6's docs source
+  // fetched clean at the baseline signature — the seventh
+  // clean pass. The final feed (2026-10-13T20:34Z):
+  // changed=0, with_errors=0; its 10 partials are the
+  // standing host-gated cohort, and FLUX's sources all
+  // answered, so FLUX sits at watch and the alert count
+  // fell 11 → 10 against 2.16's close. Pricing diff 7 rows.
   const d = drift.computeDrift({ modelsDoc: models, checksDoc: checks,
     pricingDoc: pricing, historyDoc: history, nowMs: NOW });
   assert.strictEqual(d.summary.models_total, 32);
   assert.strictEqual(d.summary.unwatched, 0, JSON.stringify(d.summary));
   assert.strictEqual(d.summary.pricing_unpublished, 5, JSON.stringify(d.summary));
-  assert.strictEqual(d.summary.alert, 11, JSON.stringify(d.per_model.filter((r) => r.severity === 'alert')));
+  assert.strictEqual(d.summary.alert, 10, JSON.stringify(d.per_model.filter((r) => r.severity === 'alert')));
   assert.strictEqual(d.summary.price_changes_vs_baseline, 7);
   const alertIds = d.per_model.filter((r) => r.severity === 'alert').map((r) => r.model_id).sort();
-  assert.deepStrictEqual(alertIds, ['flux-3-video', 'gemini-omni', 'grok-imagine-1-5', 'kling-4-0',
+  assert.deepStrictEqual(alertIds, ['gemini-omni', 'grok-imagine-1-5', 'kling-4-0',
     'luma-ray-3-2', 'midjourney-v1-video', 'minimax-h3', 'seedance-3-0', 'vidu-q4-preview', 'vidu-s2', 'wan-3-0']);
 });
 
