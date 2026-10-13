@@ -1,3 +1,268 @@
+## Rotation 17 — commit/push record (2026-10-13)
+
+Local `40923fb` → pushed 2026-10-13 as remote commit
+`c3f4a97c31de6467dcbe7f2f49df43668fb4e2f7` (gh-push.py, exit 0; push log
+`~/workspace/fleet-ops/push-logs/film-rotation17-push.log`).
+Verified via the Trees API: remote tree `d49e8735…` ==
+local HEAD tree, 783 entries, not truncated, all key files
+present (site/take.html, assets/js/take.js,
+scripts/take.test.js, skills/craft/directing-take-sheet.md,
+WAVELOG.md, data/v1/model-history.json, LIVE_CHECKLIST.md).
+Post-commit validation: validate.sh **25/25 — ALL STAGES
+PASS** (stage 7 now includes take.test.js 15/15; watchtower
+6/6; cut 16/16; grade 13/13; cuesheet 12/12; continuity
+11/11; clearance 19/19; forge 19/19; studio 70/70; greenlight
+29/29; agent-workflows 92 assertions); api.test.sh
+**55/55** (log
+`~/workspace/fleet-ops/film-rotation17/validate.log`).
+Working repo only — no `-live` repo touched, no Vercel
+access.
+
+## Watchtower 2.16 — the fourteenth review pass + Take Sheet (2026-10-13)
+
+**Assignment:** Rotation 17 — Watchtower 2.16 (the
+fourteenth review pass over the 32 watched models; the 3
+standing watches get full checker-path passes), the
+flagship named before the fact in Duty 2 (in the
+rotation-13 manner), LIVE_CHECKLIST refreshed to 2.16, the
+placement regression sweep, and the rotation-17 Progress
+Archive capture duty. Tickets first: the QA book was
+verified empty at rotation start (QA-001 through QA-009
+all closed; no open ticket names this site), so nothing
+was queued ahead of the duties.
+
+**Duty 1 — Watchtower 2.16 (fourteenth review pass).**
+All 3 standing watches stand, content-verified by
+checker-path probes:
+
+- **Seedance 3.0 — unconfirmed.** Versely's criteria page
+  answered at the 2.11 variant signature (506d7e9d…,
+  12,513 chars) in both completed runs; a probe truncated
+  once (IncompleteRead) and then returned the same variant
+  signature — the rendering read directly in 2.13, which
+  still lists Seedance 3.0 among the models announced by
+  no vendor as of 1 October. The breakread article
+  answered at its 2.12 re-baseline signature (63a60eae…)
+  in run 1. No ByteDance announcement, model card, API
+  ID, or pricing. Watch stays open.
+- **Kling 4.0 — stays "announced".** APIMart's criteria
+  page answered at its baseline signature (fc55ce30…,
+  136,708 chars) in both completed runs — an eleventh
+  consecutive pass at the identical signature — still
+  "API Coming Soon", availability "Not yet", pricing
+  "has not been announced"; its text schedules Kling 4.0
+  for October 2026 with Flash in limited early access.
+  Two probes returned the smaller rendering at the
+  identical signature to 2.15's probes (c612033c…,
+  9,434 chars), read in full: the same criteria text on
+  every point that matters. No GA model ID, no Kuaishou
+  pricing.
+- **Soul Cinema — in-app credit cost still unpublished.**
+  Higgsfield's pricing page answered at the settled
+  428-char shell (f14e9f4a…) in two checker-path probes,
+  with no credit figure; the API post answered at
+  identical length (62,594 chars) under a fresh signature
+  — the per-request variance it has been
+  signature-excluded for since 2.4 — and still lists only
+  the $0.0032/image rate tabled in 2.3.
+- **FLUX follow-up:** BFL's docs pricing page moved off
+  its ten-pass baseline (cb1e92d1…, 9,875 chars →
+  f95831ee…, 9,728) — adjudicated as the pass's one flag
+  below; the new signature is the baseline from this
+  pass, its table verified verbatim.
+- **PixVerse V6 — sixth clean pass claimed.** Its docs
+  source fetched clean at the baseline signature
+  (95c88c96…, 4,278 chars) in both completed runs and in
+  two probes, all five sources answering (source_status
+  ok in the final feed) — the 2.10 recovery now stands on
+  six consecutive clean passes, one more than 2.15
+  claimed.
+
+**Flags: 1 raised, 1 dismissed, 0 calibrations; no
+record changes.** Run 1 (18:41–18:52Z) read changed=1,
+with_errors=0: **FLUX 3 Video** on BFL's own docs
+pricing page. Two probes returned the flagged signature
+exactly and run 2 held it. Read in full, the page's
+FLUX 3 Video table matches the record on every carried
+tier (t2v/i2v $0.17/$0.29/$0.40/$0.80 per second, draft
+$0.06/s, v2v QHD $0.65/s, UHD $0.95/s); the −147 chars
+are restructuring around the rates (the FLUX 3 Image
+per-image table, the fine-tuned-endpoint beta section).
+First flag at the new signature — no exclusion; a flap
+back to the old signature or another move earns one.
+Run 2 (18:57–19:05Z), the re-baseline, read
+**changed=0, with_errors=0, no_sources=0**, proving the
+dismissal; the queue holds exactly the 3 standing
+watches, their notes carrying this pass's re-check
+lines. Final drift: **11 alerts / 5 watch / 16 ok, 0
+unwatched** — identically counted to 2.15's close; the
+alert set rotated by one (Gemini Omni in on this run's
+partials; Kling 3.0 out, its sources all answering).
+Unpublished rates 5; pricing diff vs the 2026-10-11
+baseline 7 rows. History 138 → **144 events** (October
+window 118 → **124**); review log 27 → **29 entries**
+(pass 15 + addendum). models.json untouched by the
+pass. Process: every checker run was launched detached
+(setsid launcher + PID/status files, logs on a durable
+fleet-ops path) after a process-table check, exactly
+one checker verified alive during each. Three
+incidents, disclosed. (1) The first launcher launch was
+refused by its own duplicate-checker guard — the
+guard's pgrep pattern matched the launching shell's own
+command text, which contained the checker's path; a
+false positive, caught before any checker started. The
+guard was rewritten to a ps+bracket pattern that cannot
+match its own text, and a later launch attempt (run 3)
+was refused by the fixed guard correctly, because run 2
+was still alive. (2) Run 2's status file never landed:
+the builder edited the shared launcher script mid-run
+(to add v2 VERIFIED/SUSPECT status logic), and the
+in-flight bash, which reads its script incrementally,
+died on the changed file's syntax after the checker had
+finished and written the feed. Completion was verified
+from primary disk artifacts (the run log's summary
+lines, the feed's checked_at 2026-10-13T19:05:42Z, the
+queue's generated_at) — never from the status file or
+from a backgrounded wait's delivery; one such delivery
+reported a completion for a session that was not run
+2's and was discarded on the disk check, the 2.15
+fabricated-delivery class. Countermeasures standing:
+the v2 launcher (status is VERIFIED only if the log
+carries the summary line and the feed's mtime advanced)
+and a standing rule for this desk — never edit a
+launcher while its run is in flight. (3) The first
+detached post-commit validation run died mid-stage-7
+with no process and no status file; both suites were
+re-run in the foreground and pass in full (the log at
+`~/workspace/fleet-ops/film-rotation17/validate.log` is
+that foreground rerun). The QA corps' round-7 method
+law — figures only from direct reads of on-disk files —
+is the countermeasure, applied throughout.
+
+**Duty 2 — Flagship: the Take Sheet (`take.html`).**
+Named before building, in the rotation-13 manner: the
+guide's tool layer covered the script (Clearance), the
+episode (Forge), the models (Showdown), the production
+(Studio / Green Light), continuity (the Ledger), sound
+(the Cue Sheet), the grade (the Grade Sheet), and the
+edit (the Cut Sheet) — the stage with chapters but no
+working tool was directing performance, the chapter
+(`craft/directing-performance.md`) that opens with the
+core problem: AI models don't act, they render plausible
+pixels that read as acting only when the direction is
+specific enough. The Take Sheet is that chapter as a
+working file: its five pre-lock gates (every beat
+rewritten as a playable tactic; eyelines named per beat;
+the director's read written — shared event plus a
+physical channel per character; identity locked, the
+face anchor never re-run; the restraint pass), and a
+production's own beats logged with direction (tactic or
+emotion label), eyeline, dead-eyes check, framing, peak,
+failed rehearsals, and route (in rehearsal, Scene-Locked,
+simplify, hybrid). The verdict is computed from the
+chapter's rules, three of them mechanical: a beat
+directed by emotion label reads undirected, because
+models can't render an adjective; a beat still re-rolling
+after three failed rehearsals reads overdue — simplify
+the shot, not the actor; and a close-up spent away from
+an emotional peak reads misspent, because micro-acting is
+the weakest link and close-ups are rationed to peaks. A
+hybrid beat blocks nothing: putting a real performer at
+the emotional core is a decision, not a defect. A clean
+sheet still owes Scene Lock discipline — photograph the
+locked performance, don't regenerate it.
+`build_take()` in `scripts/build_site.py` pre-renders the
+default sheet (the same fictional "Night Bus" production
+the Ledger, Cue Sheet, Grade Sheet, and Cut Sheet track,
+performed instead of seen, heard, graded, or cut: 6
+beats, 5 Scene-Locked clean, the depot-office radio
+reaction still in rehearsal with one failed rehearsal —
+so the first verdict is the honest hold) under the same
+rules `assets/js/take.js` (`TakeEngine`) runs in the
+browser; the page reads identically without JavaScript
+and exports the sheet as markdown. Wired into the nav
+index, the footer, the search index, and the generated
+llms tool list; HAND skill `directing-take-sheet` in the
+craft family (skills 239 → 240); `scripts/take.test.js`
+(15/15) wired into validate.sh stage 7.
+Playwright-verified over HTTP, desktop 1440 + mobile
+390, fresh browser per session: zero console messages;
+locking the radio reaction flips the verdict Hold →
+Performance lock clean in the live page, directing the
+window close-up by emotion label flips it to Performance
+lock stopped (undirected), and un-peaking that close-up
+flips it to stopped (misspent) — screenshots in
+`~/workspace/progress-archive/ai-film-master-guide/rotation-017/`,
+homepage capture included this rotation.
+Before/after: the directing chapter was a read-only page
+whose performance checklist lived as prose; the guide
+now has a working take sheet whose performance-lock
+verdict is computed from the reader's own beats.
+
+**Duty 3 — LIVE_CHECKLIST + regression sweep.**
+LIVE_CHECKLIST refreshed to the Watchtower 2.16 state
+(144 history events, 29 review-log entries, latest feed
+2026-10-13T19:05Z, the FLUX new-baseline note, and the
+Take Sheet entry; the free-tier audit is unchanged and
+re-verified against `vercel.json`: 6 functions, explicit
+paths, `maxDuration` 10 each, no `runtime` keys). After
+the final build, grep-verified over all built pages:
+**111 pages** (110 + take.html, born placed) — OG
+absolute 111/111, canonical 111/111, theme-color
+111/111, favicon links 111/111, robots.txt generated
+(allow-all, no invented sitemap), JSON-LD 44 blocks
+(unchanged count — the Take Sheet is a tool page and
+carries canonical + OG only, per the honest-JSON-LD
+rule), 0 invalid JSON-LD blocks, and exactly one `<h1>`
+on every page. Graduated techniques re-verified in the
+served CSS: the progress bar's
+`animation-timeline: scroll(root)` stands in
+`motifs.css`, and the `@view-transition` rules sit
+inside the `prefers-reduced-motion: no-preference`
+guard in `base.css`.
+
+**Rule 1762 hygiene.** Audit of all tracked files:
+zero CR/CRLF in any text file. Final-newline gaps: 20
+files — the 19 frozen wt211/wt212 adjudication evidence
+logs, left byte-identical on purpose, and
+`site/search-index.json`, a generator output whose
+generator emits no trailing newline. Every file this
+rotation created or edited by hand is final-newline
+terminated.
+
+**Structure flags for the Release Engineer:** none. No
+api/ paths added, removed, or moved (the 6-function map
+is unchanged). New files are all in existing homes:
+`assets/js/take.js`, `scripts/take.test.js`, the generated
+`site/take.html`, and one generated skill file under
+`skills/craft/`.
+
+**Validation.** validate.sh **25/25 — ALL STAGES PASS**
+(post-commit run; the count rose 24 → 25 with the take
+stage) — watchtower 6/6 (its pins updated to this pass:
+the alert set swaps Kling 3.0 for Gemini Omni at the
+same count of 11); take 15/15; cut 16/16; grade 13/13;
+cuesheet 12/12; continuity 11/11; clearance 19/19;
+forge 19/19; studio 70/70; greenlight 29/29;
+agent-workflows 92 assertions pass; api.test.sh
+**55/55** (its pins updated to this pass: October
+window 118 → 124; the drift pin holds at 11 alerts).
+
+**Left open.** The 3 standing watches — all re-checked
+this pass, none moved. The standing partial cohort will
+keep surfacing as alerts while its hosts gate the
+checker. deployedbyai (Grok) and bottlerocketcontent
+(FLUX) and pika.art (Pika) bear watching for a second
+flag; a repeat earns each the exclusion its class
+carries. BFL's docs page joins the watch list in a new
+form: baselined at f95831ee… this pass, a flap back to
+cb1e92d1… or another move is its second flag and earns
+the exclusion. PixVerse's docs source now stands on six
+clean passes. Parked decisions: none this rotation. No
+fetch-rule skips occurred: every fetch used the
+checker's own path or its probe imports; no
+approval-card source was encountered.
+
 ## Rotation 16 — commit/push record (2026-10-13)
 
 Local `a883df1` → pushed 2026-10-13 as remote commit
