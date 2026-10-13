@@ -1,6 +1,6 @@
 {
   "format": "model-history/1.0",
-  "generated_at": "2026-10-13T00:55:40Z",
+  "generated_at": "2026-10-13T02:57:42Z",
   "method": "Hand-authored event log. Every event traces to a fact recorded in models.json (what_changed), data/v1/model-updates.md, or this wave's own pricing-table changes. Price events carry a before/after pair only where the record documents both numbers; otherwise the fields are null and the summary says why. The pricing baseline below is the pricing table as curated on 2026-10-11 — the drift engine diffs the live table against it, so a rate that moves from here on is caught mechanically, not by memory.",
   "pricing_baseline": {
     "at": "2026-10-11T00:00:00Z",
@@ -1288,6 +1288,76 @@
       "summary": "Review pass: the checker flagged Higgsfield's API post — the page carrying Soul Cinema's $0.0032/image rate — but two consecutive fetches return two different signatures at identical length (the page embeds a rotating prompt-library payload), and its rate table still lists $0.0032/image, the figure on record. The URL is signature-excluded for this model from this run on (still fetched and recorded); no record change.",
       "confidence": "official",
       "source": "Watchtower 2.4 review pass (2026-10-12) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-12-seedance-3-0-watch-rechecked-2-5",
+      "date": "2026-10-12",
+      "model_id": "seedance-3-0",
+      "model": "Seedance 3.0",
+      "kind": "verification",
+      "summary": "Standing watch re-checked (Watchtower 2.5): no official ByteDance announcement exists — the daily-checked release tracker confirms ByteDance's catalog still lists Seedance 2.5 as current, and the status audit notes no Seedance 3 product, model card, API identifier, price, or release schedule in the official directory. Record stays reported/unconfirmed; the watch stays open.",
+      "confidence": "official",
+      "source": "Watchtower 2.5 review pass (2026-10-12) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-12-kling-4-0-watch-rechecked-2-5",
+      "date": "2026-10-12",
+      "model_id": "kling-4-0",
+      "model": "Kling 4.0",
+      "kind": "verification",
+      "summary": "Standing watch re-checked (Watchtower 2.5): APIMart's Kling 4.0 page is signature-identical to the Watchtower 2.4 baseline and still reads 'API Coming Soon' with pricing 'not been announced'; independent reviews confirm no model identifier and no price for either tier. Third-party subscription listings (kling4.tv) are not official pricing and carry no GA model ID. Record stays announced, Flash early access only; the watch stays open.",
+      "confidence": "official",
+      "source": "Watchtower 2.5 review pass (2026-10-12) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-12-soul-cinema-watch-rechecked-2-5",
+      "date": "2026-10-12",
+      "model_id": "soul-cinema",
+      "model": "Soul Cinema",
+      "kind": "verification",
+      "summary": "Standing watch re-checked (Watchtower 2.5): the in-app per-image credit cost is still not published by Higgsfield — its pricing page carries no Soul Cinema credit figure, and the API post's rate table still lists only the $0.0032/image API starting rate tabled in Watchtower 2.3. The only credit figures in circulation remain third-party (~0.125 credits/image). The narrowed watch stays open.",
+      "confidence": "official",
+      "source": "Watchtower 2.5 review pass (2026-10-12) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-12-wan-2-7-watch-stable-2-5",
+      "date": "2026-10-12",
+      "model_id": "wan-2-7",
+      "model": "Wan 2.7",
+      "kind": "verification",
+      "summary": "Post-addition stability confirmed (Watchtower 2.5), one pass after Wan 2.7 joined through the artifact chain: the PoYo model page and CreateVision's spec registry returned signatures identical to the Watchtower 2.4 baseline, and the final feed carries the model stable/ok — its watch severity is only its own baseline pricing diff, the PixVerse pattern holding. The one flag touching the model this pass was the shared upgrademag launch report, adjudicated as intermittent variant churn and signature-excluded for both Wan models.",
+      "confidence": "official",
+      "source": "Watchtower 2.5 review pass (2026-10-12) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-12-veo-3-1-flag-reviewed-2-5",
+      "date": "2026-10-12",
+      "model_id": "veo-3-1",
+      "model": "Veo 3.1",
+      "kind": "verification",
+      "summary": "Review pass: the flagged source is a third-party multi-model pricing roundup whose living LLM token tables moved; it carries no Veo per-second rate contradicting the record, and the page is signature-identical across repeat fetches and to the flagged run. No Google source moved; the record stands.",
+      "confidence": "official",
+      "source": "Watchtower 2.5 review pass (2026-10-12) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-12-wan-2-6-flag-reviewed-2-5",
+      "date": "2026-10-12",
+      "model_id": "wan-2-6",
+      "model": "Wan 2.6",
+      "kind": "verification",
+      "summary": "Review pass: the flagged source is the shared upgrademag Wan 2.7 launch report — it flagged in two consecutive runs on intermittent variant fetches (rotating headlines rail) while the settled page matches across repeated fetches and its launch facts are the record's own. The URL is signature-excluded for both Wan models from this pass (still fetched and recorded every run); no record change.",
+      "confidence": "official",
+      "source": "Watchtower 2.5 review pass (2026-10-12) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-12-flux-3-video-flag-reviewed-2-5",
+      "date": "2026-10-12",
+      "model_id": "flux-3-video",
+      "model": "FLUX 3 Video",
+      "kind": "verification",
+      "summary": "Review pass: BFL's official pricing page was redesigned from a static rate table (22,122 chars) to a JS calculator shell (2,249 chars) whose fetched text carries no per-second video rate — nothing on it contradicts the record's FLUX 3 rates, which stand as documented from the September 10 listing. The URL stays signature-live by design: it is the primary rate source, and a readable rate move should flag.",
+      "confidence": "official",
+      "source": "Watchtower 2.5 review pass (2026-10-12) — data/v1/model-review-log.json"
     }
   ]
 }

@@ -160,6 +160,50 @@ pass is that change; verdicts are in `data/v1/model-review-log.json`
   excludes the same page). The run also cleared Wan 2.6's all_failed
   stamp from 2.3 on its own: all three of its sources answered.
 
+## 2026-10-12 — Watchtower 2.5: the third review pass
+
+No model-record changes. The three standing watches were re-checked
+against their own criteria, the eleven partial records' failed sources
+were re-probed, and Wan 2.7's first pass as a tracked model was
+confirmed stable. Verdicts are in `data/v1/model-review-log.json`
+(review pass 4 + addendum).
+
+- **Seedance 3.0 — still unconfirmed.** The daily-checked release
+  tracker confirms ByteDance's catalog still lists Seedance 2.5 as
+  current; there is no Seedance 3 product, model card, API identifier,
+  price, or release schedule in the official directory. The watch
+  stays open.
+- **Kling 4.0 — still announced.** APIMart's page is signature-
+  identical to the 2.4 baseline and still reads "API Coming Soon"
+  with pricing "not been announced". Third-party subscription
+  listings on kling4.tv are not official pricing and carry no GA
+  model ID — the standing rule is that noise does not promote a
+  record, however loud it gets. The watch stays open.
+- **Soul Cinema — in-app credit cost still unpublished.** Higgsfield's
+  pricing page carries no credit figure, and its API post's rate
+  table still lists only the $0.0032/image API starting rate (2.3).
+  The narrowed watch stays open.
+- **Wan 2.7 — stable post-addition.** Its rate-and-spec sources (PoYo,
+  CreateVision) returned signatures identical to the 2.4 baseline;
+  its watch severity is only its own baseline pricing diff.
+- **Five flags across the pass's runs, all adjudicated.** Veo 3.1's
+  flag was a third-party pricing roundup whose LLM tables moved (no
+  Veo rate on it contradicts the record). The shared upgrademag
+  Wan 2.7 launch report flagged for both Wan models across two runs
+  on intermittent variant fetches — settled page, matching facts —
+  and is now signature-excluded for both (still fetched and recorded
+  every run). FLUX 3 Video's flag was real page change, not a rate
+  move: BFL redesigned its pricing page into a JS calculator whose
+  static text carries no per-second video rate, so nothing contradicts
+  the record; the URL stays signature-live on purpose.
+- **Failed sources — cohort unchanged, weather noted.** The 403
+  bot-blocks (Medium, MarkTechPost, GlobeNewswire, Morningstar, x.ai,
+  midjourney.com) and the whatsnew.fyi 429 persist, third pass running;
+  europesays.com answered once and dropped three times (stays failed,
+  honestly). One run's weather — DoP all_failed on a timeout, Pika and
+  Marketing Studio partial — recovered on re-probe and in the final
+  feed (changed=0, with_errors=0).
+
 ## 2026-10-11 — Wave 30: Late-Q4 field sweep
 
 29 → **30 models** (one added); no status changes. The headline item is a

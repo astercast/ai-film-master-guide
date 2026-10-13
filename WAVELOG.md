@@ -1,5 +1,103 @@
 # Wave Log — AI Film Master Guide
 
+## Watchtower 2.5 — the third review pass (2026-10-12)
+
+**Assignment:** Rotation 6 — work the queue Watchtower 2.4 left: the 3
+standing watches (Seedance 3.0 confirmation, Kling 4.0 GA, Soul
+Cinema's in-app credit cost), the 11 adjudicated partial records, and
+a stability confirmation for Wan 2.7 one pass after its artifact-chain
+addition. Kling rule unchanged: no GA model ID + no published pricing
+= stays "announced", however loud the third-party noise gets. Plus the
+standing process lesson, applied three times: no checker process was
+alive before any of this pass's three checker runs (`ps` verified;
+each run single and detached).
+
+**The watches — three re-checked, none moved.**
+- **Seedance 3.0:** still no official ByteDance announcement. The
+  dedicated release tracker (daily inspections of ByteDance's catalog
+  and visual blog; last catalog check Oct 6) concludes the catalog
+  still lists 2.5 as current; the status audit notes no Seedance 3
+  product, card, API ID, price, or schedule in the official directory.
+- **Kling 4.0:** the criteria source is literally unchanged — APIMart's
+  page returned a signature identical to the 2.4 baseline and still
+  reads "API Coming Soon", "Not yet", pricing "not been announced".
+  Independent reviews agree: no model identifier, no price for either
+  tier. The loudest new noise, subscription plans on kling4.tv (a
+  third-party site), is not Kuaishou pricing and carries no GA model
+  ID — adjudicated as noise, record stays announced.
+- **Soul Cinema:** the in-app credit cost is still unpublished.
+  Higgsfield's pricing page serves a 428-char app shell with no credit
+  figure; the API post's rate table, re-read this pass, still lists
+  only the $0.0032/image API starting rate from 2.3 (and returned yet
+  another signature at identical length — already excluded since 2.4).
+- **Wan 2.7 — stable post-addition.** PoYo (endpoint IDs + fal rates)
+  and CreateVision (spec registry) returned signatures identical to
+  the 2.4 baseline on re-probe and in the runs; wan.video identical.
+  Its severity is watch only for its own baseline pricing diff — the
+  PixVerse pattern, holding a second generation.
+
+**Partials — cohort unchanged, one wire flaky, one run of weather.**
+All 14 failed-source instances (12 distinct URLs) re-probed: Medium
+×3, MarkTechPost ×3, GlobeNewswire, Morningstar, x.ai, and
+midjourney.com still 403; whatsnew.fyi still 429s the shared ComfyUI
+page. europesays.com (Grok) answered 200 once, then dropped the
+connection in the run and both later re-probes — intermittent, stays
+failed, honestly labeled. The pass's first run (02:41Z) was rough:
+DoP's sole source timed out (the run's with_errors=1), pika.art timed
+out, Higgsfield's API post dropped a fetch. All three answered on
+immediate re-probe (pika.art's signature identical to baseline) and
+read ok in the final feed.
+
+**Five flags across two runs, all adjudicated, zero records changed.**
+Run 1 flagged Veo 3.1 (a third-party pricing roundup whose living LLM
+token tables moved; no Veo rate on it contradicts the record; the page
+is signature-identical across repeat fetches and to the flagged run)
+and both Wan models on the shared upgrademag Wan 2.7 launch report.
+That report flagged again in run 2 — for Wan 2.6 only, while Wan 2.7's
+fetch of the same URL in the same run stored the settled signature:
+proof the page serves intermittent variants (rotating headlines rail)
+while the settled page (16,136 chars) matches across repeated fetches
+and its facts are the record's own. It joins both Wan models'
+signature-exclusion lists (the 2.2 calibration treatment; still
+fetched and recorded every run; Wan 2.7's rate sources stay
+signature-live). Run 2 also flagged **FLUX 3 Video on bfl.ai/pricing**
+— a real page change, not a rate move: BFL redesigned the page from
+22,122 chars of static rate text to a 2,249-char JS calculator shell
+whose fetched text carries no per-second video rate, so nothing
+contradicts the record. The URL stays signature-live on purpose (the
+2.2 anchor decision) — it is the primary rate source.
+
+**Feed state:** final re-baseline (2026-10-13T02:57Z): **changed=0,
+with_errors=0, no_sources=0**; queue back to its **3 standing
+watches** (notes carry this pass's re-check lines). Drift unchanged
+from 2.4: **11 alerts** (same id set), **5 watch**, 16 ok, 0
+unwatched; unpublished rates **5**; pricing diff vs the 2026-10-11
+baseline **7 rows**. History 61 → **68 events** (3 watch re-checks,
+Wan 2.7 stability, 3 flag verdicts); the October window holds 48.
+Review log: pass 4 + addendum (7 entries total).
+
+**Validation:** `scripts/watchtower.test.js` **15/15** (pins unchanged
+— the published feed's drift shape is 2.4's, so the alert id set and
+diff assertions hold as written). `tests/api.test.sh` **55/55**
+(October window 41 → 48). `studio.test.js` **70/70**,
+`greenlight.test.js` **29/29**, `agent-workflows.test.js` all pass.
+`bash scripts/validate.sh` **18 passed, 0 failed — ALL STAGES PASS**
+pre-commit. Headless-Chromium (Playwright) screenshots inspected
+(desktop 1440px + mobile 390px): cutting-room board intact, freshness
+reads the new 02:57 UTC feed, "32 models checked" and "11 need review"
+present, zero page errors (the mobile hero deck stays cramped — the
+pre-existing wave-39 quirk, untouched). AI-ism scan on new copy:
+clean. No TODOs, no dead code.
+
+**Left open:** the 3 standing watches — all re-checked this pass,
+none moved. The 11 partial records will keep surfacing as alerts
+while their third-party sources bot-block the checker — adjudicated
+four passes running now, documented, honest. One watch-quality item:
+bfl.ai/pricing is now a JS calculator, so a future FLUX rate move may
+not be readable from a static fetch — if BFL publishes rates only
+behind the calculator, FLUX's watch needs a readable primary source
+added. LTX-2.5's ltx.io note stands.
+
 ## Watchtower 2.4 — Wan 2.7 joins the watch (2026-10-12)
 
 **Assignment:** Rotation 5 — execute the addition Watchtower 2.3 verified

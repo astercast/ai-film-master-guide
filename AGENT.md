@@ -34,9 +34,9 @@ Static files — **no auth, no keys, no rate limits**. Works on any static host.
 | `data/v1/teardowns.json` | 10 shot-by-shot teardowns; prompt reconstructions are analytical | 8 |
 | `data/v1/diagnoses.json` | 12 failure diagnoses: symptom → diagnosis, fixes, repair template | 12 |
 | `data/v1/model-checks.json` | Model-watch freshness feed: per-model last check, source diffs, headlines | 32 checked |
-| `data/v1/model-history.json` | Watchtower 2.0 event log: dated status/price/tier/release/verification/coverage events + the 2026-10-11 pricing baseline the drift engine diffs against | 61 events |
+| `data/v1/model-history.json` | Watchtower 2.0 event log: dated status/price/tier/release/verification/coverage events + the 2026-10-11 pricing baseline the drift engine diffs against | 68 events |
 | `data/v1/model-review-queue.json` | Pending model-watch review items (empty = nothing pending) | 3 pending |
-| `data/v1/model-review-log.json` | Watchtower review log: adjudication record for checker flags — every flag re-fetched and given a verdict with its basis before the queue clears (Watchtower 2.2–2.4) | 5 entries |
+| `data/v1/model-review-log.json` | Watchtower review log: adjudication record for checker flags — every flag re-fetched and given a verdict with its basis before the queue clears (Watchtower 2.2–2.5) | 7 entries |
 | `data/v1/model-updates.md` | Human-readable model changelog (Markdown, no schema) | — |
 
 Example requests (Node; swap `fs` for `fetch` in a browser):
@@ -144,7 +144,13 @@ signature-identical to its flagged run) and retired the MiniMax H3
 weights watch as resolved. Watchtower 2.4 then executed the Wan 2.7
 addition 2.3 had queued — through the research-artifact chain, as its
 own records change (models 31 → 32, pricing coverage 32 of 32) — and
-re-checked the three remaining watches: none had moved. Latest history
+re-checked the three remaining watches: none had moved. Watchtower
+2.5 (the third review pass) re-checked the three watches again — none
+had moved (Kling 4.0's APIMart criteria page is signature-identical
+to the 2.4 baseline) — confirmed Wan 2.7 stable on its own sources,
+re-probed all 11 partial records (the 403 cohort is unchanged), and
+adjudicated five fresh flags across its runs with no record change.
+Latest history
 event: `2026-10-12-kling-3-0-flag-reviewed` (verification). Drift
 severity: `ok`.
 Worked pricing result for Vidu Q4 Preview: history event

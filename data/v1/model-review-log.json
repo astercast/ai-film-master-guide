@@ -307,6 +307,140 @@
         }
       ],
       "outcome": "One watch resolved by execution (Wan 2.7 added through the artifact chain: models 31 -> 32, pricing coverage 32 of 32, history release + coverage + price + watch events, queue 4 -> 3). Three watches re-checked and unchanged: Seedance 3.0 still has no official announcement, Kling 4.0 still meets neither GA criterion, Soul Cinema's in-app credit cost is still unpublished. The pass's own checker run raised one fresh flag (Soul Cinema, on Higgsfield's API post) — adjudicated in this same pass as signature churn with proof (two fetches, two signatures; the rate on the page is unchanged) and the URL signature-excluded for this model. Wan 2.6's all_failed stamp from the 2.3 run cleared on its own: all three sources answered and the record reads ok. No record moved on any flag. The re-baseline run after adjudication publishes the clean feed: changed=0, with_errors=0, queue at its 3 standing watches."
+    },
+    {
+      "id": "2026-10-12-review-pass-4",
+      "reviewed_at": "2026-10-12",
+      "reviewer": "Watchtower 2.5 review pass (agent, following the promotion workflow in scripts/refresh/check_models.py)",
+      "scope": "The third review pass: the 3 standing hand-authored watches left by Watchtower 2.4 (Seedance 3.0 confirmation, Kling 4.0 GA, Soul Cinema's in-app credit cost), the 11 adjudicated partial records (14 failed-source instances across 12 distinct URLs), a post-addition stability confirmation for Wan 2.7 (added in 2.4), and the fresh flags raised by this pass's own first checker run (Veo 3.1, Wan 2.6, Wan 2.7).",
+      "method": "Standing watches were re-checked against the criteria written into their queue notes in advance (for Kling 4.0: a GA model ID in the official API docs or published pricing — third-party noise does not count, however loud; for Seedance 3.0: an official ByteDance announcement; for Soul Cinema: a Higgsfield-published in-app credit cost). Criteria sources were re-fetched with the checker's own fetch path (scripts/refresh/check_models.py fetch/clean_text) on 2026-10-12 and compared against the stored baseline signatures. Every failed source on the 11 partial records was re-probed the same way. No checker process was alive before any checker run this pass (verified before each of the three runs — the 2.2 process lesson).",
+      "flag_reviews": [
+        {
+          "model": "Veo 3.1",
+          "model_id": "veo-3-1",
+          "detected_at": "2026-10-13T02:41:00+00:00",
+          "sources_changed": [
+            "https://www.scriptbyai.com/gpt-gemini-claude-pricing/"
+          ],
+          "verdict": "dismissed-no-record-change",
+          "basis": "The moved source is a third-party multi-model pricing roundup (scriptbyai.com's GPT/Gemini/Claude pricing page). Two fresh fetches agree with each other and with the flagged run's stored signature (6a34f7f1…) — the page has settled, not churned mid-fetch. What moved is its living LLM token-pricing tables (new GPT/Claude/Gemini rows); the page carries no Veo per-second rate that postdates or contradicts the record, and Veo 3.1's rates on record come from Google's own listings. No Google source moved on any fact. Record unchanged."
+        },
+        {
+          "model": "Wan 2.6",
+          "model_id": "wan-2-6",
+          "detected_at": "2026-10-13T02:41:00+00:00",
+          "sources_changed": [
+            "http://www.upgrademag.com/web/2026/04/25/alibaba-unveils-wan2-7-video/"
+          ],
+          "verdict": "dismissed-source-excluded",
+          "basis": "The moved source is the April 2026 upgrademag launch report for Wan 2.7 — a third-party news page this record watches as launch coverage, not a rate or spec source. The settled page is consistent: repeated fetches return one signature (89275fd8…, 16,136 chars, +7 chars against the 2.4 baseline) and its launch facts are the facts already on record for both Wan models. But single fetches intermittently return a variant (the site's rotating headlines rail): this pass's runs caught variants for Wan 2.6 in two consecutive runs while intervening re-probes matched the settled page four times in a row. Verified-intermittent, so the URL joins both Wan records' signature-exclusion lists (see the addendum) — still fetched and recorded every run. No record change."
+        },
+        {
+          "model": "Wan 2.7",
+          "model_id": "wan-2-7",
+          "detected_at": "2026-10-13T02:41:00+00:00",
+          "sources_changed": [
+            "http://www.upgrademag.com/web/2026/04/25/alibaba-unveils-wan2-7-video/"
+          ],
+          "verdict": "dismissed-source-excluded",
+          "basis": "Same shared upgrademag launch report as Wan 2.6 (one page flags every Wan model watching it — the klingai.com pattern from 2.1/2.2). Wan 2.7's own criteria sources did not move at all this pass: the PoYo model page and CreateVision's spec registry returned signatures identical to the 2.4 baseline on re-probe and in the run. The exclusion and its basis are Wan 2.6's entry above. No record change — and this flag is not instability in Wan 2.7's rate watch (see the standing-watch entry below)."
+        }
+      ],
+      "failed_source_reviews": [
+        {
+          "group": "Persistent bot-blocks on third-party coverage (HTTP 403) — unchanged on re-probe",
+          "models": [
+            "Seedance 3.0",
+            "Wan 3.0 / 3.0 Prime",
+            "MiniMax H3",
+            "Gemini Omni",
+            "FLUX 3 Video",
+            "Vidu S2",
+            "Vidu Q4 Preview",
+            "Kling 4.0",
+            "Midjourney V1 Video"
+          ],
+          "verdict": "watch-intact-no-action",
+          "basis": "Re-probed 2026-10-12: Medium (3 models), MarkTechPost (3), GlobeNewswire (1 distinct URL, 2 models), Morningstar (1), x.ai (1), and midjourney.com (1) all still 403 the checker's user agent — the same cohort, the same failure, third pass running. Every one is third-party coverage or a JS-app homepage, and in all 11 partial records at least one official source still answers, so nothing went dark. The failures stay on the records, honestly, as 'partial'."
+        },
+        {
+          "group": "Still failing on re-probe — rate limit and a flaky wire",
+          "models": [
+            "Luma App / Ray 3.2",
+            "Grok Imagine Video 1.5"
+          ],
+          "verdict": "watch-intact-no-action",
+          "basis": "whatsnew.fyi still rate-limits (429) the shared ComfyUI release page both models watch. europesays.com (Grok) is intermittent this pass: it answered 200 on the first re-probe (13,350 chars), then dropped the connection in the checker run and in both later re-probes — flaky for automated clients, not dead, and not recovered either; it stays a failed source on Grok's record, honestly labeled. Both are third-party surfaces; each model's official sources answer."
+        },
+        {
+          "group": "Run-weather failures in this pass's first checker run — recovered on re-probe",
+          "models": [
+            "DoP (Lite/Standard/Turbo)",
+            "Pika 2.5",
+            "Marketing Studio video"
+          ],
+          "verdict": "recovered-no-action",
+          "basis": "The pass's first run (2026-10-13T02:41Z) was rough weather: DoP's only source timed out (the run's with_errors=1, record all_failed), pika.art timed out (Pika partial for one run), and Higgsfield's API post dropped Marketing Studio's fetch. On immediate re-probe all three answer: DoP's help-center page 200 (its signature is already excluded since the 2.2 calibration — the page embeds rotating payloads, proven again this pass by two fetches returning two signatures at identical length), pika.art 200 with a signature identical to the 2.4 baseline, and the API post 200 (already signature-excluded for Marketing Studio; its rate table is read in the Soul Cinema entry below). The re-baseline runs confirm the recovery: the final feed reads with_errors=0 and all three records ok."
+        }
+      ],
+      "standing_watch_reviews": [
+        {
+          "model": "Seedance 3.0",
+          "model_id": "seedance-3-0",
+          "verdict": "watch-intact-no-action",
+          "basis": "Re-checked 2026-10-12: no official ByteDance announcement of a Seedance 3.0 exists. The dedicated release tracker (which inspects ByteDance's official catalog and visual blog daily; last catalog inspection Oct 6) concludes the same as this desk: 'we have not confirmed an official Seedance 3.0 release date' and ByteDance currently lists Seedance 2.5 in its model catalog. The Medium status audit says the same ('Seedance 3 has not been officially announced… the official model directory does not currently list a Seedance 3 product, model card, API identifier, price, or release schedule'). The rest of the field is third-party explainers and the directory listing adjudicated in 2.2. The record's standing position (reported, unconfirmed) is unchanged and the watch stays open."
+        },
+        {
+          "model": "Kling 4.0",
+          "model_id": "kling-4-0",
+          "verdict": "watch-intact-no-action",
+          "basis": "Re-checked against the criteria the watch wrote in advance, and the primary criteria source is literally unchanged: APIMart's Kling 4.0 page returned a signature identical to the 2.4 baseline (fc55ce30…) and still reads 'API Coming Soon', 'Can I use the Kling 4.0 API on APIMart now? Not yet…', and 'APIMart pricing for Kling 4.0 and Flash has not been announced.' Independent evidence reviews agree (orcarouter: 'Model identifier — none published for either tier… Price — none published'; wavespeed: full model and API 'remain pending'). The loudest new third-party noise — subscription plans listed on kling4.tv, a third-party site — is not Kuaishou pricing, publishes no GA model ID, and does not make the API live; per the standing rule it does not move the record, however loud it gets. No GA model ID, no published pricing: the record stays 'announced' and the watch stays open."
+        },
+        {
+          "model": "Soul Cinema",
+          "model_id": "soul-cinema",
+          "verdict": "watch-intact-no-action",
+          "basis": "The narrowed watch asks for Higgsfield's own in-app per-image credit cost. Still unpublished: Higgsfield's pricing page serves a 428-char app shell to the checker with no Soul Cinema credit figure on it, and the API post's rate table — re-read this pass — still lists Soul Cinema only at the $0.0032/image API starting rate tabled in 2.3 (the post itself returned yet another signature at identical length, 63,349 chars; already signature-excluded since 2.4). The only credit figures in circulation remain the third-party skill-file figures (~0.125 credits/image) already on record as third-party. Nothing new to table; the watch stays open, still narrowed."
+        },
+        {
+          "model": "Wan 2.7",
+          "model_id": "wan-2-7",
+          "verdict": "verified-stable-no-action",
+          "basis": "Post-addition stability confirmation, one pass after the model joined through the artifact chain in 2.4. Its rate-and-spec sources are stable: on re-probe, the PoYo model page (official endpoint IDs + fal's rates) and CreateVision's spec registry returned signatures identical to the 2.4 baseline (ffcb70cb… / 4d5b9447…), wan.video identical (fdc5656a…), and the final re-baseline feed carries the model as stable/ok with its severity at watch only for its own baseline pricing diff — the PixVerse pattern holding for a second generation. The one flag touching the model this pass was the shared upgrademag launch report (adjudicated above; now signature-excluded for both Wan models). No standing watch was ever opened for 2.7's stability — this entry closes the 2.4 follow-up question: the addition has settled."
+        }
+      ],
+      "outcome": "No promotions. Zero records in models.json or pricing.json changed: all three standing watches re-checked and unmoved (Seedance 3.0 still has no official announcement, Kling 4.0 still meets neither GA criterion — its APIMart criteria page is byte-identical to the 2.4 baseline — and Soul Cinema's in-app credit cost is still unpublished). Wan 2.7's post-addition watch is confirmed stable on its own criteria sources. Three fresh flags from the pass's first run were adjudicated in-pass (Vidu-pattern settled-page dismissal for Veo 3.1's roundup; the shared upgrademag launch report dismissed for both Wan models and signature-excluded after flagging in two consecutive runs on intermittent variant fetches). All 14 failed-source instances re-probed: the 403 cohort is unchanged, whatsnew.fyi still 429s, europesays.com is intermittent (answered once, dropped three times — stays failed, honestly), and the first run's three weather failures (DoP, Pika, Marketing Studio) all recovered on re-probe. The checker re-runs after adjudication are recorded in the addendum; the final published feed is changed=0, with_errors=0, queue at its 3 standing watches."
+    },
+    {
+      "id": "2026-10-12-review-pass-4-addendum",
+      "reviewed_at": "2026-10-12",
+      "reviewer": "Watchtower 2.5 review pass (agent)",
+      "scope": "The checker re-runs after review pass 4's adjudication (2026-10-13T02:50Z and 2026-10-13T02:57Z), which set the published baseline.",
+      "method": "Single checker process per run (verified no other checker was alive before each launch — the 2.2 process lesson). Both new flags from the 02:50Z run were re-fetched with the checker's own fetch path before any verdict; the calibration change was applied to model-check-config.json only, never to a model record.",
+      "flag_reviews": [
+        {
+          "model": "Wan 2.6",
+          "model_id": "wan-2-6",
+          "detected_at": "2026-10-13T02:50:00+00:00",
+          "sources_changed": [
+            "http://www.upgrademag.com/web/2026/04/25/alibaba-unveils-wan2-7-video/"
+          ],
+          "verdict": "dismissed-source-excluded",
+          "basis": "The re-baseline run flagged the same upgrademag launch report a second consecutive time — for Wan 2.6 only this run, while Wan 2.7's fetch of the same URL in the same run stored the settled signature (89275fd8…). That asymmetry is the proof: the page serves intermittent variants (a rotating headlines rail), and which model flags depends on which fetch catches a variant. Four consecutive re-probes return the settled signature every time, and the article's facts match the record. Per the 2.2 calibration treatment for verified-noisy surfaces, the URL joins both Wan models' exclude_from_signature lists in model-check-config.json with a dated note — still fetched and recorded every run; Wan 2.7's criteria sources (PoYo, CreateVision) remain signature-live, so the rate watch is not weakened where it matters."
+        },
+        {
+          "model": "FLUX 3 Video",
+          "model_id": "flux-3-video",
+          "detected_at": "2026-10-13T02:50:00+00:00",
+          "sources_changed": [
+            "https://bfl.ai/pricing"
+          ],
+          "verdict": "dismissed-no-record-change",
+          "basis": "The one flag on an official pricing page this pass, and it is a page redesign, not a rate move. BFL's pricing page went from 22,122 chars of static rate text (2.4 baseline) to a 2,249-char calculator shell: two fresh fetches agree with each other and with the flagged run's signature (5cb41889…), and the fetched text lists image models behind a JS model selector — no per-second video rate appears in it at all, so nothing on the surface postdates or contradicts the record's FLUX 3 rates (documented from BFL's September 10 listing; confidence already 'reported'). The record stands. The URL deliberately stays signature-live (the 2.2 exact-URL anchor decision): it is the primary rate source, and if BFL publishes new rates in readable form this watch should flag. Noted as an open watch-quality item in the wave log: the calculator shape may make future rate moves unreadable to a static fetch."
+        }
+      ],
+      "failed_source_reviews": [],
+      "outcome": "Final re-baseline published (2026-10-13T02:57Z) after the upgrademag exclusion: changed=0, with_errors=0, no_sources=0. The queue holds exactly the 3 standing watches, their notes carrying this pass's re-check lines. Drift is unchanged from 2.4: 11 alerts (the adjudicated partial cohort, exact same id set), 5 watch (incl. Wan 2.7, stable on its own pricing diff), 16 ok, 0 unwatched; unpublished rates stay 5; pricing diff vs the 2026-10-11 baseline stays 7 rows. Across the pass's three runs the only config change is the one signature exclusion; models.json and pricing.json were never touched."
     }
   ]
 }
