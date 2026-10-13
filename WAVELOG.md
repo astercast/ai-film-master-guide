@@ -1,5 +1,184 @@
 # Wave Log — AI Film Master Guide
 
+## Watchtower 2.10 — the eighth review pass + Episode Forge (2026-10-13)
+
+**Assignment:** Rotation 11 — work the queue Watchtower 2.9 left: the 3
+standing watches (Seedance 3.0 confirmation, Kling 4.0 GA, Soul
+Cinema's in-app credit cost), the 10 partial records (the 7 standing
+records, PixVerse V6, and the two Veo weather stamps), and the FLUX
+follow-up carried since 2.6 (whether the docs.bfl.ai pricing page's
+two renderings alternate between runs). Kling rule unchanged: no GA
+model ID + no published pricing from Kuaishou = stays "announced".
+PixVerse criterion, stated in 2.9 and carried in: a recovery is
+claimed only if the final run fetches its docs source clean at a
+verifiable signature. Process rule, stated before any launch: verify
+no checker is alive before launching, verify exactly one is running
+after. Plus the rotation's flagship: the Episode Forge, built to
+the raised design bar.
+
+**Recovery note — this rotation was completed by a second builder.**
+The first builder parked mid-build: local HEAD was still rotation
+10's commit and the working tree was dirty (~107 files). The audit
+found the Episode Forge substantially built (template + engine +
+tests + nav/footer/search wiring + a LIVE_CHECKLIST note) but the
+Watchtower pass undone — history and review log untouched, and the
+only feed in the tree an unverified partial run's output (changed=1,
+a fourth queue item, timestamps no completed run could produce).
+No checker process was alive. The partial feed was discarded
+(restored to the 2.9 baseline) and the pass was re-baselined from
+scratch; every number below traces to this pass's own two verified
+runs and probe logs. One further process incident, disclosed: the
+recovery's first checker launch was killed mid-run by a VM reboot
+before it wrote anything — the on-disk feed never changed, the loss
+was visible in the process table and in the wiped /tmp log, and the
+run was relaunched clean with its log in persistent storage.
+
+**The watches — three re-checked, none moved.**
+- **Seedance 3.0:** still no official ByteDance announcement. The
+  state-of-the-field coverage page this watch reads returned a
+  signature identical to the 2.6/2.7/2.8/2.9 baseline (59931bf3…) in
+  the checker run and still lists Seedance 3.0 among models that had
+  not been announced by any vendor as of October 1 — no announcement,
+  no API, and no date; nothing from ByteDance Seed's directory.
+- **Kling 4.0:** the criteria source is literally unchanged for a
+  sixth pass — APIMart's page returned a signature identical to the
+  2.4–2.9 baseline (fc55ce30…) in the checker run and still reads
+  "API Coming Soon", answers "Not yet", and states pricing has not
+  been announced. No GA model ID, no Kuaishou-published pricing.
+- **Soul Cinema:** the in-app credit cost is still unpublished.
+  Higgsfield's pricing page returned the same 428-char app shell at
+  the settled signature (f14e9f4a…) in two probes with no credit
+  figure; the API post's rate table still lists only the
+  $0.0032/image API starting rate from 2.3 (fresh signatures at
+  identical length — already excluded since 2.4).
+
+**FLUX follow-up — the docs page held for a fourth pass.** Every
+fetch — both checker runs and both probes — returned the 9,875-char
+rendering at the 2.6 baseline signature (cb1e92d1…), its FLUX 3
+Video table ($0.17/$0.29/$0.40/$0.80 per second; v2v
+$0.41/$0.53/$0.65/$0.95) still matching the record exactly; the
+19,564-char variant was not seen. bfl.ai/pricing stays
+signature-excluded as an exact URL, still fetched and recorded
+every run. No rate changed, no pricing record moved.
+
+**Two fresh flags, both raised by this pass's first clean run, both
+dismissed with proof.** The run flagged **Seedance 3.0** on
+breakread.com's article about a reported ByteDance real-time world
+model: re-fetched twice, the page is signature-stable at the
+flagged signature (dd63241d…, 9,701 chars), and read in full it
+reports a world model built on Seedance technology — possible
+October timing "not finalized", no model card, no API identifier,
+no pricing, no first-party statement. That is not a Seedance 3.0
+announcement, and the watch's criteria page never moved. The run
+also flagged **FLUX 3 Video** on eWeek's launch/robotics story —
+the same story flagged in 2.9: re-fetched twice, stable at the
+flagged signature (4ad61061…, 3,261 chars; 2.9's flagged variant
+was 3,262 chars and became its baseline — the story's chrome churns
+between near-identical variants), its cleaned text carries no
+per-second rate at all, and the docs rate source held its baseline
+rendering for a fourth pass (above).
+
+**Partials — PixVerse recovered, the Veo stamps cleared, the
+standing cohort unchanged, the recovered cohort broke, and the
+first run had weather.** **PixVerse V6:** its docs source fetched
+clean at the baseline signature (95c88c96…) in both runs — the
+final re-baseline included — with all five sources answering, so
+under the criterion stated in 2.9 the recovery is claimed: PixVerse
+leaves the partial cohort, stable, severity watch only on its own
+baseline pricing diff. The two **Veo** records read ok in both
+runs; 2.9's weather stamps clear on schedule. The standing cohort
+is unchanged (Medium ×3, GlobeNewswire ×2 models, Morningstar
+403s; whatsnew.fyi 429; europesays dropped every try). Against
+that, the cohort recovered in 2.7 broke: **MarkTechPost** 403'd
+Gemini Omni's and FLUX's articles in both runs and on both probes,
+MiniMax H3's article on the same host flipped (403 in both runs,
+200 at its baseline signature between them), **x.ai** 403'd in the
+final run and on the post-run probe, and **midjourney.com** 403'd
+in both runs and on both probes — all four keep partial stamps in
+the published feed, labeled as observed, no record contradicted.
+The first run's own weather (GitHub 503s for Soul 2.0, Seedance
+2.5, Kling 3.0; timeouts for Soul Cinema) all answered on re-probe —
+two at their exact baseline signatures — and all four records read
+clean in the final run. Every failed source in the final run was
+re-probed once after it and failed the same way.
+
+**Process note:** both checker runs ran under the process rule —
+a process-table check counting only python3 checker processes
+showed zero alive before each launch and exactly one running after
+each launch. No duplicate launch; every published number comes
+from the two single verified runs (07:26Z adjudication run,
+07:35Z re-baseline), cross-checked against the on-disk feeds and
+probe logs at each step.
+
+**The flagship — Episode Forge (`forge.html`).** One mini-drama
+episode forged on the anvil: an 8-beat, 3-act arc from the guide's
+own craft chapters (hook, stake, escalation, turn, complication,
+reversal, button, cliffhanger), every beat matched against the
+guide's own template library — the real 47 templates in
+prompt-templates.json, scored deterministically on each template's
+own facets (shot type, camera movement, mood) and stated use, one
+emotion per episode from the planner's 12-emotion vocabulary.
+`build_site.py`'s `build_forge` pre-renders the default plan (the
+same scoring mirrored in Python) and embeds the library data;
+`assets/js/forge.js` (`ForgeEngine`) re-forges live in the browser
+for any title/premise/format/emotion/episode, so the page reads
+identically with or without JavaScript. A beat no template clears
+the match bar for renders as uncovered — the Forge never invents a
+template — and teardown field lessons attach only through the
+facets' own teardown links, with their real lesson text. The plan
+exports as clean markdown (every beat, craft note, real template
+and prompt, shortlisted models, field lesson, and gates G2/G4).
+Wired into the index nav, the footer, and the search index;
+`scripts/forge.test.js` pins the engine against the real data (19
+assertions); LIVE_CHECKLIST.md carries the generator-safety note.
+
+**Feed state:** final re-baseline (2026-10-13T07:35Z): **changed=0,
+with_errors=0, no_sources=0**; queue back to its **3 standing
+watches** (notes carry this pass's re-check lines). Drift: **11
+alerts** (the 7 standing partial records, Grok's folded-in x.ai
+failure, Midjourney, and the three MarkTechPost-gated records),
+**5 watch**, 16 ok, 0 unwatched; unpublished rates **5**; pricing
+diff vs the 2026-10-11 baseline **7 rows**. History 86 → **92
+events** (3 watch re-checks, the FLUX rate-source stability
+confirmation, the Seedance flag verdict, the PixVerse recovery);
+the October window holds 72. Review log: pass 9 + addendum (17
+entries total).
+
+**Validation:** `scripts/watchtower.test.js` **15/15** (pins moved
+to the new feed: 11 alerts with the exact id set incl. flux-3-video
+and midjourney-v1-video; PixVerse pin flipped to stable/watch on
+its recovery). `tests/api.test.sh` **55/55** (October window 66 →
+72, drift alerts 10 → 11). `scripts/forge.test.js` **19/19**,
+`studio.test.js` **70/70**, `greenlight.test.js` **29/29**,
+`agent-workflows.test.js` **92/92**. `bash scripts/validate.sh`
+**19 passed, 0 failed — ALL STAGES PASS** pre-commit and again
+post-commit. Headless-Chromium (Playwright) screenshots inspected
+(desktop 1440px + mobile 390px): cutting-room board intact,
+freshness reads the new 07:35 UTC feed, "32 models tracked · 11
+need review · 5 on watch" present, the 2.10 history events render;
+the Forge renders its hero and all 8 pre-rendered beats at both
+sizes, the Forge button re-forges live with all beats present,
+with zero console messages on every Forge view and only the two
+designed /api 404 fallback logs on the board. No progress-archive
+duty this rotation (per the rotation brief). AI-ism scan on new
+copy: clean. No TODOs, no dead code.
+
+**Left open:** the 3 standing watches — all re-checked this pass,
+none moved. The 11 partial records will keep surfacing as alerts
+while their sources fail the checker — the 7 standing ones
+adjudicated nine passes running now, and the four new ones
+(MarkTechPost's gating, x.ai, midjourney.com) are next pass's
+question: whether they answer again, as they did through 2.9, or
+join the standing cohort. PixVerse's docs source bears watching
+for a second clean pass. LTX-2.5's ltx.io note stands.
+
+**Commit:** local `b88969e` → pushed 2026-10-13 as remote commit
+`0ce982ce56f3189a70757528061bc59288ced41a` (gh-push.py, exit 0).
+Verified: a second gh-push run reports no changes vs remote `main`
+(`0ce982c`) — remote tree == local HEAD tree (`db41681f`), working
+tree clean. Working repo only — no `-live` repo touched, no Vercel
+access.
+
 ## Watchtower 2.9 — the seventh review pass + Model Showdown (2026-10-12)
 
 **Assignment:** Rotation 10 — work the queue Watchtower 2.8 left: the 3
