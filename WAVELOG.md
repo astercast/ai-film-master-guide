@@ -1,3 +1,32 @@
+## Rotation 18 — commit/push record (2026-10-13)
+
+Local `52c38ba` → pushed 2026-10-13 as remote commit
+`0cf77d82d83d93ae7b37a3c1df6c7f95cca2cfa6` (gh-push.py, exit 0; push log
+`~/workspace/fleet-ops/push-logs/film-rotation18-push.log` — the
+log's terminal line is the record; a backgrounded delivery
+quoting a different SHA was discarded on the disk check,
+the 2.15/2.16 fabricated-delivery class). Verified via
+the Trees API: remote tree `813cb9d6…` == local HEAD
+tree, 788 entries, not truncated, all key files present
+(site/longform.html, assets/js/longform.js,
+scripts/longform.test.js,
+skills/longform/longform-assembly-sheet.md, WAVELOG.md,
+data/v1/model-history.json, LIVE_CHECKLIST.md).
+Post-commit validation: validate.sh **26/26 — ALL STAGES
+PASS** (stage 7 now includes longform.test.js 15/15;
+watchtower 6/6 with its pins updated to this pass: drift
+10 alerts, FLUX at watch; take 15/15; cut 16/16; grade
+13/13; cuesheet 12/12; continuity 11/11; clearance 19/19;
+forge 19/19; studio 70/70; greenlight 29/29;
+agent-workflows 92 assertions); api.test.sh **55/55**
+after one pin repair riding this record commit (the
+drift-summary pin, 11 → 10 alerts; its October-window pin
+124 → 133 rode the main commit). Logs at
+`~/workspace/fleet-ops/film-rotation18/validate.log` and
+`~/workspace/fleet-ops/film-rotation18/api.log`.
+Working repo only — no `-live` repo touched, no Vercel
+access.
+
 ## Watchtower 2.17 — the fifteenth review pass + Longform Sheet (2026-10-13)
 
 **Assignment:** Rotation 18 — Watchtower 2.17 (the
