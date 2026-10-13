@@ -73,9 +73,11 @@
       ],
       "news_query": "Kling 3.0 AI video",
       "exclude_from_signature": [
-        "klingai.com"
+        "klingai.com",
+        "pakera.pk/kling-4-ai-video-pakistan",
+        "synthesys.io/blog/seedance-vs-kling"
       ],
-      "note": "klingai.com excluded from the signature from 2026-10-12 (Watchtower 2.1): the homepage's rotating marketing copy moved once and flagged all three Kling models in a single run — verified-noisy, same treatment as hailuoai.video and lumalabs.ai. Still fetched and recorded every run."
+      "note": "klingai.com excluded from the signature from 2026-10-12 (Watchtower 2.1): the homepage's rotating marketing copy moved once and flagged all three Kling models in a single run — verified-noisy, same treatment as hailuoai.video and lumalabs.ai. Still fetched and recorded every run. Watchtower 2.11 calibration (2026-10-13): pakera.pk's Kling 4.0 page returned five different signatures across five same-day fetches (cleaned length swinging ~3,200–7,100 chars on rotating news rails) and flagged Kling 3.0 and Kling 4.0 in the pass's adjudication run; read in full it still reports Kling 4.0 'not fully out yet' — churn, not a record change. synthesys.io's seedance-vs-kling comparison, signature-stable through 2.10, returned three different signatures across three same-day fetches this pass (rotating modules) with its Kling 3.0 facts unchanged on reading. Both excluded from the signature, still fetched and recorded every run."
     },
     "Kling 4.0": {
       "extra_urls": [
@@ -84,9 +86,10 @@
       "news_query": "Kling 4.0 Kuaishou AI video",
       "exclude_from_signature": [
         "klingai.com",
-        "orcarouter.ai/blog/kling-4-0-release-date"
+        "orcarouter.ai/blog/kling-4-0-release-date",
+        "pakera.pk/kling-4-ai-video-pakistan"
       ],
-      "note": "klingai.com excluded from the signature from 2026-10-12 (Watchtower 2.1): its rotating homepage flagged all three Kling models in one run — verified-noisy. Still fetched and recorded every run; GA signal comes from the remaining sources and the news feed. Watchtower 2.2 calibration (2026-10-12): the page(s) named in this entry's exclude_from_signature moved between same-day checker runs on rotating page chrome/rails, not on facts — excluded from the signature, still fetched and recorded every run."
+      "note": "klingai.com excluded from the signature from 2026-10-12 (Watchtower 2.1): its rotating homepage flagged all three Kling models in one run — verified-noisy. Still fetched and recorded every run; GA signal comes from the remaining sources and the news feed. Watchtower 2.2 calibration (2026-10-12): the page(s) named in this entry's exclude_from_signature moved between same-day checker runs on rotating page chrome/rails, not on facts — excluded from the signature, still fetched and recorded every run. Watchtower 2.11 calibration (2026-10-13): pakera.pk's Kling 4.0 page is a rotating regional news surface — five different signatures across five same-day fetches (cleaned length swinging ~3,200–7,100 chars), and it flagged this model in the pass's adjudication run while APIMart's page stayed at its baseline signature (fc55ce30…) in the same window; read in full, pakera still reports Kling 4.0 'not fully out yet' with no GA model ID and no Kuaishou pricing — churn, not a record change. Excluded from the signature, still fetched and recorded every run."
     },
     "Luma App / Ray 3.2": {
       "extra_urls": [
@@ -143,16 +146,21 @@
       "note": "Watchtower 2.2 calibration, second pass (2026-10-12): the surface named in this entry's exclude_from_signature moved again in the calibrated re-run on rotating rails/homepage copy — excluded (a trailing \"$\" means exact-URL), still fetched and recorded every run."
     },
     "Seedance 2.0": {
-      "news_query": "Seedance 2.0 ByteDance AI video"
+      "news_query": "Seedance 2.0 ByteDance AI video",
+      "exclude_from_signature": [
+        "synthesys.io/blog/seedance-vs-kling"
+      ],
+      "note": "Watchtower 2.11 calibration (2026-10-13): synthesys.io's seedance-vs-kling comparison, signature-stable through 2.10, returned three different signatures across three same-day fetches this pass (rotating modules) with its facts unchanged on reading — excluded from the signature, still fetched and recorded every run."
     },
     "Seedance 2.5": {
       "extra_urls": [
         "https://seedance.com/"
       ],
       "news_query": "Seedance 2.5 ByteDance AI video",
-      "note": "No source URLs; official ByteDance/Seedance landing page. Watchtower 2.2 calibration (2026-10-12): the page(s) named in this entry's exclude_from_signature moved between same-day checker runs on rotating page chrome/rails, not on facts — excluded from the signature, still fetched and recorded every run.",
+      "note": "No source URLs; official ByteDance/Seedance landing page. Watchtower 2.2 calibration (2026-10-12): the page(s) named in this entry's exclude_from_signature moved between same-day checker runs on rotating page chrome/rails, not on facts — excluded from the signature, still fetched and recorded every run. Watchtower 2.11 calibration (2026-10-13): synthesys.io's seedance-vs-kling comparison, signature-stable through 2.10, returned three different signatures across three same-day fetches this pass (rotating modules) with its facts unchanged on reading — excluded from the signature, still fetched and recorded every run.",
       "exclude_from_signature": [
-        "higgsfield.ai/blog/best-ai-video-generation-apis"
+        "higgsfield.ai/blog/best-ai-video-generation-apis",
+        "synthesys.io/blog/seedance-vs-kling"
       ]
     },
     "Seedance 3.0": {

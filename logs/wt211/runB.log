@@ -1,0 +1,5 @@
+[model-watch] 32 models | changed=3 | with_errors=17 | no_sources=0
+  REVIEW: Kling 3.0 — source content signature differs from previous run
+  REVIEW: MiniMax H3 — source content signature differs from previous run
+  REVIEW: Kling 4.0 — source content signature differs from previous run
+[model-watch] wrote model-checks.json, model-review-queue.json

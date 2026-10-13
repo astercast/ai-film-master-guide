@@ -1,0 +1,7 @@
+{"url": "https://www.marktechpost.com/2026/07/26/black-forest-labs-releases-flux-3-a-multimodal-flow-model-for-image-video-audio-and-robot-action-prediction/", "ok": false, "status": 403, "error": "HTTPError 403"}
+{"url": "https://www.marktechpost.com/2026/08/01/minimax-releases-minimax-h3-an-omni-modal-video-model-that-generates-15-second-2k-clips-with-native-stereo-audio/", "ok": true, "status": 200, "chars": 30875, "signature": "968537bbe37b5db70c00f594df6f7b098d4ed77069ad9c092fe07d5697521a60"}
+{"url": "https://www.marktechpost.com/2026/08/29/google-ai-releases-gemini-omni-1-1-flash-40-second-scene-extension-first-last-frame-control-and-4k-upscaling/", "ok": false, "status": 403, "error": "HTTPError 403"}
+{"url": "https://www.midjourney.com/", "ok": false, "status": 403, "error": "HTTPError 403"}
+{"url": "https://www.morningstar.com/news/pr-newswire/20261007cn65903/vidu-launches-q4-preview-making-flagship-ai-video-creation-accessible-to-everyone", "ok": false, "status": 403, "error": "HTTPError 403"}
+{"url": "https://x.ai/", "ok": false, "status": 403, "error": "HTTPError 403"}
+{"url": "https://docs.platform.pixverse.ai", "ok": true, "status": 200, "chars": 4278, "signature": "95c88c96a13d7aa257e0d7fb7a8394a3ec7a52765c5ea80c3bf90ff16b890779"}

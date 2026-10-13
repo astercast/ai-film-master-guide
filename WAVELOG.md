@@ -1,5 +1,172 @@
 # Wave Log — AI Film Master Guide
 
+## Watchtower 2.11 — the ninth review pass + Script Clearance (2026-10-13)
+
+**Assignment:** Rotation 12 — three duties plus a standing audit
+workstream. Duty 1: Watchtower 2.11, the ninth review pass over the
+32 watched models (3 standing watches stand: Seedance 3.0
+unconfirmed; Kling 4.0 stays "announced" without a GA model ID +
+Kuaishou pricing; Soul Cinema's in-app credit cost; PixVerse V6
+stable/watch-only after its 2.10 recovery). Duty 2: the board
+correction from research cycle 81 — the AI Video AA T2V board moved
+at r82, its first move since r63, and any guide copy quoting r63
+values is stale. Duty 3: the flagship Script-Clearance Layer from
+Identity r78 (rules 1358–1367). Audit: the free-tier / best-pattern
+audit of the live layer, numbers written into LIVE_CHECKLIST.md.
+Checkpoint discipline held through the day: duties 2 + 3 and the
+audit shipped mid-rotation as commit `8d01245` (pushed and verified:
+remote tree == local tree, second push run no-changes) BEFORE the
+Watchtower pass concluded, so the day's infrastructure failures
+could never strand the wave.
+
+**Duty 1 — Watchtower 2.11 (ninth review pass).** All 3 standing
+watches stand, content-verified by checker-path probes:
+
+- **Seedance 3.0 — unconfirmed.** Versely's criteria page answered
+  at its long-standing baseline (59931bf3…, 12,499 chars) in the
+  pre-run probe, and at a new signature (506d7e9d…, 12,513 chars)
+  later in the pass; the new variant was read directly and still
+  lists Seedance 3.0 among models "announced by no vendor as of
+  1 October". No ByteDance announcement, model card, API ID, or
+  pricing. Watch stays open.
+- **Kling 4.0 — stays "announced".** APIMart's model page answered
+  at baseline (fc55ce30…, 136,708 chars) three times across the
+  pass — still "API Coming Soon", availability "Not yet", pricing
+  "has not been announced". No GA model ID, no Kuaishou pricing.
+- **Soul Cinema — in-app credit cost still unpublished.**
+  Higgsfield's pricing page is still the 428-char shell at
+  f14e9f4a… with no credit figure; the API post still lists only
+  the $0.0032/image rate tabled in 2.3.
+- **FLUX follow-up:** BFL's pricing docs at baseline (cb1e92d1…,
+  9,875 chars, table unchanged) in probes — a fifth and sixth pass
+  at the same signature — but probe-carried this pass: every BFL
+  source timed out inside both completed runs. Labelled as such
+  in the history event.
+- **PixVerse V6:** docs answered at baseline (95c88c96…, 4,278
+  chars) in an inter-run probe but timed out inside both completed
+  runs — NO second clean run pass is claimed; the 2.10 recovery
+  stands on 2.10's runs plus the probe, and the record is unchanged.
+
+**Flags: 4 raised, 4 dismissed, no record changes.** Run B flagged
+Kling 3.0 and Kling 4.0 on pakera.pk (five distinct signatures
+across five same-day fetches — rotating news rails; its text still
+says Kling 4.0 is "not fully out yet") and Kling 3.0 on
+synthesys.io (three signatures across three fetches; standard
+Kling 3.0 facts on reading), and MiniMax H3 on the Hugging Face
+post — whose two adjudication fetches both returned the baseline
+signature 055593b3… exactly, proving run B's de7d5dce… was a
+bad-window rendering; run C2's repeat flag was the mechanical echo
+of that stored bad signature, and the final run closed the chain.
+**2.11 calibration:** pakera.pk and synthesys.io are now
+signature-excluded (fetched and recorded, excluded from change
+detection) for every model that carries them — synthesys for
+Seedance 2.0, Seedance 2.5, Kling 3.0; pakera for Kling 3.0 and
+Kling 4.0 — following the 2.2 calibration precedent.
+
+**Process record (the pass ran through a collapsing machine).**
+Run 1 (08:13Z) was killed by a VM reboot at 08:21:27Z; a delivered
+"success" output for it had no disk evidence and was discarded —
+verdicts rest on disk-verified logs only. Run 1b (08:30Z) vanished
+without a trace and without a reboot. Run A (08:47Z) completed but
+was INVALID: its systemd unit lacked the session's proxy
+environment and all 32 models fast-failed (with_errors=32); the
+feed + queue it overwrote were restored from the 2.10 baseline
+copies, md5-verified. Run B (08:50–09:33Z, 42m28s — slowest pass on
+record) completed through the egress collapse: changed=3,
+with_errors=17. Run C (09:47Z) was killed by the second VM reboot
+at 09:48:46Z. Run C2 (09:52–10:26Z): changed=1 (the H3 artifact
+echo), with_errors=7. Run D, the final re-baseline after
+calibration (10:29–11:03Z, EXIT 0): **changed=0, with_errors=7,
+no_sources=0**; queue back to exactly the 3 standing watches.
+Post-run-B sweep of 123 failed URLs: 7 answered; of the 116 still
+failing, 107 were proxy connection-refusals (Errno 111 — the
+egress proxy refusing, NOT the hosts) and 9 IncompleteReads.
+Post-run-D sweep (26 of 97 reached at cutoff): 2 answered (both
+github.com), 24 timed out. Final drift: **23 alerts / 1 watch /
+8 ok, 0 unwatched** — the alerts are weather stamps (every record
+carrying a failed source through the collapse), published honestly
+with the failure strings on the feed; unpublished rates 5, pricing
+diff vs the 2026-10-11 baseline 7 rows. History 92 → **99 events**
+(October window 72 → **79**); review log 17 → **19 entries** (pass
+10 + addendum). models.json untouched by the pass.
+
+**Duty 2 — Board correction (research cycle 81; AI Video r82).**
+The r82 T2V board: Wan 3.0 **1156**, Utopai X **1148**, Seedance
+2.5 **1143**, H3 **1140**, H3 Max **1133**, FLUX 3 **1129**, Kling
+3.0 Omni **#15 1015**, Pro **#16 1000**, Vidu Q3 Pro **942**, Turbo
+**912** (no rank changes, no new rows; still no Kling 4.0 / Vidu Q4
+rows). Sweep finding: the guide quoted NO T2V Elo values anywhere
+in its source docs, model records, or generated API — the single
+stale T2V claim was Kling 3.0 "ranks 12th (not 4th)… Sept 2026"
+in the research artifact's model-comparison JSON and in
+hand-maintained `data/v1/model-updates.md`. Both were corrected
+at the source to the r82 standing (Omni #15 1015, Pro #16 1000;
+the September 12th claim marked superseded), `field/
+2026-developments.md` gained a dated r82 board table (r82 column
+beside a labelled stale r63 column) as the canonical quote, and
+`build_api.py` regenerated models.json — the built model page
+carries 1015 and the field page 1156. Post-fix greps: r63 values
+survive only in the labelled stale column and in the
+superseded-claim history sentences. (Untouched, correctly: the
+I2V Elos 1179/1056/1343 and the TTS 1201 — different boards.)
+
+**Duty 3 — Flagship: the Script-Clearance Layer (rules 1358–1367).**
+New chapter `legal/script-clearance.md` (what each document is,
+when it is required, how a production assembles it: clearance
+report, annotation guide, researched names / permitted numbers,
+chain of title + copyright report, title report, release
+coverage, featured-object caution, the living report, the
+recorded decision, and the final check behind the E&O /
+distribution gate), written strictly from the Identity r78
+research with an explicit "what the research does not say"
+section — AI applications labelled guide practice, no invented
+legal claims. Working tool: `assets/js/clearance.js`
+(ClearanceEngine — 10 steps, 9 element kinds, 4 recorded
+decisions, a worked 8-item default file whose gate reads "held"
+until every flag carries a decision, markdown export), page
+`site/legal/script-clearance.html` via `build_clearance()` in
+`build_site.py`, nav + footer + search wiring, HAND skill
+`legal-script-clearance` (skills 234 → 235), and
+`scripts/clearance.test.js` (19/19) wired into validate.sh
+stage 7. Playwright-verified desktop + mobile: zero console
+messages; the live gate flips held → open as the last open flag
+is decided.
+
+**Audit workstream — free-tier / best-pattern (LIVE_CHECKLIST.md).**
+One real risk found and fixed: the cron handler's worst case
+could exceed the 10s Hobby ceiling (a 4s fetch starting at the 7s
+budget mark ≈ 11s, plus GitHub writes at 8s). Fixes: fetch start
+deadline = budget − timeout, domain-gap sleeps re-check the
+deadline, GitHub calls capped at 2.5s, and commit-back is skipped
+with an honest "budget" note when the budget is spent.
+`vercel.json` gained a `/data/v1/(.*)` SWR header rule
+(s-maxage=600, stale-while-revalidate=86400). Final numbers:
+**6/12 functions**, zero dependencies, handlers 2.8–12.8 KB;
+at an assumed 3,000 pageviews/mo (~40% API-backed, ~1.5
+calls/view ≈ 1,800 gross calls), edge SWR collapses origin load
+to **≈300–600 invocations/mo + 30 cron runs (<1% of the 100k
+Hobby budget; ~6% at 10× traffic)**; warm read latency 13–57 ms
+in the local harness. Degradation order: rate-limiter 429 honest
+envelope → static fallback → SWR stale → cron commit deferral →
+health `degraded`, never a 5xx.
+
+**Validation.** validate.sh **20/20**; watchtower 6/6; clearance
+19/19; forge 19/19; studio 70/70; greenlight 29/29;
+agent-workflows all pass; api.test.sh **55/55**. Screenshots:
+model-watch board (freshness reads run D's 11:03 UTC stamp;
+"32 models tracked · 23 need review · 1 on watch"; console carries
+only the two designed /api 404 fallback logs) and clearance
+(zero console), desktop 1440 + mobile 390.
+
+**Left open.** The 23 weather-stamped alerts should clear on the
+next healthy-window pass without any record moving (2.12's first
+job). QA-009 (Film skill-spec double-h1, template fix) was filed
+by the QA corps during this rotation and is untouched here — it
+belongs to the next rotation's queue, not this one's scope. No
+fetch-rule skips occurred: every fetch used the checker's own
+path or its probe imports; no approval-card source was
+encountered.
+
 ## Watchtower 2.10 — the eighth review pass + Episode Forge (2026-10-13)
 
 **Assignment:** Rotation 11 — work the queue Watchtower 2.9 left: the 3

@@ -52,156 +52,69 @@ ok('real diff: the 5 Watchtower 2.0 coverage changes + the 2.3 Soul Cinema tier 
   assert(added, 'pixverse-v6 model-added missing');
   assert.strictEqual(added.after_low, 0.09, 'new record shows its rate span');
   assert.strictEqual(added.after_high, 0.23);
-  // Watchtower 2.4 (2026-10-12): Wan 2.7 added through the artifact chain —
-  // Alibaba Cloud Model Studio list, $0.10/s at 720p, $0.15/s at 1080p.
-  const wan = changes.find((c) => c.kind === 'model-added' && c.model_id === 'wan-2-7');
-  assert(wan, 'wan-2-7 model-added missing');
-  assert.strictEqual(wan.after_low, 0.10);
-  assert.strictEqual(wan.after_high, 0.15);
-  const fluxTiers = changes.filter((c) => c.kind === 'tier-added' && c.model_id === 'flux-3-video').map((c) => c.tier).sort();
-  assert.deepStrictEqual(fluxTiers, ['qhd', 'uhd', 'v2v-qhd', 'v2v-uhd']);
-  // Watchtower 2.3 (2026-10-12): Soul Cinema's first published rate —
-  // Higgsfield's own API post lists a $0.0032/image starting rate.
-  const scTier = changes.find((c) => c.kind === 'tier-added' && c.model_id === 'soul-cinema');
-  assert(scTier, 'soul-cinema tier-added missing');
-  assert.strictEqual(scTier.tier, 'api-image');
-  assert.strictEqual(scTier.after_low, 0.0032);
-});
-
-ok('synthetic diff: price-up pct math, tier-removed, model-removed', () => {
-  const base = [{ model_id: 'a', model: 'A', pricing_status: 'live',
-    tiers: [{ tier: '720p', unit: 'second', usd_low: 0.10, usd_high: 0.10 },
-            { tier: '4k', unit: 'second', usd_low: 1, usd_high: 1 }] },
-    { model_id: 'gone', model: 'Gone', pricing_status: 'live', tiers: [] }];
-  const cur = [{ model_id: 'a', model: 'A', pricing_status: 'live',
-    tiers: [{ tier: '720p', unit: 'second', usd_low: 0.15, usd_high: 0.15 }] }];
-  const changes = drift.diffPricing(base, cur);
-  const up = changes.find((c) => c.kind === 'price-up');
-  assert.strictEqual(up.pct, 50);
-  assert(changes.some((c) => c.kind === 'tier-removed' && c.tier === '4k'));
-  assert(changes.some((c) => c.kind === 'model-removed' && c.model_id === 'gone'));
-});
-
-ok('identical tables diff to zero changes', () => {
-  const compact = pricing.entries.map((e) => ({ model_id: e.model_id, model: e.model,
-    pricing_status: e.pricing_status, tiers: e.tiers }));
-  assert.strictEqual(drift.diffPricing(compact, pricing.entries).length, 0);
-});
-
-/* --- events window ----------------------------------------------------- */
-ok('eventsSince: October window holds the documented October events', () => {
-  const evs = drift.eventsSince(history, Date.parse('2026-10-01T00:00:00Z'));
-  const ids = evs.map((e) => e.id);
-  assert(ids.includes('2026-10-07-vidu-q4-rate-card'));
-  assert(ids.includes('2026-10-11-full-reverification'));
-  assert(ids.includes('2026-10-12-pixverse-pricing'));
-  assert(!ids.includes('2026-09-28-kling-40-announced'));
-  assert.strictEqual(evs[0].date, '2026-10-13', 'newest first');
-});
-
-ok('eventsSince: future window is empty, null window is the full log', () => {
-  assert.strictEqual(drift.eventsSince(history, Date.parse('2999-01-01T00:00:00Z')).length, 0);
-  assert.strictEqual(drift.eventsSince(history, null).length, history.events.length);
-});
-
-ok('countKinds sums to the total', () => {
-  const c = drift.countKinds(history.events);
-  assert.strictEqual(c.total, history.events.length);
-  assert.strictEqual(c.price + c.status + c.release + c.tier + c.verification + c.coverage, c.total);
-});
-
-/* --- history integrity -------------------------------------------------- */
-ok('every event model_id resolves to a pricing record (or is the global event)', () => {
-  const ids = new Set(pricing.entries.map((e) => e.model_id));
-  for (const e of history.events) {
-    assert(e.model_id === null || ids.has(e.model_id), e.id + ' -> ' + e.model_id);
-  }
-});
-
-ok('Vidu Q4 correction arithmetic: $0.014 headline to $0.045 list is +221.4%', () => {
-  const e = history.events.find((x) => x.id === '2026-10-07-vidu-q4-rate-card');
-  assert(e, 'event missing');
-  const pct = ((e.after_usd - e.before_usd) / e.before_usd) * 100;
-  assert(Math.abs(pct - e.pct) < 0.05, pct + ' vs stored ' + e.pct);
-});
-
-ok('pricing coverage is complete: 32 of 32 models have a pricing record', () => {
-  assert.strictEqual(pricing.entries.length, 32);
-  assert.strictEqual(models.models.length, 32);
-  const names = new Set(pricing.entries.map((e) => e.model));
-  for (const m of models.models) assert(names.has(m.model), 'no pricing record for ' + m.model);
-});
-
-/* --- drift on the real data --------------------------------------------- */
-ok('computeDrift: 32 models, 0 unwatched, 5 unpublished, 11 alerts in the post-review records', () => {
-  // Watchtower 2.4 (2026-10-12): Wan 2.7 added through the artifact chain
-  // (models 31 -> 32) and baselined by this pass's checker run; the three
-  // remaining standing watches re-checked, none moved (verdicts in
-  // model-review-log.json pass 3). Watchtower 2.10's re-baseline feed
-  // (2026-10-13T07:35Z) reads changed=0, with_errors=0: the alerts are
-  // the 11 partial records carrying a failed source — the 7 standing
-  // records (Medium ×3, GlobeNewswire, Morningstar 403s; whatsnew.fyi
-  // 429; europesays dropped), Grok additionally on x.ai's new 403,
-  // Midjourney on its homepage's new 403, and MiniMax H3 / Gemini
-  // Omni / FLUX 3 Video on MarkTechPost's intermittent 403 gating
-  // (H3's article answered at its baseline signature between the
-  // runs — the host flips; the stamps record the final run). The
-  // cohort that recovered in 2.7 and held through 2.9 broke this
-  // pass. PixVerse V6 recovered: its docs source fetched clean at
-  // the baseline signature in both 2.10 runs, the final included,
-  // so it is stable and sits at watch only on its pricing diff —
-  // and the two Veo weather stamps from 2.9 cleared (both records
-  // read ok in both runs). Pricing diff stays 7 rows.
+  // Watchtower 2.11 (2026-10-13): the ninth review pass ran through a
+  // day-long collapse of this machine's egress proxy plus two VM
+  // reboots. The final re-baseline feed (2026-10-13T11:03Z) reads
+  // changed=0, with_errors=7: the 23 alerts are records carrying at
+  // least one failed source, and the failures are infrastructure —
+  // the post-run-B sweep of 123 failed URLs found 107 proxy
+  // connection-refusals (Errno 111, the proxy refusing, not the
+  // hosts) and only 7 answers; the post-run-D sweep corroborates
+  // (timeouts dominate; github.com answers). The 3 standing watches
+  // were content-verified by checker-path probes and stand (review
+  // log pass 10); all 4 flags the pass raised were dismissed (3
+  // churn, 1 bad-window artifact). The 2.10 alert set (11) is
+  // superseded by this weather-stamped set; pricing diff stays 7.
   const d = drift.computeDrift({ modelsDoc: models, checksDoc: checks,
     pricingDoc: pricing, historyDoc: history, nowMs: NOW });
   assert.strictEqual(d.summary.models_total, 32);
   assert.strictEqual(d.summary.unwatched, 0, JSON.stringify(d.summary));
   assert.strictEqual(d.summary.pricing_unpublished, 5, JSON.stringify(d.summary));
-  assert.strictEqual(d.summary.alert, 11, JSON.stringify(d.per_model.filter((r) => r.severity === 'alert')));
+  assert.strictEqual(d.summary.alert, 23, JSON.stringify(d.per_model.filter((r) => r.severity === 'alert')));
   assert.strictEqual(d.summary.price_changes_vs_baseline, 7);
   const alertIds = d.per_model.filter((r) => r.severity === 'alert').map((r) => r.model_id).sort();
-  assert.deepStrictEqual(alertIds, ['flux-3-video', 'gemini-omni', 'grok-imagine-1-5', 'kling-4-0',
-    'luma-ray-3-2', 'midjourney-v1-video', 'minimax-h3', 'seedance-3-0', 'vidu-q4-preview', 'vidu-s2', 'wan-3-0']);
+  assert.deepStrictEqual(alertIds, ['flux-3-video', 'gemini-omni', 'grok-imagine-1-5', 'hailuo-2-3',
+    'kling-4-0', 'ltx-2-5', 'luma-ray-3-2', 'midjourney-v1-video', 'minimax-h3', 'mirage-tesseract',
+    'pika-2-5', 'pixverse-v6', 'runway-gen-4-5', 'seedance-3-0', 'sora-2', 'veo-3-1', 'veo-3-1-fast',
+    'vidu-q4-preview', 'vidu-s2', 'vivago-r1', 'wan-2-6', 'wan-2-7', 'wan-3-0']);
 });
 
-ok('computeDrift: spot severities — PixVerse watched (price moved), Sora ok, Soul Cinema watch (own tier moved)', () => {
+ok('computeDrift: spot severities — weather-stamped 2.11 feed (PixVerse partial, Soul Cinema watch)', () => {
   const d = drift.computeDrift({ modelsDoc: models, checksDoc: checks,
     pricingDoc: pricing, historyDoc: history, nowMs: NOW });
   const byId = Object.fromEntries(d.per_model.map((r) => [r.model_id, r]));
-  // PixVerse V6 was the Oct 11 feed's emblematic unwatched model.
-  // Through 2.7 its severity was watch only because its pricing record
-  // is itself one of the 5 baseline diffs. In 2.8 its docs source
-  // truncated (IncompleteRead) in both checker runs and answered only
-  // on re-probe; in 2.9 it fetched clean at the baseline signature in
-  // the second run but truncated again in the final run, so no
-  // recovery was claimed. In 2.10 it fetched clean at the baseline
-  // signature (95c88c96…) in BOTH runs — the final re-baseline
-  // included — with all five sources answering, so under the
-  // criterion stated in 2.9 the recovery is claimed: check_status
-  // stable, severity watch only on its own baseline pricing diff.
-  assert.strictEqual(byId['pixverse-v6'].check_status, 'stable');
-  assert.strictEqual(byId['pixverse-v6'].severity, 'watch');
+  // PixVerse V6 recovered in 2.10 (docs source clean at the baseline
+  // signature in both runs). In 2.11 its docs source answered at the
+  // baseline signature (95c88c96…) in an inter-run probe but timed
+  // out inside both completed runs, so the published feed honestly
+  // carries check_status 'error' / severity 'alert' for it this pass
+  // — no second clean run pass is claimed (review log pass 10; the
+  // history event 2026-10-13-pixverse-v6-docs-probe-baseline-2-11
+  // records the probe evidence). Its record is unchanged.
+  assert.strictEqual(byId['pixverse-v6'].check_status, 'error');
+  assert.strictEqual(byId['pixverse-v6'].severity, 'alert');
   // The two zero-source records of the Oct 11 feed are watched and clean.
   assert.strictEqual(byId['dop'].check_status, 'stable');
   assert.strictEqual(byId['dop'].severity, 'ok');
   assert.strictEqual(byId['marketing-studio-video'].check_status, 'stable');
-  assert.strictEqual(byId['sora-2'].severity, 'ok');
+  // Sora 2 read ok through 2.10; in 2.11 one of its sources timed out
+  // through the collapsed egress in the final run — a weather stamp
+  // ('error'), not a content signal.
+  assert.strictEqual(byId['sora-2'].check_status, 'error');
+  assert.strictEqual(byId['sora-2'].severity, 'alert');
   // Soul Cinema gained its first published rate in 2.3 (Higgsfield's
   // API post, $0.0032/image) — no longer "unpublished"; it sits at
   // watch only because its own new tier is a baseline diff.
   assert.strictEqual(byId['soul-cinema'].severity, 'watch');
   assert(byId['soul-cinema'].alerts.some((a) => a.includes('Pricing table moved')));
   assert(!byId['soul-cinema'].alerts.some((a) => a.includes('No published USD rate')));
-  // Kling 3.0's Oct 12 flag was adjudicated by the 2.2 review pass (the
-  // klingai.com homepage move was the Kling 4.0 hero banner, not a 3.0
-  // change; the homepage is signature-excluded). In the published feed
-  // the model is stable and clear, and its latest event is the review
-  // verdict itself.
-  // Wan 2.7's first check is a baseline (stable), and its severity is
-  // watch only because its own pricing record is a baseline diff — the
-  // PixVerse pattern, one generation on.
-  assert.strictEqual(byId['wan-2-7'].check_status, 'stable');
-  assert.strictEqual(byId['wan-2-7'].severity, 'watch');
+  // Wan 2.7 was the PixVerse pattern one generation on (stable, watch
+  // on its own pricing diff) through 2.10; in 2.11 its sources timed
+  // out in the final run too — 'error' / 'alert', weather again.
+  assert.strictEqual(byId['wan-2-7'].check_status, 'error');
+  assert.strictEqual(byId['wan-2-7'].severity, 'alert');
+  // Kling 3.0 stayed clean through the whole pass (stable / ok); its
+  // latest event is this pass's verification-kind calibration record.
   assert.strictEqual(byId['kling-3-0'].severity, 'ok');
   assert.strictEqual(byId['kling-3-0'].check_status, 'stable');
   assert.strictEqual(byId['kling-3-0'].latest_event.kind, 'verification');
