@@ -8,7 +8,9 @@
  *
  * Compares SHA-256 of canonical JSON (sorted keys, 2-space indent, trailing
  * newline); PUTs only on change; one retry on SHA conflict (409).
- * All calls carry an 8000ms timeout.
+ * All calls carry an 8000ms timeout by default; callers on a hard
+ * deadline (the cron, inside Vercel's 10s Hobby ceiling) pass a shorter
+ * timeoutMs so a slow GitHub call can never eat the function's budget.
  *
  * PENDING TOKEN (spec §14 open decision 1): GITHUB_REPO_TOKEN is a
  * fine-grained PAT (contents:write, this repo only) the user has not created
@@ -51,7 +53,7 @@ function canonical(obj) {
   return JSON.stringify(sortObj(obj), null, 2) + '\n';
 }
 
-async function ghFetch(path, method, bodyObj, token, repo, prefix) {
+async function ghFetch(path, method, bodyObj, token, repo, prefix, timeoutMs) {
   var url = 'https://api.github.com/repos/' + repo + '/contents/' + prefix + path;
   var headers = {
     'Accept': 'application/vnd.github+json',
@@ -60,7 +62,7 @@ async function ghFetch(path, method, bodyObj, token, repo, prefix) {
     'User-Agent': fetchx.SERVICE_UA
   };
   var r = await fetchx.fetchTimeout(url, {
-    timeoutMs: API_TIMEOUT_MS,
+    timeoutMs: timeoutMs || API_TIMEOUT_MS,
     headers: headers
   });
   if (!r.ok) return { ok: false, error: r.error, status: r.status };
@@ -71,10 +73,10 @@ async function ghFetch(path, method, bodyObj, token, repo, prefix) {
   }
 }
 
-async function readJson(path) {
+async function readJson(path, timeoutMs) {
   var c = cfg();
   if (!c.repo || !c.token) return { ok: false, error: 'missing-env' };
-  var r = await ghFetch(path, 'GET', null, c.token, c.repo, c.prefix);
+  var r = await ghFetch(path, 'GET', null, c.token, c.repo, c.prefix, timeoutMs);
   if (!r.ok) return r;
   try {
     var text = Buffer.from(r.json.content || '', 'base64').toString('utf8');
@@ -84,7 +86,7 @@ async function readJson(path) {
   }
 }
 
-async function putJson(path, obj, message, sha) {
+async function putJson(path, obj, message, sha, timeoutMs) {
   var c = cfg();
   var body = {
     message: message,
@@ -93,7 +95,7 @@ async function putJson(path, obj, message, sha) {
   if (sha) body.sha = sha;
   var url = 'https://api.github.com/repos/' + c.repo + '/contents/' + c.prefix + path;
   var r = await fetchx.fetchTimeout(url, {
-    timeoutMs: API_TIMEOUT_MS,
+    timeoutMs: timeoutMs || API_TIMEOUT_MS,
     headers: {
       'Accept': 'application/vnd.github+json',
       'X-GitHub-Api-Version': '2022-11-28',
@@ -112,7 +114,7 @@ async function putJson(path, obj, message, sha) {
   }
 }
 
-async function writeJsonIfChanged(path, obj, message) {
+async function writeJsonIfChanged(path, obj, message, timeoutMs) {
   var c = cfg();
   if (!c.repo || !c.token) {
     return {
@@ -123,20 +125,20 @@ async function writeJsonIfChanged(path, obj, message) {
         'Static JSON refreshes via wave-engine pushes until the user creates the PAT (spec §14).'
     };
   }
-  var cur = await readJson(path);
+  var cur = await readJson(path, timeoutMs);
   if (!cur.ok) return { committed: false, changed: null, reason: 'read-failed:' + cur.error };
   var wantHash = sha256(canonical(obj));
   if (sha256(canonical(cur.json)) === wantHash) {
     return { committed: false, changed: false, sha: cur.sha };
   }
-  var attempt = await putJson(path, obj, message, cur.sha);
+  var attempt = await putJson(path, obj, message, cur.sha, timeoutMs);
   if (attempt.conflict) {
-    var reread = await readJson(path);
+    var reread = await readJson(path, timeoutMs);
     if (!reread.ok) return { committed: false, changed: true, reason: 'conflict-reread-failed' };
     if (sha256(canonical(reread.json)) === wantHash) {
       return { committed: false, changed: false, sha: reread.sha, reason: 'already-applied' };
     }
-    attempt = await putJson(path, obj, message, reread.sha);
+    attempt = await putJson(path, obj, message, reread.sha, timeoutMs);
     if (attempt.conflict) return { committed: false, changed: true, reason: 'conflict' };
   }
   if (!attempt.ok) return { committed: false, changed: true, reason: 'put-failed:' + (attempt.error || attempt.status) };

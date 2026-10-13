@@ -399,6 +399,21 @@ else
   FG_OK=0
 fi
 
+# Script Clearance desk: engine + page + chapter (research cycle 81)
+CL_OK=1
+for f in assets/js/clearance.js site/clearance.html site/assets/js/clearance.js site/legal/script-clearance.html; do
+  if [ ! -f "$f" ]; then fail "$f missing (rebuild the site)"; CL_OK=0; fi
+done
+CL_OUT=$(node scripts/clearance.test.js 2>&1)
+if echo "$CL_OUT" | tail -1 | grep -q "all pass"; then
+  CL_N=$(echo "$CL_OUT" | grep -c "^ok ")
+  pass "clearance.test.js: $CL_N engine assertions pass (ten rules 1358-1367, recorded-decision gate, export traces)"
+else
+  fail "clearance.test.js failures:"
+  echo "$CL_OUT" | grep "^FAIL" | head -8 | sed 's/^/    /'
+  CL_OK=0
+fi
+
 # Cutting Room → Green Light bridge button present (rendered by cutting-room.js)
 if grep -q "cr-greenlight" assets/js/cutting-room.js && grep -q "cr-greenlight" site/assets/js/cutting-room.js; then
   pass "cutting-room → green-light bridge wired (button + handler)"

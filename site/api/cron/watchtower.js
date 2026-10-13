@@ -38,6 +38,16 @@ var CHECKS_PATH = 'data/v1/model-checks.json';
 var QUEUE_PATH = 'data/v1/model-review-queue.json';
 var MAX_URLS_PER_RUN = 8;
 var RUN_BUDGET_MS = 7000;
+var FETCH_TIMEOUT_MS = 4000;
+/* Free-tier audit (rotation 12): a fetch may only START while a full
+ * FETCH_TIMEOUT_MS still fits inside RUN_BUDGET_MS — previously a fetch
+ * starting at the 7s deadline could run 4s past it, and GitHub writes
+ * (8s default timeout) after the slice could push the run far past
+ * Vercel's 10s Hobby ceiling. Worst case is now bounded by design:
+ * state reads (2 x 2.5s cap, bundle fallback) + slice (<=7s) with the
+ * commit-back skipped, honestly, when the budget is already spent. */
+var FETCH_LATEST_START_MS = RUN_BUDGET_MS - FETCH_TIMEOUT_MS;
+var GH_TIMEOUT_MS = 2500;
 var DOMAIN_GAP_MS = 5000; // max 1 request/5s per provider domain (§7.1)
 
 var lastRunAt = 0; // 60s duplicate-delivery cooldown (§4.3)
@@ -76,7 +86,7 @@ function loadBundle(path) {
 async function loadState(path) {
   var g = github.cfg();
   if (g.repo && g.token) {
-    var r = await github.readJson(path);
+    var r = await github.readJson(path, GH_TIMEOUT_MS);
     if (r.ok) return { ok: true, json: r.json, from: 'github' };
     // GitHub read failed — fall back to the bundle honestly, don't 502 yet.
     var b = loadBundle(path);
@@ -138,7 +148,7 @@ module.exports = async function (req, res) {
     var checked = 0, changedModels = [], queueAdded = 0, sourcesOk = 0;
 
     for (var t = 0; t < todo.length; t++) {
-      if (Date.now() - startedAt > RUN_BUDGET_MS) break;
+      if (Date.now() - startedAt > FETCH_LATEST_START_MS) break;
       var item = todo[t];
       var host = hostOf(item.url);
       var gap = DOMAIN_GAP_MS - (Date.now() - (lastHit[host] || 0));
@@ -146,8 +156,9 @@ module.exports = async function (req, res) {
         var wait = Math.min(gap, Math.max(0, RUN_BUDGET_MS - (Date.now() - startedAt) - 500));
         if (wait <= 0) continue; // defer to a later run rather than blow the budget
         await sleep(wait);
+        if (Date.now() - startedAt > FETCH_LATEST_START_MS) continue; // slept past the last safe start — defer
       }
-      var r = await fetchx.fetchTimeout(item.url, { timeoutMs: 4000 });
+      var r = await fetchx.fetchTimeout(item.url, { timeoutMs: FETCH_TIMEOUT_MS });
       lastHit[host] = Date.now();
       checked++;
       upstream.push({ source: item.url, ok: r.ok, checked_at: env.nowIso(),
@@ -216,8 +227,9 @@ module.exports = async function (req, res) {
 
     var commitMsg = '[watchtower] model/pricing watch ' + env.nowIso().slice(0, 10) +
       ' — ' + changedModels.length + ' model(s) flagged, ' + queueAdded + ' review item(s)';
-    var c1 = await github.writeJsonIfChanged(CHECKS_PATH, checks, commitMsg);
-    var c2 = await github.writeJsonIfChanged(QUEUE_PATH, queue, commitMsg);
+    var overBudget = Date.now() - startedAt > RUN_BUDGET_MS;
+    var c1 = overBudget ? { committed: false, reason: 'budget' } : await github.writeJsonIfChanged(CHECKS_PATH, checks, commitMsg, GH_TIMEOUT_MS);
+    var c2 = overBudget ? { committed: false, reason: 'budget' } : await github.writeJsonIfChanged(QUEUE_PATH, queue, commitMsg, GH_TIMEOUT_MS);
     var committed = !!(c1.committed || c2.committed);
     var commitSha = c1.sha || c2.sha || null;
     var commitNote = null;
@@ -226,7 +238,9 @@ module.exports = async function (req, res) {
         'State was recomputed but not committed; static JSON refreshes via wave-engine pushes. ' +
         'Set the PAT in Vercel (Production env) to enable commit-back — no code change needed.';
     } else if (!committed && (c1.reason || c2.reason)) {
-      commitNote = 'Commit skipped: ' + [c1.reason, c2.reason].filter(Boolean).join('; ');
+      commitNote = (c1.reason === 'budget' || c2.reason === 'budget')
+        ? 'Commit skipped: the run budget was spent by the check slice, so commit-back was deferred to the next run rather than risk the 10s function ceiling. State was recomputed but not committed.'
+        : 'Commit skipped: ' + [c1.reason, c2.reason].filter(Boolean).join('; ');
     }
 
     // Watchtower 2.0: report the drift picture alongside the check run —

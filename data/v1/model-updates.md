@@ -563,9 +563,11 @@ as labeled — verify live before spending.
 - **Kling 3.0** — Kling API docs pricing confirmed: 3.0 Turbo $0.112/s
   720p / $0.14/s 1080p (audio included); kling-v3 $0.084/s std, $0.112/s
   pro, $0.126–0.168/s with audio, $0.42/s 4K; kling-2-5-turbo $0.042/s
-  std / $0.07/s pro. Correction of a circulating claim: Kling 3.0 ranks
-  **12th (not 4th)** on the Artificial Analysis T2V leaderboard
-  (techtimes, single-source flag).
+  std / $0.07/s pro. Board correction (research cycle 81, AI Video r82 —
+  the Artificial Analysis T2V board's first move since r63): Kling 3.0
+  Omni sits at **#15 (1015)** and Kling 3.0 Pro at **#16 (1000)**; the
+  September claim that Kling 3.0 ranked 12th (not 4th) is superseded.
+  The full r82 table is quoted in the field chapter.
 - **Hailuo 2.3** — direct API rechecked Oct 10, 2026: 768p $0.28/6s,
   $0.56/10s; 1080p $0.49/6s; Fast $0.19/6s. 2.3 is now MiniMax's LEGACY
   (V1) API generation.

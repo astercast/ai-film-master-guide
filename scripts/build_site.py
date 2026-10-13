@@ -38,7 +38,7 @@ CHAPTER_ORDER = {
     "economics": ["credit-math"],
     "case-studies": ["competition-teardowns", "entry-craft-teardowns"],
     "distribution": ["release-paths", "festival-landscape-2026"],
-    "legal": ["rights-and-disclosure"],
+    "legal": ["rights-and-disclosure", "script-clearance"],
     "sources": ["source-index"],
     "guides": ["first-short"],
 }
@@ -67,6 +67,7 @@ NAV_INDEX = [
         ("doctor.html", "Doctor"),
         ("linter.html", "Linter"),
         ("greenlight.html", "Green light"),
+        ("clearance.html", "Script clearance"),
         ("recipes.html", "Recipes"),
         ("forge.html", "Episode forge"),
     ]),
@@ -99,6 +100,7 @@ FOOTER_ITEMS = [
     ("model-watch.html", "Model watch"),
     ("showdown.html", "Showdown"),
     ("forge.html", "Episode forge"),
+    ("clearance.html", "Script clearance"),
     ("checks/", "Knowledge checks"),
     ("budget.html", "Budget"),
     ("optimizer.html", "Optimizer"),
@@ -3092,6 +3094,245 @@ def build_forge(css_links):
     return [("forge.html", "Episode forge")]
 
 
+CLEARANCE_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Script clearance desk — AI Film Master Guide</title>
+  <meta name="description" content="The script-clearance layer as a working file: the ten rules (1358–1367) as steps, your production's items logged one by one, every flag closed by a recorded decision, and the E&O / distribution gate verdict computed from your own entries.">
+  {css}
+  <style>
+    .cl-verdict {{ font-size: 1.05rem; border-left: 3px solid var(--gold); padding-left: var(--space-4); margin-bottom: var(--space-6); }}
+    .cl-held {{ border-left-color: #e88; }}
+    .cl-step, .cl-item {{ border: 1px solid var(--line); border-radius: 12px; padding: var(--space-4) var(--space-5); margin-bottom: var(--space-4); }}
+    .cl-step-head, .cl-item-head {{ display: flex; align-items: baseline; gap: var(--space-3); flex-wrap: wrap; }}
+    .cl-step-head h4, .cl-item-head h4 {{ margin: 0; font-size: 1.2rem; }}
+    .cl-num {{ display: inline-block; min-width: 1.7em; text-align: center; background: var(--gold); color: #111; border-radius: 999px; font-weight: 800; padding: .1em .3em; }}
+    .cl-tag {{ margin-left: auto; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }}
+    .cl-what, .cl-when, .cl-flag, .cl-clear {{ color: var(--muted); }}
+    .cl-flag strong {{ color: var(--text); }}
+  </style>
+</head>
+<body>
+  <div class="edge-right" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        {sitenav}
+      </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">&#9679;</span> <span class="hdr-tc-val">00:59:52:00</span></span>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">&#8984;K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    {hero}
+    <section class="container" aria-labelledby="cl-h">
+      <h2 id="cl-h">The ten steps — the file itself</h2>
+      <p>Script clearance is the layer under every other rights question in this guide: what may lawfully appear in the work at all. The ten steps below are the ten rules from research cycle 81 (rules 1358–1367), each with what the document is and when it is required; the full chapter is <a href="legal/script-clearance.html">Script Clearance: The Report, the Chain, and the Gate</a>. Tick a step when the production has actually done it — the desk counts paper, not intentions. Not legal advice: this is the file a clearance researcher and an entertainment attorney work from.</p>
+      <div id="cl-steps">{cl_steps}</div>
+      <p class="calc-note" id="cl-steps-state" aria-live="polite">{cl_steps_state}</p>
+      <h2>Your clearance file</h2>
+      <p>Log the production's items one by one — every name, place, business, person, location and featured object the research touches. A flagged item closes only with a recorded decision (license, substitute, change the use, or expressly assume the risk); an undecided flag holds the gate. The desk opens on a worked example: a small AI short with one flag still open, so the first verdict you see is the honest one.</p>
+      <div class="card" style="margin-bottom:var(--space-6);">
+        <div class="calc-grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
+          <div class="field">
+            <label for="cl-title">Production title</label>
+            <input class="input" type="text" id="cl-title" placeholder="e.g. The Night Bus">
+          </div>
+          <div class="field">
+            <label for="cl-new-label">New item — what the research must check</label>
+            <input class="input" type="text" id="cl-new-label" placeholder="e.g. Shopfront signage in shot 7">
+          </div>
+          <div class="field">
+            <label for="cl-new-kind">Item kind</label>
+            <select class="input" id="cl-new-kind">{cl_kind_options}</select>
+          </div>
+          <div class="field">
+            <label for="cl-new-flagged">Research outcome</label>
+            <span><input type="checkbox" id="cl-new-flagged"> Flagged — needs a recorded decision</span>
+          </div>
+          <div class="field">
+            <label aria-hidden="true">&nbsp;</label>
+            <button type="button" class="btn" id="cl-add">Add item to the file</button>
+          </div>
+        </div>
+        <p class="calc-note" id="cl-msg" hidden></p>
+      </div>
+      <p class="cl-verdict" id="cl-verdict" aria-live="polite">{cl_verdict}</p>
+      <div id="cl-stage">{cl_stage}</div>
+      <div class="card" style="margin-top:var(--space-6);">
+        <h3>Take the file</h3>
+        <p>The file exports as clean markdown: the ten steps with their state, every logged item with its flag and recorded decision, and the gate verdict — the shape of the clearance file the E&amp;O application and the distributor's delivery review both ask for.</p>
+        <p><button type="button" class="btn" id="cl-copy">Copy file</button> <button type="button" class="btn btn-ghost" id="cl-download">Download file (.md)</button></p>
+        <p><a class="btn btn-ghost" href="legal/script-clearance.html">Read the clearance chapter</a> <a class="btn btn-ghost" href="legal/rights-and-disclosure.html">Rights &amp; disclosure</a> <a class="btn btn-ghost" href="greenlight.html">Green light</a></p>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+    </div>
+  </footer>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search" hidden>
+    <div class="palette-box">
+      <input type="search" id="palette-input" placeholder="Search the guide…" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/clearance.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
+</body>
+</html>
+"""
+
+
+# The clearance layer — kept in step with assets/js/clearance.js
+# (STEPS / DEFAULT_ITEMS / evaluate there are the runtime copy;
+# clearance.test.js pins the engine, and the pre-rendered default file
+# below is screenshot-checked against the JS render). Rules 1358–1367,
+# research cycle 81 (Identity r78) — see legal/script-clearance.md.
+CLEARANCE_STEPS = [
+    dict(n=1358, id="report", name="The clearance report", stage="Before the shoot",
+         what="The final shooting script, researched by a professional clearance researcher: every character name, place, address and business checked against its real-world commonality, and the permission contact named for every referenced product, copyright and trademark.",
+         when="Filed before production, on the final shooting script."),
+    dict(n=1359, id="annotation", name="The annotation guide", stage="Before the shoot",
+         what="The writer labels every character, place and event fictional, real or composite; the work's origins and any similar submission's independent path are documented, and true-life sources are recorded as primary or secondary.",
+         when="At the start — it is the clearance review's input, not its output."),
+    dict(n=1360, id="names", name="Researched names, permitted numbers", stage="Before the shoot",
+         what="A fictional name, business or address that coincides with a real, identifiable person or entity is changed or released before use — coincidence is a defect, not a defence — and only permitted telephone and plate numbers ever appear.",
+         when="With the report, before any flagged element is shot or rendered."),
+    dict(n=1361, id="chain", name="Chain of title + copyright report", stage="Before the shoot",
+         what="Ownership proven as an unbroken filed record — origin plus every transfer, work-for-hire or option tested, contributors without releases found, encumbrances quitclaimed — verified by a copyright report covering domestic, foreign and renewal rights.",
+         when="From acquisition onward, and re-run by the distributor at delivery."),
+    dict(n=1362, id="title", name="The title report", stage="Before the shoot",
+         what="The title is researched before final selection; the report lists prior same and similar uses, a conflict changes the title, and the report is filed for the distributors and insurers who require it.",
+         when="Before the title is final — and again when the title is chosen at the end of the process."),
+    dict(n=1363, id="releases", name="Release coverage", stage="During production",
+         what="Written releases cover every recognizably depicted person — thinly disguised and deceased included, the latter via representatives or heirs — every performer, recognizable extra and crew member, and every distinctive location.",
+         when="As each person, performance and location enters the production."),
+    dict(n=1364, id="objects", name="The featured-object caution", stage="During production",
+         what="Props, products, artwork and photographs are cleared one by one under an abundance of caution — prominence in the final form is unknowable in advance, and supplied or previously used items are never assumed already cleared.",
+         when="Item by item, as dressing, props and artwork are placed."),
+    dict(n=1365, id="living", name="The living report", stage="During production",
+         what="The clearance report is updated whenever new material enters — script versions, boards, schedules, the shoot, post-production — and clearance monitoring runs at all stages, not as a single pass at the start.",
+         when="Continuously, from inception through final cut."),
+    dict(n=1366, id="decision", name="The recorded decision", stage="Closing the file",
+         what="Every flagged item is closed by a recorded decision — license it, substitute it, change the way it is used, or expressly assume the risk — and an undecided flagged item blocks the element it flags.",
+         when="Per flagged item, before the element it flags can ship."),
+    dict(n=1367, id="gate", name="The final check + the gate", stage="Closing the file",
+         what="Before exhibition the finished work is reviewed against the clearance file for what the script never contained, trailers and publicity receive their own clearance analysis, and the completed file is the gate — no completed clearance, no cover and no distribution.",
+         when="Before exhibition, on the finished film — not the script."),
+]
+CLEARANCE_KINDS = ["character name", "place / address", "business / signage",
+                   "product / trademark reference", "depicted person",
+                   "performer / extra / crew", "distinctive location",
+                   "prop / artwork / photograph", "title"]
+CLEARANCE_DECISIONS = [("license", "License it"), ("substitute", "Substitute it"),
+                       ("change-use", "Change the use"),
+                       ("assume-risk", "Expressly assume the risk")]
+CLEARANCE_DEFAULT_ITEMS = [
+    dict(label="Lead character name — “Mara Venn”", kind="character name", flagged=False, decision=None),
+    dict(label="Café signage — “Café Lumen” matches a real café chain", kind="business / signage", flagged=True, decision="substitute"),
+    dict(label="Phone number on a flyer in shot 4", kind="place / address", flagged=True, decision="change-use"),
+    dict(label="Poster artwork on the bedroom wall (generated)", kind="prop / artwork / photograph", flagged=True, decision=None),
+    dict(label="Street address spoken in dialogue — checked, no match", kind="place / address", flagged=False, decision=None),
+    dict(label="Working title — title report filed, no conflict", kind="title", flagged=False, decision=None),
+    dict(label="Neighbour recognisable in a background plate", kind="depicted person", flagged=True, decision="license"),
+    dict(label="Crew member visible in a behind-the-scenes still", kind="performer / extra / crew", flagged=True, decision="assume-risk"),
+]
+
+
+def clearance_eval(items):
+    """Mirror of ClearanceEngine.evaluate (assets/js/clearance.js)."""
+    dec_ids = [d for d, _ in CLEARANCE_DECISIONS]
+    flagged = [i for i in items if i.get("flagged")]
+    open_items = [i for i in flagged if i.get("decision") not in dec_ids]
+    gate_open = bool(items) and not open_items
+    if not items:
+        verdict = "No file yet — the gate cannot be assessed. Log the production's items first."
+    elif gate_open:
+        verdict = ("Gate open — every flagged item carries a recorded decision (rule 1366). "
+                   "The completed file can go forward to the final check (rule 1367).")
+    else:
+        n = len(open_items)
+        verdict = (f"Gate held — {n} flagged item" + ("" if n == 1 else "s") +
+                   " without a recorded decision. Under rule 1366 an undecided flagged item "
+                   "blocks the element it flags; under rule 1367, no completed clearance, "
+                   "no cover and no distribution.")
+    return {"total": len(items), "flagged": len(flagged), "open": len(open_items),
+            "gate_open": gate_open, "verdict": verdict}
+
+
+def build_clearance(css_links):
+    """Script Clearance desk — the clearance layer (research cycle 81,
+    rules 1358–1367) as a working file: the ten steps, a log of the
+    production's own items, a recorded decision per flag, and the gate
+    verdict computed exactly as rules 1366–1367 state it. The default
+    file is pre-rendered here under the same rules assets/js/clearance.js
+    runs in the browser; the engine invents no items and no decisions —
+    an item with no recorded decision holds the gate, on the record."""
+    def esc(s):
+        return html.escape(str(s if s is not None else ""))
+
+    dec_label = dict(CLEARANCE_DECISIONS)
+    steps_html = []
+    for i, s in enumerate(CLEARANCE_STEPS):
+        steps_html.append(
+            f'<article class="cl-step"><div class="cl-step-head"><span class="cl-num">{i + 1}</span>'
+            f'<h4>{esc(s["name"])}</h4><span class="cl-tag">Rule {s["n"]} · {esc(s["stage"])}</span></div>'
+            f'<p class="cl-what">{esc(s["what"])}</p><p class="cl-when"><strong>When:</strong> {esc(s["when"])}</p>'
+            f'<p><label><input type="checkbox" data-cl-step="{esc(s["id"])}"> Done — the paper is in the file</label></p></article>')
+    r = clearance_eval(CLEARANCE_DEFAULT_ITEMS)
+    stage_html = []
+    for idx, it in enumerate(CLEARANCE_DEFAULT_ITEMS):
+        s = (f'<article class="cl-item"><div class="cl-item-head"><h4>{esc(it["label"])}</h4>'
+             f'<span class="cl-tag">{esc(it["kind"])}</span></div>')
+        if it["flagged"]:
+            s += (f'<p class="cl-flag">Flagged on research. Recorded decision: '
+                  f'<strong>{esc(dec_label.get(it["decision"]) or "— no decision recorded —")}</strong></p>'
+                  f'<p class="cl-decisions" role="group" aria-label="Record a decision for {esc(it["label"])}">'
+                  + " ".join(
+                      f'<button type="button" class="btn btn-sm{"" if it["decision"] == d else " btn-ghost"}" '
+                      f'data-cl-dec="{idx}:{d}">{esc(label)}</button>'
+                      for d, label in CLEARANCE_DECISIONS)
+                  + "</p>")
+        else:
+            s += '<p class="cl-clear">Clear on research — no flag raised.</p>'
+        s += (f'<p><button type="button" class="btn btn-sm btn-ghost" data-cl-del="{idx}">'
+              f'Remove item</button></p></article>')
+        stage_html.append(s)
+    kind_opts = "".join(f'<option value="{esc(k)}">{esc(k)}</option>' for k in CLEARANCE_KINDS)
+    (SITE / "clearance.html").write_text(CLEARANCE_TMPL.format(
+        css=css_links, sitenav=nav_html("", "clearance.html"), footer=footer_html(""),
+        hero=hero_cutroom(
+            kicker="""The cutting room""",
+            h1="""Script <span class="accent">clearance.</span>""",
+            lede="""Every name, place, business and object in the script, researched against the real world — and proved in a file. The ten steps, your production's items, a recorded decision for every flag, and the gate the insurer and the distributor both check: no completed clearance, no cover, no distribution.""",
+            deck_title="""CLEARANCE — THE_FILE""",
+            clips={"v2": ['The file'], "v1": ['Report', 'Chain', 'Title'], "a1": ['The gate']},
+            h1_id="cl-title-h",
+            extra=""" """),
+        cl_steps="".join(steps_html),
+        cl_steps_state="Steps complete: 0 of 10 — the file is not complete until every step is done.",
+        cl_kind_options=kind_opts,
+        cl_verdict=html.escape(r["verdict"]), cl_stage="".join(stage_html)))
+    return [("clearance.html", "Script clearance")]
+
+
+
+
 GALLERY_TMPL = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5578,6 +5819,9 @@ def main():
     # Episode Forge page (mini-drama episode planner, library-matched arc)
     build_forge(css_links)
 
+    # Script Clearance desk (research cycle 81, rules 1358-1367)
+    build_clearance(css_links)
+
     # Knowledge checks (generated from scripts/checks.json)
     wave7_checks = build_checks(css_links)
 
@@ -5657,6 +5901,9 @@ def main():
         {"url": "forge.html", "title": "Episode forge", "section": "Tools",
          "headings": ["Set the episode", "The hook", "The turn", "The cliffhanger", "Take the plan"],
          "text": "The Episode Forge: a serialized mini-drama episode planner built from the guide's own craft data. An eight-beat, three-act arc (cold open, escalation, reversal and button, folded into the mini-drama genre anatomy — hook in the first 3 seconds, one emotion per episode, a dedicated turn shot, a cliffhanger that is never the resolution) with every beat matched to a real template from the guide's 47-template prompt library, scored on the template's own facets and stated use, with teardown field lessons attached through the facets' own links. A beat the library does not cover is named as uncovered — no template is invented. Export a clean markdown episode plan with the G2/G4 episode gates."},
+        {"url": "clearance.html", "title": "Script clearance desk", "section": "Tools",
+         "headings": ["The ten steps — the file itself", "Your clearance file", "Take the file"],
+         "text": "The Script Clearance desk: the clearance layer from research cycle 81 (rules 1358–1367) as a working file — the clearance report, the annotation guide, researched names and permitted numbers, chain of title and the copyright report, the title report, release coverage, the featured-object caution, the living report, the recorded decision, and the final check at the E&O / distribution gate. Log a production's items, close every flag with a recorded decision, and read the gate verdict computed from your own entries; export the file as markdown. Chapter: legal/script-clearance.md."},
         {"url": "showdown.html", "title": "Model showdown", "section": "Tools",
          "headings": ["Lace up two reels", "The rate", "Drift board", "Vs the baseline"],
          "text": "The model showdown: any two of the guide's 32 watched models spliced side by side on the cutting table — published rates tier by tier, source-check health, drift-board severity and alerts, pricing movement against the 2026-10-11 baseline, and the latest Watchtower event for each. Edges are direct comparisons of published values only; a model with no published USD rate is shown as unpublished, never estimated. Generated from models.json, pricing.json, model-checks.json, and model-history.json."},

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Script clearance desk — AI Film Master Guide</title>
+  <meta name="description" content="The script-clearance layer as a working file: the ten rules (1358–1367) as steps, your production's items logged one by one, every flag closed by a recorded decision, and the E&O / distribution gate verdict computed from your own entries.">
+  <link rel="preload" href="assets/fonts/anton-latin-normal-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/fonts.css">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/motifs.css">
+  <link rel="stylesheet" href="assets/css/docs.css">
+  <link rel="stylesheet" href="assets/css/home.css">
+  <link rel="stylesheet" href="assets/css/print.css">
+  <style>
+    .cl-verdict { font-size: 1.05rem; border-left: 3px solid var(--gold); padding-left: var(--space-4); margin-bottom: var(--space-6); }
+    .cl-held { border-left-color: #e88; }
+    .cl-step, .cl-item { border: 1px solid var(--line); border-radius: 12px; padding: var(--space-4) var(--space-5); margin-bottom: var(--space-4); }
+    .cl-step-head, .cl-item-head { display: flex; align-items: baseline; gap: var(--space-3); flex-wrap: wrap; }
+    .cl-step-head h4, .cl-item-head h4 { margin: 0; font-size: 1.2rem; }
+    .cl-num { display: inline-block; min-width: 1.7em; text-align: center; background: var(--gold); color: #111; border-radius: 999px; font-weight: 800; padding: .1em .3em; }
+    .cl-tag { margin-left: auto; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+    .cl-what, .cl-when, .cl-flag, .cl-clear { color: var(--muted); }
+    .cl-flag strong { color: var(--text); }
+  </style>
+</head>
+<body>
+  <div class="edge-right" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html">Guide</a>
+        <a href="cutting-room.html">Cutting room</a>
+        <a href="teardown.html">Teardowns</a>
+        <a href="workshop.html">Workshop</a>
+        <a href="models/">Models</a>
+        <a href="compare.html">Compare</a>
+        <details class="nav-idx"><summary class="nav-idx-btn is-current"><span>Index</span><span class="nav-idx-caret" aria-hidden="true">▾</span></summary><div class="nav-idx-panel"><div class="nav-idx-group"><p>On the bench</p><ul><li><a href="prompts.html">Prompts</a></li><li><a href="shots.html">Shot list</a></li><li><a href="style-bible.html">Style bible</a></li><li><a href="budget.html">Budget</a></li><li><a href="optimizer.html">Optimizer</a></li><li><a href="doctor.html">Doctor</a></li><li><a href="linter.html">Linter</a></li><li><a href="greenlight.html">Green light</a></li><li><a href="clearance.html" aria-current="page">Script clearance</a></li><li><a href="recipes.html">Recipes</a></li><li><a href="forge.html">Episode forge</a></li></ul></div><div class="nav-idx-group"><p>Study</p><ul><li><a href="manifesto.html">Manifesto</a></li><li><a href="craft-not-buttons.html">Craft, not buttons</a></li><li><a href="field-guides/">Field guides</a></li><li><a href="checks/">Knowledge checks</a></li><li><a href="quiz.html">Quiz</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="model-watch.html">Model watch</a></li><li><a href="showdown.html">Model showdown</a></li></ul></div><div class="nav-idx-group"><p>For agents</p><ul><li><a href="skills.html">Skills</a></li><li><a href="skill-spec.html">Skill spec</a></li><li><a href="api.html">API</a></li><li><a href="changelog.html">Changelog</a></li></ul></div></div></details>
+      </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">&#9679;</span> <span class="hdr-tc-val">00:59:52:00</span></span>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">&#8984;K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero hero-cutroom" aria-labelledby="cl-title-h">
+      <div class="tl-deck" aria-hidden="true">
+        <div class="tl-chrome">
+          <span class="tl-rec"><i></i>REC</span>
+          <span class="tl-tc-live" data-tl-tc>00:00:04:00</span>
+          <span class="tl-pop">2-POP 01:00:06:00 &#183; &#x223F;1kHz</span>
+          <span class="tl-title">CLEARANCE — THE_FILE</span>
+        </div>
+        <div class="tl-ruler">
+          <span style="left:0%">00:00:00:00</span><span style="left:20%">00:00:12:00</span><span style="left:40%">00:00:24:00</span><span style="left:60%">00:00:36:00</span><span style="left:80%">00:00:48:00</span><span style="left:100%">00:01:00:00</span>
+        </div>
+        <div class="tl-tracks">
+          <div class="tl-track"><span class="tl-track-label">V2</span>
+            <span class="clip is-blue" style="left:2.0%;width:96.0%">The file</span>
+          </div>
+          <div class="tl-track"><span class="tl-track-label">V1</span>
+            <span class="clip is-gold" style="left:2.0%;width:30.7%">Report</span>
+            <span class="clip is-gold" style="left:34.7%;width:30.7%">Chain</span>
+            <span class="clip is-gold" style="left:67.3%;width:30.7%">Title</span>
+          </div>
+          <div class="tl-track"><span class="tl-track-label">A1</span>
+            <span class="clip is-rec" style="left:2.0%;width:96.0%">The gate</span>
+          </div>
+          <div class="tl-playhead"></div>
+        </div>
+        <div class="leader-frame" data-leader-frame><b>3</b><span class="lf-label">LEADER</span></div>
+      </div>
+      <div class="container hero-inner">
+        <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>The cutting room</span>
+        <h1 id="cl-title-h">Script <span class="accent">clearance.</span></h1>
+        <p class="lede">Every name, place, business and object in the script, researched against the real world — and proved in a file. The ten steps, your production's items, a recorded decision for every flag, and the gate the insurer and the distributor both check: no completed clearance, no cover, no distribution.</p>
+         
+      </div>
+    </section>
+    <section class="container" aria-labelledby="cl-h">
+      <h2 id="cl-h">The ten steps — the file itself</h2>
+      <p>Script clearance is the layer under every other rights question in this guide: what may lawfully appear in the work at all. The ten steps below are the ten rules from research cycle 81 (rules 1358–1367), each with what the document is and when it is required; the full chapter is <a href="legal/script-clearance.html">Script Clearance: The Report, the Chain, and the Gate</a>. Tick a step when the production has actually done it — the desk counts paper, not intentions. Not legal advice: this is the file a clearance researcher and an entertainment attorney work from.</p>
+      <div id="cl-steps"><article class="cl-step"><div class="cl-step-head"><span class="cl-num">1</span><h4>The clearance report</h4><span class="cl-tag">Rule 1358 · Before the shoot</span></div><p class="cl-what">The final shooting script, researched by a professional clearance researcher: every character name, place, address and business checked against its real-world commonality, and the permission contact named for every referenced product, copyright and trademark.</p><p class="cl-when"><strong>When:</strong> Filed before production, on the final shooting script.</p><p><label><input type="checkbox" data-cl-step="report"> Done — the paper is in the file</label></p></article><article class="cl-step"><div class="cl-step-head"><span class="cl-num">2</span><h4>The annotation guide</h4><span class="cl-tag">Rule 1359 · Before the shoot</span></div><p class="cl-what">The writer labels every character, place and event fictional, real or composite; the work&#x27;s origins and any similar submission&#x27;s independent path are documented, and true-life sources are recorded as primary or secondary.</p><p class="cl-when"><strong>When:</strong> At the start — it is the clearance review&#x27;s input, not its output.</p><p><label><input type="checkbox" data-cl-step="annotation"> Done — the paper is in the file</label></p></article><article class="cl-step"><div class="cl-step-head"><span class="cl-num">3</span><h4>Researched names, permitted numbers</h4><span class="cl-tag">Rule 1360 · Before the shoot</span></div><p class="cl-what">A fictional name, business or address that coincides with a real, identifiable person or entity is changed or released before use — coincidence is a defect, not a defence — and only permitted telephone and plate numbers ever appear.</p><p class="cl-when"><strong>When:</strong> With the report, before any flagged element is shot or rendered.</p><p><label><input type="checkbox" data-cl-step="names"> Done — the paper is in the file</label></p></article><article class="cl-step"><div class="cl-step-head"><span class="cl-num">4</span><h4>Chain of title + copyright report</h4><span class="cl-tag">Rule 1361 · Before the shoot</span></div><p class="cl-what">Ownership proven as an unbroken filed record — origin plus every transfer, work-for-hire or option tested, contributors without releases found, encumbrances quitclaimed — verified by a copyright report covering domestic, foreign and renewal rights.</p><p class="cl-when"><strong>When:</strong> From acquisition onward, and re-run by the distributor at delivery.</p><p><label><input type="checkbox" data-cl-step="chain"> Done — the paper is in the file</label></p></article><article class="cl-step"><div class="cl-step-head"><span class="cl-num">5</span><h4>The title report</h4><span class="cl-tag">Rule 1362 · Before the shoot</span></div><p class="cl-what">The title is researched before final selection; the report lists prior same and similar uses, a conflict changes the title, and the report is filed for the distributors and insurers who require it.</p><p class="cl-when"><strong>When:</strong> Before the title is final — and again when the title is chosen at the end of the process.</p><p><label><input type="checkbox" data-cl-step="title"> Done — the paper is in the file</label></p></article><article class="cl-step"><div class="cl-step-head"><span class="cl-num">6</span><h4>Release coverage</h4><span class="cl-tag">Rule 1363 · During production</span></div><p class="cl-what">Written releases cover every recognizably depicted person — thinly disguised and deceased included, the latter via representatives or heirs — every performer, recognizable extra and crew member, and every distinctive location.</p><p class="cl-when"><strong>When:</strong> As each person, performance and location enters the production.</p><p><label><input type="checkbox" data-cl-step="releases"> Done — the paper is in the file</label></p></article><article class="cl-step"><div class="cl-step-head"><span class="cl-num">7</span><h4>The featured-object caution</h4><span class="cl-tag">Rule 1364 · During production</span></div><p class="cl-what">Props, products, artwork and photographs are cleared one by one under an abundance of caution — prominence in the final form is unknowable in advance, and supplied or previously used items are never assumed already cleared.</p><p class="cl-when"><strong>When:</strong> Item by item, as dressing, props and artwork are placed.</p><p><label><input type="checkbox" data-cl-step="objects"> Done — the paper is in the file</label></p></article><article class="cl-step"><div class="cl-step-head"><span class="cl-num">8</span><h4>The living report</h4><span class="cl-tag">Rule 1365 · During production</span></div><p class="cl-what">The clearance report is updated whenever new material enters — script versions, boards, schedules, the shoot, post-production — and clearance monitoring runs at all stages, not as a single pass at the start.</p><p class="cl-when"><strong>When:</strong> Continuously, from inception through final cut.</p><p><label><input type="checkbox" data-cl-step="living"> Done — the paper is in the file</label></p></article><article class="cl-step"><div class="cl-step-head"><span class="cl-num">9</span><h4>The recorded decision</h4><span class="cl-tag">Rule 1366 · Closing the file</span></div><p class="cl-what">Every flagged item is closed by a recorded decision — license it, substitute it, change the way it is used, or expressly assume the risk — and an undecided flagged item blocks the element it flags.</p><p class="cl-when"><strong>When:</strong> Per flagged item, before the element it flags can ship.</p><p><label><input type="checkbox" data-cl-step="decision"> Done — the paper is in the file</label></p></article><article class="cl-step"><div class="cl-step-head"><span class="cl-num">10</span><h4>The final check + the gate</h4><span class="cl-tag">Rule 1367 · Closing the file</span></div><p class="cl-what">Before exhibition the finished work is reviewed against the clearance file for what the script never contained, trailers and publicity receive their own clearance analysis, and the completed file is the gate — no completed clearance, no cover and no distribution.</p><p class="cl-when"><strong>When:</strong> Before exhibition, on the finished film — not the script.</p><p><label><input type="checkbox" data-cl-step="gate"> Done — the paper is in the file</label></p></article></div>
+      <p class="calc-note" id="cl-steps-state" aria-live="polite">Steps complete: 0 of 10 — the file is not complete until every step is done.</p>
+      <h2>Your clearance file</h2>
+      <p>Log the production's items one by one — every name, place, business, person, location and featured object the research touches. A flagged item closes only with a recorded decision (license, substitute, change the use, or expressly assume the risk); an undecided flag holds the gate. The desk opens on a worked example: a small AI short with one flag still open, so the first verdict you see is the honest one.</p>
+      <div class="card" style="margin-bottom:var(--space-6);">
+        <div class="calc-grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
+          <div class="field">
+            <label for="cl-title">Production title</label>
+            <input class="input" type="text" id="cl-title" placeholder="e.g. The Night Bus">
+          </div>
+          <div class="field">
+            <label for="cl-new-label">New item — what the research must check</label>
+            <input class="input" type="text" id="cl-new-label" placeholder="e.g. Shopfront signage in shot 7">
+          </div>
+          <div class="field">
+            <label for="cl-new-kind">Item kind</label>
+            <select class="input" id="cl-new-kind"><option value="character name">character name</option><option value="place / address">place / address</option><option value="business / signage">business / signage</option><option value="product / trademark reference">product / trademark reference</option><option value="depicted person">depicted person</option><option value="performer / extra / crew">performer / extra / crew</option><option value="distinctive location">distinctive location</option><option value="prop / artwork / photograph">prop / artwork / photograph</option><option value="title">title</option></select>
+          </div>
+          <div class="field">
+            <label for="cl-new-flagged">Research outcome</label>
+            <span><input type="checkbox" id="cl-new-flagged"> Flagged — needs a recorded decision</span>
+          </div>
+          <div class="field">
+            <label aria-hidden="true">&nbsp;</label>
+            <button type="button" class="btn" id="cl-add">Add item to the file</button>
+          </div>
+        </div>
+        <p class="calc-note" id="cl-msg" hidden></p>
+      </div>
+      <p class="cl-verdict" id="cl-verdict" aria-live="polite">Gate held — 1 flagged item without a recorded decision. Under rule 1366 an undecided flagged item blocks the element it flags; under rule 1367, no completed clearance, no cover and no distribution.</p>
+      <div id="cl-stage"><article class="cl-item"><div class="cl-item-head"><h4>Lead character name — “Mara Venn”</h4><span class="cl-tag">character name</span></div><p class="cl-clear">Clear on research — no flag raised.</p><p><button type="button" class="btn btn-sm btn-ghost" data-cl-del="0">Remove item</button></p></article><article class="cl-item"><div class="cl-item-head"><h4>Café signage — “Café Lumen” matches a real café chain</h4><span class="cl-tag">business / signage</span></div><p class="cl-flag">Flagged on research. Recorded decision: <strong>Substitute it</strong></p><p class="cl-decisions" role="group" aria-label="Record a decision for Café signage — “Café Lumen” matches a real café chain"><button type="button" class="btn btn-sm btn-ghost" data-cl-dec="1:license">License it</button> <button type="button" class="btn btn-sm" data-cl-dec="1:substitute">Substitute it</button> <button type="button" class="btn btn-sm btn-ghost" data-cl-dec="1:change-use">Change the use</button> <button type="button" class="btn btn-sm btn-ghost" data-cl-dec="1:assume-risk">Expressly assume the risk</button></p><p><button type="button" class="btn btn-sm btn-ghost" data-cl-del="1">Remove item</button></p></article><article class="cl-item"><div class="cl-item-head"><h4>Phone number on a flyer in shot 4</h4><span class="cl-tag">place / address</span></div><p class="cl-flag">Flagged on research. Recorded decision: <strong>Change the use</strong></p><p class="cl-decisions" role="group" aria-label="Record a decision for Phone number on a flyer in shot 4"><button type="button" class="btn btn-sm btn-ghost" data-cl-dec="2:license">License it</button> <button type="button" class="btn btn-sm btn-ghost" data-cl-dec="2:substitute">Substitute it</button> <button type="button" class="btn btn-sm" data-cl-dec="2:change-use">Change the use</button> <button type="button" class="btn btn-sm btn-ghost" data-cl-dec="2:assume-risk">Expressly assume the risk</button></p><p><button type="button" class="btn btn-sm btn-ghost" data-cl-del="2">Remove item</button></p></article><article class="cl-item"><div class="cl-item-head"><h4>Poster artwork on the bedroom wall (generated)</h4><span class="cl-tag">prop / artwork / photograph</span></div><p class="cl-flag">Flagged on research. Recorded decision: <strong>— no decision recorded —</strong></p><p class="cl-decisions" role="group" aria-label="Record a decision for Poster artwork on the bedroom wall (generated)"><button type="button" class="btn btn-sm btn-ghost" data-cl-dec="3:license">License it</button> <button type="button" class="btn btn-sm btn-ghost" data-cl-dec="3:substitute">Substitute it</button> <button type="button" class="btn btn-sm btn-ghost" data-cl-dec="3:change-use">Change the use</button> <button type="button" class="btn btn-sm btn-ghost" data-cl-dec="3:assume-risk">Expressly assume the risk</button></p><p><button type="button" class="btn btn-sm btn-ghost" data-cl-del="3">Remove item</button></p></article><article class="cl-item"><div class="cl-item-head"><h4>Street address spoken in dialogue — checked, no match</h4><span class="cl-tag">place / address</span></div><p class="cl-clear">Clear on research — no flag raised.</p><p><button type="button" class="btn btn-sm btn-ghost" data-cl-del="4">Remove item</button></p></article><article class="cl-item"><div class="cl-item-head"><h4>Working title — title report filed, no conflict</h4><span class="cl-tag">title</span></div><p class="cl-clear">Clear on research — no flag raised.</p><p><button type="button" class="btn btn-sm btn-ghost" data-cl-del="5">Remove item</button></p></article><article class="cl-item"><div class="cl-item-head"><h4>Neighbour recognisable in a background plate</h4><span class="cl-tag">depicted person</span></div><p class="cl-flag">Flagged on research. Recorded decision: <strong>License it</strong></p><p class="cl-decisions" role="group" aria-label="Record a decision for Neighbour recognisable in a background plate"><button type="button" class="btn btn-sm" data-cl-dec="6:license">License it</button> <button type="button" class="btn btn-sm btn-ghost" data-cl-dec="6:substitute">Substitute it</button> <button type="button" class="btn btn-sm btn-ghost" data-cl-dec="6:change-use">Change the use</button> <button type="button" class="btn btn-sm btn-ghost" data-cl-dec="6:assume-risk">Expressly assume the risk</button></p><p><button type="button" class="btn btn-sm btn-ghost" data-cl-del="6">Remove item</button></p></article><article class="cl-item"><div class="cl-item-head"><h4>Crew member visible in a behind-the-scenes still</h4><span class="cl-tag">performer / extra / crew</span></div><p class="cl-flag">Flagged on research. Recorded decision: <strong>Expressly assume the risk</strong></p><p class="cl-decisions" role="group" aria-label="Record a decision for Crew member visible in a behind-the-scenes still"><button type="button" class="btn btn-sm btn-ghost" data-cl-dec="7:license">License it</button> <button type="button" class="btn btn-sm btn-ghost" data-cl-dec="7:substitute">Substitute it</button> <button type="button" class="btn btn-sm btn-ghost" data-cl-dec="7:change-use">Change the use</button> <button type="button" class="btn btn-sm" data-cl-dec="7:assume-risk">Expressly assume the risk</button></p><p><button type="button" class="btn btn-sm btn-ghost" data-cl-del="7">Remove item</button></p></article></div>
+      <div class="card" style="margin-top:var(--space-6);">
+        <h3>Take the file</h3>
+        <p>The file exports as clean markdown: the ten steps with their state, every logged item with its flag and recorded decision, and the gate verdict — the shape of the clearance file the E&amp;O application and the distributor's delivery review both ask for.</p>
+        <p><button type="button" class="btn" id="cl-copy">Copy file</button> <button type="button" class="btn btn-ghost" id="cl-download">Download file (.md)</button></p>
+        <p><a class="btn btn-ghost" href="legal/script-clearance.html">Read the clearance chapter</a> <a class="btn btn-ghost" href="legal/rights-and-disclosure.html">Rights &amp; disclosure</a> <a class="btn btn-ghost" href="greenlight.html">Green light</a></p>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer"><a href="index.html">Guide</a><a href="skills.html">Skills</a><a href="workshop.html">Workshop</a><a href="quiz.html">Quiz</a><a href="compare.html">Compare</a><a href="gallery.html">Gallery</a><a href="teardown.html">Teardowns</a><a href="model-watch.html">Model watch</a><a href="showdown.html">Showdown</a><a href="forge.html">Episode forge</a><a href="clearance.html">Script clearance</a><a href="checks/">Knowledge checks</a><a href="budget.html">Budget</a><a href="optimizer.html">Optimizer</a><a href="shots.html">Shot list</a><a href="style-bible.html">Style bible</a><a href="doctor.html">Doctor</a><a href="linter.html">Linter</a><a href="cutting-room.html">Cutting room</a><a href="prompts.html">Prompts</a><a href="models/">Models</a><a href="anatomy.html">Anatomy</a><a href="manifesto.html">Manifesto</a><a href="craft-not-buttons.html">Craft, not buttons</a><a href="recipes.html">Recipes</a><a href="field-guides/">Field guides</a><a href="changelog.html">Changelog</a><a href="skill-spec.html">Skill spec</a><a href="api.html">API</a></nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+    </div>
+  </footer>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search" hidden>
+    <div class="palette-box">
+      <input type="search" id="palette-input" placeholder="Search the guide…" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/clearance.js"></script>
+  <script src="assets/js/docs.js"></script>
+  <script src="assets/js/identity.js"></script>
+</body>
+</html>

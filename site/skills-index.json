@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "count": 234,
+  "count": 235,
   "skills": [
     {
       "id": "prompt-t1",
@@ -1327,6 +1327,12 @@
       "title": "Assemble the paperwork stack",
       "description": "Chain of title + E&O + the AI-specific records no standard form covers.",
       "path": "skills/legal/legal-paperwork-stack.md"
+    },
+    {
+      "id": "legal-script-clearance",
+      "title": "Run the script-clearance file",
+      "description": "The ten-step clearance file (rules 1358\u20131367): report, annotation guide, chain of title, title report, releases, and the E&O gate.",
+      "path": "skills/legal/legal-script-clearance.md"
     },
     {
       "id": "workflow-shot-list",

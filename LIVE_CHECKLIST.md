@@ -58,12 +58,14 @@ Secrets live only in Vercel, never in either repo.
   never a record change. Flags are adjudicated in
   `data/v1/model-review-log.json` (re-fetch, verdict, basis) before the
   queue clears; the checker re-run after a pass sets the new baseline.
-  Current state (Watchtower 2.9): 86 history events, queue at 3 standing
+  Current state (Watchtower 2.10): 92 history events, queue at 3 standing
   watches (Seedance 3.0, Kling 4.0, and Soul Cinema's in-app credit
-  cost re-checked a seventh pass, unmoved — Kling 4.0's APIMart criteria
-  page is signature-identical to the 2.4–2.8 baseline). Latest
-  feed (2026-10-13T06:06Z): changed=0, with_errors=0, 10 drift alerts,
-  6 on watch. The 7 standing partial records are unchanged (Medium
+  cost re-checked an eighth pass, unmoved — Kling 4.0's APIMart criteria
+  page is signature-identical to the 2.4–2.9 baseline). Latest
+  feed (2026-10-13T07:35Z): changed=0, with_errors=0, 11 drift alerts,
+  5 on watch. PixVerse V6 recovered in 2.10 (docs source clean at its
+  baseline signature in both runs); the cohort recovered in 2.7 broke
+  (MarkTechPost gating, x.ai and midjourney.com 403s). The 7 standing partial records are unchanged (Medium
   ×3, GlobeNewswire, Morningstar 403; whatsnew.fyi 429; europesays.com
   dropped every try); the sources that recovered in 2.7 (MarkTechPost
   ×3, x.ai, midjourney.com) held through all three runs and on
@@ -120,6 +122,93 @@ Secrets live only in Vercel, never in either repo.
   Hobby timeout (local harness: warm hits ~2ms, cron slice bounded by
   8 URLs × 4s timeout sequential ≈ worst-case design stays inside 10s);
   build machine Standard (never Turbo).
+
+## Free-tier / best-pattern audit (rotation 12, 2026-10-13)
+
+Numbers measured on the working repo's own harness and code, stated
+with their assumptions. The live layer must stay inside Vercel Hobby
+free tiers with headroom; nothing here may bill.
+
+**Function count: 6 of the 12-function fleet cap** — `health`,
+`models-status`, `models-pricing`, `models-changes`, `calc-cost`,
+`cron/watchtower`. Zero npm dependencies (cold-start friendly:
+handlers are 2.8–12.8 KB of plain CommonJS plus shared lib; the data
+they serve is precomputed JSON `require`d from the bundle — no
+per-request computation over upstream sources anywhere except the
+cron's bounded slice).
+
+**Estimated monthly invocations (traffic assumption stated):**
+3,000 pageviews/month site-wide (a niche reference guide), ~40%
+landing on API-backed pages (model watch, budget, cutting room,
+green light) at ~1.5 live calls per view after the ApiClient's
+single-flight fallback behaviour ≈ **1,800 browser-originated calls
+gross**. The edge cache (`s-maxage=600, stale-while-revalidate=86400`
+on every read endpoint; health `s-maxage=60` + SWR) collapses origin
+executions to at most ~1 per endpoint per 10 minutes per PoP, so
+**realistic origin invocations ≈ 300–600/month, plus 30 cron runs**
+(1/day) — **under 1% of the 100k/month Hobby invocation budget**.
+At 10× the assumed traffic the layer is still under ~6% of budget;
+bandwidth is dominated by static pages, not functions.
+
+**Worst-case function duration vs the 10s Hobby ceiling:**
+- Read endpoints + calc-cost: local-harness warm responses measured
+  **13–57 ms** (first local hit ≤184 ms including harness overhead);
+  they read only bundled JSON, so production duration is dominated by
+  cold start, not work — two orders of magnitude under the ceiling.
+- Cron (the only upstream-calling function): **bounded by design
+  after this rotation's fix.** Previously a source fetch could start
+  at the 7s run-budget deadline and run its full 4s timeout past it
+  (≈11s), and GitHub commit-back calls carried 8s timeouts after the
+  slice — a token-configured run could exceed 10s and be killed
+  mid-commit. Now: a fetch may only start while a full 4s timeout
+  fits inside the 7s budget (`FETCH_LATEST_START_MS`), the domain-gap
+  sleep re-checks the deadline, GitHub reads/writes from the cron run
+  at a 2.5s timeout (`GH_TIMEOUT_MS` in `server/lib/github.js`), and
+  commit-back is **skipped with an honest note** when the budget is
+  already spent (state recomputed, committed next run). Design worst
+  case: state load ≤5s (2 × 2.5s, bundle fallback) is exclusive with
+  the slice in practice — the slice budget is measured from function
+  start, so slice + response stays ≤ ~7.5s, inside the ceiling.
+
+**What degrades first, in order:** (1) the per-IP rate limiter
+(60/min public, 20/min compute, per-instance token bucket) returns
+honest 429 envelopes — the frontend treats any non-ok as "use the
+static fallback", so the page stays fully readable on `data/v1/*.json`;
+(2) edge SWR serves stale-while-revalidate rather than queueing origin
+work; (3) the cron defers commit-back (above) instead of failing;
+(4) health reports `degraded` (never 5xx) when fallback data is
+missing or stale — the surfacing model is the Watchtower board's own
+badge states (`live | waking | cached | none`), Trend's Live Wire
+pattern. Hobby caps pause rather than bill, and nothing in the layer
+scales cost with traffic beyond invocations counted above.
+
+**Static-first alignment:** every page reads identically with the API
+down (pre-rendered HTML + static JSON fallback, `force-cache`); the
+working `vercel.json` now also puts the same SWR cache header on
+`/data/v1/*` static JSON (synced to -live on the next ordered push),
+so the fallback path itself is edge-cached. No function computes
+what a build step could precompute; the one job that must run live
+(the cron) is day-keyed, idempotent, slice-bounded, and never
+auto-mutates the model records (it flags; the review desk adjudicates).
+
+**Generator-safety notes (rotation 12 additions):**
+- Board correction (research cycle 81): the Artificial Analysis T2V
+  board's r82 table lives in `field/2026-developments.md` (chapter
+  source — safe to edit); the Kling 3.0 rank correction was made at
+  its sources — the research artifact's `what_changed` (which
+  `build_api.py` re-reads into `models.json`) and the hand-maintained
+  `data/v1/model-updates.md` (on `build_api.py`'s preserve list).
+  Never hand-edit `data/v1/models.json` or `site/*` for board copy.
+- Script Clearance (rules 1358–1367): `clearance.html` is generated
+  by `build_site.py`'s `build_clearance` — never hand-edit
+  `site/clearance.html`. The steps/items/verdict logic lives in two
+  places by design: `CLEARANCE_*` + `clearance_eval` in
+  `build_site.py` (pre-render) and `assets/js/clearance.js`
+  (`ClearanceEngine`, the browser copy) — `scripts/clearance.test.js`
+  pins the engine (19 assertions) and validate.sh stage 7 checks the
+  page, the engine, and the chapter page exist. The chapter source is
+  `legal/script-clearance.md` (in `CHAPTER_ORDER["legal"]`); the
+  skill is a `build_skills.py` HAND entry (`legal-script-clearance`).
 
 ## Open / not yet done
 

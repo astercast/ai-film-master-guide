@@ -51,6 +51,23 @@ By October 2026 the field had consolidated around 4K output and native audio as 
 
 Veo 3.1 sits alone as the premium API tier. Open-model floors keep falling: LTX 2.5 Fast from ~$0.003/s, optimized MiniMax H3 inference from $0.01/s. **Drafting tiers are now a workflow:** Seedance 2.5 Turbo and Gemini Omni Flash at 360p exist for cents-level prompt testing before hero renders. (MakeInfluencer, Oct 2026)
 
+**The Artificial Analysis text-to-video board — r82 state (research cycle 81; the board's first move since r63).** The guide re-polls this board through the research cycle, not live: the r82 fetch (AI Video r82) moved the board for the first time since r63, after 18 consecutive unchanged fetches — a small downward drift, no rank changes, no new rows, and still no Kling 4.0 or Vidu Q4 rows. Any copy quoting the r63 values below the line is stale; these are the current numbers:
+
+| Board position | Model | Elo (r82) | Elo (r63, stale) |
+|---|---|---|---|
+| Top | Wan 3.0 | 1156 | 1158 |
+| 2 | Utopai X | 1148 | 1150 |
+| 3 | Seedance 2.5 | 1143 | 1143 |
+| 4 | H3 | 1140 | 1141 |
+| 5 | H3 Max | 1133 | 1133 |
+| 6 | FLUX 3 | 1129 | 1130 |
+| #15 | Kling 3.0 Omni | 1015 | 1017 |
+| #16 | Kling 3.0 Pro | 1000 | 1000 |
+| — | Vidu Q3 Pro | 942 | 943 |
+| — | Vidu Q3 Turbo | 912 | 912 |
+
+Read the board for what it is: blind-preference Elo on text-to-video prompts, not a production ranking — the guide's model records (cost, audio, duration, consistency) are the budgeting source; this table is the preference snapshot as of the r82 fetch. The earlier claim that Kling 3.0 ranked 12th on this board (September, single-source) is superseded by the r82 positions above.
+
 **Model exclusivity is gone.** fal, Replicate, Higgsfield, Protoface, and Krea now carry all frontier models behind one API key — Kling 3.0, Seedance 2.5, Wan 3.0, Veo 3.1, Grok Imagine, Runway Gen-4.5, LTX-2.5 in one place (Protoface, Oct 8, 2026). The same models appear on Pika, Runway, Luma, Higgsfield, and Krea — platforms now compete on price per second, tooling, and character consistency, not the model list. Margins are moving to workflow tooling and inference optimization.
 
 **Open source, October 2026:** Wan 2.2 (Apache 2.0) remains the practical quality benchmark for open-weights video; HunyuanVideo is the open-source consistency standout (temporal identity stability). LTX-2/2.5 trained on licensed Getty/Shutterstock data — legal safety for commercial work. **License traps to flag:** HunyuanVideo excludes EU/UK/SK and caps at 100M MAU; CogVideoX caps free commercial use at 1M visits/mo; LTX requires a paid license above $10M revenue. (intelligibberish.com, Oct 2026; Medium open-source stack guide, June 2026)
