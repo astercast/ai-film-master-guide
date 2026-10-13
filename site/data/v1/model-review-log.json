@@ -260,6 +260,53 @@
         }
       ],
       "outcome": "New baseline published (2026-10-13T00:34Z): changed=0, with_errors=1 (the Wan 2.6 timeout case above), no_sources=0. The queue holds exactly the 4 standing watches — the adjudicated Vidu S2 flag cleared because the page matches its stored signature, and the retired MiniMax H3 watch stays retired. Drift: 12 alerts (the 11 adjudicated partials plus the Wan 2.6 weather case), 5 unpublished rates (Soul Cinema tabled), pricing diff vs the 2026-10-11 baseline now 6 rows (the 5 Watchtower 2.0 coverage changes plus the Soul Cinema tier)."
+    },
+    {
+      "id": "2026-10-12-review-pass-3",
+      "reviewed_at": "2026-10-12",
+      "reviewer": "Watchtower 2.4 review pass (agent, following the promotion workflow in scripts/refresh/check_models.py)",
+      "scope": "The 4 standing hand-authored watches left by Watchtower 2.3 (Wan 2.7's artifact-chain addition, Seedance 3.0 confirmation, Kling 4.0 GA, Soul Cinema's in-app credit cost) plus the one fresh changed-source flag raised by this pass's own checker run (Soul Cinema).",
+      "method": "Standing watches were re-checked against the criteria written into their queue notes in advance (for Kling 4.0: a GA model ID in the official API docs or published pricing; for Seedance 3.0: an official ByteDance announcement; for Soul Cinema: a Higgsfield-published in-app credit cost). Wan 2.7's addition went through the research-artifact chain (artifact-3 -> build_api.py -> pricing.json -> build_skills.py -> build_site.py), never a review-pass edit of models.json. Its sources were probed with the checker's own fetch path before being written down.",
+      "flag_reviews": [
+        {
+          "model": "Soul Cinema",
+          "model_id": "soul-cinema",
+          "detected_at": "2026-10-13T00:46:44+00:00",
+          "sources_changed": [
+            "https://higgsfield.ai/blog/higgsfield-api"
+          ],
+          "verdict": "dismissed-source-excluded",
+          "basis": "The flagged page is Higgsfield's own API post — the source of the $0.0032/image rate tabled in 2.3 — and it is signature-unstable by proof, not by assumption: two consecutive fetches with the checker's own fetch path returned two different signatures (e3da6393…, fe8ecb76…) at identical length (63,349 chars), and neither matches the flagged run's stored signature (a72de561…). The page embeds a rotating prompt-library payload, so its signature can never hold still. What matters on it did not move: its rate table still lists Soul Cinema at $0.0032/image, the figure on record. No record change. The URL joins Soul Cinema's signature-exclusion list (Marketing Studio already excludes this same page for the same reason) — still fetched and recorded every run, and its rate table is read at every review pass; the watch reads the remaining sources and the news feed."
+        }
+      ],
+      "failed_source_reviews": [],
+      "standing_watch_reviews": [
+        {
+          "model": "Wan 2.7",
+          "model_id": "wan-2-7",
+          "verdict": "resolved-record-added",
+          "basis": "The addition this watch asked for is done, through the chain the 2.3 verdict prescribed: the record was appended to the research artifact (artifact-3-model-comparison.json, 31 -> 32 models) and regenerated into models.json by build_api.py; pricing.json gained the wan-2-7 entry from the same figures 2.3 verified (Alibaba Cloud Model Studio USD list $0.10/s at 720p, $0.15/s at 1080p on every wan2.7 endpoint, fal hosting the same card; China list ¥0.6/s / ¥1.0/s, confidence official); build_skills.py produced the direct-wan-2-7 skill and build_site.py the model page. Sources were probed live first: poyo.ai (endpoint IDs + fal rates) and createvision.ai (spec registry) answered 200, upgrademag's launch report answered 200 on retry; abnewswire timed out and sloptvnews dropped the connection, so neither was used. An automated watch is configured (own sources + wan.video) and baselined by this pass's checker run. The standing watch is resolved and retired from the queue; Wan 2.6's record no longer says 2.7 is missing."
+        },
+        {
+          "model": "Seedance 3.0",
+          "model_id": "seedance-3-0",
+          "verdict": "watch-intact-no-action",
+          "basis": "Re-checked 2026-10-12: no official ByteDance announcement of a Seedance 3.0 exists in current coverage. ByteDance's own catalog still lists Seedance 2.5 as current (checked Oct 6 in the unofficial tracking site's daily inspection, unchanged since), and the rest of the field is third-party explainers plus that same tracking site concluding 'not confirmed'. Nothing from ByteDance Seed's directory. The record's standing position (reported, unconfirmed) is unchanged and the watch stays open."
+        },
+        {
+          "model": "Kling 4.0",
+          "model_id": "kling-4-0",
+          "verdict": "watch-intact-no-action",
+          "basis": "Re-checked against the criteria the watch wrote in advance. Current coverage agrees the full model has not shipped: Flash opened to Ultra Yearly subscribers on Sept 28 (3–20s, 720p, 8-bit SDR) and the full model (30s, 4K, 10-bit HDR 'coming soon') is staged for October with no date; API prepaid packs do not cover 4.0 yet, and multiple evidence reviews state there is no model identifier and no endpoint. No GA model ID in the official API docs, no published pricing: the record stays 'announced' and the watch stays open."
+        },
+        {
+          "model": "Soul Cinema",
+          "model_id": "soul-cinema",
+          "verdict": "watch-intact-no-action",
+          "basis": "The narrowed watch asks for Higgsfield's own in-app per-image credit cost. Still unpublished: Higgsfield's pricing surfaces carry no Soul Cinema credit figure, and the only credit numbers in circulation are the third-party skill-file figures (~0.125 credits/image) that were already on record as third-party in Watchtower 2.3. Nothing new to table; the published rate on record remains the API starting rate ($0.0032/image). The watch stays open, still narrowed."
+        }
+      ],
+      "outcome": "One watch resolved by execution (Wan 2.7 added through the artifact chain: models 31 -> 32, pricing coverage 32 of 32, history release + coverage + price + watch events, queue 4 -> 3). Three watches re-checked and unchanged: Seedance 3.0 still has no official announcement, Kling 4.0 still meets neither GA criterion, Soul Cinema's in-app credit cost is still unpublished. The pass's own checker run raised one fresh flag (Soul Cinema, on Higgsfield's API post) — adjudicated in this same pass as signature churn with proof (two fetches, two signatures; the rate on the page is unchanged) and the URL signature-excluded for this model. Wan 2.6's all_failed stamp from the 2.3 run cleared on its own: all three sources answered and the record reads ok. No record moved on any flag. The re-baseline run after adjudication publishes the clean feed: changed=0, with_errors=0, queue at its 3 standing watches."
     }
   ]
 }

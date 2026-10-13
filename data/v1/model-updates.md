@@ -112,6 +112,54 @@ queues; verdicts are in `data/v1/model-review-log.json` (review pass 2).
   record still has an official source answering. ABNewswire answered this
   run, so the swap condition left by 2.2 does not trigger.
 
+## 2026-10-12 — Watchtower 2.4: Wan 2.7 joins the watch
+
+The 2.3 pass verified Wan 2.7 and deliberately did not add it — a new model
+enters through the research-artifact chain as its own records change. This
+pass is that change; verdicts are in `data/v1/model-review-log.json`
+(review pass 3).
+
+- **Wan 2.7 — added (31 → 32 models).** Alibaba's April 2026 generation:
+  Thinking Mode (the model plans the composition before generating, and
+  timed multi-shot prompts cut on their shot markers), the four-endpoint
+  suite under official IDs (wan2.7-t2v / -i2v / -r2v / -videoedit),
+  2–15s at 720p/1080p with native audio, first/last-frame lock and
+  continuation on image-to-video, reference-to-video with up to 5 images,
+  and prompt-guided editing of existing footage. Pricing is the guide's
+  first Wan rate taken from a published USD list instead of Higgsfield
+  credits: **Alibaba Cloud Model Studio lists $0.10/s at 720p and $0.15/s
+  at 1080p** on every wan2.7 endpoint — fal hosts the same card at the
+  same rates; the China list is ¥0.6/s / ¥1.0/s. Sources were probed with
+  the checker's own fetch path before being written down (two answered
+  clean, the launch report on retry; a wire that timed out and a pricing
+  post that dropped the connection were left out). Wan 2.6's record no
+  longer says 2.7 is missing, and an automated watch (its own sources +
+  wan.video) baselines with this pass's checker run. The standing watch
+  is resolved and retired: the queue is back to three.
+- **Seedance 3.0 — still unconfirmed.** No official ByteDance announcement
+  exists; ByteDance's catalog still tops out at Seedance 2.5, and the
+  freshest tracking coverage says the same thing this desk has said since
+  wave 21. The watch stays open.
+- **Kling 4.0 — still announced.** Flash early access (Ultra Yearly,
+  3–20s at 720p) remains the only live tier; the full model is staged for
+  October with no date, API packs do not cover 4.0 yet, and there is
+  still no GA model ID and no published pricing. The criteria are the
+  criteria. The watch stays open.
+- **Soul Cinema — in-app credit cost still unpublished.** Higgsfield has
+  published no credit figure; the only numbers in circulation are the
+  third-party ~0.125 credits/image already on record as third-party. The
+  rate on record stays the API starting rate ($0.0032/image, 2.3). The
+  narrowed watch stays open.
+- **One fresh flag, dismissed with proof.** This pass's checker run
+  flagged Higgsfield's API post for Soul Cinema. Two consecutive fetches
+  of the page return two different signatures at identical length — it
+  embeds a rotating prompt-library payload, so it can never hold a
+  signature — and its rate table still lists Soul Cinema at
+  $0.0032/image. The URL joins this model's signature-exclusion list
+  (still fetched and recorded every run; Marketing Studio already
+  excludes the same page). The run also cleared Wan 2.6's all_failed
+  stamp from 2.3 on its own: all three of its sources answered.
+
 ## 2026-10-11 — Wave 30: Late-Q4 field sweep
 
 29 → **30 models** (one added); no status changes. The headline item is a

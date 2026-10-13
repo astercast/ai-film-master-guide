@@ -1,13 +1,13 @@
 {
   "format": "model-review-queue/1.0",
-  "generated_at": "2026-10-13T00:34:14+00:00",
+  "generated_at": "2026-10-13T01:01:48+00:00",
   "note": "Changed=true means a source page's content signature moved since the last check. This is a review signal, not a confirmed model change (landing pages are marketing copy; diffs may be noise). Promote via the per-item promotion step — never auto-mutate models.json. Items with a `status` and no `detected_at` are standing hand-authored watches, preserved across runs by the checker.",
-  "pending": 4,
+  "pending": 3,
   "items": [
     {
       "model": "Seedance 3.0",
       "status": "reported",
-      "note": "Wave 21 (2026-10-11): still unconfirmed. Watch ByteDance Seed's public model directory; any official Seedance 3 announcement should flip status to active with full spec/pricing. Re-checked 2026-10-12 (Watchtower 2.3): no official ByteDance announcement exists in current coverage — watch stays open.",
+      "note": "Wave 21 (2026-10-11): still unconfirmed. Watch ByteDance Seed's public model directory; any official Seedance 3 announcement should flip status to active with full spec/pricing. Re-checked 2026-10-12 (Watchtower 2.3): no official ByteDance announcement exists in current coverage — watch stays open. Re-checked 2026-10-12 (Watchtower 2.4): still no official announcement; ByteDance's catalog still lists 2.5 as current — watch stays open.",
       "watch": [
         "seedance 3.0 launch",
         "bytedance seedance 3 official"
@@ -16,25 +16,16 @@
     {
       "model": "Kling 4.0",
       "status": "announced",
-      "note": "Wave 21 (2026-10-11): full model promised 'this October' with no date. Watch kling.ai and the official API docs for a GA model ID; on GA, flip status to active and add pricing. Re-checked 2026-10-12 (Watchtower 2.3): APIMart still lists the API as a preview with pricing unpublished — criteria unmet, watch stays open.",
+      "note": "Wave 21 (2026-10-11): full model promised 'this October' with no date. Watch kling.ai and the official API docs for a GA model ID; on GA, flip status to active and add pricing. Re-checked 2026-10-12 (Watchtower 2.3): APIMart still lists the API as a preview with pricing unpublished — criteria unmet, watch stays open. Re-checked 2026-10-12 (Watchtower 2.4): full model still staged for October with no date, API packs do not cover 4.0, no GA model ID, no pricing — watch stays open.",
       "watch": [
         "kling 4.0 general availability",
         "kling 4.0 API pricing"
       ]
     },
     {
-      "model": "Wan 2.7",
-      "status": "not-in-database",
-      "note": "Wave 21 (2026-10-11): Wan 2.7 (Thinking Mode, t2v/i2v/r2v/videoedit, launched ~April 2026) is missing from models.json — a genuine gap. VERIFIED 2026-10-12 (Watchtower 2.3): official Alibaba Cloud model IDs (wan2.7-t2v/-i2v/-r2v/-videoedit) and published list pricing (¥0.6/s 720p, ¥1.0/s 1080p) confirmed across independent sources. Next step: add it through the research-artifact chain (artifact-3 -> build_api.py) with full spec/pricing sourcing, as its own records change.",
-      "watch": [
-        "wan 2.7 pricing",
-        "wan 2.7 API availability"
-      ]
-    },
-    {
       "model": "Soul Cinema",
       "status": "active",
-      "note": "Wave 21 (2026-10-11): now the default image model in Cinema Studio 3.0/3.5; per-image credit cost still unpublished. Watch the Higgsfield pricing page. Update 2026-10-12 (Watchtower 2.3): Higgsfield's API post now publishes a $0.0032/image starting rate — tabled in pricing.json. The watch narrows to the in-app per-image credit cost.",
+      "note": "Wave 21 (2026-10-11): now the default image model in Cinema Studio 3.0/3.5; per-image credit cost still unpublished. Watch the Higgsfield pricing page. Update 2026-10-12 (Watchtower 2.3): Higgsfield's API post now publishes a $0.0032/image starting rate — tabled in pricing.json. The watch narrows to the in-app per-image credit cost. Re-checked 2026-10-12 (Watchtower 2.4): in-app credit cost still unpublished by Higgsfield (third-party ~0.125 credits/image only) — watch stays open, still narrowed.",
       "watch": [
         "higgsfield soul cinema pricing"
       ]

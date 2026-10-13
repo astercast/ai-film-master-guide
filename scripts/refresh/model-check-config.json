@@ -183,7 +183,11 @@
       ]
     },
     "Soul Cinema": {
-      "news_query": "Higgsfield Soul Cinema"
+      "news_query": "Higgsfield Soul Cinema",
+      "exclude_from_signature": [
+        "higgsfield.ai/blog/higgsfield-api"
+      ],
+      "note": "Watchtower 2.4 calibration (2026-10-12): Higgsfield's API post — the page carrying Soul Cinema's $0.0032/image rate — is signature-unstable by proof: two consecutive fetches with the checker's fetch path returned two different signatures at identical length (63,349 chars); the page embeds a rotating prompt-library payload. Excluded from the signature (the same treatment Marketing Studio already has for this URL), still fetched and recorded every run, and its rate table is read at every review pass."
     },
     "Veo 3.1": {
       "extra_urls": [
@@ -212,6 +216,13 @@
       "exclude_from_signature": [
         "abnewswire.com/pressreleases/alibaba-launches-wan-27"
       ]
+    },
+    "Wan 2.7": {
+      "extra_urls": [
+        "https://wan.video/"
+      ],
+      "news_query": "Wan 2.7 Alibaba AI video",
+      "note": "Watched since 2026-10-12 (Watchtower 2.4), when the record was added through the artifact chain. Sources are the PoYo model page (official endpoint IDs + fal's rates), CreateVision's spec registry, and the launch report; wan.video (the official Wan site) is the extra URL. The rate to diff is the published USD list ($0.10/s 720p, $0.15/s 1080p) — a move on any of these pages is a review signal for the desk's first directly-priced Wan record."
     },
     "Wan 3.0 / 3.0 Prime": {
       "extra_urls": [

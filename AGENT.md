@@ -25,7 +25,7 @@ Static files — **no auth, no keys, no rate limits**. Works on any static host.
 | Endpoint | Contents | Count |
 |---|---|---|
 | `data/v1/index.json` | Manifest — start here | 12 endpoints |
-| `data/v1/models.json` | 30 models: platform, type, credit cost, strengths/weaknesses/best use, `last_verified`, `status`, `what_changed`, `sources`, `unverified` list | 30 |
+| `data/v1/models.json` | 32 models: platform, type, credit cost, strengths/weaknesses/best use, `last_verified`, `status`, `what_changed`, `sources`, `unverified` list | 32 |
 | `data/v1/prompt-templates.json` | 47 templates: id, title, track, prompt, anatomy, use, models | 47 |
 | `data/v1/camera-movements.json` | 22-move camera lexicon: id, move, prompt_phrasing, when_to_use | 22 |
 | `data/v1/checklists.json` | 5 checklists: pre-production, per-shot, continuity, audio, delivery | 5 |
@@ -33,10 +33,10 @@ Static files — **no auth, no keys, no rate limits**. Works on any static host.
 | `data/v1/competitions.json` | 2 judged competitions as craft records (no prizes/deadlines) | 2 |
 | `data/v1/teardowns.json` | 10 shot-by-shot teardowns; prompt reconstructions are analytical | 8 |
 | `data/v1/diagnoses.json` | 12 failure diagnoses: symptom → diagnosis, fixes, repair template | 12 |
-| `data/v1/model-checks.json` | Model-watch freshness feed: per-model last check, source diffs, headlines | 31 checked |
-| `data/v1/model-history.json` | Watchtower 2.0 event log: dated status/price/tier/release/verification/coverage events + the 2026-10-11 pricing baseline the drift engine diffs against | 53 events |
-| `data/v1/model-review-queue.json` | Pending model-watch review items (empty = nothing pending) | 4 pending |
-| `data/v1/model-review-log.json` | Watchtower review log: adjudication record for checker flags — every flag re-fetched and given a verdict with its basis before the queue clears (Watchtower 2.2–2.3) | 4 entries |
+| `data/v1/model-checks.json` | Model-watch freshness feed: per-model last check, source diffs, headlines | 32 checked |
+| `data/v1/model-history.json` | Watchtower 2.0 event log: dated status/price/tier/release/verification/coverage events + the 2026-10-11 pricing baseline the drift engine diffs against | 61 events |
+| `data/v1/model-review-queue.json` | Pending model-watch review items (empty = nothing pending) | 3 pending |
+| `data/v1/model-review-log.json` | Watchtower review log: adjudication record for checker flags — every flag re-fetched and given a verdict with its basis before the queue clears (Watchtower 2.2–2.4) | 5 entries |
 | `data/v1/model-updates.md` | Human-readable model changelog (Markdown, no schema) | — |
 
 Example requests (Node; swap `fs` for `fetch` in a browser):
@@ -120,7 +120,7 @@ covers 0. The test script proves both against the real layer data.
    *every* source failed; 11 models carry at least one failed source
    (`source_status: "partial"`), which the drift engine correctly
    surfaces as alerts. Since Watchtower 2.1 (2026-10-12) every one of
-   the 31 models has a check record — there is no unwatched model left.
+   the 32 models has a check record — there is no unwatched model left.
 4. `model-review-queue.json` → `pending` items: changed source signatures
    awaiting human promotion, plus standing hand-authored watch items
    (a `status`, no `detected_at` — the checker preserves those across
@@ -136,13 +136,15 @@ Worked result for Kling 3.0 (real data): `est_cost_credits` "720p ~7/5s",
 klingai.com homepage; the 2.2 review pass adjudicated it (the move was
 the site's Kling 4.0 hero banner, not a 3.0 change — verdict in
 `model-review-log.json`), and the homepage is signature-excluded, so
-the published feed is clean for 3.0. Review queue `pending: 4` — four
-standing watch items (Seedance 3.0 confirmation, Kling 4.0 GA, the
-Wan 2.7 gap — verified in 2.3, addition queued — and Soul Cinema's
-in-app credit cost). The 2.3 pass adjudicated the one fresh flag the
+the published feed is clean for 3.0. Review queue `pending: 3` — three
+standing watch items (Seedance 3.0 confirmation, Kling 4.0 GA, and Soul
+Cinema's in-app credit cost). The 2.3 pass adjudicated the one fresh flag the
 2.2 feed left (Vidu S2: dismissed — the flagged page is
 signature-identical to its flagged run) and retired the MiniMax H3
-weights watch as resolved. Latest history
+weights watch as resolved. Watchtower 2.4 then executed the Wan 2.7
+addition 2.3 had queued — through the research-artifact chain, as its
+own records change (models 31 → 32, pricing coverage 32 of 32) — and
+re-checked the three remaining watches: none had moved. Latest history
 event: `2026-10-12-kling-3-0-flag-reviewed` (verification). Drift
 severity: `ok`.
 Worked pricing result for Vidu Q4 Preview: history event

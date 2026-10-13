@@ -203,7 +203,7 @@
       "weakness": "No native audio (second pass / LipSync Studio needed)",
       "last_verified": "2026-10-11",
       "status": "active",
-      "what_changed": "Unchanged; the 2.x line remains the open-weights option while 3.0 is closed. Oct 2026: Wan 2.2 (Apache 2.0) remains the practical open-weights quality benchmark; LTX line offers licensed-data legal safety for commercial work. Re-verified 2026-10-11: unchanged; the 2.x line stays the open-weights option while 3.0 is closed. GAP FOUND: Wan 2.7 (Thinking Mode, t2v/i2v/r2v/videoedit suite, 2-15s, 720p/1080p) launched ~April 2026 and is not in this guide — flagged for the review queue, not silently added (April predates this wave's scope).",
+      "what_changed": "Unchanged; the 2.x line remains the open-weights option while 3.0 is closed. Oct 2026: Wan 2.2 (Apache 2.0) remains the practical open-weights quality benchmark; LTX line offers licensed-data legal safety for commercial work. Re-verified 2026-10-11: unchanged; the 2.x line stays the open-weights option while 3.0 is closed. GAP FOUND: Wan 2.7 (Thinking Mode, t2v/i2v/r2v/videoedit suite, 2-15s, 720p/1080p) launched ~April 2026 and is not in this guide — flagged for the review queue, not silently added (April predates this wave's scope). Wan 2.7 was added as its own record on 2026-10-12 (Watchtower 2.4), through the artifact chain this note asked for.",
       "sources": [
         "http://www.upgrademag.com/web/2026/04/25/alibaba-unveils-wan2-7-video/",
         "https://www.abnewswire.com/pressreleases/alibaba-launches-wan-27-breakthrough-ai-image-video-generation-model-with-thinking-mode_800302.html"
@@ -560,6 +560,23 @@
         "https://www.yottalabs.ai/post/pixverse-v6-vs-c1-differences-api-2026",
         "https://blog.segmind.com/ai-video-generation-api-pixverse-v6-review-real-world-use-cases-2026/",
         "http://tagshop.ai/ai-models/pixverse-6"
+      ],
+      "last_verified": "2026-10-12"
+    },
+    {
+      "model": "Wan 2.7",
+      "platform": "Alibaba",
+      "type": "video",
+      "status": "active",
+      "strength": "Thinking Mode: the model plans the composition before it generates, which shows up as fewer artifacts and steadier multi-shot prompts — a prompt can carry timed shot changes (Shot 1 / Shot 2 / Shot 3 with time ranges) and the model cuts on them. Full four-endpoint suite under official IDs (wan2.7-t2v, wan2.7-i2v, wan2.7-r2v, wan2.7-videoedit): text-to-video, image-to-video with first/last-frame lock and continuation, reference-to-video with up to 5 reference images, and prompt-guided editing of existing footage. 2-15s at 720p/1080p, native audio in the same pass, precise color control (HEX codes and palettes) and strong character consistency across references.",
+      "est_cost_credits": "Alibaba Cloud Model Studio list (USD): $0.10/s at 720p, $0.15/s at 1080p — the same rate on every wan2.7 video endpoint; fal hosts the same card at $0.10/s (720p) and $0.15/s (1080p). China list: ¥0.6/s at 720p, ¥1.0/s at 1080p. Worked: a 5s clip at 720p runs $0.50; 10s at 1080p runs $1.50; the full 15s at 1080p runs $2.25. Billed per generated second — verify live.",
+      "weakness": "1080p ceiling — no 4K; the top rung of the Wan line is 3.0. Closed weights: no local run (the open-weights Wan story still ends at 2.2). Native audio is always on — some hosts offer no silent option. Reference-to-video and videoedit cap shorter than text-to-video on some hosts (2-10s against 2-15s), so the row you rent is not always the spec sheet.",
+      "best_use": "Directed mid-budget clips where the prompt is the storyboard: timed multi-shot prompts, reference-held characters and products, lip-synced talking heads from a supplied audio track, and prompt-guided edits of footage you already have — the videoedit endpoint is the one no neighbouring model in this price band matches.",
+      "what_changed": "NEW — added to model watch 2026-10-12 (Watchtower 2.4) through the research-artifact chain, closing the gap flagged in wave 21 and verified in Watchtower 2.3. Launched April 2026 (Tongyi Lab) with Thinking Mode and the four-endpoint suite at 2-15s, 720p/1080p, native audio. It sits between Wan 2.6 (the camera-first 2.x line) and Wan 3.0 (the 30-second flagship): the last 2.x generation, and the first Wan with a published USD list card the budget tools can read directly.",
+      "sources": [
+        "https://poyo.ai/models/wan-2-7-video",
+        "https://createvision.ai/wan-2.7",
+        "http://www.upgrademag.com/web/2026/04/25/alibaba-unveils-wan2-7-video/"
       ],
       "last_verified": "2026-10-12"
     }

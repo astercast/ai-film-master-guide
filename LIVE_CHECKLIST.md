@@ -12,8 +12,8 @@ Snapshot built 2026-10-11 from working-repo commit `ddddbe8`'s tree
 | route | source in live repo | notes |
 |---|---|---|
 | `GET /api/health` | `api/health.js` | roster, freshness SLAs; never 5xx |
-| `GET /api/models-status` | `api/models-status.js` | 31 models, status enum |
-| `GET /api/models-pricing` | `api/models-pricing.js` | 31-model pricing, `?model_id=` filter |
+| `GET /api/models-status` | `api/models-status.js` | 32 models, status enum |
+| `GET /api/models-pricing` | `api/models-pricing.js` | 32-model pricing, `?model_id=` filter |
 | `GET /api/models-changes` | `api/models-changes.js` | Watchtower 2.0: events since `?since=`, pricing diff vs the 2026-10-11 baseline, drift alerts (`lib/drift.js`) |
 | `POST /api/calc-cost` | `api/calc-cost.js` | full 400/404 validation |
 | `GET /api/cron/watchtower` | `api/cron/watchtower.js` | Bearer `CRON_SECRET`; read-only without `GITHUB_REPO_TOKEN` |
@@ -58,10 +58,13 @@ Secrets live only in Vercel, never in either repo.
   never a record change. Flags are adjudicated in
   `data/v1/model-review-log.json` (re-fetch, verdict, basis) before the
   queue clears; the checker re-run after a pass sets the new baseline.
-  Current state (Watchtower 2.3): 53 history events, queue at 4 standing
-  watches (MiniMax H3 watch retired — resolved; Wan 2.7 verified, addition
-  queued as its own artifact-chain records change). Latest feed:
-  changed=0, 12 drift alerts (11 adjudicated partials + 1 timeout case).
+  Current state (Watchtower 2.4): 61 history events, queue at 3 standing
+  watches (Wan 2.7 added through the artifact chain — models 31 → 32,
+  pricing coverage 32 of 32 — and its watch retired; Seedance 3.0,
+  Kling 4.0, and Soul Cinema's in-app credit cost re-checked, unmoved).
+  Latest feed (2026-10-13T01:01Z): changed=0, with_errors=0, 11 drift
+  alerts (the adjudicated partial cohort; Wan 2.6's 2.3 timeout case
+  cleared), 5 on watch incl. Wan 2.7 (baseline + own pricing diff).
 - `vercel.json` in live repo: valid JSON, `outputDirectory: "."`,
   `functions` lists the 5 routes as explicit paths with
   `{"maxDuration": 10}`, crons + headers carried over from the working

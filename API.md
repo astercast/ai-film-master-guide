@@ -18,7 +18,7 @@ Base path: `data/v1/`
 | Endpoint | Contents | Records |
 |---|---|---|
 | `index.json` | Manifest: version, endpoints (description, schema URL, updated, counts, notes), documents, skills pointer | 12 |
-| `models.json` | 31 models with platform, type, credit cost, strengths, weaknesses, best use; per-model `last_verified`, `status`, `what_changed`, `sources`; `cost_basis` note; explicit `unverified` list. Sora = `discontinued` (service shut Mar–Sep 2026) | 30 |
+| `models.json` | 32 models with platform, type, credit cost, strengths, weaknesses, best use; per-model `last_verified`, `status`, `what_changed`, `sources`; `cost_basis` note; explicit `unverified` list. Sora = `discontinued` (service shut Mar–Sep 2026) | 32 |
 | `prompt-templates.json` | 47 templates: id, title, track (`core`/`animated`/`photorealistic`/`performance`/`audio`/`longform`/`repair`), prompt, anatomy, use, models | 47 |
 | `camera-movements.json` | 22 camera moves: id, move, prompt_phrasing, when_to_use | 22 |
 | `checklists.json` | Named checklists (pre-production, per-shot, continuity, audio, delivery) with item arrays | 5 |
@@ -26,11 +26,11 @@ Base path: `data/v1/`
 | `competitions.json` | Competition craft records: what each judged competition scores, the production constraints its rules teach, craft lessons from judged work. No prizes, deadlines, or promotional material | 2 |
 | `teardowns.json` | 10 shot-by-shot teardowns; prompt reconstructions are analytical, not actual prompts | 8 |
 | `diagnoses.json` | 12 failure diagnoses: symptom → craft diagnosis, fixes, repair-template link, source chapters | 12 |
-| `model-checks.json` | Model-watch freshness feed: per-model last check, source-signature diffs, news headlines | 31 |
-| `model-review-queue.json` | Pending model-watch review items (empty = nothing pending) | 4 |
-| `model-history.json` | Watchtower 2.0 event log: dated `release`/`status`/`price`/`tier`/`verification`/`coverage` events per model (price events carry `before_usd`/`after_usd` only where the record documents both), plus `pricing_baseline` — the pricing table as curated 2026-10-11, which the drift engine diffs the live table against | 53 |
-| `model-review-log.json` | Watchtower review log: the adjudication record for checker flags and failed sources — each pass re-fetches the flagged URLs and records a verdict with its basis (Watchtower 2.2–2.3) | 4 |
-| `pricing.json` | Curated pricing table: 31 models with per-tier USD rates (`unit`: `second`/`clip`/`image`), `usd_low`/`usd_high`, `basis` + `confidence` per tier; `status` live/unpublished/discontinued | 31 |
+| `model-checks.json` | Model-watch freshness feed: per-model last check, source-signature diffs, news headlines | 32 |
+| `model-review-queue.json` | Pending model-watch review items (empty = nothing pending) | 3 |
+| `model-history.json` | Watchtower 2.0 event log: dated `release`/`status`/`price`/`tier`/`verification`/`coverage` events per model (price events carry `before_usd`/`after_usd` only where the record documents both), plus `pricing_baseline` — the pricing table as curated 2026-10-11, which the drift engine diffs the live table against | 61 |
+| `model-review-log.json` | Watchtower review log: the adjudication record for checker flags and failed sources — each pass re-fetches the flagged URLs and records a verdict with its basis (Watchtower 2.2–2.4) | 5 |
+| `pricing.json` | Curated pricing table: 32 models with per-tier USD rates (`unit`: `second`/`clip`/`image`), `usd_low`/`usd_high`, `basis` + `confidence` per tier; `status` live/unpublished/discontinued | 32 |
 | `model-updates.md` | Human-readable model changelog (Markdown document, no schema) | — |
 | `schema/` | JSON Schema (draft-07) for every endpoint: `index`, `model`, `prompt-template`, `camera-movement`, `checklist`, `glossary`, `competition`, `teardown`, `diagnosis`, `model-checks`, `model-review-queue`, `model-history`, `model-review-log` | 13 |
 
@@ -49,7 +49,7 @@ backend problem.
 | Function | Method | What it returns |
 |---|---|---|
 | `/api/health` | GET | `status:"ok"`, the function roster, per-file data-freshness SLAs. Never 5xx. |
-| `/api/models-status` | GET | 31-model freshness join (`model-checks.json` × `pricing.json`): per-model `status` (`stable`/`changed`/`error`/`unwatched`), `last_checked`, `change_summary`; honestly `degraded` when sources failed. Watchtower 2.0 adds per-model `drift_severity` + `drift_alerts` and a top-level `drift_summary` (all 31 models, computed by `server/lib/drift.js`). |
+| `/api/models-status` | GET | 32-model freshness join (`model-checks.json` × `pricing.json`): per-model `status` (`stable`/`changed`/`error`/`unwatched`), `last_checked`, `change_summary`; honestly `degraded` when sources failed. Watchtower 2.0 adds per-model `drift_severity` + `drift_alerts` and a top-level `drift_summary` (all 32 models, computed by `server/lib/drift.js`). |
 | `/api/models-changes` | GET | Watchtower 2.0 “what changed” endpoint: `events` from `model-history.json` in the `?since=YYYY-MM-DD` window (default: the baseline date; invalid date → 400 `BAD_INPUT`), `price_changes` — the mechanical diff of the live pricing table against the 2026-10-11 baseline, and `drift_alerts` — models needing review or on watch right now. `?model_id=` restricts all three (unknown id → 404 `NOT_FOUND`). |
 | `/api/models-pricing` | GET | The curated pricing table (`?model_id=` filters; unknown id → 404 `NOT_FOUND`). |
 | `/api/calc-cost` | POST | `{model_id, seconds, resolution_tier, clips=1}` → `{cost_low, cost_high, currency:"USD", breakdown[], pricing_as_of, note}`. Full validation: 400 `BAD_INPUT` (bad body/seconds/clips/tier, human messages for image/per-clip/discontinued models), 404 for unknown model. Compute bucket 20/min, no-store. |
@@ -114,7 +114,7 @@ Competitions are craft references, not events coverage: `what_it_judges`,
 
 ## Skills
 
-217 task procedures in `skills/`, indexed by `skills/index.json`
+234 task procedures in `skills/`, indexed by `skills/index.json`
 (id, title, description, path). Each skill file has frontmatter
 (`name`, `description`) followed by: Use when, Inputs, Procedure,
 Worked example, API references, Pitfalls.

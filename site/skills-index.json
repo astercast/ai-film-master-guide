@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "count": 233,
+  "count": 234,
   "skills": [
     {
       "id": "prompt-t1",
@@ -595,6 +595,12 @@
       "title": "Direct with PixVerse V6",
       "description": "Use PixVerse V6 well: costs, strengths, weaknesses, best use.",
       "path": "skills/models/direct-pixverse-v6.md"
+    },
+    {
+      "id": "direct-wan-2-7",
+      "title": "Direct with Wan 2.7",
+      "description": "Use Wan 2.7 well: costs, strengths, weaknesses, best use.",
+      "path": "skills/models/direct-wan-2-7.md"
     },
     {
       "id": "audit-pre-production-checklist",

@@ -43,15 +43,21 @@ function ok(name, fn) {
 }
 
 /* --- pricing diff against the real baseline --------------------------- */
-ok('real diff: the 5 Watchtower 2.0 coverage changes + the 2.3 Soul Cinema tier', () => {
+ok('real diff: the 5 Watchtower 2.0 coverage changes + the 2.3 Soul Cinema tier + Wan 2.7 (2.4)', () => {
   const changes = drift.diffPricing(history.pricing_baseline.entries, pricing.entries);
-  assert.strictEqual(changes.length, 6, JSON.stringify(changes));
+  assert.strictEqual(changes.length, 7, JSON.stringify(changes));
   const kinds = changes.map((c) => c.kind).sort();
-  assert.deepStrictEqual(kinds, ['model-added', 'tier-added', 'tier-added', 'tier-added', 'tier-added', 'tier-added']);
-  const added = changes.find((c) => c.kind === 'model-added');
-  assert.strictEqual(added.model_id, 'pixverse-v6');
+  assert.deepStrictEqual(kinds, ['model-added', 'model-added', 'tier-added', 'tier-added', 'tier-added', 'tier-added', 'tier-added']);
+  const added = changes.find((c) => c.kind === 'model-added' && c.model_id === 'pixverse-v6');
+  assert(added, 'pixverse-v6 model-added missing');
   assert.strictEqual(added.after_low, 0.09, 'new record shows its rate span');
   assert.strictEqual(added.after_high, 0.23);
+  // Watchtower 2.4 (2026-10-12): Wan 2.7 added through the artifact chain —
+  // Alibaba Cloud Model Studio list, $0.10/s at 720p, $0.15/s at 1080p.
+  const wan = changes.find((c) => c.kind === 'model-added' && c.model_id === 'wan-2-7');
+  assert(wan, 'wan-2-7 model-added missing');
+  assert.strictEqual(wan.after_low, 0.10);
+  assert.strictEqual(wan.after_high, 0.15);
   const fluxTiers = changes.filter((c) => c.kind === 'tier-added' && c.model_id === 'flux-3-video').map((c) => c.tier).sort();
   assert.deepStrictEqual(fluxTiers, ['qhd', 'uhd', 'v2v-qhd', 'v2v-uhd']);
   // Watchtower 2.3 (2026-10-12): Soul Cinema's first published rate —
@@ -119,37 +125,38 @@ ok('Vidu Q4 correction arithmetic: $0.014 headline to $0.045 list is +221.4%', (
   assert(Math.abs(pct - e.pct) < 0.05, pct + ' vs stored ' + e.pct);
 });
 
-ok('pricing coverage is complete: 31 of 31 models have a pricing record', () => {
-  assert.strictEqual(pricing.entries.length, 31);
-  assert.strictEqual(models.models.length, 31);
+ok('pricing coverage is complete: 32 of 32 models have a pricing record', () => {
+  assert.strictEqual(pricing.entries.length, 32);
+  assert.strictEqual(models.models.length, 32);
   const names = new Set(pricing.entries.map((e) => e.model));
   for (const m of models.models) assert(names.has(m.model), 'no pricing record for ' + m.model);
 });
 
 /* --- drift on the real data --------------------------------------------- */
-ok('computeDrift: 31 models, 0 unwatched, 5 unpublished, 12 alerts in the post-review records', () => {
-  // Watchtower 2.3 (2026-10-12): the second review pass adjudicated the
-  // one open flag (Vidu S2 — dismissed with proof: the flagged page is
-  // signature-identical to its flagged run; verdicts in
-  // model-review-log.json pass 2) and all 5 standing watches. The
-  // re-baseline feed (2026-10-13T00:34Z) reads changed=0, 11 partial
-  // records (the adjudicated bot-block cohort) plus Wan 2.6 all_failed
-  // on run timeouts — recovered on immediate re-probe, recorded in the
-  // pass-2 addendum. Drift reads the records, not the header:
-  // 12 error-status = 12 alerts, 0 unwatched. Soul Cinema's first
-  // published rate is tabled, so unpublished drops 6 -> 5 and the
-  // pricing diff grows to 6 rows.
+ok('computeDrift: 32 models, 0 unwatched, 5 unpublished, 11 alerts in the post-review records', () => {
+  // Watchtower 2.4 (2026-10-12): Wan 2.7 added through the artifact chain
+  // (models 31 -> 32) and baselined by this pass's checker run; the three
+  // remaining standing watches re-checked, none moved (verdicts in
+  // model-review-log.json pass 3). The pass's first run flagged Soul
+  // Cinema on Higgsfield's API post — adjudicated as signature churn
+  // with proof (two fetches, two signatures; the rate on the page is
+  // unchanged) and the URL signature-excluded for the model. The
+  // re-baseline feed (2026-10-13T01:01Z) reads changed=0, with_errors=0:
+  // the 11 partial records (the adjudicated bot-block cohort) are the
+  // alerts, and Wan 2.6's 2.3 all_failed stamp cleared — all three of
+  // its sources answered. Pricing diff grows to 7 rows (Wan 2.7
+  // model-added).
   const d = drift.computeDrift({ modelsDoc: models, checksDoc: checks,
     pricingDoc: pricing, historyDoc: history, nowMs: NOW });
-  assert.strictEqual(d.summary.models_total, 31);
+  assert.strictEqual(d.summary.models_total, 32);
   assert.strictEqual(d.summary.unwatched, 0, JSON.stringify(d.summary));
   assert.strictEqual(d.summary.pricing_unpublished, 5, JSON.stringify(d.summary));
-  assert.strictEqual(d.summary.alert, 12, JSON.stringify(d.per_model.filter((r) => r.severity === 'alert')));
-  assert.strictEqual(d.summary.price_changes_vs_baseline, 6);
+  assert.strictEqual(d.summary.alert, 11, JSON.stringify(d.per_model.filter((r) => r.severity === 'alert')));
+  assert.strictEqual(d.summary.price_changes_vs_baseline, 7);
   const alertIds = d.per_model.filter((r) => r.severity === 'alert').map((r) => r.model_id).sort();
   assert.deepStrictEqual(alertIds, ['flux-3-video', 'gemini-omni', 'grok-imagine-1-5',
     'kling-4-0', 'luma-ray-3-2', 'midjourney-v1-video', 'minimax-h3',
-    'seedance-3-0', 'vidu-q4-preview', 'vidu-s2', 'wan-2-6', 'wan-3-0']);
+    'seedance-3-0', 'vidu-q4-preview', 'vidu-s2', 'wan-3-0']);
 });
 
 ok('computeDrift: spot severities — PixVerse watched (price moved), Sora ok, Soul Cinema watch (own tier moved)', () => {
@@ -177,6 +184,11 @@ ok('computeDrift: spot severities — PixVerse watched (price moved), Sora ok, S
   // change; the homepage is signature-excluded). In the published feed
   // the model is stable and clear, and its latest event is the review
   // verdict itself.
+  // Wan 2.7's first check is a baseline (stable), and its severity is
+  // watch only because its own pricing record is a baseline diff — the
+  // PixVerse pattern, one generation on.
+  assert.strictEqual(byId['wan-2-7'].check_status, 'stable');
+  assert.strictEqual(byId['wan-2-7'].severity, 'watch');
   assert.strictEqual(byId['kling-3-0'].severity, 'ok');
   assert.strictEqual(byId['kling-3-0'].check_status, 'stable');
   assert.strictEqual(byId['kling-3-0'].latest_event.kind, 'verification');

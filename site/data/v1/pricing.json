@@ -1,7 +1,7 @@
 {
     "format": "pricing/1.0",
     "generated_at": "2026-10-12T00:00:00Z",
-    "generated_by": "Vercel Wave A curation from models.json cost_basis (mega-research 2026-10-10, re-verified 2026-10-11). Watchtower 2.0 (2026-10-12): PixVerse V6 record added (pricing coverage 30 \u2192 31 of 31) and FLUX 3 QHD/UHD/video-to-video tiers tabled from the Sept 10, 2026 BFL list. Wave-engine job; NOT auto-mutated by the watchtower cron (pricing changes need verification \u2014 repo promotion rule).",
+    "generated_by": "Vercel Wave A curation from models.json cost_basis (mega-research 2026-10-10, re-verified 2026-10-11). Watchtower 2.0 (2026-10-12): PixVerse V6 record added (pricing coverage 30 \u2192 31 of 31) and FLUX 3 QHD/UHD/video-to-video tiers tabled from the Sept 10, 2026 BFL list. Wave-engine job; NOT auto-mutated by the watchtower cron (pricing changes need verification \u2014 repo promotion rule). Watchtower 2.4 (2026-10-12): Wan 2.7 record added (pricing coverage 31 -> 32 of 32) from the Alibaba Cloud Model Studio USD list, corroborated by fal's hosting of the same card.",
     "currency": "USD",
     "credit_usd": 0.0392,
     "credit_basis": "Higgsfield Plus plan: $47/1200 credits = $0.0392/credit, declared in models.json cost_basis",
@@ -1184,6 +1184,40 @@
                 "https://blog.segmind.com/ai-video-generation-api-pixverse-v6-review-real-world-use-cases-2026",
                 "http://tagshop.ai/ai-models/pixverse-6"
             ]
+        },
+        {
+            "model_id": "wan-2-7",
+            "model": "Wan 2.7",
+            "provider": "Alibaba",
+            "type": "video",
+            "status": "active",
+            "pricing_status": "live",
+            "currency": "USD",
+            "tiers": [
+                {
+                    "tier": "720p",
+                    "unit": "second",
+                    "usd_low": 0.1,
+                    "usd_high": 0.1,
+                    "basis": "Alibaba Cloud Model Studio list (USD): $0.10/s at 720p, the same rate on every wan2.7 video endpoint (wan2.7-t2v/-i2v/-r2v/-videoedit); fal hosts the same card at $0.10/s \u2014 verify live",
+                    "confidence": "official"
+                },
+                {
+                    "tier": "1080p",
+                    "unit": "second",
+                    "usd_low": 0.15,
+                    "usd_high": 0.15,
+                    "basis": "Alibaba Cloud Model Studio list (USD): $0.15/s at 1080p; fal hosts the same card at $0.15/s. China list: \u00a51.0/s at 1080p (\u00a50.6/s at 720p) \u2014 verify live",
+                    "confidence": "official"
+                }
+            ],
+            "updated_at": "2026-10-12T00:00:00Z",
+            "source_urls": [
+                "https://poyo.ai/models/wan-2-7-video",
+                "https://createvision.ai/wan-2.7",
+                "http://www.upgrademag.com/web/2026/04/25/alibaba-unveils-wan2-7-video/"
+            ],
+            "note": "Added by Watchtower 2.4 through the research-artifact chain (the gap flagged in wave 21, verified in Watchtower 2.3). First Wan record whose rates come from a published USD list card rather than Higgsfield credits."
         }
     ]
 }

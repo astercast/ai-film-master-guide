@@ -29,8 +29,8 @@ One Vercel project containing a static frontend plus serverless functions:
   copied into `site/` at build time — `build_site.py` wipes `site/` first,
   so function sources must never live only under `site/`):
   - `GET /api/health` — service status, function roster, data-freshness SLAs
-  - `GET /api/models-status` — 31-model freshness join (model-checks × pricing)
-  - `GET /api/models-pricing` — the curated 31-model pricing table
+  - `GET /api/models-status` — 32-model freshness join (model-checks × pricing)
+  - `GET /api/models-pricing` — the curated 32-model pricing table
     (`?model_id=` filter; unknown id → 404)
   - `GET /api/models-changes` — Watchtower 2.0: events since `?since=`,
     the mechanical pricing diff against the 2026-10-11 baseline stored in
@@ -90,9 +90,9 @@ One Vercel project containing a static frontend plus serverless functions:
 7. `curl` the roster and assert the envelope schema (`tests/api.test.sh`
    does this; run it with `BASE=https://<project>.vercel.app`):
    - `GET /api/health` → 200, `ok:true`
-   - `GET /api/models-status` → 200, 31 models, statuses in
+   - `GET /api/models-status` → 200, 32 models, statuses in
      `stable|changed|error|unwatched`
-   - `GET /api/models-pricing` → 200, 31 models; `?model_id=bogus` → 404
+   - `GET /api/models-pricing` → 200, 32 models; `?model_id=bogus` → 404
   - `GET /api/models-changes?since=2026-10-01` → 200, October events +
     5 pricing-diff rows; `?since=banana` → 400
    - `POST /api/calc-cost` with `{}` → 400 `BAD_INPUT`
@@ -160,7 +160,7 @@ upgrade without the user's explicit word.
 - **Alerting:** logs only, `[cron]` prefix. **No log lines in 48h** means the
   cron isn't firing — check Vercel → Cron Jobs (paused? secret rotated?).
 - **The weekly deep refresh still exists:** `scripts/refresh/refresh.sh`
-  (Monday 09:00 UTC on any always-on machine) runs the full 31-model check
+  (Monday 09:00 UTC on any always-on machine) runs the full 32-model check
   with Google News RSS passive signals and the noise-control lists; see
   Appendix A. The Vercel cron is the daily incremental layer on top.
 

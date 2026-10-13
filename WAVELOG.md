@@ -1,5 +1,92 @@
 # Wave Log — AI Film Master Guide
 
+## Watchtower 2.4 — Wan 2.7 joins the watch (2026-10-12)
+
+**Assignment:** Rotation 5 — execute the addition Watchtower 2.3 verified
+and deliberately did not hand-add: Wan 2.7 enters through the
+research-artifact chain as its own records change (the PixVerse path), so
+it appears everywhere a model should — records, pricing, drift-board
+watch, docs counts — with sources intact. Then re-check the remaining
+standing watches and log verdicts in the review log. Plus the 2.2 process
+lesson, applied twice: no checker process was alive before either run
+(`ps` verified; both runs single, detached, ~9 min each).
+
+**The addition, through the chain.** `scripts/wave40_wan27_append.py`
+appended the record to the research artifact (31 → 32 models) and closed
+Wan 2.6's now-false "not in this guide" gap note; `build_api.py`
+(assert 31 → 32) regenerated `models.json`; `pricing.json` gained the
+wan-2-7 entry from the same figures 2.3 verified — Alibaba Cloud Model
+Studio's USD list, **$0.10/s at 720p, $0.15/s at 1080p** on every
+wan2.7 endpoint (wan2.7-t2v/-i2v/-r2v/-videoedit), fal hosting the same
+card, China list ¥0.6/s / ¥1.0/s, confidence **official** — the first Wan
+record priced from a published USD list instead of Higgsfield credits,
+and written in USD-per-second words with no credit pattern, so the
+Studio engine treats it as API-priced (the PixVerse convention) rather
+than inventing a credit rate. `build_skills.py` produced
+`direct-wan-2-7` (skills 233 → 234); `build_site.py` produced
+`site/models/wan-2-7.html` and the rebuilt board. Sources were probed
+with the checker's own fetch path before being written down: poyo.ai
+(endpoint IDs + fal rates) and createvision.ai (spec registry: 2–15s,
+720p/1080p, native audio always on) answered 200, upgrademag's launch
+report 200 on retry; ABNewswire timed out and sloptvnews dropped the
+connection — both excluded, the 2.3 flakiness pattern repeating on cue.
+
+**The watches — one resolved, three unchanged.** Wan 2.7's watch is
+resolved by execution and retired (queue 4 → 3). Seedance 3.0: still no
+official ByteDance announcement — the catalog tops out at 2.5 and the
+freshest tracking coverage concludes the same. Kling 4.0: Flash early
+access remains the only live tier, API packs do not cover 4.0, no GA
+model ID, no published pricing — the criteria are unchanged and unmet.
+Soul Cinema: the in-app credit cost is still unpublished (third-party
+~0.125 credits/image only, already on record as third-party). Verdicts
+in `model-review-log.json` pass 3; history 53 → **61 events** (Wan 2.7
+release + coverage + price + watch, three watch re-checks, one flag
+review); the October window holds 41.
+
+**One fresh flag, dismissed with proof.** The pass's first checker run
+flagged Soul Cinema on Higgsfield's own API post — the rate source
+itself. Two consecutive fetches returned **two different signatures at
+identical length** (63,349 chars): the page embeds a rotating
+prompt-library payload and can never hold a signature. Its rate table
+still lists Soul Cinema at $0.0032/image, the figure on record. The URL
+joins Soul Cinema's signature exclusions (Marketing Studio already
+excludes the same page), still fetched and recorded every run. The same
+run cleared Wan 2.6's 2.3 all_failed stamp unaided — all three sources
+answered. Re-baseline feed (2026-10-13T01:01Z): **changed=0,
+with_errors=0, no_sources=0**. Drift: **11 alerts** (the adjudicated
+partial cohort), **5 watch** (incl. Wan 2.7: baseline-stable, watch on
+its own pricing diff — the PixVerse pattern), 16 ok, 0 unwatched;
+unpublished rates stay **5**; pricing diff vs the 2026-10-11 baseline
+**6 → 7 rows** (Wan 2.7 model-added, $0.10–0.15).
+
+**Validation:** `scripts/watchtower.test.js` **15/15** (pins moved to
+the new feed: 32 models, 11 alerts with the exact id set, diff = 7 rows
+incl. wan-2-7 model-added at $0.10/$0.15). `tests/api.test.sh` **55/55**
+(October window 34 → 41, price diff 6 → 7, drift 32 models / 11
+alerts). `studio.test.js` **70/70**, `greenlight.test.js` **29/29**,
+`agent-workflows.test.js` all pass (92 assertions). `bash
+scripts/validate.sh` **16 passed, 2 failed** pre-commit — stages 5a/6,
+the skills + llms zero-diff checks, the expected uncommitted state (goes
+green on commit, the standing pattern). Headless-Chromium screenshots
+inspected (desktop 1440px + mobile 390px): cutting-room board intact,
+freshness badge reads the new 01:01 UTC feed ("32 models checked — 0
+changed · 0 check errors · 0 unwatched"), filter chips ALL (32), the
+Wan 2.7 deep-dive renders its record (Thinking Mode, four endpoints,
+worked $0.50/$1.50/$2.25 examples), Wan 2.7's card on the board carries
+its sources and coverage event. AI-ism scan on new copy: clean.
+
+**Left open:** the 3 standing watches (Seedance 3.0 confirmation,
+Kling 4.0 GA, Soul Cinema's in-app credit cost) — all re-checked this
+pass, none moved. The 11 partial records will keep surfacing as alerts
+while their third-party sources bot-block the checker — adjudicated
+three passes running now, documented, honest. LTX-2.5's ltx.io note
+stands.
+
+**Commit:** local `<pending>` → pushed 2026-10-12 (gh-push.py).
+Verified: a second gh-push run reports no changes — remote tree ==
+local HEAD tree. Working repo only — no `-live` repo touched, no
+Vercel access.
+
 ## Watchtower 2.3 — the second review pass (2026-10-12)
 
 **Assignment:** Rotation 4 — work everything 2.2 left open by design: the

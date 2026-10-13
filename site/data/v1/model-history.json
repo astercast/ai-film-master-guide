@@ -1,6 +1,6 @@
 {
   "format": "model-history/1.0",
-  "generated_at": "2026-10-13T00:13:08Z",
+  "generated_at": "2026-10-13T00:55:40Z",
   "method": "Hand-authored event log. Every event traces to a fact recorded in models.json (what_changed), data/v1/model-updates.md, or this wave's own pricing-table changes. Price events carry a before/after pair only where the record documents both numbers; otherwise the fields are null and the summary says why. The pricing baseline below is the pricing table as curated on 2026-10-11 — the drift engine diffs the live table against it, so a rate that moves from here on is caught mechanically, not by memory.",
   "pricing_baseline": {
     "at": "2026-10-11T00:00:00Z",
@@ -660,6 +660,17 @@
       "source": "models.json what_changed (added 2026-10-12)"
     },
     {
+      "id": "2026-04-06-wan-2-7-launch",
+      "date": "2026-04-06",
+      "model_id": "wan-2-7",
+      "model": "Wan 2.7",
+      "kind": "release",
+      "summary": "Wan 2.7 launched (Tongyi Lab): Thinking Mode — the model plans the composition before generating — with the four-endpoint suite wan2.7-t2v, wan2.7-i2v, wan2.7-r2v, wan2.7-videoedit at 2–15s, 720p/1080p, and native audio. The last 2.x generation before Wan 3.0.",
+      "status_after": "active",
+      "confidence": "reported",
+      "source": "models.json what_changed (added 2026-10-12)"
+    },
+    {
       "id": "2026-04-26-sora-apps-close",
       "date": "2026-04-26",
       "model_id": "sora-2",
@@ -1201,6 +1212,82 @@
       "summary": "Standing watch verified: Wan 2.7 clears the criteria the desk applies — official Alibaba Cloud model IDs (wan2.7-t2v, wan2.7-i2v, wan2.7-r2v, wan2.7-videoedit) and published list pricing (¥0.6/s at 720p, ¥1.0/s at 1080p; hosted on fal at $0.10/s and $0.15/s), confirmed across independent sources. It is not in models.json yet: adding a model goes through the research-artifact chain as its own records change, not a review-pass edit. The watch stays open until the record lands.",
       "confidence": "reported",
       "source": "Watchtower 2.3 review pass (2026-10-12) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-12-wan-2-7-coverage",
+      "date": "2026-10-12",
+      "model_id": "wan-2-7",
+      "model": "Wan 2.7",
+      "kind": "coverage",
+      "summary": "Wan 2.7 added to the guide through the research-artifact chain (Watchtower 2.4). The gap was flagged in wave 21 and verified in Watchtower 2.3 — official Alibaba Cloud model IDs and published list pricing both exist — but a review pass does not hand-add models; this records change is the addition the watch asked for. The standing watch is resolved and retired.",
+      "status_after": "active",
+      "confidence": "reported",
+      "source": "Watchtower 2.4 records change (2026-10-12) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-12-wan-2-7-pricing",
+      "date": "2026-10-12",
+      "model_id": "wan-2-7",
+      "model": "Wan 2.7",
+      "kind": "price",
+      "summary": "Wan 2.7 pricing record added (coverage 31 of 31 becomes 32 of 32). Alibaba Cloud Model Studio list: $0.10/s at 720p and $0.15/s at 1080p on every wan2.7 video endpoint, corroborated by fal hosting the same card at the same rates; China list ¥0.6/s / ¥1.0/s. The first Wan record priced from a published USD list rather than Higgsfield credits.",
+      "tier": "720p",
+      "before_usd": null,
+      "after_usd": 0.1,
+      "unit": "second",
+      "confidence": "official",
+      "source": "models.json est_cost_credits (verified 2026-10-12, Watchtower 2.3 criteria)"
+    },
+    {
+      "id": "2026-10-12-wan-2-7-watch",
+      "date": "2026-10-12",
+      "model_id": "wan-2-7",
+      "model": "Wan 2.7",
+      "kind": "coverage",
+      "summary": "Automated source watch added: the model's own sources (the PoYo model page carrying the official endpoint IDs and fal's rates, CreateVision's spec registry) plus the official Wan site at wan.video. A published USD list card is exactly the kind of surface whose move matters — the watch diffs it from the first run.",
+      "status_after": "active",
+      "confidence": "reported",
+      "source": "Watchtower 2.4 check run (2026-10-12)"
+    },
+    {
+      "id": "2026-10-12-seedance-3-0-watch-rechecked-2-4",
+      "date": "2026-10-12",
+      "model_id": "seedance-3-0",
+      "model": "Seedance 3.0",
+      "kind": "verification",
+      "summary": "Standing watch re-checked (Watchtower 2.4): no official ByteDance announcement exists — ByteDance's catalog still tops out at Seedance 2.5, and current coverage is third-party explainers and an unofficial tracking site saying the same. Record stays reported/unconfirmed; the watch stays open.",
+      "confidence": "official",
+      "source": "Watchtower 2.4 review pass (2026-10-12) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-12-kling-4-0-watch-rechecked-2-4",
+      "date": "2026-10-12",
+      "model_id": "kling-4-0",
+      "model": "Kling 4.0",
+      "kind": "verification",
+      "summary": "Standing watch re-checked (Watchtower 2.4): the full model is still staged for October with no date — Flash early access (Ultra Yearly, 3–20s at 720p) is the only live tier, API packs still do not cover 4.0, and there is still no GA model ID and no published pricing. The criteria are unchanged and unmet; the record stays announced.",
+      "confidence": "official",
+      "source": "Watchtower 2.4 review pass (2026-10-12) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-12-soul-cinema-watch-rechecked-2-4",
+      "date": "2026-10-12",
+      "model_id": "soul-cinema",
+      "model": "Soul Cinema",
+      "kind": "verification",
+      "summary": "Standing watch re-checked (Watchtower 2.4): the in-app per-image credit cost is still not published by Higgsfield — the only figures in circulation remain third-party (~0.125 credits/image, the figure already on record as third-party). The published rate on record stays the API starting rate ($0.0032/image, Watchtower 2.3); the narrowed watch stays open.",
+      "confidence": "official",
+      "source": "Watchtower 2.4 review pass (2026-10-12) — data/v1/model-review-log.json"
+    },
+    {
+      "id": "2026-10-12-soul-cinema-flag-reviewed-2-4",
+      "date": "2026-10-12",
+      "model_id": "soul-cinema",
+      "model": "Soul Cinema",
+      "kind": "verification",
+      "summary": "Review pass: the checker flagged Higgsfield's API post — the page carrying Soul Cinema's $0.0032/image rate — but two consecutive fetches return two different signatures at identical length (the page embeds a rotating prompt-library payload), and its rate table still lists $0.0032/image, the figure on record. The URL is signature-excluded for this model from this run on (still fetched and recorded); no record change.",
+      "confidence": "official",
+      "source": "Watchtower 2.4 review pass (2026-10-12) — data/v1/model-review-log.json"
     }
   ]
 }
