@@ -333,7 +333,7 @@ INDEX_TMPL = """<!DOCTYPE html>
     </div>
   
   <main id="main">
-    <section class="hero hero-cutroom" aria-labelledby="hero-title">
+    <section class="hero hero-cutroom hero-home" aria-labelledby="hero-title">
 <div class="tl-deck" aria-hidden="true">
         <div class="tl-chrome">
           <span class="tl-rec"><i></i>REC</span>
@@ -3362,6 +3362,20 @@ GALLERY_TMPL = """<!DOCTYPE html>
   </header>
   <main id="main">
     {hero}
+    <section class="container heritage-band" aria-labelledby="gal-heritage-h">
+      <h2 id="gal-heritage-h">The rooms this craft comes from</h2>
+      <p class="lede" style="margin-bottom:var(--space-5);">Before a prompt ever described a frame, these machines made them — and the discipline they taught (load carefully, expose once, project honestly) is the discipline this gallery is for.</p>
+      <div class="heritage-grid">
+        <figure class="heritage-fig">
+          <img src="assets/film-projector.webp" alt="Cinema projector mechanism at the Onomichi Cinema Museum" loading="lazy">
+          <figcaption>A cinema projector mechanism, Onomichi Cinema Museum. <span class="heritage-attr">Photo: Asturio Cantabrio, CC BY-SA 4.0, via Wikimedia Commons</span></figcaption>
+        </figure>
+        <figure class="heritage-fig">
+          <img src="assets/movie-theater-marquee.webp" alt="The Uptown Cinema marquee lit at night, 2017" loading="lazy">
+          <figcaption>The Uptown Cinema marquee at night, 2017. <span class="heritage-attr">Photo: Jehof, CC BY-SA 4.0, via Wikimedia Commons</span></figcaption>
+        </figure>
+      </div>
+    </section>
     <section class="container" aria-labelledby="gal-h">
       <h2 id="gal-h">Your collection</h2>
       <div class="card" style="margin-bottom:var(--space-6);">
@@ -3683,6 +3697,10 @@ MANIFESTO_TMPL = """<!DOCTYPE html>
     {hero}
     <section class="container" style="margin-bottom:var(--space-7);">
       <div class="prose">
+      <figure class="heritage-fig heritage-fig-wide">
+        <img src="assets/silent-era-camera.webp" alt="Frank Hurley filming on location in Papua, about 1923" loading="lazy">
+        <figcaption>Frank Hurley filming on location, Papua, ca. 1923. A century before the first prompt, the job was already the job: choose the frame, commit, live with the take. <span class="heritage-attr">Photo: State Library of Queensland, public domain (no known restrictions), via Wikimedia Commons</span></figcaption>
+      </figure>
         <h2>What this is</h2>
         <p>A reference manual you keep open while you work — twenty-six chapters on craft, platforms, economics, and pipelines, plus the tools (budget calculator, prompt workshop, model quiz, teardowns) and the machine-readable API underneath. It is updated as the field moves: the changelog is dated, the model data is versioned, and corrections are printed, not buried.</p>
         <h2>What it costs</h2>
@@ -3932,7 +3950,12 @@ def skill_spec_example():
     m = re.match(r"^---\n(.*?)\n---\n(.*)$", text, re.S)
     front, body = (m.group(1), m.group(2)) if m else ("", text)
     front_esc = html.escape(front.strip()).replace("{", "").replace("}", "")
-    return front_esc, md2html.convert(body)
+    body_html = md2html.convert(body)
+    # QA-009: the example is content under the page's own <h1> (spec-title);
+    # demote its headings one level so the page keeps exactly one <h1>.
+    for lvl in (3, 2, 1):
+        body_html = body_html.replace(f"<h{lvl}", f"<h{lvl + 1}").replace(f"</h{lvl}>", f"</h{lvl + 1}>")
+    return front_esc, body_html
 
 
 def build_field_guides(css_links):
@@ -5200,7 +5223,8 @@ CHECK_TMPL = """<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{title} — knowledge check — AI Film Master Guide</title>
   <meta name="description" content="Test your understanding of the {title} chapter: scenario questions with explained answers. Progress saves in your browser.">
   {css}
 </head>
@@ -5456,7 +5480,105 @@ FOUR_OH_FOUR_TMPL = """<!DOCTYPE html>
 </html>
 """
 
+LIVE_ORIGIN = "https://ai-film-master-guide-live.vercel.app"
+ARTICLE_DIRS = {"craft", "field", "legal", "economics", "distribution",
+                "platforms", "guides", "case-studies", "higgsfield",
+                "checks", "field-guides"}
+
+
+def _canonical_url(rel):
+    """cleanUrls canonical URL for a site-relative page path."""
+    if rel == "index.html":
+        return LIVE_ORIGIN + "/"
+    if rel.endswith("/index.html"):
+        return LIVE_ORIGIN + "/" + rel[: -len("index.html")]
+    return LIVE_ORIGIN + "/" + rel[: -len(".html")]
+
+
+def inject_head_meta():
+    """Shared <head> completion for every generated page (rotation 12
+    follow-up: Foundry rounds 2/6/11/12 + Commons rounds 8/10).
+
+    The ~40 page templates each own their <head>, so the meta layer is
+    applied here, once, as a post-build pass inside the generator —
+    never as hand-edits to generated pages. Values are never invented:
+    og:title / twitter:title mirror the page's own <title>;
+    og:description / twitter:description mirror its own meta
+    description; og:image / twitter:image are ABSOLUTE on the live
+    domain (social crawlers ignore relative image URLs — Foundry
+    round 6). theme-color is the site's --bg token verbatim (#090807,
+    icon-theme-proposal.md); the favicon set at the site root is the
+    proposal's "REC frame" mark. rel="canonical" is self-referential
+    and absolute (Commons round 10). JSON-LD is emitted only where a
+    page's own data holds the facts: WebSite (homepage), ItemList
+    (model-watch board + models index, from data/v1/models.json),
+    Article (chapter pages; headline + description only — no dates,
+    ratings, or offers exist in the data, so none are emitted).
+    Idempotent: pages already carrying og:image are skipped.
+    """
+    models_doc = json.loads((ROOT / "data" / "v1" / "models.json").read_text())
+    itemlist = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": i + 1, "name": m["model"],
+             "url": _canonical_url(f"models/{model_slug(m['model'])}.html")}
+            for i, m in enumerate(models_doc["models"])
+        ],
+    }
+    for path in sorted(SITE.rglob("*.html")):
+        text = path.read_text()
+        if "og:image" in text or "</head>" not in text:
+            continue
+        title_m = re.search(r"<title>(.*?)</title>", text, re.S)
+        if not title_m:
+            continue
+        title_raw = title_m.group(1).replace('"', "&quot;")
+        desc_m = re.search(r'<meta name="description" content="(.*?)"', text, re.S)
+        desc_raw = desc_m.group(1) if desc_m else ""
+        rel = path.relative_to(SITE).as_posix()
+        canon = _canonical_url(rel)
+        block = [
+            '  <meta name="theme-color" content="#090807">',
+            '  <link rel="icon" href="/favicon.ico" sizes="48x48">',
+            '  <link rel="icon" href="/favicon.svg" type="image/svg+xml">',
+            '  <link rel="apple-touch-icon" href="/apple-touch-icon.png">',
+            f'  <link rel="canonical" href="{canon}">',
+            '  <meta property="og:type" content="website">',
+            f'  <meta property="og:title" content="{title_raw}">',
+            f'  <meta property="og:description" content="{desc_raw}">',
+            f'  <meta property="og:image" content="{LIVE_ORIGIN}/assets/og-card.png">',
+            '  <meta property="og:image:width" content="1200">',
+            '  <meta property="og:image:height" content="630">',
+            '  <meta name="twitter:card" content="summary_large_image">',
+            f'  <meta name="twitter:title" content="{title_raw}">',
+            f'  <meta name="twitter:description" content="{desc_raw}">',
+            f'  <meta name="twitter:image" content="{LIVE_ORIGIN}/assets/og-card.png">',
+        ]
+        ld = None
+        if rel == "index.html":
+            ld = {"@context": "https://schema.org", "@type": "WebSite",
+                  "name": "AI Film Master Guide", "url": canon,
+                  "description": html.unescape(desc_raw)}
+        elif rel in ("model-watch.html", "models/index.html"):
+            ld = itemlist
+        elif "/" in rel and rel.split("/")[0] in ARTICLE_DIRS:
+            headline = html.unescape(title_m.group(1))
+            suffix = " — AI Film Master Guide"
+            if headline.endswith(suffix):
+                headline = headline[: -len(suffix)]
+            ld = {"@context": "https://schema.org", "@type": "Article",
+                  "headline": headline, "description": html.unescape(desc_raw),
+                  "url": canon}
+        if ld is not None:
+            block.append('  <script type="application/ld+json">'
+                         + json.dumps(ld, ensure_ascii=False) + "</script>")
+        text = text.replace("</head>", "\n".join(block) + "\n</head>", 1)
+        path.write_text(text)
+
+
 def main():
+
     shutil.rmtree(SITE, ignore_errors=True)
     chapters = {}  # section_id -> [(slug, {title, desc, path})]
     for section_id, _ in SECTIONS:
@@ -5594,7 +5716,7 @@ def main():
                 h1="""Task <span class="accent">skills.</span>""",
                 lede="""Every procedure in the guide as a loadable skill: inputs, steps, worked examples, pitfalls. <span id="skills-count" aria-live="polite"></span>""",
                 deck_title="""SKILL_LIBRARY — BIN_01""",
-                clips={"v2": ['232 skills', 'Procedures'], "v1": ['Inputs', 'Steps', 'Worked examples'], "a1": ['Agent room tone', 'Pitfalls']},
+                clips={"v2": [f'{skill_count} skills', 'Procedures'], "v1": ['Inputs', 'Steps', 'Worked examples'], "a1": ['Agent room tone', 'Pitfalls']},
                 h1_id="skills-title",
                 extra="""<div class="field" style="max-width:480px;"> <label for="skills-filter">Filter skills</label> <input class="input" id="skills-filter" type="search" placeholder="e.g. lip sync, BAF, budget…" autocomplete="off"> </div>"""),        css=css_links, sitenav=nav_html("", "skills.html"), footer=footer_html("")))
     shutil.copy(ROOT / "skills" / "index.json", SITE / "skills-index.json")
@@ -5679,9 +5801,9 @@ def main():
             hero=hero_cutroom(
                 kicker="""Agent-native""",
                 h1="""Skill schema <span class="accent">spec.</span>""",
-                lede="""Every one of the {skill_count} skills in <code>skills/</code> follows this exact format — YAML frontmatter plus six Markdown sections. Build to it and your skills slot straight into this library, or any agent framework that reads it.""",
+                lede=f"""Every one of the {len(skill_index.get("skills", []))} skills in <code>skills/</code> follows this exact format — YAML frontmatter plus six Markdown sections. Build to it and your skills slot straight into this library, or any agent framework that reads it.""",
                 deck_title="""SKILL_SPEC — DOC_01""",
-                clips={"v2": ['Six sections'], "v1": ['YAML frontmatter', 'Build to it', '232 skills'], "a1": ['Spec tone', 'Machine-readable']},
+                clips={"v2": ['Six sections'], "v1": ['YAML frontmatter', 'Build to it', f'{len(skill_index.get("skills", []))} skills'], "a1": ['Spec tone', 'Machine-readable']},
                 h1_id="spec-title",
                 extra=""""""),        css=css_links, sitenav=nav_html("", "skill-spec.html"), footer=footer_html(""),
         skill_count=len(skill_index.get("skills", [])),
@@ -5949,6 +6071,21 @@ def main():
     shutil.copytree(ROOT / "server" / "api", SITE / "api", dirs_exist_ok=True)
     shutil.copytree(ROOT / "server" / "lib", SITE / "lib", dirs_exist_ok=True)
     shutil.copy(ROOT / "api.html", SITE / "api.html")
+
+    # Icon set at the deploy root (Foundry round 12 proposal; sources in
+    # assets/icons/ — copied per-build like the other root files above,
+    # because a rebuild wipes site/ first).
+    for icon in ("favicon.ico", "favicon.svg", "apple-touch-icon.png",
+                 "icon-192.png", "icon-512.png"):
+        shutil.copy(ROOT / "assets" / "icons" / icon, SITE / icon)
+
+    # robots.txt (Commons round 8): allow-all. The repo publishes no
+    # sitemap, so there is no Sitemap: pointer — none is invented.
+    (SITE / "robots.txt").write_text("User-agent: *\nAllow: /\n")
+
+    # Shared <head> completion (OG/twitter/theme-color/favicon/canonical/
+    # JSON-LD) for every generated page — see inject_head_meta().
+    inject_head_meta()
     print(f"Built {len(flat)} chapters + index + search index -> {SITE}")
 
 

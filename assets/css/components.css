@@ -666,3 +666,28 @@ details:not(.nav-idx):not(.bin):not(.path-row)[open] { border-color: var(--line-
   .cr-take { gap: var(--space-2) var(--space-3); }
   .cr-timeline { padding: var(--space-2) 0; }
 }
+
+/* ——— Heritage figures (Foundry round 2) ———
+   Real sourced photography (CC BY-SA / public domain, Wikimedia
+   Commons) placed only where the page's subject calls for it; the
+   attribution line travels with the photo in every figcaption. */
+.heritage-band { margin-bottom: var(--space-7); }
+.heritage-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); }
+.heritage-fig {
+  margin: 0 0 var(--space-5); border: 1px solid var(--line-soft);
+  border-radius: var(--radius-m); overflow: hidden; background: var(--panel);
+}
+.heritage-fig img { display: block; width: 100%; height: auto; }
+.heritage-fig figcaption {
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--text-sm); color: var(--ink-dim); line-height: 1.5;
+}
+.heritage-attr {
+  display: block; margin-top: 4px;
+  font-family: var(--font-mono); font-size: 0.68rem;
+  letter-spacing: 0.06em; color: var(--muted);
+}
+.heritage-fig-wide { margin-bottom: var(--space-6); }
+@media (max-width: 720px) {
+  .heritage-grid { grid-template-columns: 1fr; }
+}

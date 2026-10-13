@@ -167,6 +167,179 @@ fetch-rule skips occurred: every fetch used the checker's own
 path or its probe imports; no approval-card source was
 encountered.
 
+**Rotation 12 — follow-up pass (same day; tickets folded in after
+the entry above shipped).** The "Left open" note above is
+superseded where it touches QA-009: QA-009 was added to this
+rotation's scope by follow-up and is fixed below, together with
+QA-002, VP-0004, VP-0006, VP-0007, the Foundry placement work
+(rounds 2/6/11/12), and Commons rounds 8 + 10. One feed note
+first: hours after run D, the repo's own refresh lane
+(`scripts/refresh/refresh.sh`, run by the data-ops desk) re-ran
+the checker as the egress recovered and landed a clean feed
+(2026-10-13T11:35Z: changed=0, with_errors=0, 21 ok / 11 partial)
+— the weather stamps cleared, drift is back to **11 alerts /
+5 watch / 16 ok** with the exact 2.10 alert set, PixVerse stable
+at watch, queue at the 3 standing watches. The 2.11 verdicts are
+unchanged (changed=0 again); the test pins and LIVE_CHECKLIST
+now assert the refresh feed, and the board renders it.
+
+**QA-002 — deploy docs drift, fixed (docs only; the deploy
+structure is untouched, per the Release Engineer's push-kit
+plan).** GO_LIVE.md's deploy-model paragraph claimed
+`outputDirectory: "."` for this repo while vercel.json says
+`"site"` — corrected, with the file's other drift swept in the
+same pass: the status header no longer claims nothing is
+deployed (the -live snapshot serves from
+ai-film-master-guide-live.vercel.app), §3's import step now names
+the -live repo (not this build engine), §5's duration row admits
+each function pins `maxDuration: 10`, and §8 no longer lists a
+`sitemap.xml` (none exists). The empty root `api/` is now
+documented plainly in GO_LIVE.md: it is an untracked empty
+directory on disk (0 files in git), holds no functions and
+deploys nothing; sources live in `server/api/` + `server/lib/`,
+build copies in `site/api/` + `site/lib/`. For the push kit:
+rotation 12 changed file CONTENTS inside `server/api/` (the cron
+handler) and `server/lib/` (github.js) plus their `site/` copies
+— no paths added or removed, the 6-function map unchanged, root
+`api/` untouched.
+
+**Foundry round 2 (+ rounds 6/11/12 refinements) — OG card,
+heritage photos, theme-color, favicon.** Executed from the
+round-11 placement packet and the round-12 icon-theme proposal
+(both are the source of truth; the packet's block supersedes any
+local draft). The card (`og-card.png`, md5 50b0de2f…, verified
+against the packet) is copied to `assets/og-card.png` and reaches
+`site/assets/` via the build's existing asset copytree. WIRING
+PATTERN (for Commons harvest): this generator's ~40 templates
+each own their `<head>`, so the meta layer is applied ONCE as a
+post-build pass inside the generator — `inject_head_meta()` at
+the end of `build_site.py`'s `main()` walks every generated page
+and inserts the block before `</head>`, idempotently. Values are
+never invented: og:title / twitter:title mirror each page's own
+`<title>`; og:description / twitter:description mirror its own
+meta description (the packet's homepage instance is the shape).
+og:image / twitter:image are ABSOLUTE —
+`https://ai-film-master-guide-live.vercel.app/assets/og-card.png`
+— because social crawlers ignore relative image URLs (round 6
+catch); the same absolutize-on-the-live-domain rule applies to
+rel="canonical" (Commons round 10, below). Coverage after this
+pass: **106/106 pages** carry og + twitter + theme-color +
+favicon links + canonical. theme-color is `#090807` (the site's
+`--bg` token verbatim). The favicon is the proposal's "REC
+frame" mark (gold corner brackets + ember REC dot on the --bg
+field), produced as `assets/icons/favicon.svg` (master) +
+favicon.ico (16/32/48) + icon-192/512 + apple-touch-icon, copied
+to the site root per-build by the generator (a rebuild wipes
+`site/` first, so icons live in the repo, never only in `site/`).
+One defect found by the wiring: CHECK_TMPL's six knowledge-check
+pages had **no `<title>` element at all** (and no viewport meta)
+— fixed at the template; the injector had correctly refused to
+invent titles for them.
+Heritage photos (round 2 manifest; CC BY-SA 4.0 / public domain
+via Wikimedia Commons; the attribution line travels onto every
+page that uses one, verbatim from the manifest): the cinema
+projector (Asturio Cantabrio) and the Uptown marquee (Jehof) sit
+in a "rooms this craft comes from" band on `gallery.html`; the
+Frank Hurley silent-era camera (State Library of Queensland,
+public domain) frames the manifesto's craft-lineage argument on
+`manifesto.html`; the 1930 editing-machine technician (Touring
+Club Italiano) opens `craft/editing-pipeline.md` — the chapter's
+own subject in its first machine form. Per-page need calls: the
+packet's alternates were declined where the design has no honest
+slot (the field-guides are data-generated cheat sheets; no photo
+was forced there). Placing the chapter photo required the
+corpus's first image support in `scripts/md2html.py` (a
+`![alt](src)` line + optional `Photo:` caption line renders as
+`figure.heritage-fig`; no chapter previously used image syntax,
+so the addition is inert for the rest of the corpus).
+
+**Commons round 8 (robots.txt).** `site/robots.txt` is generated
+by `build_site.py` on every build (survives rebuilds): allow-all
+(`User-agent: *` / `Allow: /`). The repo publishes no sitemap, so
+there is no Sitemap: pointer — none was invented.
+
+**Commons round 10 (canonical + honest JSON-LD).** rel="canonical"
+is emitted by the same injection pass for every generated page —
+self-referential and ABSOLUTE on the live domain, computed from
+the page's path under cleanUrls rules (index pages resolve to
+their directory URL). JSON-LD is emitted only where a page's own
+data holds the facts: **WebSite** on the homepage (name + URL +
+the page's own description); **ItemList** on `model-watch.html`
+and `models/index.html` (32 ListItems — position, model name,
+canonical model-page URL — all from `data/v1/models.json`, slugs
+via the generator's own `model_slug()`); **Article** on the 41
+chapter-class pages (headline = the page title minus the site
+suffix, description = the page's meta description, URL =
+canonical). No ratings, review counts, dates, prices, or offers
+are emitted anywhere — those facts are not in the data. Tool and
+utility pages carry canonical + OG only. No service worker was
+added (explicitly out of this pass). All 44 JSON-LD blocks parse
+as valid JSON.
+
+**VP-0004 — homepage mobile hero.** Before (390×844): headline
+top at 622px (~74% of the viewport), nav 77px (two wrapped rows),
+deck 376px, and 7 of 8 timeline clip labels overflowing their
+blocks (24–82px each — "CUTAWA", "TEARDOWN F…"). Fixes, all
+inside `max-width: 720px` rules (desktop composition untouched):
+the site nav becomes one scrollable row (38px); the homepage
+hero (`.hero-home`, a class added to the index template) becomes
+a flex column with the copy first and the deck below it,
+compressed; clip labels are sized to their blocks (0.44rem,
+tighter tracking/padding, deck side-padding reduced). After:
+headline top ≈ 182–208px with the lede and primary CTA inside
+the first viewport, nav 38px, and **all 8 clip labels at zero
+overflow**. Before/after screenshots were taken at 390px (kept
+with the pass's evidence).
+
+**VP-0006 — heading/timecode collision (widened to 7 pages).**
+The component is the docs.js timecode stamper (loads on 99 pages;
+it appends a bare `<span class="tc">` to `.prose h2` and
+`main > section h2`). Enumeration of its layouts: prose h2s are
+flex + chipped by docs.css (never collided — craft-not-buttons
+is the proof, stamp gap 463px); `.tc-head` wraps carry their own
+gap (motifs.css); watchtower headings carry a specific margin
+rule (components.css). The defect lived only in the remaining
+layout — the full-width section header — where nothing separated
+stamp from heading text (measured gap 0px). Fix at that layout
+level, one rule in base.css beside the `.tc` definition:
+`main section h2 > .tc { margin-left: var(--space-3); }` (the
+more specific prose/watchtower rules still win where they
+apply). Verified by measurement + screenshot on all seven named
+pages — Clearance, Forge, Doctor, Linter, Hook Generator,
+Gallery, API (its h2 nests one div deeper; the widened selector
+covers it): **gap 12px on every one**. Controls unchanged in
+character: greenlight's slate counter still separated (21px),
+craft-not-buttons' chip still at the right edge (463px).
+
+**QA-009 + VP-0007 — skill-spec template.** QA-009: the rendered
+prompt example carried the page's second `<h1>` (the example
+skill's own `#` title). Fixed in `skill_spec_example()`: the
+example's headings are demoted one level at render (h1→h2,
+h2→h3, h3→h4), so the example nests under `spec-title`. Class
+sweep: every other generated page was checked for the same
+defect — skill-spec was the ONLY page in the build with ≠1
+`<h1>` before the fix, and the post-fix sweep reads exactly one
+`<h1>` on all 106 pages. VP-0007: the intro's `{skill_count}` was
+a plain string passed as a `.format()` VALUE (values are never
+re-scanned, so the placeholder shipped raw). The lede is now an
+f-string fed by the same count the page's other elements use —
+and the sweep caught the same class twice more on adjacent
+heroes: the skill-spec and skills-library track chips hard-coded
+a stale "232 skills"; both now derive from the skills index.
+The count is **235** everywhere it appears, derived at build
+time, never hard-coded. Post-fix grep of the built page: no
+`{…}` placeholders remain.
+
+**Validation (follow-up pass).** validate.sh **20/20**;
+watchtower 6/6; clearance 19/19; forge 19/19; studio 70/70;
+greenlight 29/29; agent-workflows all pass; api.test.sh
+**55/55** (its drift pin asserts the 11:35Z refresh feed: 11
+alerts, 79 October events). Screenshot evidence: VP-0004
+before/after at 390px, VP-0006 heading crops for the named pages
+before/after, heritage figures rendering with attributions on
+all three placed pages, and the board reading the 11:35Z feed
+("11 need review · 5 on watch").
+
 ## Watchtower 2.10 — the eighth review pass + Episode Forge (2026-10-13)
 
 **Assignment:** Rotation 11 — work the queue Watchtower 2.9 left: the 3

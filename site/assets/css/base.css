@@ -107,6 +107,17 @@ pre code { background: none; padding: 0; border: none; }
   color: var(--gold); white-space: nowrap;
 }
 
+/* VP-0006: docs.js appends this stamp directly after section-heading
+   text. In the prose layout the stamp is a separated chip (.prose h2
+   is flex and docs.css chips the stamp); in the full-width
+   section-header layout (tool/data pages) nothing separated it, and
+   the stamp read as part of the heading ("SET THE EPISODE00:00:45:00").
+   The fix lives at that layout level: a stamped section h2 keeps a
+   real gap before its stamp. Contexts with their own separation
+   (watchtower headings in components.css, .tc-head in motifs.css)
+   carry more specific rules and are untouched. */
+main section h2 > .tc { margin-left: var(--space-3); }
+
 /* Reveal-on-scroll (JS adds .reveal; no-JS keeps everything visible).
    Choreography: decelerate in, 55ms sibling stagger via --rd, travel killed under reduced motion. */
 @media (prefers-reduced-motion: no-preference) {

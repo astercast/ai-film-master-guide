@@ -161,7 +161,16 @@
 
 @media (max-width: 720px) {
   .header-bar { flex-wrap: wrap; gap: var(--space-3); }
-  .site-nav { margin-left: 0; order: 3; width: 100%; }
+  /* VP-0004: the nav wrapped to two rows on phones and, with the hero
+     deck, pushed the homepage headline ~74% down the first viewport.
+     One scrollable row keeps every item reachable at a third of the
+     height. Desktop composition is untouched (this block only). */
+  .site-nav {
+    margin-left: 0; order: 3; width: 100%;
+    flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none;
+  }
+  .site-nav::-webkit-scrollbar { display: none; }
+  .site-nav a { white-space: nowrap; }
   .palette-open { margin-left: auto; }
   .hero-inner { padding-block: var(--space-7) var(--space-6); }
   .nav-idx-panel {

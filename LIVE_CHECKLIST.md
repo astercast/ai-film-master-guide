@@ -63,14 +63,16 @@ Secrets live only in Vercel, never in either repo.
   4.0, and Soul Cinema's in-app credit cost re-checked a ninth pass,
   unmoved — Kling 4.0's APIMart criteria page is signature-identical
   to its long-standing baseline, fc55ce30…). Latest feed
-  (2026-10-13T11:03Z): changed=0, with_errors=7, drift 23 alerts /
-  1 watch / 8 ok, 0 unwatched, unpublished rates 5, pricing diff
-  vs the 2026-10-11 baseline 7 rows. The 23 alerts are weather
-  stamps from a day-long egress-proxy collapse on this machine
-  (post-run sweeps: proxy connection-refusals and timeouts, not
-  host changes); every standing verdict rests on checker-path
-  probes that answered and were read (review log pass 10 +
-  addendum). All 4 flags the pass raised were dismissed (pakera.pk
+  (2026-10-13T11:35Z, the repo's refresh lane re-running the checker
+  as the day's egress-proxy collapse recovered): changed=0,
+  with_errors=0, drift 11 alerts / 5 watch / 16 ok, 0 unwatched,
+  unpublished rates 5, pricing diff vs the 2026-10-11 baseline
+  7 rows. The 2.11 pass's own final run (11:03Z) had read
+  with_errors=7 with 23 weather-stamped alerts; the refresh run
+  cleared the weather stamps and the alert set is again the
+  standing host-gated cohort of 11. Every standing verdict rests
+  on checker-path probes that answered and were read (review log
+  pass 10 + addendum). All 4 flags the pass raised were dismissed (pakera.pk
   and synthesys.io churn — both signature-excluded for every model
   carrying them in the 2.11 calibration — and a Hugging Face
   bad-window artifact on MiniMax H3). PixVerse V6's docs source

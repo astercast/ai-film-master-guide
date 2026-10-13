@@ -913,6 +913,11 @@ Voice-direction mechanics (bracketed tags, stability/similarity settings, paragr
 
 From selects to festival-ready export.
 
+![A technician at a vertical film editing machine, 1930](../assets/film-editing-reels.webp)
+Photo: Touring Club Italiano (author unknown), CC BY-SA 4.0, via Wikimedia Commons
+
+The job this chapter describes, in its first machine form: a technician at a vertical editing machine in 1930, cutting physical reels by hand. The pipeline below is the same discipline — selects, assembly, pacing, finish — at prompt speed.
+
 ## Assembly
 
 - **Selects discipline:** generate 2–4 takes per shot, keep the best one. Kill darlings — a beautiful shot that doesn't serve the story is a deleted shot.

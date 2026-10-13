@@ -1,6 +1,6 @@
 {
   "format": "model-review-queue/1.0",
-  "generated_at": "2026-10-13T11:03:02+00:00",
+  "generated_at": "2026-10-13T11:35:06+00:00",
   "note": "Changed=true means a source page's content signature moved since the last check. This is a review signal, not a confirmed model change (landing pages are marketing copy; diffs may be noise). Promote via the per-item promotion step — never auto-mutate models.json. Items with a `status` and no `detected_at` are standing hand-authored watches, preserved across runs by the checker.",
   "pending": 3,
   "items": [

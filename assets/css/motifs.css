@@ -314,3 +314,21 @@
   .leader-frame b { animation: none; }
   .td-clip { transition: none; }
 }
+
+/* ——— VP-0004: homepage hero, phone composition ———
+   On phones the timeline deck (376px) sat above the headline and the
+   headline landed ~74% down the first viewport. At this width the
+   hero copy leads and the deck follows (it earns its place once the
+   visitor knows where they are); the deck is compressed, and clip
+   labels are sized to their blocks so no label clips mid-word.
+   Desktop composition is untouched (this block only). */
+@media (max-width: 720px) {
+  .hero-home { display: flex; flex-direction: column; }
+  .hero-home .hero-inner { order: -1; padding-top: var(--space-5); }
+  .hero-home .tl-deck { padding-top: var(--space-4); }
+  .hero-home .tl-track { height: 36px; }
+  .tl-deck { padding-inline: var(--space-4); }
+  .hero-home .clip, .tl-deck .clip {
+    font-size: 0.44rem; letter-spacing: 0.01em; padding: 0 3px;
+  }
+}

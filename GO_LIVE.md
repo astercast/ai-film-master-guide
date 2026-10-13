@@ -1,22 +1,38 @@
 # GO_LIVE.md — AI Film Master Guide: The Watchtower on Vercel
 
-**Status: LIVE-READY, NOT DEPLOYED. Do not connect Vercel until the user
-approves.** No Vercel project exists for this repo yet; nothing has been
-deployed anywhere. (Standing rule: GitHub-only until the user says go.)
+**Status: THIS repo is never deployed — it is the build engine.** The
+release snapshot repo (`astercast/ai-film-master-guide-live`) is the
+deployed track, served from `ai-film-master-guide-live.vercel.app` and
+updated only on the user's explicit "push"/"ship it" via the Release
+Engineer's push kit. (Standing rule: working repos are GitHub-only.)
 
 Spec: `~/workspace/server-program/ARCHITECTURE.md` ("The Watchtower" =
 film-watchtower, §7.1). Where this file and the spec disagree, the spec wins.
 
 **One-time deploy model (user's order 2026-10-11):** this repo is NEVER
 deployed to Vercel — it is the build engine. A one-time release snapshot
-lives in the separate private repo `astercast/ai-film-master-guide-live`
-(prebuilt static frontend at repo root + the Watchtower functions under
-`api/` + `vercel.json` with functions/crons config; `outputDirectory: "."`,
-no build step). Import the -live repo into Vercel (the user connects it in
-the browser); the deploy happens via CLI with no git integration; after the
-single deploy, the -live repo is never pushed again unless the user
-explicitly says "push"/"ship it" in chat. Future work stays GitHub-only in
-THIS repo. Build machine on the Vercel project: Standard. Never Turbo.
+lives in the separate private repo `astercast/ai-film-master-guide-live`:
+the built `site/` tree as its root (the static frontend plus the
+Watchtower functions under `api/`, copied from this repo's `site/api/`)
+with its own `vercel.json` carrying the functions/crons config. THIS
+repo's `vercel.json` is the build-side config and says so plainly:
+`buildCommand: python3 scripts/build_site.py`, `outputDirectory: "site"`,
+`installCommand: echo 'no dependencies'`, 6 functions each pinned to
+`maxDuration: 10`, 1 cron — earlier text here claiming
+`outputDirectory: "."` for this repo was wrong (QA-002, corrected
+2026-10-13). Import the -live repo into Vercel (the user connects it in
+the browser); the deploy happens via CLI with no git integration; after
+the single deploy, the -live repo is never pushed again unless the user
+explicitly says "push"/"ship it" in chat. Future work stays GitHub-only
+in THIS repo. Build machine on the Vercel project: Standard. Never Turbo.
+
+**The root `api/` directory in THIS repo is a decoy — ignore it.** It is
+an empty directory on disk only: untracked by git (0 files), holding no
+functions and deploying nothing. The real function sources live in
+`server/api/` (shared lib in `server/lib/`); a build copies them to
+`site/api/` + `site/lib/`, and the snapshot takes them from there. Never
+treat the root `api/` as the deploy tree, and never put function sources
+only under `site/` (a rebuild wipes `site/` first).
 
 ## 1. What deploys
 
@@ -65,7 +81,8 @@ One Vercel project containing a static frontend plus serverless functions:
 ## 3. Hookup steps (exact clicks)
 
 1. **vercel.com/new** → Import Git Repository → select
-   `astercast/ai-film-master-guide` (private).
+   `astercast/ai-film-master-guide-live` (private) — the snapshot repo,
+   never this build-engine repo (see the deploy model above).
 2. Framework Preset: **Other**.
    - Build Command: `python3 scripts/build_site.py`
    - Output Directory: `site`
@@ -118,7 +135,7 @@ One Vercel project containing a static frontend plus serverless functions:
 | Bandwidth | 100 GB/mo | static + small JSON; personal-use sites ≈ MBs |
 | Build minutes | 6,000/mo | seconds per deploy; daily cron redeploys ≈ negligible |
 | Function invocations | 100k/mo | edge cache absorbs reads (§1.6); ~1 cron + trickle |
-| Function duration | 10s default (Hobby) | all functions designed ≤10s; no `maxDuration` overrides |
+| Function duration | 10s default (Hobby) | all functions designed ≤10s; each pins `maxDuration: 10` in vercel.json (the ceiling, stated explicitly) |
 | Cron jobs | daily minimum cadence, UTC, ±60min window, prod only | 1 job, `0 14 * * *` UTC |
 | Overage billing | **none — usage pauses instead of charging** | design stays far under limits; a pause is a visible signal, not a bill |
 
@@ -168,9 +185,11 @@ upgrade without the user's explicit word.
 
 - Add the domain in the Vercel dashboard → Domains; the `/api/*` paths move
   with the domain automatically.
-- If a domain is assigned later, sweep absolute URLs: `llms.txt`,
-  `sitemap.xml`, and the `$id` in `data/v1/schema/envelope.json` (currently
+- If a domain is assigned later, sweep absolute URLs: `llms.txt`
+  and the `$id` in `data/v1/schema/envelope.json` (currently
   the planned `ai-film-master-guide.vercel.app` hostname) — spec §14.4.
+  (This repo publishes no `sitemap.xml`; robots.txt is allow-all with no
+  Sitemap pointer — Commons round 8, 2026-10-13.)
 
 ## 9. Rollback
 

@@ -60,6 +60,21 @@ def convert(md):
 
         stripped = line.strip()
 
+        # Image line: ![alt](src) — optionally followed by a "Photo: ..."
+        # caption line, which becomes the figcaption (heritage figures,
+        # Foundry round 2; the corpus previously carried no images).
+        m = re.match(r"^!\[([^\]]*)\]\(([^)]+)\)$", stripped)
+        if m:
+            close_lists()
+            caption = ""
+            if i + 1 < len(lines) and lines[i + 1].strip().startswith("Photo:"):
+                caption = lines[i + 1].strip()
+                i += 1
+            cap = f"<figcaption>{_inline(caption)}</figcaption>" if caption else ""
+            out.append(f'<figure class="heritage-fig"><img src="{m.group(2)}" alt="{html.escape(m.group(1))}" loading="lazy">{cap}</figure>')
+            i += 1
+            continue
+
         if not stripped:
             close_lists()
             i += 1

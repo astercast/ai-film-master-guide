@@ -15,6 +15,21 @@
   <link rel="stylesheet" href="assets/css/docs.css">
   <link rel="stylesheet" href="assets/css/home.css">
   <link rel="stylesheet" href="assets/css/print.css">
+  <meta name="theme-color" content="#090807">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="canonical" href="https://ai-film-master-guide-live.vercel.app/skill-spec">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Skill schema spec — AI Film Master Guide">
+  <meta property="og:description" content="The exact frontmatter-plus-sections format every guide skill follows, so other agent frameworks can consume or produce compatible skills.">
+  <meta property="og:image" content="https://ai-film-master-guide-live.vercel.app/assets/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Skill schema spec — AI Film Master Guide">
+  <meta name="twitter:description" content="The exact frontmatter-plus-sections format every guide skill follows, so other agent frameworks can consume or produce compatible skills.">
+  <meta name="twitter:image" content="https://ai-film-master-guide-live.vercel.app/assets/og-card.png">
 </head>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
@@ -59,7 +74,7 @@
           <div class="tl-track"><span class="tl-track-label">V1</span>
             <span class="clip is-gold" style="left:2.0%;width:30.7%">YAML frontmatter</span>
             <span class="clip is-gold" style="left:34.7%;width:30.7%">Build to it</span>
-            <span class="clip is-gold" style="left:67.3%;width:30.7%">232 skills</span>
+            <span class="clip is-gold" style="left:67.3%;width:30.7%">235 skills</span>
           </div>
           <div class="tl-track"><span class="tl-track-label">A1</span>
             <span class="clip is-rec" style="left:2.0%;width:47.0%">Spec tone</span>
@@ -72,7 +87,7 @@
       <div class="container hero-inner">
         <span class="hero-kicker"><span class="rec" aria-hidden="true"></span>Agent-native</span>
         <h1 id="spec-title">Skill schema <span class="accent">spec.</span></h1>
-        <p class="lede">Every one of the {skill_count} skills in <code>skills/</code> follows this exact format — YAML frontmatter plus six Markdown sections. Build to it and your skills slot straight into this library, or any agent framework that reads it.</p>
+        <p class="lede">Every one of the 235 skills in <code>skills/</code> follows this exact format — YAML frontmatter plus six Markdown sections. Build to it and your skills slot straight into this library, or any agent framework that reads it.</p>
         
       </div>
     </section>
@@ -107,14 +122,14 @@
 description: Write an anime action (sakuga) prompt (animated track) using the guide&#x27;s template.</code></pre>
       </div>
       <article class="card" style="margin-bottom:var(--space-7);">
-        <div class="prose"><h1 id="prompt-anime-action-sakuga">Prompt: Anime action (sakuga)</h1>
-<h2 id="use-when">Use when</h2>
+        <div class="prose"><h2 id="prompt-anime-action-sakuga">Prompt: Anime action (sakuga)</h2>
+<h3 id="use-when">Use when</h3>
 <p>You are directing a shot that needs: anime action (sakuga). Anatomy: cel/sakuga/impact frames — NO lens or DOF language. Models: PixVerse (Anime), Vidu Q1, Pika.</p>
-<h2 id="inputs">Inputs</h2>
+<h3 id="inputs">Inputs</h3>
 <ul>
 <li><code>[CHARACTER]</code> — fill per the template&#x27;s anatomy</li>
 </ul>
-<h2 id="procedure">Procedure</h2>
+<h3 id="procedure">Procedure</h3>
 <ol>
 <li>Gather one value per placeholder. Keep [STYLE] identical to every other prompt in the project.</li>
 <li>Fill the template verbatim — do not paraphrase its camera language:</li>
@@ -124,14 +139,14 @@ description: Write an anime action (sakuga) prompt (animated track) using the gu
 <li>Handle audio in post (this template&#x27;s models don&#x27;t do native audio well).</li>
 <li>Generate a 720p draft first; approve the select before any 1080p/4K render.</li>
 </ol>
-<h2 id="worked-example">Worked example</h2>
+<h3 id="worked-example">Worked example</h3>
 <p>Filled draft: <code>Cel-animated action cut: [CHARACTER] dashes forward, speed lines and impact frames, painted background holds still. Sakuga flourish on the strike. STYLE LOCK: bold colors, expressive features, dramatic lighting, hand-drawn anime.</code></p>
-<h2 id="api-references">API references</h2>
+<h3 id="api-references">API references</h3>
 <ul>
 <li><code>data/v1/prompt-templates.json</code></li>
 <li><code>data/v1/camera-movements.json</code></li>
 </ul>
-<h2 id="pitfalls">Pitfalls</h2>
+<h3 id="pitfalls">Pitfalls</h3>
 <ul>
 <li>Stacking two motions or two camera moves in one prompt — the model will split the difference and ruin both.</li>
 <li>Changing the [STYLE] line between shots — the fastest route to a recast-looking cast.</li>
