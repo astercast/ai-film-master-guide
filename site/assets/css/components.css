@@ -165,6 +165,49 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--gold); }
 .spec-table th { font-family: var(--font-body); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); }
 .spec-table td { color: var(--ink-dim); }
 .spec-table code { color: var(--tungsten); }
+
+/*  Field-guide model quick-reference: the phone composition (VP-0030, r28).
+    The desktop table is a print-width reference and stays exactly as it
+    was. At phone widths the same table re-presents as one record per
+    model: the model name as the record's heading line, then each field
+    as a labelled line (labels carried in the markup as data-label, so
+    no cell, and no model, is dropped or truncated). The column header
+    row renders once at the top as a wrapped legend line in the same
+    label voice, so the header text is neither dropped nor repeated
+    in full per record.  */
+@media (max-width: 720px) {
+  .fg-models-table { display: block; width: 100%; border-collapse: collapse; }
+  .fg-models-table thead { display: block; }
+  .fg-models-table thead tr {
+    display: flex; flex-wrap: wrap; gap: 2px var(--space-4);
+    border: 0; padding: 0; margin: 0 0 var(--space-4);
+  }
+  .fg-models-table thead th {
+    display: block; width: auto;
+    font-family: var(--font-body); font-size: 0.68rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold);
+  }
+  .fg-models-table tbody, .fg-models-table tr,
+  .fg-models-table th, .fg-models-table td { display: block; width: 100%; }
+  .fg-models-table tr {
+    border: 1px solid var(--line); border-top: 3px solid var(--gold);
+    padding: var(--space-3) var(--space-4); margin-bottom: var(--space-4);
+  }
+  .fg-models-table th[scope="row"] {
+    font-family: var(--font-display); font-size: 1.12rem; font-weight: 400;
+    letter-spacing: 0.02em; color: var(--ink); padding: 0 0 var(--space-2);
+  }
+  .fg-models-table td {
+    display: grid; grid-template-columns: 6.2em 1fr; gap: var(--space-3);
+    padding: 3px 0; color: var(--ink-dim); overflow-wrap: anywhere;
+  }
+  .fg-models-table td::before {
+    content: attr(data-label);
+    font-family: var(--font-body); font-size: 0.68rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold);
+    padding-top: 0.28em;
+  }
+}
 .example-meta { font-family: var(--font-body); font-size: 0.8rem; color: var(--muted); margin-bottom: var(--space-3); }
 
 /*  In-context glossary  */
@@ -348,6 +391,14 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--gold); }
 .mw-card dt { font-family: var(--font-body); font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-top: var(--space-3); }
 .mw-card dd { margin: var(--space-1) 0 0; color: var(--ink-dim); }
 .mw-card .mw-changed { border-left: 3px solid var(--gold); padding-left: var(--space-3); margin-top: var(--space-3); }
+/* VP-0030 (r28): the same unbreakable-token rule on model pages and
+   model-watch cards: slash-compound bundle lists in the what-changed
+   line (e.g. "(Firefly/Veo/Runway/Kling/Luma)") wrap at the point of
+   overflow instead of spilling past the phone measure. Phone-scoped:
+   the desktop card measure holds these tokens. */
+@media (max-width: 720px) {
+  .mw-changed { overflow-wrap: anywhere; }
+}
 .mw-card .mw-sources { margin-top: var(--space-3); font-size: 0.85rem; }
 .mw-card .mw-verified { margin-top: var(--space-3); font-size: 0.75rem; color: var(--muted); font-family: var(--font-body); }
 .mw-card.is-discontinued { opacity: 0.8; }

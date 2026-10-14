@@ -80,6 +80,26 @@
 .prose .task-list { list-style: none; padding-left: 0; }
 .prose .task-list input { margin-right: var(--space-2); accent-color: var(--gold); }
 
+/*  VP-0030 (r28): unbreakable strings wrap inside their own line.
+    Source lists print raw URLs, chapters quote raw file paths, and
+    skill cards quote slash-compound names; with no break opportunity
+    their ink spilled past the element, expanded the phone layout
+    viewport, and dragged the fixed chrome (progress bar, back-to-top)
+    off the phone with it. overflow-wrap: anywhere only breaks a token
+    at the point where it would otherwise overflow its line, so lines
+    that fit, on any width, render exactly as before. This is the
+    presentation rule for source lists wherever they render: chapter
+    prose (.prose) and the field guides (.fg-body).  */
+.prose a, .prose code, .prose li, .prose p { overflow-wrap: anywhere; }
+/* The field guides and the JS-rendered skill cards carry the same
+   defect at phone widths only (their desktop measures hold the
+   tokens), so their share of the rule is phone-scoped: desktop
+   renders of those surfaces stay byte-identical. */
+@media (max-width: 720px) {
+  .fg-body a, .fg-body li, .fg-body p, .fg-body td,
+  .skill-card p { overflow-wrap: anywhere; }
+}
+
 /*  Budget calculator  */
 .calc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--space-4); margin-bottom: var(--space-7); }
 .calc-form { display: grid; gap: var(--space-4); align-content: start; }

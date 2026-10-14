@@ -150,6 +150,19 @@
   }
   .site-nav a::after { left: 2px; right: 2px; }
   .palette-open { margin-left: auto; }
+  /* VP-0030 (r28): the display face fits the phone measure. The desktop
+     clamp's 2.9rem floor set model names like "DoP (Lite/Standard/Turbo)"
+     as one unbreakable token wider than a 320px screen; its ink spilled
+     +120px over the nav links beneath it. At phone widths the hero title
+     takes a size the measure can hold, and anywhere-wrapping stands as
+     the backstop for any longer single token. Desktop is untouched:
+     this block only. */
+  .hero h1 { font-size: clamp(1.9rem, 10vw, 2.9rem); overflow-wrap: anywhere; }
+  /* The one legacy long nav (craft-not-buttons.html, copied verbatim by
+     the build) carries eight labels, not the standard five plus Index;
+     it wraps to a second row on phones instead of pushing its last
+     label off the right edge. */
+  .site-nav.nav-legacy { flex-wrap: wrap; }
   .hero-inner { position: relative; z-index: 2; padding-block: var(--space-9) var(--space-8); }
   .nav-idx-panel {
     position: fixed; left: var(--space-4); right: var(--space-4); top: auto;

@@ -6076,14 +6076,18 @@ def build_field_guides(css_links):
     # 1. Model quick-reference, from data/v1/models.json
     models_doc = json.loads((ROOT / "data" / "v1" / "models.json").read_text())
     models = models_doc["models"]
+    # VP-0030 (r28): every cell carries its column name as data-label so
+    # the phone composition (assets/css/components.css, .fg-models-table)
+    # can present each model as a labelled record at phone widths. The
+    # desktop table renders exactly as before; data-label is inert there.
     rows = "".join(
         f"<tr><th scope=\"row\">{html.escape(m['model'])}</th>"
-        f"<td>{html.escape(str(m.get('platform', '')))}</td>"
-        f"<td>{html.escape(str(m.get('type', '')))}</td>"
-        f"<td>{html.escape(str(m.get('best_use', '')))}</td>"
-        f"<td>{html.escape(str(m.get('est_cost_credits', '…')))}</td>"
-        f"<td>{html.escape(str(m.get('weakness', '')))}</td>"
-        f"<td>{html.escape(str(m.get('status', 'active')))}</td></tr>"
+        f"<td data-label=\"Platform\">{html.escape(str(m.get('platform', '')))}</td>"
+        f"<td data-label=\"Type\">{html.escape(str(m.get('type', '')))}</td>"
+        f"<td data-label=\"Best use\">{html.escape(str(m.get('best_use', '')))}</td>"
+        f"<td data-label=\"Cost\">{html.escape(str(m.get('est_cost_credits', '…')))}</td>"
+        f"<td data-label=\"Weakness\">{html.escape(str(m.get('weakness', '')))}</td>"
+        f"<td data-label=\"Status\">{html.escape(str(m.get('status', 'active')))}</td></tr>"
         for m in models)
     cost_basis = html.escape(str(models_doc.get("cost_basis", "")))
     unverified = ", ".join(models_doc.get("unverified", []))
@@ -6092,7 +6096,7 @@ def build_field_guides(css_links):
          "One-page model reference: best use, cost, and weakness for every compared model.",
          f"Generated {today} from data/v1/models.json (v{html.escape(str(models_doc.get('version', '')))}, observed {html.escape(str(models_doc.get('observed', '')))}).",
          f"<h2>All {len(models)} models at a glance</h2>"
-         f"<table><thead><tr><th scope=\"col\">Model</th><th scope=\"col\">Platform</th>"
+         f"<table class=\"fg-models-table\"><thead><tr><th scope=\"col\">Model</th><th scope=\"col\">Platform</th>"
          f"<th scope=\"col\">Type</th><th scope=\"col\">Best use</th><th scope=\"col\">Cost</th>"
          f"<th scope=\"col\">Weakness</th></tr></thead><tbody>{rows}</tbody></table>"
          f"<p><strong>Cost basis:</strong> {cost_basis}</p>{unver_note}"
