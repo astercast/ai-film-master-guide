@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* cut.test.js — Cut Sheet engine tests.
+/* cut.test.js, Cut Sheet engine tests.
  * Pins the engine against the editing chapters' own rules
  * (craft/editing-pipeline.md + craft/editing-ai-footage.md):
  * the five pre-lock gates, the three inspection passes, the
@@ -23,31 +23,31 @@ ok('gates: the chapters\u2019 five pre-lock gates, in order', () => {
   assert.strictEqual(E.GATES.length, 5);
 });
 
-ok('passes: story, background, motion — the three-eyed inspection pass', () => {
+ok('passes: story, background, motion, the three-eyed inspection pass', () => {
   assert.deepStrictEqual(E.PASSES.map((s) => s.id), ['story', 'background', 'motion']);
 });
 
 ok('defects: none / local / structural, with the chapter\u2019s split', () => {
   assert.deepStrictEqual(E.DEFECTS.map((r) => r.id), ['none', 'local', 'structural']);
-  assert.strictEqual(E.defectLabel('structural'), 'Structural — action, composition, identity');
-  assert.strictEqual(E.defectLabel('nope'), '— no finding recorded —');
+  assert.strictEqual(E.defectLabel('structural'), 'Structural, action, composition, identity');
+  assert.strictEqual(E.defectLabel('nope'), 'No finding recorded ');
 });
 
 ok('statuses: in / repair / regen / cut', () => {
   assert.deepStrictEqual(E.STATUSES.map((s) => s.id), ['in', 'repair', 'regen', 'cut']);
-  assert.strictEqual(E.statusLabel('regen'), 'Sent back — regenerate');
-  assert.strictEqual(E.statusLabel('nope'), '— no route recorded —');
+  assert.strictEqual(E.statusLabel('regen'), 'Sent back, regenerate');
+  assert.strictEqual(E.statusLabel('nope'), 'No route recorded ');
 });
 
-ok('default sheet: 6 shots, 5 clean, 1 held, 0 stopped — verdict is the hold', () => {
+ok('default sheet: 6 shots, 5 clean, 1 held, 0 stopped, verdict is the hold', () => {
   const r = E.evaluate(E.DEFAULT_ENTRIES);
   assert.strictEqual(r.total, 6);
   assert.strictEqual(r.clean, 5);
   assert.strictEqual(r.held, 1);
   assert.strictEqual(r.stopped, 0);
   assert.strictEqual(r.ready, false);
-  assert(r.verdict.includes('Hold picture lock — 1 shot is not ready'));
-  assert.strictEqual(r.heldEntries[0].shot, 'Sc 3 · Sh 05 — Hands on the shelter rail');
+  assert(r.verdict.includes('Hold picture lock, 1 shot is not ready'));
+  assert.strictEqual(r.heldEntries[0].shot, 'Sc 3 · Sh 05, Hands on the shelter rail');
   assert.strictEqual(E.effectiveStatus(r.heldEntries[0]), 'repairing');
 });
 
@@ -150,12 +150,12 @@ ok('gateState: counts, missing, complete', () => {
 
 ok('export: markdown carries title, gate marks, shots with passes + finding + route, verdict, counts', () => {
   const md = E.sheetToMarkdown('The Night Bus', E.DEFAULT_ENTRIES, ['selects', 'receipts']);
-  assert(md.startsWith('# Cut sheet — The Night Bus'));
-  assert(md.includes('- [x] Selects discipline held: 2–4 takes, one keeper'));
+  assert(md.startsWith('# Cut sheet, The Night Bus'));
+  assert(md.includes('- [x] Selects discipline held: 2 to 4 takes, one keeper'));
   assert(md.includes('- [ ] Lock order respected: picture before grade and mix, upscale last'));
-  assert(md.includes('Sc 3 · Sh 05 — Hands on the shelter rail — In repair — on the ladder. Duration: 2.4s'));
+  assert(md.includes('Sc 3 · Sh 05, Hands on the shelter rail, In repair, on the ladder. Duration: 2.4s'));
   assert(md.includes('Frame check: not done'));
-  assert(md.includes('Finding: Local — bad frames, one element, jitter'));
+  assert(md.includes('Finding: Local, bad frames, one element, jitter'));
   assert(md.includes('Repair attempts: 1'));
   assert(md.includes('## Picture-lock verdict'));
   assert(md.includes('Clean: 5 · held: 1 · stopped: 0 · cut from the film: 0.'));

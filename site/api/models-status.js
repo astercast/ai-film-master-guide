@@ -1,12 +1,12 @@
 'use strict';
-/* GET /api/models-status — film-watchtower v2.0.0 (ARCHITECTURE.md §7.1,
+/* GET /api/models-status, film-watchtower v2.0.0 (ARCHITECTURE.md §7.1,
  * Watchtower 2.0). Live per-model release/status watch. Reads the
- * watchtower's committed state (model-checks.json — refreshed daily by
+ * watchtower's committed state (model-checks.json, refreshed daily by
  * /api/cron/watchtower), joins model_id from pricing.json, and wraps it
  * in the §1.1 envelope.
  *
  * data.models[]: {id, name, provider, status, last_checked, change_summary,
- *                 source_urls[]} — the v1 shape, unchanged. Watchtower 2.0
+ *                 source_urls[]}, the v1 shape, unchanged. Watchtower 2.0
  * adds per-model `drift_severity` + `drift_alerts` (server/lib/drift.js)
  * and a top-level `drift_summary`, computed against models.json,
  * pricing.json, and the model-history event log.
@@ -49,7 +49,7 @@ function changeSummary(rec) {
   var changed = (rec.source_results || []).filter(function (s) { return s.changed_since_baseline; });
   var urls = changed.map(function (s) { return s.url; });
   var where = urls.length ? ' on ' + urls.slice(0, 2).join(', ') + (urls.length > 2 ? ' (+' + (urls.length - 2) + ' more)' : '') : '';
-  return 'Content signature moved' + where + ' — flagged for human review (may be marketing-copy noise, not a real model change).';
+  return 'Content signature moved' + where + ', flagged for human review (may be marketing-copy noise, not a real model change).';
 }
 
 function buildPayload() {

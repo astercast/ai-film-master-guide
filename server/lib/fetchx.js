@@ -1,7 +1,7 @@
 'use strict';
-/* fetchx.js — shared lib, film-watchtower.
+/* fetchx.js, shared lib, film-watchtower.
  * Copied per ARCHITECTURE.md §1.11. All upstream calls go through this.
- * fetch with AbortController timeout. Never throws — returns a result object.
+ * fetch with AbortController timeout. Never throws, returns a result object.
  */
 var SERVICE_UA = 'film-watchtower/1.0.0 (+https://github.com/astercast/ai-film-master-guide)';
 

@@ -7,7 +7,7 @@ description: Road A (native audio) vs Road B (decoupled voice + lip-sync).
 
 ## What this gets you
 
-For every dialogue scene you will pick the right route — the model speaks it natively, or you record the voice and sync it — before it costs you re-renders.
+For every dialogue scene you will pick the right route, the model speaks it natively, or you record the voice and sync it, before it costs you re-renders.
 
 ## Use when
 
@@ -20,15 +20,15 @@ Any scene with scripted dialogue.
 
 ## Procedure
 
-1. If a client or exact script is involved: Road B — silent clip, separate voice, dedicated lip-sync pass (Wav2Lip lineage). You own the voiceover and can revise lines without re-rendering picture.
-2. If the moment matters more than the words: Road A — native-audio model (Veo 3.1, Seedance, Kling 3.0) generates the believable moment whole.
+1. If a client or exact script is involved: Road B, silent clip, separate voice, dedicated lip-sync pass (Wav2Lip lineage). You own the voiceover and can revise lines without re-rendering picture.
+2. If the moment matters more than the words: Road A, native-audio model (Veo 3.1, Seedance, Kling 3.0) generates the believable moment whole.
 3. Cast the model: quiet natural dialogue → Seedance 2.0; longer AV scenes → Seedance 2.5; multi-speaker/languages → Kling 3.0; ambience + sync → Veo 3.1.
-4. Attribute dialogue in prompts: "The girl looks up and says, 'It's real.'" — unattributed lines get dropped or misassigned.
-5. Plan for native limits: short clip caps, longer dialogue is still an edit; incoherent speech happens — budget re-takes.
+4. Attribute dialogue in prompts: "The girl looks up and says, 'It's real.'", unattributed lines get dropped or misassigned.
+5. Plan for native limits: short clip caps, longer dialogue is still an edit; incoherent speech happens, budget re-takes.
 
 ## Worked example
 
-Client explainer: Road B — voice recorded first, lip-sync pass on silent hero clips. Zero re-rendered picture.
+Client explainer: Road B, voice recorded first, lip-sync pass on silent hero clips. Zero re-rendered picture.
 
 ## API references
 
@@ -36,4 +36,4 @@ Client explainer: Road B — voice recorded first, lip-sync pass on silent hero 
 
 ## Pitfalls
 
-- Road A for exact client copy — one wrong word means re-rendering the shot.
+- Road A for exact client copy, one wrong word means re-rendering the shot.

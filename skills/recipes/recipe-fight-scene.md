@@ -17,12 +17,12 @@ Fights, brawls, duels.
 
 - The fight's story beat (who wants what)
 - Geography map
-- Impact moments (3–5)
+- Impact moments (3 to 5)
 
 ## Procedure
 
-1. Wide master of the geography — the audience must know where everyone is.
-2. Build in phrases: 3–4 shots per exchange, impact on the cut.
+1. Wide master of the geography, the audience must know where everyone is.
+2. Build in phrases: 3 to 4 shots per exchange, impact on the cut.
 3. Vary shot size: wides for geography, tights for impact.
 4. Sound sells hits: whoosh → impact → aftermath, layered.
 
@@ -36,4 +36,4 @@ Fights, brawls, duels.
 
 ## Pitfalls
 
-- Shaky-cam mush — readable beats hit harder than chaotic ones.
+- Shaky-cam mush, readable beats hit harder than chaotic ones.

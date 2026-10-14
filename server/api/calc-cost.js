@@ -1,5 +1,5 @@
 'use strict';
-/* POST /api/calc-cost — film-watchtower v1.0.0 (ARCHITECTURE.md §7.1).
+/* POST /api/calc-cost, film-watchtower v1.0.0 (ARCHITECTURE.md §7.1).
  * Cost calculator backed by the REAL pricing table (models-pricing), never
  * hardcoded numbers. Arithmetic on declared inputs only (§6 rule 4).
  *
@@ -18,7 +18,7 @@ var VERSION = '1.0.0';
 
 var PRICING = require('../data/v1/pricing.json');
 
-var MAX_SECONDS = 86400; // 24h of footage per call — sanity bound
+var MAX_SECONDS = 86400; // 24h of footage per call, sanity bound
 var MAX_CLIPS = 1000;
 
 function findModel(id) {
@@ -62,7 +62,7 @@ module.exports = function (req, res) {
   }
   var clips = body.clips === undefined ? 1 : body.clips;
   if (!Number.isInteger(clips) || clips < 1 || clips > MAX_CLIPS) {
-    fields.clips = 'optional: an integer 1–' + MAX_CLIPS + ' (default 1)';
+    fields.clips = 'optional: an integer 1' + MAX_CLIPS + ' (default 1)';
   }
   if (typeof body.resolution_tier !== 'string' || !body.resolution_tier.trim()) {
     fields.resolution_tier = 'required: a tier name from the model\'s pricing entry, e.g. "720p"';
@@ -81,7 +81,7 @@ module.exports = function (req, res) {
   }
   if (model.pricing_status === 'discontinued') {
     return env.err(res, SERVICE, VERSION, 400, 'BAD_INPUT',
-      model.model + ' is discontinued — there is no current pricing to calculate from.',
+      model.model + ' is discontinued, there is no current pricing to calculate from.',
       { fields: { model_id: 'model is discontinued' } });
   }
 
@@ -92,7 +92,7 @@ module.exports = function (req, res) {
     var available = model.tiers.map(function (t) { return t.tier; });
     return env.err(res, SERVICE, VERSION, 400, 'BAD_INPUT',
       'No pricing tier "' + String(body.resolution_tier).slice(0, 60) + '" for ' + model.model + '.',
-      { fields: { resolution_tier: available.length ? 'pick one of: ' + available.join(', ') : 'this model has no published USD tiers — verify live' } });
+      { fields: { resolution_tier: available.length ? 'pick one of: ' + available.join(', ') : 'this model has no published USD tiers, verify live' } });
   }
 
   // Free local engine: honestly $0.
@@ -108,7 +108,7 @@ module.exports = function (req, res) {
   }
   if (tier.unit !== 'second') {
     return env.err(res, SERVICE, VERSION, 400, 'BAD_INPUT',
-      model.model + ' is priced per ' + tier.unit + ', not per second — this calculator works on per-second video tiers.',
+      model.model + ' is priced per ' + tier.unit + ', not per second, this calculator works on per-second video tiers.',
       { fields: { resolution_tier: 'model "' + model.model_id + '" is priced per ' + tier.unit } });
   }
 
@@ -116,7 +116,7 @@ module.exports = function (req, res) {
   var subHigh = round4(tier.usd_high * seconds * clips);
   var confidenceNote = (tier.confidence === 'official' || tier.confidence === 'vendor-confirmed')
     ? 'Rate confidence: ' + tier.confidence + '.'
-    : 'Rate confidence: ' + tier.confidence + ' — verify live before budgeting.';
+    : 'Rate confidence: ' + tier.confidence + ', verify live before budgeting.';
   env.ok(res, SERVICE, VERSION, {
     model_id: model.model_id,
     model: model.model,

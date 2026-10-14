@@ -7,7 +7,7 @@ description: Realistic credit math for a 20-minute AI film.
 
 ## What this gets you
 
-You will know what a 20-minute film really costs — retakes included — while there is still time to change the plan.
+You will know what a 20-minute film really costs, retakes included, while there is still time to change the plan.
 
 ## Use when
 
@@ -16,13 +16,13 @@ Greenlighting a mid-length production.
 ## Inputs
 
 - Model + resolution rate
-- Re-roll multiple assumption (document 5–20×)
+- Re-roll multiple assumption (document 5 to 20×)
 
 ## Procedure
 
 1. Clean pass: 1200s × $0.0738/s ≈ $89.
-2. Realistic: $500–$8,000 depending on resolution and discipline.
-3. Continuity on ordinary rooms costs more than spectacle — weight the budget there.
+2. Realistic: $500 to $8,000 depending on resolution and discipline.
+3. Continuity on ordinary rooms costs more than spectacle, weight the budget there.
 4. Track spend per scene; kill weak scenes before generating them.
 
 ## Worked example
@@ -35,4 +35,4 @@ ONEIRIC-scale discipline at 720p: ~$2k all-in is achievable; undisciplined: $8k+
 
 ## Pitfalls
 
-- Quoting the clean-pass number to stakeholders — always quote the envelope.
+- Quoting the clean-pass number to stakeholders, always quote the envelope.

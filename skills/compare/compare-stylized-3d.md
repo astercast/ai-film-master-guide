@@ -34,4 +34,4 @@ Character reaction beat: PixVerse 3D, squash-and-stretch surprise take, warm key
 
 ## Pitfalls
 
-- Photoreal lighting language — stylized 3D wants soft, simple light.
+- Photoreal lighting language, stylized 3D wants soft, simple light.

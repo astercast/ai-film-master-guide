@@ -1,5 +1,5 @@
 'use strict';
-/* GET /api/health — film-watchtower v2.0.0 (ARCHITECTURE.md §1.4, Watchtower 2.0).
+/* GET /api/health, film-watchtower v2.0.0 (ARCHITECTURE.md §1.4, Watchtower 2.0).
  * No auth. Edge-cacheable (s-maxage=60 via vercel.json or envelope override).
  * Never returns 5xx: status is "ok" unless a check fails, then "degraded".
  */
@@ -43,14 +43,14 @@ module.exports = function (req, res) {
   var fresh = {
     'model-checks.json': freshnessOf('../data/v1/model-checks.json', 86400),
     // pricing.json is a curated artifact on the same wave cadence as
-    // models.json (its generated_at is the curation date) — a 24h SLA made
+    // models.json (its generated_at is the curation date), a 24h SLA made
     // health report degraded forever from day two. 7 days, like models.
     'pricing.json': freshnessOf('../data/v1/pricing.json', 604800),
     // models.json is a research artifact refreshed by the wave engine (weekly
-    // deep-research cadence), not the daily cron — its SLA is 7 days.
+    // deep-research cadence), not the daily cron, its SLA is 7 days.
     'models.json': freshnessOf('../data/v1/models.json', 604800),
     // model-history.json is an event log: it changes when the field does,
-    // not on a schedule. A quiet month is not staleness — SLA 30 days.
+    // not on a schedule. A quiet month is not staleness, SLA 30 days.
     'model-history.json': freshnessOf('../data/v1/model-history.json', 2592000)
   };
   var stale = Object.keys(fresh).some(function (k) { return !fresh[k].within_sla; });

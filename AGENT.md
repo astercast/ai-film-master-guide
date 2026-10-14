@@ -321,9 +321,9 @@ plan, prices it from `data/v1/pricing.json`, and votes. Reproduce it:
 Worked result for the strong concept ("Mara, a weathered fisherwoman…",
 genre drama, 30s, 1080p, festival ambition) against the real data
 (verified by `node scripts/agent-workflows.test.js`): read **100/100**,
-flagship pricing unlocked, **8 shots**, budget lines Kling 3.0 1080p ×1
-$3.36 + Seedance 2.0 1080p ×5 $44.40 + Veo 3.1 standard-1080p ×2 $19.20 =
-**$66.96 clean**, 5× envelope **$334.80**, 20× **$1,339.20**, 6-day
+flagship pricing unlocked, **8 shots**, budget lines Kling 3.0 1080p ×2
+$6.72 + Seedance 2.0 1080p ×3 $26.64 + Veo 3.1 standard-1080p ×3 $28.80 =
+**$62.16 clean**, 5× envelope **$310.80**, 20× **$1,243.20**, 6-day
 schedule, verdict **GREEN LIGHT**. The weak concept ("a dog in a city",
 festival ambition): read **33/100**, priced at **draft** by the money
 rule, **$15.15 clean**, verdict **BACK TO THE ROOM**.

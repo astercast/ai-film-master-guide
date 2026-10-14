@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Style-bible builder — AI Film Master Guide</title>
-  <meta name="description" content="Build a reusable STYLE LOCK block for your production — character, world, palette, lens, texture — the consistency system's core artifact. Save bibles in your browser and prepend them in the prompt workshop.">
+  <title>Style-bible builder, AI Film Master Guide</title>
+  <meta name="description" content="Build a reusable STYLE LOCK block for your production, character, world, palette, lens, texture, the consistency system's core artifact. Save bibles in your browser and prepend them in the prompt workshop.">
+  <link rel="preload" href="assets/fonts/anton-latin-normal-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/inter-latin-normal-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/fonts.css">
   <link rel="stylesheet" href="assets/css/tokens.css">
@@ -25,14 +26,14 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="canonical" href="https://ai-film-master-guide-live.vercel.app/style-bible">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Style-bible builder — AI Film Master Guide">
-  <meta property="og:description" content="Build a reusable STYLE LOCK block for your production — character, world, palette, lens, texture — the consistency system's core artifact. Save bibles in your browser and prepend them in the prompt workshop.">
+  <meta property="og:title" content="Style-bible builder, AI Film Master Guide">
+  <meta property="og:description" content="Build a reusable STYLE LOCK block for your production, character, world, palette, lens, texture, the consistency system's core artifact. Save bibles in your browser and prepend them in the prompt workshop.">
   <meta property="og:image" content="https://ai-film-master-guide-live.vercel.app/assets/og-card.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Style-bible builder — AI Film Master Guide">
-  <meta name="twitter:description" content="Build a reusable STYLE LOCK block for your production — character, world, palette, lens, texture — the consistency system's core artifact. Save bibles in your browser and prepend them in the prompt workshop.">
+  <meta name="twitter:title" content="Style-bible builder, AI Film Master Guide">
+  <meta name="twitter:description" content="Build a reusable STYLE LOCK block for your production, character, world, palette, lens, texture, the consistency system's core artifact. Save bibles in your browser and prepend them in the prompt workshop.">
   <meta name="twitter:image" content="https://ai-film-master-guide-live.vercel.app/assets/og-card.png">
 </head>
 <body>
@@ -60,14 +61,15 @@
   <main id="main">
     <section class="hero" aria-labelledby="sb-title">
       <div class="container hero-inner">
+        <p class="hero-slate"><span>Tools</span></p>
         <h1 id="sb-title">Style-bible <span class="accent">builder.</span></h1>
-        <p class="lede">Consistency is not a prompt trick — it is a document. Describe your character and world once, lock it into a STYLE LOCK block, and prepend that block verbatim to every generation in the production. Save named bibles in your browser; the <a href="workshop.html">prompt workshop</a> can prepend any saved bible automatically.</p>
+        <p class="lede">Consistency is not a prompt trick, it is a document. Describe your character and world once, lock it into a STYLE LOCK block, and prepend that block verbatim to every generation in the production. Save named bibles in your browser; the <a href="workshop.html">prompt workshop</a> can prepend any saved bible automatically.</p>
         
       </div>
     </section>
     <section class="container" aria-labelledby="sb-why-h">
       <h2 id="sb-why-h">Why this works</h2>
-      <p>Long-form productions survive on reference discipline: one locked description of who and where, reused word-for-word so the model has no room to reinterpret between shots. The <a href="craft/character-consistency.html">character-consistency</a> and <a href="craft/longform-pipelines.html">long-form pipelines</a> chapters cover the system; this tool produces its core artifact. Rule of the lock: <strong>never paraphrase it</strong> — if the model drifts, regenerate the shot, don't rewrite the bible.</p>
+      <p>Long-form productions survive on reference discipline: one locked description of who and where, reused word-for-word so the model has no room to reinterpret between shots. The <a href="craft/character-consistency.html">character-consistency</a> and <a href="craft/longform-pipelines.html">long-form pipelines</a> chapters cover the system; this tool produces its core artifact. Rule of the lock: <strong>never paraphrase it</strong>, if the model drifts, regenerate the shot, don't rewrite the bible.</p>
     </section>
     <form class="container" id="sb-form" aria-labelledby="sb-form-h" onsubmit="return false;">
       <h2 id="sb-form-h">Describe the production</h2>
@@ -117,7 +119,7 @@
       <h2 id="sb-out-h">Your style lock</h2>
       <div class="card">
         <div class="prompt-preview sb-preview" id="sb-preview" aria-live="polite"></div>
-        <p class="empty-state" id="sb-preview-empty">Fill in the form above — the lock assembles itself here.</p>
+        <p class="empty-state" id="sb-preview-empty">Fill in the form above, the lock assembles itself here.</p>
         <div class="btn-row" style="margin-top:var(--space-4);">
           <button type="button" class="btn btn-gold" id="sb-copy" disabled>Copy style lock</button>
           <button type="button" class="btn" id="sb-save" disabled>Save style bible</button>
@@ -139,7 +141,7 @@
   </main>
   <footer class="site-footer">
     <div class="container footer-grid">
-      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <p>AI Film Master Guide, research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer"><a href="index.html">Guide</a><a href="skills.html">Skills</a><a href="workshop.html">Workshop</a><a href="quiz.html">Quiz</a><a href="compare.html">Compare</a><a href="gallery.html">Gallery</a><a href="teardown.html">Teardowns</a><a href="model-watch.html">Model watch</a><a href="showdown.html">Showdown</a><a href="forge.html">Episode forge</a><a href="clearance.html">Script clearance</a><a href="continuity.html">Continuity ledger</a><a href="cuesheet.html">Cue sheet</a><a href="grade.html">Grade sheet</a><a href="cut.html">Cut sheet</a><a href="take.html">Take sheet</a><a href="longform.html">Longform sheet</a><a href="path.html">The path</a><a href="checks/">Knowledge checks</a><a href="budget.html">Budget</a><a href="optimizer.html">Optimizer</a><a href="shots.html">Shot list</a><a href="style-bible.html">Style bible</a><a href="doctor.html">Doctor</a><a href="linter.html">Linter</a><a href="cutting-room.html">Cutting room</a><a href="prompts.html">Prompts</a><a href="models/">Models</a><a href="anatomy.html">Anatomy</a><a href="manifesto.html">Manifesto</a><a href="craft-not-buttons.html">Craft, not buttons</a><a href="recipes.html">Recipes</a><a href="field-guides/">Field guides</a><a href="changelog.html">Changelog</a><a href="skill-spec.html">Skill spec</a><a href="api.html">API</a></nav>
       <div class="footer-colophon"><span>AI Film Master Guide</span><span class="tail">Craft, not buttons</span></div>
     </div>

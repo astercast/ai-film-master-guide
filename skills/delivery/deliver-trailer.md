@@ -1,13 +1,13 @@
 ---
 name: deliver-trailer
-description: The 60–90s competition weapon, mastered.
+description: The 60 to 90s competition weapon, mastered.
 ---
 
 # Deliver a trailer master
 
 ## What this gets you
 
-You will have a finished 60–90 second trailer file, mastered and ready to post or submit.
+You will have a finished 60 to 90 second trailer file, mastered and ready to post or submit.
 
 ## Use when
 
@@ -20,8 +20,8 @@ Trailer/teaser delivery.
 
 ## Procedure
 
-1. 60–90s, hook/escalation/title structure.
-2. Master loud: trailers play hot — hit broadcast ceilings, don't exceed.
+1. 60 to 90s, hook/escalation/title structure.
+2. Master loud: trailers play hot, hit broadcast ceilings, don't exceed.
 3. Title card on the button image; end card with laurels space.
 
 ## Worked example
@@ -30,4 +30,4 @@ SCRATCH-style 75s trailer: -1 dBTP, title smash on the drop, laurel space on the
 
 ## Pitfalls
 
-- Trailer quieter than the film — trailers compete for attention, master accordingly.
+- Trailer quieter than the film, trailers compete for attention, master accordingly.

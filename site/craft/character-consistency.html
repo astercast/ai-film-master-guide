@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Character Consistency — AI Film Master Guide</title>
+  <title>Character Consistency, AI Film Master Guide</title>
   <meta name="description" content="The technical discipline of keeping people and worlds stable across shots. This is where most festival entries die.">
+  <link rel="preload" href="../assets/fonts/anton-latin-normal-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/inter-latin-normal-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../assets/css/fonts.css">
   <link rel="stylesheet" href="../assets/css/tokens.css">
@@ -21,13 +22,13 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="canonical" href="https://ai-film-master-guide-live.vercel.app/craft/character-consistency">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Character Consistency — AI Film Master Guide">
+  <meta property="og:title" content="Character Consistency, AI Film Master Guide">
   <meta property="og:description" content="The technical discipline of keeping people and worlds stable across shots. This is where most festival entries die.">
   <meta property="og:image" content="https://ai-film-master-guide-live.vercel.app/assets/og-card.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Character Consistency — AI Film Master Guide">
+  <meta name="twitter:title" content="Character Consistency, AI Film Master Guide">
   <meta name="twitter:description" content="The technical discipline of keeping people and worlds stable across shots. This is where most festival entries die.">
   <meta name="twitter:image" content="https://ai-film-master-guide-live.vercel.app/assets/og-card.png">
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Character Consistency", "description": "The technical discipline of keeping people and worlds stable across shots. This is where most festival entries die.", "url": "https://ai-film-master-guide-live.vercel.app/craft/character-consistency"}</script>
@@ -70,25 +71,25 @@
       <header class="reel-head">
         <div>
           <p class="crumb"><a href="../index.html">Guide</a> / Craft</p>
-          <p class="reel-meta">3 min read · 601 words · chapter 08 of 30</p>
+          <p class="reel-meta">3 min read ·  595 words · chapter 08 of 31</p>
         </div>
       </header>
       <article class="prose"><h1 id="character-consistency">Character Consistency</h1>
 <p>The technical discipline of keeping people and worlds stable across shots. This is where most festival entries die.</p>
 <h2 id="the-identity-stack-ranked-by-reliability">The identity stack (ranked by reliability)</h2>
 <ol>
-<li><strong>Trained identity (Soul ID):</strong> the gold standard. Train once on 20–80 photos; the face holds across every generation. See <code>higgsfield/soul-id-deep-dive.md</code>.</li>
+<li><strong>Trained identity (Soul ID):</strong> the gold standard. Train once on 20 to 80 photos; the face holds across every generation. See <code>higgsfield/soul-id-deep-dive.md</code>.</li>
 <li><strong>Character sheet as reference:</strong> front / 3/4 / side views of the character, used as the reference image whenever drift appears.</li>
 <li><strong>Per-generation reference upload:</strong> anchors one generation; drifts across many. Fine for single shots, not films.</li>
 <li><strong>Text description alone:</strong> weakest. Never rely on prose to hold a face across 50 shots.</li>
 </ol>
-<p><strong>A documented build.</strong> Robert Gaudette&#x27;s &quot;A Face Only a Mother Could Love&quot; — the 8-minute solo short that took the $50K Runway AIFF 2026 Grand Prix and the Reply AI Film Festival 2026 prize — was built character-sheets-first: he generated initial AI character sheets for the cast before any shots, and credits them for holding the characters&#x27; distinctive physicality coherent across the film (his own account; the tool identity is reported, not audited — the Reply press release names Grok, Nano Banana, and Seedance; his escape.ai page tags Dreamina and Gemini AI). Marcel&#x27;s facial disfigurement is exactly the trait that drifts shot-to-shot without a locked reference — the sheet made the trait lockable. See the full shot-by-shot teardown (<a href="../teardown.html">teardown.html</a> — &quot;The Character Sheets Came First&quot;).</p>
-<p><strong>A second documented build.</strong> Tim Simmons&#x27; <em>Dragon Blue</em> ran the same idea through an agent: his &quot;production office&quot; pipeline generates Character Reference Grids and 2×2 Scene Grids as stage one, and video generation only ever executes locked stills — composition decisions happen at image cost, not video cost. The grids are curated from a &quot;spray and select&quot; run on Luma&#x27;s Agent Board, and the Nano Banana Pro stills were chosen over Nano Banana 2 for cinematic framing (his own published account). See the full shot-by-shot teardown (&quot;The Production Office&quot;) and the new <a href="agentic-production-office.html">agentic production office</a> chapter for the file contract that runs it.</p>
+<p><strong>A documented build.</strong> Robert Gaudette&#x27;s &quot;A Face Only a Mother Could Love&quot;, the 8-minute solo short that took the $50K Runway AIFF 2026 Grand Prix and the Reply AI Film Festival 2026 prize, was built character-sheets-first: he generated initial AI character sheets for the cast before any shots, and credits them for holding the characters&#x27; distinctive physicality coherent across the film (his own account; the tool identity is reported, not audited, the Reply press release names Grok, Nano Banana, and Seedance; his escape.ai page tags Dreamina and Gemini AI). Marcel&#x27;s facial disfigurement is exactly the trait that drifts shot-to-shot without a locked reference, the sheet made the trait lockable. See the full shot-by-shot teardown (<a href="../teardown.html">teardown.html</a>, &quot;The Character Sheets Came First&quot;).</p>
+<p><strong>A second documented build.</strong> Tim Simmons&#x27; <em>Dragon Blue</em> ran the same idea through an agent: his &quot;production office&quot; pipeline generates Character Reference Grids and 2×2 Scene Grids as stage one, and video generation only ever executes locked stills, composition decisions happen at image cost, not video cost. The grids are curated from a &quot;spray and select&quot; run on Luma&#x27;s Agent Board, and the Nano Banana Pro stills were chosen over Nano Banana 2 for cinematic framing (his own published account). See the full shot-by-shot teardown (&quot;The Production Office&quot;) and the new <a href="agentic-production-office.html">agentic production office</a> chapter for the file contract that runs it.</p>
 <h2 id="wardrobe-and-props-lock">Wardrobe and props lock</h2>
 <ul>
 <li>Write the wardrobe once, in exact language, and paste it verbatim into every prompt: &quot;worn brown leather jacket, white t-shirt, dark jeans, scuffed boots.&quot;</li>
 <li>Props get the same treatment: one description, reused exactly.</li>
-<li>If the wardrobe changes mid-film (it should, for story), that&#x27;s a new locked description — never improvise it per shot.</li>
+<li>If the wardrobe changes mid-film (it should, for story), that&#x27;s a new locked description, never improvise it per shot.</li>
 </ul>
 <h2 id="world-consistency">World consistency</h2>
 <ul>
@@ -100,7 +101,7 @@
 <ul>
 <li><strong>Last-frame chaining:</strong> every clip starts from the last frame of the previous approved clip. Never fabricate a start frame.</li>
 <li><strong>Approved-frame library:</strong> keep every approved still/frame. New shots start from library frames, not fresh generations.</li>
-<li><strong>Rejection rules:</strong> a clip fails if the face drifts, wardrobe changes, the light flips, or the camera moves without motivation. Failed clips don&#x27;t chain — they get re-prompted.</li>
+<li><strong>Rejection rules:</strong> a clip fails if the face drifts, wardrobe changes, the light flips, or the camera moves without motivation. Failed clips don&#x27;t chain, they get re-prompted.</li>
 <li><strong>One human per start frame</strong> (for character-led work): crowded frames multiply failure modes.</li>
 </ul>
 <h2 id="the-consistency-checklist-before-any-generation">The consistency checklist (before any generation)</h2>
@@ -117,7 +118,7 @@
   </div>
   <footer class="site-footer">
     <div class="container footer-grid">
-      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <p>AI Film Master Guide, research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer"><a href="../index.html">Guide</a><a href="../skills.html">Skills</a><a href="../workshop.html">Workshop</a><a href="../quiz.html">Quiz</a><a href="../compare.html">Compare</a><a href="../gallery.html">Gallery</a><a href="../teardown.html">Teardowns</a><a href="../model-watch.html">Model watch</a><a href="../showdown.html">Showdown</a><a href="../forge.html">Episode forge</a><a href="../clearance.html">Script clearance</a><a href="../continuity.html">Continuity ledger</a><a href="../cuesheet.html">Cue sheet</a><a href="../grade.html">Grade sheet</a><a href="../cut.html">Cut sheet</a><a href="../take.html">Take sheet</a><a href="../longform.html">Longform sheet</a><a href="../path.html">The path</a><a href="../checks/">Knowledge checks</a><a href="../budget.html">Budget</a><a href="../optimizer.html">Optimizer</a><a href="../shots.html">Shot list</a><a href="../style-bible.html">Style bible</a><a href="../doctor.html">Doctor</a><a href="../linter.html">Linter</a><a href="../cutting-room.html">Cutting room</a><a href="../prompts.html">Prompts</a><a href="../models/">Models</a><a href="../anatomy.html">Anatomy</a><a href="../manifesto.html">Manifesto</a><a href="../craft-not-buttons.html">Craft, not buttons</a><a href="../recipes.html">Recipes</a><a href="../field-guides/">Field guides</a><a href="../changelog.html">Changelog</a><a href="../skill-spec.html">Skill spec</a><a href="../api.html">API</a></nav>
       <div class="footer-colophon"><span>AI Film Master Guide</span><span class="tail">Craft, not buttons</span></div>
     </div>

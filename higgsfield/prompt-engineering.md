@@ -4,15 +4,15 @@
 
 Treat the prompt as a directing system, not a description. Every generation should specify, in order:
 
-1. **Subject** — who/what, locked identity
-2. **Micro-action** — one believable action, not three
-3. **Environment** — where, with subtle motion in it
-4. **Camera behavior** — one intentional move (see below)
-5. **Lighting design** — explicit and physical ("golden-hour side light, long shadows")
-6. **Visual style** — cinematic, anamorphic, film grain, era
-7. **Emotional tone** — the feeling of the shot
-8. **Physics & motion details** — how things move (cloth in breeze, steam rising)
-9. **Rendering quality modifiers** — 4K, shallow depth of field, stable architecture
+1. **Subject**, who/what, locked identity
+2. **Micro-action**, one believable action, not three
+3. **Environment**, where, with subtle motion in it
+4. **Camera behavior**, one intentional move (see below)
+5. **Lighting design**, explicit and physical ("golden-hour side light, long shadows")
+6. **Visual style**, cinematic, anamorphic, film grain, era
+7. **Emotional tone**, the feeling of the shot
+8. **Physics & motion details**, how things move (cloth in breeze, steam rising)
+9. **Rendering quality modifiers**, 4K, shallow depth of field, stable architecture
 
 Missing layers = randomness. "Slow dolly push-in" beats "zoom in." Explicit lighting beats "nice lighting."
 
@@ -22,13 +22,13 @@ Missing layers = randomness. "Slow dolly push-in" beats "zoom in." Explicit ligh
 - **Pull-back / scale:** "the camera slowly pulls backward, gradually revealing the enormous environment surrounding the subject"
 - **Orbit:** "camera orbits 360° around the subject"
 - **Pan:** "slow camera pan across the scene"
-- **Stacked moves:** Higgsfield's Cinema Studio supports several moves in one shot — but one motivated move beats two unmotivated ones.
+- **Stacked moves:** Higgsfield's Cinema Studio supports several moves in one shot, but one motivated move beats two unmotivated ones.
 
 Rule: every movement needs a purpose. Ask what the move reveals or withholds.
 
 ## The Soul ID prompting rule
 
-When a Soul ID character is active, **do not re-describe the face or core features** — the Soul ID handles that. Describe only what changes: wardrobe, setting, action, expression, camera, light, style.
+When a Soul ID character is active, **do not re-describe the face or core features**, the Soul ID handles that. Describe only what changes: wardrobe, setting, action, expression, camera, light, style.
 
 Good: "The Soul ID character now wears a formal black suit, standing at a podium addressing a conference room. Camera: dolly in toward her face. Style: cinematic, cool corporate lighting."
 
@@ -38,7 +38,7 @@ Always exclude what breaks cinematic output: morphing faces, extra limbs, meltin
 
 ## Per-shot discipline
 
-- One shot = one fully self-contained prompt. Restate the full premise every time — the model has no memory of your last clip.
+- One shot = one fully self-contained prompt. Restate the full premise every time, the model has no memory of your last clip.
 - Don't ask for too many actions in five seconds. One action per clip.
 - Keep the frame uncrowded. Fewer subjects = fewer failure modes.
 - Image-to-video (start frame first) beats text-to-video for control. Generate the still, approve it, then animate.

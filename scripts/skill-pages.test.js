@@ -1,11 +1,10 @@
 #!/usr/bin/env node
-/* skill-pages.test.js — VP-0010 structural-fix tests (rotation 20).
+/* skill-pages.test.js, VP-0010 structural-fix tests (rotation 20).
  * Proves, from the built tree alone:
  *  - every one of the 242 skills has an in-site page carrying its
  *    procedure, worked example and pitfalls;
  *  - the skills browser's card renderer links every card to its page
- *    (executed against the real skills-index.json with a DOM stub —
- *    242 cards, each with title + "Open the skill" anchors);
+ *    (executed against the real skills-index.json with a DOM stub, *    242 cards, each with title + "Open the skill" anchors);
  *  - every Path row (241) links to its skill page, in curriculum order;
  *  - the 8 reference skills' pages are marked as reference;
  *  - the ticket's named jargon is glossed on the pages where it leads;

@@ -19,7 +19,7 @@ After any take is approved.
 
 ## Procedure
 
-1. Lock the performance: the instruction becomes 'photograph this exact performance from over her shoulder' — not 'generate this scene'.
+1. Lock the performance: the instruction becomes 'photograph this exact performance from over her shoulder', not 'generate this scene'.
 2. Re-render the camera around the locked performance; the model must stop reinterpreting dialogue, gestures, pauses, props, positions.
 3. Schedule regeneration: the generation-supervision pass happens at a fixed point after the rough cut, not continuously.
 4. Log versions: 'version, what changed, verdict' per iteration.
@@ -27,8 +27,8 @@ After any take is approved.
 
 ## Worked example
 
-Dialogue scene approved at v3 — camera re-rendered 4 ways around the locked take, zero performance drift.
+Dialogue scene approved at v3, camera re-rendered 4 ways around the locked take, zero performance drift.
 
 ## Pitfalls
 
-- Re-rolling an approved take 'to see if it gets better' — that's how performances drift.
+- Re-rolling an approved take 'to see if it gets better', that's how performances drift.

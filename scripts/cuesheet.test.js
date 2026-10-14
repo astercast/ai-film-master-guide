@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* cuesheet.test.js — Cue Sheet engine tests.
+/* cuesheet.test.js, Cue Sheet engine tests.
  * Pins the engine against the sound chapter's own rules
  * (craft/sound-music-audio.md): the five pre-mix gates, the
  * three layers per scene, the dialogue routes, the no-bed-is-dry
@@ -20,31 +20,31 @@ ok('gates: the chapter\u2019s five pre-mix gates, in order', () => {
   assert.strictEqual(E.GATES.length, 5);
 });
 
-ok('layers: bed, foley, accents — the chapter\u2019s three layers', () => {
+ok('layers: bed, foley, accents, the chapter\u2019s three layers', () => {
   assert.deepStrictEqual(E.LAYERS.map((l) => l.id), ['bed', 'foley', 'accents']);
 });
 
 ok('routes: decoupled / native / none, with the exact-words rule on decoupled', () => {
   assert.deepStrictEqual(E.ROUTES.map((r) => r.id), ['decoupled', 'native', 'none']);
-  assert.strictEqual(E.routeLabel('decoupled'), 'Decoupled — voice built separately, lip-sync pass');
-  assert.strictEqual(E.routeLabel('nope'), '— no route recorded —');
+  assert.strictEqual(E.routeLabel('decoupled'), 'Decoupled, voice built separately, lip-sync pass');
+  assert.strictEqual(E.routeLabel('nope'), 'No route recorded ');
 });
 
 ok('statuses: designed / thin / dry', () => {
   assert.deepStrictEqual(E.STATUSES.map((s) => s.id), ['designed', 'thin', 'dry']);
-  assert.strictEqual(E.statusLabel('dry'), 'Dry — drops to digital silence');
-  assert.strictEqual(E.statusLabel('nope'), '— no state recorded —');
+  assert.strictEqual(E.statusLabel('dry'), 'Dry, drops to digital silence');
+  assert.strictEqual(E.statusLabel('nope'), 'No state recorded ');
 });
 
-ok('default sheet: 5 scenes, 4 designed, 1 thin, 0 dry — verdict is the hold', () => {
+ok('default sheet: 5 scenes, 4 designed, 1 thin, 0 dry, verdict is the hold', () => {
   const r = E.evaluate(E.DEFAULT_ENTRIES);
   assert.strictEqual(r.total, 5);
   assert.strictEqual(r.designed, 4);
   assert.strictEqual(r.thin, 1);
   assert.strictEqual(r.dry, 0);
   assert.strictEqual(r.clean, false);
-  assert(r.verdict.includes('Hold the mix — 1 scene is thin'));
-  assert.strictEqual(r.thinEntries[0].scene, 'Sc 3 — The rain stop');
+  assert(r.verdict.includes('Hold the mix, 1 scene is thin'));
+  assert.strictEqual(r.thinEntries[0].scene, 'Sc 3, The rain stop');
   assert.strictEqual(E.layerCount(r.thinEntries[0]), 2);
 });
 
@@ -95,11 +95,11 @@ ok('gateState: counts, missing, complete', () => {
 
 ok('export: markdown carries title, gate marks, scenes with route + layers, verdict, counts', () => {
   const md = E.sheetToMarkdown('The Night Bus', E.DEFAULT_ENTRIES, ['bible', 'routes']);
-  assert(md.startsWith('# Cue sheet — The Night Bus'));
+  assert(md.startsWith('# Cue sheet, The Night Bus'));
   assert(md.includes('- [x] Voice Bible written for every speaking character'));
   assert(md.includes('- [ ] Stems kept for the score and the voices'));
-  assert(md.includes('Sc 3 — The rain stop — Thin — a layer missing or rough. Route: Decoupled'));
-  assert(md.includes('Layers: Bed ✓ · Foley — · Accents ✓'));
+  assert(md.includes('Sc 3, The rain stop, Thin, a layer missing or rough. Route: Decoupled'));
+  assert(md.includes('Layers: Bed ✓ · Foley ✗ · Accents ✓'));
   assert(md.includes('## Mix verdict'));
   assert(md.includes('Designed: 4 · thin: 1 · dry: 0.'));
   assert(md.endsWith('\n'));

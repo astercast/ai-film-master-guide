@@ -22,7 +22,7 @@ Talking shots where mouths don't match words.
 
 1. Short lines: native in-prompt quotes (dialogue quoted + attributed).
 2. Long scenes: post lip-sync tools with isolated vocals.
-3. Isolate vocals before any lip-sync pass — music beds confuse the tracker.
+3. Isolate vocals before any lip-sync pass, music beds confuse the tracker.
 4. If the mouth is close but soft, it's acceptable; if it's wrong, re-route, don't re-roll.
 
 ## Worked example
@@ -35,4 +35,4 @@ Talking shots where mouths don't match words.
 
 ## Pitfalls
 
-- Re-rolling video to fix audio — wrong layer, wrong cost.
+- Re-rolling video to fix audio, wrong layer, wrong cost.

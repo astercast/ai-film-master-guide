@@ -7,7 +7,7 @@ description: Coverage that cuts: the complete dialogue-scene recipe.
 
 ## What this gets you
 
-You will have filmed a complete two-person conversation that cuts together like a real scene — both sides, reactions, rhythm.
+You will have filmed a complete two-person conversation that cuts together like a real scene, both sides, reactions, rhythm.
 
 ## Use when
 
@@ -23,7 +23,7 @@ Any conversation between two characters.
 
 1. Master: wide two-shot establishing geography (one generation).
 2. Coverage: over-shoulder both directions + clean singles.
-3. Close-ups only at the emotional peaks — ration them.
+3. Close-ups only at the emotional peaks, ration them.
 4. Match eyelines across every setup; the blocking diagram earns its keep here.
 5. Cut on the dialogue, not the motion; J/L cuts into and out of the scene.
 
@@ -38,4 +38,4 @@ Any conversation between two characters.
 
 ## Pitfalls
 
-- Generating 20 angles 'for options' — coverage is a plan, not a lottery.
+- Generating 20 angles 'for options', coverage is a plan, not a lottery.

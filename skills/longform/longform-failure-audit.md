@@ -20,7 +20,7 @@ At picture lock, and any time quality slips mid-production.
 ## Procedure
 
 1. Drift accumulation: compare character faces shot 1 vs shot 50.
-2. Style decay: optics/grade wandering — is the look baked into plates?
+2. Style decay: optics/grade wandering, is the look baked into plates?
 3. Blocked-position flips: screen sides mirroring?
 4. Memory-less prompting: any 'same as before' in prompts?
 5. Summoning by negation: banned objects appearing anyway?
@@ -31,8 +31,8 @@ At picture lock, and any time quality slips mid-production.
 
 ## Worked example
 
-Audit found style decay in act 2 — fix: re-baked location plates, re-generated 6 shots, locked.
+Audit found style decay in act 2, fix: re-baked location plates, re-generated 6 shots, locked.
 
 ## Pitfalls
 
-- Auditing only the spectacle — the ordinary rooms are where long-form dies.
+- Auditing only the spectacle, the ordinary rooms are where long-form dies.

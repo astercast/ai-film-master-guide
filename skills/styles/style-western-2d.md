@@ -7,7 +7,7 @@ description: Flat colors, thick outlines, limited animation with snap.
 
 ## What this gets you
 
-Your cartoon will have flat colour, thick outlines and snappy limited animation — the classic TV-cartoon energy.
+Your cartoon will have flat colour, thick outlines and snappy limited animation, the classic TV-cartoon energy.
 
 ## Use when
 
@@ -22,7 +22,7 @@ Comedy, dialogue-driven shorts.
 
 1. Flat colors, thick outlines, simple shapes.
 2. Limited animation: holds + snap moves, mouth shapes on dialogue beats.
-3. Comedy timing lives in the holds — don't smooth them out.
+3. Comedy timing lives in the holds, don't smooth them out.
 4. Keep descriptors word-for-word across scenes.
 
 ## Worked example
@@ -35,4 +35,4 @@ Two-character argument: held poses, snap takes, mouth shapes on punchlines.
 
 ## Pitfalls
 
-- Over-animating — limited animation is a style, not a budget cut.
+- Over-animating, limited animation is a style, not a budget cut.

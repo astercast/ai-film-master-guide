@@ -1,4 +1,4 @@
-/* Recipes filter — shows/hides server-rendered recipe cards. */
+/* Recipes filter, shows/hides server-rendered recipe cards. */
 (function () {
   "use strict";
   var input = document.getElementById("recipes-filter");

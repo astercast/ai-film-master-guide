@@ -20,15 +20,15 @@ Any film's sound design.
 
 ## Procedure
 
-1. Backgrounds first: room tone, environments — the bed everything sits on.
+1. Backgrounds first: room tone, environments, the bed everything sits on.
 2. Hard FX: impacts, whooshes, designed moments.
-3. Foley: footsteps, cloth, props — performed or layered to picture.
+3. Foley: footsteps, cloth, props, performed or layered to picture.
 4. J/L cuts at transitions; never let a cut go dry.
 
 ## Worked example
 
-4-min short: 3 ambience beds, 22 hard FX, 40 Foley cues — 65 tracks before music.
+4-min short: 3 ambience beds, 22 hard FX, 40 Foley cues, 65 tracks before music.
 
 ## Pitfalls
 
-- Music before SFX — build the world first, score it second.
+- Music before SFX, build the world first, score it second.

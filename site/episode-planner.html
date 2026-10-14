@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Episode planner — AI Film Master Guide</title>
+  <title>Episode planner, AI Film Master Guide</title>
   <meta name="description" content="Plan an AI mini-drama series: series setup with locked character bible, per-episode blocks (emotion, beats, turn, cliffhanger), and an arc tracker with lessons learned. Saves in your browser.">
+  <link rel="preload" href="assets/fonts/anton-latin-normal-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/inter-latin-normal-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/fonts.css">
   <link rel="stylesheet" href="assets/css/tokens.css">
@@ -40,13 +41,13 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="canonical" href="https://ai-film-master-guide-live.vercel.app/episode-planner">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Episode planner — AI Film Master Guide">
+  <meta property="og:title" content="Episode planner, AI Film Master Guide">
   <meta property="og:description" content="Plan an AI mini-drama series: series setup with locked character bible, per-episode blocks (emotion, beats, turn, cliffhanger), and an arc tracker with lessons learned. Saves in your browser.">
   <meta property="og:image" content="https://ai-film-master-guide-live.vercel.app/assets/og-card.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Episode planner — AI Film Master Guide">
+  <meta name="twitter:title" content="Episode planner, AI Film Master Guide">
   <meta name="twitter:description" content="Plan an AI mini-drama series: series setup with locked character bible, per-episode blocks (emotion, beats, turn, cliffhanger), and an arc tracker with lessons learned. Saves in your browser.">
   <meta name="twitter:image" content="https://ai-film-master-guide-live.vercel.app/assets/og-card.png">
 </head>
@@ -75,20 +76,21 @@
   <main id="main">
     <section class="hero" aria-labelledby="ep-title-h">
       <div class="container hero-inner">
+        <p class="hero-slate"><span>Tools</span></p>
         <h1 id="ep-title-h">Episode <span class="accent">planner.</span></h1>
-        <p class="lede">A series is a contract with the audience: lock the bible once, plan every episode as a block (one emotion, 3–5 beats, dedicated turn, cliffhanger), and keep an arc log with lessons learned. Everything saves in your browser — nothing leaves your machine.</p>
+        <p class="lede">A series is a contract with the audience: lock the bible once, plan every episode as a block (one emotion, 3 to 5 beats, dedicated turn, cliffhanger), and keep an arc log with lessons learned. Everything saves in your browser, nothing leaves your machine.</p>
         
       </div>
     </section>
     <section class="container" aria-labelledby="eps-h">
-      <h2 id="eps-h">1 · Series setup — lock the bible</h2>
+      <h2 id="eps-h">1 · Series setup, lock the bible</h2>
       <form class="card calc-form" aria-label="Series setup" onsubmit="return false;">
         <div class="field">
           <label for="ep-title">Series title</label>
           <input class="input" type="text" id="ep-title" placeholder="e.g. The Taxi Home">
         </div>
         <div class="field">
-          <label for="ep-logline">Logline — the arc in one sentence</label>
+          <label for="ep-logline">Logline, the arc in one sentence</label>
           <input class="input" type="text" id="ep-logline" placeholder="e.g. A brave toddler crosses the city alone to find her daddy">
         </div>
         <div class="field">
@@ -96,7 +98,7 @@
           <input class="input" type="text" id="ep-hashtag" placeholder="#taxihome">
         </div>
         <fieldset>
-          <legend>Recurring cast — name + voice + one-line anchor per character</legend>
+          <legend>Recurring cast, name + voice + one-line anchor per character</legend>
           <div id="ep-cast-list"></div>
           <button type="button" class="btn btn-ghost btn-sm" id="ep-cast-add" style="margin-top:var(--space-3);">+ Add character</button>
         </fieldset>
@@ -108,17 +110,17 @@
       </form>
     </section>
     <section class="container" aria-labelledby="epb-h" style="margin-top:var(--space-6);">
-      <h2 id="epb-h">2 · Episode block — one emotion, one turn, one cliffhanger</h2>
+      <h2 id="epb-h">2 · Episode block, one emotion, one turn, one cliffhanger</h2>
       <form class="card calc-form" aria-label="Episode block" onsubmit="return false;">
         <fieldset>
-          <legend>Format preset — pre-fills the block skeleton</legend>
+          <legend>Format preset, pre-fills the block skeleton</legend>
           <div class="epf-formats" role="radiogroup" aria-label="Series format">
-            <label class="epf-radio"><input type="radio" name="epf-format" value="minidrama" checked> Mini-drama<span class="epf-hint">One emotion, soap-opera pacing, 60–150s</span></label>
-            <label class="epf-radio"><input type="radio" name="epf-format" value="pov"> POV series<span class="epf-hint">"You" are the protagonist, 30–90s</span></label>
-            <label class="epf-radio"><input type="radio" name="epf-format" value="daylife"> Day-in-the-life<span class="epf-hint">Recurring character, one small event, 15–60s</span></label>
-            <label class="epf-radio"><input type="radio" name="epf-format" value="revenge"> Revenge arc<span class="epf-hint">The justice ladder, 60–150s</span></label>
-            <label class="epf-radio"><input type="radio" name="epf-format" value="interactive"> Interactive<span class="epf-hint">Comment-poll-driven episodes, 60–150s</span></label>
-            <label class="epf-radio"><input type="radio" name="epf-format" value="custom"> Custom<span class="epf-hint">Blank block, 60–150s band</span></label>
+            <label class="epf-radio"><input type="radio" name="epf-format" value="minidrama" checked> Mini-drama<span class="epf-hint">One emotion, soap-opera pacing, 60 to 150s</span></label>
+            <label class="epf-radio"><input type="radio" name="epf-format" value="pov"> POV series<span class="epf-hint">"You" are the protagonist, 30 to 90s</span></label>
+            <label class="epf-radio"><input type="radio" name="epf-format" value="daylife"> Day-in-the-life<span class="epf-hint">Recurring character, one small event, 15 to 60s</span></label>
+            <label class="epf-radio"><input type="radio" name="epf-format" value="revenge"> Revenge arc<span class="epf-hint">The justice ladder, 60 to 150s</span></label>
+            <label class="epf-radio"><input type="radio" name="epf-format" value="interactive"> Interactive<span class="epf-hint">Comment-poll-driven episodes, 60 to 150s</span></label>
+            <label class="epf-radio"><input type="radio" name="epf-format" value="custom"> Custom<span class="epf-hint">Blank block, 60 to 150s band</span></label>
           </div>
           <button type="button" class="btn btn-ghost btn-sm" id="epf-apply" style="margin-top:var(--space-3);">Apply format template</button>
         </fieldset>
@@ -127,7 +129,7 @@
           <input class="input" type="number" id="epb-num" min="1" step="1" value="1">
         </div>
         <div class="field">
-          <label for="epb-emotion">Emotion — one word</label>
+          <label for="epb-emotion">Emotion, one word</label>
           <input class="input" type="text" id="epb-emotion" list="epb-emotion-list" autocomplete="off" placeholder="e.g. longing">
           <datalist id="epb-emotion-list">
             <option value="longing"></option>
@@ -143,28 +145,28 @@
             <option value="guilt"></option>
             <option value="joy"></option>
           </datalist>
-          <span class="epf-hint">One emotion per episode — the save gate refuses a block that reads as two.</span>
+          <span class="epf-hint">One emotion per episode, the save gate refuses a block that reads as two.</span>
         </div>
         <div class="field">
           <label for="epb-stake">One-line emotional stake</label>
           <input class="input" type="text" id="epb-stake" placeholder="e.g. Mia took a taxi alone to find her daddy">
         </div>
         <div class="field">
-          <label for="epb-hook">Hook visual — the first 3 seconds</label>
+          <label for="epb-hook">Hook visual, the first 3 seconds</label>
           <input class="input" type="text" id="epb-hook" placeholder="e.g. Toddler alone in the back of a night taxi, city lights">
         </div>
         <fieldset>
-          <legend>Beats — 3 to 5</legend>
+          <legend>Beats, 3 to 5</legend>
           <div id="epb-beats"></div>
           <button type="button" class="btn btn-ghost btn-sm" id="epb-beat-add" style="margin-top:var(--space-3);">+ Add beat</button>
         </fieldset>
         <div class="field">
-          <label for="epb-turn">Emotional turn — which beat, and what changes</label>
-          <input class="input" type="text" id="epb-turn" placeholder="e.g. Beat 4: the driver realizes she's not lost — she's determined">
+          <label for="epb-turn">Emotional turn, which beat, and what changes</label>
+          <input class="input" type="text" id="epb-turn" placeholder="e.g. Beat 4: the driver realizes she's not lost, she's determined">
         </div>
         <div class="field">
-          <label for="epb-cliff">Cliffhanger — the unanswered beat. Never the resolution.</label>
-          <input class="input" type="text" id="epb-cliff" placeholder="e.g. The taxi stops at the wrong address — headlights, cut">
+          <label for="epb-cliff">Cliffhanger, the unanswered beat. Never the resolution.</label>
+          <input class="input" type="text" id="epb-cliff" placeholder="e.g. The taxi stops at the wrong address, headlights, cut">
           <div class="field" style="margin-top:var(--space-2);">
             <label for="epb-cliff-tpl">…or start from a template (<span class="mono">{name}</span> fills from the cast)</label>
             <select class="input" id="epb-cliff-tpl"></select>
@@ -172,11 +174,11 @@
           </div>
         </div>
         <div class="field">
-          <label for="epb-scenes">Keyframe scenes — hook / beat / turn / cliffhanger</label>
+          <label for="epb-scenes">Keyframe scenes, hook / beat / turn / cliffhanger</label>
           <input class="input" type="text" id="epb-scenes" placeholder="e.g. taxi night exterior; Mia clutching coat; driver sees her; wrong-address stop">
         </div>
         <fieldset>
-          <legend>Runtime estimator — beats × seconds-per-beat vs the dialogue budget</legend>
+          <legend>Runtime estimator, beats × seconds-per-beat vs the dialogue budget</legend>
           <div class="field">
             <label for="epf-spb">Seconds per beat</label>
             <input class="input" type="number" id="epf-spb" min="5" max="45" step="1" value="15">
@@ -194,19 +196,19 @@
         </div>
         <p class="calc-note" id="epb-msg" role="status" hidden></p>
       </form>
-      <h3 style="margin-top:var(--space-5);">Saved blocks — your series so far</h3>
+      <h3 style="margin-top:var(--space-5);">Saved blocks, your series so far</h3>
       <ul class="log-list" id="epb-blocks" aria-live="polite"></ul>
-      <p class="empty-state" id="epb-blocks-empty">No saved blocks yet — write a block above and save it.</p>
+      <p class="empty-state" id="epb-blocks-empty">No saved blocks yet, write a block above and save it.</p>
       <p>
         <button type="button" class="btn" id="epb-send-series" disabled>Send series to Studio →</button>
         <button type="button" class="btn btn-ghost" id="epb-send-run" disabled>Send run to Studio →</button>
       </p>
-      <p class="calc-note">One click stages the whole saved series (title, logline, cast anchors, every block's format/runtime/beats) into the Studio — which pre-fills a series packet: per-episode shot budgets, the locked series bible, and reuse math. <strong>Send run to Studio</strong> stages episode count + median runtime per episode into the Studio's <strong>microdrama mode</strong> instead: clip budget, the $50/min benchmark, the 3–5× retake budget, the regen reserve, and the documented-pace timeline — economics only, no shot packet. Nothing leaves your browser.</p>
+      <p class="calc-note">One click stages the whole saved series (title, logline, cast anchors, every block's format/runtime/beats) into the Studio, which pre-fills a series packet: per-episode shot budgets, the locked series bible, and reuse math. <strong>Send run to Studio</strong> stages episode count + median runtime per episode into the Studio's <strong>microdrama mode</strong> instead: clip budget, the $50/min benchmark, the 3 to 5× retake budget, the regen reserve, and the documented-pace timeline, economics only, no shot packet. Nothing leaves your browser.</p>
     </section>
     <section class="container" aria-labelledby="epl-h" style="margin-top:var(--space-6);">
-      <h2 id="epl-h">3 · Arc tracker — the log that makes the series smarter</h2>
+      <h2 id="epl-h">3 · Arc tracker, the log that makes the series smarter</h2>
       <ul class="log-list" id="epl-list" aria-live="polite"></ul>
-      <p class="empty-state" id="epl-empty">No log entries yet — ship an episode, then write what it taught you.</p>
+      <p class="empty-state" id="epl-empty">No log entries yet, ship an episode, then write what it taught you.</p>
       <form class="card calc-form" aria-label="Add an arc log entry" onsubmit="return false;" style="margin-top:var(--space-5);">
         <div class="field">
           <label for="epl-ep">Episode</label>
@@ -217,19 +219,19 @@
           <input class="input" type="text" id="epl-title" placeholder="e.g. The Wrong Address">
         </div>
         <div class="field">
-          <label for="epl-lesson">Lesson learned — story, timing, or production</label>
+          <label for="epl-lesson">Lesson learned, story, timing, or production</label>
           <textarea class="input" id="epl-lesson" rows="3" placeholder="e.g. Turn landed flat: the driver reveal needed its own keyframe, not a borrowed beat shot."></textarea>
         </div>
         <div class="btn-row">
           <button type="button" class="btn" id="epl-add">Append to log</button>
         </div>
       </form>
-      <p class="calc-note">Gate G8: the episode isn't shipped until the log and a lesson are appended — and the bible never changes mid-series.</p>
+      <p class="calc-note">Gate G8: the episode isn't shipped until the log and a lesson are appended, and the bible never changes mid-series.</p>
     </section>
   </main>
   <footer class="site-footer">
     <div class="container footer-grid">
-      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <p>AI Film Master Guide, research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer"><a href="index.html">Guide</a><a href="skills.html">Skills</a><a href="workshop.html">Workshop</a><a href="quiz.html">Quiz</a><a href="compare.html">Compare</a><a href="gallery.html">Gallery</a><a href="teardown.html">Teardowns</a><a href="model-watch.html">Model watch</a><a href="showdown.html">Showdown</a><a href="forge.html">Episode forge</a><a href="clearance.html">Script clearance</a><a href="continuity.html">Continuity ledger</a><a href="cuesheet.html">Cue sheet</a><a href="grade.html">Grade sheet</a><a href="cut.html">Cut sheet</a><a href="take.html">Take sheet</a><a href="longform.html">Longform sheet</a><a href="path.html">The path</a><a href="checks/">Knowledge checks</a><a href="budget.html">Budget</a><a href="optimizer.html">Optimizer</a><a href="shots.html">Shot list</a><a href="style-bible.html">Style bible</a><a href="doctor.html">Doctor</a><a href="linter.html">Linter</a><a href="cutting-room.html">Cutting room</a><a href="prompts.html">Prompts</a><a href="models/">Models</a><a href="anatomy.html">Anatomy</a><a href="manifesto.html">Manifesto</a><a href="craft-not-buttons.html">Craft, not buttons</a><a href="recipes.html">Recipes</a><a href="field-guides/">Field guides</a><a href="changelog.html">Changelog</a><a href="skill-spec.html">Skill spec</a><a href="api.html">API</a></nav>
       <div class="footer-colophon"><span>AI Film Master Guide</span><span class="tail">Craft, not buttons</span></div>
     </div>

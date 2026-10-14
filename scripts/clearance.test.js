@@ -1,7 +1,7 @@
-/* clearance.test.js — Script Clearance desk engine tests against the
-   REAL rule set (research cycle 81, rules 1358–1367 in
-   assets/js/clearance.js — the same data build_site.py pre-renders).
-   Run: node scripts/clearance.test.js — exits non-zero on any failure. */
+/* clearance.test.js, Script Clearance desk engine tests against the
+   REAL rule set (research cycle 81, rules 1358 to 1367 in
+   assets/js/clearance.js, the same data build_site.py pre-renders).
+   Run: node scripts/clearance.test.js, exits non-zero on any failure. */
 "use strict";
 const path = require("path");
 const ROOT = path.join(__dirname, "..");
@@ -15,7 +15,7 @@ function ok(cond, name) {
 
 ok(C.STEPS.length === 10, "the file has exactly ten steps (got " + C.STEPS.length + ")");
 ok(C.STEPS.map(s => s.n).join(",") === "1358,1359,1360,1361,1362,1363,1364,1365,1366,1367",
-  "steps are rules 1358–1367 in order");
+  "steps are rules 1358 to 1367 in order");
 ok(C.STEPS.every(s => s.what && s.when && s.name), "every step states what it is and when it is required");
 ok(new Set(C.STEPS.map(s => s.stage)).size === 3, "steps span the three stages (before / during / closing)");
 ok(C.DECISIONS.map(d => d.id).join(",") === "license,substitute,change-use,assume-risk",
@@ -50,7 +50,7 @@ ok(md.includes("Gate open"), "export carries the gate verdict");
 ok(md.includes("Substitute it") && md.includes("Expressly assume the risk"), "export traces every recorded decision by label");
 ok(md.includes("Not legal advice"), "export carries the not-legal-advice line");
 const md2 = C.fileToMarkdown("Test Short", C.DEFAULT_ITEMS, []);
-ok(md2.includes("no decision recorded"), "export names an undecided flag instead of hiding it");
+ok(md2.includes("No decision recorded"), "export names an undecided flag instead of hiding it");
 
 console.log(fail === 0 ? `clearance.test.js: ${pass} assertions, all pass` : `clearance.test.js: ${fail} FAILURES`);
 process.exit(fail ? 1 : 0);

@@ -1,19 +1,18 @@
-/* The Take Sheet — the directing-performance chapter
+/* The Take Sheet, the directing-performance chapter
    (craft/directing-performance.md) as a working take sheet.
-   The chapter's claim sets the stakes: AI models don't act —
-   they render plausible pixels that read as acting when the
+   The chapter's claim sets the stakes: AI models don't act, they render plausible pixels that read as acting when the
    direction is specific enough, and collapse into mannequin
    theater when it isn't. The sheet invents nothing: it takes
-   a production's own performance beats — each beat's
+   a production's own performance beats, each beat's
    direction (a playable tactic or an emotion label), its
    eyeline target, its dead-eyes check, its framing and
    whether that framing sits on an emotional peak, its failed
    rehearsals, and its route (in rehearsal, Scene-Locked, to
-   be simplified, or hybrid) — and computes the performance-
+   be simplified, or hybrid), and computes the performance-
    lock verdict from the chapter's own rules, three of them
    mechanical: a beat directed by emotion label reads
    undirected; a beat still re-rolling after three failed
-   rehearsals reads overdue — simplify the shot, not the
+   rehearsals reads overdue, simplify the shot, not the
    actor; and a close-up spent away from an emotional peak
    reads misspent. Deterministic: the same sheet always
    produces the same verdict and export. */
@@ -23,20 +22,20 @@
   /* The chapter's pre-lock gates, verbatim in substance. */
   var GATES = [
     { id: "tactics", name: "Every beat rewritten as a playable tactic",
-      what: "Direct, don't describe: replace every emotion label with a task a body can do — scene event, motive, goal, obstacle, tactic. Models can't render 'devastated'; they can render a jaw set and eyes fixed on a door." },
-    { id: "eyelines", name: "Eyelines named per beat — every pair of eyes has a job",
-      what: "Dead, glassy eyes are never fixed with lighting — they're fixed by giving the eyes a job. Name the eyeline target per beat; eyes move between targets (avert, hold, search, track) and never stare into the middle distance." },
+      what: "Direct, don't describe: replace every emotion label with a task a body can do, scene event, motive, goal, obstacle, tactic. Models can't render 'devastated'; they can render a jaw set and eyes fixed on a door." },
+    { id: "eyelines", name: "Eyelines named per beat, every pair of eyes has a job",
+      what: "Dead, glassy eyes are never fixed with lighting, they're fixed by giving the eyes a job. Name the eyeline target per beat; eyes move between targets (avert, hold, search, track) and never stare into the middle distance." },
     { id: "directorsread", name: "Director's read written: shared event + a channel per character",
-      what: "Everyone in the scene lives through the same event, but each character carries it in a different physical channel — grief in her hands, in his jaw, in the kid's feet. Write the event once, then assign each character their channel." },
-    { id: "identity", name: "Identity locked — the face anchor is never re-run",
+      what: "Everyone in the scene lives through the same event, but each character carries it in a different physical channel, grief in her hands, in his jaw, in the kid's feet. Write the event once, then assign each character their channel." },
+    { id: "identity", name: "Identity locked, the face anchor is never re-run",
       what: "Consistent identity reads as good acting; a face that drifts 5% reads as a bad performance. Lock the face anchor, never re-run the base portrait, and make state changes (dirt, wounds, tears) masked integrations, not re-generations." },
     { id: "restraint", name: "Restraint pass done: negative constraints, subtext, under-directed faces",
-      what: "Models default to theatrical. Strip it: negative constraints (no eyebrow raises, no wide-eyed gasps), subtext instead of stated emotion, environment carrying mood — and deliberately under-direct the face where the model finds expression better itself." },
+      what: "Models default to theatrical. Strip it: negative constraints (no eyebrow raises, no wide-eyed gasps), subtext instead of stated emotion, environment carrying mood, and deliberately under-direct the face where the model finds expression better itself." },
   ];
 
   var MODES = [
-    { id: "tactic", label: "Playable tactic — a task a body can do" },
-    { id: "label", label: "Emotion label — an adjective, not a task" },
+    { id: "tactic", label: "Playable tactic, a task a body can do" },
+    { id: "label", label: "Emotion label, an adjective, not a task" },
   ];
   var MODE_IDS = MODES.map(function (s) { return s.id; });
 
@@ -48,10 +47,10 @@
   var FRAMING_IDS = FRAMINGS.map(function (s) { return s.id; });
 
   var STATUSES = [
-    { id: "rehearsing", label: "In rehearsal — drafts as takes" },
-    { id: "locked", label: "Scene-Locked — photograph it, don't regenerate it" },
+    { id: "rehearsing", label: "In rehearsal, drafts as takes" },
+    { id: "locked", label: "Scene-Locked, photograph it, don't regenerate it" },
     { id: "simplify", label: "Simplify the shot" },
-    { id: "hybrid", label: "Hybrid — a real performer at the core" },
+    { id: "hybrid", label: "Hybrid, a real performer at the core" },
   ];
   var STATUS_IDS = STATUSES.map(function (s) { return s.id; });
 
@@ -60,38 +59,38 @@
      Sheet, and the Cut Sheet track ("The Night Bus"),
      performed instead of seen, heard, graded, or cut. Five
      beats are Scene-Locked clean; the depot-office reaction
-     is still in rehearsal — a playable tactic on its second
-     draft — so the first verdict is the honest hold. Every
+     is still in rehearsal, a playable tactic on its second
+     draft, so the first verdict is the honest hold. Every
      label is invented for the example; no real production
      is described. */
   var DEFAULT_ENTRIES = [
-    { shot: "Sc 1 · Sh 01 — Depot wide, Mara waits", mode: "tactic", eyeline: true, deadeyes: true,
+    { shot: "Sc 1 · Sh 01, Depot wide, Mara waits", mode: "tactic", eyeline: true, deadeyes: true,
       framing: "wide", peak: false, attempts: 0, status: "locked",
-      detail: "Tactic: she is keeping herself ready to leave — coat on, bag zipped, eyes tracking the arrivals board, then the door. Grief lives in her hands: the ticket folded and re-folded." },
-    { shot: "Sc 2 · Sh 04 — Window close-up, the hardest line", mode: "tactic", eyeline: true, deadeyes: true,
+      detail: "Tactic: she is keeping herself ready to leave, coat on, bag zipped, eyes tracking the arrivals board, then the door. Grief lives in her hands: the ticket folded and re-folded." },
+    { shot: "Sc 2 · Sh 04, Window close-up, the hardest line", mode: "tactic", eyeline: true, deadeyes: true,
       framing: "closeup", peak: true, attempts: 0, status: "locked",
-      detail: "The film's one close-up, spent on its peak. Tactic: she is trying not to cry in front of him — jaw set, eyes on the window catch until the line lands. The voice carries; the face supports." },
-    { shot: "Sc 3 · Sh 02 — The rain stop, shelter two-shot", mode: "tactic", eyeline: true, deadeyes: true,
+      detail: "The film's one close-up, spent on its peak. Tactic: she is trying not to cry in front of him, jaw set, eyes on the window catch until the line lands. The voice carries; the face supports." },
+    { shot: "Sc 3 · Sh 02, The rain stop, shelter two-shot", mode: "tactic", eyeline: true, deadeyes: true,
       framing: "medium", peak: false, attempts: 0, status: "locked",
-      detail: "Director's read: the same late bus, two channels — Mara's stillness against the driver's restless weight-shifting. Eyelines cross only once, on the headlights." },
-    { shot: "Sc 4 · Sh 02 — Depot office, the driver hears the radio", mode: "tactic", eyeline: true, deadeyes: true,
+      detail: "Director's read: the same late bus, two channels, Mara's stillness against the driver's restless weight-shifting. Eyelines cross only once, on the headlights." },
+    { shot: "Sc 4 · Sh 02, Depot office, the driver hears the radio", mode: "tactic", eyeline: true, deadeyes: true,
       framing: "medium", peak: false, attempts: 1, status: "rehearsing",
-      detail: "The listener's reaction shot — AI renders listening better than complex feeling, and this one is not there yet: the first 720p rehearsal read blank, the second (eyeline moved to the radio speaker, thumb rubbing the ring) reads rehearsing, not locked. One failed rehearsal; re-direct with a changed variable, never the same prompt hoping." },
-    { shot: "Sc 4 · Sh 03 — Office pan, radio voices", mode: "tactic", eyeline: true, deadeyes: true,
+      detail: "The listener's reaction shot, AI renders listening better than complex feeling, and this one is not there yet: the first 720p rehearsal read blank, the second (eyeline moved to the radio speaker, thumb rubbing the ring) reads rehearsing, not locked. One failed rehearsal; re-direct with a changed variable, never the same prompt hoping." },
+    { shot: "Sc 4 · Sh 03, Office pan, radio voices", mode: "tactic", eyeline: true, deadeyes: true,
       framing: "medium", peak: false, attempts: 0, status: "locked",
-      detail: "No face carries this beat — the radio does. Faces under-directed on purpose; the restraint pass stripped two eyebrow raises the model offered on its own." },
-    { shot: "Sc 5 · Sh 01 — Departure pull-away", mode: "tactic", eyeline: true, deadeyes: true,
+      detail: "No face carries this beat, the radio does. Faces under-directed on purpose; the restraint pass stripped two eyebrow raises the model offered on its own." },
+    { shot: "Sc 5 · Sh 01, Departure pull-away", mode: "tactic", eyeline: true, deadeyes: true,
       framing: "wide", peak: false, attempts: 0, status: "locked",
-      detail: "The button is a wide: she keeps finding reasons to stand closer to the kerb; he keeps noticing and not moving away. Dead-eyes check passed at distance — no stare, eyeline on the bus until it fills the frame." },
+      detail: "The button is a wide: she keeps finding reasons to stand closer to the kerb; he keeps noticing and not moving away. Dead-eyes check passed at distance, no stare, eyeline on the bus until it fills the frame." },
   ];
 
   /* The chapter's hardest directing rules, applied
      mechanically, in the order a lock is actually blocked:
      an emotion label is not direction; three failed
-     rehearsals mean the shot — not the actor — changes; a
+     rehearsals mean the shot, not the actor, changes; a
      close-up off its peak spends the scarcest currency in
      AI performance. A hybrid beat is a decision, not a
-     defect — it blocks nothing. */
+     defect, it blocks nothing. */
   function effectiveStatus(e) {
     if (!e) return "unchecked";
     var st = STATUS_IDS.indexOf(e.status) >= 0 ? e.status : "rehearsing";
@@ -106,14 +105,14 @@
   }
 
   var EFFECTIVE_LABELS = {
-    clean: "Clean — Scene-Locked",
-    rehearsing: "In rehearsal — drafts as takes",
-    simplifying: "Simplifying — the shot changes, not the actor",
-    unchecked: "Unchecked — eyeline or dead-eyes check unfinished",
-    undirected: "Undirected — an emotion label is not a task",
-    overdue: "Overdue — three failed rehearsals",
-    misspent: "Misspent close-up — no peak under it",
-    hybrid: "Hybrid — a real performer at the core",
+    clean: "Clean, Scene-Locked",
+    rehearsing: "In rehearsal, drafts as takes",
+    simplifying: "Simplifying, the shot changes, not the actor",
+    unchecked: "Unchecked, eyeline or dead-eyes check unfinished",
+    undirected: "Undirected, an emotion label is not a task",
+    overdue: "Overdue, three failed rehearsals",
+    misspent: "Misspent close-up, no peak under it",
+    hybrid: "Hybrid, a real performer at the core",
   };
 
   function evaluate(entries) {
@@ -127,24 +126,24 @@
     var ready = list.length > 0 && held === 0 && stopped === 0;
     var verdict;
     if (list.length === 0) {
-      verdict = "No take sheet yet — undirected generations are mannequin theater until the beats are directed. Log every performance beat: its tactic, its eyeline, its framing, and its route.";
+      verdict = "No take sheet yet, undirected generations are mannequin theater until the beats are directed. Log every performance beat: its tactic, its eyeline, its framing, and its route.";
     } else if (count("undirected") > 0) {
       var m = count("undirected");
-      verdict = "Performance lock stopped — " + m + " beat" + (m === 1 ? " is" : "s are") +
-        " directed by emotion label: models can't render 'devastated' — they can render a jaw set and eyes on a door. Rewrite each label as a playable tactic: scene event, motive, goal, obstacle, tactic.";
+      verdict = "Performance lock stopped, " + m + " beat" + (m === 1 ? " is" : "s are") +
+        " directed by emotion label: models can't render 'devastated', they can render a jaw set and eyes on a door. Rewrite each label as a playable tactic: scene event, motive, goal, obstacle, tactic.";
     } else if (count("overdue") > 0) {
       var k = count("overdue");
-      verdict = "Performance lock stopped — " + k + " beat" + (k === 1 ? " has" : "s have") +
-        " burned three rehearsals: the three-rehearsal rule means simplify the shot, not the actor. Change a variable — a new tactic, a new eyeline — or simplify the shot; never re-roll the same prompt hoping.";
+      verdict = "Performance lock stopped, " + k + " beat" + (k === 1 ? " has" : "s have") +
+        " burned three rehearsals: the three-rehearsal rule means simplify the shot, not the actor. Change a variable, a new tactic, a new eyeline, or simplify the shot; never re-roll the same prompt hoping.";
     } else if (count("misspent") > 0) {
       var u = count("misspent");
-      verdict = "Performance lock stopped — " + u + " close-up" + (u === 1 ? " is" : "s are") +
+      verdict = "Performance lock stopped, " + u + " close-up" + (u === 1 ? " is" : "s are") +
         " spent away from an emotional peak: micro-acting is the weakest link in every current model, and a pushed-in over-directed close-up exposes every flaw. Ration close-ups to the peaks, or widen the framing.";
     } else if (held > 0) {
-      verdict = "Hold performance lock — " + held + " beat" + (held === 1 ? " is" : "s are") +
-        " not ready: a take still in rehearsal, a simplification still owed, or the eyeline / dead-eyes check unfinished. Review drafts as rehearsals — does the tactic read, do the eyes have a job, does the turn land in the cut?";
+      verdict = "Hold performance lock, " + held + " beat" + (held === 1 ? " is" : "s are") +
+        " not ready: a take still in rehearsal, a simplification still owed, or the eyeline / dead-eyes check unfinished. Review drafts as rehearsals, does the tactic read, do the eyes have a job, does the turn land in the cut?";
     } else {
-      verdict = "Performance lock clean — every beat is a playable tactic, every pair of eyes has a job, every close-up sits on its peak, and every approved take is Scene-Locked. Still owed: photograph the locked performance from new angles, don't regenerate it — the model must stop reinterpreting gestures, pauses, and props after approval — and keep synthetic performers inside edited, controlled contexts.";
+      verdict = "Performance lock clean, every beat is a playable tactic, every pair of eyes has a job, every close-up sits on its peak, and every approved take is Scene-Locked. Still owed: photograph the locked performance from new angles, don't regenerate it, the model must stop reinterpreting gestures, pauses, and props after approval, and keep synthetic performers inside edited, controlled contexts.";
     }
     return {
       total: list.length, clean: clean, held: held, stopped: stopped, hybrid: hybrid,
@@ -167,28 +166,28 @@
 
   function statusLabel(id) {
     for (var i = 0; i < STATUSES.length; i++) if (STATUSES[i].id === id) return STATUSES[i].label;
-    return "— no route recorded —";
+    return "No route recorded ";
   }
 
   function modeLabel(id) {
     for (var i = 0; i < MODES.length; i++) if (MODES[i].id === id) return MODES[i].label;
-    return "— no direction recorded —";
+    return "no direction recorded ";
   }
 
   function framingLabel(id) {
     for (var i = 0; i < FRAMINGS.length; i++) if (FRAMINGS[i].id === id) return FRAMINGS[i].label;
-    return "— no framing recorded —";
+    return "no framing recorded ";
   }
 
   function effectiveLabel(e) {
-    return EFFECTIVE_LABELS[effectiveStatus(e)] || "—";
+    return EFFECTIVE_LABELS[effectiveStatus(e)] || "…";
   }
 
   function sheetToMarkdown(title, entries, doneIds) {
     var r = evaluate(entries);
     var gs = gateState(doneIds);
     var lines = [];
-    lines.push("# Take sheet — " + (title || "Untitled production"));
+    lines.push("# Take sheet, " + (title || "Untitled production"));
     lines.push("");
     lines.push("Directing performance in AI video: playable tactics, eyelines, the director's read, rehearsal as a department, and Scene Lock (see craft/directing-performance.md).");
     lines.push("");
@@ -203,7 +202,7 @@
     lines.push("## Performance beats (" + r.total + ")");
     if (!entries.length) lines.push("- (none logged)");
     entries.forEach(function (e) {
-      lines.push("- " + e.shot + " — " + effectiveLabel(e) + ". Direction: " + modeLabel(e.mode) +
+      lines.push("- " + e.shot + ", " + effectiveLabel(e) + ". Direction: " + modeLabel(e.mode) +
         ". Eyeline: " + (e.eyeline ? "named" : "not named") +
         ". Dead-eyes check: " + (e.deadeyes ? "done" : "not done") +
         ". Framing: " + framingLabel(e.framing) +
@@ -258,20 +257,20 @@
           '<p class="take-checks" role="group" aria-label="Performance checks for ' + esc(e.shot) + '">' +
           '<button type="button" class="btn btn-sm' + (e.eyeline ? "" : " btn-ghost") +
           '" data-take-eye="' + idx + '" aria-pressed="' + !!e.eyeline + '">Eyeline named ' +
-          (e.eyeline ? "✓" : "—") + "</button> " +
+          (e.eyeline ? "✓" : "…") + "</button> " +
           '<button type="button" class="btn btn-sm' + (e.deadeyes ? "" : " btn-ghost") +
           '" data-take-dead="' + idx + '" aria-pressed="' + !!e.deadeyes + '">Dead-eyes check ' +
-          (e.deadeyes ? "✓" : "—") + "</button> " +
+          (e.deadeyes ? "✓" : "…") + "</button> " +
           '<button type="button" class="btn btn-sm' + (e.peak ? "" : " btn-ghost") +
           '" data-take-peak="' + idx + '" aria-pressed="' + !!e.peak + '">Emotional peak ' +
-          (e.peak ? "✓" : "—") + "</button></p>" +
+          (e.peak ? "✓" : "…") + "</button></p>" +
           '<p class="take-state">State: <strong>' + esc(effectiveLabel(e)) + "</strong>" +
           (eff !== "clean" && eff !== raw && !(eff === "rehearsing" && raw === "rehearsing") && !(eff === "hybrid" && raw === "hybrid")
-            ? ' <span class="take-note">(by the chapter\u2019s rules — see the verdict)</span>' : "") + "</p>" +
+            ? ' <span class="take-note">(by the chapter\u2019s rules, see the verdict)</span>' : "") + "</p>" +
           '<p class="take-mode">Direction: ' +
           MODES.map(function (s) {
             return '<button type="button" class="btn btn-sm' + (e.mode === s.id ? "" : " btn-ghost") +
-              '" data-take-mode="' + idx + ":" + s.id + '">' + esc(s.label.split(" — ")[0]) + "</button>";
+              '" data-take-mode="' + idx + ":" + s.id + '">' + esc(s.label.split(", ")[0]) + "</button>";
           }).join(" ") + "</p>" +
           '<p class="take-framing">Framing: ' +
           FRAMINGS.map(function (s) {
@@ -281,12 +280,12 @@
           '<p class="take-route">Route: ' +
           STATUSES.map(function (s) {
             return '<button type="button" class="btn btn-sm' + (raw === s.id ? "" : " btn-ghost") +
-              '" data-take-set="' + idx + ":" + s.id + '">' + esc(s.label.split(" — ")[0]) + "</button>";
+              '" data-take-set="' + idx + ":" + s.id + '">' + esc(s.label.split(", ")[0]) + "</button>";
           }).join(" ") + "</p>" +
           '<p class="take-attempts">Failed rehearsals: <strong>' + (Number(e.attempts) || 0) + "</strong> " +
           '<button type="button" class="btn btn-sm btn-ghost" data-take-att="' + idx + ':-1">−</button> ' +
           '<button type="button" class="btn btn-sm btn-ghost" data-take-att="' + idx + ':1">+</button>' +
-          ' <span class="take-note">three failed rehearsals simplify the shot — not the actor</span></p>' +
+          ' <span class="take-note">three failed rehearsals simplify the shot, not the actor</span></p>' +
           '<p><button type="button" class="btn btn-sm btn-ghost" data-take-del="' + idx + '">Remove beat</button></p></article>';
       });
       stageEl.innerHTML = html || '<p class="take-detail">No performance beats logged yet.</p>';
@@ -294,7 +293,7 @@
       verdictEl.className = "take-verdict " + (r.ready ? "take-clean" : "take-held");
       var gs = gateState(done);
       gatesEl.textContent = "Gates complete: " + gs.done + " of " + gs.total +
-        (gs.complete ? " — every pre-lock gate is in place." : " — the gates are the discipline before any beat is judged; finish them first.");
+        (gs.complete ? ", every pre-lock gate is in place." : ", the gates are the discipline before any beat is judged; finish them first.");
     }
 
     stageEl.addEventListener("click", function (ev) {
@@ -340,7 +339,7 @@
     if (addBtn) addBtn.addEventListener("click", function () {
       var shot = (document.getElementById("take-new-shot").value || "").trim();
       var detail = (document.getElementById("take-new-detail").value || "").trim();
-      if (!shot) { msgEl.hidden = false; msgEl.textContent = "Name the beat — scene, shot, who performs it. The sheet only holds what is written down, beat by beat."; return; }
+      if (!shot) { msgEl.hidden = false; msgEl.textContent = "Name the beat, scene, shot, who performs it. The sheet only holds what is written down, beat by beat."; return; }
       entries.push({ shot: shot,
         mode: document.getElementById("take-new-mode").value,
         eyeline: document.getElementById("take-new-eyeline").checked,

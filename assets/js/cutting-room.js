@@ -1,13 +1,12 @@
-/* cutting-room.js — The Cutting Room, playable (wow wave 1).
+/* cutting-room.js, The Cutting Room, playable (wow wave 1).
    Type a weak prompt, roll the camera: the prompt gets a real structural
-   analysis against the guide's ten-layer anatomy, the page "shoots" it —
-   a shot-by-shot breakdown built from the REAL prompt library
+   analysis against the guide's ten-layer anatomy, the page "shoots" it, a shot-by-shot breakdown built from the REAL prompt library
    (prompt-templates.json, 47 templates), and the cost desk runs REAL math
    on the REAL pricing table (Watchtower /api/models-pricing, static
    fallback to data/v1/pricing.json, built-in estimates last).
    Guided fix-bay suggestions quote real library technique (placeholder
    hints and craft lines from actual templates, cited by id). Heuristic
-   throughout — honest about it, like the linter. */
+   throughout, honest about it, like the linter. */
 (function () {
   "use strict";
 
@@ -24,9 +23,9 @@
     return new RegExp("(^|[^a-z])" + key.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "([^a-z]|$)");
   }
 
-  /* ——— The ten layers: the guide's prompt-anatomy knowledge, same tables
+  /*  The ten layers: the guide's prompt-anatomy knowledge, same tables
      the linter checks against. Detection keywords are lowercase, matched
-     on word boundaries. ——— */
+     on word boundaries.  */
   var LAYERS = [
     { id: "subject", num: 1, name: "Subject", token: "SUBJECT",
       keys: ["woman", "man", "person", "people", "girl", "boy", "child", "elderly", "figure",
@@ -36,8 +35,8 @@
              "sixties", "twenties", "thirties", "protagonist", "character", "subject", "dog",
              "cat", "horse", "bird", "fisherman", "sailor", "mother", "father"],
       why: "Without a locked identity, every regeneration redesigns your character.",
-      missing: "Identity drift — a different face in every shot.",
-      tip: "Name the subject and lock 2–3 visual traits that never change." },
+      missing: "Identity drift, a different face in every shot.",
+      tip: "Name the subject and lock 2 to 3 visual traits that never change." },
     { id: "action", num: 2, name: "Micro-action", token: "ACTION",
       keys: ["walking", "running", "turning", "looking", "mending", "pouring", "lifting",
              "reaching", "sitting", "standing", "dancing", "fighting", "driving", "flying",
@@ -99,7 +98,7 @@
              "rain falling", "snow falling", "stirring", "motion", "mist lifting"],
       why: "Models render motion they are told about. Untold motion freezes.",
       missing: "Frozen, plasticky movement.",
-      tip: "Say how things move — coat hem stirring in the sea breeze." },
+      tip: "Say how things move, coat hem stirring in the sea breeze." },
     { id: "render", num: 9, name: "Rendering quality", token: null,
       keys: ["4k", "8k", "high resolution", "sharp", "detailed", "detail", "depth of field",
              "shallow depth", "bokeh", "texture", "skin texture", "ray tracing", "octane",
@@ -121,7 +120,7 @@
     "stunning", "gorgeous", "incredible", "fantastic", "very", "really", "quite",
     "somewhat", "thing", "things", "stuff", "something"];
 
-  /* ——— Language + gibberish detection (honest handling, not fake support) ——— */
+  /*  Language + gibberish detection (honest handling, not fake support)  */
   var STOPWORDS = {
     "Spanish": [" el ", " la ", " los ", " las ", " de ", " que ", " una ", " para ", " con ", " este ", " esta "],
     "French": [" le ", " la ", " les ", " des ", " une ", " dans ", " pour ", " avec ", " cette ", " sont "],
@@ -132,7 +131,7 @@
 
   function detectLanguage(text) {
     var t = " " + text.toLowerCase() + " ";
-    var nonLatin = (text.match(/[^\u0000-\u024F\u1E00-\u1EFF\s\d.,;:!?'"()\-–—]/g) || []).length;
+    var nonLatin = (text.match(/[^\u0000-\u024F\u1E00-\u1EFF\s\d.,;:!?'"()\-\u2013\u2014]/g) || []).length;
     var alpha = (text.match(/[A-Za-z\u00C0-\u024F\u1E00-\u1EFF]/g) || []).length;
     if (alpha > 0 && nonLatin / alpha > 0.35) return "a non-Latin script";
     var best = null, bestN = 0;
@@ -185,13 +184,13 @@
 
   function grade(score) {
     if (score >= 85) return ["Excellent", "Every layer directed. Print it."];
-    if (score >= 70) return ["Strong", "Solid structure — fill the remaining gaps for a locked shot."];
+    if (score >= 70) return ["Strong", "Solid structure, fill the remaining gaps for a locked shot."];
     if (score >= 50) return ["Workable", "The bones are here, but missing layers will show on screen."];
     if (score >= 30) return ["Thin", "The model will improvise everything you didn't direct."];
     return ["Bare", "This is a wish, not a direction. Build it up layer by layer."];
   }
 
-  /* ——— State ——— */
+  /*  State  */
   var TEMPLATES = null;      // the 47-library
   var PRICING = null;        // normalized video entries [{name, rateLow, rateHigh, tierName, basis}]
   var PROV = { kind: "builtin", at: null };
@@ -208,7 +207,7 @@
 
   if (!els["cr-prompt"]) return; // not on the cutting-room page
 
-  /* ——— Pricing: Watchtower live → static pricing.json → built-in estimates ——— */
+  /*  Pricing: Watchtower live → static pricing.json → built-in estimates  */
   function normName(s) { return String(s).toLowerCase().replace(/[^a-z0-9]+/g, " ").trim(); }
 
   function pickTier(tiers) {
@@ -282,10 +281,10 @@
   function provLine() {
     if (PROV.kind === "live") return "Rates: Watchtower live API" + (PROV.at ? " · " + PROV.at : "") + ".";
     if (PROV.kind === "static") return "Rates: cached pricing.json" + (PROV.at ? " · updated " + PROV.at : "") + ".";
-    return "Rates: built-in estimates (Oct 2026) — the Watchtower and pricing.json are unreachable from here.";
+    return "Rates: built-in estimates (Oct 2026), the Watchtower and pricing.json are unreachable from here.";
   }
 
-  /* ——— Template selection: coverage roles, relevance-ranked, deterministic ——— */
+  /*  Template selection: coverage roles, relevance-ranked, deterministic  */
   var ROLE_ORDER = [
     { role: "establishing", label: "Establishing", test: /establish|drone|aerial|wide|reveal|geograph|landscape|cityscape/i },
     { role: "action", label: "Action", test: /action|tracking|chase|fight|movement|sprint|run|dance/i },
@@ -347,8 +346,8 @@
     return picks;
   }
 
-  /* ——— Placeholder filling: user terms first, library hints second,
-     honest [PLACEHOLDER] flags last ——— */
+  /*  Placeholder filling: user terms first, library hints second,
+     honest [PLACEHOLDER] flags last  */
   function extractTerms(analysis) {
     var terms = {};
     analysis.layers.forEach(function (l) {
@@ -384,7 +383,7 @@
     return hh + ":" + mm + ":" + ss + ":" + String(f).padStart(2, "0");
   }
 
-  /* ——— Fix bay: real technique quotes from the library, cited by id ——— */
+  /*  Fix bay: real technique quotes from the library, cited by id  */
   function firstHint(token) {
     for (var i = 0; i < TEMPLATES.length; i++) {
       var m = TEMPLATES[i].prompt.match(new RegExp("\\[" + token + ":\\s*([^\\]]+)\\]"));
@@ -422,14 +421,14 @@
           cite: h.template.id, title: h.template.title,
           quote: h.hint,
           note: "The library's subject convention: an identity label plus locked visual traits.",
-          apply: "Subject: [name] — [trait 1], [trait 2], [trait 3]."
+          apply: "Subject: [name], [trait 1], [trait 2], [trait 3]."
         } : null;
       case "action":
         h = firstHint("ACTION");
         return h ? {
           cite: h.template.id, title: h.template.title,
           quote: h.hint,
-          note: "One primary motion per prompt — the library's rule. Adapt the specifics to your scene.",
+          note: "One primary motion per prompt, the library's rule. Adapt the specifics to your scene.",
           apply: "Action: " + h.hint + "."
         } : null;
       case "environment":
@@ -483,7 +482,7 @@
         return {
           cite: "starter", title: "Quality-floor scaffold",
           quote: "[resolution], [depth of field], [texture]",
-          note: "A starter scaffold, not a library quote — fill it before you generate.",
+          note: "A starter scaffold, not a library quote, fill it before you generate.",
           apply: "Render: 4K, shallow depth of field, natural skin texture."
         };
       case "exclusion":
@@ -497,13 +496,13 @@
     return null;
   }
 
-  /* ——— Rendering ——— */
+  /*  Rendering  */
   function renderGrade(a, langFlag, gibberish) {
     var g = grade(a.score);
     var notes = "";
     if (gibberish) {
       notes = '<p class="cr-flag" role="note"><strong>Keysmash detected.</strong> ' +
-        'The camera can\'t shoot randomness — the analysis below will be thin. ' +
+        'The camera can\'t shoot randomness, the analysis below will be thin. ' +
         'Load the weak sample and build from there.</p>';
     } else if (langFlag) {
       notes = '<p class="cr-flag" role="note"><strong>This reads like ' + esc(langFlag) + '.</strong> ' +
@@ -517,7 +516,7 @@
         '<div><strong class="cr-grade-word">' + esc(g[0]) + '</strong>' +
         '<p>' + esc(g[1]) + '</p>' +
         '<p class="calc-note">' + a.words + ' words · ' + a.presentCount + ' of 10 layers present. ' +
-        'Heuristic check — structure, not taste.</p></div>' +
+        'Heuristic check, structure, not taste.</p></div>' +
       '</div>' + notes;
   }
 
@@ -548,11 +547,11 @@
       var modelNote;
       if (draftMode) {
         modelEntry = cheapestVideo();
-        modelNote = "Draft discipline: the prompt isn't worth a flagship render yet — cheapest video tier.";
+        modelNote = "Draft discipline: the prompt isn't worth a flagship render yet, cheapest video tier.";
       } else {
         var named = (p.template.models || [])[0];
         modelEntry = matchPricing(named) || cheapestVideo();
-        modelNote = named ? ("Template shortlists " + named + (modelEntry && normName(modelEntry.name) !== normName(named) ? " — not in the pricing table, " + modelEntry.name + " stands in" : "") + ".") : "No model shortlisted — cheapest video tier stands in.";
+        modelNote = named ? ("Template shortlists " + named + (modelEntry && normName(modelEntry.name) !== normName(named) ? ", not in the pricing table, " + modelEntry.name + " stands in" : "") + ".") : "No model shortlisted, cheapest video tier stands in.";
       }
       var low = modelEntry.perSecond ? modelEntry.rateLow * seconds : modelEntry.rateLow;
       var high = modelEntry.perSecond ? modelEntry.rateHigh * seconds : modelEntry.rateHigh;
@@ -577,7 +576,7 @@
       var lib = s.usedLibrary.length ?
         '<p class="calc-note">Library example applied: ' + esc(s.usedLibrary.join("; ")) + ' <span class="cr-libtag">library</span></p>' : "";
       var unf = s.unfilled.length ?
-        '<p class="cr-flag"><strong>Still a placeholder:</strong> ' + esc(s.unfilled.map(function (u) { return "[" + u + "]"; }).join(", ")) + ' — fill before generating.</p>' : "";
+        '<p class="cr-flag"><strong>Still a placeholder:</strong> ' + esc(s.unfilled.map(function (u) { return "[" + u + "]"; }).join(", ")) + ', fill before generating.</p>' : "";
       return '<article class="card cr-shot" aria-label="Shot ' + s.n + ' of ' + take.shots.length + '">' +
         '<div class="cr-shot-head"><span class="cr-shot-tc">' + s.tcIn + '</span>' +
         '<span class="cr-shot-role">' + esc(s.role) + '</span>' +
@@ -585,7 +584,7 @@
         '<p class="cr-shot-text">' + esc(s.text) + '</p>' +
         '<p class="calc-note"><strong>Why this shot:</strong> ' + esc(s.template.anatomy || s.template.use || "coverage") + '</p>' +
         '<p class="calc-note"><strong>Model:</strong> ' + esc(s.model.name) + ' · ' + esc(s.model.tierName) + ' · ' +
-          money(s.costLow) + (s.costHigh !== s.costLow ? "–" + money(s.costHigh) : "") + ' / shot. ' + esc(s.modelNote) + '</p>' +
+          money(s.costLow) + (s.costHigh !== s.costLow ? "" + money(s.costHigh) : "") + ' / shot. ' + esc(s.modelNote) + '</p>' +
         lib + unf +
         '</article>';
     }).join("");
@@ -594,9 +593,9 @@
       var subjTerms = take.analysis.layers[0].hits.slice(0, 3).join(", ");
       html += '<div class="card cr-continuity" role="note">' +
         '<h3>Continuity locked</h3><ul>' +
-        (styleTerms ? '<li><strong>Style lock:</strong> \u201c' + esc(styleTerms) + '\u201d — repeat verbatim in every prompt of the project.</li>' : '') +
-        (subjTerms ? '<li><strong>Character anchor:</strong> ' + esc(subjTerms) + ' — same traits, every shot.</li>' : '') +
-        '<li><strong>One motion per prompt</strong> — the library\'s rule; stacked actions morph.</li></ul></div>';
+        (styleTerms ? '<li><strong>Style lock:</strong> \u201c' + esc(styleTerms) + '\u201d, repeat verbatim in every prompt of the project.</li>' : '') +
+        (subjTerms ? '<li><strong>Character anchor:</strong> ' + esc(subjTerms) + ', same traits, every shot.</li>' : '') +
+        '<li><strong>One motion per prompt</strong>, the library\'s rule; stacked actions morph.</li></ul></div>';
     }
     els["cr-shoot"].innerHTML = html;
     var cards = els["cr-shoot"].querySelectorAll(".cr-shot, .cr-continuity");
@@ -645,7 +644,7 @@
       var mid = d / 2;
       if (Math.abs(mid) > 0.005) {
         move = '<p class="calc-note">Take ' + prev.n + ' → take ' + take.n + ': ' +
-          (mid > 0 ? "+" : "\u2212") + money(Math.abs(mid)).slice(1) + ' per take — ' +
+          (mid > 0 ? "+" : "\u2212") + money(Math.abs(mid)).slice(1) + ' per take, ' +
           take.shots.length + ' shots vs ' + prev.shots.length + ', ' +
           (take.draftMode ? 'still on the draft tier' : 'flagship picks now that the prompt earns them') + '.</p>';
       }
@@ -653,8 +652,8 @@
     els["cr-cost"].innerHTML =
       '<div class="cr-cost-grid">' +
       '<div class="calc-stat"><div class="calc-value">' + take.shots.length + '</div><div class="calc-label">Shots</div></div>' +
-      '<div class="calc-stat"><div class="calc-value">' + money(low) + (high !== low ? '–' + money(high) : '') + '</div><div class="calc-label">Per take</div></div>' +
-      '<div class="calc-stat highlight"><div class="calc-value">' + money(envLow) + (envHigh !== envLow ? '–' + money(envHigh) : '') + '</div><div class="calc-label">Envelope × ' + takesPer + ' takes</div></div>' +
+      '<div class="calc-stat"><div class="calc-value">' + money(low) + (high !== low ? '' + money(high) : '') + '</div><div class="calc-label">Per take</div></div>' +
+      '<div class="calc-stat highlight"><div class="calc-value">' + money(envLow) + (envHigh !== envLow ? '' + money(envHigh) : '') + '</div><div class="calc-label">Envelope × ' + takesPer + ' takes</div></div>' +
       '</div>' + move +
       '<p class="calc-note" id="cr-prov">' + esc(provLine()) + ' Verify live before budgeting.</p>';
   }
@@ -664,7 +663,7 @@
     if (!missing.length) {
       els["cr-fix"].innerHTML =
         '<div class="card"><h3>That\'s a locked prompt.</h3>' +
-        '<p>All ten layers are directed. Nothing left to fix — print it.</p>' +
+        '<p>All ten layers are directed. Nothing left to fix, print it.</p>' +
         '<p><button type="button" class="btn" id="cr-copy">Copy the final prompt</button></p></div>';
       wireCopy();
       return;
@@ -672,7 +671,7 @@
     els["cr-fix"].innerHTML = missing.map(function (l) {
       var tech = techniqueFor(l.layer.id);
       var techHtml = tech ?
-        '<p class="cr-tech"><strong>Library technique</strong> — <em>' + esc(tech.title) + '</em> ' +
+        '<p class="cr-tech"><strong>Library technique</strong>, <em>' + esc(tech.title) + '</em> ' +
         '<span class="calc-note">(' + esc(tech.cite) + ')</span><br>\u201c' + esc(tech.quote) + '\u201d<br>' +
         '<span class="calc-note">' + esc(tech.note) + '</span></p>' +
         '<p><button type="button" class="btn btn-sm cr-apply" data-apply="' + esc(tech.apply) + '">Apply this technique</button></p>'
@@ -692,7 +691,7 @@
         '<span class="cr-take-n">Take ' + t.n + '</span>' +
         '<span class="cr-take-g">' + esc(t.gradeWord) + ' · ' + t.score + '/100</span>' +
         '<span class="cr-take-s">' + t.shots.length + ' shot' + (t.shots.length === 1 ? '' : 's') + '</span>' +
-        '<span class="cr-take-c">' + money(low) + (high !== low ? '–' + money(high) : '') + '/take</span>' +
+        '<span class="cr-take-c">' + money(low) + (high !== low ? '' + money(high) : '') + '/take</span>' +
         (best ? '<span class="cr-take-best">best so far</span>' : '') +
         '<button type="button" class="btn btn-sm btn-ghost cr-greenlight" data-take="' + t.n + '">Green light &rarr;</button>' +
         '</li>';
@@ -716,12 +715,12 @@
     });
   }
 
-  /* ——— The roll: validate → analyze → shoot → cost → fix → log ——— */
+  /*  The roll: validate → analyze → shoot → cost → fix → log  */
   function roll(fromApply) {
     var text = els["cr-prompt"].value;
     if (!text.trim()) {
       els["cr-error"].hidden = false;
-      els["cr-error"].textContent = "No prompt, no scene — type something, or load the weak sample.";
+      els["cr-error"].textContent = "No prompt, no scene, type something, or load the weak sample.";
       els["cr-prompt"].focus();
       return;
     }
@@ -756,7 +755,7 @@
     if (!fromApply) h.focus({ preventScroll: true });
   }
 
-  /* ——— Scroll framing: reveals + hairline (decorative, enhancement-only) ——— */
+  /*  Scroll framing: reveals + hairline (decorative, enhancement-only)  */
   function initScroll() {
     var prog = document.createElement("div");
     prog.className = "cr-progress";
@@ -782,9 +781,9 @@
     els2.forEach(function (el) { el.classList.add("cr-will-reveal"); io.observe(el); });
   }
 
-  /* ——— Events ——— */
+  /*  Events  */
   var WEAK_SAMPLE = "a dog in a city";
-  var STRONG_SAMPLE = "Mara, a weathered fisherwoman in her sixties — silver braid, oilskin coat, " +
+  var STRONG_SAMPLE = "Mara, a weathered fisherwoman in her sixties, silver braid, oilskin coat, " +
     "mending a torn net on a fog-draped wooden dock at dawn; the camera pushes in slowly " +
     "from medium to close-up; cold blue dawn light with a warm lantern glow from frame left; " +
     "cinematic realism, 35mm film grain; quiet resilience; coat hem stirring in the sea breeze; " +
@@ -822,7 +821,7 @@
             v: 1, kind: "greenlight",
             prompt: take.prompt, score: take.score, gradeWord: take.gradeWord
           }));
-        } catch (err) { /* storage unavailable — the page still opens */ }
+        } catch (err) { /* storage unavailable, the page still opens */ }
         window.location.href = "greenlight.html";
       }
       return;
@@ -837,7 +836,7 @@
     if ((e.ctrlKey || e.metaKey) && e.key === "Enter") roll(false);
   });
 
-  /* ——— Boot: templates, then pricing, then the opening take ——— */
+  /*  Boot: templates, then pricing, then the opening take  */
   PRICING = builtinPricing();
 
   function boot() {
@@ -852,7 +851,7 @@
       TEMPLATES = tpls.length ? tpls : [];
       if (!TEMPLATES.length) {
         els["cr-note"].innerHTML = '<p class="cr-flag" role="note"><strong>The prompt library didn\'t load.</strong> ' +
-          'The shoot needs <code>prompt-templates.json</code> — check the connection and reload.</p>';
+          'The shoot needs <code>prompt-templates.json</code>, check the connection and reload.</p>';
         return;
       }
       var badge = els["cr-badge"];
@@ -876,7 +875,7 @@
       }
     }).catch(function () {
       els["cr-note"].innerHTML = '<p class="cr-flag" role="note"><strong>The prompt library didn\'t load.</strong> ' +
-        'The shoot needs <code>prompt-templates.json</code> — check the connection and reload.</p>';
+        'The shoot needs <code>prompt-templates.json</code>, check the connection and reload.</p>';
     });
   }
 

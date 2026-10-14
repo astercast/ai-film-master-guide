@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kling 3.0 — model deep dive — AI Film Master Guide</title>
-  <meta name="description" content="Kling 3.0 (Kuaishou): cost math, prompt tips, and when to use it vs avoid it — from the guide's versioned model data.">
+  <title>Kling 3.0, model deep dive, AI Film Master Guide</title>
+  <meta name="description" content="Kling 3.0 (Kuaishou): cost math, prompt tips, and when to use it vs avoid it, from the guide's versioned model data.">
+  <link rel="preload" href="../assets/fonts/anton-latin-normal-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/inter-latin-normal-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../assets/css/fonts.css">
   <link rel="stylesheet" href="../assets/css/tokens.css">
@@ -21,14 +22,14 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="canonical" href="https://ai-film-master-guide-live.vercel.app/models/kling-3-0">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Kling 3.0 — model deep dive — AI Film Master Guide">
-  <meta property="og:description" content="Kling 3.0 (Kuaishou): cost math, prompt tips, and when to use it vs avoid it — from the guide's versioned model data.">
+  <meta property="og:title" content="Kling 3.0, model deep dive, AI Film Master Guide">
+  <meta property="og:description" content="Kling 3.0 (Kuaishou): cost math, prompt tips, and when to use it vs avoid it, from the guide's versioned model data.">
   <meta property="og:image" content="https://ai-film-master-guide-live.vercel.app/assets/og-card.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Kling 3.0 — model deep dive — AI Film Master Guide">
-  <meta name="twitter:description" content="Kling 3.0 (Kuaishou): cost math, prompt tips, and when to use it vs avoid it — from the guide's versioned model data.">
+  <meta name="twitter:title" content="Kling 3.0, model deep dive, AI Film Master Guide">
+  <meta name="twitter:description" content="Kling 3.0 (Kuaishou): cost math, prompt tips, and when to use it vs avoid it, from the guide's versioned model data.">
   <meta name="twitter:image" content="https://ai-film-master-guide-live.vercel.app/assets/og-card.png">
 </head>
 <body>
@@ -56,6 +57,7 @@
   <main id="main">
     <section class="hero" aria-labelledby="md-title">
       <div class="container hero-inner">
+        <p class="hero-slate"><span>Model deep dive</span></p>
         <h1 id="md-title">Kling 3.0</h1>
         <p class="lede">Kuaishou · video</p>
         <p><span class="mw-badge mw-badge-active">Active</span> <span class="card-meta">last verified 2026-10-11</span> <span class="print-tag is-answer">ANSWER PRINT</span></p>
@@ -65,21 +67,21 @@
       <div class="card mw-card">
         <dl>
           <dt>Best use</dt><dd>Motion-heavy cinematic clips, action, multi-shot, camera direction</dd>
-          <dt>Cost</dt><dd>720p ~7/5s (~$0.55/8s), 1080p ~8/5s, 4K ~30/5s; Motion Control 720p ~7, 1080p ~12 ; API $0.84/10s 720p (reported Sept 2026 benchmark) Kling API docs pricing: kling-3.0-turbo $0.112/s 720p, $0.14/s 1080p (audio included); kling-v3 $0.084/s std, $0.112/s pro, $0.126-$0.168/s with audio, $0.42/s 4K; kling-v2-5-turbo $0.042/s 720p, $0.07/s 1080p (1 unit = $0.14) — third-party mirror of official docs, rechecked Oct 2026.</dd>
+          <dt>Cost</dt><dd>720p ~7/5s (~$0.55/8s), 1080p ~8/5s, 4K ~30/5s; Motion Control 720p ~7, 1080p ~12 ; API $0.84/10s 720p (reported Sept 2026 benchmark) Kling API docs pricing: kling-3.0-turbo $0.112/s 720p, $0.14/s 1080p (audio included); kling-v3 $0.084/s std, $0.112/s pro, $0.126-$0.168/s with audio, $0.42/s 4K; kling-v2-5-turbo $0.042/s 720p, $0.07/s 1080p (1 unit = $0.14), third-party mirror of official docs, rechecked Oct 2026.</dd>
           <dt>Strength</dt><dd>Best-in-class motion/physics; native audio; Motion Control puppetry; Omni multi-shot; 15s</dd>
           <dt>Weakness</dt><dd>Subtle emotional faces trail Hailuo; fingers/camera drift without control; probabilistic</dd>
         </dl>
-        <p class="mw-changed"><strong>What changed:</strong> Kling 4.0 announced Sept 28, 2026 (Flash early access for Ultra Yearly subscribers; full release expected Oct 2026, not yet GA as of Oct 11). 3.0 remains the current GA model. 3.0 Omni (kling-o3) confirmed as a distinct first-frame variant. API benchmark $0.84/10s 720p (reported, Sept 2026). Included in Adobe&#x27;s Sept 8 in-Premiere multi-model workbench. Re-verified 2026-10-11: still the current GA model. CORRECTION, updated to the board&#x27;s r82 state (research cycle 81, AI Video r82 — the board&#x27;s first move since r63): on the Artificial Analysis text-to-video board the Kling 3.0 family now sits at #15 (Kling 3.0 Omni, 1015) and #16 (Kling 3.0 Pro, 1000); the September claim that Kling 3.0 ranked 12th (not 4th) is superseded — the board itself was re-polled for r82, and the full r82 table is quoted in the field chapter. kling-3.0-turbo GA June 17, 2026 (audio always on).</p>
+        <p class="mw-changed"><strong>What changed:</strong> Kling 4.0 announced Sept 28, 2026 (Flash early access for Ultra Yearly subscribers; full release expected Oct 2026, not yet GA as of Oct 11). 3.0 remains the current GA model. 3.0 Omni (kling-o3) confirmed as a distinct first-frame variant. API benchmark $0.84/10s 720p (reported, Sept 2026). Included in Adobe&#x27;s Sept 8 in-Premiere multi-model workbench. Re-verified 2026-10-11: still the current GA model. CORRECTION, updated to the board&#x27;s r82 state (research cycle 81, AI Video r82, the board&#x27;s first move since r63): on the Artificial Analysis text-to-video board the Kling 3.0 family now sits at #15 (Kling 3.0 Omni, 1015) and #16 (Kling 3.0 Pro, 1000); the September claim that Kling 3.0 ranked 12th (not 4th) is superseded, the board itself was re-polled for r82, and the full r82 table is quoted in the field chapter. kling-3.0-turbo GA June 17, 2026 (audio always on).</p>
       </div>
     </section>
     <section class="container" aria-labelledby="md-cost-h" style="margin-top:var(--space-6);">
       <h2 id="md-cost-h">Cost math</h2>
       <ul>
-<li><strong>720p ≈ 7 credits / 5s</strong> — one finished minute ≈ 84 credits (≈ $3.29); a 3-minute short ≈ $9.88 before takes.</li>
-<li><strong>1080p ≈ 8 credits / 5s</strong> — one finished minute ≈ 96 credits (≈ $3.76); a 3-minute short ≈ $11.29 before takes.</li>
-<li><strong>4K ≈ 30 credits / 5s</strong> — one finished minute ≈ 360 credits (≈ $14.11); a 3-minute short ≈ $42.34 before takes.</li>
+<li><strong>720p ≈ 7 credits / 5s</strong>, one finished minute ≈  84 credits (≈ $3.29); a 3-minute short ≈ $9.88 before takes.</li>
+<li><strong>1080p ≈ 8 credits / 5s</strong>, one finished minute ≈  96 credits (≈ $3.76); a 3-minute short ≈ $11.29 before takes.</li>
+<li><strong>4K ≈ 30 credits / 5s</strong>, one finished minute ≈  360 credits (≈ $14.11); a 3-minute short ≈ $42.34 before takes.</li>
 </ul>
-      <p class="calc-note">USD at $0.0392/credit (Higgsfield Plus plan, observed 2026-10-10). Verify live before budgeting — rates change.</p>
+      <p class="calc-note">USD at $0.0392/credit (Higgsfield Plus plan, observed 2026-10-10). Verify live before budgeting, rates change.</p>
     </section>
     <section class="container" aria-labelledby="md-when-h" style="margin-top:var(--space-6);">
       <h2 id="md-when-h">Use it when / avoid it when</h2>
@@ -87,13 +89,13 @@
         <div class="card"><h3>Use it when</h3><p>Motion-heavy cinematic clips, action, multi-shot, camera direction</p></div>
         <div class="card"><h3>Avoid it when</h3><p>Subtle emotional faces trail Hailuo; fingers/camera drift without control; probabilistic</p></div>
       </div>
-      <p class="calc-note">Drawn directly from the model's own best-use and weakness fields — the record's words, not ours.</p>
+      <p class="calc-note">Drawn directly from the model's own best-use and weakness fields, the record's words, not ours.</p>
     </section>
     <section class="container" aria-labelledby="md-tips-h" style="margin-top:var(--space-6);">
       <h2 id="md-tips-h">Prompt tips for this model</h2>
       <ul>
-      <li><strong>Direct the voice, not just the picture.</strong> Native-audio models live or die on voice direction — <a href="../craft/sound-music-audio.html">sound, music &amp; audio</a> covers TTS direction, Voice Bibles, and the two dialogue roads.</li>
-      <li><strong>One action per shot.</strong> Video models execute a single believable verb well; stacked actions collapse — <a href="../craft/directing-performance.html">directing performance</a> and the <a href="../doctor.html">failure doctor</a> show what breaks.</li>
+      <li><strong>Direct the voice, not just the picture.</strong> Native-audio models live or die on voice direction, <a href="../craft/sound-music-audio.html">sound, music &amp; audio</a> covers TTS direction, Voice Bibles, and the two dialogue roads.</li>
+      <li><strong>One action per shot.</strong> Video models execute a single believable verb well; stacked actions collapse, <a href="../craft/directing-performance.html">directing performance</a> and the <a href="../doctor.html">failure doctor</a> show what breaks.</li>
       <li><strong>Run it through the linter.</strong> <a href="../linter.html">Paste any prompt</a> for this model and check all ten layers before spending credits.</li>
       <li><strong>Not sure it's the right model?</strong> <a href="../quiz.html">Take the 5-question quiz</a> or <a href="../compare.html">compare it side-by-side</a> with alternatives.</li>
       </ul>
@@ -106,7 +108,7 @@
   </main>
   <footer class="site-footer">
     <div class="container footer-grid">
-      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <p>AI Film Master Guide, research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer"><a href="../index.html">Guide</a><a href="../skills.html">Skills</a><a href="../workshop.html">Workshop</a><a href="../quiz.html">Quiz</a><a href="../compare.html">Compare</a><a href="../gallery.html">Gallery</a><a href="../teardown.html">Teardowns</a><a href="../model-watch.html">Model watch</a><a href="../showdown.html">Showdown</a><a href="../forge.html">Episode forge</a><a href="../clearance.html">Script clearance</a><a href="../continuity.html">Continuity ledger</a><a href="../cuesheet.html">Cue sheet</a><a href="../grade.html">Grade sheet</a><a href="../cut.html">Cut sheet</a><a href="../take.html">Take sheet</a><a href="../longform.html">Longform sheet</a><a href="../path.html">The path</a><a href="../checks/">Knowledge checks</a><a href="../budget.html">Budget</a><a href="../optimizer.html">Optimizer</a><a href="../shots.html">Shot list</a><a href="../style-bible.html">Style bible</a><a href="../doctor.html">Doctor</a><a href="../linter.html">Linter</a><a href="../cutting-room.html">Cutting room</a><a href="../prompts.html">Prompts</a><a href="../models/">Models</a><a href="../anatomy.html">Anatomy</a><a href="../manifesto.html">Manifesto</a><a href="../craft-not-buttons.html">Craft, not buttons</a><a href="../recipes.html">Recipes</a><a href="../field-guides/">Field guides</a><a href="../changelog.html">Changelog</a><a href="../skill-spec.html">Skill spec</a><a href="../api.html">API</a></nav>
       <div class="footer-colophon"><span>AI Film Master Guide</span><span class="tail">Craft, not buttons</span></div>
     </div>

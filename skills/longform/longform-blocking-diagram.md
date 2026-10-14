@@ -21,7 +21,7 @@ Any shot with 2+ characters where positions matter.
 
 ## Procedure
 
-1. Draw a schematic outline from the camera's front view — never a top-down floor plan.
+1. Draw a schematic outline from the camera's front view, never a top-down floor plan.
 2. Color-code each character; bind colors to @-tags in the prompt.
 3. Attach the diagram LAST among references so photos win the style vote.
 4. Address edits by color ('move the BLUE figure'), regenerate from the original frame.
@@ -32,4 +32,4 @@ Prompt addendum: 'Blocking per attached diagram: BLUE=@mara_ON_neon_v1 at frame 
 
 ## Pitfalls
 
-- Rendering letters/labels into the diagram image — they bleed into the shot.
+- Rendering letters/labels into the diagram image, they bleed into the shot.

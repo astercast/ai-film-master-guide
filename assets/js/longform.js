@@ -1,22 +1,21 @@
-/* The Longform Sheet — the long-form pipelines chapter
+/* The Longform Sheet, the long-form pipelines chapter
    (craft/longform-pipelines.md) as a working sheet.
    The chapter's claim sets the stakes: short films are won
-   with great prompts, long films are won with systems —
-   drift is cumulative, the asset math is brutal, and a weak
+   with great prompts, long films are won with systems, drift is cumulative, the asset math is brutal, and a weak
    scene's cost is only discovered after it is generated.
    The sheet invents nothing: it takes a production's own
-   scenes — each scene's stress test, its storyboard, its
+   scenes, each scene's stress test, its storyboard, its
    reference (a video anchor, a text description, or none
    yet), its dialogue route, its draft tier, its re-roll
    count, and its route (in production, picture-locked, in
-   generation supervision, or cut from the film) — and
+   generation supervision, or cut from the film), and
    computes the feature-lock verdict from the chapter's own
    rules, three of them mechanical: a scene generated
    without its stress test reads untested; a scene chained
    off a text description reads drifting, because a text
    description drifts over generations and a video reference
    doesn't; and a scene generated at full resolution before
-   its winner is chosen reads wasteful — draft at 720p,
+   its winner is chosen reads wasteful, draft at 720p,
    upscale winners only. Deterministic: the same sheet
    always produces the same verdict and export. */
 (function () {
@@ -25,35 +24,35 @@
   /* The chapter's pre-lock gates, verbatim in substance. */
   var GATES = [
     { id: "registry", name: "Asset registry complete before shot one",
-      what: "Every character, location, and prop named, versioned, and locked in the registry before the first shot is generated. State changes (scar, haircut, dirt, wardrobe) get a new @-tag — state is an asset, never an overwrite." },
+      what: "Every character, location, and prop named, versioned, and locked in the registry before the first shot is generated. State changes (scar, haircut, dirt, wardrobe) get a new @-tag, state is an asset, never an overwrite." },
     { id: "stresstest", name: "Every scene stress-tested and storyboarded",
-      what: "Goal, Obstacle, Tactic, Reversal, Value Shift — with a verdict and fixes, scene by scene, then storyboarded step by step. Only on the storyboard does it become clear how good a scene really is; a weak scene's cost is discovered after it is generated." },
+      what: "Goal, Obstacle, Tactic, Reversal, Value Shift, with a verdict and fixes, scene by scene, then storyboarded step by step. Only on the storyboard does it become clear how good a scene really is; a weak scene's cost is discovered after it is generated." },
     { id: "architecture", name: "Architecture chosen: chaining, or sequence assembly with a wrangler",
-      what: "Solo or small team: scene-by-scene chaining — each new scene's reference is the previous scene's finished video. Team of five-plus: sequence assembly, but only if someone owns the registry full-time; without a wrangler, parallel generation produces parallel continuities." },
+      what: "Solo or small team: scene-by-scene chaining, each new scene's reference is the previous scene's finished video. Team of five-plus: sequence assembly, but only if someone owns the registry full-time; without a wrangler, parallel generation produces parallel continuities." },
     { id: "dialogue", name: "Dialogue architecture chosen per scene, not per film",
-      what: "Native speech, human-recorded and AI-converted, or decoupled TTS — chosen per scene. Budget the continuity and re-roll effort on ordinary rooms, not spectacle: the one-room dialogue scene is the hardest task in the record, harder than the space battle." },
+      what: "Native speech, human-recorded and AI-converted, or decoupled TTS, chosen per scene. Budget the continuity and re-roll effort on ordinary rooms, not spectacle: the one-room dialogue scene is the hardest task in the record, harder than the space battle." },
     { id: "lockdiscipline", name: "Lock discipline written: base never re-run, plates carry the look, Voice Bible verbatim",
-      what: "The base portrait is never re-run through any model. The look lives in the asset plate, not the video prompt. The Voice Bible is pasted into every generation verbatim — not even a synonym changed. Every prompt is an island: everything re-stated, every time." },
+      what: "The base portrait is never re-run through any model. The look lives in the asset plate, not the video prompt. The Voice Bible is pasted into every generation verbatim, not even a synonym changed. Every prompt is an island: everything re-stated, every time." },
   ];
 
   var REFS = [
-    { id: "video", label: "Video reference — previous finished scene or previz" },
+    { id: "video", label: "Video reference, previous finished scene or previz" },
     { id: "text", label: "Text description only" },
     { id: "none", label: "No reference yet" },
   ];
   var REF_IDS = REFS.map(function (s) { return s.id; });
 
   var DIALOGUES = [
-    { id: "native", label: "Native — speech generated with the shot" },
+    { id: "native", label: "Native, speech generated with the shot" },
     { id: "converted", label: "Human-recorded, AI-converted" },
-    { id: "decoupled", label: "Decoupled — TTS / synthetic, married in the edit" },
-    { id: "silent", label: "No dialogue — picture and sound design only" },
+    { id: "decoupled", label: "Decoupled, TTS / synthetic, married in the edit" },
+    { id: "silent", label: "No dialogue, picture and sound design only" },
   ];
   var DIALOGUE_IDS = DIALOGUES.map(function (s) { return s.id; });
 
   var TIERS = [
     { id: "draft", label: "720p draft" },
-    { id: "winner", label: "Winner — upscaled after lock" },
+    { id: "winner", label: "Winner, upscaled after lock" },
     { id: "fullres", label: "Full-res generation" },
   ];
   var TIER_IDS = TIERS.map(function (s) { return s.id; });
@@ -61,38 +60,37 @@
   var STATUSES = [
     { id: "building", label: "In production" },
     { id: "locked", label: "Picture-Locked" },
-    { id: "supervision", label: "In generation supervision — the scheduled post-rough-cut QC pass" },
+    { id: "supervision", label: "In generation supervision, the scheduled post-rough-cut QC pass" },
     { id: "cut", label: "Cut from the film" },
   ];
   var STATUS_IDS = STATUSES.map(function (s) { return s.id; });
 
   /* The worked example pre-loaded on the sheet: the same
      fictional production the other sheets track ("The Night
-     Bus"), built long — a 24-minute film assembled
+     Bus"), built long, a 24-minute film assembled
      scene-by-scene, each scene chained off the previous
      scene's finished video. Five scenes are picture-locked
      clean; the depot-office sequence sits in generation
-     supervision, the scheduled QC pass after the rough cut —
-     so the first verdict is the honest hold. Every label is
+     supervision, the scheduled QC pass after the rough cut, so the first verdict is the honest hold. Every label is
      invented for the example; no real production is
      described. */
   var DEFAULT_ENTRIES = [
-    { scene: "Seq 1 — Depot at night, Mara waits", stress: true, board: true,
+    { scene: "Seq 1, Depot at night, Mara waits", stress: true, board: true,
       ref: "video", dialogue: "decoupled", tier: "winner", rerolls: 6, status: "locked",
-      detail: "The opening sequence chains off the previz. Stress test: want (the last bus) against obstacle (the board goes dark) — reversal lands on the driver's arrival. Drafted at 720p, winner upscaled after lock; the plate carries the depot's sodium look." },
-    { scene: "Seq 2 — The window, the hardest line", stress: true, board: true,
+      detail: "The opening sequence chains off the previz. Stress test: want (the last bus) against obstacle (the board goes dark), reversal lands on the driver's arrival. Drafted at 720p, winner upscaled after lock; the plate carries the depot's sodium look." },
+    { scene: "Seq 2, The window, the hardest line", stress: true, board: true,
       ref: "video", dialogue: "converted", tier: "winner", rerolls: 11, status: "locked",
-      detail: "The dialogue-dense sequence, so the performance is human-recorded and converted — timing and breath are human decisions, conversion only changes timbre. Eleven re-rolls, inside the chapter's 5–20× envelope, spent here and not on spectacle." },
-    { scene: "Seq 3 — The rain stop, two-hander", stress: true, board: true,
+      detail: "The dialogue-dense sequence, so the performance is human-recorded and converted, timing and breath are human decisions, conversion only changes timbre. Eleven re-rolls, inside the chapter's 5 to 20× envelope, spent here and not on spectacle." },
+    { scene: "Seq 3, The rain stop, two-hander", stress: true, board: true,
       ref: "video", dialogue: "native", tier: "winner", rerolls: 8, status: "locked",
-      detail: "Sparse dialogue, the acting is the point — native speech, lip-sync and timing born together, the Voice Bible pasted verbatim into every generation. The blocking diagram was attached last among the references, drawn from the camera's side." },
-    { scene: "Seq 4 — Depot office, the radio news", stress: true, board: true,
+      detail: "Sparse dialogue, the acting is the point, native speech, lip-sync and timing born together, the Voice Bible pasted verbatim into every generation. The blocking diagram was attached last among the references, drawn from the camera's side." },
+    { scene: "Seq 4, Depot office, the radio news", stress: true, board: true,
       ref: "video", dialogue: "decoupled", tier: "draft", rerolls: 7, status: "supervision",
-      detail: "In generation supervision — the scheduled QC/re-generation pass after the rough cut, not continuous re-rolling. Two shots drifted at the seam (the office rearranged itself between generations; the depth map is now in the folder) and are being re-generated against the previous scene's finished video." },
-    { scene: "Seq 5 — The night road, montage", stress: true, board: true,
+      detail: "In generation supervision, the scheduled QC/re-generation pass after the rough cut, not continuous re-rolling. Two shots drifted at the seam (the office rearranged itself between generations; the depth map is now in the folder) and are being re-generated against the previous scene's finished video." },
+    { scene: "Seq 5, The night road, montage", stress: true, board: true,
       ref: "video", dialogue: "silent", tier: "winner", rerolls: 5, status: "locked",
-      detail: "No dialogue — picture and sound design carry it. Cut on the dialogue rule's inverse: J-cuts from the radio carry the seams, because action continuity is exactly what the models are worst at." },
-    { scene: "Seq 6 — Departure at dawn, the button", stress: true, board: true,
+      detail: "No dialogue, picture and sound design carry it. Cut on the dialogue rule's inverse: J-cuts from the radio carry the seams, because action continuity is exactly what the models are worst at." },
+    { scene: "Seq 6, Departure at dawn, the button", stress: true, board: true,
       ref: "video", dialogue: "converted", tier: "winner", rerolls: 9, status: "locked",
       detail: "The closing sequence chains off Seq 5's finished video. The base portraits were never re-run; dawn is a new tagged state on the locked plates, integrated with masks around the base pixels." },
   ];
@@ -119,14 +117,14 @@
   }
 
   var EFFECTIVE_LABELS = {
-    clean: "Clean — Picture-Locked",
+    clean: "Clean, Picture-Locked",
     building: "In production",
-    supervision: "In generation supervision — scheduled QC pass",
-    unchecked: "Unchecked — storyboard or reference unfinished",
-    untested: "Untested — generated without its stress test",
-    drifting: "Drifting — a text description is not an anchor",
-    wasteful: "Wasteful — full-res before the winner is chosen",
-    cutscene: "Cut from the film — a decision, not a defect",
+    supervision: "In generation supervision, scheduled QC pass",
+    unchecked: "Unchecked, storyboard or reference unfinished",
+    untested: "Untested, generated without its stress test",
+    drifting: "Drifting, a text description is not an anchor",
+    wasteful: "Wasteful, full-res before the winner is chosen",
+    cutscene: "Cut from the film, a decision, not a defect",
   };
 
   function evaluate(entries) {
@@ -140,24 +138,24 @@
     var ready = list.length > 0 && held === 0 && stopped === 0;
     var verdict;
     if (list.length === 0) {
-      verdict = "No longform sheet yet — a feature built on prompts alone drifts by scene three. Log every scene: its stress test, its reference, its dialogue route, its draft tier, and its route.";
+      verdict = "No longform sheet yet, a feature built on prompts alone drifts by scene three. Log every scene: its stress test, its reference, its dialogue route, its draft tier, and its route.";
     } else if (count("untested") > 0) {
       var m = count("untested");
-      verdict = "Feature lock stopped — " + m + " scene" + (m === 1 ? " was" : "s were") +
-        " generated without a stress test: Goal, Obstacle, Tactic, Reversal, Value Shift, with a verdict and fixes, then storyboard it. A weak scene's cost is only discovered after it is generated — stress-test it before a single credit is spent.";
+      verdict = "Feature lock stopped, " + m + " scene" + (m === 1 ? " was" : "s were") +
+        " generated without a stress test: Goal, Obstacle, Tactic, Reversal, Value Shift, with a verdict and fixes, then storyboard it. A weak scene's cost is only discovered after it is generated, stress-test it before a single credit is spent.";
     } else if (count("drifting") > 0) {
       var k = count("drifting");
-      verdict = "Feature lock stopped — " + k + " scene" + (k === 1 ? " is" : "s are") +
-        " chained off a text description: a text description drifts over generations — a video reference doesn't. Chain each scene off the previous scene's finished video or a previz; what you want goes in the reference.";
+      verdict = "Feature lock stopped, " + k + " scene" + (k === 1 ? " is" : "s are") +
+        " chained off a text description: a text description drifts over generations, a video reference doesn't. Chain each scene off the previous scene's finished video or a previz; what you want goes in the reference.";
     } else if (count("wasteful") > 0) {
       var u = count("wasteful");
-      verdict = "Feature lock stopped — " + u + " scene" + (u === 1 ? " is" : "s are") +
-        " being generated at full resolution before the winner is chosen: draft at 720p and upscale winners only. At feature scale that is the difference between a $3,000 and a $30,000 compute bill — and the re-roll budget belongs to the ordinary rooms.";
+      verdict = "Feature lock stopped, " + u + " scene" + (u === 1 ? " is" : "s are") +
+        " being generated at full resolution before the winner is chosen: draft at 720p and upscale winners only. At feature scale that is the difference between a $3,000 and a $30,000 compute bill, and the re-roll budget belongs to the ordinary rooms.";
     } else if (held > 0) {
-      verdict = "Hold feature lock — " + held + " scene" + (held === 1 ? " is" : "s are") +
-        " not ready: still in production, in the scheduled generation-supervision pass, or missing its storyboard or video reference. Drift is cumulative, not linear — a seam left unchecked is paid for in every scene after it.";
+      verdict = "Hold feature lock, " + held + " scene" + (held === 1 ? " is" : "s are") +
+        " not ready: still in production, in the scheduled generation-supervision pass, or missing its storyboard or video reference. Drift is cumulative, not linear, a seam left unchecked is paid for in every scene after it.";
     } else {
-      verdict = "Feature lock clean — every scene stress-tested and storyboarded, every seam chained off a video reference, every winner drafted at 720p and upscaled only after lock. Still owed: picture lock means no new generations except emergencies, with notice to color and sound — and a compute budget carried at the 5–20× overhead envelope, never the clean-pass number.";
+      verdict = "Feature lock clean, every scene stress-tested and storyboarded, every seam chained off a video reference, every winner drafted at 720p and upscaled only after lock. Still owed: picture lock means no new generations except emergencies, with notice to color and sound, and a compute budget carried at the 5 to 20× overhead envelope, never the clean-pass number.";
     }
     return {
       total: list.length, clean: clean, held: held, stopped: stopped, cut: cut,
@@ -180,33 +178,33 @@
 
   function statusLabel(id) {
     for (var i = 0; i < STATUSES.length; i++) if (STATUSES[i].id === id) return STATUSES[i].label;
-    return "— no route recorded —";
+    return "No route recorded ";
   }
 
   function refLabel(id) {
     for (var i = 0; i < REFS.length; i++) if (REFS[i].id === id) return REFS[i].label;
-    return "— no reference recorded —";
+    return "No reference recorded ";
   }
 
   function dialogueLabel(id) {
     for (var i = 0; i < DIALOGUES.length; i++) if (DIALOGUES[i].id === id) return DIALOGUES[i].label;
-    return "— no dialogue route recorded —";
+    return "No dialogue route recorded ";
   }
 
   function tierLabel(id) {
     for (var i = 0; i < TIERS.length; i++) if (TIERS[i].id === id) return TIERS[i].label;
-    return "— no draft tier recorded —";
+    return "No draft tier recorded ";
   }
 
   function effectiveLabel(e) {
-    return EFFECTIVE_LABELS[effectiveStatus(e)] || "—";
+    return EFFECTIVE_LABELS[effectiveStatus(e)] || "…";
   }
 
   function sheetToMarkdown(title, entries, doneIds) {
     var r = evaluate(entries);
     var gs = gateState(doneIds);
     var lines = [];
-    lines.push("# Longform sheet — " + (title || "Untitled production"));
+    lines.push("# Longform sheet, " + (title || "Untitled production"));
     lines.push("");
     lines.push("Long-form pipelines in AI video: the asset registry, the stress test, the chaining rule, dialogue at scale, and picture lock (see craft/longform-pipelines.md).");
     lines.push("");
@@ -221,7 +219,7 @@
     lines.push("## Scenes (" + r.total + ")");
     if (!entries.length) lines.push("- (none logged)");
     entries.forEach(function (e) {
-      lines.push("- " + e.scene + " — " + effectiveLabel(e) + ". Stress test: " + (e.stress ? "done" : "not done") +
+      lines.push("- " + e.scene + ", " + effectiveLabel(e) + ". Stress test: " + (e.stress ? "done" : "not done") +
         ". Storyboard: " + (e.board ? "done" : "not done") +
         ". Reference: " + refLabel(e.ref) +
         ". Dialogue: " + dialogueLabel(e.dialogue) +
@@ -276,22 +274,22 @@
           '<p class="long-checks" role="group" aria-label="Pipeline checks for ' + esc(e.scene) + '">' +
           '<button type="button" class="btn btn-sm' + (e.stress ? "" : " btn-ghost") +
           '" data-long-stress="' + idx + '" aria-pressed="' + !!e.stress + '">Stress test ' +
-          (e.stress ? "✓" : "—") + "</button> " +
+          (e.stress ? "✓" : "…") + "</button> " +
           '<button type="button" class="btn btn-sm' + (e.board ? "" : " btn-ghost") +
           '" data-long-board="' + idx + '" aria-pressed="' + !!e.board + '">Storyboard ' +
-          (e.board ? "✓" : "—") + "</button></p>" +
+          (e.board ? "✓" : "…") + "</button></p>" +
           '<p class="long-state">State: <strong>' + esc(effectiveLabel(e)) + "</strong>" +
           (eff !== "clean" && eff !== raw && !(eff === "building" && raw === "building") && !(eff === "cutscene" && raw === "cut")
-            ? ' <span class="long-note">(by the chapter\u2019s rules — see the verdict)</span>' : "") + "</p>" +
+            ? ' <span class="long-note">(by the chapter\u2019s rules, see the verdict)</span>' : "") + "</p>" +
           '<p class="long-ref">Reference: ' +
           REFS.map(function (s) {
             return '<button type="button" class="btn btn-sm' + (e.ref === s.id ? "" : " btn-ghost") +
-              '" data-long-ref="' + idx + ":" + s.id + '">' + esc(s.label.split(" — ")[0]) + "</button>";
+              '" data-long-ref="' + idx + ":" + s.id + '">' + esc(s.label.split(", ")[0]) + "</button>";
           }).join(" ") + "</p>" +
           '<p class="long-dialogue">Dialogue: ' +
           DIALOGUES.map(function (s) {
             return '<button type="button" class="btn btn-sm' + (e.dialogue === s.id ? "" : " btn-ghost") +
-              '" data-long-dial="' + idx + ":" + s.id + '">' + esc(s.label.split(" — ")[0]) + "</button>";
+              '" data-long-dial="' + idx + ":" + s.id + '">' + esc(s.label.split(", ")[0]) + "</button>";
           }).join(" ") + "</p>" +
           '<p class="long-tier">Draft tier: ' +
           TIERS.map(function (s) {
@@ -301,12 +299,12 @@
           '<p class="long-route">Route: ' +
           STATUSES.map(function (s) {
             return '<button type="button" class="btn btn-sm' + (raw === s.id ? "" : " btn-ghost") +
-              '" data-long-set="' + idx + ":" + s.id + '">' + esc(s.label.split(" — ")[0]) + "</button>";
+              '" data-long-set="' + idx + ":" + s.id + '">' + esc(s.label.split(", ")[0]) + "</button>";
           }).join(" ") + "</p>" +
           '<p class="long-rerolls">Re-rolls: <strong>' + (Number(e.rerolls) || 0) + "</strong> " +
           '<button type="button" class="btn btn-sm btn-ghost" data-long-att="' + idx + ':-1">−</button> ' +
           '<button type="button" class="btn btn-sm btn-ghost" data-long-att="' + idx + ':1">+</button>' +
-          ' <span class="long-note">the documented regime is 5–20× overhead — the envelope is the budget</span></p>' +
+          ' <span class="long-note">the documented regime is 5 to 20× overhead, the envelope is the budget</span></p>' +
           '<p><button type="button" class="btn btn-sm btn-ghost" data-long-del="' + idx + '">Remove scene</button></p></article>';
       });
       stageEl.innerHTML = html || '<p class="long-detail">No scenes logged yet.</p>';
@@ -314,7 +312,7 @@
       verdictEl.className = "long-verdict " + (r.ready ? "long-clean" : "long-held");
       var gs = gateState(done);
       gatesEl.textContent = "Gates complete: " + gs.done + " of " + gs.total +
-        (gs.complete ? " — every pre-lock gate is in place." : " — the gates are the discipline before any scene is judged; finish them first.");
+        (gs.complete ? ", every pre-lock gate is in place." : ", the gates are the discipline before any scene is judged; finish them first.");
     }
 
     stageEl.addEventListener("click", function (ev) {
@@ -360,7 +358,7 @@
     if (addBtn) addBtn.addEventListener("click", function () {
       var scene = (document.getElementById("long-new-scene").value || "").trim();
       var detail = (document.getElementById("long-new-detail").value || "").trim();
-      if (!scene) { msgEl.hidden = false; msgEl.textContent = "Name the scene — sequence, place, who is in it. The sheet only holds what is written down, scene by scene."; return; }
+      if (!scene) { msgEl.hidden = false; msgEl.textContent = "Name the scene, sequence, place, who is in it. The sheet only holds what is written down, scene by scene."; return; }
       entries.push({ scene: scene,
         stress: document.getElementById("long-new-stress").checked,
         board: document.getElementById("long-new-board").checked,

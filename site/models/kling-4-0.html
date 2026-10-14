@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kling 4.0 — model deep dive — AI Film Master Guide</title>
-  <meta name="description" content="Kling 4.0 (Kuaishou): cost math, prompt tips, and when to use it vs avoid it — from the guide's versioned model data.">
+  <title>Kling 4.0, model deep dive, AI Film Master Guide</title>
+  <meta name="description" content="Kling 4.0 (Kuaishou): cost math, prompt tips, and when to use it vs avoid it, from the guide's versioned model data.">
+  <link rel="preload" href="../assets/fonts/anton-latin-normal-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/inter-latin-normal-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../assets/css/fonts.css">
   <link rel="stylesheet" href="../assets/css/tokens.css">
@@ -21,14 +22,14 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="canonical" href="https://ai-film-master-guide-live.vercel.app/models/kling-4-0">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Kling 4.0 — model deep dive — AI Film Master Guide">
-  <meta property="og:description" content="Kling 4.0 (Kuaishou): cost math, prompt tips, and when to use it vs avoid it — from the guide's versioned model data.">
+  <meta property="og:title" content="Kling 4.0, model deep dive, AI Film Master Guide">
+  <meta property="og:description" content="Kling 4.0 (Kuaishou): cost math, prompt tips, and when to use it vs avoid it, from the guide's versioned model data.">
   <meta property="og:image" content="https://ai-film-master-guide-live.vercel.app/assets/og-card.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Kling 4.0 — model deep dive — AI Film Master Guide">
-  <meta name="twitter:description" content="Kling 4.0 (Kuaishou): cost math, prompt tips, and when to use it vs avoid it — from the guide's versioned model data.">
+  <meta name="twitter:title" content="Kling 4.0, model deep dive, AI Film Master Guide">
+  <meta name="twitter:description" content="Kling 4.0 (Kuaishou): cost math, prompt tips, and when to use it vs avoid it, from the guide's versioned model data.">
   <meta name="twitter:image" content="https://ai-film-master-guide-live.vercel.app/assets/og-card.png">
 </head>
 <body>
@@ -56,39 +57,40 @@
   <main id="main">
     <section class="hero" aria-labelledby="md-title">
       <div class="container hero-inner">
+        <p class="hero-slate"><span>Model deep dive</span></p>
         <h1 id="md-title">Kling 4.0</h1>
         <p class="lede">Kuaishou · video</p>
-        <p><span class="mw-badge mw-badge-announced">Announced — not GA</span> <span class="card-meta">last verified 2026-10-11</span> <span class="print-tag is-answer">ANSWER PRINT</span></p>
+        <p><span class="mw-badge mw-badge-announced">Announced, not GA</span> <span class="card-meta">last verified 2026-10-11</span> <span class="print-tag is-answer">ANSWER PRINT</span></p>
       </div>
     </section>
     <section class="container" aria-label="Model specifications">
       <div class="card mw-card">
         <dl>
-          <dt>Best use</dt><dd>Long-take narrative, keyframed sequences, broadcast-aspiring work — once generally available</dd>
-          <dt>Cost</dt><dd>not published — verify live</dd>
+          <dt>Best use</dt><dd>Long-take narrative, keyframed sequences, broadcast-aspiring work, once generally available</dd>
+          <dt>Cost</dt><dd>not published, verify live</dd>
           <dt>Strength</dt><dd>REPORTED, NOT CONFIRMED: 30s native clips, up to 10 keyframes, Omni Reference, stereo audio with improved lip-sync; 4K 10-bit HDR promised (&#x27;coming soon&#x27;). Treat ALL specs as leak-level until GA.</dd>
-          <dt>Weakness</dt><dd>Not generally available as of Oct 11, 2026 — Flash early access for Ultra Yearly subscribers only; 4K 10-bit listed &#x27;coming soon&#x27;; no independent benchmark rating yet (full model not shipped)</dd>
+          <dt>Weakness</dt><dd>Not generally available as of Oct 11, 2026, Flash early access for Ultra Yearly subscribers only; 4K 10-bit listed &#x27;coming soon&#x27;; no independent benchmark rating yet (full model not shipped)</dd>
         </dl>
-        <p class="mw-changed"><strong>What changed:</strong> Announced Sept 28, 2026; Kling 4.0 Flash in limited early access for Ultra Yearly subscribers; full model expected Oct 2026, not GA as of Oct 11. Verify live before planning around it. Oct 2026: specs (30s) are preview-leak level — GPTProto cautions they are unverified; do not present as confirmed. Note: Kling 4K is a 3.0 feature (added April 23, 2026), not a 4.0 feature — do not conflate. Re-verified 2026-10-11: STILL not GA. Full model promised &#x27;this October&#x27; with no date; only Kling 4.0 Flash is live (limited early access for Ultra Yearly subscribers, capped 20s/720p/8-bit SDR). 4K 10-bit HDR stays &#x27;coming soon&#x27;; no API model ID in the official docs as of Oct 4; APIMart lists pricing as unannounced. Kling.ai homepage banners 4.0 but exposes no price/date/resolution text (wavespeed Oct-1 evidence review). Re-verified 2026-10-11: STILL not GA. &#x27;Coming this October&#x27; remains a month, not a date (wavespeed Oct-1 evidence review; orcarouter: &#x27;waiting on a month, not a date&#x27;). Flash tier: 3-20s at 720p 8-bit SDR, limited early access for Ultra Yearly subscribers. Announced (not confirmed) full-model specs: 3-30s, 720p/1080p/4K, 21:9 ultrawide, up to 15 combined multimodal references (10 images, 5 videos totaling at most 30s, 7 subjects), 10 keyframes; no published price and no API model ID (APIMart). Kling AI&#x27;s Hong Kong IPO filing is proceeding in parallel (reported ~120B yuan valuation).</p>
+        <p class="mw-changed"><strong>What changed:</strong> Announced Sept 28, 2026; Kling 4.0 Flash in limited early access for Ultra Yearly subscribers; full model expected Oct 2026, not GA as of Oct 11. Verify live before planning around it. Oct 2026: specs (30s) are preview-leak level, GPTProto cautions they are unverified; do not present as confirmed. Note: Kling 4K is a 3.0 feature (added April 23, 2026), not a 4.0 feature, do not conflate. Re-verified 2026-10-11: STILL not GA. Full model promised &#x27;this October&#x27; with no date; only Kling 4.0 Flash is live (limited early access for Ultra Yearly subscribers, capped 20s/720p/8-bit SDR). 4K 10-bit HDR stays &#x27;coming soon&#x27;; no API model ID in the official docs as of Oct 4; APIMart lists pricing as unannounced. Kling.ai homepage banners 4.0 but exposes no price/date/resolution text (wavespeed Oct-1 evidence review). Re-verified 2026-10-11: STILL not GA. &#x27;Coming this October&#x27; remains a month, not a date (wavespeed Oct-1 evidence review; orcarouter: &#x27;waiting on a month, not a date&#x27;). Flash tier: 3-20s at 720p 8-bit SDR, limited early access for Ultra Yearly subscribers. Announced (not confirmed) full-model specs: 3-30s, 720p/1080p/4K, 21:9 ultrawide, up to 15 combined multimodal references (10 images, 5 videos totaling at most 30s, 7 subjects), 10 keyframes; no published price and no API model ID (APIMart). Kling AI&#x27;s Hong Kong IPO filing is proceeding in parallel (reported ~120B yuan valuation).</p>
       </div>
     </section>
     <section class="container" aria-labelledby="md-cost-h" style="margin-top:var(--space-6);">
       <h2 id="md-cost-h">Cost math</h2>
-      <p>No published rate in the captured data — <strong>verify live</strong> on the vendor's pricing page before budgeting. Recorded rate string: <code>not published — verify live</code></p>
-      <p class="calc-note">USD at $0.0392/credit (Higgsfield Plus plan, observed 2026-10-10). Verify live before budgeting — rates change.</p>
+      <p>No published rate in the captured data, <strong>verify live</strong> on the vendor's pricing page before budgeting. Recorded rate string: <code>not published, verify live</code></p>
+      <p class="calc-note">USD at $0.0392/credit (Higgsfield Plus plan, observed 2026-10-10). Verify live before budgeting, rates change.</p>
     </section>
     <section class="container" aria-labelledby="md-when-h" style="margin-top:var(--space-6);">
       <h2 id="md-when-h">Use it when / avoid it when</h2>
       <div class="card-grid">
-        <div class="card"><h3>Use it when</h3><p>Long-take narrative, keyframed sequences, broadcast-aspiring work — once generally available</p></div>
-        <div class="card"><h3>Avoid it when</h3><p>Not generally available as of Oct 11, 2026 — Flash early access for Ultra Yearly subscribers only; 4K 10-bit listed &#x27;coming soon&#x27;; no independent benchmark rating yet (full model not shipped)</p></div>
+        <div class="card"><h3>Use it when</h3><p>Long-take narrative, keyframed sequences, broadcast-aspiring work, once generally available</p></div>
+        <div class="card"><h3>Avoid it when</h3><p>Not generally available as of Oct 11, 2026, Flash early access for Ultra Yearly subscribers only; 4K 10-bit listed &#x27;coming soon&#x27;; no independent benchmark rating yet (full model not shipped)</p></div>
       </div>
-      <p class="calc-note">Drawn directly from the model's own best-use and weakness fields — the record's words, not ours.</p>
+      <p class="calc-note">Drawn directly from the model's own best-use and weakness fields, the record's words, not ours.</p>
     </section>
     <section class="container" aria-labelledby="md-tips-h" style="margin-top:var(--space-6);">
       <h2 id="md-tips-h">Prompt tips for this model</h2>
       <ul>
-      <li><strong>One action per shot.</strong> Video models execute a single believable verb well; stacked actions collapse — <a href="../craft/directing-performance.html">directing performance</a> and the <a href="../doctor.html">failure doctor</a> show what breaks.</li>
+      <li><strong>One action per shot.</strong> Video models execute a single believable verb well; stacked actions collapse, <a href="../craft/directing-performance.html">directing performance</a> and the <a href="../doctor.html">failure doctor</a> show what breaks.</li>
       <li><strong>Run it through the linter.</strong> <a href="../linter.html">Paste any prompt</a> for this model and check all ten layers before spending credits.</li>
       <li><strong>Not sure it's the right model?</strong> <a href="../quiz.html">Take the 5-question quiz</a> or <a href="../compare.html">compare it side-by-side</a> with alternatives.</li>
       </ul>
@@ -101,7 +103,7 @@
   </main>
   <footer class="site-footer">
     <div class="container footer-grid">
-      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <p>AI Film Master Guide, research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer"><a href="../index.html">Guide</a><a href="../skills.html">Skills</a><a href="../workshop.html">Workshop</a><a href="../quiz.html">Quiz</a><a href="../compare.html">Compare</a><a href="../gallery.html">Gallery</a><a href="../teardown.html">Teardowns</a><a href="../model-watch.html">Model watch</a><a href="../showdown.html">Showdown</a><a href="../forge.html">Episode forge</a><a href="../clearance.html">Script clearance</a><a href="../continuity.html">Continuity ledger</a><a href="../cuesheet.html">Cue sheet</a><a href="../grade.html">Grade sheet</a><a href="../cut.html">Cut sheet</a><a href="../take.html">Take sheet</a><a href="../longform.html">Longform sheet</a><a href="../path.html">The path</a><a href="../checks/">Knowledge checks</a><a href="../budget.html">Budget</a><a href="../optimizer.html">Optimizer</a><a href="../shots.html">Shot list</a><a href="../style-bible.html">Style bible</a><a href="../doctor.html">Doctor</a><a href="../linter.html">Linter</a><a href="../cutting-room.html">Cutting room</a><a href="../prompts.html">Prompts</a><a href="../models/">Models</a><a href="../anatomy.html">Anatomy</a><a href="../manifesto.html">Manifesto</a><a href="../craft-not-buttons.html">Craft, not buttons</a><a href="../recipes.html">Recipes</a><a href="../field-guides/">Field guides</a><a href="../changelog.html">Changelog</a><a href="../skill-spec.html">Skill spec</a><a href="../api.html">API</a></nav>
       <div class="footer-colophon"><span>AI Film Master Guide</span><span class="tail">Craft, not buttons</span></div>
     </div>

@@ -21,9 +21,9 @@ Original score on an AI budget.
 ## Procedure
 
 1. Brief per cue: genre, tempo, instrumentation, emotional job, what to avoid.
-2. Generate 3–5 variants per cue; comp sections like a score.
-3. Keep stems when possible — dialogues duck under full mixes badly.
-4. Competition rule: AI-generated music with rights held — document it.
+2. Generate 3 to 5 variants per cue; comp sections like a score.
+3. Keep stems when possible, dialogues duck under full mixes badly.
+4. Competition rule: AI-generated music with rights held, document it.
 
 ## Worked example
 
@@ -35,4 +35,4 @@ Climax cue brief: 'orchestral hybrid, 110 BPM, strings + pulse, dread → triump
 
 ## Pitfalls
 
-- One 3-minute generation as 'the score' — score is built cue by cue.
+- One 3-minute generation as 'the score', score is built cue by cue.

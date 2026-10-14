@@ -34,4 +34,4 @@ Testimonial: MCU, warm studio bokeh, static, 8-second lines, quoted dialogue.
 
 ## Pitfalls
 
-- Camera drift on a 'static' shot — say 'locked-off tripod' explicitly.
+- Camera drift on a 'static' shot, say 'locked-off tripod' explicitly.

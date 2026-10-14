@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Editing AI Footage — AI Film Master Guide</title>
+  <title>Editing AI Footage, AI Film Master Guide</title>
   <meta name="description" content="Cutting synthetic footage is a different discipline from cutting camera footage. The material lies to you in specific ways, breaks in specific places, and rewar">
+  <link rel="preload" href="../assets/fonts/anton-latin-normal-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/inter-latin-normal-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../assets/css/fonts.css">
   <link rel="stylesheet" href="../assets/css/tokens.css">
@@ -21,13 +22,13 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="canonical" href="https://ai-film-master-guide-live.vercel.app/craft/editing-ai-footage">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Editing AI Footage — AI Film Master Guide">
+  <meta property="og:title" content="Editing AI Footage, AI Film Master Guide">
   <meta property="og:description" content="Cutting synthetic footage is a different discipline from cutting camera footage. The material lies to you in specific ways, breaks in specific places, and rewar">
   <meta property="og:image" content="https://ai-film-master-guide-live.vercel.app/assets/og-card.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Editing AI Footage — AI Film Master Guide">
+  <meta name="twitter:title" content="Editing AI Footage, AI Film Master Guide">
   <meta name="twitter:description" content="Cutting synthetic footage is a different discipline from cutting camera footage. The material lies to you in specific ways, breaks in specific places, and rewar">
   <meta name="twitter:image" content="https://ai-film-master-guide-live.vercel.app/assets/og-card.png">
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Editing AI Footage", "description": "Cutting synthetic footage is a different discipline from cutting camera footage. The material lies to you in specific ways, breaks in specific places, and rewar", "url": "https://ai-film-master-guide-live.vercel.app/craft/editing-ai-footage"}</script>
@@ -70,76 +71,76 @@
       <header class="reel-head">
         <div>
           <p class="crumb"><a href="../index.html">Guide</a> / Craft</p>
-          <p class="reel-meta">7 min read · 1,475 words · chapter 13 of 30</p>
+          <p class="reel-meta">7 min read ·  1467 words · chapter 13 of 31</p>
         </div>
       </header>
       <article class="prose"><h1 id="editing-ai-footage">Editing AI Footage</h1>
 <p>Cutting synthetic footage is a different discipline from cutting camera footage. The material lies to you in specific ways, breaks in specific places, and rewards a specific workflow. This chapter is the deep craft behind the <code>craft/editing-pipeline.md</code> checklists: selects discipline for generated takes, how to read AI footage, pacing decisions unique to synthetic material, repair techniques in post, and the regenerate-vs-repair decision that controls your budget.</p>
 <h2 id="the-selects-workflow">The selects workflow</h2>
-<p>Camera editors log footage. AI editors log <em>generations</em> — and the generation carries metadata the footage doesn&#x27;t show.</p>
+<p>Camera editors log footage. AI editors log <em>generations</em>, and the generation carries metadata the footage doesn&#x27;t show.</p>
 <ul>
 <li><strong>Keep generation receipts.</strong> For every take you keep, record the model, the prompt (or prompt ID from the workshop), seed if the tool exposes one, and generation date. When a shot needs a re-render three weeks later, the receipt is the difference between matching it and starting over. The workshop&#x27;s saved prompts (<code>gallery.html</code>) are a workable receipt system.</li>
-<li><strong>Name takes like an editor, not a prompter.</strong> <code>sc03_sh02_v3_keep.mov</code> beats <code>kling_dreamy_final_FINAL2.mp4</code>. Scene, shot, version, verdict. The verdict suffix (<code>_keep</code>, <code>_alt</code>, <code>_fix</code>) is the whole system — at 2am you should be able to read the selects bin without opening anything.</li>
-<li><strong>Generate 2–4 takes per shot, keep one.</strong> The failure gallery&#x27;s lesson applies in the bin: the first generation is a draft. Takes 2–4 are where the model settles. Past 4 takes you&#x27;re usually prompting the wrong thing — go back to the prompt, not the generate button.</li>
+<li><strong>Name takes like an editor, not a prompter.</strong> <code>sc03_sh02_v3_keep.mov</code> beats <code>kling_dreamy_final_FINAL2.mp4</code>. Scene, shot, version, verdict. The verdict suffix (<code>_keep</code>, <code>_alt</code>, <code>_fix</code>) is the whole system, at 2am you should be able to read the selects bin without opening anything.</li>
+<li><strong>Generate 2 to 4 takes per shot, keep one.</strong> The failure gallery&#x27;s lesson applies in the bin: the first generation is a draft. Takes 2 to 4 are where the model settles. Past 4 takes you&#x27;re usually prompting the wrong thing, go back to the prompt, not the generate button.</li>
 <li><strong>The selects bin is sacred.</strong> Only keeps enter the edit. Alts live in a separate bin. This sounds bureaucratic until your timeline has 200 clips and you can&#x27;t remember which face-morph take was &quot;the good one.&quot;</li>
 </ul>
 <h2 id="reading-ai-footage-the-inspection-pass">Reading AI footage: the inspection pass</h2>
 <p>Before a clip earns a place in the timeline, watch it three times with three different eyes:</p>
 <ol>
-<li><strong>The story pass.</strong> Does the shot do its job — the action, the framing, the beat? If not, no amount of clean rendering saves it. Kill it now.</li>
-<li><strong>The background scan.</strong> Watch everything <em>except</em> the subject: hands at frame edges, background faces, text on signs, architecture lines, reflections. AI failures hide in the periphery — the subject gets the model&#x27;s attention, the background gets its leftovers. This is where three-eyed cyclopses live.</li>
-<li><strong>The motion pass.</strong> Watch at half speed. Look for micro-jitter (the tell-tale AI shimmer on still surfaces), morphing (faces and hands drifting between frames), and motion that &quot;swims&quot; — cloth, water, and hair moving without physical cause. Half-speed reveals what full-speed hides.</li>
+<li><strong>The story pass.</strong> Does the shot do its job, the action, the framing, the beat? If not, no amount of clean rendering saves it. Kill it now.</li>
+<li><strong>The background scan.</strong> Watch everything <em>except</em> the subject: hands at frame edges, background faces, text on signs, architecture lines, reflections. AI failures hide in the periphery, the subject gets the model&#x27;s attention, the background gets its leftovers. This is where three-eyed cyclopses live.</li>
+<li><strong>The motion pass.</strong> Watch at half speed. Look for micro-jitter (the tell-tale AI shimmer on still surfaces), morphing (faces and hands drifting between frames), and motion that &quot;swims&quot;, cloth, water, and hair moving without physical cause. Half-speed reveals what full-speed hides.</li>
 </ol>
 <p><strong>The 5-second rule:</strong> any AI clip held longer than ~5 seconds gets inspected frame-by-frame at its start, middle, and end. Long holds are where drift accumulates past the audience&#x27;s forgiveness threshold.</p>
 <h2 id="pacing-synthetic-footage">Pacing synthetic footage</h2>
 <p>AI footage cuts differently from camera footage, for one reason: <strong>synthetic motion has no rest state.</strong> A camera shot of a still room is genuinely still; an AI shot of a still room shimmers, breathes, and drifts at the pixel level. The audience feels this as restlessness even when they can&#x27;t name it.</p>
 <ul>
-<li><strong>Cut synthetic footage tighter than you think.</strong> The 2–4 second shot is the sweet spot for AI material — long enough to read, short enough that micro-defects don&#x27;t accumulate. Camera footage can hold 6–8 seconds on a face; AI footage holding that long invites the audience to study the render instead of the performance.</li>
-<li><strong>Earn your holds.</strong> When you do hold — an emotional beat, a landscape — make sure the shot earned it in the inspection pass. A held AI shot should be your <em>cleanest</em> take, not your most convenient one.</li>
+<li><strong>Cut synthetic footage tighter than you think.</strong> The 2 to 4 second shot is the sweet spot for AI material, long enough to read, short enough that micro-defects don&#x27;t accumulate. Camera footage can hold 6 to 8 seconds on a face; AI footage holding that long invites the audience to study the render instead of the performance.</li>
+<li><strong>Earn your holds.</strong> When you do hold, an emotional beat, a landscape, make sure the shot earned it in the inspection pass. A held AI shot should be your <em>cleanest</em> take, not your most convenient one.</li>
 <li><strong>Vary rhythm deliberately.</strong> The failure mode of AI editing is metronomic cutting: every shot 3 seconds because every generation came out 3 seconds. Re-time clips. Let some breathe, snap others. Monotony reads as &quot;AI-generated&quot; faster than any artifact does.</li>
-<li><strong>Transitions are confessions.</strong> A dissolve between two AI shots says &quot;I couldn&#x27;t make these match.&quot; Hard cuts are invisible; every effect announces itself. The one exception: match-cut on motion can <em>hide</em> a multitude of sins — cutting on a shared movement vector carries the eye past minor inconsistencies.</li>
+<li><strong>Transitions are confessions.</strong> A dissolve between two AI shots says &quot;I couldn&#x27;t make these match.&quot; Hard cuts are invisible; every effect announces itself. The one exception: match-cut on motion can <em>hide</em> a multitude of sins, cutting on a shared movement vector carries the eye past minor inconsistencies.</li>
 </ul>
 <h2 id="repair-in-post-the-fix-it-ladder">Repair in post: the fix-it ladder</h2>
 <p>Work the ladder bottom-up. Each rung costs more time than the last; stop at the first rung that works.</p>
 <ol>
-<li><strong>Cut around it.</strong> The cheapest fix is editorial: trim the morphing frames, cut before the hand enters frame, use the clean 2 seconds and lose the rest. Most AI defects live at clip heads and tails — the model&#x27;s &quot;warm-up&quot; and &quot;decay&quot; frames.</li>
-<li><strong>Re-time it.</strong> Speed ramps hide jitter: a 90% slow-down smooths micro-shimmer; a slight speed-up tightens mushy motion. Optical-flow re-timing is your friend — it interpolates <em>between</em> the model&#x27;s frames, which often look better than the model&#x27;s own in-betweens.</li>
-<li><strong>Stabilize it.</strong> Micro-jitter on &quot;locked&quot; shots responds well to stabilization with minimal smoothing. Don&#x27;t over-stabilize — the warp artifacts of aggressive stabilization look worse than the jitter.</li>
+<li><strong>Cut around it.</strong> The cheapest fix is editorial: trim the morphing frames, cut before the hand enters frame, use the clean 2 seconds and lose the rest. Most AI defects live at clip heads and tails, the model&#x27;s &quot;warm-up&quot; and &quot;decay&quot; frames.</li>
+<li><strong>Re-time it.</strong> Speed ramps hide jitter: a 90% slow-down smooths micro-shimmer; a slight speed-up tightens mushy motion. Optical-flow re-timing is your friend, it interpolates <em>between</em> the model&#x27;s frames, which often look better than the model&#x27;s own in-betweens.</li>
+<li><strong>Stabilize it.</strong> Micro-jitter on &quot;locked&quot; shots responds well to stabilization with minimal smoothing. Don&#x27;t over-stabilize, the warp artifacts of aggressive stabilization look worse than the jitter.</li>
 <li><strong>Composite the fix.</strong> Plasticky wide-shot face? Replace it with a crop from a close-shot frame, tracked on. Warping background element? Patch it with a clean plate from another take. This is standard VFX thinking applied to AI&#x27;s specific failure modes.</li>
-<li><strong>Grain unifies.</strong> A light film-grain overlay across the whole timeline is the cheapest consistency tool in post — it gives every shot, from every model, a shared texture. Do this <em>after</em> the edit is locked, on an adjustment layer.</li>
-<li><strong>Upscale last.</strong> Finish the edit, lock picture, <em>then</em> upscale the final timeline. Never upscale individual clips and re-edit — you&#x27;ll pay for pixels you cut.</li>
+<li><strong>Grain unifies.</strong> A light film-grain overlay across the whole timeline is the cheapest consistency tool in post, it gives every shot, from every model, a shared texture. Do this <em>after</em> the edit is locked, on an adjustment layer.</li>
+<li><strong>Upscale last.</strong> Finish the edit, lock picture, <em>then</em> upscale the final timeline. Never upscale individual clips and re-edit, you&#x27;ll pay for pixels you cut.</li>
 </ol>
 <h2 id="regenerate-vs-repair-the-decision">Regenerate vs repair: the decision</h2>
 <p>This is the budget decision that separates professionals from hobbyists. The math:</p>
 <ul>
-<li><strong>Repair wins</strong> when the fix is under ~30 minutes and the defect is local (a few bad frames, one background element, minor jitter). Your time has a cost, but generation has a cost too — and regeneration is a lottery.</li>
+<li><strong>Repair wins</strong> when the fix is under ~30 minutes and the defect is local (a few bad frames, one background element, minor jitter). Your time has a cost, but generation has a cost too, and regeneration is a lottery.</li>
 <li><strong>Regenerate wins</strong> when the defect is structural (wrong action, wrong composition, identity drift through the whole clip) or when you&#x27;ve already spent 30+ minutes repairing. The doctor (<code>doctor.html</code>) diagnoses which failures are structural.</li>
 <li><strong>The two-strike rule:</strong> if a repair attempt fails twice, regenerate. Repair attempts have diminishing returns; the third attempt at fixing a morph almost never works, and you&#x27;ve now spent more than a fresh generation costs.</li>
 <li><strong>Never repair what you can re-prompt.</strong> A prompt fix (adding the exclusion block, locking the style bible, simplifying the action) compounds across every future generation. A post fix applies once. When the same defect appears in three takes, the problem is upstream.</li>
 </ul>
 <h2 id="sound-led-editing">Sound-led editing</h2>
-<p>AI footage is mute until you give it a voice — which makes sound your most powerful editing tool:</p>
+<p>AI footage is mute until you give it a voice, which makes sound your most powerful editing tool:</p>
 <ul>
 <li><strong>Cut to the temp score early.</strong> Even a rough music bed gives synthetic footage a pulse to cut against. Editors who cut AI footage silent tend to cut it metronomically.</li>
 <li><strong>J-cuts and L-cuts are free professionalism.</strong> Letting audio lead or lag the picture cut costs nothing and instantly makes AI footage feel directed rather than assembled.</li>
 <li><strong>The mute test.</strong> Mute the timeline: the cut should still play. Unmute: nothing should fight the dialogue. If the film only works with music, the edit isn&#x27;t done.</li>
-<li><strong>Foley sells the render.</strong> Footsteps, cloth, room tone — the sounds the model never generated are what convince the ear the image is real. The sound chapter (<code>craft/sound-music-audio.md</code>) covers the three-layer build.</li>
+<li><strong>Foley sells the render.</strong> Footsteps, cloth, room tone, the sounds the model never generated are what convince the ear the image is real. The sound chapter (<code>craft/sound-music-audio.md</code>) covers the three-layer build.</li>
 </ul>
 <h2 id="delivery">Delivery</h2>
 <ul>
-<li><strong>Match the spec exactly.</strong> Resolution, codec, frame rate, file size — festivals and platforms reject on technicalities without watching a frame. The competition-entry craft chapter covers delivery discipline.</li>
+<li><strong>Match the spec exactly.</strong> Resolution, codec, frame rate, file size, festivals and platforms reject on technicalities without watching a frame. The competition-entry craft chapter covers delivery discipline.</li>
 <li><strong>Watch the export, all of it, on a different screen than you edited on.</strong> Phone if you edited on a monitor, TV if you edited on a laptop. AI artifacts hide at familiar viewing distances.</li>
 <li><strong>The 24-hour rule.</strong> Lock the cut, sleep, watch fresh. Every flaw you catch now is one the audience won&#x27;t forgive later.</li>
 </ul>
 <h2 id="sources-confidence">Sources &amp; confidence</h2>
-<p>The selects discipline and naming conventions are standard editorial craft applied to AI&#x27;s take economics; the 2–4 takes guidance is corroborated across 2026 creator workflows. The inspection pass (background scan, half-speed motion check) synthesizes the failure gallery&#x27;s documented defects with standard QC practice. Pacing guidance for synthetic footage is editorial judgment grounded in the uncanny-restlessness observation — treat the 2–4 second sweet spot as a starting rule, not a law. The repair ladder and two-strike rule are shop craft; re-timing and stabilization effectiveness varies by tool — test on your footage. The regenerate-vs-repair framework is original to this guide. No single case study is cited because these are cross-cutting practices, not one film&#x27;s pipeline.</p></article>
+<p>The selects discipline and naming conventions are standard editorial craft applied to AI&#x27;s take economics; the 2 to 4 takes guidance is corroborated across 2026 creator workflows. The inspection pass (background scan, half-speed motion check) synthesizes the failure gallery&#x27;s documented defects with standard QC practice. Pacing guidance for synthetic footage is editorial judgment grounded in the uncanny-restlessness observation, treat the 2 to 4 second sweet spot as a starting rule, not a law. The repair ladder and two-strike rule are shop craft; re-timing and stabilization effectiveness varies by tool, test on your footage. The regenerate-vs-repair framework is original to this guide. No single case study is cited because these are cross-cutting practices, not one film&#x27;s pipeline.</p></article>
       <nav class="prevnext" aria-label="Next and previous chapters"><a class="btn" href="../craft/editing-pipeline.html" rel="prev">← Editing Pipeline</a><a class="btn" href="../craft/longform-pipelines.html" rel="next">Long-Form Pipelines: Making AI Films That Survive 90 Minutes →</a></nav>
     </main>
     <aside class="docs-toc" aria-label="On this page"><p class="toc-h">On this page</p><ul><li class="toc-l2"><a href="#the-selects-workflow">The selects workflow</a></li><li class="toc-l2"><a href="#reading-ai-footage-the-inspection-pass">Reading AI footage: the inspection pass</a></li><li class="toc-l2"><a href="#pacing-synthetic-footage">Pacing synthetic footage</a></li><li class="toc-l2"><a href="#repair-in-post-the-fix-it-ladder">Repair in post: the fix-it ladder</a></li><li class="toc-l2"><a href="#regenerate-vs-repair-the-decision">Regenerate vs repair: the decision</a></li><li class="toc-l2"><a href="#sound-led-editing">Sound-led editing</a></li><li class="toc-l2"><a href="#delivery">Delivery</a></li><li class="toc-l2"><a href="#sources-confidence">Sources & confidence</a></li></ul></aside>
   </div>
   <footer class="site-footer">
     <div class="container footer-grid">
-      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <p>AI Film Master Guide, research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer"><a href="../index.html">Guide</a><a href="../skills.html">Skills</a><a href="../workshop.html">Workshop</a><a href="../quiz.html">Quiz</a><a href="../compare.html">Compare</a><a href="../gallery.html">Gallery</a><a href="../teardown.html">Teardowns</a><a href="../model-watch.html">Model watch</a><a href="../showdown.html">Showdown</a><a href="../forge.html">Episode forge</a><a href="../clearance.html">Script clearance</a><a href="../continuity.html">Continuity ledger</a><a href="../cuesheet.html">Cue sheet</a><a href="../grade.html">Grade sheet</a><a href="../cut.html">Cut sheet</a><a href="../take.html">Take sheet</a><a href="../longform.html">Longform sheet</a><a href="../path.html">The path</a><a href="../checks/">Knowledge checks</a><a href="../budget.html">Budget</a><a href="../optimizer.html">Optimizer</a><a href="../shots.html">Shot list</a><a href="../style-bible.html">Style bible</a><a href="../doctor.html">Doctor</a><a href="../linter.html">Linter</a><a href="../cutting-room.html">Cutting room</a><a href="../prompts.html">Prompts</a><a href="../models/">Models</a><a href="../anatomy.html">Anatomy</a><a href="../manifesto.html">Manifesto</a><a href="../craft-not-buttons.html">Craft, not buttons</a><a href="../recipes.html">Recipes</a><a href="../field-guides/">Field guides</a><a href="../changelog.html">Changelog</a><a href="../skill-spec.html">Skill spec</a><a href="../api.html">API</a></nav>
       <div class="footer-colophon"><span>AI Film Master Guide</span><span class="tail">Craft, not buttons</span></div>
     </div>

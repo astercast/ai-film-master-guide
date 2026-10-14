@@ -1,13 +1,13 @@
 ---
 name: craft-one-motion
-description: The single highest-leverage prompt discipline.
+description: The prompt discipline worth learning before all the others.
 ---
 
 # Enforce one motion per prompt
 
 ## What this gets you
 
-Your shots will do one thing cleanly instead of three things badly — the single habit that fixes more prompts than any other.
+Your shots will do one thing cleanly instead of three things badly, the single habit that fixes more prompts than any other.
 
 ## Use when
 
@@ -19,7 +19,7 @@ Every prompt you write.
 
 ## Procedure
 
-1. Name the ONE motion. Delete the rest — they become new shots.
+1. Name the ONE motion. Delete the rest, they become new shots.
 2. Name the ONE camera move. Same rule.
 3. If the shot needs more, the shot is two shots.
 
@@ -29,4 +29,4 @@ Every prompt you write.
 
 ## Pitfalls
 
-- 'Just this once' — the model always splits the difference.
+- 'Just this once', the model always splits the difference.

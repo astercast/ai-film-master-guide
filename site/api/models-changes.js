@@ -1,23 +1,23 @@
 'use strict';
-/* GET /api/models-changes — film-watchtower v2.0.0 (Watchtower 2.0).
+/* GET /api/models-changes, film-watchtower v2.0.0 (Watchtower 2.0).
  * The "what changed" endpoint. Three answers in one envelope:
  *
- *   events        — the hand-authored event log (data/v1/model-history.json)
+ *   events, the hand-authored event log (data/v1/model-history.json)
  *                   filtered to the visitor's window. A change is only listed
  *                   here if the guide's record documents it; nothing is
  *                   inferred from raw page fetches.
- *   price_changes — mechanical diff of the live pricing table against the
+ *   price_changes, mechanical diff of the live pricing table against the
  *                   2026-10-11 baseline stored in model-history.json
  *                   (server/lib/drift.js). Catches a rate move even when no
  *                   one wrote an event for it yet.
- *   drift         — per-model drift alerts right now: flagged checks, failed
+ *   drift, per-model drift alerts right now: flagged checks, failed
  *                   checks, unwatched models, unpublished rates, stale
  *                   records, moved prices.
  *
  * Query:
- *   ?since=YYYY-MM-DD | ISO timestamp — event window start (default: the
+ *   ?since=YYYY-MM-DD | ISO timestamp, event window start (default: the
  *     pricing baseline date, i.e. everything the log holds). Invalid → 400.
- *   ?model_id=<id> — restrict events, price changes, and drift to one model.
+ *   ?model_id=<id>, restrict events, price changes, and drift to one model.
  *     Unknown id → 404 NOT_FOUND.
  *
  * Static fallback: /data/v1/model-history.json + /data/v1/pricing.json +

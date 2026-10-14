@@ -7,7 +7,7 @@ description: Native quotes vs post lip-sync, decided per scene.
 
 ## What this gets you
 
-For every dialogue scene, you will know which lip-sync method to use — the one that fits the words, the budget and the deadline.
+For every dialogue scene, you will know which lip-sync method to use, the one that fits the words, the budget and the deadline.
 
 ## Use when
 
@@ -28,7 +28,7 @@ Any dialogue scene.
 
 ## Worked example
 
-Scene with 14 lines: lines 1–3 native test failed → full scene routed to post lip-sync.
+Scene with 14 lines: lines 1 to 3 native test failed → full scene routed to post lip-sync.
 
 ## API references
 
@@ -37,4 +37,4 @@ Scene with 14 lines: lines 1–3 native test failed → full scene routed to pos
 
 ## Pitfalls
 
-- Mixing routes mid-scene — pick one per scene.
+- Mixing routes mid-scene, pick one per scene.

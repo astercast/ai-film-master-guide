@@ -1,4 +1,4 @@
-/* Interactive prompt workshop — template x model x track -> live-filled prompt.
+/* Interactive prompt workshop, template x model x track -> live-filled prompt.
    Data: prompt-templates.json + models.json (copied into site/ at build time).
    Saves + ratings live in localStorage under afg-workshop-saves. */
 (function () {
@@ -183,8 +183,8 @@
     els.why.innerHTML =
       "<h3>Why this template works</h3>" +
       '<dl class="why-list">' +
-      "<dt>Anatomy</dt><dd>" + esc(tpl.anatomy || "—") + "</dd>" +
-      "<dt>Use it for</dt><dd>" + esc(tpl.use || "—") + "</dd>" +
+      "<dt>Anatomy</dt><dd>" + esc(tpl.anatomy || "…") + "</dd>" +
+      "<dt>Use it for</dt><dd>" + esc(tpl.use || "…") + "</dd>" +
       "<dt>Recommended models</dt><dd>" + models + "</dd>" +
       "</dl>";
   }
@@ -384,7 +384,7 @@
     models.forEach(function (m) {
       var o = document.createElement("option");
       o.value = m.model;
-      o.textContent = m.model + " — " + m.platform + " (" + m.type + ")";
+      o.textContent = m.model + ", " + m.platform + " (" + m.type + ")";
       els.model.appendChild(o);
     });
 

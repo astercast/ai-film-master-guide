@@ -20,7 +20,7 @@ Every prompt with a recurring character.
 
 ## Procedure
 
-1. Face, hair, wardrobe, palette — static facts only.
+1. Face, hair, wardrobe, palette, static facts only.
 2. Anchor with a stable label or @ reference, never pronouns alone.
 3. No action verbs, no camera language in this block.
 
@@ -30,4 +30,4 @@ IDENTITY: MARA, late 20s, copper bob, black leather jacket, gold hoop earring. @
 
 ## Pitfalls
 
-- Letting 'she walks' sneak into the identity block — that's the motion block's job.
+- Letting 'she walks' sneak into the identity block, that's the motion block's job.

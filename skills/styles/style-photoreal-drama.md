@@ -7,7 +7,7 @@ description: Invisible AI: intimate, POV-locked, performance-first.
 
 ## What this gets you
 
-Your drama will look like it was filmed with real actors — intimate, quiet, and believable enough that nobody asks how.
+Your drama will look like it was filmed with real actors, intimate, quiet, and believable enough that nobody asks how.
 
 ## Use when
 
@@ -24,11 +24,11 @@ Competition drama entries.
 1. Tight shots, locked POV, real dialogue with turns.
 2. Identity discipline: Soul ID or equivalent, re-anchored constantly.
 3. Naturalistic light; grade toward reality, not beauty.
-4. The AI must be invisible — any visible 'AI moment' breaks the contract.
+4. The AI must be invisible, any visible 'AI moment' breaks the contract.
 
 ## Worked example
 
-Two-hander kitchen drama: 14 setups, all coverage, zero visible artifacts — jury reads it as film.
+Two-hander kitchen drama: 14 setups, all coverage, zero visible artifacts, jury reads it as film.
 
 ## API references
 
@@ -36,4 +36,4 @@ Two-hander kitchen drama: 14 setups, all coverage, zero visible artifacts — ju
 
 ## Pitfalls
 
-- One morphing face — in drama, that's the whole film dead.
+- One morphing face, in drama, that's the whole film dead.

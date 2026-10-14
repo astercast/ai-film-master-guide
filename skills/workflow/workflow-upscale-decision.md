@@ -1,13 +1,13 @@
 ---
 name: workflow-upscale-decision
-description: Upscale winners only — never the timeline.
+description: Upscale winners only, never the timeline.
 ---
 
 # Decide what to upscale
 
 ## What this gets you
 
-You will know which finished shots deserve expensive high-resolution renders and which never do — and stop paying to upscale rejects.
+You will know which finished shots deserve expensive high-resolution renders and which never do, and stop paying to upscale rejects.
 
 ## Use when
 
@@ -22,7 +22,7 @@ After selects are locked.
 
 1. List selects; mark hero vs connective tissue.
 2. Upscale heroes to delivery spec; leave connective tissue at native if it holds.
-3. Never upscale a non-select 'just in case' — storage and time are real costs.
+3. Never upscale a non-select 'just in case', storage and time are real costs.
 
 ## Worked example
 
@@ -30,4 +30,4 @@ After selects are locked.
 
 ## Pitfalls
 
-- Upscaling everything 'for safety' — the render queue is where deadlines die.
+- Upscaling everything 'for safety', the render queue is where deadlines die.

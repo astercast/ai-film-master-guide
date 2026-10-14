@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Send planner blocks to the Studio — Skill — AI Film Master Guide</title>
-  <meta name="description" content="Your planned episodes will become a full Studio production plan — shot lists and budgets per episode — without re-typing anything.">
+  <title>Send planner blocks to the Studio, Skill, AI Film Master Guide</title>
+  <meta name="description" content="Your planned episodes will become a full Studio production plan, shot lists and budgets per episode, without re-typing anything.">
+  <link rel="preload" href="../assets/fonts/anton-latin-normal-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/inter-latin-normal-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../assets/css/fonts.css">
   <link rel="stylesheet" href="../assets/css/tokens.css">
@@ -21,14 +22,14 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="canonical" href="https://ai-film-master-guide-live.vercel.app/skills/episode-studio-bridge">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Send planner blocks to the Studio — Skill — AI Film Master Guide">
-  <meta property="og:description" content="Your planned episodes will become a full Studio production plan — shot lists and budgets per episode — without re-typing anything.">
+  <meta property="og:title" content="Send planner blocks to the Studio, Skill, AI Film Master Guide">
+  <meta property="og:description" content="Your planned episodes will become a full Studio production plan, shot lists and budgets per episode, without re-typing anything.">
   <meta property="og:image" content="https://ai-film-master-guide-live.vercel.app/assets/og-card.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Send planner blocks to the Studio — Skill — AI Film Master Guide">
-  <meta name="twitter:description" content="Your planned episodes will become a full Studio production plan — shot lists and budgets per episode — without re-typing anything.">
+  <meta name="twitter:title" content="Send planner blocks to the Studio, Skill, AI Film Master Guide">
+  <meta name="twitter:description" content="Your planned episodes will become a full Studio production plan, shot lists and budgets per episode, without re-typing anything.">
   <meta name="twitter:image" content="https://ai-film-master-guide-live.vercel.app/assets/og-card.png">
 </head>
 <body>
@@ -59,15 +60,15 @@
       <h1 id="skill-title">Send planner blocks to the Studio</h1>
       
       <section class="card skill-frontdoor" aria-label="This skill at a glance">
-        <p class="skill-gets"><strong>Gets you:</strong> Your planned episodes will become a full Studio production plan — shot lists and budgets per episode — without re-typing anything.</p>
+        <p class="skill-gets"><strong>Gets you:</strong> Your planned episodes will become a full Studio production plan, shot lists and budgets per episode, without re-typing anything.</p>
         <dl class="skill-facts">
-          <div><dt>What this is</dt><dd>Turn the episodes you planned in the episode planner into a full production plan in the Studio — per-episode shot lists and budgets — with one button, instead of re-typing everything.</dd></div>
+          <div><dt>What this is</dt><dd>Turn the episodes you planned in the episode planner into a full production plan in the Studio, per-episode shot lists and budgets, with one button, instead of re-typing everything.</dd></div>
           <div><dt>First step</dt><dd>In the episode planner, check the &#x27;Saved blocks&#x27; list: every block shows format, emotion, beat count, and beats x seconds-per-beat runtime.</dd></div>
           <div><dt>You will need</dt><dd>Saved planner series (localStorage &#x27;afg-episode-series&#x27;) with &gt;= 1 episode block</dd></div>
-          <div><dt>Time</dt><dd>About 3 minutes for a first run-through (6 steps; estimated from the procedure itself — your model&rsquo;s generation time is extra).</dd></div>
-          <div><dt>Level</dt><dd>Beginner — made to be usable on a first project.</dd></div>
-          <div><dt>Before this</dt><dd>Best after the skill before it on the Path (skill 177 of 241: Plan an episode block with runtime estimate) — but everything it needs is listed below, and nothing else is assumed.</dd></div>
-          <div><dt>Proof &mdash; the worked example</dt><dd>3 saved mini-drama blocks (5/4/4 beats x 15s = 75/60/60s) -&gt; &#x27;Send series to Studio&#x27;: 3 episodes, 75s/ep (nearest in-band option to the median), Mara&#x27;s anchor locked into the bible DNA. &#x27;Send run to Studio&#x27;: 3 episodes x 1 min -&gt; 4-6 clips/episode, $150 benchmark, 180s generation per episode at t…</dd></div>
+          <div><dt>Time</dt><dd>About 3 minutes for a first run-through (6 steps; estimated from the procedure itself, your model&rsquo;s generation time is extra).</dd></div>
+          <div><dt>Level</dt><dd>Beginner, made to be usable on a first project.</dd></div>
+          <div><dt>Before this</dt><dd>Best after the skill before it on the Path (skill 177 of 241: Plan an episode block with runtime estimate), but everything it needs is listed below, and nothing else is assumed.</dd></div>
+          <div><dt>Proof: the worked example</dt><dd>3 saved mini-drama blocks (5/4/4 beats x 15s = 75/60/60s) -&gt; &#x27;Send series to Studio&#x27;: 3 episodes, 75s/ep (nearest in-band option to the median), Mara&#x27;s anchor locked into the bible DNA. &#x27;Send run to Studio&#x27;: 3 episodes x 1 min -&gt; 4-6 clips/episode, $150 benchmark, 180s generation per episode at t…</dd></div>
         </dl>
         
       </section>
@@ -80,10 +81,10 @@
 <h2 id="procedure">Procedure</h2>
 <ol>
 <li>In the episode planner, check the &#x27;Saved blocks&#x27; list: every block shows format, emotion, beat count, and beats x seconds-per-beat runtime.</li>
-<li>Press &#x27;Send series to Studio&#x27; — the planner stages {title, logline, cast anchors, blocks[]} into localStorage &#x27;afg-studio-bridge&#x27; and navigates to studio.html.</li>
+<li>Press &#x27;Send series to Studio&#x27;, the planner stages {title, logline, cast anchors, blocks[]} into localStorage &#x27;afg-studio-bridge&#x27; and navigates to studio.html.</li>
 <li>The Studio consumes the payload once: project type = most common block format, episodes = block count (3-10), per-episode runtime = median beats x spb snapped into the format&#x27;s band, cast rows pre-filled.</li>
 <li>Each block&#x27;s emotion/beats/hook/turn/cliffhanger becomes the episode&#x27;s arc in the packet (not a skeleton); skeletons are only generated when no blocks exist.</li>
-<li>Or press &#x27;Send run to Studio&#x27; — the planner stages {title, logline, episodes = block count, minPerEpisode = median block runtime in minutes (snapped to 0.5-3)} with kind &#x27;microdrama&#x27;; the Studio opens in microdrama mode (Studio 2.5) and plans the run economics: clip budget, $50/min benchmark, 3-5x retake budget, regen reserve, documented-pace timeline.</li>
+<li>Or press &#x27;Send run to Studio&#x27;, the planner stages {title, logline, episodes = block count, minPerEpisode = median block runtime in minutes (snapped to 0.5-3)} with kind &#x27;microdrama&#x27;; the Studio opens in microdrama mode (Studio 2.5) and plans the run economics: clip budget, $50/min benchmark, 3-5x retake budget, regen reserve, documented-pace timeline.</li>
 <li>Verify the pre-fill (episode count, runtime, cast anchors), then build the series packet or the run plan.</li>
 </ol>
 <h2 id="worked-example">Worked example</h2>
@@ -94,9 +95,9 @@
 </ul>
 <h2 id="pitfalls">Pitfalls</h2>
 <ul>
-<li>Sending before saving blocks — the bridge reads saved blocks, not the form fields.</li>
-<li>Blocks with mixed formats — the Studio takes the most common; re-format outliers in the planner first.</li>
-<li>Expecting a shot packet from &#x27;Send run to Studio&#x27; — microdrama mode is economics only; use &#x27;Send series to Studio&#x27; for the per-shot packet.</li>
+<li>Sending before saving blocks, the bridge reads saved blocks, not the form fields.</li>
+<li>Blocks with mixed formats, the Studio takes the most common; re-format outliers in the planner first.</li>
+<li>Expecting a shot packet from &#x27;Send run to Studio&#x27;, microdrama mode is economics only; use &#x27;Send series to Studio&#x27; for the per-shot packet.</li>
 </ul></article>
       <nav class="skill-pagenav" aria-label="Skill navigation">
         <p><a href="episode-plan-block.html" rel="prev">&larr; Plan an episode block with runtime estimate</a></p>
@@ -107,7 +108,7 @@
   </main>
   <footer class="site-footer">
     <div class="container footer-grid">
-      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <p>AI Film Master Guide, research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer"><a href="../index.html">Guide</a><a href="../skills.html">Skills</a><a href="../workshop.html">Workshop</a><a href="../quiz.html">Quiz</a><a href="../compare.html">Compare</a><a href="../gallery.html">Gallery</a><a href="../teardown.html">Teardowns</a><a href="../model-watch.html">Model watch</a><a href="../showdown.html">Showdown</a><a href="../forge.html">Episode forge</a><a href="../clearance.html">Script clearance</a><a href="../continuity.html">Continuity ledger</a><a href="../cuesheet.html">Cue sheet</a><a href="../grade.html">Grade sheet</a><a href="../cut.html">Cut sheet</a><a href="../take.html">Take sheet</a><a href="../longform.html">Longform sheet</a><a href="../path.html">The path</a><a href="../checks/">Knowledge checks</a><a href="../budget.html">Budget</a><a href="../optimizer.html">Optimizer</a><a href="../shots.html">Shot list</a><a href="../style-bible.html">Style bible</a><a href="../doctor.html">Doctor</a><a href="../linter.html">Linter</a><a href="../cutting-room.html">Cutting room</a><a href="../prompts.html">Prompts</a><a href="../models/">Models</a><a href="../anatomy.html">Anatomy</a><a href="../manifesto.html">Manifesto</a><a href="../craft-not-buttons.html">Craft, not buttons</a><a href="../recipes.html">Recipes</a><a href="../field-guides/">Field guides</a><a href="../changelog.html">Changelog</a><a href="../skill-spec.html">Skill spec</a><a href="../api.html">API</a></nav>
       <div class="footer-colophon"><span>AI Film Master Guide</span><span class="tail">Craft, not buttons</span></div>
     </div>

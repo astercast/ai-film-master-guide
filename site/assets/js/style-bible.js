@@ -1,4 +1,4 @@
-/* Style-bible builder — compose a reusable STYLE LOCK block for a production.
+/* Style-bible builder, compose a reusable STYLE LOCK block for a production.
    Named bibles live in localStorage under afg-style-bibles; the prompt workshop
    (workshop.js) can prepend any saved bible to filled prompts. */
 (function () {
@@ -53,7 +53,7 @@
 
   function persistBibles(list) {
     try { localStorage.setItem(BIBLE_KEY, JSON.stringify(list)); }
-    catch (e) { showError("Could not save — browser storage is unavailable or full."); }
+    catch (e) { showError("Could not save, browser storage is unavailable or full."); }
   }
 
   function showError(msg) {
@@ -89,12 +89,12 @@
     var nev = lines(val(els.never));
 
     var out = [];
-    out.push("STYLE LOCK \u2014 " + name.toUpperCase());
-    if (charBits.length) out.push("CHARACTER \u2014 " + charBits.join("; ") + ".");
-    if (worldBits.length) out.push("WORLD \u2014 " + worldBits.join("; ") + ".");
-    if (rec.length) out.push("RECURRING \u2014 " + rec.join("; ") + ".");
-    if (nev.length) out.push("NEVER \u2014 " + nev.join("; ") + ".");
-    out.push("RULE \u2014 Prepend this block verbatim to every generation prompt in this production. Do not paraphrase it. If the model drifts, regenerate the shot \u2014 do not rewrite the lock.");
+    out.push("STYLE LOCK, " + name.toUpperCase());
+    if (charBits.length) out.push("CHARACTER, " + charBits.join("; ") + ".");
+    if (worldBits.length) out.push("WORLD, " + worldBits.join("; ") + ".");
+    if (rec.length) out.push("RECURRING, " + rec.join("; ") + ".");
+    if (nev.length) out.push("NEVER, " + nev.join("; ") + ".");
+    out.push("RULE, Prepend this block verbatim to every generation prompt in this production. Do not paraphrase it. If the model drifts, regenerate the shot, do not rewrite the lock.");
     return out.join("\n");
   }
 
@@ -270,7 +270,7 @@
   els.openWorkshop.addEventListener("click", function () {
     /* The workshop picks up saved bibles automatically; remind the user. */
     if (!loadBibles().length && hasContent()) {
-      showError("Tip: save this bible first (above) \u2014 the workshop's style-bible menu lists your saved bibles.");
+      showError("Tip: save this bible first (above), the workshop's style-bible menu lists your saved bibles.");
     }
   });
 

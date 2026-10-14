@@ -7,7 +7,7 @@ description: Write shotlist.md files with verbatim prompts, the source of truth 
 
 ## What this gets you
 
-You will have a written plan for every shot in a scene — its exact prompt, length and look — that you generate from instead of re-inventing shots in the chat window.
+You will have a written plan for every shot in a scene, its exact prompt, length and look, that you generate from instead of re-inventing shots in the chat window.
 
 ## Use when
 
@@ -17,13 +17,13 @@ Breaking a script into generatable units.
 
 - Locked script
 - Asset registry
-- Target seconds per shot (4–30)
+- Target seconds per shot (4 to 30)
 
 ## Procedure
 
 1. One shotlist.md per scene block.
-2. Each shot: number, seconds, one-line goal, the ENTIRE prompt verbatim, look:, optional source:.
-3. Prompts go out verbatim plus platform additions — the file is the source of truth.
+2. Each shot: number, seconds, one-line goal, the ENTIRE prompt verbatim, look: optional source:.
+3. Prompts go out verbatim plus platform additions, the file is the source of truth.
 4. Shot numbers are free text (1.10, 73.2B); seconds are whole numbers.
 
 ## Worked example
@@ -36,4 +36,4 @@ Breaking a script into generatable units.
 
 ## Pitfalls
 
-- Paraphrasing prompts in chat instead of keeping the verbatim file — drift starts here.
+- Paraphrasing prompts in chat instead of keeping the verbatim file, drift starts here.

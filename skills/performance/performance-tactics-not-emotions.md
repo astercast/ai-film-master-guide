@@ -26,8 +26,8 @@ Every performance beat in every prompt.
 
 ## Worked example
 
-Bad: 'she looks devastated.' Good: 'She is trying not to cry in front of him — jaw set, eyes fixed on the door.'
+Bad: 'she looks devastated.' Good: 'She is trying not to cry in front of him, jaw set, eyes fixed on the door.'
 
 ## Pitfalls
 
-- Adjectives are not direction — if you can't act it, the model can't render it.
+- Adjectives are not direction, if you can't act it, the model can't render it.

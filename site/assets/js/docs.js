@@ -12,14 +12,14 @@
   }
 
   /* v2: section headings carry no timecode stamps. The stamps were
-     invented numbers dressed as data — decoration, removed. */
+     invented numbers dressed as data, decoration, removed. */
 
   /* Reading progress bar (a plain line; no timecode readout) */
   var progress = document.querySelector(".progress-bar span");
   var progressTc = null;
   if (progress) {
     /* Scroll-driven where supported (motifs.css: animation-timeline:
-       scroll(root) scrubs the bar on the compositor) — then this
+       scroll(root) scrubs the bar on the compositor), then this
        listener keeps only the timecode readout and never writes the
        transform. Without support it drives the bar as before. */
     var cssDriven = !reduceMotion && window.CSS && CSS.supports &&

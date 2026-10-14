@@ -1,11 +1,11 @@
-/* The Green Light — a studio meeting, playable.
+/* The Green Light, a studio meeting, playable.
    Pitch a concept to the room. The room reads it cold (six-layer read),
    builds the shot list from the guide's real 47-template prompt library
    (via the Studio engine), prices every shot from the real pricing table
-   (data/v1/pricing.json — per-second tiers, low/high ranges), lays out the
+   (data/v1/pricing.json, per-second tiers, low/high ranges), lays out the
    shoot day by day, then votes: GREEN LIGHT, CONDITIONAL, or BACK TO THE
    ROOM. A cold read gets draft-tier money; punch the concept up layer by
-   layer and watch the plan — and the budget — improve.
+   layer and watch the plan, and the budget, improve.
 
    Data: site/models.json + site/prompt-templates.json (build copies),
    data/v1/pricing.json (static fallback per the data/v1/ rule), live
@@ -18,7 +18,7 @@
 (function () {
   "use strict";
 
-  var SE = null; /* StudioEngine — window in browser, require() in node */
+  var SE = null; /* StudioEngine, window in browser, require() in node */
   if (typeof module !== "undefined" && module.exports) {
     try { SE = require("./studio.js"); } catch (e) { SE = null; }
   } else if (typeof window !== "undefined" && window.StudioEngine) {
@@ -44,7 +44,7 @@
   }
 
   function fmtUSD(n) {
-    if (n == null || isNaN(n)) return "—";
+    if (n == null || isNaN(n)) return "…";
     if (n >= 1000) return "$" + Math.round(n).toLocaleString("en-US");
     if (n >= 10) return "$" + n.toFixed(0);
     return "$" + n.toFixed(2);
@@ -61,7 +61,7 @@
      tables, plus a named-subject check (capitalized words carry names). */
   var LAYERS = [
     { key: "subject", name: "Someone to watch",
-      hint: "Name a subject — a person, a creature, a thing the camera cares about. The room can't invent your story for you.",
+      hint: "Name a subject, a person, a creature, a thing the camera cares about. The room can't invent your story for you.",
       keys: ["astronaut", "dog", "cat", "woman", "man", "girl", "boy", "child", "kid", "baby",
         "robot", "alien", "chef", "dancer", "pilot", "driver", "soldier", "king", "queen",
         "witch", "wizard", "detective", "couple", "crowd", "dragon", "ghost", "monster",
@@ -71,7 +71,7 @@
         "brother", "friend", "neighbor", "lover", "enemy", "hero", "villain", "protagonist",
         "fisherwoman", "fisherman", "astronauts", "dogs", "cats", "robots", "couple"] },
     { key: "action", name: "Something happening",
-      hint: "Give it motion — verbs, not adjectives. What does the subject DO?",
+      hint: "Give it motion, verbs, not adjectives. What does the subject DO?",
       keys: ["run", "runs", "running", "walk", "walks", "walking", "chase", "chases", "chasing",
         "fight", "fights", "fighting", "dance", "dances", "dancing", "fly", "flies", "flying",
         "swim", "swims", "swimming", "climb", "climbs", "climbing", "fall", "falls", "falling",
@@ -94,14 +94,14 @@
         "shallow focus", "long take", "overhead", "low angle", "high angle", "slow motion",
         "slow-mo", "360", "medium shot", "extreme close", "wide"] },
     { key: "light", name: "Light",
-      hint: "One lighting cue. Time of day counts — dawn is a lighting decision.",
+      hint: "One lighting cue. Time of day counts, dawn is a lighting decision.",
       keys: ["golden hour", "neon", "moonlight", "backlight", "backlit", "silhouette",
         "candlelight", "candlelit", "volumetric", "harsh light", "soft light", "dawn",
         "dusk", "twilight", "noir", "chiaroscuro", "practical", "fluorescent", "strobe",
         "lens flare", "god rays", "overcast", "sunrise", "sunset", "blue hour", "firelight",
         "torchlight", "lantern", "moonlit", "sunlit", "low-key", "high-key"] },
     { key: "placetime", name: "Place and time",
-      hint: "Where and when. Two words is enough — 'rooftop, midnight' is a place and a time.",
+      hint: "Where and when. Two words is enough, 'rooftop, midnight' is a place and a time.",
       keys: ["dusk", "dawn", "night", "midnight", "noon", "morning", "evening", "kitchen",
         "bedroom", "rooftop", "alley", "street", "city", "desert", "forest", "beach",
         "ocean", "mountain", "village", "tokyo", "paris", "mars", "space", "underwater",
@@ -123,7 +123,7 @@
   ];
 
   /* Punch-up clauses: craft appendages, never story invention. The room will
-     add a camera move, a light, a place, a feeling — it will not invent your
+     add a camera move, a light, a place, a feeling, it will not invent your
      character. Deterministic pick per (text, layer). */
   var PUNCH_UPS = {
     action: [", caught mid-stride", ", turning toward camera as it happens", ", moving left to right through frame"],
@@ -160,11 +160,11 @@
   /* Hype hygiene: names the room refuses to price. */
   var HYPE_CHECKS = [
     { re: /veo\s*4\b/i, model: "Veo 4",
-      note: "Veo 4 doesn't exist — verified Oct 2026; the \u201crelease date\u201d pages are SEO bait. Latest official is Veo 3.1, and the plan prices that instead." },
+      note: "Veo 4 doesn't exist, verified Oct 2026; the \u201crelease date\u201d pages are SEO bait. Latest official is Veo 3.1, and the plan prices that instead." },
     { re: /kling\s*4(\.0)?\b/i, model: "Kling 4.0",
-      note: "Kling 4.0 is announced, not shipped — only 4.0 Flash exists (Ultra Yearly subscribers). Excluded from the budget until it has a price." },
+      note: "Kling 4.0 is announced, not shipped, only 4.0 Flash exists (Ultra Yearly subscribers). Excluded from the budget until it has a price." },
     { re: /\bsora\b/i, model: "Sora",
-      note: "Sora is discontinued — OpenAI shut it down; the last Azure deployment retired Oct 15, 2026. The room won't price it." }
+      note: "Sora is discontinued, OpenAI shut it down; the last Azure deployment retired Oct 15, 2026. The room won't price it." }
   ];
 
   var STOPWORDS_LANG = {
@@ -177,7 +177,7 @@
 
   function detectLanguage(text) {
     var t = " " + text.toLowerCase() + " ";
-    var nonLatin = (text.match(/[^\u0000-\u024F\u1E00-\u1EFF\s\d.,;:!?'"()\-–—]/g) || []).length;
+    var nonLatin = (text.match(/[^\u0000-\u024F\u1E00-\u1EFF\s\d.,;:!?'"()\-\u2013\u2014]/g) || []).length;
     var alpha = (text.match(/[A-Za-z\u00C0-\u024F\u1E00-\u1EFF]/g) || []).length;
     if (alpha > 0 && nonLatin / alpha > 0.35) return "a non-Latin script";
     var best = null, bestN = 0;
@@ -350,7 +350,7 @@
     var entry = matchEntry(entries, modelName);
     if (!entry) {
       return { unpriced: true, model: modelName,
-        reason: "no pricing record — verify live before budgeting" };
+        reason: "no pricing record, verify live before budgeting" };
     }
     var tier = selectTier(entry, resKey, effTier);
     if (!tier) {
@@ -377,7 +377,7 @@
   /* ---- the meeting -------------------------------------------------------- */
   /* The room's money rule: festival ambition only unlocks flagship pricing
      when the read is warm enough (score ≥ 55). A cold read gets draft money
-     no matter what was asked for — stated on the record, never silent. */
+     no matter what was asked for, stated on the record, never silent. */
   var TIER_UNLOCK_SCORE = 55;
 
   function effectiveTier(ambition, score) {
@@ -387,25 +387,25 @@
 
   function verdictFor(read, effTier, ambition, stats) {
     var conditions = [];
-    read.missing.forEach(function (l) { conditions.push("Missing layer: " + l.name.toLowerCase() + " — " + l.hint); });
+    read.missing.forEach(function (l) { conditions.push("Missing layer: " + l.name.toLowerCase() + ", " + l.hint); });
     (stats.unpricedModels || []).forEach(function (u) {
-      conditions.push("Unpriced: " + u.model + " (" + u.reason + ") — price it live before the shoot.");
+      conditions.push("Unpriced: " + u.model + " (" + u.reason + "), price it live before the shoot.");
     });
     var notes = [];
     read.hype.forEach(function (h) { notes.push(h.note); });
     if (ambition === "festival" && effTier === "draft") {
-      notes.push("You asked for festival money; the read is cold. The room drafts cheap until the concept earns flagship pricing — punch it up above and watch the money move.");
+      notes.push("You asked for festival money; the read is cold. The room drafts cheap until the concept earns flagship pricing, punch it up above and watch the money move.");
     }
     var out;
     if (read.score >= 70) {
       out = { level: "green", title: "GREEN LIGHT",
-        line: "The room buys it. Shoot the plan as priced — the numbers below are the budget." };
+        line: "The room buys it. Shoot the plan as priced, the numbers below are the budget." };
     } else if (read.score >= 45) {
-      out = { level: "conditional", title: "GREEN LIGHT — CONDITIONAL",
+      out = { level: "conditional", title: "GREEN LIGHT, CONDITIONAL",
         line: "The room is interested, with notes. Clear the conditions and it's a yes." };
     } else {
       out = { level: "pass", title: "BACK TO THE ROOM",
-        line: "The room passes — for now. The punch-ups above are the fastest way back in." };
+        line: "The room passes, for now. The punch-ups above are the fastest way back in." };
     }
     out.conditions = conditions;
     out.notes = notes;
@@ -514,37 +514,37 @@
 
   function meetingToMarkdown(m) {
     var L = [];
-    L.push("# Green light — " + (m.input.title || "Untitled"));
+    L.push("# Green light, " + (m.input.title || "Untitled"));
     L.push("");
     L.push("_" + m.input.genreLabel + " · " + m.input.runtimeSec + "s · " +
       m.input.resKey + " · ambition: " + m.input.ambition +
-      (m.input.tierDowngraded ? " (room priced it at draft — the read was cold)" : " (room priced it at " + m.input.effTier + ")") + "_");
+      (m.input.tierDowngraded ? " (room priced it at draft, the read was cold)" : " (room priced it at " + m.input.effTier + ")") + "_");
     L.push("");
-    L.push("## The read — " + m.read.gradeWord + " (" + m.read.score + "/100)");
+    L.push("## The read, " + m.read.gradeWord + " (" + m.read.score + "/100)");
     L.push("");
     L.push(m.read.gradeNote);
     L.push("");
     m.read.layers.forEach(function (l) {
       L.push("- " + (l.present ? "[x]" : "[ ]") + " " + l.name +
-        (l.hits.length ? " — " + l.hits.join(", ") : ""));
+        (l.hits.length ? ", " + l.hits.join(", ") : ""));
     });
     m.read.hype.forEach(function (h) { L.push("", "> " + h.note); });
     L.push("");
-    L.push("## The board — " + m.shots.length + " shots");
+    L.push("## The board, " + m.shots.length + " shots");
     L.push("");
     m.shots.forEach(function (s) {
-      L.push("### Shot " + s.n + " — " + s.templateTitle + " (" + s.act + ")");
+      L.push("### Shot " + s.n + ", " + s.templateTitle + " (" + s.act + ")");
       L.push("");
       L.push("```");
       L.push(s.prompt);
       L.push("```");
       L.push("");
       if (s.pricing.unpriced) {
-        L.push("- Model: " + (s.model || "unresolved") + " — UNPRICED (" + s.pricing.reason + ")");
+        L.push("- Model: " + (s.model || "unresolved") + ", UNPRICED (" + s.pricing.reason + ")");
       } else {
         L.push("- Model: " + s.pricing.model + " (" + (s.platform || "") + ")");
         L.push("- Cost: " + s.pricing.math + " = " +
-          fmtUSD(s.pricing.low) + (s.pricing.high !== s.pricing.low ? "–" + fmtUSD(s.pricing.high) : ""));
+          fmtUSD(s.pricing.low) + (s.pricing.high !== s.pricing.low ? "" + fmtUSD(s.pricing.high) : ""));
       }
       L.push("");
     });
@@ -553,8 +553,8 @@
     m.lines.forEach(function (l) {
       L.push("- " + l.model + " (" + l.shots + " shots × " + l.takes + " takes, " +
         l.tierName + "): " + fmtUSD(l.low) +
-        (l.high !== l.low ? "–" + fmtUSD(l.high) : "") +
-        " — basis: " + l.basis);
+        (l.high !== l.low ? "" + fmtUSD(l.high) : "") +
+        ", basis: " + l.basis);
     });
     if (m.unpricedModels.length) {
       m.unpricedModels.forEach(function (u) {
@@ -563,21 +563,21 @@
     }
     L.push("");
     L.push("Clean: " + fmtUSD(m.totals.cleanLow) +
-      (m.totals.cleanHigh !== m.totals.cleanLow ? "–" + fmtUSD(m.totals.cleanHigh) : "") +
+      (m.totals.cleanHigh !== m.totals.cleanLow ? "" + fmtUSD(m.totals.cleanHigh) : "") +
       " · 5× envelope: " + fmtUSD(m.totals.fiveLow) +
-      (m.totals.fiveHigh !== m.totals.fiveLow ? "–" + fmtUSD(m.totals.fiveHigh) : "") +
+      (m.totals.fiveHigh !== m.totals.fiveLow ? "" + fmtUSD(m.totals.fiveHigh) : "") +
       " · 20× envelope: " + fmtUSD(m.totals.twentyLow) +
-      (m.totals.twentyHigh !== m.totals.twentyLow ? "–" + fmtUSD(m.totals.twentyHigh) : ""));
+      (m.totals.twentyHigh !== m.totals.twentyLow ? "" + fmtUSD(m.totals.twentyHigh) : ""));
     L.push("");
-    L.push("_Post — assembly, audio, grade: human time + software you already own; not modeled._");
+    L.push("_Post, assembly, audio, grade: human time + software you already own; not modeled._");
     L.push("");
-    L.push("## The schedule — " + m.totalDays + " days");
+    L.push("## The schedule, " + m.totalDays + " days");
     L.push("");
     m.days.forEach(function (d) {
       L.push("- Day " + d.day + ": " + d.phase + " (" + d.basis + ")");
     });
     L.push("");
-    L.push("## The verdict — " + m.verdict.title);
+    L.push("## The verdict, " + m.verdict.title);
     L.push("");
     L.push(m.verdict.line);
     m.verdict.conditions.forEach(function (c) { L.push("- " + c); });
@@ -585,7 +585,7 @@
     L.push("");
     L.push("_Priced from pricing.json (" + m.pricingProvenance.count +
       " models" + (m.pricingProvenance.at ? ", updated " + m.pricingProvenance.at.slice(0, 10) : "") +
-      "). Ranges, not promises — verify live before spending._");
+      "). Ranges, not promises, verify live before spending._");
     return L.join("\n");
   }
 
@@ -623,7 +623,7 @@
   function provLine() {
     if (PROV.kind === "live") return "Rates: Watchtower live API" + (PROV.at ? " · " + PROV.at : "") + ".";
     if (PROV.kind === "static") return "Rates: cached pricing.json" + (PROV.at ? " · updated " + PROV.at : "") + ".";
-    return "Rates: loading — the room waits for numbers before it votes.";
+    return "Rates: loading, the room waits for numbers before it votes.";
   }
 
   function tempMeter(read) {
@@ -643,7 +643,7 @@
     H.push('<p class="gl-grade">' + esc(r.gradeNote) + "</p>");
     if (r.lang) {
       H.push('<p class="calc-note">Heads up: that reads as ' + esc(r.lang) +
-        " — the room plans in English, and the prompt library is English. Translate the concept for the sharpest read.</p>");
+        ", the room plans in English, and the prompt library is English. Translate the concept for the sharpest read.</p>");
     }
     H.push('<ul class="gl-layers">');
     r.layers.forEach(function (l) {
@@ -679,9 +679,9 @@
   function shotCard(s) {
     var p = s.pricing;
     var cost = p.unpriced
-      ? '<p class="gl-cost is-unpriced"><strong>UNPRICED</strong> — ' + esc(p.reason) + "</p>"
+      ? '<p class="gl-cost is-unpriced"><strong>UNPRICED</strong>, ' + esc(p.reason) + "</p>"
       : '<p class="gl-cost"><strong>' + fmtUSD(p.low) +
-        (p.high !== p.low ? "–" + fmtUSD(p.high) : "") + "</strong> " +
+        (p.high !== p.low ? "" + fmtUSD(p.high) : "") + "</strong> " +
         '<span class="gl-math">' + esc(p.math) + "</span></p>";
     return '<article class="card gl-shot">' +
       '<h3><span class="gl-shot-n">Shot ' + s.n + "</span> " + esc(s.templateTitle) +
@@ -706,7 +706,7 @@
   function renderMoney(m) {
     var H = ['<h2>The money <span class="tc" aria-hidden="true">00:01:30:00</span></h2>',
       '<p>' + badgeHtml() + '</p><p class="calc-note">' + esc(provLine()) + "</p>",
-      '<div class="table-scroll"><table class="gl-table"><caption>Generation budget — per-model subtotals at ' +
+      '<div class="table-scroll"><table class="gl-table"><caption>Generation budget, per-model subtotals at ' +
       esc(m.input.resKey) + ", " + m.totals.takes + " takes per keeper</caption>",
       "<thead><tr><th scope=\"col\">Model</th><th scope=\"col\">Tier priced</th><th scope=\"col\">Shots</th><th scope=\"col\">Low</th><th scope=\"col\">High</th><th scope=\"col\">Basis</th></tr></thead><tbody>"];
     m.lines.forEach(function (l) {
@@ -717,24 +717,24 @@
     H.push("</tbody></table></div>");
     if (m.unpricedModels.length) {
       H.push('<ul class="gl-unpriced">' + m.unpricedModels.map(function (u) {
-        return "<li><strong>" + esc(u.model) + ":</strong> unpriced — " + esc(u.reason) + "</li>";
+        return "<li><strong>" + esc(u.model) + ":</strong> unpriced, " + esc(u.reason) + "</li>";
       }).join("") + "</ul>");
     }
     var t = m.totals;
-    function range(lo, hi) { return fmtUSD(lo) + (hi !== lo ? "–" + fmtUSD(hi) : ""); }
+    function range(lo, hi) { return fmtUSD(lo) + (hi !== lo ? "" + fmtUSD(hi) : ""); }
     H.push('<dl class="gl-totals">' +
       "<div><dt>Clean (as priced)</dt><dd>" + range(t.cleanLow, t.cleanHigh) + "</dd></div>" +
       "<div><dt>5× envelope</dt><dd>" + range(t.fiveLow, t.fiveHigh) + "</dd></div>" +
       "<div><dt>20× envelope</dt><dd>" + range(t.twentyLow, t.twentyHigh) + "</dd></div>" +
       "</dl>");
-    H.push('<p class="calc-note">Post — assembly, audio, grade: human time + software you already own; not modeled. ' +
-      "Ranges, not promises — verify live before spending.</p>");
+    H.push('<p class="calc-note">Post, assembly, audio, grade: human time + software you already own; not modeled. ' +
+      "Ranges, not promises, verify live before spending.</p>");
     return H.join("\n");
   }
 
   function renderSchedule(m) {
     var H = ['<h2>The schedule <span class="tc" aria-hidden="true">00:02:15:00</span></h2>',
-      '<p class="calc-note">' + m.totalDays + " working days, one phase at a time. Generation days assume render queues behave — they don't always.</p>",
+      '<p class="calc-note">' + m.totalDays + " working days, one phase at a time. Generation days assume render queues behave, they don't always.</p>",
       '<ol class="gl-days">'];
     m.days.forEach(function (d) {
       H.push('<li><span class="gl-day">Day ' + d.day + "</span> <strong>" + esc(d.phase) +
@@ -769,8 +769,8 @@
 
   function noFootage(reason, lang) {
     var msg = reason === "empty"
-      ? "No pitch, no meeting — say what the film is, or load the weak sample."
-      : "Nothing directable in that. Load the weak sample and punch it up — the room works with words it can shoot.";
+      ? "No pitch, no meeting, say what the film is, or load the weak sample."
+      : "Nothing directable in that. Load the weak sample and punch it up, the room works with words it can shoot.";
     var extra = lang
       ? "<p>The room plans in English; translate the concept for the sharpest read.</p>" : "";
     return '<div class="empty-state"><p><strong>NO FOOTAGE</strong></p><p>' + esc(msg) + "</p>" + extra + "</div>";
@@ -865,7 +865,7 @@
       }
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(txt).then(function () { done("Copied"); },
-          function () { done("Clipboard blocked — use Download .md"); });
+          function () { done("Clipboard blocked, use Download .md"); });
       } else { window.prompt("Copy your plan:", txt); }
     });
     var dl = document.getElementById("gl-dl");
@@ -893,7 +893,7 @@
   }
 
   var WEAK_SAMPLE = "a dog in a city";
-  var STRONG_SAMPLE = "Mara, a weathered fisherwoman in her sixties — silver braid, oilskin coat, " +
+  var STRONG_SAMPLE = "Mara, a weathered fisherwoman in her sixties, silver braid, oilskin coat, " +
     "mending a torn net on a fog-draped wooden dock at dawn; the camera pushes in slowly " +
     "from medium to close-up; cold blue dawn light with a warm lantern glow from frame left; " +
     "quiet resilience; coat hem stirring in the sea breeze.";
@@ -902,7 +902,7 @@
     var e = els();
     if (!e.concept || !SE) return; /* not on the green-light page, or studio.js absent */
 
-    /* Genre options from the Studio engine's own map — one source of truth. */
+    /* Genre options from the Studio engine's own map, one source of truth. */
     Object.keys(SE.GENRES).forEach(function (k) {
       var o = document.createElement("option");
       o.value = k;
@@ -917,7 +917,7 @@
       e.bridge.hidden = false;
       e.bridge.innerHTML = "<p><strong>A take walked in from the Cutting Room:</strong> " +
         esc(bridge.gradeWord || "") + (bridge.score != null ? " · " + bridge.score + "/100" : "") +
-        '. Pitch it when ready — or punch it up first.</p>';
+        '. Pitch it when ready, or punch it up first.</p>';
     }
 
     e.pitch.addEventListener("click", function () { runMeeting(false); });

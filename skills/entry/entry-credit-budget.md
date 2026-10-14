@@ -1,13 +1,13 @@
 ---
 name: entry-credit-budget
-description: Credit math for a 3–5 minute competition entry.
+description: Credit math for a 3 to 5 minute competition entry.
 ---
 
 # Budget credits for a competition entry
 
 ## What this gets you
 
-You will know how many credits a competition entry really takes, so a 3–5 minute film does not run out of money at minute two.
+You will know how many credits a competition entry really takes, so a 3 to 5 minute film does not run out of money at minute two.
 
 ## Use when
 
@@ -22,7 +22,7 @@ Planning spend before generating.
 ## Procedure
 
 1. Clean pass = seconds × rate. 4 min at $0.35/s (720p app) = $84 clean.
-2. Multiply by 5–10× for a competition-grade entry ($420–$840).
+2. Multiply by 5 to 10× for a competition-grade entry ($420 to $840).
 3. Reserve 20% for the generation-supervision pass after the rough cut.
 4. Draft at 480p where the creative question allows it.
 
@@ -36,4 +36,4 @@ Planning spend before generating.
 
 ## Pitfalls
 
-- Spending the supervision reserve on early re-rolls — protect it.
+- Spending the supervision reserve on early re-rolls, protect it.

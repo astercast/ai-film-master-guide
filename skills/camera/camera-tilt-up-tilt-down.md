@@ -7,7 +7,7 @@ description: Direct a tilt up / tilt down camera move with exact prompt phrasing
 
 ## What this gets you
 
-Your shot will gain what this move is for — revealing height or depth; horror/suspense reveals; establishing scale — in the exact words models obey, ready to paste into any prompt.
+Your shot will gain what this move is for, revealing height or depth; horror/suspense reveals; establishing scale, in the exact words models obey, ready to paste into any prompt.
 
 ## Use when
 
@@ -22,7 +22,7 @@ Use when the shot needs what this move does: Revealing height or depth; horror/s
 ## Procedure
 
 1. Start from the guide's phrasing: `"Camera tilts cautiously, revealing [doorway]" / Hailuo: [Tilt up] / [Tilt down]`
-2. State the move, the speed, AND the purpose — models obey motivated camera better than decorative camera.
+2. State the move, the speed, AND the purpose, models obey motivated camera better than decorative camera.
 3. Keep it the only move in the prompt. One move per shot.
 4. Pair with a matching subject pace (tracking a runner = camera pace matches runner).
 5. Draft at 720p; check the move reads before committing to hero resolution.
@@ -37,5 +37,5 @@ Use when the shot needs what this move does: Revealing height or depth; horror/s
 
 ## Pitfalls
 
-- Naming the move without speed/stability — 'dolly in' alone gives you a random dolly.
-- Combining with a second move — pick one.
+- Naming the move without speed/stability, 'dolly in' alone gives you a random dolly.
+- Combining with a second move, pick one.

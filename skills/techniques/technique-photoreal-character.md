@@ -11,7 +11,7 @@ You will have a realistic short that feels acted rather than generated: a real s
 
 ## Use when
 
-Intimate, character-driven photoreal shorts — the kind where the audience must believe a person.
+Intimate, character-driven photoreal shorts, the kind where the audience must believe a person.
 
 ## Inputs
 
@@ -20,14 +20,14 @@ Intimate, character-driven photoreal shorts — the kind where the audience must
 
 ## Procedure
 
-1. Start from a script with dialogue and turns — writing is the cheapest VFX.
+1. Start from a script with dialogue and turns, writing is the cheapest VFX.
 2. Hold one POV ruthlessly; every shot answers 'whose eyes are we in?'
 3. Favor tight shots: close-ups carry performance, wides expose geometry.
 4. Cast models to the job: portrait models for faces, motion models for bodies.
 
 ## Worked example
 
-A Face Only a Mother Could Love: old screenplay + tight POV discipline — double Grand Prix.
+A Face Only a Mother Could Love: old screenplay + tight POV discipline, double Grand Prix.
 
 ## API references
 
@@ -35,4 +35,4 @@ A Face Only a Mother Could Love: old screenplay + tight POV discipline — doubl
 
 ## Pitfalls
 
-- Beautiful wides with nobody in them — pretty, forgettable, unplaced.
+- Beautiful wides with nobody in them, pretty, forgettable, unplaced.

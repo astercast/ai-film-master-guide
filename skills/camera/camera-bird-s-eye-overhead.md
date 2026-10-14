@@ -7,7 +7,7 @@ description: Direct a bird's eye / overhead camera move with exact prompt phrasi
 
 ## What this gets you
 
-Your shot will gain what this move is for — patterns, crowds, tableaus; omniscient storytelling beats — in the exact words models obey, ready to paste into any prompt.
+Your shot will gain what this move is for, patterns, crowds, tableaus; omniscient storytelling beats, in the exact words models obey, ready to paste into any prompt.
 
 ## Use when
 
@@ -22,7 +22,7 @@ Use when the shot needs what this move does: Patterns, crowds, tableaus; omnisci
 ## Procedure
 
 1. Start from the guide's phrasing: `"Bird's eye view of [scene]"`
-2. State the move, the speed, AND the purpose — models obey motivated camera better than decorative camera.
+2. State the move, the speed, AND the purpose, models obey motivated camera better than decorative camera.
 3. Keep it the only move in the prompt. One move per shot.
 4. Pair with a matching subject pace (tracking a runner = camera pace matches runner).
 5. Draft at 720p; check the move reads before committing to hero resolution.
@@ -37,5 +37,5 @@ Use when the shot needs what this move does: Patterns, crowds, tableaus; omnisci
 
 ## Pitfalls
 
-- Naming the move without speed/stability — 'dolly in' alone gives you a random dolly.
-- Combining with a second move — pick one.
+- Naming the move without speed/stability, 'dolly in' alone gives you a random dolly.
+- Combining with a second move, pick one.

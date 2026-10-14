@@ -11,7 +11,7 @@ Complicated multi-character shots will come out staged the way you drew them, no
 
 ## Use when
 
-See longform-blocking-diagram — this is the short-form version.
+See longform-blocking-diagram, this is the short-form version.
 
 ## Inputs
 
@@ -26,8 +26,8 @@ See longform-blocking-diagram — this is the short-form version.
 
 ## Worked example
 
-Two-shot argument: BLUE left foreground, RED right — prompt binds both.
+Two-shot argument: BLUE left foreground, RED right, prompt binds both.
 
 ## Pitfalls
 
-- Top-down floor plans — models think in frames, not blueprints.
+- Top-down floor plans, models think in frames, not blueprints.

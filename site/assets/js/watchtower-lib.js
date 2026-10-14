@@ -1,9 +1,9 @@
-/* watchtower-lib.js — browser mirror of server/lib/drift.js.
+/* watchtower-lib.js, browser mirror of server/lib/drift.js.
    The same pure drift functions (pricing diff, events-since filter,
    per-model drift) for the model-watch page's static-fallback path, where
    no /api/* function may be reachable. scripts/watchtower.test.js loads
    both copies, runs them against the real data, and fails if the outputs
-   diverge — edit the server copy, then re-mirror, never the reverse. */
+   diverge, edit the server copy, then re-mirror, never the reverse. */
 (function (global) {
   "use strict";
 
@@ -47,7 +47,7 @@
 
   /* baselineEntries / currentEntries: [{model_id, model, pricing_status,
    * tiers: [{tier, unit, usd_low, usd_high}]}] (the baseline's compact shape
-   * and pricing.json entries both fit — extra fields are ignored).
+   * and pricing.json entries both fit, extra fields are ignored).
    * Returns changes sorted by model then tier:
    *   {model_id, model, tier, unit, kind, before_low, before_high,
    *    after_low, after_high, pct}
@@ -66,8 +66,8 @@
       var c = cur[id];
       var b = base[id];
       if (!b) {
-        // A new record's "now" is its full rate span — the cheapest to the
-        // priciest tier — so the diff table can show a real number instead
+        // A new record's "now" is its full rate span, the cheapest to the
+        // priciest tier, so the diff table can show a real number instead
         // of a dash. Null when the new record publishes no rate at all.
         var lows = (c.tiers || []).map(function (t) { return t.usd_low; });
         var highs = (c.tiers || []).map(function (t) { return t.usd_high; });
@@ -123,7 +123,7 @@
   }
 
   /* Events strictly after sinceMs (an event ON the since date at 00:00 UTC
-   * counts when sinceMs is that midnight — dates are day-granular, so the
+   * counts when sinceMs is that midnight, dates are day-granular, so the
    * comparison is by calendar day: event date >= since day). Newest first. */
   function eventsSince(history, sinceMs) {
     var events = (history && history.events) || [];
@@ -184,26 +184,26 @@
       var alerts = [];
 
       if (checkStatus === 'changed') {
-        alerts.push('Source check flagged a change — queued for review. This record still shows the last verified data.');
+        alerts.push('Source check flagged a change, queued for review. This record still shows the last verified data.');
       } else if (checkStatus === 'error') {
-        alerts.push('The last automated source check failed — this record shows the last verified data.');
+        alerts.push('The last automated source check failed, this record shows the last verified data.');
       } else if (checkStatus === 'unwatched') {
-        alerts.push('No automated source watch yet — verified by hand on the wave cadence.');
+        alerts.push('No automated source watch yet, verified by hand on the wave cadence.');
       }
       if (pricingStatus === 'unpublished' && m.status !== 'discontinued') {
-        alerts.push('No published USD rate — verify live before budgeting.');
+        alerts.push('No published USD rate, verify live before budgeting.');
       }
       if (pricingStatus === 'missing') {
-        alerts.push('No pricing record — verify live before budgeting.');
+        alerts.push('No pricing record, verify live before budgeting.');
       }
       if (staleDays !== null && staleDays > 14) {
-        alerts.push('Record last verified ' + staleDays + ' days ago — re-check before a paid shoot.');
+        alerts.push('Record last verified ' + staleDays + ' days ago, re-check before a paid shoot.');
       }
       if (priceMoved) {
         alerts.push('Pricing table moved against the ' +
           ((input.historyDoc && input.historyDoc.pricing_baseline &&
             input.historyDoc.pricing_baseline.at) || 'baseline').slice(0, 10) +
-          ' baseline — see the pricing changes.');
+          ' baseline, see the pricing changes.');
       }
 
       var severity = 'ok';

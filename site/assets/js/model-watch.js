@@ -1,4 +1,4 @@
-/* Model-watch — Watchtower 2.0.
+/* Model-watch, Watchtower 2.0.
  *
  * The page is pre-rendered from the last published data (freshness panel,
  * since-visit panel with a 30-day window, drift board, pricing changes,
@@ -6,12 +6,12 @@
  * disabled and complete when every function is down. This script then
  * personalizes it:
  *
- *  1. Freshness — live-updates from /api/models-status, falling back to
+ *  1. Freshness, live-updates from /api/models-status, falling back to
  *     the static model-checks.json (the Watchtower 1.0 behavior, kept).
- *  2. Since your last visit — the visitor's previous visit timestamp is
+ *  2. Since your last visit, the visitor's previous visit timestamp is
  *     kept in localStorage (afg-watchtower-last-visit). The panel re-renders
- *     for that exact window from /api/models-changes, or — when the live
- *     function is unreachable — by recomputing the same shapes locally
+ *     for that exact window from /api/models-changes, or, when the live
+ *     function is unreachable, by recomputing the same shapes locally
  *     from the four static data files with WatchtowerLib (the browser
  *     mirror of the server drift engine). First visit: the window is the
  *     last 30 days and the panel says so. The stored timestamp advances
@@ -47,12 +47,12 @@
       .replace(/"/g, "&quot;");
   }
   function money(v) {
-    if (v === null || v === undefined) return "—";
+    if (v === null || v === undefined) return "…";
     return "$" + (v < 0.1 ? v.toFixed(4).replace(/0+$/, "").replace(/\.$/, ".0") : v.toFixed(2));
   }
   function moneyRange(lo, hi) {
-    if (lo === null || lo === undefined) return "—";
-    return lo === hi ? money(lo) : money(lo) + "–" + money(hi);
+    if (lo === null || lo === undefined) return "…";
+    return lo === hi ? money(lo) : money(lo) + " to " + money(hi);
   }
 
   /* ------------------------------------------------------------------ */
@@ -96,10 +96,10 @@
     }
     function render(fresh, isLive, degraded, note) {
       var src = !isLive ? "Last published check"
-        : degraded ? "Watchtower · degraded — " + (note || "some sources failed")
+        : degraded ? "Watchtower · degraded, " + (note || "some sources failed")
         : "Watchtower live";
       panelLine.textContent = src + " · " + fresh.total + " models checked " +
-        fmtWhen(fresh.checkedAt) + " — " + fresh.changed + " changed · " +
+        fmtWhen(fresh.checkedAt) + ", " + fresh.changed + " changed · " +
         fresh.errors + " check errors · " + fresh.unwatched + " unwatched.";
 
       Array.prototype.forEach.call(grid.querySelectorAll(".mw-card"), function (card) {
@@ -115,10 +115,10 @@
         card.setAttribute("data-check-status", rec.status);
         var msg = rec.status === "changed"
           ? "⚑ Freshness check flagged changes (" + fmtWhen(rec.lastChecked) + ")" +
-            (rec.note ? " — " + rec.note : "") +
+            (rec.note ? ", " + rec.note : "") +
             ". Queued for review; this card shows the last verified data."
           : "⚠ Freshness check failed (" + fmtWhen(rec.lastChecked) + ")" +
-            " — this card shows the last verified data.";
+            ", this card shows the last verified data.";
         if (!flag) {
           flag = document.createElement("p");
           flag.className = "mw-flag";
@@ -166,7 +166,7 @@
     function eventRow(e) {
       return "<li class=\"wt-event wt-event-" + esc(e.kind) + "\">" +
         "<span class=\"wt-kind wt-kind-" + esc(e.kind) + "\">" + esc(e.kind) + "</span>" +
-        "<span class=\"wt-event-body\"><strong>" + esc(e.model) + "</strong> — " +
+        "<span class=\"wt-event-body\"><strong>" + esc(e.model) + "</strong>, " +
         esc(e.summary) + "</span>" +
         "<time class=\"wt-event-date\" datetime=\"" + esc(e.date) + "\">" +
         esc(fmtDay(e.date + "T00:00:00Z")) + "</time></li>";
@@ -176,14 +176,14 @@
       var counts = payload.counts;
       if (sinceTitle) {
         sinceTitle.textContent = firstVisit
-          ? "First visit — here's the last 30 days"
-          : "Since your last visit — " + fmtDay(sinceDay + "T00:00:00Z");
+          ? "First visit, here's the last 30 days"
+          : "Since your last visit, " + fmtDay(sinceDay + "T00:00:00Z");
       }
       if (sinceLine) {
         if (counts.total === 0) {
           sinceLine.textContent = "Nothing in the log since " + fmtDay(sinceDay + "T00:00:00Z") +
             ". No price moved, no status flipped, no model shipped. The pricing table also matches " +
-            "the baseline exactly — quiet is a real result, and the Watchtower reports it as one.";
+            "the baseline exactly, quiet is a real result, and the Watchtower reports it as one.";
         } else {
           var parts = [];
           if (counts.price) parts.push(plural(counts.price, "price change", "price changes"));
@@ -211,7 +211,7 @@
           return "<li class=\"wt-drift-row is-" + esc(r.severity) + "\">" +
             "<span class=\"wt-sev wt-sev-" + esc(r.severity) + "\">" +
             (r.severity === "alert" ? "Review" : "Watch") + "</span>" +
-            "<span class=\"wt-drift-body\"><strong>" + esc(r.name) + "</strong> — " +
+            "<span class=\"wt-drift-body\"><strong>" + esc(r.name) + "</strong>, " +
             esc((r.alerts || []).join(" ")) + "</span>" +
             (meta.length ? "<span class=\"wt-drift-meta\">" + esc(meta.join(" · ")) + "</span>" : "") +
             "</li>";
@@ -251,7 +251,7 @@
         if (priceLine) {
           priceLine.textContent = "Diffed mechanically against the pricing baseline of " +
             fmtDay(payload.baseline_at) + ". The event log below records the documented " +
-            "changes the baseline already contains — the Vidu Q4 rate-card correction, " +
+            "changes the baseline already contains, the Vidu Q4 rate-card correction, " +
             "the FLUX 3 QHD/UHD listing, the Grok Lite rollout.";
         }
       }
@@ -288,11 +288,11 @@
         { badgeEl: sinceBadge }
       ).then(function (res) {
         if (res.source === "live" && res.data && res.data.events) {
-          render(res.data, res.degraded ? "live data, degraded — some checks failed"
+          render(res.data, res.degraded ? "live data, degraded, some checks failed"
             : "checked live just now");
         } else if (res.source === "static" && res.data && res.data.events) {
           payloadFromStatic(res.data).then(function (p) {
-            render(p, "from the last published data — the live check did not answer");
+            render(p, "from the last published data, the live check did not answer");
           }).catch(function () { /* keep the pre-rendered panels */ });
         }
         // source "none": pre-rendered panels stay; badge hides itself.
@@ -305,7 +305,7 @@
         firstVisit = false;
         sinceMs = Date.now();
         sinceDay = new Date(sinceMs).toISOString().slice(0, 10);
-        if (sinceTitle) sinceTitle.textContent = "Baseline reset — today";
+        if (sinceTitle) sinceTitle.textContent = "Baseline reset, today";
         if (sinceLine) sinceLine.textContent = "Baseline reset to today. " +
           "Everything in the log from here on counts as new on your next visit.";
         if (sinceList) sinceList.innerHTML = "";

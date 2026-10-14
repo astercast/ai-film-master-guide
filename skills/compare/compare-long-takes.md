@@ -22,7 +22,7 @@ Oners, walk-and-talks, sustained reveals.
 ## Procedure
 
 1. Prefer models with strong temporal coherence; test at 10s before committing to 30s.
-2. One continuous action, one camera path — complexity kills long takes.
+2. One continuous action, one camera path, complexity kills long takes.
 3. Budget re-rolls generously: long takes have the highest per-shot variance.
 
 ## Worked example
@@ -35,4 +35,4 @@ Oners, walk-and-talks, sustained reveals.
 
 ## Pitfalls
 
-- Cut-stitching to fake a oner — flow solved at generation beats flow faked in post.
+- Cut-stitching to fake a oner, flow solved at generation beats flow faked in post.

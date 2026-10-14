@@ -7,7 +7,7 @@ description: Beat-driven visuals with style velocity.
 
 ## What this gets you
 
-You will know which model cuts to a beat without falling apart — style, speed and rhythm in one pick.
+You will know which model cuts to a beat without falling apart, style, speed and rhythm in one pick.
 
 ## Use when
 
@@ -20,8 +20,8 @@ Music videos, visualizers, performance pieces.
 
 ## Procedure
 
-1. Cut on the beat — visuals change with the music, not against it.
-2. Style velocity over fidelity: bold looks, fast cuts, 2–3s shots.
+1. Cut on the beat, visuals change with the music, not against it.
+2. Style velocity over fidelity: bold looks, fast cuts, 2 to 3s shots.
 3. Budget for volume: music videos eat generations; draft cheap.
 
 ## Worked example
@@ -34,4 +34,4 @@ Music videos, visualizers, performance pieces.
 
 ## Pitfalls
 
-- One look for three minutes — music videos die of visual monotony.
+- One look for three minutes, music videos die of visual monotony.

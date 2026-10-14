@@ -28,7 +28,7 @@ Any scene with synced dialogue.
 
 ## Worked example
 
-8-line dialogue scene: Veo 3.1 native quotes vs Seedance 2.5 — one test line each, pick the cleaner mouth.
+8-line dialogue scene: Veo 3.1 native quotes vs Seedance 2.5, one test line each, pick the cleaner mouth.
 
 ## API references
 
@@ -36,4 +36,4 @@ Any scene with synced dialogue.
 
 ## Pitfalls
 
-- Assuming all 'video models' do audio — WAN 2.6 has NO native audio.
+- Assuming all 'video models' do audio, WAN 2.6 has NO native audio.

@@ -7,7 +7,7 @@ description: Cel/sakuga registers and the models that speak them.
 
 ## What this gets you
 
-You will know which models actually speak anime — cel shading and impact frames — instead of imitating it badly.
+You will know which models actually speak anime, cel shading and impact frames, instead of imitating it badly.
 
 ## Use when
 
@@ -20,7 +20,7 @@ Anime-style sequences or full anime shorts.
 ## Procedure
 
 1. Shortlist: PixVerse (Anime/Ghibli modes), Vidu Q1, Pika.
-2. Use the animated register: NO lens or DOF language — cel terms (sakuga, impact frames, held frames).
+2. Use the animated register: NO lens or DOF language, cel terms (sakuga, impact frames, held frames).
 3. Lock the style sentence; anime drifts fast without it.
 
 ## Worked example
@@ -34,4 +34,4 @@ Sakuga fight cut: PixVerse Anime, speed lines + impact frames in-prompt, bold st
 
 ## Pitfalls
 
-- Photoreal camera language in an anime prompt — the model will fight you.
+- Photoreal camera language in an anime prompt, the model will fight you.

@@ -1,13 +1,13 @@
 ---
 name: episode-studio-bridge
-description: Turn the episodes you planned in the episode planner into a full production plan in the Studio — per-episode shot lists and budgets — with one button, instead of re-typing everything.
+description: Turn the episodes you planned in the episode planner into a full production plan in the Studio, per-episode shot lists and budgets, with one button, instead of re-typing everything.
 ---
 
 # Send planner blocks to the Studio
 
 ## What this gets you
 
-Your planned episodes will become a full Studio production plan — shot lists and budgets per episode — without re-typing anything.
+Your planned episodes will become a full Studio production plan, shot lists and budgets per episode, without re-typing anything.
 
 ## Use when
 
@@ -20,10 +20,10 @@ After you've planned episode blocks in the episode planner (episode-plan-block) 
 ## Procedure
 
 1. In the episode planner, check the 'Saved blocks' list: every block shows format, emotion, beat count, and beats x seconds-per-beat runtime.
-2. Press 'Send series to Studio' — the planner stages {title, logline, cast anchors, blocks[]} into localStorage 'afg-studio-bridge' and navigates to studio.html.
+2. Press 'Send series to Studio', the planner stages {title, logline, cast anchors, blocks[]} into localStorage 'afg-studio-bridge' and navigates to studio.html.
 3. The Studio consumes the payload once: project type = most common block format, episodes = block count (3-10), per-episode runtime = median beats x spb snapped into the format's band, cast rows pre-filled.
 4. Each block's emotion/beats/hook/turn/cliffhanger becomes the episode's arc in the packet (not a skeleton); skeletons are only generated when no blocks exist.
-5. Or press 'Send run to Studio' — the planner stages {title, logline, episodes = block count, minPerEpisode = median block runtime in minutes (snapped to 0.5-3)} with kind 'microdrama'; the Studio opens in microdrama mode (Studio 2.5) and plans the run economics: clip budget, $50/min benchmark, 3-5x retake budget, regen reserve, documented-pace timeline.
+5. Or press 'Send run to Studio', the planner stages {title, logline, episodes = block count, minPerEpisode = median block runtime in minutes (snapped to 0.5-3)} with kind 'microdrama'; the Studio opens in microdrama mode (Studio 2.5) and plans the run economics: clip budget, $50/min benchmark, 3-5x retake budget, regen reserve, documented-pace timeline.
 6. Verify the pre-fill (episode count, runtime, cast anchors), then build the series packet or the run plan.
 
 ## Worked example
@@ -36,6 +36,6 @@ After you've planned episode blocks in the episode planner (episode-plan-block) 
 
 ## Pitfalls
 
-- Sending before saving blocks — the bridge reads saved blocks, not the form fields.
-- Blocks with mixed formats — the Studio takes the most common; re-format outliers in the planner first.
-- Expecting a shot packet from 'Send run to Studio' — microdrama mode is economics only; use 'Send series to Studio' for the per-shot packet.
+- Sending before saving blocks, the bridge reads saved blocks, not the form fields.
+- Blocks with mixed formats, the Studio takes the most common; re-format outliers in the planner first.
+- Expecting a shot packet from 'Send run to Studio', microdrama mode is economics only; use 'Send series to Studio' for the per-shot packet.

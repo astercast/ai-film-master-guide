@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# validate.sh — one-command validation pipeline for the AI Film Master Guide.
+# validate.sh, one-command validation pipeline for the AI Film Master Guide.
 #
 # Stages:
 #   1. JS syntax ......... node --check every .js shipped to the browser
@@ -16,7 +16,7 @@
 #   7. Studio ............ node unit tests for the studio engine
 #                         (scripts/studio.test.js); studio.html + studio.js
 #                         exist in both assets/js and the built site/
-#   8. Agent workflows .. node scripts/agent-workflows.test.js — the three
+#   8. Agent workflows .. node scripts/agent-workflows.test.js, the three
 #                         AGENT.md example workflows executed against the
 #                         real local data/v1 JSON files
 #
@@ -269,8 +269,7 @@ print(f"  ok: all skill ids generator-sourced; index count {idx['count']} matche
 EOF
 [ $? -eq 0 ] && pass "skills ids all generator-sourced" || FAIL=$((FAIL+1))
 
-# 5e. prompts-facets.json (HAND) must cover every template id exactly once —
-# the library UI reads prompt-templates.json live, so the counts must match
+# 5e. prompts-facets.json (HAND) must cover every template id exactly once, # the library UI reads prompt-templates.json live, so the counts must match
 python3 - <<'EOF'
 import json, sys
 from pathlib import Path
@@ -335,7 +334,7 @@ else
 fi
 # the Studio page must fetch the data it plans from
 for d in site/models.json site/prompt-templates.json site/camera-movements.json site/prompts-facets.json; do
-  if [ ! -f "$d" ]; then fail "$d missing — the Studio cannot plan without it"; STUDIO_OK=0; fi
+  if [ ! -f "$d" ]; then fail "$d missing, the Studio cannot plan without it"; STUDIO_OK=0; fi
 done
 if [ "$STUDIO_OK" = 1 ]; then pass "studio.html + studio.js shipped in assets/js and site/, data files present"; fi
 
@@ -344,7 +343,7 @@ GL_OK=1
 for f in assets/js/greenlight.js site/greenlight.html site/assets/js/greenlight.js; do
   if [ ! -f "$f" ]; then fail "$f missing (rebuild the site)"; GL_OK=0; fi
 done
-if [ ! -f site/data/v1/pricing.json ]; then fail "site/data/v1/pricing.json missing — the Green Light cannot price without it"; GL_OK=0; fi
+if [ ! -f site/data/v1/pricing.json ]; then fail "site/data/v1/pricing.json missing, the Green Light cannot price without it"; GL_OK=0; fi
 GL_OUT=$(node scripts/greenlight.test.js 2>&1)
 if echo "$GL_OUT" | tail -1 | grep -q "all pass"; then
   GL_N=$(echo "$GL_OUT" | grep -c "^ok ")

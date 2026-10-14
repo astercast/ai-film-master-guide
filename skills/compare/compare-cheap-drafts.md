@@ -33,4 +33,4 @@ Blocking test for 12 shots at Turbo rates: full scene validated for the price of
 
 ## Pitfalls
 
-- Drafting at hero quality 'to judge properly' — judge composition at 480p, it works.
+- Drafting at hero quality 'to judge properly', judge composition at 480p, it works.

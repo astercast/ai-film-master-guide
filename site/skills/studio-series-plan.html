@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Plan a mini-drama season with Studio 2.0 — Skill — AI Film Master Guide</title>
-  <meta name="description" content="You will have a whole mini-drama season planned in the Studio — every episode&#x27;s shots, prompts, models, budget and schedule — before generating anything.">
+  <title>Plan a mini-drama season with Studio 2.0, Skill, AI Film Master Guide</title>
+  <meta name="description" content="You will have a whole mini-drama season planned in the Studio, every episode&#x27;s shots, prompts, models, budget and schedule, before generating anything.">
+  <link rel="preload" href="../assets/fonts/anton-latin-normal-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/inter-latin-normal-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../assets/css/fonts.css">
   <link rel="stylesheet" href="../assets/css/tokens.css">
@@ -21,14 +22,14 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="canonical" href="https://ai-film-master-guide-live.vercel.app/skills/studio-series-plan">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Plan a mini-drama season with Studio 2.0 — Skill — AI Film Master Guide">
-  <meta property="og:description" content="You will have a whole mini-drama season planned in the Studio — every episode&#x27;s shots, prompts, models, budget and schedule — before generating anything.">
+  <meta property="og:title" content="Plan a mini-drama season with Studio 2.0, Skill, AI Film Master Guide">
+  <meta property="og:description" content="You will have a whole mini-drama season planned in the Studio, every episode&#x27;s shots, prompts, models, budget and schedule, before generating anything.">
   <meta property="og:image" content="https://ai-film-master-guide-live.vercel.app/assets/og-card.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Plan a mini-drama season with Studio 2.0 — Skill — AI Film Master Guide">
-  <meta name="twitter:description" content="You will have a whole mini-drama season planned in the Studio — every episode&#x27;s shots, prompts, models, budget and schedule — before generating anything.">
+  <meta name="twitter:title" content="Plan a mini-drama season with Studio 2.0, Skill, AI Film Master Guide">
+  <meta name="twitter:description" content="You will have a whole mini-drama season planned in the Studio, every episode&#x27;s shots, prompts, models, budget and schedule, before generating anything.">
   <meta name="twitter:image" content="https://ai-film-master-guide-live.vercel.app/assets/og-card.png">
 </head>
 <body>
@@ -59,20 +60,20 @@
       <h1 id="skill-title">Plan a mini-drama season with Studio 2.0</h1>
       
       <section class="card skill-frontdoor" aria-label="This skill at a glance">
-        <p class="skill-gets"><strong>Gets you:</strong> You will have a whole mini-drama season planned in the Studio — every episode&#x27;s shots, prompts, models, budget and schedule — before generating anything.</p>
+        <p class="skill-gets"><strong>Gets you:</strong> You will have a whole mini-drama season planned in the Studio, every episode&#x27;s shots, prompts, models, budget and schedule, before generating anything.</p>
         <dl class="skill-facts">
           <div><dt>What this is</dt><dd>Plan 3-10 episodes in one pass: pick one of the 4 serialized format presets, lock the series bible, get per-episode shot lists with prompts, model picks, budget, and schedule.</dd></div>
           <div><dt>First step</dt><dd>Pick the format preset: it pre-fills the runtime band, beats per episode, hook style, and the dialogue-budget rule (beats x seconds-per-beat, voice locked at +/-10% before any frame).</dd></div>
           <div><dt>You will need</dt><dd>Series title + logline; Format preset (mini-drama / POV micro-series / day-in-the-life / revenge arc); Episodes (3-10); Runtime per episode (inside the format&#x27;s band); Genre/mood; Tier (draft/festival); Cast: name + voice ID + one-line anchor; Recurring locations</dd></div>
-          <div><dt>Time</dt><dd>About 3 minutes for a first run-through (6 steps; estimated from the procedure itself — your model&rsquo;s generation time is extra).</dd></div>
-          <div><dt>Level</dt><dd>Beginner — made to be usable on a first project.</dd></div>
-          <div><dt>Before this</dt><dd>Best after the skill before it on the Path (skill 179 of 241: Plan comment-driven interactive episodes) — but everything it needs is listed below, and nothing else is assumed.</dd></div>
-          <div><dt>Proof &mdash; the worked example</dt><dd>Mini-drama, 5 episodes x 90s, draft: 15 shots/episode -&gt; 75 shots; bible locks Mara&#x27;s anchor once; budget lines show per-episode subtotals + one bible-plates line; 5x/20x envelopes on the total. All rates from data/v1/models.json.</dd></div>
+          <div><dt>Time</dt><dd>About 3 minutes for a first run-through (6 steps; estimated from the procedure itself, your model&rsquo;s generation time is extra).</dd></div>
+          <div><dt>Level</dt><dd>Beginner, made to be usable on a first project.</dd></div>
+          <div><dt>Before this</dt><dd>Best after the skill before it on the Path (skill 179 of 241: Plan comment-driven interactive episodes), but everything it needs is listed below, and nothing else is assumed.</dd></div>
+          <div><dt>Proof: the worked example</dt><dd>Mini-drama, 5 episodes x 90s, draft: 15 shots/episode -&gt; 75 shots; bible locks Mara&#x27;s anchor once; budget lines show per-episode subtotals + one bible-plates line; 5x/20x envelopes on the total. All rates from data/v1/models.json.</dd></div>
         </dl>
         
       </section>
       <article class="prose"><h2 id="use-when">Use when</h2>
-<p>Pre-production for a serialized short-form series — every number traces to data/v1 data.</p>
+<p>Pre-production for a serialized short-form series, every number traces to data/v1 data.</p>
 <h2 id="inputs">Inputs</h2>
 <ul>
 <li>Series title + logline</li>
@@ -87,7 +88,7 @@
 <h2 id="procedure">Procedure</h2>
 <ol>
 <li>Pick the format preset: it pre-fills the runtime band, beats per episode, hook style, and the dialogue-budget rule (beats x seconds-per-beat, voice locked at +/-10% before any frame).</li>
-<li>Lock the cast anchors and locations into the bible — the Studio prepends the identical prompt-DNA block to every shot prompt in every episode; it never changes mid-series.</li>
+<li>Lock the cast anchors and locations into the bible, the Studio prepends the identical prompt-DNA block to every shot prompt in every episode; it never changes mid-series.</li>
 <li>Per episode: shots = ceil(runtime / secsPerShot) (draft 6s, festival 4s); deterministic template picks; model picks from models.json (draft = cheapest priced, festival = priciest quality-flagged); takes x rate math per shot.</li>
 <li>Anchor plates for cast + locations are costed ONCE in the series budget, not per episode (face anchors never re-run); the packet states the avoided credits vs naive per-episode regeneration.</li>
 <li>Budget the 5x envelope, not the clean cost; schedule puts bible stills first, then per-episode generation, assembly, audio, grade.</li>
@@ -103,9 +104,9 @@
 </ul>
 <h2 id="pitfalls">Pitfalls</h2>
 <ul>
-<li>Editing the bible DNA mid-series — consistency dies in episode 3, not episode 1.</li>
-<li>Planning episodes outside the format&#x27;s band — completion rate is a runtime discipline.</li>
-<li>Budgeting the clean cost — the 5x envelope is the real number.</li>
+<li>Editing the bible DNA mid-series, consistency dies in episode 3, not episode 1.</li>
+<li>Planning episodes outside the format&#x27;s band, completion rate is a runtime discipline.</li>
+<li>Budgeting the clean cost, the 5x envelope is the real number.</li>
 </ul></article>
       <nav class="skill-pagenav" aria-label="Skill navigation">
         <p><a href="episode-interactive-format.html" rel="prev">&larr; Plan comment-driven interactive episodes</a></p>
@@ -116,7 +117,7 @@
   </main>
   <footer class="site-footer">
     <div class="container footer-grid">
-      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <p>AI Film Master Guide, research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer"><a href="../index.html">Guide</a><a href="../skills.html">Skills</a><a href="../workshop.html">Workshop</a><a href="../quiz.html">Quiz</a><a href="../compare.html">Compare</a><a href="../gallery.html">Gallery</a><a href="../teardown.html">Teardowns</a><a href="../model-watch.html">Model watch</a><a href="../showdown.html">Showdown</a><a href="../forge.html">Episode forge</a><a href="../clearance.html">Script clearance</a><a href="../continuity.html">Continuity ledger</a><a href="../cuesheet.html">Cue sheet</a><a href="../grade.html">Grade sheet</a><a href="../cut.html">Cut sheet</a><a href="../take.html">Take sheet</a><a href="../longform.html">Longform sheet</a><a href="../path.html">The path</a><a href="../checks/">Knowledge checks</a><a href="../budget.html">Budget</a><a href="../optimizer.html">Optimizer</a><a href="../shots.html">Shot list</a><a href="../style-bible.html">Style bible</a><a href="../doctor.html">Doctor</a><a href="../linter.html">Linter</a><a href="../cutting-room.html">Cutting room</a><a href="../prompts.html">Prompts</a><a href="../models/">Models</a><a href="../anatomy.html">Anatomy</a><a href="../manifesto.html">Manifesto</a><a href="../craft-not-buttons.html">Craft, not buttons</a><a href="../recipes.html">Recipes</a><a href="../field-guides/">Field guides</a><a href="../changelog.html">Changelog</a><a href="../skill-spec.html">Skill spec</a><a href="../api.html">API</a></nav>
       <div class="footer-colophon"><span>AI Film Master Guide</span><span class="tail">Craft, not buttons</span></div>
     </div>

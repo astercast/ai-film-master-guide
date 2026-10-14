@@ -1,4 +1,4 @@
-/* Episode planner — series setup → episode-block planner → arc tracker.
+/* Episode planner, series setup → episode-block planner → arc tracker.
    Grounded in craft/episodic-shortform.md (the AI mini-drama pipeline).
    Storage: localStorage "afg-episode-series" (one saved series + its blocks + log). */
 (function () {
@@ -36,25 +36,25 @@
         "Hook: Mia alone in the taxi at night",
         "The driver asks where to",
         "Flashback: why she is going",
-        "Turn: the driver realizes she is not lost — she is determined"
+        "Turn: the driver realizes she is not lost, she is determined"
       ],
-      turn: "Beat 4: the driver realizes she's not lost — she's determined",
-      cliff: "The taxi stops at the wrong address — headlights, cut",
+      turn: "Beat 4: the driver realizes she's not lost, she's determined",
+      cliff: "The taxi stops at the wrong address, headlights, cut",
       scenes: "taxi night exterior; Mia clutching coat; driver sees her; wrong-address stop"
     },
     pov: {
       label: "POV series", band: [30, 90], spb: 12,
       emotion: "dread",
-      stake: "You borrowed your roommate's jacket — the stain won't come out",
+      stake: "You borrowed your roommate's jacket, the stain won't come out",
       hook: "Your hands scrubbing fabric in a bathroom sink, coffee spreading",
       beats: [
         "Hook: the spill, frozen mid-panic",
         "Flashback: the roommate lending it this morning",
-        "The knock at the door — she's home early",
-        "Turn: the designer label — it cost four figures"
+        "The knock at the door, she's home early",
+        "Turn: the designer label, it cost four figures"
       ],
-      turn: "Beat 4: the designer label — it cost four figures",
-      cliff: "The bathroom door handle turns — freeze on your face",
+      turn: "Beat 4: the designer label, it cost four figures",
+      cliff: "The bathroom door handle turns, freeze on your face",
       scenes: "sink scrub close-up; flashback handoff; designer label macro; door handle mid-turn"
     },
     daylife: {
@@ -65,25 +65,25 @@
       beats: [
         "Hook: rain on the window, empty café",
         "The regular's shadow at the door",
-        "Turn: Rin is already steaming the milk — she remembered"
+        "Turn: Rin is already steaming the milk, she remembered"
       ],
-      turn: "Beat 3: Rin is already steaming the milk — she remembered",
-      cliff: "He slides a folded note across the counter — freeze before it opens",
+      turn: "Beat 3: Rin is already steaming the milk, she remembered",
+      cliff: "He slides a folded note across the counter, freeze before it opens",
       scenes: "rainy window; door shadow; steaming milk close-up; folded note mid-slide"
     },
     revenge: {
       label: "Revenge arc", band: [60, 150], spb: 15,
       emotion: "triumph",
-      stake: "Nadia exposes the partner who stole her designs — at his own launch event",
+      stake: "Nadia exposes the partner who stole her designs, at his own launch event",
       hook: "A runway spotlight swinging onto a garment that is unmistakably hers",
       beats: [
         "Hook: the crowd gasps at her stolen collection",
         "Nadia in the back row, phone raised, recording",
-        "Turn: she live-posts the original sketches — timestamped two years earlier",
+        "Turn: she live-posts the original sketches, timestamped two years earlier",
         "The audience's phones light up, one by one"
       ],
-      turn: "Beat 3: she live-posts the original sketches — timestamped two years earlier",
-      cliff: "The partner spots her in the crowd — freeze on his face",
+      turn: "Beat 3: she live-posts the original sketches, timestamped two years earlier",
+      cliff: "The partner spots her in the crowd, freeze on his face",
       scenes: "spotlight garment; back-row recording; timestamped sketches on phone; his frozen face"
     },
     interactive: {
@@ -93,17 +93,17 @@
       hook: "A door where a wall should be, light leaking underneath",
       beats: [
         "Hook: the impossible door",
-        "The vote: she knocks — or walks away (the decision beat, freeze on her hand; the TikTok comment poll asks — up to 5 options)",
-        "She follows the winning choice — the consequence plays out",
+        "The vote: she knocks, or walks away (the decision beat, freeze on her hand; the TikTok comment poll asks, up to 5 options)",
+        "She follows the winning choice, the consequence plays out",
         "Turn: what is behind the door reframes the question"
       ],
       turn: "Beat 4: what is behind the door reframes the question",
-      cliff: "The next decision point — freeze before the poll deadline",
+      cliff: "The next decision point, freeze before the poll deadline",
       scenes: "impossible door close-up; decision-beat freeze (native poll UI asks, no burned text); consequence beat; decision-point cliffhanger"
     }
   };
   var DEFAULT_FORMAT = "minidrama";
-  /* "custom" is a real format choice — it just has no preset skeleton. */
+  /* "custom" is a real format choice, it just has no preset skeleton. */
   var ALL_FORMATS = ["minidrama", "pov", "daylife", "revenge", "interactive", "custom"];
 
   var els = {
@@ -220,9 +220,9 @@
     readCast();
     var locked = state.cast.filter(function (c) { return c.name && c.voice && c.anchor; });
     save(state);
-    if (!state.title) { msg(els.seriesMsg, "Series saved — give it a title when you have one.", true); return; }
+    if (!state.title) { msg(els.seriesMsg, "Series saved, give it a title when you have one.", true); return; }
     if (locked.length === 0) {
-      msg(els.seriesMsg, "Series saved — but no character is fully locked yet (name + voice + anchor). Gate G0 needs at least one.", false);
+      msg(els.seriesMsg, "Series saved, but no character is fully locked yet (name + voice + anchor). Gate G0 needs at least one.", false);
     } else {
       msg(els.seriesMsg, "Series locked: " + locked.length + " character" + (locked.length === 1 ? "" : "s") + " with anchor + voice. (G0: bible)", true);
     }
@@ -287,7 +287,7 @@
       els.turn.value = ""; els.cliff.value = ""; els.scenes.value = "";
       els.spb.value = 15;
       estimate();
-      msg(els.blockMsg, "Custom format — blank block, runtime band is the 60–150s mini-drama default.", true);
+      msg(els.blockMsg, "Custom format, blank block, runtime band is the 60 to 150s mini-drama default.", true);
       return;
     }
     els.emotion.value = p.emotion;
@@ -299,7 +299,7 @@
     els.scenes.value = p.scenes;
     els.spb.value = p.spb;
     estimate();
-    msg(els.blockMsg, "Format template applied: " + p.label + " — edit every line to make it yours, then save.", true);
+    msg(els.blockMsg, "Format template applied: " + p.label + ", edit every line to make it yours, then save.", true);
   }
   /* Runtime estimator: beats × seconds-per-beat vs the format's runtime band.
      This is the dialogue-budget rule applied at planning time: voice must
@@ -316,13 +316,13 @@
     var est = beats * spb;
     var verdict, cls = "calc-note";
     if (est < band[0]) {
-      verdict = " Too short for this format: add beats or widen seconds-per-beat — or the emotion has no room to land.";
+      verdict = " Too short for this format: add beats or widen seconds-per-beat, or the emotion has no room to land.";
       cls += " td-error";
     } else if (est > band[1]) {
       verdict = " Too long for one emotion: split the episode (the two-emotions rule).";
       cls += " td-error";
     } else {
-      verdict = " Inside the " + band[0] + "–" + band[1] + "s band. Now lock voice at ≈" + est + "s ±10% before generating a frame (the golden rule).";
+      verdict = " Inside the " + band[0] + "-" + band[1] + "s band. Now lock voice at ≈" + est + "s ±10% before generating a frame (the golden rule).";
     }
     els.runtime.textContent = "≈" + est + "s (" + beats + " beats × " + spb + "s). " + verdict;
     els.runtime.className = cls;
@@ -373,30 +373,30 @@
 
   /* Per-format cliffhanger templates. {name} fills from the first cast
      character's name ("the lead" when the bible has no name yet). Templates
-     are starting points — the field stays editable after applying. */
+     are starting points, the field stays editable after applying. */
   var CLIFF_TEMPLATES = {
     minidrama: [
-      "Freeze on {name}'s face as the headlights swing toward them — cut.",
-      "{name} hears the one sound that changes everything — cut."
+      "Freeze on {name}'s face as the headlights swing toward them, cut.",
+      "{name} hears the one sound that changes everything, cut."
     ],
     pov: [
-      "The door handle turns — freeze on your face.",
-      "Your phone lights up with a name you never expected — cut."
+      "The door handle turns, freeze on your face.",
+      "Your phone lights up with a name you never expected, cut."
     ],
     daylife: [
-      "Freeze on the folded note mid-slide — it stays unopened.",
+      "Freeze on the folded note mid-slide, it stays unopened.",
       "The regular's smile fades. Cut on the unasked question."
     ],
     revenge: [
-      "The partner spots {name} in the crowd — freeze on his face.",
-      "{name} presses send — cut on the loading screen."
+      "The partner spots {name} in the crowd, freeze on his face.",
+      "{name} presses send, cut on the loading screen."
     ],
     interactive: [
-      "Freeze on the decision: knock or walk away — the poll decides tomorrow.",
-      "The clock is running. The comments choose — cut before it hits zero."
+      "Freeze on the decision: knock or walk away, the poll decides tomorrow.",
+      "The clock is running. The comments choose, cut before it hits zero."
     ],
     any: [
-      "Freeze on {name}'s face — the unanswered question.",
+      "Freeze on {name}'s face, the unanswered question.",
       "Cut on the knock at the door."
     ]
   };
@@ -421,13 +421,13 @@
   if (els.cliffTplApply) {
     els.cliffTplApply.addEventListener("click", function () {
       var v = els.cliffTpl.value;
-      if (!v) { msg(els.blockMsg, "Pick a cliffhanger template first — or write your own above.", false); return; }
+      if (!v) { msg(els.blockMsg, "Pick a cliffhanger template first, or write your own above.", false); return; }
       var parts = v.split(":");
       var tpl = (CLIFF_TEMPLATES[parts[0]] || [])[parseInt(parts[1], 10)];
       if (tpl == null) return;
       readCast();
       els.cliff.value = tpl.split("{name}").join(castName());
-      msg(els.blockMsg, "Template applied — edit it to make it yours. The cliffhanger is never the resolution.", true);
+      msg(els.blockMsg, "Template applied, edit it to make it yours. The cliffhanger is never the resolution.", true);
       els.cliff.focus();
     });
   }
@@ -456,7 +456,7 @@
   function pUncap(s) { return s.charAt(0).toLowerCase() + s.slice(1); }
   function escReg(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
   /* The preset stakes already include the character name ("Lena finds a
-     door…") — don't double it when drafting the hook. */
+     door…"), don't double it when drafting the hook. */
   function nameFirst(name, stake) {
     return !!name && new RegExp("^" + escReg(name) + "\\b", "i").test(stake);
   }
@@ -482,18 +482,18 @@
     els.captionDraft.addEventListener("click", function () {
       var n = parseInt(els.epNum.value, 10) || state.nextEpisode;
       var stake = els.stake.value.trim();
-      if (!stake) { msg(els.blockMsg, "Write the one-line stake first — the caption IS the hook.", false); els.stake.focus(); return; }
+      if (!stake) { msg(els.blockMsg, "Write the one-line stake first, the caption IS the hook.", false); els.stake.focus(); return; }
       readCast();
       var name = state.cast[0] && state.cast[0].name;
       var hook = (name && !nameFirst(name, stake)) ? name + " " + pUncap(stake) : pCap(stake);
       var emoji = captionEmoji(els.emotion.value + " " + stake);
       var tag = state.hashtag ? " " + state.hashtag : " #aiminidrama";
-      lastCaption = "Episode " + n + " — " + hook + " " + emoji + "\n" +
+      lastCaption = "Episode " + n + ", " + hook + " " + emoji + "\n" +
         tag + " #aianimation #fyp #emotionalstory\npart " + (n + 1) + " tomorrow ⏳";
       els.captionOut.textContent = lastCaption;
       els.captionOut.hidden = false;
       els.captionRow.hidden = false;
-      msg(els.blockMsg, "Caption drafted from the block — the observed hook formula. Take it to the Hook-title generator for the six variants.", true);
+      msg(els.blockMsg, "Caption drafted from the block, the observed hook formula. Take it to the Hook-title generator for the six variants.", true);
     });
     els.captionCopy.addEventListener("click", function () {
       var btn = els.captionCopy;
@@ -519,12 +519,12 @@
     els.scenes.value = b.scenes || "";
     estimate();
     renderCliffTemplates();
-    msg(els.blockMsg, state.blocks[String(n)] ? "Loaded saved block for episode " + n + " — edit and re-save to overwrite." : "Planning episode " + n + ".", true);
+    msg(els.blockMsg, state.blocks[String(n)] ? "Loaded saved block for episode " + n + ", edit and re-save to overwrite." : "Planning episode " + n + ".", true);
   }
 
   els.beatAdd.addEventListener("click", function () {
     var cur = beatInputs();
-    if (cur.length >= 6) { msg(els.blockMsg, "Genre rule: 3–5 beats. Six inputs is already generous — trim, don't add.", false); return; }
+    if (cur.length >= 6) { msg(els.blockMsg, "Genre rule: 3 to 5 beats. Six inputs is already generous, trim, don't add.", false); return; }
     cur.push("");
     renderBeatInputs(cur);
     estimate();
@@ -550,21 +550,21 @@
     var beats = beatInputs().filter(Boolean);
     var errs = [];
     if (!els.emotion.value.trim()) errs.push("one-word emotion");
-    if (els.emotion.value.trim().split(/\s+/).length > 2) errs.push("one emotion — pick a single word");
+    if (els.emotion.value.trim().split(/\s+/).length > 2) errs.push("one emotion, pick a single word");
     if (beats.length < 3) errs.push("at least 3 beats");
     if (!els.cliff.value.trim()) errs.push("a cliffhanger (never the resolution)");
     if (errs.length) {
       msg(els.blockMsg, "Gate check before save: missing " + errs.join(", ") + ".", false);
       return;
     }
-    /* wave 38 — one-emotion discipline: a second emotion word anywhere in the
+    /* wave 38, one-emotion discipline: a second emotion word anywhere in the
        block is two episodes stapled together. Name the word and the field. */
     var secondHits = findSecondEmotion(els.emotion.value.trim().toLowerCase());
     if (secondHits.length) {
       var hit = secondHits[0];
       msg(els.blockMsg, "Two-emotion block: \u201c" + hit.emotion + "\u201d in the " + hit.field +
         " reads as a second emotion beside \u201c" + els.emotion.value.trim() +
-        "\u201d. The one-emotion rule — split the episode, or rewrite the " + hit.field + ".", false);
+        "\u201d. The one-emotion rule, split the episode, or rewrite the " + hit.field + ".", false);
       return;
     }
     state.blocks[String(n)] = {
@@ -583,16 +583,15 @@
     save(state);
     renderBlocks();
     renderLog();
-    msg(els.blockMsg, "Episode " + n + " block saved — one emotion, " + beats.length + " beats, cliffhanger set. G1 ready.", true);
+    msg(els.blockMsg, "Episode " + n + " block saved, one emotion, " + beats.length + " beats, cliffhanger set. G1 ready.", true);
     renderBlockForm(state.nextEpisode);
   });
   els.newBlock.addEventListener("click", function () { renderBlockForm(state.nextEpisode); });
 
   /* ---------------- saved blocks + Studio bridge ---------------- */
 
-  /* One-click "Send series to Studio": the whole saved series — title,
-     logline, cast anchors, every block with its format/runtime/beats —
-     lands in the Studio as a pre-filled series plan. The Studio consumes
+  /* One-click "Send series to Studio": the whole saved series, title,
+     logline, cast anchors, every block with its format/runtime/beats, lands in the Studio as a pre-filled series plan. The Studio consumes
      the payload once (localStorage "afg-studio-bridge") and shows its own
      message; nothing is posted anywhere. */
   function blockRuntime(b) {
@@ -621,7 +620,7 @@
   }
   els.sendSeries.addEventListener("click", function () {
     var nums = Object.keys(state.blocks).map(Number).sort(function (a, b) { return a - b; });
-    if (!nums.length) { msg(els.blockMsg, "No saved blocks yet — save an episode block first.", false); return; }
+    if (!nums.length) { msg(els.blockMsg, "No saved blocks yet, save an episode block first.", false); return; }
     var payload = {
       v: 1,
       kind: "series",
@@ -636,7 +635,7 @@
     try {
       localStorage.setItem(BRIDGE_KEY, JSON.stringify(payload));
     } catch (e) {
-      msg(els.blockMsg, "Could not stage the Studio payload — browser storage is unavailable.", false);
+      msg(els.blockMsg, "Could not stage the Studio payload, browser storage is unavailable.", false);
       return;
     }
     location.href = "studio.html?from=planner";
@@ -649,12 +648,12 @@
      never collides with "Send series to Studio". */
   els.sendRun.addEventListener("click", function () {
     var nums = Object.keys(state.blocks).map(Number).sort(function (a, b) { return a - b; });
-    if (!nums.length) { msg(els.blockMsg, "No saved blocks yet — save an episode block first.", false); return; }
+    if (!nums.length) { msg(els.blockMsg, "No saved blocks yet, save an episode block first.", false); return; }
     var runtimes = nums.map(function (n) {
       return blockRuntime(state.blocks[String(n)]);
     }).sort(function (a, b) { return a - b; });
     var median = runtimes[Math.floor(runtimes.length / 2)];
-    /* snap to the microdrama planner's 0.5–3 min input band */
+    /* snap to the microdrama planner's 0.5 to 3 min input band */
     var minPerEp = Math.max(0.5, Math.min(3, Math.round((median / 60) * 2) / 2));
     var payload = {
       v: 1,
@@ -669,7 +668,7 @@
     try {
       localStorage.setItem(BRIDGE_KEY, JSON.stringify(payload));
     } catch (e) {
-      msg(els.blockMsg, "Could not stage the Studio payload — browser storage is unavailable.", false);
+      msg(els.blockMsg, "Could not stage the Studio payload, browser storage is unavailable.", false);
       return;
     }
     location.href = "studio.html?from=planner";
@@ -689,7 +688,7 @@
       var li = document.createElement("li");
       li.className = "log-entry";
       var head = document.createElement("strong");
-      head.textContent = "Ep " + e.n + (e.title ? " — " + e.title : "");
+      head.textContent = "Ep " + e.n + (e.title ? ", " + e.title : "");
       li.appendChild(head);
       var less = document.createElement("p");
       less.innerHTML = "<span class=\"log-label\">Lesson:</span> " + esc(e.lesson);

@@ -7,7 +7,7 @@ description: Get directed, human-feeling VO from AI voices.
 
 ## What this gets you
 
-Your AI narrator or character will sound directed — paced, emphasised, human — instead of reading like a satnav.
+Your AI narrator or character will sound directed, paced, emphasised, human, instead of reading like a satnav.
 
 ## Use when
 
@@ -27,8 +27,8 @@ Narration, documentary VO, essay films.
 
 ## Worked example
 
-Essay-film narration: 14 paragraphs, 3 takes each, comped — indistinguishable from a directed session.
+Essay-film narration: 14 paragraphs, 3 takes each, comped, indistinguishable from a directed session.
 
 ## Pitfalls
 
-- One long take — paragraph-level generation gives you edit points.
+- One long take, paragraph-level generation gives you edit points.

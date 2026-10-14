@@ -22,7 +22,7 @@ Moving from one scene to the next in a multi-scene production.
 
 1. Export the previous scene's final video.
 2. Attach it as the character/location reference for the next scene's generations.
-3. A text description drifts over generations — a video reference doesn't.
+3. A text description drifts over generations, a video reference doesn't.
 4. Re-anchor original asset references every few chained generations anyway.
 
 ## Worked example
@@ -31,4 +31,4 @@ Scene 8 references scene7_final.mp4 for Mara's look + kitchen state, plus the re
 
 ## Pitfalls
 
-- Chaining from a flawed scene — errors compound. Only chain from approved selects.
+- Chaining from a flawed scene, errors compound. Only chain from approved selects.

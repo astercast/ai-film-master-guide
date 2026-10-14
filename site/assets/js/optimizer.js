@@ -1,13 +1,13 @@
-/* Budget optimizer — turns the calculator into a planner.
+/* Budget optimizer, turns the calculator into a planner.
    Data-driven from models.json (copied into site/ at build time): no hardcoded
    model picks. Splits the runtime into dialogue vs non-dialogue buckets and
    assigns the cheapest model that satisfies the quality tier per bucket.
    USD conversion: $0.0392/credit from models.json cost_basis
-   (Higgsfield Plus $47/1200cr, observed 2026-10-10) — third-party estimate. */
+   (Higgsfield Plus $47/1200cr, observed 2026-10-10), third-party estimate. */
 (function () {
   "use strict";
 
-  var USD_PER_CREDIT = 0.0392; /* models.json cost_basis, Oct 2026 — verify live */
+  var USD_PER_CREDIT = 0.0392; /* models.json cost_basis, Oct 2026, verify live */
 
   function esc(s) {
     return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
@@ -89,7 +89,7 @@
         Math.round(r.share * 100) + "% of runtime · " + Math.round(r.seconds) + "s · " +
         r.gens.toLocaleString("en-US") + " generations</span></td>" +
         "<td><strong>" + esc(r.model) + "</strong><br><span class=\"quiz-cost-sub\">" + esc(r.platform) + "</span>" +
-        (r.audioFallback ? "<br><span class=\"quiz-cost-na\">No priced native-audio model — verify live.</span>" : "") + "</td>" +
+        (r.audioFallback ? "<br><span class=\"quiz-cost-na\">No priced native-audio model, verify live.</span>" : "") + "</td>" +
         "<td>" + r.cps.toFixed(2) + "/s</td>" +
         "<td><strong>" + fmtUSD(r.usd) + "</strong><br><span class=\"quiz-cost-sub\">" +
         Math.round(r.credits).toLocaleString("en-US") + " credits</span></td>" +
@@ -103,7 +103,7 @@
     els.results.innerHTML =
       '<h2 id="o-plan-h" tabindex="-1">Your shoot plan</h2>' +
       '<div class="table-scroll"><table>' +
-      "<caption>Model mix computed live from <code>models.json</code> — update the data, not this page.</caption>" +
+      "<caption>Model mix computed live from <code>models.json</code>, update the data, not this page.</caption>" +
       "<thead><tr><th scope=\"col\">Bucket</th><th scope=\"col\">Model</th>" +
       "<th scope=\"col\">Rate</th><th scope=\"col\">Clean cost</th></tr></thead>" +
       "<tbody>" + rows + "</tbody></table></div>" +
@@ -112,14 +112,14 @@
       '<div class="calc-stat highlight"><div class="calc-value">' + fmtUSD(totals.clean) + '</div><div class="calc-label">Clean run</div></div>' +
       '<div class="calc-stat highlight"><div class="calc-value">' + fmtUSD(totals.five) + '</div><div class="calc-label">5× envelope (realistic)</div></div>' +
       '<div class="calc-stat highlight"><div class="calc-value">' + fmtUSD(totals.twenty) + '</div><div class="calc-label">20× envelope (worst case)</div></div>' +
-      '<p class="calc-note">Envelopes from the <a href="craft/longform-pipelines.html">long-form pipelines</a> chapter: rejections, re-grades, and consistency fixes multiply the clean cost 5–20×. Budget the envelope, not the clean run.</p>' +
+      '<p class="calc-note">Envelopes from the <a href="craft/longform-pipelines.html">long-form pipelines</a> chapter: rejections, re-grades, and consistency fixes multiply the clean cost 5 to 20×. Budget the envelope, not the clean run.</p>' +
       "</div></div>" +
       "<h3>Why these picks</h3><ul>" + whyItems + "</ul>" +
       (unpriced.length
         ? '<p class="calc-note">' + unpriced.length + " model" + (unpriced.length === 1 ? "" : "s") +
-          " excluded — no published rate (" + unpriced.map(esc).join(", ") + "). Verify live before budgeting.</p>"
+          " excluded, no published rate (" + unpriced.map(esc).join(", ") + "). Verify live before budgeting.</p>"
         : "") +
-      '<p class="calc-note">All rates are third-party estimates (Oct 2026) at $0.0392/credit — verify live before spending. ' +
+      '<p class="calc-note">All rates are third-party estimates (Oct 2026) at $0.0392/credit, verify live before spending. ' +
       "Dialogue detection reads each model's documented strengths; it is not a guarantee of lip-sync quality.</p>";
     document.getElementById("o-plan-h").focus({ preventScroll: false });
   }

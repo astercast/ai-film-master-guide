@@ -1,7 +1,7 @@
-/* Prompt library explorer (wave 25) — first-class browser for the 47 guide templates.
+/* Prompt library explorer (wave 25), first-class browser for the 47 guide templates.
    Data (fetched at runtime, never forked):
      prompt-templates.json .. the templates themselves (generator-owned, from the
-                              research artifact parser — this page only reads them)
+                              research artifact parser, this page only reads them)
      prompts-facets.json .... HAND-maintained browsable facets: shot_type / movement /
                               lighting / mood, the anatomy layers each template
                               demonstrates, teardown cross-links.
@@ -204,7 +204,7 @@
 
   /* Remix helper: structured slot assembly, client-side only. Replaces the
      subject / setting / lighting slots of the chosen template and labels the
-     output as a remix — never as a guide template. Unfilled slots stay bracketed. */
+     output as a remix, never as a guide template. Unfilled slots stay bracketed. */
   function slotFill(prompt, vals) {
     function sub(val) { return function () { return val; }; }
     var out = prompt;
@@ -253,7 +253,7 @@
       setting: els.remixSetting.value.trim(),
       lighting: els.remixLighting.value.trim()
     });
-    els.remixLabel.textContent = "Remix of " + t.id + " — “" + t.title +
+    els.remixLabel.textContent = "Remix of " + t.id + ", “" + t.title +
       "”. Assembled from the template's slots; unfilled slots stay as [BRACKETS]. This is a remix, not a guide template.";
     els.remixOut.textContent = out;
     els.remixCopy.disabled = false;
@@ -307,12 +307,12 @@
     var facetIds = Object.keys(FACETS);
     if (facetIds.length !== TEMPLATES.length) {
       msg(els.error, "Facet data covers " + facetIds.length + " templates but prompt-templates.json has " +
-        TEMPLATES.length + " — the library is out of sync. Fix prompts-facets.json.", false);
+        TEMPLATES.length + ", the library is out of sync. Fix prompts-facets.json.", false);
       return;
     }
     els.provenance.hidden = false;
     els.provenance.innerHTML = "Templates from <code>prompt-templates.json</code> v" +
-      esc(parts[0].version || "?") + " — " + TEMPLATES.length +
+      esc(parts[0].version || "?") + ", " + TEMPLATES.length +
       " templates, read live from the guide's published API (generator-owned). " +
       "Facets and anatomy tags are the guide's annotations, not template text.";
 
@@ -324,7 +324,7 @@
     fillSelect(els.mood, usedValues("mood"), pretty);
 
     els.remixTemplate.innerHTML = TEMPLATES.map(function (t) {
-      return '<option value="' + esc(t.id) + '">' + esc(t.id) + " — " + esc(t.title) + "</option>";
+      return '<option value="' + esc(t.id) + '">' + esc(t.id) + ", " + esc(t.title) + "</option>";
     }).join("");
 
     ["q", "track", "shotType", "movement", "lighting", "mood"].forEach(function (k) {

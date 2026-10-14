@@ -1,19 +1,18 @@
-/* The Path — the guide's sequenced curriculum (rotation 19,
+/* The Path, the guide's sequenced curriculum (rotation 19,
    closing competitor gap T-FILM-5).
    The guide's library held 241 skills and no order to learn
    them in. The Path is that order: data/v1/curriculum.json
    sequences every skill exactly once into six stages in
-   production order — the prompt and the camera; the style
+   production order, the prompt and the camera; the style
    tracks; the models; direction; production; the finish.
    This engine invents nothing: it takes the curriculum and
    the learner's checked-off skills and computes where they
-   stand — per-stage progress, the current stage, the next
+   stand, per-stage progress, the current stage, the next
    skill, and the milestone verdict. Checking a skill off is
    the learner's claim that it was done on a real production;
    the engine counts what is checked, not intentions.
    Not to be confused with the homepage's "Pick your path"
-   goal routes, which order a handful of chapters per goal —
-   this page orders the skills themselves. Progress persists
+   goal routes, which order a handful of chapters per goal, this page orders the skills themselves. Progress persists
    in the browser under its own key (afg-the-path-v1), never
    the goal routes' key. Deterministic: the same curriculum
    and the same check-offs always produce the same standing. */
@@ -86,19 +85,19 @@
   function verdict(curriculum, doneIds) {
     var p = progress(curriculum, doneIds);
     if (p.total === 0) {
-      return "The Path is empty — no curriculum is loaded. The sequence lives in data/v1/curriculum.json; without it there is no order to walk.";
+      return "The Path is empty, no curriculum is loaded. The sequence lives in data/v1/curriculum.json; without it there is no order to walk.";
     }
     if (p.done === 0) {
-      return "Not started — " + p.total + " skills stand in six stages, in the order to learn them. Begin at Stage 1, skill 1 (" +
+      return "Not started, " + p.total + " skills stand in six stages, in the order to learn them. Begin at Stage 1, skill 1 (" +
         p.next.id + "): the prompt and the camera are the two languages everything else is spoken in. Check a skill off only when it has been done on a real production.";
     }
     if (p.finished) {
-      return "The Path is walked — all " + p.total + " skills checked off across the six stages. What remains is the work itself: the stages now exercise each other on every production, and the guide keeps growing at the finish — a new skill joins the stage it belongs to, not the end.";
+      return "The Path is walked, all " + p.total + " skills checked off across the six stages. What remains is the work itself: the stages now exercise each other on every production, and the guide keeps growing at the finish, a new skill joins the stage it belongs to, not the end.";
     }
     var st = p.currentStage;
     return "Stage " + (stagesOf(curriculum).findIndex(function (s) { return s.id === st.id; }) + 1) +
-      " — " + st.title + ": " + st.done + " of " + st.total + " skills done. Next on the path: " +
-      p.next.id + " (skill " + p.next.n + " of " + p.total + "). A stage is finished when its milestone can be demonstrated on a production, not when its boxes are ticked — the milestone, not the calendar, says when to move on.";
+      ", " + st.title + ": " + st.done + " of " + st.total + " skills done. Next on the path: " +
+      p.next.id + " (skill " + p.next.n + " of " + p.total + "). A stage is finished when its milestone can be demonstrated on a production, not when its boxes are ticked, the milestone, not the calendar, says when to move on.";
   }
 
   function progressToMarkdown(curriculum, titles, doneIds) {
@@ -106,13 +105,13 @@
     var done = doneSet(doneIds);
     var p = progress(curriculum, doneIds);
     var lines = [];
-    lines.push("# The Path — my walk");
+    lines.push("# The Path, my walk");
     lines.push("");
     lines.push("The guide's " + p.total + " skills in six stages, in the order to learn them (data/v1/curriculum.json). A skill is checked when it has been done on a real production.");
     lines.push("");
     stagesOf(curriculum).forEach(function (st, i) {
       var sp = stageProgress(st, doneIds);
-      lines.push("## Stage " + (i + 1) + " — " + st.title + " (" + sp.done + " of " + sp.total + ")");
+      lines.push("## Stage " + (i + 1) + ", " + st.title + " (" + sp.done + " of " + sp.total + ")");
       lines.push("");
       lines.push("Milestone: " + st.milestone);
       lines.push("");
@@ -173,7 +172,7 @@
       });
       document.querySelectorAll("[data-path-stage-progress]").forEach(function (el) {
         var st = p.stages.filter(function (s) { return s.id === el.getAttribute("data-path-stage-progress"); })[0];
-        if (st) el.textContent = st.done + " of " + st.total + " complete" + (st.complete ? " — stage complete" : "");
+        if (st) el.textContent = st.done + " of " + st.total + " complete" + (st.complete ? ", stage complete" : "");
       });
       document.querySelectorAll("[data-path-stage-bar]").forEach(function (el) {
         var st = p.stages.filter(function (s) { return s.id === el.getAttribute("data-path-stage-bar"); })[0];
@@ -198,7 +197,7 @@
       done = [];
       persist();
       render();
-      if (msgEl) { msgEl.hidden = false; msgEl.textContent = "Progress cleared — the Path starts again at Stage 1, skill 1."; }
+      if (msgEl) { msgEl.hidden = false; msgEl.textContent = "Progress cleared, the Path starts again at Stage 1, skill 1."; }
     });
 
     function exportText() { return progressToMarkdown(curriculum, titles(), done); }

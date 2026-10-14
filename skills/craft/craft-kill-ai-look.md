@@ -19,15 +19,15 @@ Any photoreal footage that reads as synthetic.
 
 ## Procedure
 
-1. Desaturate 10–20% — AI oversaturates by default.
+1. Desaturate 10 to 20%, AI oversaturates by default.
 2. Add fine 35mm grain; it breaks up the smooth gradients.
 3. Subtle chromatic aberration at high-contrast edges.
 4. Soften, don't sharpen. Check skin last.
 
 ## Worked example
 
-Portrait CU: -15 sat, grain overlay, 2px CA — reads as 16mm.
+Portrait CU: -15 sat, grain overlay, 2px CA, reads as 16mm.
 
 ## Pitfalls
 
-- Leaving one shot untreated — the clean shot exposes the grade.
+- Leaving one shot untreated, the clean shot exposes the grade.

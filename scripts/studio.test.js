@@ -1,4 +1,4 @@
-/* Studio math unit tests — run with: node scripts/studio.test.js
+/* Studio math unit tests, run with: node scripts/studio.test.js
    Exercises the pure engine exported by assets/js/studio.js against the
    REAL site data (data/v1/models.json + data/v1/prompt-templates.json). */
 "use strict";
@@ -107,7 +107,7 @@ test("draft picks the cheapest candidate, festival prefers quality-flagged", () 
 /* cost parsing honours the optimizer's convention */
 test("costPerSec parses first N/Ms pattern", () => {
   assert.strictEqual(S.costPerSec({ est_cost_credits: "720p ~22/5s, 1080p ~45/5s" }), 4.4);
-  assert.strictEqual(S.costPerSec({ est_cost_credits: "not in captured table — verify live" }), null);
+  assert.strictEqual(S.costPerSec({ est_cost_credits: "not in captured table, verify live" }), null);
 });
 test("costPerImage parses per-image rates", () => {
   assert.strictEqual(S.costPerImage({ est_cost_credits: "0.12 / image" }), 0.12);
@@ -168,12 +168,12 @@ test("schedule phases are positive ints summing to the total", () => {
 test("markdown export contains title, shots, budget, schedule", () => {
   const plan = S.buildPlan(DATA, INPUT({ runtimeSec: 30, tier: "draft" }));
   const md = S.planToMarkdown(plan);
-  assert.ok(md.includes("# Porch Light — AI-film production packet"));
+  assert.ok(md.includes("# Porch Light, AI-film production packet"));
   assert.ok(md.includes("## Shot list"));
   assert.ok(md.includes("## Model picks"));
   assert.ok(md.includes("## Budget"));
   assert.ok(md.includes("## Schedule"));
-  assert.ok(md.includes("### Shot 1 — Setup"));
+  assert.ok(md.includes("### Shot 1, Setup"));
   assert.ok(md.includes("**Clean run:"));
 });
 
@@ -194,18 +194,18 @@ const SIN = (o) => Object.assign(
              anchor: "woman, late 20s, copper bob, leather jacket" }],
     locations: ["abandoned cinema lobby"] }, o || {});
 
-test("series: shot math — 90s draft minidrama, 5 eps -> 15/ep, 75 total", () => {
+test("series: shot math, 90s draft minidrama, 5 eps -> 15/ep, 75 total", () => {
   const p = S.buildSeriesPlan(DATA, SIN());
   assert.strictEqual(p.episodeCount, 5);
   p.episodes.forEach((ep) => assert.strictEqual(ep.shotCount, 15));
   assert.strictEqual(p.totalShots, 75);
   assert.strictEqual(p.shotsPerEpisode, 15);
 });
-test("series: festival tier tightens shots — 90s -> 23/ep", () => {
+test("series: festival tier tightens shots, 90s -> 23/ep", () => {
   const p = S.buildSeriesPlan(DATA, SIN({ tier: "festival" }));
   p.episodes.forEach((ep) => assert.strictEqual(ep.shotCount, 23));
 });
-test("series: deterministic — byte-identical JSON, seed moves with title", () => {
+test("series: deterministic, byte-identical JSON, seed moves with title", () => {
   const a = JSON.stringify(S.buildSeriesPlan(DATA, SIN()));
   const b = JSON.stringify(S.buildSeriesPlan(DATA, SIN()));
   assert.strictEqual(a, b);
@@ -295,8 +295,8 @@ test("series: skeleton arcs when no bridge arcs; bridge arcs attach when given",
 });
 test("series: invalid format/episodes/runtime/title throws", () => {
   assert.throws(() => S.buildSeriesPlan(DATA, SIN({ format: "nope" })), /unknown series format/);
-  assert.throws(() => S.buildSeriesPlan(DATA, SIN({ episodes: 2 })), /3–10/);
-  assert.throws(() => S.buildSeriesPlan(DATA, SIN({ episodes: 11 })), /3–10/);
+  assert.throws(() => S.buildSeriesPlan(DATA, SIN({ episodes: 2 })), /3 to 10/);
+  assert.throws(() => S.buildSeriesPlan(DATA, SIN({ episodes: 11 })), /3 to 10/);
   assert.throws(() => S.buildSeriesPlan(DATA, SIN({ runtimeSec: 20 })), /outside the/);
   assert.throws(() => S.buildSeriesPlan(DATA, SIN({ runtimeSec: 200 })), /outside the/);
   assert.throws(() => S.buildSeriesPlan(DATA, SIN({ seriesTitle: "" })), /needs a title/);
@@ -304,12 +304,12 @@ test("series: invalid format/episodes/runtime/title throws", () => {
 });
 test("seriesToMarkdown: bible, episodes, budget, schedule, checklist", () => {
   const md = S.seriesToMarkdown(S.buildSeriesPlan(DATA, SIN()));
-  assert.ok(md.includes("# Porch Light: The Hallway — series production packet"));
-  assert.ok(md.includes("## Series bible — locked before generation"));
+  assert.ok(md.includes("# Porch Light: The Hallway, series production packet"));
+  assert.ok(md.includes("## Series bible, locked before generation"));
   assert.ok(md.includes("[SERIES BIBLE"));
   assert.ok(md.includes("## Episode arcs"));
-  assert.ok(md.includes("### Episode 1 — 15 shots"));
-  assert.ok(md.includes("## Shot lists — per-shot prompts (with locked DNA)"));
+  assert.ok(md.includes("### Episode 1, 15 shots"));
+  assert.ok(md.includes("## Shot lists, per-shot prompts (with locked DNA)"));
   assert.ok(md.includes("## Budget"));
   assert.ok(md.includes("Saved by the bible:"));
   assert.ok(md.includes("## Schedule"));
@@ -321,7 +321,7 @@ test("seriesToHtml: self-contained, inline CSS, closes cleanly", () => {
   assert.ok(html.startsWith("<!DOCTYPE html>"));
   assert.ok(html.includes("<style>") && html.includes("</style>"), "must carry inline CSS");
   assert.ok(!/fonts\.googleapis|cdn\.|src="http/.test(html), "packet must make no external requests");
-  assert.ok(html.includes("Series bible — locked before generation"));
+  assert.ok(html.includes("Series bible, locked before generation"));
   assert.ok(html.includes("Episode 2"));
   assert.ok(html.includes("Series consistency checklist"));
   assert.ok(html.trim().endsWith("</html>"));
@@ -363,7 +363,7 @@ test("optimizer: unpriced models have no rate (honest floor)", () => {
   });
 });
 
-test("optimizer: floor honesty — nothing below the bar substitutes", () => {
+test("optimizer: floor honesty, nothing below the bar substitutes", () => {
   const opt = optPlan();
   const belowBar = ["DoP (Lite/Standard/Turbo)", "Veo 3.1 Fast / Veo 3", "Luma App / Ray 3.2"];
   const picked = new Set();
@@ -396,7 +396,7 @@ test("optimizer: every pick meets its shot's requirements", () => {
     "every dialogue shot's cheapest pick must be audio-capable");
 });
 
-test("optimizer: mode math — cheapest <= balanced, bestrated >= cheapest, deltas reconcile", () => {
+test("optimizer: mode math, cheapest <= balanced, bestrated >= cheapest, deltas reconcile", () => {
   const opt = optPlan();
   const { cheapest, balanced, bestrated } = opt.modes;
   assert.ok(cheapest.total <= balanced.total + 1e-9,
@@ -437,7 +437,7 @@ test("optimizer: verify-live badges on USD-billed picks", () => {
   assert.ok(md.includes("price may move"), "packet markdown must carry the badge text");
 });
 
-test("optimizer: deterministic — same plan + opts, byte-identical output", () => {
+test("optimizer: deterministic, same plan + opts, byte-identical output", () => {
   const a = JSON.stringify(optPlan());
   const b = JSON.stringify(optPlan());
   assert.strictEqual(a, b);
@@ -581,11 +581,11 @@ test("microdrama: deterministic + input validation", () => {
   assert.strictEqual(a, b, "same inputs must build byte-identical plans");
   assert.notStrictEqual(S.buildMicrodramaPlan(DATA, MIN()).seed,
     S.buildMicrodramaPlan(DATA, MIN({ episodes: 5 })).seed, "seed must change with the inputs");
-  assert.throws(() => S.buildMicrodramaPlan(DATA, MIN({ episodes: 0 })), /1–40/,
+  assert.throws(() => S.buildMicrodramaPlan(DATA, MIN({ episodes: 0 })), /between 1 and 40/,
     "0 episodes must throw");
-  assert.throws(() => S.buildMicrodramaPlan(DATA, MIN({ episodes: 41 })), /1–40/,
+  assert.throws(() => S.buildMicrodramaPlan(DATA, MIN({ episodes: 41 })), /between 1 and 40/,
     "41 episodes must throw");
-  assert.throws(() => S.buildMicrodramaPlan(DATA, MIN({ minPerEpisode: 0 })), /0.5–3/,
+  assert.throws(() => S.buildMicrodramaPlan(DATA, MIN({ minPerEpisode: 0 })), /between 0.5 and 3/,
     "0 min/episode must throw");
   assert.throws(() => S.buildMicrodramaPlan(DATA, MIN({ tier: "ultra" })), /unknown tier/,
     "unknown tier must throw");
@@ -634,7 +634,7 @@ test("refinery: refineryInit seeds character + palette from the prompt slots", (
   const init = S.refineryInit(plan.shots[0], GEN_DRAMA, "draft");
   assert.strictEqual(init.character, "the protagonist");
   assert.strictEqual(init.palette, GEN_DRAMA.light);
-  assert.strictEqual(init.camera, "", "camera starts blank — keep the template's move");
+  assert.strictEqual(init.camera, "", "camera starts blank, keep the template's move");
   assert.strictEqual(init.register, "");
   assert.strictEqual(init.grammar, "");
   assert.deepStrictEqual(Object.keys(init).sort(),
@@ -648,7 +648,7 @@ test("refinery: buildRefinedPrompt is deterministic and appends the five-field s
   const b = S.buildRefinedPrompt(T2, GEN_DRAMA, "festival", fields, MOVEMENTS);
   assert.strictEqual(a.text, b.text, "same fields must build the same prompt");
   assert.ok(a.text.includes("Mara Voss, copper bob"), "character override must land in the prompt");
-  assert.ok(a.text.includes("Refinement — five-field spec:"), "must carry the five-field block");
+  assert.ok(a.text.includes("Refinement, five-field spec:"), "must carry the five-field block");
   assert.ok(a.text.includes("Character design: Mara Voss, copper bob"));
   assert.ok(a.text.includes("Camera movement: Dolly in / Push-in (dolly-in-push-in)"),
     "camera must cite the lexicon move + id");
@@ -738,7 +738,7 @@ test("refinery: markdown packet carries the refinements section only when refine
   S.refineShotInPlan(plan, { episode: null, index: 0 }, "custom prompt", F5({ character: "Mara Voss" }));
   const md = S.planToMarkdown(plan);
   assert.ok(md.includes("## Shot refinements"), "section present once refined");
-  assert.ok(md.includes("Shot 1 — refined ×1"));
+  assert.ok(md.includes("Shot 1, refined ×1"));
   assert.ok(md.includes("Character design: Mara Voss"));
   assert.ok(md.includes("words only"), "honesty framing present");
 });

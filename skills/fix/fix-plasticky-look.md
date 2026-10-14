@@ -7,7 +7,7 @@ description: Kill over-smooth, over-saturated generative rendering.
 
 ## What this gets you
 
-Footage that screams 'AI' — waxy skin, candy colours — will come out looking filmed instead.
+Footage that screams 'AI', waxy skin, candy colours, will come out looking filmed instead.
 
 ## Use when
 
@@ -19,15 +19,15 @@ Any footage that reads as 'AI' instead of photographed.
 
 ## Procedure
 
-1. Desaturate: pull saturation 10–20% (Lumetri or equivalent).
-2. Add fine film grain — the fastest anti-plastic pass.
+1. Desaturate: pull saturation 10 to 20% (Lumetri or equivalent).
+2. Add fine film grain, the fastest anti-plastic pass.
 3. Add subtle chromatic aberration at high-contrast edges.
 4. Check skin: if waxy, a skin-refinement pass or slight diffusion helps.
 
 ## Worked example
 
-Before/after: -15 saturation, 35mm grain overlay, 2px CA — reads as 16mm film.
+Before/after: -15 saturation, 35mm grain overlay, 2px CA, reads as 16mm film.
 
 ## Pitfalls
 
-- More sharpening — plastic + sharp = worse. Soften, don't sharpen.
+- More sharpening, plastic + sharp = worse. Soften, don't sharpen.

@@ -1,4 +1,4 @@
-/* Knowledge checks — client-side scoring + localStorage progress.
+/* Knowledge checks, client-side scoring + localStorage progress.
    Data-driven: questions are rendered server-side from the chapter content;
    this script only handles answering, feedback, and progress. */
 (function () {
@@ -30,7 +30,7 @@
         var fb = fs.querySelector(".check-feedback");
         fs.classList.remove("is-correct", "is-wrong");
         if (!picked) {
-          fb.textContent = "Pick an answer first — then check.";
+          fb.textContent = "Pick an answer first, then check.";
           fb.hidden = false;
           return;
         }
@@ -50,14 +50,14 @@
       });
       result.hidden = false;
       if (answered < questions.length) {
-        result.innerHTML = "<p>Answer every question, then check again — " +
+        result.innerHTML = "<p>Answer every question, then check again, " +
           score + " of " + answered + " answered so far are correct.</p>";
         return;
       }
       var pct = Math.round((score / questions.length) * 100);
       result.innerHTML = "<p><strong>" + score + " of " + questions.length +
         " correct (" + pct + "%).</strong> " +
-        (pct === 100 ? "Flawless — this chapter is yours." :
+        (pct === 100 ? "Flawless, this chapter is yours." :
          pct >= 60 ? "Solid. Re-read the explanations you missed, then move on." :
          "Worth re-reading the chapter before this one sticks.") + "</p>";
       var store = load();

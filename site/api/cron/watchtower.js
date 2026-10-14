@@ -1,22 +1,22 @@
 'use strict';
-/* GET /api/cron/watchtower — film-watchtower v1.0.0 (ARCHITECTURE.md §7.1).
+/* GET /api/cron/watchtower, film-watchtower v1.0.0 (ARCHITECTURE.md §7.1).
  * Daily `0 14 * * *` UTC. Cron only: CRON_SECRET bearer, fail closed (§8.3).
  * Cache-Control: no-store. 60s global cooldown (duplicate-delivery guard).
  *
  * Bounded incremental refresh (§4.2), fits the 10s function budget:
  *  1. Load current watch state (model-checks.json + model-review-queue.json)
  *     from GitHub (source of truth) or the deployed bundle when the
- *     commit-back token is not configured yet (spec §14 — read-only mode).
+ *     commit-back token is not configured yet (spec §14, read-only mode).
  *  2. Re-fetch a rotating slice of each model's check URLs (max 8/run,
  *     4s per-source timeout, max 1 request/5s per provider domain, sequential
- *     for HTML pages — §7.1 rate limits). Rotation is day-keyed so every
+ *     for HTML pages, §7.1 rate limits). Rotation is day-keyed so every
  *     URL gets checked across runs; no stored pointer needed (idempotent).
- *  3. Signature-change detection — the same clean-text + sha256 technique
+ *  3. Signature-change detection, the same clean-text + sha256 technique
  *     as the repo's scripts/refresh/check_models.py. A moved signature
  *     flags the model (changed=true) and appends a REVIEW QUEUE item.
  *  4. writeJsonIfChanged back to the repo (commits only on change).
  *
- * HONESTY RULE (repo promotion workflow — check_models.py docstring):
+ * HONESTY RULE (repo promotion workflow, check_models.py docstring):
  * fetched pages are unreliable signals, so the job NEVER auto-edits
  * models.json pricing/status. It flags; a human or the wave engine verifies
  * and promotes. Pricing-page changes get flag:"pricing-check".
@@ -40,7 +40,7 @@ var MAX_URLS_PER_RUN = 8;
 var RUN_BUDGET_MS = 7000;
 var FETCH_TIMEOUT_MS = 4000;
 /* Free-tier audit (rotation 12): a fetch may only START while a full
- * FETCH_TIMEOUT_MS still fits inside RUN_BUDGET_MS — previously a fetch
+ * FETCH_TIMEOUT_MS still fits inside RUN_BUDGET_MS, previously a fetch
  * starting at the 7s deadline could run 4s past it, and GitHub writes
  * (8s default timeout) after the slice could push the run far past
  * Vercel's 10s Hobby ceiling. Worst case is now bounded by design:
@@ -88,7 +88,7 @@ async function loadState(path) {
   if (g.repo && g.token) {
     var r = await github.readJson(path, GH_TIMEOUT_MS);
     if (r.ok) return { ok: true, json: r.json, from: 'github' };
-    // GitHub read failed — fall back to the bundle honestly, don't 502 yet.
+    // GitHub read failed, fall back to the bundle honestly, don't 502 yet.
     var b = loadBundle(path);
     return b.ok ? { ok: true, json: b.json, from: 'bundle', github_error: r.error } : { ok: false, error: 'github:' + r.error + ' bundle:' + b.error };
   }
@@ -108,7 +108,7 @@ module.exports = async function (req, res) {
   if (Date.now() - lastRunAt < 60000) {
     return env.ok(res, SERVICE, VERSION, { duplicate: true, checked: 0 },
       { source: 'live', noCache: true, request_id: requestId,
-        note: 'Duplicate cron delivery inside the 60s cooldown — skipped.' });
+        note: 'Duplicate cron delivery inside the 60s cooldown, skipped.' });
   }
   lastRunAt = Date.now();
   console.log('[cron] watchtower start request_id=' + requestId);
@@ -156,7 +156,7 @@ module.exports = async function (req, res) {
         var wait = Math.min(gap, Math.max(0, RUN_BUDGET_MS - (Date.now() - startedAt) - 500));
         if (wait <= 0) continue; // defer to a later run rather than blow the budget
         await sleep(wait);
-        if (Date.now() - startedAt > FETCH_LATEST_START_MS) continue; // slept past the last safe start — defer
+        if (Date.now() - startedAt > FETCH_LATEST_START_MS) continue; // slept past the last safe start, defer
       }
       var r = await fetchx.fetchTimeout(item.url, { timeoutMs: FETCH_TIMEOUT_MS });
       lastHit[host] = Date.now();
@@ -175,7 +175,7 @@ module.exports = async function (req, res) {
       var sig = signatureOf(r.text);
       src.ok = true; src.http_status = r.status; src.error = null; src.chars = r.text.length;
       if (src.signature && src.signature !== sig) {
-        // Signature moved — flag, don't auto-mutate models.json (repo rule).
+        // Signature moved, flag, don't auto-mutate models.json (repo rule).
         src.changed_since_baseline = true;
         src.previous_signature = src.signature;
         src.signature = sig;
@@ -195,7 +195,7 @@ module.exports = async function (req, res) {
             flag: isPricingUrl(item.url) ? 'pricing-check' : 'content-change',
             evidence: { old_signature: src.previous_signature, new_signature: sig },
             note: 'Watchtower cron ' + env.nowIso().slice(0, 10) + ': source content signature moved. ' +
-              'Review the page before changing models.json or pricing.json — may be marketing-copy noise.'
+              'Review the page before changing models.json or pricing.json, may be marketing-copy noise.'
           });
           queueAdded++;
         }
@@ -226,7 +226,7 @@ module.exports = async function (req, res) {
     queue.pending = (queue.items || []).filter(function (it) { return it.status === 'review' || it.status === 'pending'; }).length;
 
     var commitMsg = '[watchtower] model/pricing watch ' + env.nowIso().slice(0, 10) +
-      ' — ' + changedModels.length + ' model(s) flagged, ' + queueAdded + ' review item(s)';
+      ', ' + changedModels.length + ' model(s) flagged, ' + queueAdded + ' review item(s)';
     var overBudget = Date.now() - startedAt > RUN_BUDGET_MS;
     var c1 = overBudget ? { committed: false, reason: 'budget' } : await github.writeJsonIfChanged(CHECKS_PATH, checks, commitMsg, GH_TIMEOUT_MS);
     var c2 = overBudget ? { committed: false, reason: 'budget' } : await github.writeJsonIfChanged(QUEUE_PATH, queue, commitMsg, GH_TIMEOUT_MS);
@@ -236,15 +236,14 @@ module.exports = async function (req, res) {
     if (c1.reason === 'no-token' || c2.reason === 'no-token') {
       commitNote = 'Read-only mode: GITHUB_REPO_TOKEN is not configured yet (user decision, spec §14). ' +
         'State was recomputed but not committed; static JSON refreshes via wave-engine pushes. ' +
-        'Set the PAT in Vercel (Production env) to enable commit-back — no code change needed.';
+        'Set the PAT in Vercel (Production env) to enable commit-back, no code change needed.';
     } else if (!committed && (c1.reason || c2.reason)) {
       commitNote = (c1.reason === 'budget' || c2.reason === 'budget')
         ? 'Commit skipped: the run budget was spent by the check slice, so commit-back was deferred to the next run rather than risk the 10s function ceiling. State was recomputed but not committed.'
         : 'Commit skipped: ' + [c1.reason, c2.reason].filter(Boolean).join('; ');
     }
 
-    // Watchtower 2.0: report the drift picture alongside the check run —
-    // how many models currently need a human's eyes, and whether the
+    // Watchtower 2.0: report the drift picture alongside the check run, // how many models currently need a human's eyes, and whether the
     // pricing table moved against the history baseline this run can see.
     var driftView = null;
     try {

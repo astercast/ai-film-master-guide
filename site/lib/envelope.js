@@ -1,5 +1,5 @@
 'use strict';
-/* envelope.js — shared lib, film-watchtower.
+/* envelope.js, shared lib, film-watchtower.
  * Copied per ARCHITECTURE.md §1.11 (identical logic in every repo; do not fork).
  * Every function returns ONLY through these helpers. No raw res.json() shapes.
  */

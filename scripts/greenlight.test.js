@@ -1,4 +1,4 @@
-/* Green Light engine unit tests — run with: node scripts/greenlight.test.js
+/* Green Light engine unit tests, run with: node scripts/greenlight.test.js
    Exercises the pure engine exported by assets/js/greenlight.js against the
    REAL site data (data/v1/models.json + data/v1/prompt-templates.json +
    data/v1/pricing.json). */
@@ -25,7 +25,7 @@ function test(name, fn) {
 }
 
 const WEAK = "a dog in a city";
-const STRONG = "Mara, a weathered fisherwoman in her sixties — silver braid, oilskin coat, " +
+const STRONG = "Mara, a weathered fisherwoman in her sixties, silver braid, oilskin coat, " +
   "mending a torn net on a fog-draped wooden dock at dawn; the camera pushes in slowly " +
   "from medium to close-up; cold blue dawn light with a warm lantern glow from frame left; " +
   "quiet resilience; coat hem stirring in the sea breeze.";
@@ -189,11 +189,11 @@ test("verdict: strong read greens, weak read passes", () => {
 test("markdown export contains the beats", () => {
   const m = G.buildMeeting(DATA, pricingDoc, INPUT({ logline: STRONG, title: "The Net Mender" }), S);
   const md = G.meetingToMarkdown(m);
-  assert.ok(md.includes("# Green light — The Net Mender"));
+  assert.ok(md.includes("# Green light, The Net Mender"));
   assert.ok(md.includes("## The board"));
   assert.ok(md.includes("## The money"));
   assert.ok(md.includes("## The schedule"));
-  assert.ok(md.includes("## The verdict — GREEN LIGHT"));
+  assert.ok(md.includes("## The verdict, GREEN LIGHT"));
   assert.ok(md.includes("pricing.json"));
 });
 test("genre validation surfaces bad genres", () => {

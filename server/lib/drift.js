@@ -1,15 +1,15 @@
 'use strict';
-/* drift.js — Watchtower 2.0 drift engine (pure functions, no I/O).
+/* drift.js, Watchtower 2.0 drift engine (pure functions, no I/O).
  *
  * Three jobs:
- *  1. diffPricing(baseline, current) — mechanical pricing-change detection.
+ *  1. diffPricing(baseline, current), mechanical pricing-change detection.
  *     The baseline is the pricing table as curated on 2026-10-11, stored in
  *     data/v1/model-history.json. Any tier that appears, disappears, or moves
  *     price against it is reported. This is how a rate change gets caught by
  *     arithmetic instead of by someone remembering to look.
- *  2. eventsSince(history, sinceMs) — the "what changed since your last
+ *  2. eventsSince(history, sinceMs), the "what changed since your last
  *     visit" filter over the hand-authored event log.
- *  3. computeDrift(...) — per-model drift: check status vs record status,
+ *  3. computeDrift(...), per-model drift: check status vs record status,
  *     verification staleness, pricing coverage, and price movement, rolled
  *     into a severity (alert | watch | ok) with plain-language reasons.
  *
@@ -58,7 +58,7 @@ function round2(n) { return Math.round(n * 100) / 100; }
 
 /* baselineEntries / currentEntries: [{model_id, model, pricing_status,
  * tiers: [{tier, unit, usd_low, usd_high}]}] (the baseline's compact shape
- * and pricing.json entries both fit — extra fields are ignored).
+ * and pricing.json entries both fit, extra fields are ignored).
  * Returns changes sorted by model then tier:
  *   {model_id, model, tier, unit, kind, before_low, before_high,
  *    after_low, after_high, pct}
@@ -77,8 +77,8 @@ function diffPricing(baselineEntries, currentEntries) {
     var c = cur[id];
     var b = base[id];
     if (!b) {
-      // A new record's "now" is its full rate span — the cheapest to the
-      // priciest tier — so the diff table can show a real number instead
+      // A new record's "now" is its full rate span, the cheapest to the
+      // priciest tier, so the diff table can show a real number instead
       // of a dash. Null when the new record publishes no rate at all.
       var lows = (c.tiers || []).map(function (t) { return t.usd_low; });
       var highs = (c.tiers || []).map(function (t) { return t.usd_high; });
@@ -134,7 +134,7 @@ function diffPricing(baselineEntries, currentEntries) {
 }
 
 /* Events strictly after sinceMs (an event ON the since date at 00:00 UTC
- * counts when sinceMs is that midnight — dates are day-granular, so the
+ * counts when sinceMs is that midnight, dates are day-granular, so the
  * comparison is by calendar day: event date >= since day). Newest first. */
 function eventsSince(history, sinceMs) {
   var events = (history && history.events) || [];
@@ -195,26 +195,26 @@ function computeDrift(input) {
     var alerts = [];
 
     if (checkStatus === 'changed') {
-      alerts.push('Source check flagged a change — queued for review. This record still shows the last verified data.');
+      alerts.push('Source check flagged a change, queued for review. This record still shows the last verified data.');
     } else if (checkStatus === 'error') {
-      alerts.push('The last automated source check failed — this record shows the last verified data.');
+      alerts.push('The last automated source check failed, this record shows the last verified data.');
     } else if (checkStatus === 'unwatched') {
-      alerts.push('No automated source watch yet — verified by hand on the wave cadence.');
+      alerts.push('No automated source watch yet, verified by hand on the wave cadence.');
     }
     if (pricingStatus === 'unpublished' && m.status !== 'discontinued') {
-      alerts.push('No published USD rate — verify live before budgeting.');
+      alerts.push('No published USD rate, verify live before budgeting.');
     }
     if (pricingStatus === 'missing') {
-      alerts.push('No pricing record — verify live before budgeting.');
+      alerts.push('No pricing record, verify live before budgeting.');
     }
     if (staleDays !== null && staleDays > 14) {
-      alerts.push('Record last verified ' + staleDays + ' days ago — re-check before a paid shoot.');
+      alerts.push('Record last verified ' + staleDays + ' days ago, re-check before a paid shoot.');
     }
     if (priceMoved) {
       alerts.push('Pricing table moved against the ' +
         ((input.historyDoc && input.historyDoc.pricing_baseline &&
           input.historyDoc.pricing_baseline.at) || 'baseline').slice(0, 10) +
-        ' baseline — see the pricing changes.');
+        ' baseline, see the pricing changes.');
     }
 
     var severity = 'ok';

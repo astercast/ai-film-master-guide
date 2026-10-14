@@ -31,4 +31,4 @@ IDENTITY: MARA… / MOTION: crosses the kitchen, sets down the ledger. Slow doll
 
 ## Pitfalls
 
-- Appearance in the motion block — the model will redesign the character mid-action.
+- Appearance in the motion block, the model will redesign the character mid-action.

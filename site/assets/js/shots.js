@@ -1,4 +1,4 @@
-/* Shot-list builder — pre-production planner.
+/* Shot-list builder, pre-production planner.
    Add shots (type, description, model, seconds, takes) -> live cost table
    from models.json, totals with 5x/20x envelopes, localStorage lists,
    JSON export, and a handoff to the budget optimizer.
@@ -7,7 +7,7 @@
   "use strict";
 
   var STORE_KEY = "afg-shot-lists";
-  var USD_PER_CREDIT = 0.0392; /* models.json cost_basis, Oct 2026 — verify live */
+  var USD_PER_CREDIT = 0.0392; /* models.json cost_basis, Oct 2026, verify live */
 
   function esc(s) {
     return String(s == null ? "" : "").replace(/[&<>"']/g, function (c) {
@@ -55,7 +55,7 @@
   }
 
   function fmtUSD(n) {
-    if (n == null || isNaN(n)) return "—";
+    if (n == null || isNaN(n)) return "…";
     if (n >= 1000) return "$" + Math.round(n).toLocaleString("en-US");
     if (n >= 10) return "$" + n.toFixed(0);
     return "$" + n.toFixed(2);
@@ -89,7 +89,7 @@
       var tr = document.createElement("tr");
       tr.innerHTML =
         "<td>" + (idx + 1) + "</td>" +
-        "<td><strong>" + esc(sh.type) + "</strong><br><span class=\"quiz-cost-sub\">" + esc(sh.desc || "—") + "</span></td>" +
+        "<td><strong>" + esc(sh.type) + "</strong><br><span class=\"quiz-cost-sub\">" + esc(sh.desc || "…") + "</span></td>" +
         "<td>" + esc(sh.model) + "</td>" +
         "<td>" + sh.seconds + "s × " + sh.takes + "</td>" +
         "<td><strong>" + (cost === null ? '<span class="quiz-cost-na">unpriced</span>' : fmtUSD(cost)) + "</strong></td>" +
@@ -120,9 +120,9 @@
         '<div class="calc-stat highlight"><div class="calc-value">' + fmtUSD(pricedUSD * 20) + '</div><div class="calc-label">20× envelope</div></div>' +
         (unpricedCount
           ? '<p class="calc-note">' + unpricedCount + ' shot' + (unpricedCount === 1 ? '' : 's') +
-            ' use' + (unpricedCount === 1 ? 's' : '') + ' an unpriced model — excluded from totals. Verify live before budgeting.</p>'
+            ' use' + (unpricedCount === 1 ? 's' : '') + ' an unpriced model, excluded from totals. Verify live before budgeting.</p>'
           : "") +
-        '<p class="calc-note">Envelopes from the <a href="craft/longform-pipelines.html">long-form pipelines</a> chapter: rejections, re-grades, and consistency fixes multiply the clean cost 5–20×. Budget the envelope, not the clean run.</p>';
+        '<p class="calc-note">Envelopes from the <a href="craft/longform-pipelines.html">long-form pipelines</a> chapter: rejections, re-grades, and consistency fixes multiply the clean cost 5 to 20×. Budget the envelope, not the clean run.</p>';
 
       /* Optimizer handoff: total runtime in minutes + average takes. */
       var mins = Math.max(0.5, totalSec / 60).toFixed(1);
@@ -176,7 +176,7 @@
       seconds: Math.max(1, parseInt(els.seconds.value, 10) || 4),
       takes: Math.max(1, parseInt(els.takes.value, 10) || 5)
     };
-    if (!sh.model) { fail("Pick a model for the shot first — model data is still loading."); return; }
+    if (!sh.model) { fail("Pick a model for the shot first, model data is still loading."); return; }
     els.error.hidden = true;
     shots.push(sh);
     els.desc.value = "";
@@ -191,7 +191,7 @@
   els.saveList.addEventListener("click", function () {
     var name = (els.listName.value || "").trim();
     if (!name) { fail("Name the list before saving."); return; }
-    if (!shots.length) { fail("Nothing to save — add shots first."); return; }
+    if (!shots.length) { fail("Nothing to save, add shots first."); return; }
     var store = readStore();
     store[name] = shots;
     writeStore(store);
@@ -241,7 +241,7 @@
         });
         els.error.hidden = true;
         render();
-      } catch (e) { fail("Could not import that file — expected the shot-list JSON this page exports."); }
+      } catch (e) { fail("Could not import that file, expected the shot-list JSON this page exports."); }
     };
     r.readAsText(f);
     els.importFile.value = "";
@@ -263,7 +263,7 @@
       models.forEach(function (x) {
         var o = document.createElement("option");
         o.value = x.m.model;
-        o.textContent = x.m.model + " — " + x.cps.toFixed(2) + " cr/s";
+        o.textContent = x.m.model + ", " + x.cps.toFixed(2) + " cr/s";
         els.model.appendChild(o);
       });
       if (unpriced.length) {

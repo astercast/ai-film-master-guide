@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* continuity.test.js — Continuity Ledger engine tests.
+/* continuity.test.js, Continuity Ledger engine tests.
  * Pins the engine against the chapter's own rules
  * (craft/character-consistency.md): the five-item pre-generation
  * checklist, the rejection rules (a broken lock stops the chain),
@@ -26,18 +26,18 @@ ok('kinds: the six lock kinds the chapter names', () => {
 
 ok('statuses: locked / drifted / broken', () => {
   assert.deepStrictEqual(E.STATUSES.map((s) => s.id), ['locked', 'drifted', 'broken']);
-  assert.strictEqual(E.statusLabel('drifted'), 'Drifted — off the lock');
-  assert.strictEqual(E.statusLabel('nope'), '— no state recorded —');
+  assert.strictEqual(E.statusLabel('drifted'), 'Drifted, off the lock');
+  assert.strictEqual(E.statusLabel('nope'), 'No state recorded ');
 });
 
-ok('default ledger: 6 entries, 5 locked, 1 drifted, 0 broken — verdict is the hold', () => {
+ok('default ledger: 6 entries, 5 locked, 1 drifted, 0 broken, verdict is the hold', () => {
   const r = E.evaluate(E.DEFAULT_ENTRIES);
   assert.strictEqual(r.total, 6);
   assert.strictEqual(r.locked, 5);
   assert.strictEqual(r.drifted, 1);
   assert.strictEqual(r.broken, 0);
   assert.strictEqual(r.clean, false);
-  assert(r.verdict.includes('Hold — 1 lock has drifted'));
+  assert(r.verdict.includes('Hold, 1 lock has drifted'));
   assert.strictEqual(r.driftedEntries[0].kind, 'wardrobe');
 });
 
@@ -87,10 +87,10 @@ ok('checklistState: counts, missing, complete', () => {
 
 ok('export: markdown carries title, checklist marks, locks, verdict, counts', () => {
   const md = E.ledgerToMarkdown('The Night Bus', E.DEFAULT_ENTRIES, ['identity', 'wardrobe']);
-  assert(md.startsWith('# Continuity ledger — The Night Bus'));
+  assert(md.startsWith('# Continuity ledger, The Night Bus'));
   assert(md.includes('- [x] Identity system chosen and trained'));
   assert(md.includes('- [ ] Location master stills approved'));
-  assert(md.includes('Mara Venn — wardrobe, scenes 1–6 [wardrobe] — Drifted — off the lock'));
+  assert(md.includes('Mara Venn, wardrobe, scenes 1 to 6 [wardrobe], Drifted, off the lock'));
   assert(md.includes('## Chaining verdict'));
   assert(md.includes('Locked: 5 · drifted: 1 · broken: 0.'));
   assert(md.endsWith('\n'));

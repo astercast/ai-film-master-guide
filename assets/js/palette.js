@@ -1,4 +1,4 @@
-/* Command palette — Ctrl/Cmd+K fuzzy search across the guide.
+/* Command palette, Ctrl/Cmd+K fuzzy search across the guide.
    Loads site/search-index.json (or ../search-index.json on chapter pages). */
 (function () {
   const palette = document.getElementById("palette");

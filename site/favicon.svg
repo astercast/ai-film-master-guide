@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <!-- The REC frame — AI Film Master Guide icon (icon-theme-proposal.md, Foundry round 12).
+  <!-- The REC frame, AI Film Master Guide icon (icon-theme-proposal.md, Foundry round 12).
        Field: --bg #090807. Brackets: --gold #f5b301 (tungsten key light). Dot: --ember #e62429 (REC red). -->
   <rect x="1" y="1" width="62" height="62" rx="14" fill="#090807"/>
   <g fill="none" stroke="#f5b301" stroke-width="5" stroke-linecap="round">

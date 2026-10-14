@@ -1,4 +1,4 @@
-/* Interactive budget calculator — The Watchtower edition.
+/* Interactive budget calculator, The Watchtower edition.
    Rate table loads from /api/models-pricing (live) with fallback to the
    static data/v1/pricing.json; a small built-in estimate table covers the
    case where neither can be read, so the calculator never goes blank.
@@ -7,7 +7,7 @@
 (function () {
   "use strict";
 
-  /* Built-in fallback — Oct 2026 third-party estimates. Used only when the
+  /* Built-in fallback, Oct 2026 third-party estimates. Used only when the
      live API and the cached pricing.json are both unreachable, and for
      models the pricing table has no video rate for. */
   var BUILTIN = [
@@ -104,12 +104,12 @@
 
   function optionLabel(entry, shotLen) {
     var pc = perClip(entry, shotLen);
-    var range = money(pc[0]) + (pc[1] !== pc[0] ? "–" + money(pc[1]) : "");
+    var range = money(pc[0]) + (pc[1] !== pc[0] ? "" + money(pc[1]) : "");
     return entry.name + " (~" + range + "/clip)";
   }
 
   function optionTitle(entry, shotLen) {
-    var span = money(entry.rateLow) + (entry.rateHigh !== entry.rateLow ? "–" + money(entry.rateHigh) : "");
+    var span = money(entry.rateLow) + (entry.rateHigh !== entry.rateLow ? "" + money(entry.rateHigh) : "");
     var rate = entry.perSecond ? span + "/s × " + shotLen + "s shots" : span + "/clip";
     return entry.tierName + " tier · " + rate + " · " + entry.basis;
   }
@@ -153,7 +153,7 @@
       ? "Watchtower live API · " + fmtWhen(provenance.at)
       : provenance.kind === "static"
         ? "cached pricing.json · updated " + fmtWhen(provenance.at)
-        : "built-in estimates (Oct 2026) — live data unavailable";
+        : "built-in estimates (Oct 2026), live data unavailable";
     return "Rates: " + basis + ". Per-second rates × your " + shotLen +
       "s shots; hover a model for its basis.";
   }

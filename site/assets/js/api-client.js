@@ -1,4 +1,4 @@
-/* api-client.js — shared fallback contract client (server-program ARCHITECTURE.md §3.2).
+/* api-client.js, shared fallback contract client (server-program ARCHITECTURE.md §3.2).
    Copy verbatim per repo; the seven copies must stay byte-identical (or the
    difference documented). Accessibility lives in markup/CSS, not here:
    badge spans carry role="status" + tabindex="0" so the state text below
@@ -18,7 +18,7 @@
   // opts: { timeoutMs, staticPath, badgeEl }
   // livePath like "/api/trends"; staticPath like "/data/v1/trends.flat.json"
   // resolves { data, source: "live"|"static", generatedAt, degraded, note }
-  // never rejects — worst case returns { data: null, source: "none" }
+  // never rejects, worst case returns { data: null, source: "none" }
   function fetchWithFallback(livePath, staticPath, opts) {
     opts = opts || {};
     var timeoutMs = opts.timeoutMs || LIVE_TIMEOUT_MS;
@@ -32,7 +32,7 @@
         badgeEl.title = "Fresh from the server · " + fmtTime(generatedAt);
       } else if (state === "cached") {
         badgeEl.textContent = "cached · updated " + fmtTime(generatedAt);
-        badgeEl.title = (note || "Server unreachable — showing last published data.") +
+        badgeEl.title = (note || "Server unreachable, showing last published data.") +
           " · " + fmtTime(generatedAt);
       } else if (state === "waking") {
         badgeEl.textContent = "waking server…";

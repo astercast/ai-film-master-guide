@@ -1,5 +1,5 @@
 'use strict';
-/* ratelimit.js — shared lib, film-watchtower.
+/* ratelimit.js, shared lib, film-watchtower.
  * Copied per ARCHITECTURE.md §1.11 / §1.7.
  * Per-instance in-memory token bucket. Best-effort: resets on cold start
  * (documented, not hidden). Key on x-forwarded-for (first entry), not socket IP.
@@ -42,7 +42,7 @@ function clientIp(req) {
   return 'unknown';
 }
 
-// Hash an IP for logs — never log the raw IP (§4.5).
+// Hash an IP for logs, never log the raw IP (§4.5).
 var crypto = require('crypto');
 function ipHash(ip) {
   return crypto.createHash('sha256').update(String(ip)).digest('hex').slice(0, 12);

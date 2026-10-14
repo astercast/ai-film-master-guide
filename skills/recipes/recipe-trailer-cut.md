@@ -1,13 +1,13 @@
 ---
 name: recipe-trailer-cut
-description: The 60–90s competition weapon, structured.
+description: The 60 to 90s competition weapon, structured.
 ---
 
 # Cut a trailer
 
 ## What this gets you
 
-You will have cut your footage into a 60–90 second trailer with a hook, a build and a title moment.
+You will have cut your footage into a 60 to 90 second trailer with a hook, a build and a title moment.
 
 ## Use when
 
@@ -21,7 +21,7 @@ Trailers and teasers.
 ## Procedure
 
 1. See workflow-trailer-structure; this is its production recipe.
-2. Pull selects from the film's hero shots — trailers are made from winners.
+2. Pull selects from the film's hero shots, trailers are made from winners.
 3. Sound-design the trailer separately: it's its own film.
 4. Title card on the button image; laurel space on the end card.
 
@@ -31,4 +31,4 @@ Trailers and teasers.
 
 ## Pitfalls
 
-- Recutting the whole film shorter — a trailer is built, not trimmed.
+- Recutting the whole film shorter, a trailer is built, not trimmed.

@@ -1,4 +1,4 @@
-/* Failure doctor — interactive troubleshooter.
+/* Failure doctor, interactive troubleshooter.
    Data: diagnoses.json (copied into site/ at build time from data/v1/).
    Pick a symptom -> diagnosis in craft terms -> the fix -> one-click
    deep link into the workshop's repair templates (?template=r1..r3). */

@@ -7,7 +7,7 @@ description: Assemble the radio edit before locking picture.
 
 ## What this gets you
 
-You will have a version of your film that already works with your eyes closed — dialogue and sound cut first, picture fitted to it.
+You will have a version of your film that already works with your eyes closed, dialogue and sound cut first, picture fitted to it.
 
 ## Use when
 
@@ -28,8 +28,8 @@ Before the fine cut.
 
 ## Worked example
 
-A 4-min short's radio edit exposed a dead act 2 — fixed with two pickup shots instead of twenty.
+A 4-min short's radio edit exposed a dead act 2, fixed with two pickup shots instead of twenty.
 
 ## Pitfalls
 
-- Picture-locking before the sound works — re-cutting picture to fix sound is backwards.
+- Picture-locking before the sound works, re-cutting picture to fix sound is backwards.

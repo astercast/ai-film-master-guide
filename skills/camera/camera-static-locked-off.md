@@ -7,7 +7,7 @@ description: Direct a static locked-off camera move with exact prompt phrasing.
 
 ## What this gets you
 
-Your shot will gain what this move is for — timelapse; dialogue coverage; product stills; letting performance carry the shot — in the exact words models obey, ready to paste into any prompt.
+Your shot will gain what this move is for, timelapse; dialogue coverage; product stills; letting performance carry the shot, in the exact words models obey, ready to paste into any prompt.
 
 ## Use when
 
@@ -22,7 +22,7 @@ Use when the shot needs what this move does: Timelapse; dialogue coverage; produ
 ## Procedure
 
 1. Start from the guide's phrasing: `"Static locked-off shot" / "Static tripod shot" / Hailuo: [Static shot]; never "the camera doesn't move"`
-2. State the move, the speed, AND the purpose — models obey motivated camera better than decorative camera.
+2. State the move, the speed, AND the purpose, models obey motivated camera better than decorative camera.
 3. Keep it the only move in the prompt. One move per shot.
 4. Pair with a matching subject pace (tracking a runner = camera pace matches runner).
 5. Draft at 720p; check the move reads before committing to hero resolution.
@@ -37,5 +37,5 @@ Use when the shot needs what this move does: Timelapse; dialogue coverage; produ
 
 ## Pitfalls
 
-- Naming the move without speed/stability — 'dolly in' alone gives you a random dolly.
-- Combining with a second move — pick one.
+- Naming the move without speed/stability, 'dolly in' alone gives you a random dolly.
+- Combining with a second move, pick one.

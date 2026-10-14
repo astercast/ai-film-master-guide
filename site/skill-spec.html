@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Skill schema spec — AI Film Master Guide</title>
+  <title>Skill schema spec, AI Film Master Guide</title>
   <meta name="description" content="The exact frontmatter-plus-sections format every guide skill follows, so other agent frameworks can consume or produce compatible skills.">
+  <link rel="preload" href="assets/fonts/anton-latin-normal-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/inter-latin-normal-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/fonts.css">
   <link rel="stylesheet" href="assets/css/tokens.css">
@@ -21,13 +22,13 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="canonical" href="https://ai-film-master-guide-live.vercel.app/skill-spec">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Skill schema spec — AI Film Master Guide">
+  <meta property="og:title" content="Skill schema spec, AI Film Master Guide">
   <meta property="og:description" content="The exact frontmatter-plus-sections format every guide skill follows, so other agent frameworks can consume or produce compatible skills.">
   <meta property="og:image" content="https://ai-film-master-guide-live.vercel.app/assets/og-card.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Skill schema spec — AI Film Master Guide">
+  <meta name="twitter:title" content="Skill schema spec, AI Film Master Guide">
   <meta name="twitter:description" content="The exact frontmatter-plus-sections format every guide skill follows, so other agent frameworks can consume or produce compatible skills.">
   <meta name="twitter:image" content="https://ai-film-master-guide-live.vercel.app/assets/og-card.png">
 </head>
@@ -56,8 +57,9 @@
   <main id="main">
     <section class="hero" aria-labelledby="spec-title">
       <div class="container hero-inner">
+        <p class="hero-slate"><span>Agent-native</span></p>
         <h1 id="spec-title">Skill schema <span class="accent">spec.</span></h1>
-        <p class="lede">Every one of the 242 skills in <code>skills/</code> follows this exact format — YAML frontmatter plus six Markdown sections. Build to it and your skills slot straight into this library, or any agent framework that reads it.</p>
+        <p class="lede">Every one of the 242 skills in <code>skills/</code> follows this exact format, YAML frontmatter plus six Markdown sections. Build to it and your skills slot straight into this library, or any agent framework that reads it.</p>
         
       </div>
     </section>
@@ -87,27 +89,27 @@
           </tbody>
         </table>
         <h3 id="example-h">Full example</h3>
-        <p class="example-meta"><code>skills/prompts/prompt-a1.md</code> — frontmatter first, then the rendered body:</p>
+        <p class="example-meta"><code>skills/prompts/prompt-a1.md</code>, frontmatter first, then the rendered body:</p>
         <pre><code>name: prompt-a1
 description: Write an anime action (sakuga) prompt (animated track) using the guide&#x27;s template.</code></pre>
       </div>
       <article class="card" style="margin-bottom:var(--space-7);">
         <div class="prose"><h2 id="prompt-anime-action-sakuga">Prompt: Anime action (sakuga)</h2>
 <h3 id="what-this-gets-you">What this gets you</h3>
-<p>You will have a finished prompt for an anime action (sakuga) — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.</p>
+<p>You will have a finished prompt for an anime action (sakuga), ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.</p>
 <h3 id="use-when">Use when</h3>
-<p>You are directing a shot that needs: anime action (sakuga). Anatomy: cel/sakuga/impact frames — NO lens or DOF language. Models: PixVerse (Anime), Vidu Q1, Pika.</p>
+<p>You are directing a shot that needs: anime action (sakuga). Anatomy: cel/sakuga/impact frames, NO lens or DOF language. Models: PixVerse (Anime), Vidu Q1, Pika.</p>
 <h3 id="inputs">Inputs</h3>
 <ul>
-<li><code>[CHARACTER]</code> — fill per the template&#x27;s anatomy</li>
+<li><code>[CHARACTER]</code>, fill per the template&#x27;s anatomy</li>
 </ul>
 <h3 id="procedure">Procedure</h3>
 <ol>
 <li>Gather one value per placeholder. Keep [STYLE] identical to every other prompt in the project.</li>
-<li>Fill the template verbatim — do not paraphrase its camera language:</li>
+<li>Fill the template verbatim, do not paraphrase its camera language:</li>
 <li><code>Cel-animated action cut: [CHARACTER] dashes forward, speed lines and impact frames, painted background holds still. Sakuga flourish on the strike. STYLE LOCK: bold colors, expressive features, dramatic lighting, hand-dra...</code></li>
 <li>Confirm exactly ONE primary motion and ONE camera move in the final prompt.</li>
-<li>Separate identity from motion: appearance descriptors in the Identity Block, action in the Motion Block — never pronouns alone as the subject anchor.</li>
+<li>Separate identity from motion: appearance descriptors in the Identity Block, action in the Motion Block, never pronouns alone as the subject anchor.</li>
 <li>Handle audio in post (this template&#x27;s models don&#x27;t do native audio well).</li>
 <li>Generate a 720p draft first; approve the select before any 1080p/4K render.</li>
 </ol>
@@ -120,15 +122,15 @@ description: Write an anime action (sakuga) prompt (animated track) using the gu
 </ul>
 <h3 id="pitfalls">Pitfalls</h3>
 <ul>
-<li>Stacking two motions or two camera moves in one prompt — the model will split the difference and ruin both.</li>
-<li>Changing the [STYLE] line between shots — the fastest route to a recast-looking cast.</li>
+<li>Stacking two motions or two camera moves in one prompt, the model will split the difference and ruin both.</li>
+<li>Changing the [STYLE] line between shots, the fastest route to a recast-looking cast.</li>
 </ul></div>
       </article>
     </section>
   </main>
   <footer class="site-footer">
     <div class="container footer-grid">
-      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <p>AI Film Master Guide, research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer"><a href="index.html">Guide</a><a href="skills.html">Skills</a><a href="workshop.html">Workshop</a><a href="quiz.html">Quiz</a><a href="compare.html">Compare</a><a href="gallery.html">Gallery</a><a href="teardown.html">Teardowns</a><a href="model-watch.html">Model watch</a><a href="showdown.html">Showdown</a><a href="forge.html">Episode forge</a><a href="clearance.html">Script clearance</a><a href="continuity.html">Continuity ledger</a><a href="cuesheet.html">Cue sheet</a><a href="grade.html">Grade sheet</a><a href="cut.html">Cut sheet</a><a href="take.html">Take sheet</a><a href="longform.html">Longform sheet</a><a href="path.html">The path</a><a href="checks/">Knowledge checks</a><a href="budget.html">Budget</a><a href="optimizer.html">Optimizer</a><a href="shots.html">Shot list</a><a href="style-bible.html">Style bible</a><a href="doctor.html">Doctor</a><a href="linter.html">Linter</a><a href="cutting-room.html">Cutting room</a><a href="prompts.html">Prompts</a><a href="models/">Models</a><a href="anatomy.html">Anatomy</a><a href="manifesto.html">Manifesto</a><a href="craft-not-buttons.html">Craft, not buttons</a><a href="recipes.html">Recipes</a><a href="field-guides/">Field guides</a><a href="changelog.html">Changelog</a><a href="skill-spec.html">Skill spec</a><a href="api.html">API</a></nav>
       <div class="footer-colophon"><span>AI Film Master Guide</span><span class="tail">Craft, not buttons</span></div>
     </div>

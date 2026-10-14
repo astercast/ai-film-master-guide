@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Model deep dives — AI Film Master Guide</title>
-  <meta name="description" content="One deep-dive page per model: cost math, prompt tips, use-when/avoid-when — all generated from the guide's versioned model data.">
+  <title>Model deep dives, AI Film Master Guide</title>
+  <meta name="description" content="One deep-dive page per model: cost math, prompt tips, use-when/avoid-when, all generated from the guide's versioned model data.">
+  <link rel="preload" href="../assets/fonts/anton-latin-normal-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/inter-latin-normal-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../assets/css/fonts.css">
   <link rel="stylesheet" href="../assets/css/tokens.css">
@@ -21,14 +22,14 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="canonical" href="https://ai-film-master-guide-live.vercel.app/models/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Model deep dives — AI Film Master Guide">
-  <meta property="og:description" content="One deep-dive page per model: cost math, prompt tips, use-when/avoid-when — all generated from the guide's versioned model data.">
+  <meta property="og:title" content="Model deep dives, AI Film Master Guide">
+  <meta property="og:description" content="One deep-dive page per model: cost math, prompt tips, use-when/avoid-when, all generated from the guide's versioned model data.">
   <meta property="og:image" content="https://ai-film-master-guide-live.vercel.app/assets/og-card.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Model deep dives — AI Film Master Guide">
-  <meta name="twitter:description" content="One deep-dive page per model: cost math, prompt tips, use-when/avoid-when — all generated from the guide's versioned model data.">
+  <meta name="twitter:title" content="Model deep dives, AI Film Master Guide">
+  <meta name="twitter:description" content="One deep-dive page per model: cost math, prompt tips, use-when/avoid-when, all generated from the guide's versioned model data.">
   <meta name="twitter:image" content="https://ai-film-master-guide-live.vercel.app/assets/og-card.png">
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Soul 2.0", "url": "https://ai-film-master-guide-live.vercel.app/models/soul-2-0"}, {"@type": "ListItem", "position": 2, "name": "Soul Cinema", "url": "https://ai-film-master-guide-live.vercel.app/models/soul-cinema"}, {"@type": "ListItem", "position": 3, "name": "Soul Cast", "url": "https://ai-film-master-guide-live.vercel.app/models/soul-cast"}, {"@type": "ListItem", "position": 4, "name": "Seedance 2.0", "url": "https://ai-film-master-guide-live.vercel.app/models/seedance-2-0"}, {"@type": "ListItem", "position": 5, "name": "Seedance 2.5", "url": "https://ai-film-master-guide-live.vercel.app/models/seedance-2-5"}, {"@type": "ListItem", "position": 6, "name": "Seedance 3.0", "url": "https://ai-film-master-guide-live.vercel.app/models/seedance-3-0"}, {"@type": "ListItem", "position": 7, "name": "Kling 3.0", "url": "https://ai-film-master-guide-live.vercel.app/models/kling-3-0"}, {"@type": "ListItem", "position": 8, "name": "Kling 2.5 Turbo", "url": "https://ai-film-master-guide-live.vercel.app/models/kling-2-5-turbo"}, {"@type": "ListItem", "position": 9, "name": "Veo 3.1", "url": "https://ai-film-master-guide-live.vercel.app/models/veo-3-1"}, {"@type": "ListItem", "position": 10, "name": "Veo 3.1 Fast / Veo 3", "url": "https://ai-film-master-guide-live.vercel.app/models/veo-3-1-fast-veo-3"}, {"@type": "ListItem", "position": 11, "name": "Sora 2 / Pro / Max", "url": "https://ai-film-master-guide-live.vercel.app/models/sora-2-pro-max"}, {"@type": "ListItem", "position": 12, "name": "Wan 2.6", "url": "https://ai-film-master-guide-live.vercel.app/models/wan-2-6"}, {"@type": "ListItem", "position": 13, "name": "Wan 3.0 / 3.0 Prime", "url": "https://ai-film-master-guide-live.vercel.app/models/wan-3-0-3-0-prime"}, {"@type": "ListItem", "position": 14, "name": "Hailuo 02 / 2.3", "url": "https://ai-film-master-guide-live.vercel.app/models/hailuo-02-2-3"}, {"@type": "ListItem", "position": 15, "name": "MiniMax H3", "url": "https://ai-film-master-guide-live.vercel.app/models/minimax-h3"}, {"@type": "ListItem", "position": 16, "name": "Luma App / Ray 3.2", "url": "https://ai-film-master-guide-live.vercel.app/models/luma-app-ray-3-2"}, {"@type": "ListItem", "position": 17, "name": "Pika 2.5", "url": "https://ai-film-master-guide-live.vercel.app/models/pika-2-5"}, {"@type": "ListItem", "position": 18, "name": "DoP (Lite/Standard/Turbo)", "url": "https://ai-film-master-guide-live.vercel.app/models/dop-lite-standard-turbo"}, {"@type": "ListItem", "position": 19, "name": "Marketing Studio video", "url": "https://ai-film-master-guide-live.vercel.app/models/marketing-studio-video"}, {"@type": "ListItem", "position": 20, "name": "Grok Imagine Video 1.5", "url": "https://ai-film-master-guide-live.vercel.app/models/grok-imagine-video-1-5"}, {"@type": "ListItem", "position": 21, "name": "Midjourney V1 Video", "url": "https://ai-film-master-guide-live.vercel.app/models/midjourney-v1-video"}, {"@type": "ListItem", "position": 22, "name": "Kling 4.0", "url": "https://ai-film-master-guide-live.vercel.app/models/kling-4-0"}, {"@type": "ListItem", "position": 23, "name": "Gemini Omni", "url": "https://ai-film-master-guide-live.vercel.app/models/gemini-omni"}, {"@type": "ListItem", "position": 24, "name": "LTX-2.5", "url": "https://ai-film-master-guide-live.vercel.app/models/ltx-2-5"}, {"@type": "ListItem", "position": 25, "name": "Vidu S2", "url": "https://ai-film-master-guide-live.vercel.app/models/vidu-s2"}, {"@type": "ListItem", "position": 26, "name": "Mirage Tesseract", "url": "https://ai-film-master-guide-live.vercel.app/models/mirage-tesseract"}, {"@type": "ListItem", "position": 27, "name": "Runway Gen-4.5", "url": "https://ai-film-master-guide-live.vercel.app/models/runway-gen-4-5"}, {"@type": "ListItem", "position": 28, "name": "Vidu Q4 Preview", "url": "https://ai-film-master-guide-live.vercel.app/models/vidu-q4-preview"}, {"@type": "ListItem", "position": 29, "name": "FLUX 3 Video", "url": "https://ai-film-master-guide-live.vercel.app/models/flux-3-video"}, {"@type": "ListItem", "position": 30, "name": "vivago R1", "url": "https://ai-film-master-guide-live.vercel.app/models/vivago-r1"}, {"@type": "ListItem", "position": 31, "name": "PixVerse V6", "url": "https://ai-film-master-guide-live.vercel.app/models/pixverse-v6"}, {"@type": "ListItem", "position": 32, "name": "Wan 2.7", "url": "https://ai-film-master-guide-live.vercel.app/models/wan-2-7"}]}</script>
 </head>
@@ -57,8 +58,9 @@
   <main id="main">
     <section class="hero" aria-labelledby="mdi-title">
       <div class="container hero-inner">
+        <p class="hero-slate"><span>Reference</span></p>
         <h1 id="mdi-title">Model <span class="accent">deep dives.</span></h1>
-        <p class="lede">One page per model: the spec record, worked cost math, prompt tips from the guide's chapters, and honest use-when/avoid-when. Generated from <code>models.json</code> — it can't drift from the data.</p>
+        <p class="lede">One page per model: the spec record, worked cost math, prompt tips from the guide's chapters, and honest use-when/avoid-when. Generated from <code>models.json</code>, it can't drift from the data.</p>
         
       </div>
     </section>
@@ -69,7 +71,7 @@
 <article class="card chapter-card"><h3><a href="soul-cast.html">Soul Cast</a></h3><p>Higgsfield · <span class="mw-badge mw-badge-active">Active</span></p></article>
 <article class="card chapter-card"><h3><a href="seedance-2-0.html">Seedance 2.0</a></h3><p>ByteDance · <span class="mw-badge mw-badge-active">Active</span></p></article>
 <article class="card chapter-card"><h3><a href="seedance-2-5.html">Seedance 2.5</a></h3><p>ByteDance · <span class="mw-badge mw-badge-active">Active</span></p></article>
-<article class="card chapter-card"><h3><a href="seedance-3-0.html">Seedance 3.0</a></h3><p>ByteDance · <span class="mw-badge mw-badge-reported">Reported — unconfirmed</span></p></article>
+<article class="card chapter-card"><h3><a href="seedance-3-0.html">Seedance 3.0</a></h3><p>ByteDance · <span class="mw-badge mw-badge-reported">Reported, unconfirmed</span></p></article>
 <article class="card chapter-card"><h3><a href="kling-3-0.html">Kling 3.0</a></h3><p>Kuaishou · <span class="mw-badge mw-badge-active">Active</span></p></article>
 <article class="card chapter-card"><h3><a href="kling-2-5-turbo.html">Kling 2.5 Turbo</a></h3><p>Kuaishou · <span class="mw-badge mw-badge-active">Active</span></p></article>
 <article class="card chapter-card"><h3><a href="veo-3-1.html">Veo 3.1</a></h3><p>Google DeepMind · <span class="mw-badge mw-badge-active">Active</span></p></article>
@@ -85,7 +87,7 @@
 <article class="card chapter-card"><h3><a href="marketing-studio-video.html">Marketing Studio video</a></h3><p>Higgsfield · <span class="mw-badge mw-badge-active">Active</span></p></article>
 <article class="card chapter-card"><h3><a href="grok-imagine-video-1-5.html">Grok Imagine Video 1.5</a></h3><p>xAI · <span class="mw-badge mw-badge-active">Active</span></p></article>
 <article class="card chapter-card"><h3><a href="midjourney-v1-video.html">Midjourney V1 Video</a></h3><p>Midjourney · <span class="mw-badge mw-badge-active">Active</span></p></article>
-<article class="card chapter-card"><h3><a href="kling-4-0.html">Kling 4.0</a></h3><p>Kuaishou · <span class="mw-badge mw-badge-announced">Announced — not GA</span></p></article>
+<article class="card chapter-card"><h3><a href="kling-4-0.html">Kling 4.0</a></h3><p>Kuaishou · <span class="mw-badge mw-badge-announced">Announced, not GA</span></p></article>
 <article class="card chapter-card"><h3><a href="gemini-omni.html">Gemini Omni</a></h3><p>Google DeepMind · <span class="mw-badge mw-badge-active">Active</span></p></article>
 <article class="card chapter-card"><h3><a href="ltx-2-5.html">LTX-2.5</a></h3><p>Lightricks · <span class="mw-badge mw-badge-active">Active</span></p></article>
 <article class="card chapter-card"><h3><a href="vidu-s2.html">Vidu S2</a></h3><p>Vidu · <span class="mw-badge mw-badge-active">Active</span></p></article>
@@ -101,7 +103,7 @@
   </main>
   <footer class="site-footer">
     <div class="container footer-grid">
-      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <p>AI Film Master Guide, research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer"><a href="../index.html">Guide</a><a href="../skills.html">Skills</a><a href="../workshop.html">Workshop</a><a href="../quiz.html">Quiz</a><a href="../compare.html">Compare</a><a href="../gallery.html">Gallery</a><a href="../teardown.html">Teardowns</a><a href="../model-watch.html">Model watch</a><a href="../showdown.html">Showdown</a><a href="../forge.html">Episode forge</a><a href="../clearance.html">Script clearance</a><a href="../continuity.html">Continuity ledger</a><a href="../cuesheet.html">Cue sheet</a><a href="../grade.html">Grade sheet</a><a href="../cut.html">Cut sheet</a><a href="../take.html">Take sheet</a><a href="../longform.html">Longform sheet</a><a href="../path.html">The path</a><a href="../checks/">Knowledge checks</a><a href="../budget.html">Budget</a><a href="../optimizer.html">Optimizer</a><a href="../shots.html">Shot list</a><a href="../style-bible.html">Style bible</a><a href="../doctor.html">Doctor</a><a href="../linter.html">Linter</a><a href="../cutting-room.html">Cutting room</a><a href="../prompts.html">Prompts</a><a href="../models/">Models</a><a href="../anatomy.html">Anatomy</a><a href="../manifesto.html">Manifesto</a><a href="../craft-not-buttons.html">Craft, not buttons</a><a href="../recipes.html">Recipes</a><a href="../field-guides/">Field guides</a><a href="../changelog.html">Changelog</a><a href="../skill-spec.html">Skill spec</a><a href="../api.html">API</a></nav>
       <div class="footer-colophon"><span>AI Film Master Guide</span><span class="tail">Craft, not buttons</span></div>
     </div>

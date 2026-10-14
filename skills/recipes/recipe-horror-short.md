@@ -7,7 +7,7 @@ description: Dread engineering: what you don't show.
 
 ## What this gets you
 
-You will have a horror short that scares by what it withholds — dread built from sound, shadow and timing, not jump-scare spam.
+You will have a horror short that scares by what it withholds, dread built from sound, shadow and timing, not jump-scare spam.
 
 ## Use when
 
@@ -22,7 +22,7 @@ Horror/suspense competition entries.
 
 1. Slow, hesitant camera verbs; danger hinted, never shown.
 2. Low-key lighting, deep shadows, motivated practicals.
-3. Sound does 70%: whispers, creaks, sub-bass — picture stays restrained.
+3. Sound does 70%: whispers, creaks, sub-bass, picture stays restrained.
 4. One reveal, earned late. Everything before it is promise.
 
 ## Worked example
@@ -35,4 +35,4 @@ Horror/suspense competition entries.
 
 ## Pitfalls
 
-- Showing the monster early — the audience's imagination out-renders any model.
+- Showing the monster early, the audience's imagination out-renders any model.

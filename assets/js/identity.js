@@ -1,4 +1,4 @@
-/* identity.js — "The Cutting Room" shared motion (wave 36).
+/* identity.js, "The Cutting Room" shared motion (wave 36).
    - Header timecode ticker (1fps, tabular mono, decorative)
    - Hero leader-countdown 3-2-1, one pass, frame-advance steps
    - Hero playhead is pure CSS; this file only touches text nodes.

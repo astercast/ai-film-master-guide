@@ -7,7 +7,7 @@ description: Credible talking heads: the documentary recipe.
 
 ## What this gets you
 
-You will have an interview that looks and sounds credible — the talking-head backbone of documentaries and explainers.
+You will have an interview that looks and sounds credible, the talking-head backbone of documentaries and explainers.
 
 ## Use when
 
@@ -21,10 +21,10 @@ Testimonials, documentary, UGC.
 
 ## Procedure
 
-1. MCU, eye-level, locked-off tripod — say 'locked-off' explicitly.
+1. MCU, eye-level, locked-off tripod, say 'locked-off' explicitly.
 2. Background with depth and one practical; nothing distracting.
 3. Short answers per generation; edit for rhythm, not completeness.
-4. Cutaways: hands, environment, archival — the interview needs air.
+4. Cutaways: hands, environment, archival, the interview needs air.
 
 ## Worked example
 
@@ -36,4 +36,4 @@ Testimonials, documentary, UGC.
 
 ## Pitfalls
 
-- Wandering framing — interviews live or die on stillness.
+- Wandering framing, interviews live or die on stillness.

@@ -1,6 +1,6 @@
-/* forge.test.js — Episode Forge engine tests against the REAL repo data
+/* forge.test.js, Episode Forge engine tests against the REAL repo data
    (data/v1/prompt-templates.json + prompts-facets.json + teardowns.json).
-   Run: node scripts/forge.test.js — exits non-zero on any failure. */
+   Run: node scripts/forge.test.js, exits non-zero on any failure. */
 "use strict";
 const fs = require("fs");
 const path = require("path");

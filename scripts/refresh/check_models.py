@@ -9,23 +9,22 @@ signatures from the previous run.
 
 Additionally (public, no-key only): each model may carry a `news_query` in the
 config. The checker pulls Google News RSS for that query and stores the latest
-headlines in the record's `news_headlines` for review. News is PASSIVE SIGNAL —
-it never feeds the change signature (news churn would flag everything weekly).
+headlines in the record's `news_headlines` for review. News is PASSIVE SIGNAL, it never feeds the change signature (news churn would flag everything weekly).
 
 Outputs (committed):
-  data/v1/model-checks.json       — per-model freshness records + run summary
-  data/v1/model-review-queue.json  — models whose sources changed since last
+  data/v1/model-checks.json, per-model freshness records + run summary
+  data/v1/model-review-queue.json, models whose sources changed since last
                                     run, awaiting HUMAN/AGENT review. Standing
                                     hand-authored watch items in the queue are
                                     preserved across runs, never overwritten.
 
-Promotion workflow (models.json is NEVER mutated by this script — fetched
+Promotion workflow (models.json is NEVER mutated by this script, fetched
 pages are unreliable signals, so price/status changes always need a person):
   1. Review queue lists models with changed=true plus the evidence
      (signature diff, signal excerpts, source URLs).
   2. An agent (or human) opens the flagged source URLs, verifies what really
-     changed (price? version? discontinuation? noise?), and — only when
-     confirmed — edits data/v1/models.json (last_verified, status,
+     changed (price? version? discontinuation? noise?), and, only when
+     confirmed, edits data/v1/models.json (last_verified, status,
      est_cost_credits, what_changed, sources).
   3. Re-run `python3 scripts/build_api.py`, inspect the git diff, commit,
      push. The next weekly check then establishes a new baseline.
@@ -83,7 +82,7 @@ def fetch(url, timeout, max_bytes, user_agent):
         return False, None, "", f"URLError: {getattr(e, 'reason', e)}"
     except TimeoutError:
         return False, None, "", "timeout"
-    except Exception as e:  # noqa: BLE001 — one bad URL must not kill the run
+    except Exception as e:  # noqa: BLE001, one bad URL must not kill the run
         return False, None, "", f"{type(e).__name__}: {e}"
 
 
@@ -102,7 +101,7 @@ def parse_rss_items(rss_text, max_items):
                     items.append({"title": title, "date": date})
             if len(items) >= max_items:
                 break
-    except Exception:  # noqa: BLE001 — malformed RSS: just return what we have
+    except Exception:  # noqa: BLE001, malformed RSS: just return what we have
         pass
     return items
 
@@ -153,7 +152,7 @@ def main():
     if CHECKS_JSON.exists():
         try:
             prev = {r["model"]: r for r in json.loads(CHECKS_JSON.read_text()).get("models", [])}
-        except Exception as e:  # noqa: BLE001 — corrupt old file: re-baseline
+        except Exception as e:  # noqa: BLE001, corrupt old file: re-baseline
             print(f"WARN: previous checks file unreadable ({e}); re-baselining all.")
 
     records = []
@@ -185,7 +184,7 @@ def main():
 
         # Google News RSS: passive signal source (headlines only).
         # Headlines refresh weekly for human/agent review but do NOT feed the
-        # change signature — news churn would flag every model every week.
+        # change signature, news churn would flag every model every week.
         nq = cfg.get("news_query")
         if nq and rss_template:
             rss_url = rss_template.replace("{query}", urllib.parse.quote(nq))
@@ -237,8 +236,7 @@ def main():
         # and current run and they differ. URLs on the per-model
         # exclude_from_signature list (verified-noisy rotating marketing pages) are
         # fetched and recorded but never drive changed.
-        # Signature exclusions: the defaults-level list (config `defaults` —
-        # e.g. github.com, whose blob pages embed per-request nonces and can
+        # Signature exclusions: the defaults-level list (config `defaults`, # e.g. github.com, whose blob pages embed per-request nonces and can
         # never be signature-stable; proven in the Watchtower 2.2 calibration
         # by fetching one page twice and getting two signatures) merged with
         # this model's own exclude_from_signature list. Matching is by
@@ -341,7 +339,7 @@ def main():
             for it in json.loads(QUEUE_JSON.read_text()).get("items", []):
                 if "detected_at" not in it:
                     standing.append(it)
-        except Exception:  # noqa: BLE001 — unreadable old queue: regenerate fresh
+        except Exception:  # noqa: BLE001, unreadable old queue: regenerate fresh
             standing = []
     queue_items = standing + queue_items
 
@@ -351,7 +349,7 @@ def main():
         "note": "Changed=true means a source page's content signature moved since the "
                 "last check. This is a review signal, not a confirmed model change "
                 "(landing pages are marketing copy; diffs may be noise). Promote via "
-                "the per-item promotion step — never auto-mutate models.json. Items "
+                "the per-item promotion step, never auto-mutate models.json. Items "
                 "with a `status` and no `detected_at` are standing hand-authored "
                 "watches, preserved across runs by the checker.",
         "pending": len(queue_items),
@@ -366,7 +364,7 @@ def main():
     if changed_count:
         for it in queue_items:
             if "what_triggered" in it:  # standing hand-authored items carry no trigger
-                print(f"  REVIEW: {it['model']} — {it['what_triggered']}")
+                print(f"  REVIEW: {it['model']}, {it['what_triggered']}")
     print(f"[model-watch] wrote {CHECKS_JSON.name}, {QUEUE_JSON.name}")
     return 0
 

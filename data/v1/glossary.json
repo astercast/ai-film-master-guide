@@ -12,7 +12,7 @@
     },
     {
       "term": "Aspect ratio",
-      "definition": "Frame proportions (16:9, 21:9, 9:16, 1:1); choose before generating — post-cropping destroys composition."
+      "definition": "Frame proportions (16:9, 21:9, 9:16, 1:1); choose before generating, post-cropping destroys composition."
     },
     {
       "term": "Bokeh",
@@ -56,7 +56,7 @@
     },
     {
       "term": "Cutaway",
-      "definition": "A shot that cuts away from the main action (e.g., an insert) to compress time or add information."
+      "definition": "A shot that cuts away from the main action (e.g. an insert) to compress time or add information."
     },
     {
       "term": "dBTP",
@@ -92,7 +92,7 @@
     },
     {
       "term": "Genjutsu",
-      "definition": "Higgsfield tool: Motion Transfer or Object Swap on 3–30s source video while keeping camera motion/VFX."
+      "definition": "Higgsfield tool: Motion Transfer or Object Swap on 3 to 30s source video while keeping camera motion/VFX."
     },
     {
       "term": "Golden hour",
@@ -104,7 +104,7 @@
     },
     {
       "term": "I2V (image-to-video)",
-      "definition": "Animating a still image; the still is an anchor — describe evolution, not a new scene."
+      "definition": "Animating a still image; the still is an anchor, describe evolution, not a new scene."
     },
     {
       "term": "Identity Block",
@@ -176,7 +176,7 @@
     },
     {
       "term": "Negative prompt",
-      "definition": "Exclusion input; supported on some models (Veo, Pika, Wan) but backfires on others (Runway, Seedance — use compositional exclusion instead)."
+      "definition": "Exclusion input; supported on some models (Veo, Pika, Wan) but backfires on others (Runway, Seedance, use compositional exclusion instead)."
     },
     {
       "term": "Omni reference",
@@ -204,7 +204,7 @@
     },
     {
       "term": "Prompt expansion",
-      "definition": "Automatic rewriting/enrichment of short prompts (e.g., Wan's prompt_extend, Gemini enhancement); disable for precise control."
+      "definition": "Automatic rewriting/enrichment of short prompts (e.g. Wan's prompt_extend, Gemini enhancement); disable for precise control."
     },
     {
       "term": "Rack focus",
@@ -228,7 +228,7 @@
     },
     {
       "term": "Seed",
-      "definition": "The random seed returned per generation; stabilizes but does not lock output — reusing it reduces variance."
+      "definition": "The random seed returned per generation; stabilizes but does not lock output, reusing it reduces variance."
     },
     {
       "term": "Seed locking",
@@ -260,7 +260,7 @@
     },
     {
       "term": "Soul ID",
-      "definition": "Higgsfield's trained identity layer: 20–80 photos → reusable face across the Soul family and Seedance."
+      "definition": "Higgsfield's trained identity layer: 20 to 80 photos → reusable face across the Soul family and Seedance."
     },
     {
       "term": "Stems",
@@ -280,7 +280,7 @@
     },
     {
       "term": "T2V (text-to-video)",
-      "definition": "Generating video from a text prompt alone; needs full scene description (40–100 words optimal on Runway)."
+      "definition": "Generating video from a text prompt alone; needs full scene description (40 to 100 words optimal on Runway)."
     },
     {
       "term": "Timelapse",
@@ -304,7 +304,7 @@
     },
     {
       "term": "Upscaling",
-      "definition": "Increasing resolution in post (e.g., Topaz Video AI to 4K); done only on final selects."
+      "definition": "Increasing resolution in post (e.g. Topaz Video AI to 4K); done only on final selects."
     },
     {
       "term": "VFX cleanup",

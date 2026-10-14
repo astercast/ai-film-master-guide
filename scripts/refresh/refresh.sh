@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# refresh.sh — weekly Model Watch entry point.
+# refresh.sh, weekly Model Watch entry point.
 # Runs the model freshness checker and appends output to logs/refresh.log.
 # Cron-ready: add the line from GO_LIVE.md to crontab.
 # Exit code is always 0 unless the repo layout itself is broken.

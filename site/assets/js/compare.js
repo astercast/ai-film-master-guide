@@ -1,4 +1,4 @@
-/* Model compare — side-by-side comparison of 2–3 models from models.json.
+/* Model compare, side-by-side comparison of 2 to 3 models from models.json.
    Shareable via URL params: compare.html?a=kling-3.0&b=veo-3.1
    Discontinued models are excluded (with a note); everything renders from the data. */
 (function () {
@@ -33,13 +33,13 @@
   }
 
   function statusLabel(status) {
-    return { active: "Active", reported: "Reported — unconfirmed",
-             announced: "Announced — not GA", discontinued: "Discontinued" }[status] || status;
+    return { active: "Active", reported: "Reported, unconfirmed",
+             announced: "Announced, not GA", discontinued: "Discontinued" }[status] || status;
   }
 
   function sourcesHtml(m) {
     var urls = (m.sources || []).filter(function (u) { return /^https?:\/\//.test(u); });
-    if (!urls.length) return "<p>Vendor page — verify live.</p>";
+    if (!urls.length) return "<p>Vendor page, verify live.</p>";
     return "<ul>" + urls.map(function (u) {
       var host = u.split("/")[2] || u;
       return '<li><a href="' + esc(u) + '" rel="noopener">' + esc(host) + "</a></li>";
@@ -52,14 +52,14 @@
       '<span class="mw-badge mw-badge-' + esc(st) + '">' + esc(statusLabel(st)) + "</span>" +
       "<h3>" + esc(m.model) + "</h3>" +
       '<p class="mw-platform">' + esc(m.platform || "") + " · " + esc(m.type || "") +
-      " · verified " + esc(m.last_verified || "—") + "</p>" +
+      " · verified " + esc(m.last_verified || "…") + "</p>" +
       "<dl>" +
-      "<dt>Best use</dt><dd>" + esc(m.best_use || "—") + "</dd>" +
-      "<dt>Cost</dt><dd>" + esc(m.est_cost_credits || "—") + "</dd>" +
+      "<dt>Best use</dt><dd>" + esc(m.best_use || "…") + "</dd>" +
+      "<dt>Cost</dt><dd>" + esc(m.est_cost_credits || "…") + "</dd>" +
       "<dt>Native audio</dt><dd>" + esc(nativeAudio(m)) + "</dd>" +
-      "<dt>Strength</dt><dd>" + esc(m.strength || "—") + "</dd>" +
-      "<dt>Weakness</dt><dd>" + esc(m.weakness || "—") + "</dd>" +
-      "<dt>What changed</dt><dd>" + esc(m.what_changed || "—") + "</dd>" +
+      "<dt>Strength</dt><dd>" + esc(m.strength || "…") + "</dd>" +
+      "<dt>Weakness</dt><dd>" + esc(m.weakness || "…") + "</dd>" +
+      "<dt>What changed</dt><dd>" + esc(m.what_changed || "…") + "</dd>" +
       "<dt>Sources</dt><dd>" + sourcesHtml(m) + "</dd>" +
       "</dl>" +
       '<div class="btn-row" style="margin-top:var(--space-4);">' +
@@ -103,11 +103,11 @@
   }
 
   function fillSelect(sel, models, preferredSlug) {
-    sel.innerHTML = '<option value="">— pick a model —</option>';
+    sel.innerHTML = '<option value="">pick a model</option>';
     models.forEach(function (m) {
       var o = document.createElement("option");
       o.value = m.model;
-      o.textContent = m.model + " — " + m.platform;
+      o.textContent = m.model + ", " + m.platform;
       sel.appendChild(o);
     });
     if (preferredSlug) {

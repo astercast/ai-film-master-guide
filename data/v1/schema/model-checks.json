@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "description": "Model-watch freshness feed: per-model last check time, source-signature diffs, and news headlines. Maintained by the model-watch refresh loop (scripts/refresh/check_models.py), not by the API generator \u2014 hand-maintained / loop-maintained, preserved across rebuilds.",
+  "description": "Model-watch freshness feed: per-model last check time, source-signature diffs, and news headlines. Maintained by the model-watch refresh loop (scripts/refresh/check_models.py), not by the API generator, hand-maintained / loop-maintained, preserved across rebuilds.",
   "properties": {
     "checked_at": {
       "format": "date-time",

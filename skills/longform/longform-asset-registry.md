@@ -7,7 +7,7 @@ description: Build the named, versioned asset registry before generating shot on
 
 ## What this gets you
 
-You will have one named list of every character, place and prop in your film, locked before you generate anything — so shot 40 still matches shot 1.
+You will have one named list of every character, place and prop in your film, locked before you generate anything, so shot 40 still matches shot 1.
 
 ## Use when
 
@@ -26,11 +26,11 @@ Starting any production longer than ~3 minutes. Nothing shoots until the registr
 2. Character sheets: close-up face anchor first (never re-run the base portrait), then full-body looks.
 3. Locations: bake the lens look and grade into the plate image.
 4. Props: front/rear split sheets for hero props.
-5. State changes get NEW tags (@char_wet) — never overwrite.
+5. State changes get NEW tags (@char_wet), never overwrite.
 
 ## Worked example
 
-@mara_ON_neon_v1 — woman, late 20s, copper bob, leather jacket, gold hoop. Face anchor: mara_face_v1.png (locked, never re-run).
+@mara_ON_neon_v1, woman, late 20s, copper bob, leather jacket, gold hoop. Face anchor: mara_face_v1.png (locked, never re-run).
 
 ## API references
 
@@ -38,4 +38,4 @@ Starting any production longer than ~3 minutes. Nothing shoots until the registr
 
 ## Pitfalls
 
-- Generating before the registry exists — every later fix costs 10×.
+- Generating before the registry exists, every later fix costs 10×.

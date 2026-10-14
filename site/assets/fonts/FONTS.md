@@ -1,4 +1,4 @@
-# Self-hosted fonts — provenance
+# Self-hosted fonts, provenance
 
 All files in this directory are SIL Open Font License (OFL) webfonts,
 downloaded 2026-10-12 from the Google Fonts css2 API (latin subset,
@@ -14,12 +14,12 @@ Keep only the `/* latin */` @font-face blocks.
 
 | file | family | style | weight | notes |
 |---|---|---|---|---|
-| anton-latin-normal-400.woff2 | Anton | normal | 400 (static) | REMOVED in v2 (rotation 21 second attempt) — display face cut under the restraint spec; file deleted |
-| newsreader-latin-normal-var.woff2 | Newsreader | normal | 200–800 variable | prose |
-| newsreader-latin-italic-var.woff2 | Newsreader | italic | 200–800 variable | prose italics |
-| inter-latin-normal-var.woff2 | Inter | normal | 100–900 variable | tool UI body |
-| jetbrainsmono-latin-normal-var.woff2 | JetBrains Mono | normal | 100–800 variable | REMOVED in v2 — decorative mono cut; code now uses the system mono stack; file deleted |
+| anton-latin-normal-400.woff2 | Anton | normal | 400 (static) | display face; removed in v2, RESTORED in v3 (rotation 21 identity pass) from the pre-v2 tree; the cutting room's headline voice |
+| newsreader-latin-normal-var.woff2 | Newsreader | normal | 200 to 800 variable | prose |
+| newsreader-latin-italic-var.woff2 | Newsreader | italic | 200 to 800 variable | prose italics |
+| inter-latin-normal-var.woff2 | Inter | normal | 100 to 900 variable | tool UI body |
+| jetbrainsmono-latin-normal-var.woff2 | JetBrains Mono | normal | 100 to 800 variable | REMOVED in v2, decorative mono cut; code now uses the system mono stack; file deleted |
 
 Note: Google's css2 API now serves Inter and JetBrains Mono as single
 variable files even when discrete weights are requested (all five/six
-latin blocks point at the same URL) — one file each is all we ship.
+latin blocks point at the same URL), one file each is all we ship.

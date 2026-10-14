@@ -7,7 +7,7 @@ description: Camera-first models for macro, orbit, and packshot work.
 
 ## What this gets you
 
-You will know which model makes a product look expensive on camera — macro detail, clean orbits, a packshot that sells.
+You will know which model makes a product look expensive on camera, macro detail, clean orbits, a packshot that sells.
 
 ## Use when
 
@@ -22,7 +22,7 @@ Product spots, food, fashion film.
 
 1. Shortlist: Wan 2.6 (camera-first), Seedance 2.0, Kling 3.0.
 2. One move + one focus event per shot (orbit + focus pull).
-3. Texture and steam/sheen sell product — prompt them explicitly.
+3. Texture and steam/sheen sell product, prompt them explicitly.
 
 ## Worked example
 
@@ -35,4 +35,4 @@ Watch commercial: macro orbit + focus pull from crystal to dial, Wan 2.6, warm r
 
 ## Pitfalls
 
-- Lifestyle context stealing focus — product is the hero, environment is the frame.
+- Lifestyle context stealing focus, product is the hero, environment is the frame.

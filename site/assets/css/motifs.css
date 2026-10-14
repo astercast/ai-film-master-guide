@@ -1,16 +1,16 @@
 /* ============================================================
-   Motifs — v2. This file used to be the signature-chrome layer:
-   sprocket strips, timeline decks, playheads, leader countdowns,
-   timecode rulers, end slates. All of it was removed after the
-   user rejected v1 — decoration competing for attention was the
-   tell. What remains is only what carries information:
-   a reading-progress line, the teardown viewer's own timeline
-   (that page's subject, kept plain), a plain chapter head, and
-   quiet empty states. The removed class names are pinned to
-   display:none at the end so no stray markup can resurrect them.
+   Motifs, v3. The signature layer, kept honest. v1's costume
+   (sprocket strips, timeline decks, playheads, leader countdowns,
+   timecode rulers, end slates) stays removed: the class names are
+   still pinned to display:none at the end so no stray markup can
+   resurrect them. v3's identity lives in tokens, type and surface,
+   not in this file. What remains here is only what carries
+   information: a reading-progress line in brass, the teardown
+   viewer's own timeline (that page's subject, in the warm system),
+   a plain chapter head, and quiet empty states.
    ============================================================ */
 
-/* ——— Reading progress: one 2px line, no readout ——— */
+/*  Reading progress: one 2px line, no readout  */
 .progress-bar { position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: var(--z-progress); pointer-events: none; background: transparent; }
 .progress-bar span { display: block; height: 100%; background: var(--gold); transform: scaleX(0); transform-origin: 0 50%; }
 @media (prefers-reduced-motion: no-preference) {
@@ -21,7 +21,7 @@
 @keyframes progress-scrub { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 .progress-tc { display: none; }
 
-/* ——— Chapter head: crumb, read time, nothing else ——— */
+/*  Chapter head: crumb, read time, nothing else  */
 .reel-head {
   display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2) var(--space-5);
   margin-bottom: var(--space-6);
@@ -29,22 +29,24 @@
 .reel-meta { font-size: 0.85rem; color: var(--muted); }
 .reel-head .crumb { margin: 0; }
 
-/* ——— Section heads that once carried a timecode stamp ——— */
+/*  Section heads that once carried a timecode stamp  */
 .tc-head { display: flex; align-items: baseline; gap: var(--space-3); flex-wrap: wrap; }
 .tc-head .tc { display: none; }
 
-/* ——— Print maturity tag: plain words, no chip ——— */
+/*  Print maturity tag: plain words, no chip  */
 .print-tag { font-size: 0.85rem; color: var(--muted); }
 
-/* ——— Field guides: no slate masthead in v2 ——— */
+/*  Field guides: no slate masthead in v2  */
 .fg-slate { display: none; }
 
-/* ——— Teardown viewer timeline: the page's actual subject.
+/*  Teardown viewer timeline: the page's actual subject.
    Kept functional, restyled plain: hairline box, neutral clips,
-   the active clip marked with the one accent. ——— */
+   the active clip marked with the one accent.  */
 .td-timeline {
-  border: 1px solid var(--line-soft); border-radius: var(--radius-l);
-  background: var(--panel); padding: var(--space-4) var(--space-5) var(--space-5);
+  border: 1px solid var(--line); border-radius: var(--radius-l);
+  background: linear-gradient(180deg, var(--panel-2), var(--panel));
+  box-shadow: var(--shadow-1);
+  padding: var(--space-4) var(--space-5) var(--space-5);
   margin-bottom: var(--space-4);
 }
 .td-clips { display: flex; gap: 6px; }
@@ -66,19 +68,19 @@
 }
 .td-viewer-head .rec-dot { display: none; }
 
-/* ——— Empty states: words, centred, no slate graphic ——— */
+/*  Empty states: words, centred, no slate graphic  */
 .empty-state { text-align: center; padding: var(--space-8) var(--space-5); color: var(--muted); }
 .empty-state .es-slate {
   display: block; font-size: 1.05rem; font-weight: 650; color: var(--ink-dim);
   margin-bottom: var(--space-2);
 }
 
-/* ——— 404 ——— */
+/*  404  */
 .missing-reel { text-align: center; padding-block: var(--space-9); max-width: 640px; margin-inline: auto; }
 .missing-reel h1 { font-size: var(--display-1); margin-bottom: var(--space-4); }
 .missing-reel h1 .accent { color: inherit; }
 
-/* ——— Removed v1 furniture: never render again ——— */
+/*  Removed v1 furniture: never render again  */
 .tl-deck, .tl-chrome, .tl-ruler, .tl-tracks, .tl-playhead, .leader-frame,
 .sprocket-strip, .waveform, .reel-stats, .reel-cue, .marker-flag,
 .end-slate, .hdr-tc, .edge-right { display: none !important; }

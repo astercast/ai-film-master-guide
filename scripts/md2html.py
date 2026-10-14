@@ -3,7 +3,7 @@
 Supports the subset used across chapters: ATX headings, paragraphs,
 **bold**, *italic*, `code`, fenced code blocks, - and 1. lists (one level),
 task lists (- [ ]), [links](url), > blockquotes, --- rules, and | tables|.
-Not a general-purpose parser — deterministic for this corpus.
+Not a general-purpose parser, deterministic for this corpus.
 """
 import re
 import html
@@ -60,7 +60,7 @@ def convert(md):
 
         stripped = line.strip()
 
-        # Image line: ![alt](src) — optionally followed by a "Photo: ..."
+        # Image line: ![alt](src), optionally followed by a "Photo: ..."
         # caption line, which becomes the figcaption (heritage figures,
         # Foundry round 2; the corpus previously carried no images).
         m = re.match(r"^!\[([^\]]*)\]\(([^)]+)\)$", stripped)

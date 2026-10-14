@@ -1,13 +1,13 @@
 ---
 name: craft-video-over-text
-description: Show, don't tell — the chaining rule.
+description: Show, don't tell, the chaining rule.
 ---
 
 # Prefer video references over text
 
 ## What this gets you
 
-Your scenes will continue from what is actually on screen — showing the model the previous video instead of describing it and hoping.
+Your scenes will continue from what is actually on screen, showing the model the previous video instead of describing it and hoping.
 
 ## Use when
 
@@ -25,8 +25,8 @@ Scene-to-scene continuity.
 
 ## Worked example
 
-Scene 8 generated against scene 7's final — wardrobe, light, and room all hold.
+Scene 8 generated against scene 7's final, wardrobe, light, and room all hold.
 
 ## Pitfalls
 
-- Describing the last scene in words — elegant, wrong.
+- Describing the last scene in words, elegant, wrong.

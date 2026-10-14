@@ -22,7 +22,7 @@ Every dialogue scene and most transitions.
 1. J-cut: hear the next scene before you see it.
 2. L-cut: let dialogue trail over the next shot.
 3. In AI film, J/L cuts + shared ambience mask more sins than any re-roll.
-4. Never let a cut go dry — room tone under everything.
+4. Never let a cut go dry, room tone under everything.
 
 ## Worked example
 
@@ -30,4 +30,4 @@ Kitchen → street: street ambience enters 2s before the cut; dialogue trails 1s
 
 ## Pitfalls
 
-- Hard-cutting every transition — the edit will feel like a slideshow.
+- Hard-cutting every transition, the edit will feel like a slideshow.

@@ -1,4 +1,4 @@
-/* Hook-title generator — builds captions from the observed formula
+/* Hook-title generator, builds captions from the observed formula
    [Episode N] + [one-line emotional stake] + [CTA].
    Grounded in craft/episodic-shortform.md. No storage; copy-to-clipboard only. */
 (function () {
@@ -19,13 +19,13 @@
     tomorrow: function (n) { return "part " + (n + 1) + " tomorrow ⏳"; },
     funnel: function () { return "more inDrama ↓"; },
     thesis: function () { return "some doors only open from the other side"; },
-    poll: function () { return "vote in the comments — the winning choice plays out tomorrow 🗳️"; }
+    poll: function () { return "vote in the comments, the winning choice plays out tomorrow 🗳️"; }
   };
   var CTA_LABEL = {
     tomorrow: "Next-part tease",
     funnel: "Funnel tease (longer cut elsewhere)",
     thesis: "Finale thesis line",
-    poll: "Interactive — vote CTA (TikTok comment poll)"
+    poll: "Interactive, vote CTA (TikTok comment poll)"
   };
 
   function pickEmoji(stake) {
@@ -40,11 +40,10 @@
   }
 
   /* Stake hygiene (wave 38): users paste full captions. Strip a leading
-     "Episode N —" prefix, collapse whitespace, drop trailing punctuation —
-     so the formula never emits "Episode 3 — Episode 3 — …". */
+     "Episode N " prefix, collapse whitespace, drop trailing punctuation, so the formula never emits "Episode 3, Episode 3, …". */
   function sanitizeStake(s) {
     return String(s == null ? "" : s)
-      .replace(/^\s*episode\s*\d+\s*[—–-]\s*/i, "")
+      .replace(/^\s*episode\s*\d+\s*[\u2014\u2013-]\s*/i, "")
       .replace(/\s+/g, " ")
       .replace(/[.!?…]+\s*$/, "")
       .trim();
@@ -53,22 +52,22 @@
   /* Six worked variants of the observed formula, each a different hook framing. */
   function variants(n, stake, emoji, cta, hashtag) {
     var tag = hashtag ? " #" + hashtag.replace(/^#/, "") : " #aiminidrama";
-    var base = "Episode " + n + " — ";
+    var base = "Episode " + n + ", ";
     return [
       {
         title: "Direct stake (the observed form)",
         text: base + cap(stake) + " " + emoji + "\n" + tag + " #aianimation #fyp #emotionalstory\n" + cta,
-        why: "The observed formula, verbatim: number + stake + CTA. Zero ambiguity — the viewer knows the series, the stake, and what to do next in one read."
+        why: "The observed formula, verbatim: number + stake + CTA. Zero ambiguity, the viewer knows the series, the stake, and what to do next in one read."
       },
       {
         title: "Question hook",
         text: base + "What happens when " + uncap(stake) + "? " + emoji + "\n" + tag + " #aianimation #fyp #emotionalstory\n" + cta,
-        why: "Converts the stake into an unanswered question — the same open-loop trick the episode itself ends on. Curiosity gap does the clicking."
+        why: "Converts the stake into an unanswered question, the same open-loop trick the episode itself ends on. Curiosity gap does the clicking."
       },
       {
         title: "Mid-action freeze",
         text: base + "She was already " + uncap(stake) + " when the camera found her " + emoji + "\n" + tag + " #aianimation #fyp #emotionalstory\n" + cta,
-        why: "Implies footage already exists of a dramatic moment — the viewer feels they walked in late. Works when the hook visual is already strong."
+        why: "Implies footage already exists of a dramatic moment, the viewer feels they walked in late. Works when the hook visual is already strong."
       },
       {
         title: "Identity + ritual",
@@ -78,19 +77,19 @@
       {
         title: "Address the viewer",
         text: base + "POV: you're watching " + uncap(stake) + " " + emoji + "\n" + tag + " #aianimation #fyp #emotionalstory\n" + cta,
-        why: "Second-person framing makes the viewer a witness, not a scroller. Use sparingly — once per series arc, or it becomes the house style and loses force."
+        why: "Second-person framing makes the viewer a witness, not a scroller. Use sparingly, once per series arc, or it becomes the house style and loses force."
       },
       {
         title: "Vote hook (the interactive read)",
-        text: base + cap(stake) + " — you decide what happens next " + emoji + "\n" + tag + " #aianimation #fyp #emotionalstory\n" + CTAS.poll(n),
-        why: "Hands the decision to the viewer — the interactive-format read (TikTok comment polls since Sept 2026; DRAMAGO's interactive slate). This variant always carries the vote CTA, whatever is selected above: the poll is the point. Only for interactive episodes — a vote CTA on a linear episode breaks the participation contract."
+        text: base + cap(stake) + ", you decide what happens next " + emoji + "\n" + tag + " #aianimation #fyp #emotionalstory\n" + CTAS.poll(n),
+        why: "Hands the decision to the viewer, the interactive-format read (TikTok comment polls since Sept 2026; DRAMAGO's interactive slate). This variant always carries the vote CTA, whatever is selected above: the poll is the point. Only for interactive episodes, a vote CTA on a linear episode breaks the participation contract."
       }
     ];
   }
 
   function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
   function uncap(s) { return s.charAt(0).toLowerCase() + s.slice(1); }
-  /* The stake may already start with the character name — never double it. */
+  /* The stake may already start with the character name, never double it. */
   function nameFirst(name, stake) {
     return !!name && new RegExp("^" + name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\b", "i").test(stake);
   }
@@ -139,8 +138,8 @@
     var ctaKey = els.cta.value;
     var hashtag = els.hashtag.value.trim();
 
-    if (!n || n < 1) { setStatus("Episode number is required — serialization is the follow mechanic.", true); els.num.focus(); return; }
-    if (!stake) { setStatus("Give one line of emotional stake — legible in two seconds to a stranger.", true); els.stake.focus(); return; }
+    if (!n || n < 1) { setStatus("Episode number is required, serialization is the follow mechanic.", true); els.num.focus(); return; }
+    if (!stake) { setStatus("Give one line of emotional stake, legible in two seconds to a stranger.", true); els.stake.focus(); return; }
     if (character && !nameFirst(character, stake)) stake = character + " " + uncap(stake);
 
     var emoji = pickEmoji(stake);
@@ -184,9 +183,9 @@
     });
     els.empty.hidden = true;
     var lengthNote = words > 14
-      ? " Stake is " + words + " words — the observed hook reads in ~2 seconds; trim toward ~10."
+      ? " Stake is " + words + " words, the observed hook reads in ~2 seconds; trim toward ~10."
       : "";
-    setStatus("6 variants from the formula — " + CTA_LABEL[ctaKey] + ". Never lead with hashtags; the character is named every time." + lengthNote, false);
+    setStatus("6 variants from the formula, " + CTA_LABEL[ctaKey] + ". Never lead with hashtags; the character is named every time." + lengthNote, false);
     var first = els.results.querySelector("h3");
     if (first) first.setAttribute("tabindex", "-1");
   }

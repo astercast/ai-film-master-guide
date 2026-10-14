@@ -7,7 +7,7 @@ description: Draft cheap, select fast, escalate only winners.
 
 ## What this gets you
 
-You will test every shot cheaply first and only pay full price for the takes that already work — most of your budget stays unspent.
+You will test every shot cheaply first and only pay full price for the takes that already work, most of your budget stays unspent.
 
 ## Use when
 
@@ -21,7 +21,7 @@ All generation until the select is locked.
 ## Procedure
 
 1. Generate drafts at 720p/fast tier.
-2. Review against the shot's one-line goal — not against perfection.
+2. Review against the shot's one-line goal, not against perfection.
 3. Select or re-roll with a changed variable (never the same prompt twice).
 4. Escalate ONLY selects to hero resolution.
 
@@ -35,4 +35,4 @@ All generation until the select is locked.
 
 ## Pitfalls
 
-- Rendering hero quality 'to see it properly' — that's what the draft is for.
+- Rendering hero quality 'to see it properly', that's what the draft is for.

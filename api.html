@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>API — AI Film Master Guide</title>
-  <meta name="description" content="Machine-readable AI filmmaking data: versioned JSON for models, prompt templates, camera movements, checklists, glossary, teardowns, diagnoses, and model freshness — with JSON schemas and a live try-it console.">
+  <title>API, AI Film Master Guide</title>
+  <meta name="description" content="Machine-readable AI filmmaking data: versioned JSON for models, prompt templates, camera movements, checklists, glossary, teardowns, diagnoses, and model freshness, with JSON schemas and a live try-it console.">
   <link rel="preload" href="assets/fonts/inter-latin-normal-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/fonts.css">
   <link rel="stylesheet" href="assets/css/tokens.css">
@@ -52,7 +52,7 @@
           <span class="tl-rec"><i></i>REC</span>
           <span class="tl-tc-live" data-tl-tc>00:00:04:00</span>
           <span class="tl-pop">2-POP 01:00:06:00 &#183; &#x223F;1kHz</span>
-          <span class="tl-title">API_V1 — DOCS</span>
+          <span class="tl-title">API_V1, DOCS</span>
         </div>
         <div class="tl-ruler">
           <span style="left:0%">00:00:00:00</span><span style="left:20%">00:00:12:00</span><span style="left:40%">00:00:24:00</span><span style="left:60%">00:00:36:00</span><span style="left:80%">00:00:48:00</span><span style="left:100%">00:01:00:00</span>
@@ -86,7 +86,7 @@
       <section aria-labelledby="try-h">
         <h2 id="try-h">Try the API<span class="tc" aria-hidden="true">00:00:45:00</span></h2>
         <div class="card" style="margin-bottom:var(--space-6);">
-          <p style="color:var(--ink-dim);margin-top:0;">Pick an endpoint and fetch it live — the console reads the same <code>data/v1/</code> files this page documents. Static JSON: no auth, no keys, no rate limits.</p>
+          <p style="color:var(--ink-dim);margin-top:0;">Pick an endpoint and fetch it live, the console reads the same <code>data/v1/</code> files this page documents. Static JSON: no auth, no keys, no rate limits.</p>
           <form id="api-console" class="api-console">
             <div class="field">
               <label for="api-endpoint">Endpoint</label>
@@ -103,7 +103,7 @@
         <h2 id="endpoints-h">Endpoints<span class="tc" aria-hidden="true">00:01:30:00</span></h2>
         <div class="chapter-grid" style="margin-bottom:var(--space-6);">
           <article class="card chapter-card"><h3><code>data/v1/index.json</code></h3><p>Manifest: every endpoint with description, schema URL, updated timestamp, record counts, and deprecation notes. Start here.</p></article>
-          <article class="card chapter-card"><h3><code>data/v1/models.json</code></h3><p>32 models with platform, type, credit costs, strengths, weaknesses, best use — plus per-model last-verified dates, status, and an explicit unverified list. Sora is <code>discontinued</code>.</p></article>
+          <article class="card chapter-card"><h3><code>data/v1/models.json</code></h3><p>32 models with platform, type, credit costs, strengths, weaknesses, best use, plus per-model last-verified dates, status, and an explicit unverified list. Sora is <code>discontinued</code>.</p></article>
           <article class="card chapter-card"><h3><code>data/v1/prompt-templates.json</code></h3><p>47 templates (15 core, 8 animated, 8 photorealistic, 5 performance, 4 audio, 4 longform, 3 repair) with anatomy, use, and model notes.</p></article>
           <article class="card chapter-card"><h3><code>data/v1/camera-movements.json</code></h3><p>22-move camera lexicon with exact prompt phrasing and use cases.</p></article>
           <article class="card chapter-card"><h3><code>data/v1/checklists.json</code></h3><p>Pre-production, per-shot, continuity, audio, and delivery checklists.</p></article>
@@ -121,16 +121,16 @@
       </section>
 
       <section aria-labelledby="live-h">
-        <h2 id="live-h">Live functions — The Watchtower<span class="tc" aria-hidden="true">00:01:30:00</span></h2>
+        <h2 id="live-h">Live functions, The Watchtower<span class="tc" aria-hidden="true">00:01:30:00</span></h2>
         <div class="card" style="margin-bottom:var(--space-6);">
-          <p style="color:var(--ink-dim);margin-top:0;">On the deployed site the same data is served live by six Vercel serverless functions (zero npm dependencies). The frontend calls the function first with a 7&nbsp;second timeout and falls back to the static <code>data/v1/</code> file — the badge next to each widget reads <code>live</code>, <code>waking&nbsp;server…</code>, or <code>cached&nbsp;·&nbsp;updated&nbsp;HH:MM</code>. Full reference in <code>API.md</code>; deploy runbook in <code>GO_LIVE.md</code>.</p>
+          <p style="color:var(--ink-dim);margin-top:0;">On the deployed site the same data is served live by six Vercel serverless functions (zero npm dependencies). The frontend calls the function first with a 7&nbsp;second timeout and falls back to the static <code>data/v1/</code> file, the badge next to each widget reads <code>live</code>, <code>waking&nbsp;server…</code>, or <code>cached&nbsp;·&nbsp;updated&nbsp;HH:MM</code>. Full reference in <code>API.md</code>; deploy runbook in <code>GO_LIVE.md</code>.</p>
           <ul style="color:var(--ink-dim);margin:0;padding-left:var(--space-5);">
-            <li><code>GET /api/health</code> — status, function roster, data-freshness SLAs.</li>
-            <li><code>GET /api/models-status</code> — 32-model freshness join; honestly degraded when sources failed.</li>
-            <li><code>GET /api/models-pricing</code> — the curated pricing table (<code>?model_id=</code> filter).</li>
-            <li><code>GET /api/models-changes</code> — Watchtower 2.0: events since <code>?since=</code>, the mechanical pricing diff against the 2026-10-11 baseline, and drift alerts for all 32 models.</li>
-            <li><code>POST /api/calc-cost</code> — <code>{model_id, seconds, resolution_tier, clips}</code> → cost envelope with full 400/404 validation.</li>
-            <li><code>GET /api/cron/watchtower</code> — daily incremental refresh (<code>CRON_SECRET</code> bearer); flags, never auto-edits.</li>
+            <li><code>GET /api/health</code>, status, function roster, data-freshness SLAs.</li>
+            <li><code>GET /api/models-status</code>, 32-model freshness join; honestly degraded when sources failed.</li>
+            <li><code>GET /api/models-pricing</code>, the curated pricing table (<code>?model_id=</code> filter).</li>
+            <li><code>GET /api/models-changes</code>, Watchtower 2.0: events since <code>?since=</code>, the mechanical pricing diff against the 2026-10-11 baseline, and drift alerts for all 32 models.</li>
+            <li><code>POST /api/calc-cost</code>, <code>{model_id, seconds, resolution_tier, clips}</code> → cost envelope with full 400/404 validation.</li>
+            <li><code>GET /api/cron/watchtower</code>, daily incremental refresh (<code>CRON_SECRET</code> bearer); flags, never auto-edits.</li>
           </ul>
         </div>
       </section>
@@ -138,15 +138,15 @@
       <section aria-labelledby="notes-h">
         <h2 id="notes-h">Usage notes<span class="tc" aria-hidden="true">00:02:15:00</span></h2>
         <div class="card" style="margin-bottom:var(--space-6);">
-          <p style="color:var(--ink-dim);margin-bottom:var(--space-3);">Credit costs were read from Higgsfield's live pricing page on 2026-10-10 and are denominated in Higgsfield credits per 5 seconds unless noted. <strong>Verify live before budgeting</strong> — the <code>unverified</code> array in <code>models.json</code> lists costs that could not be confirmed.</p>
-          <p style="color:var(--ink-dim);margin:0;">Template ids are stable (<code>t1</code>–<code>t15</code> core, <code>a1</code>–<code>a8</code> animated, <code>p1</code>–<code>p8</code> photorealistic). Track is one of <code>core</code>, <code>animated</code>, <code>photorealistic</code>, <code>performance</code>, <code>audio</code>, <code>longform</code>, <code>repair</code>.</p>
+          <p style="color:var(--ink-dim);margin-bottom:var(--space-3);">Credit costs were read from Higgsfield's live pricing page on 2026-10-10 and are denominated in Higgsfield credits per 5 seconds unless noted. <strong>Verify live before budgeting</strong>, the <code>unverified</code> array in <code>models.json</code> lists costs that could not be confirmed.</p>
+          <p style="color:var(--ink-dim);margin:0;">Template ids are stable (<code>t1</code> to <code>t15</code> core, <code>a1</code> to <code>a8</code> animated, <code>p1</code> to <code>p8</code> photorealistic). Track is one of <code>core</code>, <code>animated</code>, <code>photorealistic</code>, <code>performance</code>, <code>audio</code>, <code>longform</code>, <code>repair</code>.</p>
         </div>
       </section>
 
       <section aria-labelledby="llm-h">
         <h2 id="llm-h">For language models<span class="tc" aria-hidden="true">00:03:00:00</span></h2>
         <div class="card">
-          <p style="color:var(--ink-dim);">Agents should start with <code>llms.txt</code> (index) and <code>llms-full.txt</code> (the full guide text) at the repo root, then <code>AGENT.md</code> — the operator's manual with four end-to-end workflows — then <code>API.md</code>.</p>
+          <p style="color:var(--ink-dim);">Agents should start with <code>llms.txt</code> (index) and <code>llms-full.txt</code> (the full guide text) at the repo root, then <code>AGENT.md</code>, the operator's manual with four end-to-end workflows, then <code>API.md</code>.</p>
         </div>
       </section>
     </div>
@@ -154,9 +154,9 @@
 
   <footer class="site-footer">
     <div class="container footer-grid">
-      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <p>AI Film Master Guide, research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer"><a href="index.html">Guide</a><a href="api.html">API</a></nav>
-      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide, craft, not buttons</span></div>
     </div>
   </footer>
   <button type="button" class="back-to-top" aria-label="Back to top">&uarr;</button>
@@ -198,7 +198,7 @@
       list.forEach(function (item) {
         var o = document.createElement("option");
         o.value = item[1];
-        o.textContent = item[0] + " — " + item[1];
+        o.textContent = item[0] + ", " + item[1];
         select.appendChild(o);
       });
     }
@@ -229,12 +229,12 @@
       var keys = Object.keys(man.endpoints || {});
       if (keys.length) {
         setOptions(keys.map(function (k) { return [k, man.endpoints[k].path]; }));
-        status.textContent = "Manifest loaded — " + keys.length +
+        status.textContent = "Manifest loaded, " + keys.length +
           " endpoints, manifest v" + (man.meta && man.meta.version ? man.meta.version : "?") +
           ". Agent operator's manual: AGENT.md at the repo root.";
       }
     }).catch(function () {
-      status.textContent = "Manifest unreachable — showing the built-in endpoint list.";
+      status.textContent = "Manifest unreachable, showing the built-in endpoint list.";
     });
 
     form.addEventListener("submit", function (ev) {
@@ -250,11 +250,11 @@
         var ms = (window.performance && performance.now) ? Math.round(performance.now() - t0) : 0;
         code.innerHTML = highlight(pretty);
         status.textContent = "Loaded " + url + " (" + pretty.length +
-          " chars, " + ms + " ms). Static JSON — no auth, no rate limits.";
+          " chars, " + ms + " ms). Static JSON, no auth, no rate limits.";
       }).catch(function (err) {
         code.textContent = "Fetch failed: " + (err && err.message ? err.message : err);
         status.textContent = "Could not load " + url + ". The console needs the site served over HTTP " +
-          "(e.g. run `python3 -m http.server` inside site/) — browsers block fetch from file://. " +
+          "(e.g. run `python3 -m http.server` inside site/), browsers block fetch from file://. " +
           "The same files live in the repo at data/v1/.";
       });
     });

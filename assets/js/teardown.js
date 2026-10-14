@@ -1,4 +1,4 @@
-/* Shot-by-shot teardown viewer — "learn to see".
+/* Shot-by-shot teardown viewer, "learn to see".
    Data: teardowns.json (built from data/v1/teardowns.json).
    Prompt reconstructions are analytical, not the productions' real prompts. */
 (function () {
@@ -51,7 +51,7 @@
   function shotCard(film, i) {
     var s = film.shots[i];
     var recon = s.prompt_reconstruction
-      ? '<details class="td-recon"><summary>Likely prompt <span class="td-recon-tag">reconstruction — not the actual prompt</span></summary>'
+      ? '<details class="td-recon"><summary>Likely prompt <span class="td-recon-tag">reconstruction, not the actual prompt</span></summary>'
         + "<pre><code>" + esc(s.prompt_reconstruction) + "</code></pre></details>"
       : "";
     return '<article class="td-card" aria-live="polite">'
@@ -98,14 +98,14 @@
       + (t.id === "storeel-off-campus"
         ? '<div class="card td-cta" style="margin-top:var(--space-4);"><p><strong>' +
           "Turn these economics into a plan.</strong> The Studio's microdrama " +
-          "mode plans the clip budget, the $50/min benchmark, the 3–5× retake " +
+          "mode plans the clip budget, the $50/min benchmark, the 3 to 5× retake " +
           "budget, the regen reserve, and the timeline from these same " +
           "documented figures.</p>" +
           '<p><a class="btn" href="studio.html?mode=microdrama">Plan a microdrama run →</a></p></div>'
         : "")
       + "</div>"
       + filmsNav
-      + '<p class="td-note">Prompt reconstructions are analytical reconstructions for study — not the productions\u2019 actual prompts. Production facts carry their sources above.</p>';
+      + '<p class="td-note">Prompt reconstructions are analytical reconstructions for study, not the productions\u2019 actual prompts. Production facts carry their sources above.</p>';
   }
 
   function selectFilm(i) {

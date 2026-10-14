@@ -1,5 +1,5 @@
 'use strict';
-/* github.js — shared lib, film-watchtower.
+/* github.js, shared lib, film-watchtower.
  * Copied per ARCHITECTURE.md §1.11. The repo is the database (§5):
  * cron jobs read/write versioned JSON via the GitHub Contents API.
  *
@@ -121,7 +121,7 @@ async function writeJsonIfChanged(path, obj, message, timeoutMs) {
       committed: false,
       changed: null,
       reason: 'no-token',
-      note: 'GITHUB_REPO_TOKEN not configured — commit-back disabled (read-only mode). ' +
+      note: 'GITHUB_REPO_TOKEN not configured, commit-back disabled (read-only mode). ' +
         'Static JSON refreshes via wave-engine pushes until the user creates the PAT (spec §14).'
     };
   }

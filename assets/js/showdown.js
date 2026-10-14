@@ -1,4 +1,4 @@
-/* Model showdown — two models on the cutting table, rendered entirely from
+/* Model showdown, two models on the cutting table, rendered entirely from
    the Watchtower record embedded in the page at build time (models.json +
    pricing.json + model-checks.json + model-history.json, the same data the
    model-watch page renders). Nothing is scored, estimated, or invented:
@@ -28,18 +28,18 @@
   }
 
   function money(v) {
-    if (v === null || v === undefined) return "—";
+    if (v === null || v === undefined) return "…";
     if (v < 0.1 && v !== 0) return "$" + v.toFixed(4).replace(/0+$/, "").replace(/\.$/, "");
     return "$" + v.toFixed(2);
   }
 
   function moneyRange(lo, hi) {
-    if (lo === null || lo === undefined) return "—";
-    return lo === hi ? money(lo) : money(lo) + "–" + money(hi);
+    if (lo === null || lo === undefined) return "…";
+    return lo === hi ? money(lo) : money(lo) + " to " + money(hi);
   }
 
   function fmtDay(iso) {
-    if (!iso) return "—";
+    if (!iso) return "…";
     var d = new Date(String(iso).slice(0, 10) + "T00:00:00Z");
     if (isNaN(d)) return String(iso).slice(0, 10);
     var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -78,7 +78,7 @@
 
   function rateCell(m, other, side, edges) {
     if (m.pricing_status === "unpublished") {
-      return '<p class="sd-unpub">Unpublished — no USD rate on record.</p>' +
+      return '<p class="sd-unpub">Unpublished, no USD rate on record.</p>' +
         "<p>The guide does not estimate one. Verify live before budgeting.</p>";
     }
     if (m.pricing_status === "missing" || !(m.tiers || []).length) {
@@ -90,7 +90,7 @@
       if (edges.rate[t.unit] === side && (t.low + t.high) / 2 === cheapest[t.unit]) {
         c = chip("lowest " + t.unit + " rate");
       }
-      return "<li><strong>" + esc(t.tier) + "</strong> — " + esc(moneyRange(t.low, t.high)) +
+      return "<li><strong>" + esc(t.tier) + "</strong>, " + esc(moneyRange(t.low, t.high)) +
         " / " + esc(t.unit) + ' <span class="sd-conf">(' + esc(t.confidence) + ")</span>" + c + "</li>";
     });
     return "<ul class=\"sd-tiers\">" + rows.join("") + "</ul>" +
@@ -98,9 +98,9 @@
   }
 
   function checkCell(m, side, edges) {
-    var word = { stable: "Stable — every watched source answered",
-                 changed: "Changed — a watched source moved; queued for review",
-                 error: "Check failed — a watched source did not answer",
+    var word = { stable: "Stable, every watched source answered",
+                 changed: "Changed, a watched source moved; queued for review",
+                 error: "Check failed, a watched source did not answer",
                  unwatched: "No automated source watch" }[m.check_status] || m.check_status;
     var s = "<p><strong>" + esc(word) + ".</strong></p>";
     if (m.sources_total) {
@@ -126,7 +126,7 @@
   function movesCell(m) {
     if (!m.price_moves.length) return "<p>No movement against the " + esc(fmtDay(data.feed.baseline_day)) + " pricing baseline.</p>";
     return "<ul class=\"sd-alerts\">" + m.price_moves.map(function (mv) {
-      return "<li>" + esc(mv.what) + " — was " + esc(mv.was) + ", now " + esc(mv.now) + ".</li>";
+      return "<li>" + esc(mv.what) + ", was " + esc(mv.was) + ", now " + esc(mv.now) + ".</li>";
     }).join("") + "</ul>";
   }
 
@@ -159,9 +159,9 @@
     html += '<div class="sd-table">';
     html += row("Status", "<p><strong>" + esc(a.status_label) + "</strong></p>", "<p><strong>" + esc(b.status_label) + "</strong></p>");
     html += row("The rate", rateCell(a, b, "a", edges), rateCell(b, a, "b", edges));
-    html += row("Best use", "<p>" + esc(a.best_use || "—") + "</p>", "<p>" + esc(b.best_use || "—") + "</p>");
-    html += row("Strength", "<p>" + esc(a.strength || "—") + "</p>", "<p>" + esc(b.strength || "—") + "</p>");
-    html += row("Weakness", "<p>" + esc(a.weakness || "—") + "</p>", "<p>" + esc(b.weakness || "—") + "</p>");
+    html += row("Best use", "<p>" + esc(a.best_use || "…") + "</p>", "<p>" + esc(b.best_use || "…") + "</p>");
+    html += row("Strength", "<p>" + esc(a.strength || "…") + "</p>", "<p>" + esc(b.strength || "…") + "</p>");
+    html += row("Weakness", "<p>" + esc(a.weakness || "…") + "</p>", "<p>" + esc(b.weakness || "…") + "</p>");
     html += row("Source check", checkCell(a, "a", edges), checkCell(b, "b", edges));
     html += row("Drift board", driftCell(a, "a", edges), driftCell(b, "b", edges));
     html += row("Vs the baseline", movesCell(a), movesCell(b));
@@ -182,10 +182,10 @@
         " rate of the two; <strong>" + esc(l.name) + "</strong> starts higher on that unit.");
     });
     if (a.pricing_status === "unpublished" && b.pricing_status !== "unpublished") {
-      lines.push("<strong>" + esc(a.name) + "</strong> has no published USD rate — its cost cannot be compared from the record, and the guide does not guess one.");
+      lines.push("<strong>" + esc(a.name) + "</strong> has no published USD rate, its cost cannot be compared from the record, and the guide does not guess one.");
     }
     if (b.pricing_status === "unpublished" && a.pricing_status !== "unpublished") {
-      lines.push("<strong>" + esc(b.name) + "</strong> has no published USD rate — its cost cannot be compared from the record, and the guide does not guess one.");
+      lines.push("<strong>" + esc(b.name) + "</strong> has no published USD rate, its cost cannot be compared from the record, and the guide does not guess one.");
     }
     if (edges.sources) {
       var sw = edges.sources === "a" ? a : b;
@@ -194,10 +194,10 @@
     }
     if (edges.drift) {
       var dw = edges.drift === "a" ? a : b;
-      lines.push("<strong>" + esc(dw.name) + "</strong> sits cleaner on the drift board — fewer open alerts.");
+      lines.push("<strong>" + esc(dw.name) + "</strong> sits cleaner on the drift board, fewer open alerts.");
     }
     if (!lines.length) {
-      lines.push("On the published record these two are level — no rate, source, or freshness edge separates them. The difference is in the rows.");
+      lines.push("On the published record these two are level, no rate, source, or freshness edge separates them. The difference is in the rows.");
     }
     return lines.join(" ");
   }
@@ -219,7 +219,7 @@
   function sync() {
     var pair = current();
     if (pair[0].id === pair[1].id) {
-      stage.innerHTML = '<p class="empty-state">Pick two different models — a reel cannot be spliced against itself.</p>';
+      stage.innerHTML = '<p class="empty-state">Pick two different models, a reel cannot be spliced against itself.</p>';
       verdictEl.textContent = "";
       return;
     }
@@ -229,7 +229,7 @@
       url.searchParams.set("a", pair[0].id);
       url.searchParams.set("b", pair[1].id);
       window.history.replaceState(null, "", url.toString());
-    } catch (e) { /* file:// — the table still renders */ }
+    } catch (e) { /* file://, the table still renders */ }
   }
 
   var params = new URLSearchParams(window.location.search);

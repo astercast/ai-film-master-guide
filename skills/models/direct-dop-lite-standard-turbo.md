@@ -7,7 +7,7 @@ description: Use DoP (Lite/Standard/Turbo) well: costs, strengths, weaknesses, b
 
 ## What this gets you
 
-You will know whether DoP (Lite/Standard/Turbo) is worth your money for the shot you have in mind — what it costs, what it is best at, and the weakness to design around — before you spend on generations.
+You will know whether DoP (Lite/Standard/Turbo) is worth your money for the shot you have in mind, what it costs, what it is best at, and the weakness to design around, before you spend on generations.
 
 ## Use when
 
@@ -21,9 +21,9 @@ You are generating on DoP (Lite/Standard/Turbo) (Higgsfield, video). Best use: Q
 
 ## Procedure
 
-1. Budget first: Lite ~3/3s, Turbo ~5/3s, Standard ~7/3s (720p). Multiply by 3–5× per hero shot for re-rolls.
+1. Budget first: Lite ~3/3s, Turbo ~5/3s, Standard ~7/3s (720p). Multiply by 3 to 5× per hero shot for re-rolls.
 2. Lean into its strength: Native Higgsfield model, cheap 3s clips.
-3. Design around its weakness — do not fight it: 3-second cap; less documented.
+3. Design around its weakness, do not fight it: 3-second cap; less documented.
 4. Draft everything at the cheapest tier that still answers the creative question.
 5. Upscale or re-render at hero quality only for approved selects.
 
@@ -38,4 +38,4 @@ You are generating on DoP (Lite/Standard/Turbo) (Higgsfield, video). Best use: Q
 ## Pitfalls
 
 - Weakness to respect: 3-second cap; less documented.
-- Costs in models.json were refreshed 2026-10-11 — verify live before spending real money.
+- Costs in models.json were refreshed 2026-10-11, verify live before spending real money.

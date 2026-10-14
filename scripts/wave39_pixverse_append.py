@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Wave 39: add PixVerse V6 to the model watch — the guide's most conspicuous
+"""Wave 39: add PixVerse V6 to the model watch, the guide's most conspicuous
 uncovered model (launched Mar 30, 2026, native audio, 15s, 1080p).
 
 Fuel: live web research conducted 2026-10-12 (browser.search batches).
@@ -27,7 +27,7 @@ TODAY = "2026-10-12"
 
 # ---------------------------------------------------------------- NEW: PixVerse V6 (AIsphere)
 # Launched March 30, 2026. Pricing below is third-party gateway/API pricing
-# (reported, not vendor list) — flagged as such; PixVerse web plans exist
+# (reported, not vendor list), flagged as such; PixVerse web plans exist
 # separately (~$19/mo entry, free tier 60 daily credits at 720p watermarked).
 d["models"].append({
     "model": "PixVerse V6",
@@ -40,17 +40,17 @@ d["models"].append({
                  "into an ordered scene; reference-to-video with up to 10 images; "
                  "strong independent image-to-video showings (Artificial Analysis "
                  "Elo 1,343, April 2026)."),
-    "est_cost_credits": ("API gateways (reported, third-party — verify live): ~$0.09/s "
+    "est_cost_credits": ("API gateways (reported, third-party, verify live): ~$0.09/s "
                          "at 720p with audio, ~$0.18-0.23/s at 1080p (worked: 5s 720p + "
                          "audio approx $0.60; 10s 1080p no audio approx $1.80; 15s 1080p "
                          "+ audio approx $3.45). PixVerse web plans from ~$19/mo; free "
                          "tier 60 daily credits at 720p, watermarked."),
-    "weakness": ("1080p ceiling — no 4K; audio integration less mature than Kling 3.0 / "
+    "weakness": ("1080p ceiling, no 4K; audio integration less mature than Kling 3.0 / "
                  "Seedance 2.x for dialogue and lip-sync; audio synthesis reported as "
                  "Pro-plan-and-up on the web product; free tier watermarked at 720p."),
     "best_use": ("Cinematic short-form and social video; anime/stylized work with "
                  "multi-shot consistency; pre-viz and multi-shot scene sketches"),
-    "what_changed": ("NEW — added to model watch 2026-10-12; previously the guide's most "
+    "what_changed": ("NEW, added to model watch 2026-10-12; previously the guide's most "
                      "conspicuous uncovered model. Launched March 30, 2026 with native "
                      "audio and multi-shot. Sibling C1 (April 7, 2026) targets "
                      "action/VFX/high-speed motion; not separately tracked."),

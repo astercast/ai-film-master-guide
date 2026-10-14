@@ -1,13 +1,13 @@
-/* Continuity Ledger — the character-consistency chapter
+/* Continuity Ledger, the character-consistency chapter
    (craft/character-consistency.md) as a working ledger.
    The chapter's own words set the rules: "This is where most
    festival entries die." The ledger invents nothing: it takes a
    production's own locks (subject, kind, the locked wording or
-   reference, and the lock's observed state — locked, drifted, or
+   reference, and the lock's observed state, locked, drifted, or
    broken) and computes the chaining verdict exactly as the
    chapter's rejection rules state it: a clip fails if the face
    drifts, the wardrobe changes, the light flips, or the camera
-   moves without motivation — and failed clips don't chain, they
+   moves without motivation, and failed clips don't chain, they
    get re-prompted. Deterministic: the same ledger always produces
    the same verdict and the same export. */
 (function () {
@@ -16,38 +16,38 @@
   /* The chapter's pre-generation checklist, verbatim in substance. */
   var LOCKS = [
     { id: "identity", name: "Identity system chosen and trained",
-      what: "The identity stack, ranked by reliability: trained identity (Soul ID) first, then the character sheet as reference, then a per-generation reference upload. Text description alone is the weakest — never rely on prose to hold a face across 50 shots." },
+      what: "The identity stack, ranked by reliability: trained identity (Soul ID) first, then the character sheet as reference, then a per-generation reference upload. Text description alone is the weakest, never rely on prose to hold a face across 50 shots." },
     { id: "wardrobe", name: "Wardrobe description locked, verbatim",
-      what: "Write the wardrobe once, in exact language, and paste it verbatim into every prompt. A mid-film wardrobe change is a new locked description — never improvised per shot. Props get the same treatment: one description, reused exactly." },
+      what: "Write the wardrobe once, in exact language, and paste it verbatim into every prompt. A mid-film wardrobe change is a new locked description, never improvised per shot. Props get the same treatment: one description, reused exactly." },
     { id: "locations", name: "Location master stills approved",
       what: "Generate and approve a master still of each location first. Every shot in that location starts from it or references it." },
     { id: "light", name: "Light direction + time of day locked per scene",
-      what: "Lock time of day and light direction per scene — \u201cgolden-hour side light from frame left\u201d in every prompt of the scene. Pick the era and colour palette up front; don't grade shot-by-shot and hope." },
+      what: "Lock time of day and light direction per scene, \u201cgolden-hour side light from frame left\u201d in every prompt of the scene. Pick the era and colour palette up front; don't grade shot-by-shot and hope." },
     { id: "startframe", name: "Start frame is real, never invented",
-      what: "Every clip starts from the last frame of the previous approved clip, or from the approved-frame library. Never fabricate a start frame. One human per start frame on character-led work — crowded frames multiply failure modes." },
+      what: "Every clip starts from the last frame of the previous approved clip, or from the approved-frame library. Never fabricate a start frame. One human per start frame on character-led work, crowded frames multiply failure modes." },
   ];
 
   var KINDS = ["identity", "wardrobe", "prop", "location", "lighting", "era / grade"];
 
   var STATUSES = [
-    { id: "locked", label: "Locked — holds" },
-    { id: "drifted", label: "Drifted — off the lock" },
-    { id: "broken", label: "Broken — fails the rejection rules" },
+    { id: "locked", label: "Locked, holds" },
+    { id: "drifted", label: "Drifted, off the lock" },
+    { id: "broken", label: "Broken, fails the rejection rules" },
   ];
   var STATUS_IDS = STATUSES.map(function (s) { return s.id; });
 
   /* The worked example pre-loaded on the ledger: a small AI short
      whose locks mostly hold, one wardrobe lock has drifted, and
-     nothing is broken yet — so the first verdict is the honest
+     nothing is broken yet, so the first verdict is the honest
      hold, and re-locking the drifted item clears it. Every label
      is invented for the example; no real production is described. */
   var DEFAULT_ENTRIES = [
-    { subject: "Mara Venn — face", kind: "identity", lock: "Character sheet v3 (front / 3-4 / side) + Soul ID trained on 42 photos", status: "locked" },
-    { subject: "Mara Venn — wardrobe, scenes 1–6", kind: "wardrobe", lock: "\u201cworn brown leather jacket, white t-shirt, dark jeans, scuffed boots\u201d — pasted verbatim", status: "drifted" },
+    { subject: "Mara Venn, face", kind: "identity", lock: "Character sheet v3 (front / 3-4 / side) + Soul ID trained on 42 photos", status: "locked" },
+    { subject: "Mara Venn, wardrobe, scenes 1 to 6", kind: "wardrobe", lock: "\u201cworn brown leather jacket, white t-shirt, dark jeans, scuffed boots\u201d, pasted verbatim", status: "drifted" },
     { subject: "Ledger prop (hero)", kind: "prop", lock: "One description, reused exactly: \u201cbrass-bound ledger, cracked spine, red ribbon marker\u201d", status: "locked" },
     { subject: "Night-bus interior", kind: "location", lock: "Master still NB-MASTER-02 approved; every interior shot references it", status: "locked" },
-    { subject: "Bus scenes — light", kind: "lighting", lock: "Night; sodium practicals from frame right; no daylight plates", status: "locked" },
-    { subject: "Era / grade — whole film", kind: "era / grade", lock: "Early-90s palette locked up front; grade applied to the cut, not per shot", status: "locked" },
+    { subject: "Bus scenes, light", kind: "lighting", lock: "Night; sodium practicals from frame right; no daylight plates", status: "locked" },
+    { subject: "Era / grade, whole film", kind: "era / grade", lock: "Early-90s palette locked up front; grade applied to the cut, not per shot", status: "locked" },
   ];
 
   function evaluate(entries) {
@@ -65,14 +65,14 @@
       brokenEntries: broken,
       clean: clean,
       verdict: list.length === 0
-        ? "No ledger yet — nothing is locked, so nothing can hold. Log the production's locks first."
+        ? "No ledger yet, nothing is locked, so nothing can hold. Log the production's locks first."
         : broken.length > 0
-          ? "Chain stopped — " + broken.length + " broken lock" + (broken.length === 1 ? "" : "s") +
-            ". Under the chapter's rejection rules a clip fails if the face drifts, the wardrobe changes, or the light flips; failed clips don't chain — they get re-prompted from the last approved frame."
+          ? "Chain stopped, " + broken.length + " broken lock" + (broken.length === 1 ? "" : "s") +
+            ". Under the chapter's rejection rules a clip fails if the face drifts, the wardrobe changes, or the light flips; failed clips don't chain, they get re-prompted from the last approved frame."
           : drifted.length > 0
-            ? "Hold — " + drifted.length + " lock" + (drifted.length === 1 ? " has" : "s have") +
+            ? "Hold, " + drifted.length + " lock" + (drifted.length === 1 ? " has" : "s have") +
               " drifted off the locked wording or reference. Re-lock before the next generation: drift compounds shot over shot, and the next clip chains from this one."
-            : "Continuity clean — every logged lock holds. Chain from the approved frames and keep logging: a lock that is not in the ledger is not locked.",
+            : "Continuity clean, every logged lock holds. Chain from the approved frames and keep logging: a lock that is not in the ledger is not locked.",
     };
   }
 
@@ -87,14 +87,14 @@
 
   function statusLabel(id) {
     for (var i = 0; i < STATUSES.length; i++) if (STATUSES[i].id === id) return STATUSES[i].label;
-    return "— no state recorded —";
+    return "No state recorded ";
   }
 
   function ledgerToMarkdown(title, entries, doneIds) {
     var r = evaluate(entries);
     var cs = checklistState(doneIds);
     var lines = [];
-    lines.push("# Continuity ledger — " + (title || "Untitled production"));
+    lines.push("# Continuity ledger, " + (title || "Untitled production"));
     lines.push("");
     lines.push("Character consistency: the identity stack, the locks, and the chaining discipline (see craft/character-consistency.md).");
     lines.push("");
@@ -109,7 +109,7 @@
     lines.push("## Locks (" + r.total + ")");
     if (!entries.length) lines.push("- (none logged)");
     entries.forEach(function (e) {
-      lines.push("- " + e.subject + " [" + e.kind + "] — " + statusLabel(e.status) + ". Lock: " + e.lock);
+      lines.push("- " + e.subject + " [" + e.kind + "], " + statusLabel(e.status) + ". Lock: " + e.lock);
     });
     lines.push("");
     lines.push("## Chaining verdict");
@@ -164,7 +164,7 @@
       verdictEl.className = "ct-verdict " + (r.clean ? "ct-clean" : "ct-held");
       var cs = checklistState(done);
       locksEl.textContent = "Checklist complete: " + cs.done + " of " + cs.total +
-        (cs.complete ? " — every pre-generation lock is in place." : " — the checklist is the gate before any generation; finish it first.");
+        (cs.complete ? ", every pre-generation lock is in place." : ", the checklist is the gate before any generation; finish it first.");
     }
 
     stageEl.addEventListener("click", function (ev) {
@@ -191,7 +191,7 @@
     if (addBtn) addBtn.addEventListener("click", function () {
       var subject = (document.getElementById("ct-new-subject").value || "").trim();
       var lock = (document.getElementById("ct-new-lock").value || "").trim();
-      if (!subject || !lock) { msgEl.hidden = false; msgEl.textContent = "Name the subject and write the lock — the ledger only holds what is written down, verbatim."; return; }
+      if (!subject || !lock) { msgEl.hidden = false; msgEl.textContent = "Name the subject and write the lock, the ledger only holds what is written down, verbatim."; return; }
       entries.push({ subject: subject, kind: document.getElementById("ct-new-kind").value,
         lock: lock, status: document.getElementById("ct-new-status").value });
       document.getElementById("ct-new-subject").value = "";

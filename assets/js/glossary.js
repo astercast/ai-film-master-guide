@@ -1,4 +1,4 @@
-/* In-context glossary — wraps glossary terms in chapter prose with popover definitions.
+/* In-context glossary, wraps glossary terms in chapter prose with popover definitions.
    Loads glossary.json (copied into site/ at build). First occurrence per term per page only.
    Degrades silently if the JSON fails. */
 (function () {
@@ -47,7 +47,7 @@
     var span = document.createElement("span");
     span.textContent = def;
     p.appendChild(strong);
-    p.appendChild(document.createTextNode(" — "));
+    p.appendChild(document.createTextNode(", "));
     p.appendChild(span);
     btn.setAttribute("aria-describedby", "gloss-pop");
     btn.setAttribute("aria-expanded", "true");
@@ -191,5 +191,5 @@
       });
       if (Object.keys(defs).length) wrapTerms();
     })
-    .catch(function () { /* degrade silently — prose stays plain */ });
+    .catch(function () { /* degrade silently, prose stays plain */ });
 })();

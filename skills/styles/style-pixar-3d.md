@@ -7,7 +7,7 @@ description: Stylized 3D character animation with appeal and clarity.
 
 ## What this gets you
 
-Your characters will have the appeal and clarity of a big-studio animated feature — expressions that read instantly.
+Your characters will have the appeal and clarity of a big-studio animated feature, expressions that read instantly.
 
 ## Use when
 
@@ -21,12 +21,12 @@ Family, comedy, character pieces.
 
 1. Big expressive eyes, soft rounded forms, clean shapes.
 2. Squash-and-stretch for comedy; subtle for sincerity.
-3. Warm key light, soft bounce — subsurface warmth sells the style.
-4. Acting in broad, readable beats — stylized 3D reads at 2× live-action size.
+3. Warm key light, soft bounce, subsurface warmth sells the style.
+4. Acting in broad, readable beats, stylized 3D reads at 2× live-action size.
 
 ## Worked example
 
-Surprise take: squash, stretch, eye-pop — 2 seconds, whole joke landed.
+Surprise take: squash, stretch, eye-pop, 2 seconds, whole joke landed.
 
 ## API references
 
@@ -34,4 +34,4 @@ Surprise take: squash, stretch, eye-pop — 2 seconds, whole joke landed.
 
 ## Pitfalls
 
-- Photoreal textures on toon shapes — pick a lane.
+- Photoreal textures on toon shapes, pick a lane.

@@ -1,4 +1,4 @@
-/* Prompt gallery — your workshop-saved prompts as a browsable collection.
+/* Prompt gallery, your workshop-saved prompts as a browsable collection.
    Reads the same localStorage the workshop writes: afg-workshop-saves.
    Filter by track/model, sort by rating, open in workshop, export/import JSON. */
 (function () {
@@ -52,8 +52,8 @@
       : '<p class="save-text">' + esc(s.prompt || "") + "</p>";
     return '<article class="card save-card" data-save="' + esc(s.id) + '">' +
       "<h3>" + esc(s.title || "Untitled prompt") + "</h3>" +
-      '<p class="save-meta">' + esc(s.model || "—") + " · " +
-      esc(TRACK_NAMES[s.track] || s.track || "—") + " · saved " + esc(s.savedAt || "—") + "</p>" +
+      '<p class="save-meta">' + esc(s.model || "…") + " · " +
+      esc(TRACK_NAMES[s.track] || s.track || "…") + " · saved " + esc(s.savedAt || "…") + "</p>" +
       stars(s.rating || 0) + body +
       '<div class="btn-row save-actions">' +
       '<a class="btn btn-sm" href="workshop.html?save=' + encodeURIComponent(s.id) + '">Open in workshop</a>' +
@@ -186,7 +186,7 @@
         fillFilters(merged);
         render();
         els.error.hidden = false;
-        els.error.textContent = added ? "Imported " + added + " prompt" + (added === 1 ? "" : "s") + "." : "Nothing new to import — those prompts are already here.";
+        els.error.textContent = added ? "Imported " + added + " prompt" + (added === 1 ? "" : "s") + "." : "Nothing new to import, those prompts are already here.";
       } catch (e) {
         els.error.hidden = false;
         els.error.textContent = "That file isn't a valid gallery export.";

@@ -1,4 +1,4 @@
-/* Model-picker quiz — 5 questions -> ranked top-3 from models.json, data-driven.
+/* Model-picker quiz, 5 questions -> ranked top-3 from models.json, data-driven.
    No hardcoded picks: scoring reads best_use/strength/weakness keywords + parsed cost. */
 (function () {
   "use strict";
@@ -63,11 +63,11 @@
     var lines = [];
     var uc = USE_CASES[ans.usecase];
     if (m.status && m.status !== "active") {
-      var lbl = m.status === "reported" ? "reported — unconfirmed"
-        : m.status === "announced" ? "announced — not yet generally available" : m.status;
-      lines.push("Status: " + lbl + " (verified " + (m.last_verified || "—") + "). Don't plan a production around it yet.");
+      var lbl = m.status === "reported" ? "reported, unconfirmed"
+        : m.status === "announced" ? "announced, not yet generally available" : m.status;
+      lines.push("Status: " + lbl + " (verified " + (m.last_verified || "…") + "). Don't plan a production around it yet.");
     }
-    if (uc && hit(hay(m), uc.keys)) lines.push("Fits your use case — " + uc.label.toLowerCase() + " is in its wheelhouse.");
+    if (uc && hit(hay(m), uc.keys)) lines.push("Fits your use case, " + uc.label.toLowerCase() + " is in its wheelhouse.");
     if (ans.audio === "must" && /native audio|dialog|speech|lip-sync|voice/.test(hay(m)))
       lines.push("Handles dialogue/speech natively.");
     if (m.strength) lines.push("Strength: " + m.strength.slice(0, 140) + (m.strength.length > 140 ? "…" : ""));
@@ -112,7 +112,7 @@
         var html = top.map(function (r2, i) {
           var m = r2.x.m, cps = r2.x.cps;
           var cost = cps === null
-            ? '<span class="quiz-cost-na">Cost unverified — check the live pricing before budgeting.</span>'
+            ? '<span class="quiz-cost-na">Cost unverified, check the live pricing before budgeting.</span>'
             : "Est. <strong>" + Math.round(cps * ans.seconds * ans.takes) + " credits</strong> " +
               '<span class="quiz-cost-sub">(' + cps.toFixed(2) + "/sec × " + ans.seconds + "s × " + ans.takes + " takes)</span>";
           var whys = whyLines(m, ans).map(function (w) {
@@ -131,7 +131,7 @@
 
         results.innerHTML =
           '<h2 id="quiz-results-h" tabindex="-1">Your top 3</h2>' +
-          '<p class="section-lede">Ranked from <code>models.json</code> — update the data, not the article. Costs are third-party estimates; verify live.</p>' +
+          '<p class="section-lede">Ranked from <code>models.json</code>, update the data, not the article. Costs are third-party estimates; verify live.</p>' +
           '<div class="quiz-grid">' + html + "</div>";
         document.getElementById("quiz-results-h").focus();
       })

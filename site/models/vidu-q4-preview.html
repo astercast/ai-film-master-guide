@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Vidu Q4 Preview — model deep dive — AI Film Master Guide</title>
-  <meta name="description" content="Vidu Q4 Preview (Vidu / Shengshu Technology): cost math, prompt tips, and when to use it vs avoid it — from the guide's versioned model data.">
+  <title>Vidu Q4 Preview, model deep dive, AI Film Master Guide</title>
+  <meta name="description" content="Vidu Q4 Preview (Vidu / Shengshu Technology): cost math, prompt tips, and when to use it vs avoid it, from the guide's versioned model data.">
+  <link rel="preload" href="../assets/fonts/anton-latin-normal-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/inter-latin-normal-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../assets/css/fonts.css">
   <link rel="stylesheet" href="../assets/css/tokens.css">
@@ -21,14 +22,14 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="canonical" href="https://ai-film-master-guide-live.vercel.app/models/vidu-q4-preview">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Vidu Q4 Preview — model deep dive — AI Film Master Guide">
-  <meta property="og:description" content="Vidu Q4 Preview (Vidu / Shengshu Technology): cost math, prompt tips, and when to use it vs avoid it — from the guide's versioned model data.">
+  <meta property="og:title" content="Vidu Q4 Preview, model deep dive, AI Film Master Guide">
+  <meta property="og:description" content="Vidu Q4 Preview (Vidu / Shengshu Technology): cost math, prompt tips, and when to use it vs avoid it, from the guide's versioned model data.">
   <meta property="og:image" content="https://ai-film-master-guide-live.vercel.app/assets/og-card.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Vidu Q4 Preview — model deep dive — AI Film Master Guide">
-  <meta name="twitter:description" content="Vidu Q4 Preview (Vidu / Shengshu Technology): cost math, prompt tips, and when to use it vs avoid it — from the guide's versioned model data.">
+  <meta name="twitter:title" content="Vidu Q4 Preview, model deep dive, AI Film Master Guide">
+  <meta name="twitter:description" content="Vidu Q4 Preview (Vidu / Shengshu Technology): cost math, prompt tips, and when to use it vs avoid it, from the guide's versioned model data.">
   <meta name="twitter:image" content="https://ai-film-master-guide-live.vercel.app/assets/og-card.png">
 </head>
 <body>
@@ -56,6 +57,7 @@
   <main id="main">
     <section class="hero" aria-labelledby="md-title">
       <div class="container hero-inner">
+        <p class="hero-slate"><span>Model deep dive</span></p>
         <h1 id="md-title">Vidu Q4 Preview</h1>
         <p class="lede">Vidu / Shengshu Technology · video</p>
         <p><span class="mw-badge mw-badge-active">Active</span> <span class="card-meta">last verified 2026-10-11</span> <span class="print-tag is-answer">ANSWER PRINT</span></p>
@@ -64,32 +66,32 @@
     <section class="container" aria-label="Model specifications">
       <div class="card mw-card">
         <dl>
-          <dt>Best use</dt><dd>Expressive character performance, short dramas, ads — lifelike acting with voice consistency at flagship quality</dd>
-          <dt>Cost</dt><dd>Launch headline $0.014 per second was a promotional off-peak floor (GlobeNewswire). List pricing (official Oct 7, 2026): $0.045/s at 540p, $0.12/s at 1080p, $0.39/s at 4K; image-to-video and reference-to-video 30% off through Nov 30 — verify live (preview pricing may change)</dd>
+          <dt>Best use</dt><dd>Expressive character performance, short dramas, ads, lifelike acting with voice consistency at flagship quality</dd>
+          <dt>Cost</dt><dd>Launch headline $0.014 per second was a promotional off-peak floor (GlobeNewswire). List pricing (official Oct 7, 2026): $0.045/s at 540p, $0.12/s at 1080p, $0.39/s at 4K; image-to-video and reference-to-video 30% off through Nov 30, verify live (preview pricing may change)</dd>
           <dt>Strength</dt><dd>Next-gen flagship preview (Oct 7, 2026): lifelike performances, cinematic 4K 10-bit, up to 15 image references, 3 audio references for voice consistency, stable camera moves and cuts, strong Chinese text rendering</dd>
-          <dt>Weakness</dt><dd>Preview tier — launch pricing and final spec may change; short public track record — verify live before production</dd>
+          <dt>Weakness</dt><dd>Preview tier, launch pricing and final spec may change; short public track record, verify live before production</dd>
         </dl>
-        <p class="mw-changed"><strong>What changed:</strong> NEW — launched Oct 7, 2026 (Shengshu Technology, GlobeNewswire). First public preview of Vidu&#x27;s next-generation flagship for expressive audio+video. Faster generation and lower costs positioned for short-drama, advertising, and film teams. Wave-30 CORRECTION: the $0.014/s launch headline was a promotional off-peak floor, not a list rate. The official Oct 7, 2026 rate card (GlobeNewswire): $0.045/s at 540p, $0.12/s at 1080p, $0.39/s at 4K; image-to-video and reference-to-video at a 30% discount through Nov 30; off-peak jobs at half. Artificial Analysis image-to-video: Elo 1,179 on Oct 8, 2026, ranked #3 — up 123 points from Vidu Q3 Pro&#x27;s 1,056 (sloptvnews, single-source — the board itself was not re-polled by this guide). Clips up to 16 seconds; image-to-video and reference-to-video only — no text-to-video mode; audio on by default.</p>
+        <p class="mw-changed"><strong>What changed:</strong> NEW, launched Oct 7, 2026 (Shengshu Technology, GlobeNewswire). First public preview of Vidu&#x27;s next-generation flagship for expressive audio+video. Faster generation and lower costs positioned for short-drama, advertising, and film teams. Wave-30 CORRECTION: the $0.014/s launch headline was a promotional off-peak floor, not a list rate. The official Oct 7, 2026 rate card (GlobeNewswire): $0.045/s at 540p, $0.12/s at 1080p, $0.39/s at 4K; image-to-video and reference-to-video at a 30% discount through Nov 30; off-peak jobs at half. Artificial Analysis image-to-video: Elo 1,179 on Oct 8, 2026, ranked #3, up 123 points from Vidu Q3 Pro&#x27;s 1,056 (sloptvnews, single-source, the board itself was not re-polled by this guide). Clips up to 16 seconds; image-to-video and reference-to-video only, no text-to-video mode; audio on by default.</p>
       </div>
     </section>
     <section class="container" aria-labelledby="md-cost-h" style="margin-top:var(--space-6);">
       <h2 id="md-cost-h">Cost math</h2>
-      <p>No published rate in the captured data — <strong>verify live</strong> on the vendor's pricing page before budgeting. Recorded rate string: <code>Launch headline $0.014 per second was a promotional off-peak floor (GlobeNewswire). List pricing (official Oct 7, 2026): $0.045/s at 540p, $0.12/s at 1080p, $0.39/s at 4K; image-to-video and reference-to-video 30% off through Nov 30 — verify live (preview pricing may change)</code></p>
-      <p class="calc-note">USD at $0.0392/credit (Higgsfield Plus plan, observed 2026-10-10). Verify live before budgeting — rates change.</p>
+      <p>No published rate in the captured data, <strong>verify live</strong> on the vendor's pricing page before budgeting. Recorded rate string: <code>Launch headline $0.014 per second was a promotional off-peak floor (GlobeNewswire). List pricing (official Oct 7, 2026): $0.045/s at 540p, $0.12/s at 1080p, $0.39/s at 4K; image-to-video and reference-to-video 30% off through Nov 30, verify live (preview pricing may change)</code></p>
+      <p class="calc-note">USD at $0.0392/credit (Higgsfield Plus plan, observed 2026-10-10). Verify live before budgeting, rates change.</p>
     </section>
     <section class="container" aria-labelledby="md-when-h" style="margin-top:var(--space-6);">
       <h2 id="md-when-h">Use it when / avoid it when</h2>
       <div class="card-grid">
-        <div class="card"><h3>Use it when</h3><p>Expressive character performance, short dramas, ads — lifelike acting with voice consistency at flagship quality</p></div>
-        <div class="card"><h3>Avoid it when</h3><p>Preview tier — launch pricing and final spec may change; short public track record — verify live before production</p></div>
+        <div class="card"><h3>Use it when</h3><p>Expressive character performance, short dramas, ads, lifelike acting with voice consistency at flagship quality</p></div>
+        <div class="card"><h3>Avoid it when</h3><p>Preview tier, launch pricing and final spec may change; short public track record, verify live before production</p></div>
       </div>
-      <p class="calc-note">Drawn directly from the model's own best-use and weakness fields — the record's words, not ours.</p>
+      <p class="calc-note">Drawn directly from the model's own best-use and weakness fields, the record's words, not ours.</p>
     </section>
     <section class="container" aria-labelledby="md-tips-h" style="margin-top:var(--space-6);">
       <h2 id="md-tips-h">Prompt tips for this model</h2>
       <ul>
-      <li><strong>Direct the voice, not just the picture.</strong> Native-audio models live or die on voice direction — <a href="../craft/sound-music-audio.html">sound, music &amp; audio</a> covers TTS direction, Voice Bibles, and the two dialogue roads.</li>
-      <li><strong>One action per shot.</strong> Video models execute a single believable verb well; stacked actions collapse — <a href="../craft/directing-performance.html">directing performance</a> and the <a href="../doctor.html">failure doctor</a> show what breaks.</li>
+      <li><strong>Direct the voice, not just the picture.</strong> Native-audio models live or die on voice direction, <a href="../craft/sound-music-audio.html">sound, music &amp; audio</a> covers TTS direction, Voice Bibles, and the two dialogue roads.</li>
+      <li><strong>One action per shot.</strong> Video models execute a single believable verb well; stacked actions collapse, <a href="../craft/directing-performance.html">directing performance</a> and the <a href="../doctor.html">failure doctor</a> show what breaks.</li>
       <li><strong>Run it through the linter.</strong> <a href="../linter.html">Paste any prompt</a> for this model and check all ten layers before spending credits.</li>
       <li><strong>Not sure it's the right model?</strong> <a href="../quiz.html">Take the 5-question quiz</a> or <a href="../compare.html">compare it side-by-side</a> with alternatives.</li>
       </ul>
@@ -102,7 +104,7 @@
   </main>
   <footer class="site-footer">
     <div class="container footer-grid">
-      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <p>AI Film Master Guide, research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer"><a href="../index.html">Guide</a><a href="../skills.html">Skills</a><a href="../workshop.html">Workshop</a><a href="../quiz.html">Quiz</a><a href="../compare.html">Compare</a><a href="../gallery.html">Gallery</a><a href="../teardown.html">Teardowns</a><a href="../model-watch.html">Model watch</a><a href="../showdown.html">Showdown</a><a href="../forge.html">Episode forge</a><a href="../clearance.html">Script clearance</a><a href="../continuity.html">Continuity ledger</a><a href="../cuesheet.html">Cue sheet</a><a href="../grade.html">Grade sheet</a><a href="../cut.html">Cut sheet</a><a href="../take.html">Take sheet</a><a href="../longform.html">Longform sheet</a><a href="../path.html">The path</a><a href="../checks/">Knowledge checks</a><a href="../budget.html">Budget</a><a href="../optimizer.html">Optimizer</a><a href="../shots.html">Shot list</a><a href="../style-bible.html">Style bible</a><a href="../doctor.html">Doctor</a><a href="../linter.html">Linter</a><a href="../cutting-room.html">Cutting room</a><a href="../prompts.html">Prompts</a><a href="../models/">Models</a><a href="../anatomy.html">Anatomy</a><a href="../manifesto.html">Manifesto</a><a href="../craft-not-buttons.html">Craft, not buttons</a><a href="../recipes.html">Recipes</a><a href="../field-guides/">Field guides</a><a href="../changelog.html">Changelog</a><a href="../skill-spec.html">Skill spec</a><a href="../api.html">API</a></nav>
       <div class="footer-colophon"><span>AI Film Master Guide</span><span class="tail">Craft, not buttons</span></div>
     </div>

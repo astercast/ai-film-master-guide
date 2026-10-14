@@ -1,4 +1,4 @@
-/* Studio — "Plan my AI film": the interactive AI-film studio simulator.
+/* Studio, "Plan my AI film": the interactive AI-film studio simulator.
    Concept in (title, logline, genre/mood, runtime, draft/festival tier) ->
    a deterministic production packet out: shot list with per-shot prompts
    built from the 47-template prompt library, per-shot model picks from
@@ -12,7 +12,7 @@
 (function () {
   "use strict";
 
-  var USD_PER_CREDIT = 0.0392; /* models.json cost_basis, Oct 2026 — verify live */
+  var USD_PER_CREDIT = 0.0392; /* models.json cost_basis, Oct 2026, verify live */
   var TOK = /\[([^\[\]]+)\]/g; /* [PLACEHOLDER] or [PLACEHOLDER: default] */
 
   /* ---- deterministic RNG ------------------------------------------------ */
@@ -94,35 +94,35 @@
      env/light/style: the generic production defaults used to fill template
      placeholders (labeled as defaults in the packet, never invented facts). */
   var GENRES = {
-    drama: { label: "Drama — intimate", tracks: ["core", "performance", "photorealistic"],
+    drama: { label: "Drama, intimate", tracks: ["core", "performance", "photorealistic"],
       env: "a quiet interior at dusk", light: "soft window light, low contrast",
       style: "naturalistic and restrained", estab: ["t2", "p1"], payoff: ["t3", "f1", "p1"] },
-    horror: { label: "Horror — dread", tracks: ["core", "photorealistic"],
+    horror: { label: "Horror, dread", tracks: ["core", "photorealistic"],
       env: "a darkened house at night", light: "hard practicals, deep shadows",
       style: "dread-filled and minimal", estab: ["t6", "p5"], payoff: ["t6", "p5"] },
-    scifi: { label: "Sci-fi — wonder", tracks: ["core", "photorealistic"],
+    scifi: { label: "Sci-fi, wonder", tracks: ["core", "photorealistic"],
       env: "a vast alien structure", light: "volumetric glow, cool palette",
       style: "awe and scale", estab: ["t1", "t12", "p8", "p6"], payoff: ["t12", "p6"] },
-    action: { label: "Action — adrenaline", tracks: ["core", "animated"],
+    action: { label: "Action, adrenaline", tracks: ["core", "animated"],
       env: "a city street at night", light: "neon, high contrast",
       style: "kinetic and punchy", estab: ["t1", "t5"], payoff: ["t5", "a1"] },
-    comedy: { label: "Comedy — warmth", tracks: ["core", "animated"],
+    comedy: { label: "Comedy, warmth", tracks: ["core", "animated"],
       env: "a sunlit apartment", light: "bright and soft",
       style: "playful and warm", estab: ["a4", "t7"], payoff: ["a5", "a4"] },
-    animation: { label: "Animation — whimsy", tracks: ["animated"],
+    animation: { label: "Animation, whimsy", tracks: ["animated"],
       env: "a handcrafted miniature world", light: "storybook glow",
       style: "animated-feature warmth", estab: ["a2"], payoff: ["a3", "a6"] },
-    commercial: { label: "Commercial — product", tracks: ["core", "photorealistic"],
+    commercial: { label: "Commercial, product", tracks: ["core", "photorealistic"],
       env: "a clean studio set", light: "crisp product lighting",
       style: "premium commercial polish", estab: ["t4", "t14"], payoff: ["t4", "t10", "p4"] },
-    documentary: { label: "Documentary — truthful", tracks: ["photorealistic", "core"],
+    documentary: { label: "Documentary, truthful", tracks: ["photorealistic", "core"],
       env: "real streets, available light", light: "natural available light",
       style: "observational and honest", estab: ["p2", "t9"], payoff: ["p2", "t3"] }
   };
 
   var RUNTIMES = { 30: "30 seconds", 120: "2 minutes", 300: "5 minutes", 600: "10 minutes" };
 
-  /* Tier assumptions — stated in the packet, not hidden. */
+  /* Tier assumptions, stated in the packet, not hidden. */
   var TIERS = {
     draft: { label: "Draft", secsPerShot: 6, takes: 3, shotsPerDay: 40, stillsPerShot: 1 },
     festival: { label: "Festival", secsPerShot: 4, takes: 6, shotsPerDay: 12, stillsPerShot: 2 }
@@ -132,7 +132,7 @@
      Mirrors the episode planner's FORMAT_PRESETS (assets/js/episode-planner.js):
      same bands, same seconds-per-beat. The beat counts, hook styles, and the
      voice-budget rule come from craft/episodic-shortform.md (the mini-drama
-     pipeline). Keep the two files' bands in sync — scripts/studio.test.js
+     pipeline). Keep the two files' bands in sync, scripts/studio.test.js
      asserts it. */
   var SERIES_FORMATS = {
     minidrama: { label: "Mini-drama", band: [60, 150], spb: 15, beats: 4,
@@ -140,7 +140,7 @@
       arcStyle: "one emotion per episode; gut-punch → reversal → cliffhanger (never the resolution)",
       voiceRule: "Lock voice/dialogue at ≈beats × 15s ±10% BEFORE any frame is generated (the golden rule)." },
     pov: { label: "POV micro-series", band: [30, 90], spb: 12, beats: 4,
-      hookStyle: "your hands / your POV — immediate second-person stakes in the first 3 seconds",
+      hookStyle: "your hands / your POV, immediate second-person stakes in the first 3 seconds",
       arcStyle: "one encounter, one power reversal per episode; the cliffhanger is always social",
       voiceRule: "Lock voice/dialogue at ≈beats × 12s ±10% BEFORE any frame is generated (the golden rule)." },
     daylife: { label: "Day-in-the-life", band: [15, 60], spb: 10, beats: 3,
@@ -152,20 +152,20 @@
       arcStyle: "betrayal → discovery → the plan → the takedown → the reveal; one justice-ladder rung per episode",
       voiceRule: "Lock voice/dialogue at ≈beats × 15s ±10% BEFORE any frame is generated (the golden rule)." },
     interactive: { label: "Interactive series", band: [60, 150], spb: 15, beats: 4,
-      hookStyle: "the decision point as a visual in the first 3 seconds — a choice the viewer can see",
+      hookStyle: "the decision point as a visual in the first 3 seconds, a choice the viewer can see",
       arcStyle: "one decision per episode: hook → the stakes → the decision beat (poll/comment prompt) → the consequence → freeze before the next choice; viewer comments shape the next episode's block",
       voiceRule: "Lock voice/dialogue at ≈beats × 15s ±10% BEFORE any frame is generated (the golden rule)." }
   };
 
-  /* The series consistency checklist — every item is a rule from the
+  /* The series consistency checklist, every item is a rule from the
      episodic-shortform chapter or the episode planner's gates, restated. */
   var SERIES_CHECKLIST = [
-    "Bible locked before generation: the prompt DNA block is identical in every episode's shots — never edit mid-series.",
+    "Bible locked before generation: the prompt DNA block is identical in every episode's shots, never edit mid-series.",
     "Face anchors never re-run: the locked character stills below are generated ONCE and reused across all episodes.",
-    "One emotion per episode (the two-emotions rule) — completion rate dies when the episode can't decide.",
+    "One emotion per episode (the two-emotions rule), completion rate dies when the episode can't decide.",
     "Voice/dialogue locked at ±10% before any frame (the golden rule); picture is cut TO the locked track, never the reverse.",
     "The cliffhanger is a freeze, never the resolution.",
-    "Gate G8: an episode ships only after its lesson is logged — the arc tracker is the series memory."
+    "Gate G8: an episode ships only after its lesson is logged, the arc tracker is the series memory."
   ];
 
   function shotCountFor(runtimeSec, tier) {
@@ -317,7 +317,7 @@
         n: i + 1, act: act, templateId: tmpl.id, templateTitle: tmpl.title,
         track: tmpl.track, duration: shotSec,
         anatomy: tmpl.anatomy ||
-          "No template-specific anatomy note — apply the nine-layer anatomy from the anatomy chapter.",
+          "No template-specific anatomy note, apply the nine-layer anatomy from the anatomy chapter.",
         use: tmpl.use || "",
         prompt: filled.text, unfilled: filled.unfilled,
         model: pm.model ? pm.model.model : null,
@@ -325,7 +325,7 @@
         cps: pm.model ? costPerSec(pm.model) : null,
         modelFallback: pm.fallback,
         modelUnpriced: pm.unpricedNames,
-        modelWhy: pm.model ? whyLine(pm.model) : "No priced video model resolved — verify live."
+        modelWhy: pm.model ? whyLine(pm.model) : "No priced video model resolved, verify live."
       };
     });
 
@@ -377,7 +377,7 @@
       var gens = g.count * tier.takes;
       var credits = gens * g.cps * shotSec;
       lines.push({
-        item: "Generation — " + name + " (" + g.count + " shots × " + tier.takes + " takes)",
+        item: "Generation, " + name + " (" + g.count + " shots × " + tier.takes + " takes)",
         math: g.count + " × " + tier.takes + " takes × " + shotSec + "s × " +
           g.cps.toFixed(2) + " credits/s",
         credits: credits, usd: credits * USD_PER_CREDIT, verifyLive: false
@@ -395,7 +395,7 @@
       }
     });
     lines.push({
-      item: "Post — assembly, audio, grade",
+      item: "Post, assembly, audio, grade",
       math: "human time + software you already own; not modeled",
       credits: 0, usd: 0, verifyLive: false
     });
@@ -420,7 +420,7 @@
       { phase: "Assembly / edit",
         days: Math.max(1, Math.ceil(runtimeMin)),
         basis: "1 day per finished minute" },
-      { phase: "Audio — voice, foley, music",
+      { phase: "Audio, voice, foley, music",
         days: Math.max(1, Math.ceil(runtimeSec / 120)),
         basis: "1 day per 2 finished minutes" },
       { phase: "Grade / finish",
@@ -468,20 +468,20 @@
               arcs: [ {n, emotion, beats[], hook, turn, cliff, scenes} ] }
      arcs usually arrive from the episode planner via the Studio bridge; when
      absent the engine builds deterministic skeleton arcs from the format
-     preset (labeled as skeletons — the filmmaker writes the real lines). */
+     preset (labeled as skeletons, the filmmaker writes the real lines). */
   function seriesBible(input) {
     var fmt = SERIES_FORMATS[input.format];
     var genre = GENRES[input.genre];
     var cast = (input.cast || []).filter(function (c) { return c.name || c.anchor; });
     var locations = (input.locations || []).filter(function (l) { return l; });
     var dna = [
-      "[SERIES BIBLE — locked, identical in every episode's shots]",
+      "[SERIES BIBLE, locked, identical in every episode's shots]",
       "Characters: " + (cast.length
-        ? cast.map(function (c) { return c.name + " — " + (c.anchor || "no anchor set"); }).join(" | ")
-        : "none locked — lock the cast before generating"),
+        ? cast.map(function (c) { return c.name + ", " + (c.anchor || "no anchor set"); }).join(" | ")
+        : "none locked, lock the cast before generating"),
       "Locations: " + (locations.length ? locations.join(" | ") : genre.env),
       "Style: " + genre.style + " · Light: " + genre.light +
-        " · Grade: locked at the still stage — match the anchor plates.",
+        " · Grade: locked at the still stage, match the anchor plates.",
       "Voice: " + fmt.voiceRule
     ];
     var lockedAssets = cast.map(function (c) {
@@ -503,22 +503,22 @@
   }
 
   function skeletonArc(n, fmt, seriesLogline) {
-    var roles = ["Hook — the first 3 seconds",
-      "Development — raise the stake of this episode's single emotion",
-      "Turn — what changes", "Cliffhanger — freeze, never the resolution"];
+    var roles = ["Hook, the first 3 seconds",
+      "Development, raise the stake of this episode's single emotion",
+      "Turn, what changes", "Cliffhanger, freeze, never the resolution"];
     var beats = [];
     for (var i = 0; i < fmt.beats; i++) {
       beats.push("SKELETON beat " + (i + 1) + " (" + roles[Math.min(i, roles.length - 1)] + ")");
     }
     return {
       n: n, skeleton: true,
-      emotion: "SKELETON — one emotion for episode " + n,
-      stake: "SKELETON — one-line emotional stake (series: " + seriesLogline + ")",
-      hook: "SKELETON — hook visual (" + fmt.hookStyle + ")",
+      emotion: "SKELETON, one emotion for episode " + n,
+      stake: "SKELETON, one-line emotional stake (series: " + seriesLogline + ")",
+      hook: "SKELETON, hook visual (" + fmt.hookStyle + ")",
       beats: beats,
-      turn: "SKELETON — the emotional turn",
-      cliff: "SKELETON — the unanswered beat. Never the resolution.",
-      scenes: "SKELETON — keyframe scenes (hook / beat / turn / cliffhanger)"
+      turn: "SKELETON, the emotional turn",
+      cliff: "SKELETON, the unanswered beat. Never the resolution.",
+      scenes: "SKELETON, keyframe scenes (hook / beat / turn / cliffhanger)"
     };
   }
 
@@ -529,12 +529,12 @@
     if (!TIERS[input.tier]) throw new Error("unknown tier: " + input.tier);
     var episodes = parseInt(input.episodes, 10);
     if (!(episodes >= 3 && episodes <= 10)) {
-      throw new Error("episode count must be 3–10, got " + input.episodes);
+      throw new Error("episode count must be 3 to 10, got " + input.episodes);
     }
     var runtimeSec = parseInt(input.runtimeSec, 10);
     if (!(runtimeSec >= fmt.band[0] && runtimeSec <= fmt.band[1])) {
       throw new Error("runtime " + runtimeSec + "s is outside the " + fmt.label +
-        " band (" + fmt.band[0] + "–" + fmt.band[1] + "s)");
+        " band (" + fmt.band[0] + "-" + fmt.band[1] + "s)");
     }
     if (!input.seriesTitle) throw new Error("series needs a title");
     if (!input.seriesLogline) throw new Error("series needs a logline");
@@ -556,7 +556,7 @@
     for (var n = 1; n <= episodes; n++) {
       var arc = byN[n] || skeletonArc(n, fmt, input.seriesLogline);
       var ep = _buildPlan(data, {
-        title: input.seriesTitle + " — E" + n,
+        title: input.seriesTitle + ", E" + n,
         logline: input.seriesLogline,
         genre: input.genre, runtimeSec: runtimeSec, tier: input.tier
       }, true);
@@ -573,7 +573,7 @@
     /* ---- series budget: per-episode subtotals + the once-only bible line --
        The locked anchor plates are generated ONCE, not per episode (face
        anchors never re-run). `reuse.avoided` is the stated saving vs. a
-       naive per-episode regeneration — shown in the packet, not subtracted. */
+       naive per-episode regeneration, shown in the packet, not subtracted. */
     var cheapestImage = null, cheapestCpi = null;
     (data.models || []).filter(function (m) {
       return m.type === "image" && m.status !== "discontinued";
@@ -588,7 +588,7 @@
     var lines = [];
     if (cheapestImage) {
       lines.push({
-        item: "Series bible — locked anchor plates, generated ONCE (" + assetPlates +
+        item: "Series bible, locked anchor plates, generated ONCE (" + assetPlates +
           " assets: " + bible.lockedAssets.map(function (a) {
             return a.kind + ":" + (a.name || "unnamed");
           }).join(", ") + ")",
@@ -598,7 +598,7 @@
       });
     } else {
       lines.push({
-        item: "Series bible — locked anchor plates (" + assetPlates + " assets)",
+        item: "Series bible, locked anchor plates (" + assetPlates + " assets)",
         math: "no published image rate", credits: 0, usd: 0, verifyLive: true
       });
     }
@@ -608,7 +608,7 @@
       var epUSD = ep.budget.lines.reduce(function (a, l) { return a + l.usd; }, 0);
       sumEpCredits += epCredits;
       lines.push({
-        item: "Episode " + (i + 1) + " — " + ep.shotCount + " shots × " + ep.tierSpec.takes +
+        item: "Episode " + (i + 1) + ", " + ep.shotCount + " shots × " + ep.tierSpec.takes +
           " takes (" + ep.budget.verifyLive.length + " model(s) verify-live)",
         math: ep.shotCount + " × " + ep.tierSpec.takes + " takes × " + ep.shotSec + "s + stills",
         credits: r2(epCredits), usd: r2(epUSD), verifyLive: false
@@ -629,7 +629,7 @@
     /* ---- series schedule: bible plates first, then per-episode pipelines -- */
     var epSchedules = epList.map(function (ep) { return ep.schedule; });
     var phases = [{
-      phase: "Series bible — locked anchor stills",
+      phase: "Series bible, locked anchor stills",
       days: Math.max(1, Math.ceil(assetPlates / 60)),
       basis: assetPlates + " plates ÷ 60/day (generated ONCE for all " + episodes + " episodes)"
     }];
@@ -642,7 +642,7 @@
       });
     });
     Object.keys(merge).forEach(function (k) {
-      phases.push({ phase: merge[k].phase + " — all " + episodes + " episodes",
+      phases.push({ phase: merge[k].phase + ", all " + episodes + " episodes",
         days: merge[k].days, basis: merge[k].per.join(" · ") });
     });
     var totalDays = phases.reduce(function (a, p) { return a + p.days; }, 0);
@@ -673,24 +673,24 @@
   }
 
   /* ---- Studio 2.5: microdrama production planner --------------------------
-     An economics planner for serialized AI-microdrama runs — not a shot
+     An economics planner for serialized AI-microdrama runs, not a shot
      packet. Every figure below is labeled with its documented basis, from
      the wave-27 teardown "The $150 Microdrama" (data/v1/teardowns.json,
-     id `storeel-off-campus` — TheWrap, June 2026; Sixth Tone, June 2026):
-     - Clip unit 10–15s: StoReel Canvas split a 30-episode storyboard into
-       146 clips of 10–15s — the unit of generation for the whole run.
+     id `storeel-off-campus`, TheWrap, June 2026; Sixth Tone, June 2026):
+     - Clip unit 10 to 15s: StoReel Canvas split a 30-episode storyboard into
+       146 clips of 10 to 15s, the unit of generation for the whole run.
      - $50/min benchmark: TheWrap's reported per-minute AI series cost
        (~$150 for 4 one-minute episodes ≈ $37.50/ep), vs ~$2,000/min for a
        typical live-action microseries. One platform's rate card, one
-       experiment — a benchmark to beat, not a promise.
-     - 3–5 "drawing cards": Qidian Interactive's retake discipline — 3 to
+       experiment, a benchmark to beat, not a promise.
+     - 3 to 5 "drawing cards": Qidian Interactive's retake discipline, 3 to
        5 attempts per usable shot. Draft tier plans the low end (3×),
        festival tier the high end (5×).
      - 1 day/episode: TheWrap's reporter shipped 4 one-minute episodes in
-       4 days — script, breakdown, generation, and assembly inside the day;
+       4 days, script, breakdown, generation, and assembly inside the day;
        free (reporter) labor, scripting cost uncounted.
      - Character regenerations were a real paid cost (faces drifting); no
-       per-episode figure was published — the count is the filmmaker's
+       per-episode figure was published, the count is the filmmaker's
        input, priced at the cheapest image-model rate.
      Generation rates come from data/v1/models.json (always flagged
      verify-live in this planner); everything else is arithmetic on the
@@ -715,7 +715,7 @@
     };
   }
 
-  /* Cheapest priced video / image model in the data — the planner's rate
+  /* Cheapest priced video / image model in the data, the planner's rate
      floor, always labeled as such. Null when nothing in the file is priced. */
   function cheapestPricedVideo(data) {
     var best = null, bestCps = null;
@@ -747,24 +747,24 @@
     } : null;
   }
 
-  /* input: { title, logline?, episodes (1–40), minPerEpisode (0.5–3),
-              tier (draft|festival), regensPerEp (0–100 — your budget guess) }
+  /* input: { title, logline? episodes (1 to 40), minPerEpisode (0.5 to 3),
+              tier (draft|festival), regensPerEp (0 to 100, your budget guess) }
      Deterministic: same inputs → byte-identical plan. */
   function buildMicrodramaPlan(data, input) {
     var episodes = parseInt(input.episodes, 10);
     if (!(episodes >= 1 && episodes <= MICRO.maxEpisodes)) {
-      throw new Error("episode count must be 1–" + MICRO.maxEpisodes +
+      throw new Error("episode count must be between 1 and " + MICRO.maxEpisodes +
         ", got " + input.episodes);
     }
     var minPerEp = parseFloat(input.minPerEpisode);
     if (!(minPerEp >= MICRO.minEpMin && minPerEp <= MICRO.maxEpMin)) {
-      throw new Error("minutes per episode must be " + MICRO.minEpMin + "–" +
+      throw new Error("minutes per episode must be between " + MICRO.minEpMin + " and " +
         MICRO.maxEpMin + ", got " + input.minPerEpisode);
     }
     if (!TIERS[input.tier]) throw new Error("unknown tier: " + input.tier);
     var regensPerEp = parseFloat(input.regensPerEp);
     if (!(regensPerEp >= 0 && regensPerEp <= MICRO.maxRegensPerEp)) {
-      throw new Error("regenerations per episode must be 0–" +
+      throw new Error("regenerations per episode must be between 0 and " +
         MICRO.maxRegensPerEp + ", got " + input.regensPerEp);
     }
     if (!input.title) throw new Error("the run needs a title");
@@ -812,9 +812,9 @@
       runtimeSec: runtimeSec, totalMinutes: totalMinutes,
       clipsPerEp: { lo: clips.lo, hi: clips.hi },
       totalClips: totalClips,
-      storeelClipCheck: "StoReel's actual granularity — 146 clips for a " +
+      storeelClipCheck: "StoReel's actual granularity, 146 clips for a " +
         "30-episode storyboard ≈ " + (146 / 30).toFixed(1) +
-        " clips per 60s episode — sits inside this " + clips.lo + "–" +
+        " clips per 60s episode, sits inside this " + clips.lo + "-" +
         clips.hi + " range.",
       takes: takes,
       benchmarkPerEp: benchmarkPerEp, benchmarkTotal: benchmarkTotal,
@@ -834,23 +834,23 @@
       },
       perMinPlan: totalMinutes ? r2(totalUsd / totalMinutes) : 0,
       timelineDays: episodes * MICRO.paceDaysPerEp,
-      paceNote: "1 day per finished episode — StoReel's documented pace " +
+      paceNote: "1 day per finished episode, StoReel's documented pace " +
         "(4 episodes in 4 days). Script, breakdown, generation, and assembly " +
         "all inside the day; free reporter labor, scripting cost uncounted. " +
-        "Festival-tier work runs slower — no documented festival pace exists, " +
+        "Festival-tier work runs slower, no documented festival pace exists, " +
         "so adjust from your own runs."
     };
   }
 
   /* Microdrama run plan: markdown. Economics-only: clip budget, the $50/min
      benchmark, model-rate generation cost, the retake envelope, the regen
-     reserve, PUGC revenue context, timeline — every line carrying its
+     reserve, PUGC revenue context, timeline, every line carrying its
      documented basis. */
   function microdramaToMarkdown(plan) {
     var L = [];
     var inp = plan.input;
     var b = plan.budget;
-    L.push("# " + inp.title + " — microdrama run plan");
+    L.push("# " + inp.title + ", microdrama run plan");
     L.push("");
     if (inp.logline) { L.push("_Logline:_ " + inp.logline); L.push(""); }
     L.push(inp.episodes + " episodes × " + inp.minPerEpisode + " min/episode (" +
@@ -860,9 +860,9 @@
     L.push("Planned by the Studio's microdrama mode (AI Film Master Guide, " +
       "Studio 2.5) from the documented economics in the guide's \"The $150 " +
       "Microdrama\" teardown (`data/v1/teardowns.json`, id `storeel-off-campus` " +
-      "— TheWrap, June 2026; Sixth Tone, June 2026) and live `models.json` " +
+      "TheWrap, June 2026; Sixth Tone, June 2026) and live `models.json` " +
       "rates. Every figure below is a benchmark or a range, never a promise; " +
-      "model rates are third-party estimates — verify live before spending.");
+      "model rates are third-party estimates, verify live before spending.");
     L.push("");
     L.push("## Clip budget");
     L.push("");
@@ -870,12 +870,12 @@
     L.push("|---|---|---|");
     L.push("| Runtime | " + plan.runtimeSec + "s | " + plan.totalMinutes +
       " min finished |");
-    L.push("| Clips (10–15s each) | " + plan.clipsPerEp.lo + "–" +
-      plan.clipsPerEp.hi + " | " + plan.totalClips.lo + "–" +
+    L.push("| Clips (10 to 15s each) | " + plan.clipsPerEp.lo + "-" +
+      plan.clipsPerEp.hi + " | " + plan.totalClips.lo + "-" +
       plan.totalClips.hi + " |");
     L.push("");
-    L.push("Basis: 146 clips of 10–15s for StoReel's 30-episode storyboard " +
-      "(TheWrap) — the documented unit of generation. " +
+    L.push("Basis: 146 clips of 10 to 15s for StoReel's 30-episode storyboard " +
+      "(TheWrap), the documented unit of generation. " +
       plan.storeelClipCheck + " One page of dialogue ≈ one minute ≈ one " +
       "episode (TheWrap's industry survey).");
     L.push("");
@@ -886,22 +886,22 @@
     L.push("| Documented benchmark | $50/min × " + plan.totalMinutes +
       " min | " + fmtUSD(plan.benchmarkTotal) + " | TheWrap's reported AI " +
       "series rate (~$150 for 4 one-minute episodes ≈ $37.50/ep). One " +
-      "platform's rate card, one experiment — the benchmark to beat, not a promise. |");
+      "platform's rate card, one experiment, the benchmark to beat, not a promise. |");
     L.push("| Generation (" + plan.takes + "× retakes) | " +
       plan.genSecTotal + "s × " +
       (plan.rate ? plan.rate.cps.toFixed(2) + " credits/s (" + plan.rate.model +
         ")" : "no priced video model") + " | " +
       (plan.rate ? fmtUSD(b.genUsdTotal) : "verify live") + " | " +
       plan.takes + "× = the " + inp.tierLabel.toLowerCase() + " end of " +
-      "Qidian's 3–5 \"drawing cards\" retake range (Sixth Tone). Rate = " +
-      "cheapest priced video model in `models.json` — the generation floor, " +
+      "Qidian's 3 to 5 \"drawing cards\" retake range (Sixth Tone). Rate = " +
+      "cheapest priced video model in `models.json`, the generation floor, " +
       "verify live. |");
     L.push("| Character-regen reserve | " + b.regenCount + " regens × " +
       (plan.img ? plan.img.cpi + " credits (" + plan.img.model + ")" :
         "no priced image model") + " | " +
       (plan.img ? fmtUSD(b.regenUsdTotal) : "verify live") + " | StoReel " +
       "paid for regenerations when faces drifted; no per-episode figure was " +
-      "published — the count (" + inp.regensPerEp + "/ep) is your budget " +
+      "published, the count (" + inp.regensPerEp + "/ep) is your budget " +
       "guess, priced at the cheapest image-model rate. |");
     L.push("| **Plan total** | generation + regen reserve | **" +
       fmtUSD(b.totalUsd) + "** (" + fmtUSD(b.perEpUsd) + "/episode, " +
@@ -912,12 +912,12 @@
       "typical live-action microseries figure. Context, not a quote. |");
     L.push("| PUGC revenue context | $150/min × " + plan.totalMinutes +
       " min | " + fmtUSD(plan.pugcRef) + " | StoReel's reported payout rate " +
-      "for creator series it designates. Platform-specific — not revenue " +
+      "for creator series it designates. Platform-specific, not revenue " +
       "you can count on. |");
     L.push("");
     if (plan.viduRef) {
-      L.push("Reference pricing (not used in the math): Vidu Q4 Preview — " +
-        plan.viduRef + " (PR Newswire, preview pricing — verify live).");
+      L.push("Reference pricing (not used in the math): Vidu Q4 Preview, " +
+        plan.viduRef + " (PR Newswire, preview pricing, verify live).");
       L.push("");
     }
     L.push("## Documented production economics (benchmarks, not predictions)");
@@ -925,21 +925,21 @@
     L.push("StoReel Canvas 'Off Campus' experiment (TheWrap, June 2026): 4 " +
       "one-minute AI episodes in 4 days for ~$150 in credits (≈$37.50/episode); " +
       "AI series generation ≈$50/min vs live-action ≈$2,000/min; 146 clips " +
-      "of 10–15s for a 30-episode storyboard; character regenerations paid " +
+      "of 10 to 15s for a 30-episode storyboard; character regenerations paid " +
       "when faces drifted. StoReel's PUGC payout rate: ≈$150/min for creator " +
       "series it designates. Qidian Interactive's AI studio (Sixth Tone, June " +
-      "2026): 3–5 retakes per usable shot ('drawing cards'). Finishing " +
+      "2026): 3 to 5 retakes per usable shot ('drawing cards'). Finishing " +
       "StoReel's full 30-episode storyboard was estimated at 'a few thousand " +
       "dollars more' in credits. Full teardown: `storeel-off-campus`.");
     L.push("");
     L.push("## Timeline");
     L.push("");
     L.push("**" + plan.timelineDays + " day" +
-      (plan.timelineDays === 1 ? "" : "s") + " at the documented pace** — " +
+      (plan.timelineDays === 1 ? "" : "s") + " at the documented pace**, " +
       "≈7 episodes/week. " + plan.paceNote);
     L.push("");
     L.push("All model rates are third-party estimates at $0.0392/credit " +
-      "(models.json cost_basis, Oct 2026) — verify live before spending.");
+      "(models.json cost_basis, Oct 2026), verify live before spending.");
     return L.join("\n");
   }
 
@@ -947,7 +947,7 @@
   function planToMarkdown(plan) {
     var L = [];
     var inp = plan.input;
-    L.push("# " + inp.title + " — AI-film production packet");
+    L.push("# " + inp.title + ", AI-film production packet");
     L.push("");
     L.push("_Logline:_ " + inp.logline);
     L.push("");
@@ -957,7 +957,7 @@
     L.push("Generated by the Studio (AI Film Master Guide) from `data/v1/models.json` " +
       "(" + plan.dataMeta.modelCount + " video models) and `data/v1/prompt-templates.json` " +
       "(" + plan.dataMeta.templateCount + " templates). Rates are third-party " +
-      "estimates at $0.0392/credit — verify live before spending.");
+      "estimates at $0.0392/credit, verify live before spending.");
     L.push("");
     L.push("Tier assumptions (" + inp.tierLabel.toLowerCase() + "): 1 shot per " +
       plan.tierSpec.secsPerShot + "s · " + plan.tierSpec.takes + " takes per keeper · " +
@@ -967,12 +967,12 @@
     L.push("## Shot list");
     L.push("");
     plan.shots.forEach(function (s) {
-      L.push("### Shot " + s.n + " — " + s.act + " · " + s.templateTitle +
+      L.push("### Shot " + s.n + ", " + s.act + " · " + s.templateTitle +
         " (" + s.templateId + ") · " + s.duration + "s");
       L.push("");
-      L.push("Model: " + (s.model || "unpriced — verify live") +
+      L.push("Model: " + (s.model || "unpriced, verify live") +
         (s.platform ? " (" + s.platform + ")" : "") +
-        (s.cps !== null ? " — " + s.cps.toFixed(2) + " credits/s" : "") +
+        (s.cps !== null ? ", " + s.cps.toFixed(2) + " credits/s" : "") +
         (s.modelFallback ? " [fallback pick: template's models unresolved]" : ""));
       L.push("Anatomy: " + s.anatomy + " (" + s.track + " track)");
       L.push("");
@@ -990,9 +990,9 @@
     L.push("## Model picks");
     L.push("");
     plan.modelPicks.forEach(function (p) {
-      L.push("- **" + p.model + "** (" + p.platform + ") — " + p.shots + " shot" +
+      L.push("- **" + p.model + "** (" + p.platform + "), " + p.shots + " shot" +
         (p.shots === 1 ? "" : "s") +
-        (p.cps !== null ? ", " + p.cps.toFixed(2) + " credits/s" : ", rate unpublished — verify live") +
+        (p.cps !== null ? ", " + p.cps.toFixed(2) + " credits/s" : ", rate unpublished, verify live") +
         (p.lastVerified ? ", last verified " + p.lastVerified : "") + ": " + p.why);
     });
     L.push("");
@@ -1010,7 +1010,7 @@
       "20× envelope (worst case): " + fmtUSD(plan.budget.twenty) + "");
     L.push("");
     L.push("Envelopes from the long-form pipelines chapter: rejections, re-grades, and " +
-      "consistency fixes multiply the clean cost 5–20×. Budget the envelope, not the clean run.");
+      "consistency fixes multiply the clean cost 5 to 20×. Budget the envelope, not the clean run.");
     if (plan.budget.verifyLive.length) {
       L.push("");
       L.push("Verify live (no published rate): " + plan.budget.verifyLive.join(", "));
@@ -1036,7 +1036,7 @@
   function seriesToMarkdown(plan) {
     var L = [];
     var b = plan.bible;
-    L.push("# " + b.title + " — series production packet");
+    L.push("# " + b.title + ", series production packet");
     L.push("");
     L.push("_Logline:_ " + b.logline);
     L.push("");
@@ -1046,12 +1046,12 @@
     L.push("");
     L.push("Planned by Studio 2.0 (AI Film Master Guide) from `data/v1/models.json` and " +
       "`data/v1/prompt-templates.json`. Rates are third-party estimates at " +
-      "$0.0392/credit — verify live before spending. Deterministic: same concept, same packet.");
+      "$0.0392/credit, verify live before spending. Deterministic: same concept, same packet.");
     L.push("");
-    L.push("## Series bible — locked before generation");
+    L.push("## Series bible, locked before generation");
     L.push("");
     L.push("The prompt DNA below is prepended verbatim to EVERY shot prompt in EVERY " +
-      "episode. It never changes mid-series — that is the consistency engine.");
+      "episode. It never changes mid-series, that is the consistency engine.");
     L.push("");
     L.push("```");
     L = L.concat(b.dnaLines);
@@ -1061,10 +1061,10 @@
     L.push("");
     b.lockedAssets.forEach(function (a) {
       L.push("- " + a.kind + ": **" + (a.name || "unnamed") + "**" +
-        (a.anchor ? " — " + a.anchor : "") + (a.voice ? " (voice: " + a.voice + ")" : ""));
+        (a.anchor ? ", " + a.anchor : "") + (a.voice ? " (voice: " + a.voice + ")" : ""));
     });
     L.push("");
-    L.push("Format rules — " + b.formatLabel + ": " + b.arcStyle);
+    L.push("Format rules, " + b.formatLabel + ": " + b.arcStyle);
     L.push("Hook style: " + b.hookStyle);
     L.push("Voice rule: " + b.voiceRule);
     L.push("");
@@ -1072,8 +1072,8 @@
     L.push("");
     plan.episodes.forEach(function (ep) {
       var a = ep.arc;
-      L.push("### Episode " + ep.episode + " — " + ep.shotCount + " shots, ~" +
-        ep.voiceBudgetSec + "s voice budget" + (a.skeleton ? " [SKELETON — edit before generating]" : ""));
+      L.push("### Episode " + ep.episode + ", " + ep.shotCount + " shots, ~" +
+        ep.voiceBudgetSec + "s voice budget" + (a.skeleton ? " [SKELETON, edit before generating]" : ""));
       L.push("");
       L.push("- Emotion: " + a.emotion);
       L.push("- Stake: " + a.stake);
@@ -1084,18 +1084,18 @@
       L.push("- Keyframe scenes: " + a.scenes);
       L.push("");
     });
-    L.push("## Shot lists — per-shot prompts (with locked DNA)");
+    L.push("## Shot lists, per-shot prompts (with locked DNA)");
     L.push("");
     plan.episodes.forEach(function (ep) {
       L.push("### Episode " + ep.episode);
       L.push("");
       ep.shots.forEach(function (s) {
-        L.push("#### Shot E" + ep.episode + "." + s.n + " — " + s.act + " · " +
+        L.push("#### Shot E" + ep.episode + "." + s.n + ", " + s.act + " · " +
           s.templateTitle + " (" + s.templateId + ") · " + s.duration + "s");
         L.push("");
-        L.push("Model: " + (s.model || "unpriced — verify live") +
+        L.push("Model: " + (s.model || "unpriced, verify live") +
           (s.platform ? " (" + s.platform + ")" : "") +
-          (s.cps !== null ? " — " + s.cps.toFixed(2) + " credits/s" : ""));
+          (s.cps !== null ? ", " + s.cps.toFixed(2) + " credits/s" : ""));
         L.push("");
         L.push("```");
         L.push(s.prompt);
@@ -1119,12 +1119,12 @@
       "20× envelope (worst case): " + fmtUSD(plan.budget.twenty));
     L.push("");
     L.push("Saved by the bible: " + plan.reuse.lockedAssets + " locked plates generated once " +
-      "instead of per episode — ≈" + r2(plan.reuse.avoidedCredits) + " credits (≈" +
+      "instead of per episode, ≈" + r2(plan.reuse.avoidedCredits) + " credits (≈" +
       fmtUSD(plan.reuse.avoidedUSD) + ") not spent. " + plan.reuse.rule);
     L.push("");
-    L.push("### Documented production economics (wave 27 — benchmarks, not predictions)");
+    L.push("### Documented production economics (wave 27, benchmarks, not predictions)");
     L.push("");
-    L.push("StoReel Canvas 'Off Campus' experiment (TheWrap, June 2026): 4 one-minute AI episodes in 4 days for ~$150 in credits (≈$37.50/episode); AI series generation ≈$50/min vs live-action ≈$2,000/min; 300–400-word stage-direction prompts per 10–15s clip; character regenerations paid when faces drifted — full teardown in the guide's teardowns.json (`storeel-off-campus`). StoReel's PUGC payout rate: ≈$150/min for creator series it designates. Qidian Interactive's AI studio (Sixth Tone, June 2026): 3–5 retakes per usable shot ('drawing cards'); a 8–10M-yuan, 3-year project rebuilt with AI in 2 months for ≈1M yuan. Compare this packet's per-minute generation cost against the $50/min benchmark before generating.");
+    L.push("StoReel Canvas 'Off Campus' experiment (TheWrap, June 2026): 4 one-minute AI episodes in 4 days for ~$150 in credits (≈$37.50/episode); AI series generation ≈$50/min vs live-action ≈$2,000/min; 300 to 400-word stage-direction prompts per 10 to 15s clip; character regenerations paid when faces drifted, full teardown in the guide's teardowns.json (`storeel-off-campus`). StoReel's PUGC payout rate: ≈$150/min for creator series it designates. Qidian Interactive's AI studio (Sixth Tone, June 2026): 3 to 5 retakes per usable shot ('drawing cards'); a 8 to 10M-yuan, 3-year project rebuilt with AI in 2 months for ≈1M yuan. Compare this packet's per-minute generation cost against the $50/min benchmark before generating.");
     if (plan.budget.verifyLive.length) {
       L.push("");
       L.push("Verify live (no published rate): " + plan.budget.verifyLive.join(", "));
@@ -1149,7 +1149,7 @@
     return L.join("\n");
   }
 
-  /* Self-contained HTML packet: inline CSS, no external requests — a single
+  /* Self-contained HTML packet: inline CSS, no external requests, a single
      file the filmmaker can print or hand to a collaborator. */
   function escHtml(s) {
     return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
@@ -1165,7 +1165,7 @@
     H.push("<head>");
     H.push('<meta charset="utf-8">');
     H.push('<meta name="viewport" content="width=device-width, initial-scale=1">');
-    H.push("<title>" + escHtml(b.title) + " — series production packet</title>");
+    H.push("<title>" + escHtml(b.title) + ", series production packet</title>");
     H.push("<style>");
     H.push("body{font-family:Georgia,'Times New Roman',serif;max-width:62rem;margin:0 auto;padding:2rem 1.5rem;color:#1a1a1a;background:#fff;line-height:1.55}");
     H.push("h1{font-size:1.9rem;border-bottom:3px solid #c9a227;padding-bottom:.4rem}");
@@ -1183,30 +1183,30 @@
     H.push("</head>");
     H.push("<body>");
     H.push('<p class="no-print meta"><a href="studio.html">← back to the Studio</a></p>');
-    H.push("<h1>" + escHtml(b.title) + " — series production packet</h1>");
+    H.push("<h1>" + escHtml(b.title) + ", series production packet</h1>");
     H.push('<p class="lede">' + escHtml(b.logline) + "</p>");
     H.push('<p class="meta">' + escHtml(b.formatLabel) + " · " + b.episodes + " episodes × " +
       plan.runtimeSec + "s · " + escHtml(b.genreLabel) + " · " + escHtml(b.tierLabel) +
       " tier · " + plan.totalShots + " total shots · seed <code>" + escHtml(plan.seed) +
       "</code></p>");
-    H.push('<p class="meta">Planned by Studio 3.0 (AI Film Master Guide). Rates are third-party estimates at $0.0392/credit — verify live before spending.</p>');
-    H.push("<h2>Series bible — locked before generation</h2>");
+    H.push('<p class="meta">Planned by Studio 3.0 (AI Film Master Guide). Rates are third-party estimates at $0.0392/credit, verify live before spending.</p>');
+    H.push("<h2>Series bible, locked before generation</h2>");
     H.push("<p>The prompt DNA below is prepended verbatim to every shot prompt in every episode. It never changes mid-series.</p>");
     H.push("<pre>" + escHtml(b.dnaLines.join("\n")) + "</pre>");
     H.push("<h3>Locked assets (" + b.lockedAssets.length + ", plates generated ONCE)</h3>");
     H.push("<ul>");
     b.lockedAssets.forEach(function (a) {
       H.push("<li><strong>" + escHtml(a.kind) + ":</strong> " + escHtml(a.name || "unnamed") +
-        (a.anchor ? " — " + escHtml(a.anchor) : "") +
+        (a.anchor ? ", " + escHtml(a.anchor) : "") +
         (a.voice ? " <span class=\"badge\">voice: " + escHtml(a.voice) + "</span>" : "") + "</li>");
     });
     H.push("</ul>");
     H.push("<h2>Episode arcs</h2>");
     plan.episodes.forEach(function (ep) {
       var a = ep.arc;
-      H.push('<div class="shot"><h3>Episode ' + ep.episode + " — " + ep.shotCount +
+      H.push('<div class="shot"><h3>Episode ' + ep.episode + ", " + ep.shotCount +
         " shots, ~" + ep.voiceBudgetSec + "s voice budget" +
-        (a.skeleton ? ' <span class="badge">skeleton — edit before generating</span>' : "") + "</h3>");
+        (a.skeleton ? ' <span class="badge">skeleton, edit before generating</span>' : "") + "</h3>");
       H.push("<ul><li><strong>Emotion:</strong> " + escHtml(a.emotion) + "</li>");
       H.push("<li><strong>Stake:</strong> " + escHtml(a.stake) + "</li>");
       H.push("<li><strong>Hook:</strong> " + escHtml(a.hook) + "</li>");
@@ -1228,11 +1228,11 @@
     H.push("<p><strong>Clean run: " + escHtml(fmtUSD(plan.budget.clean)) + "</strong> · 5× envelope (realistic): " +
       escHtml(fmtUSD(plan.budget.five)) + " · 20× envelope (worst case): " +
       escHtml(fmtUSD(plan.budget.twenty)) + "</p>");
-    H.push("<p>Saved by the bible: " + plan.reuse.lockedAssets + " locked plates generated once — ≈" +
+    H.push("<p>Saved by the bible: " + plan.reuse.lockedAssets + " locked plates generated once, ≈" +
       r2(plan.reuse.avoidedCredits) + " credits (≈" + escHtml(fmtUSD(plan.reuse.avoidedUSD)) +
       ") not spent. " + escHtml(plan.reuse.rule) + "</p>");
     H.push("<h3>Documented production economics (benchmarks, not predictions)</h3>");
-    H.push("<p>StoReel Canvas 'Off Campus' experiment (TheWrap, June 2026): 4 one-minute AI episodes in 4 days for ~$150 in credits (≈$37.50/episode); AI series generation ≈$50/min vs live-action ≈$2,000/min; 300–400-word stage-direction prompts per 10–15s clip; character regenerations paid when faces drifted. StoReel's PUGC payout rate: ≈$150/min for creator series it designates. Qidian Interactive's AI studio (Sixth Tone, June 2026): 3–5 retakes per usable shot ('drawing cards'); a 8–10M-yuan, 3-year project rebuilt with AI in 2 months for ≈1M yuan. Compare this packet's per-minute generation cost against the $50/min benchmark before generating.</p>");
+    H.push("<p>StoReel Canvas 'Off Campus' experiment (TheWrap, June 2026): 4 one-minute AI episodes in 4 days for ~$150 in credits (≈$37.50/episode); AI series generation ≈$50/min vs live-action ≈$2,000/min; 300 to 400-word stage-direction prompts per 10 to 15s clip; character regenerations paid when faces drifted. StoReel's PUGC payout rate: ≈$150/min for creator series it designates. Qidian Interactive's AI studio (Sixth Tone, June 2026): 3 to 5 retakes per usable shot ('drawing cards'); a 8 to 10M-yuan, 3-year project rebuilt with AI in 2 months for ≈1M yuan. Compare this packet's per-minute generation cost against the $50/min benchmark before generating.</p>");
     H.push("<h2>Schedule</h2>");
     H.push("<table><thead><tr><th scope=\"col\">Phase</th><th scope=\"col\">Days</th><th scope=\"col\">Basis</th></tr></thead><tbody>");
     plan.schedule.phases.forEach(function (p) {
@@ -1266,7 +1266,7 @@
      documented max clip >= shot duration). Models whose strings carry no
      resolution are listed as ineligible, never assumed.
      opts: { resBar: 720|1080|2160 (default 720 draft / 1080 festival),
-             audioShare: 0-100 (default 0) — share of shots needing native
+             audioShare: 0-100 (default 0), share of shots needing native
              audio, spread evenly and deterministically across each group. } */
 
   var OPT_RES_LABEL = { 360: "360p", 480: "480p", 720: "720p", 768: "768p",
@@ -1295,7 +1295,7 @@
       var v = optResVal(t.tok);
       if (v && v > docMax) docMax = v;
     });
-    /* Clauses: split on ; and , so "RATE RES, RATE RES" pairs bind inside
+    /* Clauses: split on ; and, so "RATE RES, RATE RES" pairs bind inside
        their own clause ("$0.13/s 2K, $0.08/s 768p" must not cross-bind). */
     var clauses = [], cs = /[^;,]+/g, cm;
     while ((cm = cs.exec(s)) !== null) clauses.push({ text: cm[0], idx: cm.index });
@@ -1352,7 +1352,7 @@
   }
 
   /* Cheapest documented rate at or above the bar. Null = no documented rate
-     clears the bar (the model cannot substitute — honest floor). */
+     clears the bar (the model cannot substitute, honest floor). */
   function rateAtRes(m, bar) {
     var best = null;
     modelRateOptions(m).forEach(function (o) {
@@ -1387,7 +1387,7 @@
   }
 
   /* Documented leaderboard ranks, quoted from the models' own records with
-     their caveats. Order spans different boards and dates — indicative,
+     their caveats. Order spans different boards and dates, indicative,
      not apples-to-apples; every pick carries its rank note. */
   var OPT_RANKS = [
     { name: "Gemini Omni", order: 1,
@@ -1395,7 +1395,7 @@
     { name: "FLUX 3 Video", order: 2,
       note: "Arena text-to-video #2, 1496 pts, behind Gemini Omni Flash" },
     { name: "MiniMax H3", order: 3,
-      note: "H3 Max ranks top-3 in earlier reports — verify live" },
+      note: "H3 Max ranks top-3 in earlier reports, verify live" },
     { name: "Seedance 2.5", order: 4,
       note: "Arena image-to-video leader, Sept 21 2026 (~120 pts above Kling 3.0 Pro; single-source flag)" },
     { name: "Grok Imagine Video 1.5", order: 5,
@@ -1442,10 +1442,10 @@
   }
 
   /* What the filmmaker gives up moving from the balanced pick to the
-     cheapest viable one — facts from the records, never hand-waving. */
+     cheapest viable one, facts from the records, never hand-waving. */
   function optGiveUpNotes(bal, cheap, bar) {
     if (!bal || !cheap) return [];
-    if (bal.model === cheap.model) return ["Same model — already the cheapest viable pick."];
+    if (bal.model === cheap.model) return ["Same model, already the cheapest viable pick."];
     var notes = [];
     if (cheap.res < bal.res) {
       notes.push("Documented rate tier drops " + optResLabel(bal.res) + " \u2192 " +
@@ -1462,7 +1462,7 @@
       notes.push("Ranked pick: " + cheap.rank.note + ".");
     }
     if (cheap.priceMayMove) {
-      notes.push("USD/API billing — price may move; verify live before budgeting.");
+      notes.push("USD/API billing, price may move; verify live before budgeting.");
     }
     if (cheap.resInferred) {
       notes.push("Cheapest rate's resolution is inferred from the model's documented max, not stated outright.");
@@ -1586,7 +1586,7 @@
     });
 
     /* Ineligible (priced but below the bar / resolution undocumented) and
-       unpriced (no parseable rate at all) — named, never silent. */
+       unpriced (no parseable rate at all), named, never silent. */
     (data.models || []).forEach(function (m) {
       if (m.type !== "video" || m.status === "discontinued") return;
       var opts_ = modelRateOptions(m);
@@ -1646,16 +1646,16 @@
     var usdPicks = opt.verifyLive.length;
     L.push("| **Cheapest viable** (floor) | " + fmtUSD(c) + " | " + delta(c) + " | " +
       changed + " of " + opt.shotCount + " shots change model" +
-      (usdPicks ? "; " + usdPicks + " USD-billed pick(s) — price may move" : "") + " |");
-    L.push("| **Balanced** (Studio defaults) | " + fmtUSD(b) + " | — | the plan's own per-shot picks, re-priced at the " +
+      (usdPicks ? "; " + usdPicks + " USD-billed pick(s), price may move" : "") + " |");
+    L.push("| **Balanced** (Studio defaults) | " + fmtUSD(b) + " | n/a | the plan's own per-shot picks, re-priced at the " +
       optResLabel(opt.resBar) + " bar |");
     L.push("| **Best rated** | " + (opt.modes.bestrated.complete ? fmtUSD(r) : "incomplete") +
       " | " + delta(opt.modes.bestrated.complete ? r : null) +
-      " | top documented arena/leaderboard model per shot (boards differ — see rank notes) |");
+      " | top documented arena/leaderboard model per shot (boards differ, see rank notes) |");
     var df = opt.modes.draftfinal;
     L.push("| **Draft cheap, finish flagship** | " + (df.complete ? fmtUSD(df.total) : "incomplete") +
       " | " + delta(df.complete ? df.total : null) +
-      " | coverage takes at the cheapest viable rate, the keeper take at the best-rated model — " +
+      " | coverage takes at the cheapest viable rate, the keeper take at the best-rated model, " +
       "the Oct 2026 pricing reality (draft tiers for drafts, flagship rates for finals) |");
     return L;
   }
@@ -1692,7 +1692,7 @@
       });
     }
     L.push("");
-    L.push("Take-count leverage: each take costs " + fmtUSD(opt.perTake) + " across the plan — " +
+    L.push("Take-count leverage: each take costs " + fmtUSD(opt.perTake) + " across the plan, " +
       opt.byTakes.map(function (t) { return t.takes + " take(s): " + fmtUSD(t.usd); }).join(" · ") + ".");
     L.push("");
     if (opt.biggest) {
@@ -1701,13 +1701,13 @@
       L.push("");
       L.push(bg.ref + " on **" + bg.model + "** (" + bg.platform + ") costs " + fmtUSD(bg.cost) +
         " (" + bg.duration + "s × " + bg.takes + " takes @ $" + bg.usdps.toFixed(3) + "/s" +
-        (bg.kind === "usd" ? " USD — price may move" : "") + ").");
+        (bg.kind === "usd" ? " USD, price may move" : "") + ").");
       if (bg.alternative && bg.alternative.model !== bg.model) {
         L.push("Cheaper alternative meeting the same requirements: **" + bg.alternative.model + "** (" +
-          bg.alternative.platform + ") at $" + bg.alternative.usdps.toFixed(3) + "/s — saves " +
+          bg.alternative.platform + ") at $" + bg.alternative.usdps.toFixed(3) + "/s, saves " +
           fmtUSD(bg.saving) + " on this shot alone.");
       } else {
-        L.push("No cheaper alternative meets this shot's requirements — it is already the floor.");
+        L.push("No cheaper alternative meets this shot's requirements, it is already the floor.");
       }
       L.push("");
     }
@@ -1717,7 +1717,7 @@
     L.push("|---|---|---|---|---|---|");
     opt.perShot.forEach(function (s) {
       function cell(e) {
-        if (!e) return "—";
+        if (!e) return "…";
         return e.model + " ($" + e.usdps.toFixed(3) + "/s" + (e.kind === "usd" ? " USD" : "") + ")" +
           (e.priceMayMove ? " [price may move]" : "");
       }
@@ -1727,21 +1727,21 @@
             ? (s.cheapest.audio ? "✓ native" : "✗ MISSING")
             : "not needed")
         : "no eligible model";
-      L.push("| " + s.ref + " | " + (s.needsAudio ? "dialogue" : "—") + " | " + cell(s.balanced) +
-        " | " + cell(s.cheapest) + " | " + (s.saving !== null ? fmtUSD(s.saving) : "—") + " | " + match + " |");
+      L.push("| " + s.ref + " | " + (s.needsAudio ? "dialogue" : "…") + " | " + cell(s.balanced) +
+        " | " + cell(s.cheapest) + " | " + (s.saving !== null ? fmtUSD(s.saving) : "…") + " | " + match + " |");
     });
     L.push("");
     if (opt.ineligible.length) {
-      L.push("Not eligible at the " + optResLabel(opt.resBar) + " bar (honest floor — never assumed): " +
+      L.push("Not eligible at the " + optResLabel(opt.resBar) + " bar (honest floor, never assumed): " +
         opt.ineligible.map(function (x) { return x.model + " (" + x.reason + ")"; }).join("; ") + ".");
       L.push("");
     }
     if (opt.unpriced.length) {
-      L.push("No published rate — verify live: " + opt.unpriced.join(", ") + ".");
+      L.push("No published rate, verify live: " + opt.unpriced.join(", ") + ".");
       L.push("");
     }
     if (opt.verifyLive.length) {
-      L.push("Price-may-move picks (USD/API billing — verify live before budgeting): " +
+      L.push("Price-may-move picks (USD/API billing, verify live before budgeting): " +
         opt.verifyLive.join(", ") + ".");
       L.push("");
     }
@@ -1749,7 +1749,7 @@
       "FLUX 3 Video (Arena T2V #2, 1496) → MiniMax H3 (top-3 in earlier reports, verify live) → " +
       "Seedance 2.5 (Arena I2V leader Sept 2026, single-source) → Grok Imagine Video 1.5 " +
       "(topped I2V arena at launch, third-party) → Kling 3.0 (Artificial Analysis T2V #12, Sept 2026, single-source). " +
-      "Boards and dates differ — indicative, not apples-to-apples.");
+      "Boards and dates differ, indicative, not apples-to-apples.");
     L.push("");
     return L.join("\n");
   }
@@ -1782,15 +1782,15 @@
       (opt.verifyLive.length ? '; <span class="badge">price may move</span> on ' +
         opt.verifyLive.length + " USD-billed pick(s)" : "") + "</td></tr>");
     H.push("<tr><td><strong>Balanced</strong> (Studio defaults)</td><td><strong>" + escHtml(fmtUSD(b)) +
-      "</strong></td><td>—</td><td>The plan's own per-shot picks, re-priced at the " +
+      "</strong></td><td>…</td><td>The plan's own per-shot picks, re-priced at the " +
       escHtml(optResLabel(opt.resBar)) + " bar.</td></tr>");
     H.push("<tr><td><strong>Best rated</strong></td><td><strong>" + (rOk ? escHtml(fmtUSD(r)) : "incomplete") +
       "</strong></td><td>" + dHtml(rOk ? r : null) + "</td><td>Top documented arena/leaderboard model per shot " +
-      "(boards differ — see rank notes).</td></tr>");
+      "(boards differ, see rank notes).</td></tr>");
     H.push("<tr><td><strong>Draft cheap, finish flagship</strong></td><td><strong>" +
       (dfOk ? escHtml(fmtUSD(dfT)) : "incomplete") +
       "</strong></td><td>" + dHtml(dfOk ? dfT : null) + "</td><td>Coverage takes at the cheapest viable rate, " +
-      "the keeper take at the best-rated model — the Oct 2026 pricing reality.</td></tr>");
+      "the keeper take at the best-rated model, the Oct 2026 pricing reality.</td></tr>");
     H.push("</tbody></table>");
     H.push("<h3>Where the money goes (balanced mode)</h3>");
     H.push("<table><thead><tr><th scope=\"col\">Model</th><th scope=\"col\">Shots</th>" +
@@ -1813,7 +1813,7 @@
       H.push("</tbody></table>");
     }
     H.push("<p>Take-count leverage: each take costs <strong>" + escHtml(fmtUSD(opt.perTake)) +
-      "</strong> across the plan — " + opt.byTakes.map(function (t) {
+      "</strong> across the plan, " + opt.byTakes.map(function (t) {
         return t.takes + " take(s): " + fmtUSD(t.usd);
       }).join(" · ") + ".</p>");
     if (opt.biggest) {
@@ -1826,10 +1826,10 @@
       if (bg.alternative && bg.alternative.model !== bg.model) {
         H.push(" Cheaper alternative meeting the same requirements: <strong>" +
           escHtml(bg.alternative.model) + "</strong> (" + escHtml(bg.alternative.platform) +
-          ") at $" + bg.alternative.usdps.toFixed(3) + "/s — saves " +
+          ") at $" + bg.alternative.usdps.toFixed(3) + "/s, saves " +
           escHtml(fmtUSD(bg.saving)) + " on this shot alone.</p>");
       } else {
-        H.push(" No cheaper alternative meets this shot's requirements — it is already the floor.</p>");
+        H.push(" No cheaper alternative meets this shot's requirements, it is already the floor.</p>");
       }
     }
     H.push("<h3>Per-shot substitutions (cheapest viable)</h3>");
@@ -1839,7 +1839,7 @@
       "</tr></thead><tbody>");
     opt.perShot.forEach(function (s) {
       function cell(e) {
-        if (!e) return "—";
+        if (!e) return "…";
         return "<strong>" + escHtml(e.model) + "</strong><br><span class=\"meta\">$" +
           e.usdps.toFixed(3) + "/s" + (e.kind === "usd" ? " USD" : "") + "</span>" +
           (e.priceMayMove ? ' <span class="badge">price may move</span>' : "");
@@ -1849,30 +1849,30 @@
           " ≥ " + escHtml(optResLabel(s.reqRes)) + "; audio " + (s.needsAudio
             ? (s.cheapest.audio ? "✓ native" : "✗ MISSING") : "not needed")
         : "no eligible model";
-      H.push("<tr><td>" + escHtml(s.ref) + "</td><td>" + (s.needsAudio ? "dialogue" : "—") +
+      H.push("<tr><td>" + escHtml(s.ref) + "</td><td>" + (s.needsAudio ? "dialogue" : "…") +
         "</td><td>" + cell(s.balanced) + "</td><td>" + cell(s.cheapest) + "</td><td><strong>" +
-        (s.saving !== null ? escHtml(fmtUSD(s.saving)) : "—") + "</strong></td><td>" + match + "</td></tr>");
+        (s.saving !== null ? escHtml(fmtUSD(s.saving)) : "…") + "</strong></td><td>" + match + "</td></tr>");
     });
     H.push("</tbody></table></div>");
     if (opt.ineligible.length) {
       H.push("<p><strong>Not eligible</strong> at the " + escHtml(optResLabel(opt.resBar)) +
-        " bar (honest floor — never assumed): " + opt.ineligible.map(function (x) {
+        " bar (honest floor, never assumed): " + opt.ineligible.map(function (x) {
           return escHtml(x.model) + " (" + escHtml(x.reason) + ")";
         }).join("; ") + ".</p>");
     }
     if (opt.unpriced.length) {
-      H.push("<p><strong>No published rate — verify live:</strong> " +
+      H.push("<p><strong>No published rate, verify live:</strong> " +
         opt.unpriced.map(escHtml).join(", ") + ".</p>");
     }
     if (opt.verifyLive.length) {
-      H.push('<p><span class="badge">price may move</span> picks (USD/API billing — verify live before budgeting): ' +
+      H.push('<p><span class="badge">price may move</span> picks (USD/API billing, verify live before budgeting): ' +
         opt.verifyLive.map(escHtml).join(", ") + ".</p>");
     }
     H.push('<p class="meta">Rank notes (best-rated mode): Gemini Omni (Arena T2V leader, 1512 pts) → ' +
       "FLUX 3 Video (Arena T2V #2, 1496) → MiniMax H3 (top-3 in earlier reports, verify live) → " +
       "Seedance 2.5 (Arena I2V leader Sept 2026, single-source) → Grok Imagine Video 1.5 " +
       "(topped I2V arena at launch, third-party) → Kling 3.0 (Artificial Analysis T2V #12, Sept 2026, single-source). " +
-      "Boards and dates differ — indicative, not apples-to-apples.</p>");
+      "Boards and dates differ, indicative, not apples-to-apples.</p>");
     return H.join("\n");
   }
 
@@ -1880,7 +1880,7 @@
      Per-shot prompt refinement loop. The five fields are the documented
      five-field shot spec from the Gaudette build (wave-31 teardown
      gaudette-mother-could-love: character design, camera movement, colour
-     palette, emotional register, visual grammar) — the structure a documented
+     palette, emotional register, visual grammar), the structure a documented
      solo production used to keep eight minutes of AI footage coherent.
      Refining changes WORDS only: the shot's model, duration, and take count
      never move, so budget and schedule are byte-identical before and after.
@@ -1888,15 +1888,15 @@
 
   var REFINERY_FIELDS = [
     { key: "character", label: "Character design",
-      help: "Who is in frame — the lockable visual facts (face, hair, costume, distinguishing marks). Overrides the [SUBJECT] slot." },
+      help: "Who is in frame, the lockable visual facts (face, hair, costume, distinguishing marks). Overrides the [SUBJECT] slot." },
     { key: "camera", label: "Camera movement", kind: "movement",
-      help: "One move from the guide's camera lexicon — the documented build specs exactly one move per shot. Empty keeps the template's move." },
+      help: "One move from the guide's camera lexicon, the documented build specs exactly one move per shot. Empty keeps the template's move." },
     { key: "palette", label: "Colour palette",
-      help: "The grade in words — dominant hues, contrast, temperature. Overrides the [LIGHT] slot." },
+      help: "The grade in words, dominant hues, contrast, temperature. Overrides the [LIGHT] slot." },
     { key: "register", label: "Emotional register",
-      help: "What the shot should feel like — one emotion, named plainly." },
+      help: "What the shot should feel like, one emotion, named plainly." },
     { key: "grammar", label: "Visual grammar",
-      help: "Framing and composition — shot size, angle, where the eye lands." }
+      help: "Framing and composition, shot size, angle, where the eye lands." }
   ];
 
   /* The slot map fillPrompt applies, exposed so the refinery can read and
@@ -1909,8 +1909,8 @@
       ENV: genre.env,
       LIGHT: genre.light,
       STYLE: genre.style + ", " + (tier === "draft"
-        ? "draft pass — loose, fast, coverage first"
-        : "festival grade — color-locked, cinematic")
+        ? "draft pass, loose, fast, coverage first"
+        : "festival grade, color-locked, cinematic")
     };
   }
 
@@ -1965,7 +1965,7 @@
       spec.push(f.label + ": " + v);
     });
     var text = base.text;
-    if (spec.length) text += "\n\nRefinement — five-field spec: " + spec.join(" · ");
+    if (spec.length) text += "\n\nRefinement, five-field spec: " + spec.join(" · ");
     return { text: text, unfilled: base.unfilled, fields: clean };
   }
 
@@ -2042,12 +2042,12 @@
     var L = ["## Shot refinements", "",
       "Per-shot prompt refinements from the Studio's Shot Refinery. The five-field spec " +
       "(character design, camera movement, colour palette, emotional register, visual grammar) " +
-      "is the structure of the documented Gaudette build — see the guide's Teardowns page. " +
+      "is the structure of the documented Gaudette build, see the guide's Teardowns page. " +
       "Refining changes words only: model, duration, and take counts are untouched, so the " +
       "budget and schedule still hold.", ""];
     refs.forEach(function (r) {
       var s = r.shot;
-      L.push("### " + r.ref + " — refined ×" + (s.refinements || []).length);
+      L.push("### " + r.ref + ", refined ×" + (s.refinements || []).length);
       L.push("");
       (s.refinements || []).forEach(function (e) {
         if (e.reverted) {
@@ -2076,12 +2076,12 @@
     if (!refs.length) return "";
     var H = ["<h2>Shot refinements</h2>",
       "<p>Per-shot prompt refinements from the Studio's Shot Refinery (five-field spec: " +
-      "character design, camera movement, colour palette, emotional register, visual grammar — " +
+      "character design, camera movement, colour palette, emotional register, visual grammar, " +
       "the structure of the documented Gaudette build). Refining changes words only: model, " +
       "duration, and take counts are untouched, so the budget and schedule still hold.</p>"];
     refs.forEach(function (r) {
       var s = r.shot;
-      H.push('<div class="shot"><h3>' + escHtml(r.ref) + " — refined ×" +
+      H.push('<div class="shot"><h3>' + escHtml(r.ref) + ", refined ×" +
         (s.refinements || []).length + "</h3><ul>");
       (s.refinements || []).forEach(function (e) {
         if (e.reverted) {
@@ -2102,7 +2102,7 @@
 
   /* ---- Studio 3.0: plan sharing ---------------------------------------------
      Export a saved plan as portable JSON; import validates the shape before
-     it touches the saved-plan list. Nothing is uploaded anywhere — the file
+     it touches the saved-plan list. Nothing is uploaded anywhere, the file
      is the share mechanism. */
 
   var PLAN_SHARE_FORMAT = "afg-studio-plan";
@@ -2124,12 +2124,12 @@
   function importPlanData(text) {
     var d;
     try { d = JSON.parse(text); }
-    catch (e) { return { ok: false, error: "Not valid JSON — paste the complete exported plan." }; }
+    catch (e) { return { ok: false, error: "Not valid JSON, paste the complete exported plan." }; }
     if (!d || d.format !== PLAN_SHARE_FORMAT) {
       return { ok: false, error: "Not a Studio plan export (the format tag is missing)." };
     }
     if (d.v !== PLAN_SHARE_V) {
-      return { ok: false, error: "Unsupported plan version " + d.v + " — this Studio reads v1." };
+      return { ok: false, error: "Unsupported plan version " + d.v + ", this Studio reads v1." };
     }
     var kind = d.kind === "series" ? "series"
       : d.kind === "microdrama" ? "microdrama"
@@ -2346,7 +2346,7 @@
         if (d < bestD) { bestD = d; best = o; }
       });
       if (best) e.epRuntime.value = best.value;
-      e.presetNote.textContent = f.label + ": " + f.band[0] + "–" + f.band[1] +
+      e.presetNote.textContent = f.label + ": " + f.band[0] + "-" + f.band[1] +
         "s per episode · " + f.beats + " beats/episode · hook: " + f.hookStyle + ". " + f.voiceRule;
       e.generate.textContent = "Build my series packet";
     } else if (isMicro) {
@@ -2382,7 +2382,7 @@
     if (!raw) return null;
     var b = null;
     try { b = JSON.parse(raw); } catch (err) { return null; }
-    /* only claim the payload when it is actually a series bridge — a prompt
+    /* only claim the payload when it is actually a series bridge, a prompt
        bridge from the library must survive for consumePromptBridge */
     if (!b || b.v !== 1 || b.kind !== "series") return null;
     try { localStorage.removeItem(BRIDGE_KEY); } catch (err) { /* ignore */ }
@@ -2392,7 +2392,7 @@
   /* Prompt library → Studio bridge (wave 25): a "Send to Studio" click stages
      one template as a shot-prompt starting point. The Studio consumes the
      payload once and shows a dismissible banner above the concept form with
-     the template text and a copy button — it never overwrites the user's
+     the template text and a copy button, it never overwrites the user's
      own title/logline. Nothing leaves the browser. */
   function consumePromptBridge() {
     var raw = null;
@@ -2419,7 +2419,7 @@
       '<button type="button" class="btn btn-sm btn-gold" id="st-prompt-copy">Copy prompt</button>' +
       '<button type="button" class="btn btn-sm btn-ghost" id="st-prompt-dismiss">Dismiss</button>' +
       "</div>" +
-      '<p class="st-note">Paste it into your shot list or logline draft below — this is a starting point, not a plan.</p>';
+      '<p class="st-note">Paste it into your shot list or logline draft below, this is a starting point, not a plan.</p>';
     host.hidden = false;
     var copyBtn = document.getElementById("st-prompt-copy");
     if (copyBtn) copyBtn.addEventListener("click", function () {
@@ -2499,16 +2499,16 @@
         s.unfilled.map(esc).join(", ") + "</p>"
       : "";
     var fallback = s.modelFallback
-      ? ' <span class="st-badge">fallback pick — template\u2019s models unresolved in models.json</span>'
+      ? ' <span class="st-badge">fallback pick, template\u2019s models unresolved in models.json</span>'
       : "";
     var rbadge = s.refined
       ? ' <span class="st-badge" data-st3-rbadge="1">refined ×' + (s.refinements || []).length + "</span>"
       : "";
     return '<article class="card st-shot" ' + shotRefAttrs(ref) + ' aria-label="Shot ' + s.n + '">' +
-      "<h4>Shot " + s.n + " — " + esc(s.act) + " · " + esc(s.templateTitle) +
+      "<h4>Shot " + s.n + ", " + esc(s.act) + " · " + esc(s.templateTitle) +
       ' <span class="st-tid">(' + esc(s.templateId) + ")</span></h4>" +
       '<p class="st-meta">' + s.duration + "s · " +
-      "<strong>" + esc(s.model || "unpriced — verify live") + "</strong>" +
+      "<strong>" + esc(s.model || "unpriced, verify live") + "</strong>" +
       (s.platform ? " · " + esc(s.platform) : "") +
       (s.cps !== null ? " · " + s.cps.toFixed(2) + " credits/s" : "") + fallback + "</p>" +
       '<p class="st-anatomy">Anatomy: ' + esc(s.anatomy) +
@@ -2558,7 +2558,7 @@
       "s per shot · " + plan.tierSpec.takes + " takes per keeper. " +
       "Computed live from <code>models.json</code> (" + plan.dataMeta.modelCount +
       " video models) and <code>prompt-templates.json</code> (" +
-      plan.dataMeta.templateCount + " templates) — update the data, not this page.</p>" +
+      plan.dataMeta.templateCount + " templates), update the data, not this page.</p>" +
       "<h3>Shot list</h3>" + shotsHtml +
       "<h3>Model picks</h3>" +
       '<div class="table-scroll"><table><caption>Why each model, with its real rate.</caption>' +
@@ -2577,8 +2577,8 @@
       '<div class="calc-stat highlight"><div class="calc-value">' + fmtUSD(plan.budget.twenty) +
       '</div><div class="calc-label">20× envelope (worst case)</div></div>' +
       '<p class="calc-note">Envelopes from the long-form pipelines chapter: rejections, re-grades, ' +
-      "and consistency fixes multiply the clean cost 5–20×. Budget the envelope, not the clean run. " +
-      "All rates are third-party estimates (Oct 2026) at $0.0392/credit — verify live before spending.</p>" +
+      "and consistency fixes multiply the clean cost 5 to 20×. Budget the envelope, not the clean run. " +
+      "All rates are third-party estimates (Oct 2026) at $0.0392/credit, verify live before spending.</p>" +
       (plan.budget.verifyLive.length
         ? '<p class="calc-note"><strong>Verify live</strong> (no published rate): ' +
           plan.budget.verifyLive.map(esc).join(", ") + ".</p>" : "") +
@@ -2589,7 +2589,7 @@
       "<thead><tr><th scope=\"col\">Phase</th><th scope=\"col\">Days</th>" +
       "<th scope=\"col\">Basis</th></tr></thead><tbody>" + schedRows + "</tbody></table></div>" +
       '<p class="calc-note"><strong>Total: ' + plan.schedule.totalDays +
-      " shooting days.</strong> Stills before generation, generation before assembly — " +
+      " shooting days.</strong> Stills before generation, generation before assembly, " +
       "the long-form chapter's assets-before-shots rule.</p>" +
       "</section>";
     afterPacketRender();
@@ -2608,17 +2608,17 @@
     var b = plan.bible;
     var bibleHtml =
       '<article class="card" aria-label="Series bible">' +
-      "<h3>Series bible — locked before generation</h3>" +
+      "<h3>Series bible, locked before generation</h3>" +
       '<p class="st-note">The prompt DNA below is prepended verbatim to every shot prompt ' +
-      "in every episode. It never changes mid-series — this is the consistency engine.</p>" +
+      "in every episode. It never changes mid-series, this is the consistency engine.</p>" +
       '<pre class="st-prompt" tabindex="0">' + esc(b.dnaLines.join("\n")) + "</pre>" +
-      "<h4>Locked assets (" + b.lockedAssets.length + " — plates generated ONCE)</h4>" +
+      "<h4>Locked assets (" + b.lockedAssets.length + ", plates generated ONCE)</h4>" +
       "<ul>" + b.lockedAssets.map(function (a) {
         return "<li><strong>" + esc(a.kind) + ":</strong> " + esc(a.name || "unnamed") +
-          (a.anchor ? " — " + esc(a.anchor) : "") +
+          (a.anchor ? ", " + esc(a.anchor) : "") +
           (a.voice ? ' <span class="st-badge">voice: ' + esc(a.voice) + "</span>" : "") + "</li>";
       }).join("") + "</ul>" +
-      '<p class="st-note"><strong>Format rules — ' + esc(b.formatLabel) + ":</strong> " +
+      '<p class="st-note"><strong>Format rules, ' + esc(b.formatLabel) + ":</strong> " +
       esc(b.arcStyle) + ". Hook: " + esc(b.hookStyle) + ".<br>" + esc(b.voiceRule) + "</p>" +
       "</article>";
 
@@ -2627,7 +2627,7 @@
       var arcHtml =
         '<div class="st-anatomy"><strong>Emotion:</strong> ' + esc(a.emotion) +
         ' <span class="st-track">(~' + ep.voiceBudgetSec + "s voice budget" +
-        (a.skeleton ? ' · skeleton — edit before generating' : "") + ")</span><br>" +
+        (a.skeleton ? ' · skeleton, edit before generating' : "") + ")</span><br>" +
         "<strong>Stake:</strong> " + esc(a.stake) + "<br>" +
         "<strong>Hook:</strong> " + esc(a.hook) + "<br>" +
         "<strong>Turn:</strong> " + esc(a.turn) + "<br>" +
@@ -2636,7 +2636,7 @@
         return shotCard(s, { episode: ep.episode, index: i });
       }).join("") + "</div>";
       return "<section aria-label=\"Episode " + ep.episode + "\">" +
-        "<h3>Episode " + ep.episode + " — " + ep.shotCount + " shots × " +
+        "<h3>Episode " + ep.episode + ", " + ep.shotCount + " shots × " +
         ep.shotSec + "s, " + ep.tierSpec.takes + " takes/keeper</h3>" + arcHtml +
         '<div class="st-meta" style="margin:var(--space-3) 0;">Episode seed <code>' +
         esc(ep.seed) + "</code></div>" + shotsHtml + "</section>";
@@ -2666,7 +2666,7 @@
       '<p class="lede">' + esc(b.logline) + "</p>" +
       '<p class="calc-note">' + esc(b.genreLabel) + " · " + esc(b.tierLabel) + " tier · " +
       plan.totalShots + " total shots · " + plan.schedule.totalDays + " shooting days. " +
-      "Computed live from <code>models.json</code> and <code>prompt-templates.json</code> — " +
+      "Computed live from <code>models.json</code> and <code>prompt-templates.json</code>, " +
       "update the data, not this page.</p>" +
       bibleHtml +
       "<h3>Episodes</h3>" + epsHtml +
@@ -2682,7 +2682,7 @@
       '<div class="calc-stat highlight"><div class="calc-value">' + fmtUSD(plan.budget.twenty) +
       '</div><div class="calc-label">20× envelope (worst case)</div></div>' +
       '<p class="calc-note">Saved by the bible: ' + plan.reuse.lockedAssets + " locked plates " +
-      "generated once instead of per episode — ≈" + plan.reuse.avoidedCredits + " credits (≈" +
+      "generated once instead of per episode, ≈" + plan.reuse.avoidedCredits + " credits (≈" +
       fmtUSD(plan.reuse.avoidedUSD) + ") not spent. " + esc(plan.reuse.rule) + "</p>" +
       (plan.budget.verifyLive.length
         ? '<p class="calc-note"><strong>Verify live</strong> (no published rate): ' +
@@ -2706,7 +2706,7 @@
   }
 
   /* ---------------- cost optimizer panel -----------------------------------
-     "Optimize cost" — runs optimizePlan against the current packet and
+     "Optimize cost", runs optimizePlan against the current packet and
      renders the four budget modes, where-the-money-goes, the biggest
      decision, and per-shot substitutions. Results are stored on the plan so
      the packet exports (markdown / self-contained HTML) carry them. */
@@ -2746,12 +2746,12 @@
       (opt.verifyLive.length ? '; <span class="st-badge">price may move</span> on ' +
         opt.verifyLive.length + " USD-billed pick(s)" : "") + "</td></tr>" +
       "<tr><td><strong>Balanced</strong> <span class=\"quiz-cost-sub\">(Studio defaults)</span></td>" +
-      "<td><strong>" + fmtUSD(b) + "</strong></td><td>—</td>" +
+      "<td><strong>" + fmtUSD(b) + "</strong></td><td>…</td>" +
       "<td>The plan's own per-shot picks, re-priced at the " + optResLabelUi(opt.resBar) + " bar.</td></tr>" +
       "<tr><td><strong>Best rated</strong></td>" +
       "<td><strong>" + (rOk ? fmtUSD(r) : "incomplete") + "</strong></td>" +
       "<td>" + optModeDelta(b, rOk ? r : null) + "</td>" +
-      "<td>Top documented arena/leaderboard model per shot (boards differ — see rank notes).</td></tr>" +
+      "<td>Top documented arena/leaderboard model per shot (boards differ, see rank notes).</td></tr>" +
       "<tr><td><strong>Draft cheap, finish flagship</strong></td>" +
       "<td><strong>" + (dfOk ? fmtUSD(dfT) : "incomplete") + "</strong></td>" +
       "<td>" + optModeDelta(b, dfOk ? dfT : null) + "</td>" +
@@ -2786,10 +2786,10 @@
       if (bg.alternative && bg.alternative.model !== bg.model) {
         big += "Cheaper alternative meeting the same requirements: <strong>" +
           esc(bg.alternative.model) + "</strong> (" + esc(bg.alternative.platform) +
-          ") at $" + bg.alternative.usdps.toFixed(3) + "/s — saves <strong>" +
+          ") at $" + bg.alternative.usdps.toFixed(3) + "/s, saves <strong>" +
           fmtUSD(bg.saving) + "</strong> on this shot alone.</p>";
       } else {
-        big += "No cheaper alternative meets this shot's requirements — it is already the floor.</p>";
+        big += "No cheaper alternative meets this shot's requirements, it is already the floor.</p>";
       }
     }
 
@@ -2808,24 +2808,24 @@
           ? "<br><span class=\"quiz-cost-na\">" + s.balanced.shortfalls.map(esc).join("; ") + "</span>" : "") +
         "</td>" +
         "<td>" + optEntryCell(s.cheapest) + giveUp + "</td>" +
-        "<td><strong>" + (s.saving !== null ? fmtUSD(s.saving) : "—") + "</strong></td>" +
+        "<td><strong>" + (s.saving !== null ? fmtUSD(s.saving) : "…") + "</strong></td>" +
         "<td>" + esc(match) + "</td></tr>";
     }).join("");
 
     var notes = [];
     if (opt.ineligible.length) {
       notes.push("<p><strong>Not eligible</strong> at the " + optResLabelUi(opt.resBar) +
-        " bar (honest floor — never assumed): " +
+        " bar (honest floor, never assumed): " +
         opt.ineligible.map(function (x) {
           return esc(x.model) + " (" + esc(x.reason) + ")";
         }).join("; ") + ".</p>");
     }
     if (opt.unpriced.length) {
-      notes.push("<p><strong>No published rate — verify live:</strong> " +
+      notes.push("<p><strong>No published rate, verify live:</strong> " +
         opt.unpriced.map(esc).join(", ") + ".</p>");
     }
     if (opt.verifyLive.length) {
-      notes.push('<p><span class="st-badge">price may move</span> picks (USD/API billing — verify live ' +
+      notes.push('<p><span class="st-badge">price may move</span> picks (USD/API billing, verify live ' +
         "before budgeting): " + opt.verifyLive.map(esc).join(", ") + ".</p>");
     }
 
@@ -2853,10 +2853,10 @@
       "<thead><tr><th scope=\"col\">Takes per keeper</th><th scope=\"col\">Generation cost</th></tr></thead>" +
       "<tbody>" + takeRows + "</tbody></table></div>" +
       '<p class="calc-note">Each take costs <strong>' + fmtUSD(opt.perTake) +
-      "</strong> across the plan — cutting takes is the fastest lever after model choice.</p>" +
+      "</strong> across the plan, cutting takes is the fastest lever after model choice.</p>" +
       big +
       "<details" + (opt.shotCount <= 30 ? " open" : "") + ">" +
-      "<summary><strong>Per-shot substitutions (" + opt.shotCount + ")</strong> — cheapest viable " +
+      "<summary><strong>Per-shot substitutions (" + opt.shotCount + ")</strong>, cheapest viable " +
       "for every shot, with the explicit requirement match</summary>" +
       '<div class="table-scroll"><table>' +
       "<thead><tr><th scope=\"col\">Shot</th><th scope=\"col\">Balanced pick</th>" +
@@ -2868,7 +2868,7 @@
       "FLUX 3 Video (Arena T2V #2, 1496) → MiniMax H3 (top-3 in earlier reports, verify live) → " +
       "Seedance 2.5 (Arena I2V leader Sept 2026, single-source) → Grok Imagine Video 1.5 " +
       "(topped I2V arena at launch, third-party) → Kling 3.0 (Artificial Analysis T2V #12, Sept 2026, single-source). " +
-      "Boards and dates differ — indicative, not apples-to-apples. The packet export now carries this section.</p>";
+      "Boards and dates differ, indicative, not apples-to-apples. The packet export now carries this section.</p>";
     document.getElementById("st-opt-h").focus({ preventScroll: false });
   }
 
@@ -2908,7 +2908,7 @@
   }
 
   /* LocalStorage plans: names, kind badge, Load (continue planning),
-     Duplicate, Delete — all real buttons, keyboard-operable. Old wave-15
+     Duplicate, Delete, all real buttons, keyboard-operable. Old wave-15
      entries (no kind) are treated as films. */
   function planKind(p) {
     if (p.kind === "microdrama") return "microdrama";
@@ -2970,7 +2970,7 @@
       CURRENT = { kind: "film", input: inp, plan: p.plan };
       render(p.plan);
     }
-    announce("Plan “" + p.name + "” loaded — continue planning.");
+    announce("Plan “" + p.name + "” loaded, continue planning.");
   }
 
   function renderSaved() {
@@ -3097,22 +3097,22 @@
       esc(plan.seed) + "</code> · deterministic: same inputs, same plan</p>" +
       '<h2 id="st-run-h" tabindex="-1">' + esc(inp.title) + "</h2>" +
       (inp.logline ? '<p class="lede">' + esc(inp.logline) + "</p>" : "") +
-      '<p class="calc-note"><strong>Economics-only planner</strong> — no shot ' +
+      '<p class="calc-note"><strong>Economics-only planner</strong>, no shot ' +
       "list, no per-shot model picks. The run's clip budget, cost envelope, " +
       "and timeline from the documented $150-microdrama figures (TheWrap / " +
       "Sixth Tone, June 2026). Every number carries its documented basis " +
-      "below; model rates are third-party estimates — <strong>verify live</strong> " +
+      "below; model rates are third-party estimates, <strong>verify live</strong> " +
       "before spending.</p>" +
       "<h3>Clip budget</h3>" +
-      '<div class="table-scroll"><table><caption>Generation happens in 10–15s ' +
-      "clips — StoReel Canvas's documented unit.</caption>" +
+      '<div class="table-scroll"><table><caption>Generation happens in 10 to 15s ' +
+      "clips, StoReel Canvas's documented unit.</caption>" +
       "<thead><tr><th scope=\"col\"></th><th scope=\"col\">Per episode</th>" +
       "<th scope=\"col\">Whole run (" + plan.episodes + " episodes)</th></tr></thead><tbody>" +
       "<tr><td>Runtime</td><td>" + plan.runtimeSec + "s</td><td>" +
       plan.totalMinutes + " min finished</td></tr>" +
-      "<tr><td>Clips (10–15s each)</td><td><strong>" + plan.clipsPerEp.lo +
-      "–" + plan.clipsPerEp.hi + "</strong></td><td><strong>" +
-      plan.totalClips.lo + "–" + plan.totalClips.hi + "</strong></td></tr>" +
+      "<tr><td>Clips (10 to 15s each)</td><td><strong>" + plan.clipsPerEp.lo +
+      "" + plan.clipsPerEp.hi + "</strong></td><td><strong>" +
+      plan.totalClips.lo + "-" + plan.totalClips.hi + "</strong></td></tr>" +
       "</tbody></table></div>" +
       '<p class="calc-note">' + esc(plan.storeelClipCheck) +
       " One page of dialogue ≈ one minute ≈ one episode (TheWrap's industry survey).</p>" +
@@ -3124,19 +3124,19 @@
       plan.totalMinutes + " min</td><td><strong>" + fmtUSD(plan.benchmarkTotal) +
       "</strong></td><td class=\"st-note\">TheWrap's reported AI-series rate " +
       "(~$150 for 4 one-minute episodes ≈ $37.50/ep). One platform's rate " +
-      "card, one experiment — the benchmark to beat, not a promise.</td></tr>" +
+      "card, one experiment, the benchmark to beat, not a promise.</td></tr>" +
       "<tr><td>Generation (" + plan.takes + "× retakes)</td><td class=\"st-math\">" +
       plan.genSecTotal + "s × " + esc(rateCell) + "</td><td><strong>" +
       (plan.rate ? fmtUSD(b.genUsdTotal) : "verify live") + "</strong></td>" +
       "<td class=\"st-note\">" + plan.takes + "× = the " +
-      esc(inp.tierLabel.toLowerCase()) + " end of Qidian's 3–5 “drawing cards” " +
+      esc(inp.tierLabel.toLowerCase()) + " end of Qidian's 3 to 5 “drawing cards” " +
       "retake range (Sixth Tone). Rate = the cheapest priced video model in " +
-      "`models.json` — the generation floor, verify live.</td></tr>" +
+      "`models.json`, the generation floor, verify live.</td></tr>" +
       "<tr><td>Character-regen reserve</td><td class=\"st-math\">" +
       b.regenCount + " regens × " + esc(imgCell) + "</td><td><strong>" +
       (plan.img ? fmtUSD(b.regenUsdTotal) : "verify live") + "</strong></td>" +
       "<td class=\"st-note\">StoReel paid for regenerations when faces drifted; " +
-      "no per-episode figure was published — the count (" + inp.regensPerEp +
+      "no per-episode figure was published, the count (" + inp.regensPerEp +
       "/ep) is your budget guess, priced at the cheapest image-model rate.</td></tr>" +
       "<tr><td><strong>Plan total</strong></td><td class=\"st-math\">generation + " +
       "regen reserve</td><td><strong>" + fmtUSD(b.totalUsd) + "</strong> (" +
@@ -3149,26 +3149,26 @@
       "<tr><td>PUGC revenue context</td><td class=\"st-math\">$150/min × " +
       plan.totalMinutes + " min</td><td>" + fmtUSD(plan.pugcRef) +
       "</td><td class=\"st-note\">StoReel's reported payout rate for creator " +
-      "series it designates. Platform-specific — not revenue you can count on.</td></tr>" +
+      "series it designates. Platform-specific, not revenue you can count on.</td></tr>" +
       "</tbody></table></div>" +
       (plan.viduRef
-        ? '<p class="calc-note">Reference pricing (not used in the math): <strong>Vidu Q4 Preview</strong> — ' +
-          esc(plan.viduRef) + " (PR Newswire, preview pricing — verify live).</p>"
+        ? '<p class="calc-note">Reference pricing (not used in the math): <strong>Vidu Q4 Preview</strong>, ' +
+          esc(plan.viduRef) + " (PR Newswire, preview pricing, verify live).</p>"
         : "") +
       "<h3>Timeline</h3>" +
       '<p class="calc-note"><strong>' + plan.timelineDays + " day" +
       (plan.timelineDays === 1 ? "" : "s") +
-      "</strong> at the documented pace — ≈7 episodes/week. " +
+      "</strong> at the documented pace, ≈7 episodes/week. " +
       esc(plan.paceNote) + "</p>" +
       "<h3>Documented production economics (benchmarks, not predictions)</h3>" +
       '<p class="calc-note">StoReel Canvas “Off Campus” experiment (TheWrap, June 2026): ' +
       "4 one-minute AI episodes in 4 days for ~$150 in credits (≈$37.50/episode); " +
       "AI series generation ≈$50/min vs live-action ≈$2,000/min; 146 clips of " +
-      "10–15s for a 30-episode storyboard; character regenerations paid when " +
+      "10 to 15s for a 30-episode storyboard; character regenerations paid when " +
       "faces drifted. StoReel's PUGC payout rate: ≈$150/min for creator series it " +
-      "designates. Qidian Interactive's AI studio (Sixth Tone, June 2026): 3–5 " +
+      "designates. Qidian Interactive's AI studio (Sixth Tone, June 2026): 3 to 5 " +
       "retakes per usable shot (“drawing cards”). Full teardown: " +
-      "`storeel-off-campus` — <a href=\"teardown.html\">read it shot by shot →</a>.</p>" +
+      "`storeel-off-campus`, <a href=\"teardown.html\">read it shot by shot →</a>.</p>" +
       "</section>";
     afterPacketRender();
     e.actions.hidden = false;
@@ -3185,7 +3185,7 @@
      plan share/import. Progressive enhancement throughout: every piece
      feature-detects and honors prefers-reduced-motion. Styles (.st3-*) live
      statically in STUDIO_TMPL's <style> block, namespaced and built only
-     from the site's token variables — no new visual language. */
+     from the site's token variables, no new visual language. */
 
   var ST3_MOVEMENTS = null;
   var ST3_DLG_REF = null;
@@ -3256,7 +3256,7 @@
         control = '<select id="st3-f-' + f.key + '" data-st3-field="' + f.key + '">' + opts + "</select>";
       } else {
         control = '<input type="text" id="st3-f-' + f.key + '" data-st3-field="' + f.key + '"' +
-          ' placeholder="Camera lexicon still loading — describe the move in words">';
+          ' placeholder="Camera lexicon still loading, describe the move in words">';
       }
     } else {
       control = '<textarea id="st3-f-' + f.key + '" data-st3-field="' + f.key + '" rows="2"></textarea>';
@@ -3275,7 +3275,7 @@
       '<div class="st3-dlg-head">' +
       '<h3 id="st3-dlg-title">Refine shot</h3>' +
       '<p class="st-note" id="st3-dlg-sub"></p>' +
-      '<p class="st-note">Five-field spec — the structure of the documented Gaudette build ' +
+      '<p class="st-note">Five-field spec, the structure of the documented Gaudette build ' +
       '(<a href="teardown.html">Teardowns</a>). Refining changes words only: the shot\u2019s ' +
       "model, duration, and take count never move.</p>" +
       "</div>" +
@@ -3295,7 +3295,7 @@
       "</div>";
     document.body.appendChild(dlg);
     /* Native <dialog> restores focus to the trigger on close() by itself
-       (Baseline since ~Mar 2022) — no manual re-focus (web-craft round 2,
+       (Baseline since ~Mar 2022), no manual re-focus (web-craft round 2,
        Angle 4: don't re-implement what the platform handles). */
     dlg.addEventListener("close", function () {
       ST3_DLG_INVOKER = null;
@@ -3315,7 +3315,7 @@
       '<div class="st3-dlg-wrap">' +
       '<div class="st3-dlg-head">' +
       '<h3 id="st3-share-title">Share plan</h3>' +
-      '<p class="st-note">The export is the plan\u2019s full data — anyone with this file and the ' +
+      '<p class="st-note">The export is the plan\u2019s full data, anyone with this file and the ' +
       "Studio can import it. Nothing leaves your browser unless you send the file.</p>" +
       "</div>" +
       '<div class="st3-dlg-body">' +
@@ -3354,11 +3354,11 @@
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(ta.value).then(done, function () {
           try { document.execCommand("copy"); done(); }
-          catch (e) { announce("Copy failed — select the text manually."); }
+          catch (e) { announce("Copy failed, select the text manually."); }
         });
       } else {
         try { document.execCommand("copy"); done(); }
-        catch (e) { announce("Copy failed — select the text manually."); }
+        catch (e) { announce("Copy failed, select the text manually."); }
       }
     });
     document.getElementById("st3-import-file").addEventListener("change", function (ev) {
@@ -3394,7 +3394,7 @@
     if (DATA && DATA.templates) {
       tmpl = DATA.templates.filter(function (t) { return t.id === shot.templateId; })[0] || null;
     }
-    if (!tmpl) { announce("Template data unavailable — reload the page and try again."); return; }
+    if (!tmpl) { announce("Template data unavailable, reload the page and try again."); return; }
     var genreKey = (CURRENT.input && CURRENT.input.genre) || "drama";
     var genre = StudioEngine.GENRES[genreKey] || StudioEngine.GENRES.drama;
     var tier = (CURRENT.input && CURRENT.input.tier) || "draft";
@@ -3411,7 +3411,7 @@
       "Refine " + (ref.episode == null ? "shot " : "episode " + ref.episode + " · shot ") + shot.n;
     document.getElementById("st3-dlg-sub").textContent =
       shot.templateTitle + " (" + shot.templateId + ") · " + shot.duration + "s · " +
-      (shot.model || "unpriced — verify live");
+      (shot.model || "unpriced, verify live");
     document.getElementById("st3-fields").innerHTML =
       StudioEngine.REFINERY_FIELDS.map(st3FieldHtml).join("");
     Object.keys(init).forEach(function (k) {
@@ -3451,7 +3451,7 @@
     var entry = StudioEngine.refineShotInPlan(CURRENT.plan, r.ref, out.text, out.fields);
     st3UpdateShotCard(r.ref, r.shot);
     st3RenderHistory(r.shot);
-    announce("Shot refined (round " + entry.round + ") — words only; budget and schedule unchanged. " +
+    announce("Shot refined (round " + entry.round + "), words only; budget and schedule unchanged. " +
       "Save the plan to keep it.");
   }
 
@@ -3465,7 +3465,7 @@
       st3Preview();
       announce("Restored the generated prompt (round " + entry.round + " logged).");
     } catch (e) {
-      announce("Nothing to restore — this shot is still on its generated prompt.");
+      announce("Nothing to restore, this shot is still on its generated prompt.");
     }
   }
 
@@ -3473,12 +3473,12 @@
     var ul = document.getElementById("st3-history");
     var rounds = shot.refinements || [];
     if (!rounds.length) {
-      ul.innerHTML = '<li class="st-note">No refinements yet — the preview above starts from the generated prompt.</li>';
+      ul.innerHTML = '<li class="st-note">No refinements yet, the preview above starts from the generated prompt.</li>';
       return;
     }
     ul.innerHTML = rounds.map(function (e) {
       if (e.reverted) {
-        return "<li><strong>Round " + e.round + "</strong> — reverted to the generated prompt.</li>";
+        return "<li><strong>Round " + e.round + "</strong>, reverted to the generated prompt.</li>";
       }
       var bits = [];
       StudioEngine.REFINERY_FIELDS.forEach(function (f) {
@@ -3489,7 +3489,7 @@
     }).join("");
   }
 
-  /* Surgical card update after a refinement — no full re-render, no scroll
+  /* Surgical card update after a refinement, no full re-render, no scroll
      jump. Same-document view transitions are Baseline since Oct 2025
      (web-craft round 1), so document.startViewTransition() ships with only a
      feature check; the prefers-reduced-motion guard is the user's call, not
@@ -3555,18 +3555,18 @@
       localStorage.setItem(SAVE_KEY, JSON.stringify(plans));
     } catch (e) {
       err.hidden = false;
-      err.textContent = "Could not save — browser storage is unavailable.";
+      err.textContent = "Could not save, browser storage is unavailable.";
       return;
     }
     renderSaved();
     document.getElementById("st3-share").close();
     loadPlan(res.saved);
-    announce("Plan imported as \u201c" + res.saved.name + "\u201d — continue planning.");
+    announce("Plan imported as \u201c" + res.saved.name + "\u201d, continue planning.");
   }
 
   function st3Init() {
     /* Camera lexicon for the refinery's movement picker (progressive
-       enhancement — the dialog falls back to a text field). */
+       enhancement, the dialog falls back to a text field). */
     fetch("camera-movements.json").then(function (r) {
       if (!r.ok) throw new Error("movements");
       return r.json();
@@ -3614,7 +3614,7 @@
     if (!e.title) return;
     st3Init();
 
-    /* Genre options from the engine's own map — one source of truth. */
+    /* Genre options from the engine's own map, one source of truth. */
     Object.keys(GENRES).forEach(function (k) {
       var o = document.createElement("option");
       o.value = k;
@@ -3643,7 +3643,7 @@
     if (!bridge && !mdBridge && /[?&]from=planner/.test(location.search)) {
       e.importMsg.hidden = false;
       e.importMsg.textContent = "The planner sent you here, but no series payload was found in this browser " +
-        "(it was already consumed or never saved). Plan manually below — or go back and press “Send series to Studio” or “Send run to Studio” again.";
+        "(it was already consumed or never saved). Plan manually below, or go back and press “Send series to Studio” or “Send run to Studio” again.";
     }
 
     /* ?mode=microdrama (e.g. from the $150 Microdrama teardown) pre-selects
@@ -3653,7 +3653,7 @@
       if (microRadio) {
         microRadio.checked = true;
         refreshKindUI();
-        announce("Microdrama mode selected — plan a serialized run from the documented $150-microdrama economics.");
+        announce("Microdrama mode selected, plan a serialized run from the documented $150-microdrama economics.");
       }
     }
 
@@ -3664,7 +3664,7 @@
     } else if (/[?&]from=prompts/.test(location.search)) {
       e.importMsg.hidden = false;
       e.importMsg.textContent = "The prompt library sent you here, but no template payload was found in this browser " +
-        "(it was already consumed or never staged). Plan manually below — or go back and press “Send to Studio” again.";
+        "(it was already consumed or never staged). Plan manually below, or go back and press “Send to Studio” again.";
     }
 
     Promise.all([
@@ -3687,7 +3687,7 @@
       e.error.hidden = true;
       var title = e.title.value.trim();
       var logline = e.logline.value.trim();
-      if (!DATA) { fail("Data is still loading — one moment."); return; }
+      if (!DATA) { fail("Data is still loading, one moment."); return; }
       var kind = projectKind();
       try {
         if (kind === "microdrama") {
@@ -3759,7 +3759,7 @@
       if (!CURRENT || CURRENT.kind !== "series") return;
       downloadFile(slugify(CURRENT.plan.bible.title) + "-packet.html",
         seriesToHtml(CURRENT.plan), "text/html;charset=utf-8");
-      announce("Self-contained HTML packet downloaded — one file, printable, shareable.");
+      announce("Self-contained HTML packet downloaded, one file, printable, shareable.");
     });
 
     function fallbackCopy(text, done) {
@@ -3770,7 +3770,7 @@
       document.body.appendChild(ta);
       ta.select();
       try { document.execCommand("copy"); done(); }
-      catch (err) { fail("Copy failed — select the plan text manually and print to PDF instead."); }
+      catch (err) { fail("Copy failed, select the plan text manually and print to PDF instead."); }
       document.body.removeChild(ta);
     }
 
@@ -3799,7 +3799,7 @@
         announce("Plan saved as \u201c" + name + "\u201d.");
         e.planName.value = "";
         renderSaved();
-      } catch (err) { fail("Could not save — browser storage is unavailable."); }
+      } catch (err) { fail("Could not save, browser storage is unavailable."); }
     });
 
     renderSaved();

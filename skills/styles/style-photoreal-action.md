@@ -7,7 +7,7 @@ description: Trailer-grade kinetic photorealism.
 
 ## What this gets you
 
-Your action will look like a theatrical trailer — kinetic, glossy, and physically convincing.
+Your action will look like a theatrical trailer, kinetic, glossy, and physically convincing.
 
 ## Use when
 
@@ -21,10 +21,10 @@ Action entries, trailers, spectacle.
 
 ## Procedure
 
-1. Short shots (2–4s), motivated camera, geography locked first.
+1. Short shots (2 to 4s), motivated camera, geography locked first.
 2. Motion-strong models; budget 5× re-rolls.
 3. Sound does half the work: design the impacts before the pixels.
-4. Grade hot and contrasty — action wants punch.
+4. Grade hot and contrasty, action wants punch.
 
 ## Worked example
 
@@ -36,4 +36,4 @@ Rooftop chase: 30 shots, geography wide first, impacts designed in audio.
 
 ## Pitfalls
 
-- Long takes in action — variance compounds; cut around it.
+- Long takes in action, variance compounds; cut around it.

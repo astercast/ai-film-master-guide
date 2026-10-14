@@ -1,10 +1,10 @@
 #!/usr/bin/env node
-/* path.test.js — The Path engine + curriculum tests.
+/* path.test.js, The Path engine + curriculum tests.
  * Pins the rotation-19 flagship against its filed shape
  * (competitor gap T-FILM-5): data/v1/curriculum.json sequences
  * ALL of the guide's skills into ~6 stages, every skill ID
  * appearing exactly once, and assets/js/path.js computes the
- * walker's standing from it — per-stage progress, the current
+ * walker's standing from it, per-stage progress, the current
  * stage, the next skill, the milestone verdict, and the
  * markdown export's traces. The companion skill
  * (workflow-walk-the-path) teaches the walk itself and is
@@ -80,7 +80,7 @@ ok('stageProgress: counts, pct, complete, next', () => {
   assert.strictEqual(E.stageProgress(st, ['prompt-t1', 'prompt-t2']).done, 2);
 });
 
-ok('progress: empty walk — stage 1 current, next is skill 1', () => {
+ok('progress: empty walk, stage 1 current, next is skill 1', () => {
   const p = E.progress(CURR, []);
   assert.strictEqual(p.done, 0);
   assert.strictEqual(p.total, 241);
@@ -149,12 +149,12 @@ ok('verdict: a walked path and an empty curriculum both read honestly', () => {
 ok('export: markdown carries stages, milestones, check marks, counts, standing', () => {
   const titles = { 'prompt-t1': 'Prompt: Establishing drone shot' };
   const md = E.progressToMarkdown(CURR, titles, ['prompt-t1']);
-  assert(md.startsWith('# The Path — my walk'));
-  assert(md.includes('## Stage 1 — First Light — the prompt and the camera (1 of 37)'));
+  assert(md.startsWith('# The Path, my walk'));
+  assert(md.includes('## Stage 1, First Light, the prompt and the camera (1 of 37)'));
   assert(md.includes('- [x] Prompt: Establishing drone shot (`prompt-t1`)'));
   assert(md.includes('- [ ] '));
   assert(md.includes('Milestone: You can write a core-track prompt'));
-  assert(md.includes('## Stage 6 — The Finish'));
+  assert(md.includes('## Stage 6, The Finish'));
   assert(md.includes('Done: 1 of 241 (0%).'));
   assert(md.endsWith('\n'));
 });

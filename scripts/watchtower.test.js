@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-/* watchtower.test.js — Watchtower 2.0 drift-engine unit tests.
+/* watchtower.test.js, Watchtower 2.0 drift-engine unit tests.
  *
  * Runs the REAL data files through server/lib/drift.js and through the
  * browser mirror (assets/js/watchtower-lib.js) and asserts both copies
- * agree exactly — the page's static-fallback path must never tell a
+ * agree exactly, the page's static-fallback path must never tell a
  * different story from the live functions. Also pins the documented
  * facts the history log is built on (the Vidu Q4 correction arithmetic,
  * the pricing-coverage gap this wave closed).
@@ -53,7 +53,7 @@ ok('real diff: the 5 Watchtower 2.0 coverage changes + the 2.3 Soul Cinema tier 
   assert.strictEqual(added.after_low, 0.09, 'new record shows its rate span');
   assert.strictEqual(added.after_high, 0.23);
   // DATAOPS-002 clean feed (2026-10-14): the committed
-  // model-checks.json is the clean checker run — per-model
+  // model-checks.json is the clean checker run, per-model
   // checks span 2026-10-14T00:43:45Z to 00:55:54Z and the
   // feed's checked_at is 2026-10-14T00:56:09Z. Its summary:
   // 32 models · changed 0 · with_errors 0 · no_sources 0 ·
@@ -61,7 +61,7 @@ ok('real diff: the 5 Watchtower 2.0 coverage changes + the 2.3 Soul Cinema tier 
   // record changed and no check run errored at the feed
   // level; the drift engine still labels any record with a
   // failed source 'error', so the alert set is exactly the
-  // clean run's 17 partial records — the previous pin's 15
+  // clean run's 17 partial records, the previous pin's 15
   // plus minimax-h3 and soul-2-0, which are partial in this
   // run. The neighbouring pins are unchanged against the
   // clean feed: models_total 32, unwatched 0,
@@ -81,7 +81,7 @@ ok('real diff: the 5 Watchtower 2.0 coverage changes + the 2.3 Soul Cinema tier 
     'vidu-s2', 'wan-3-0']);
 });
 
-ok('computeDrift: spot severities — PixVerse watched (price moved), Sora ok, Soul Cinema watch (own tier moved)', () => {
+ok('computeDrift: spot severities, PixVerse watched (price moved), Sora ok, Soul Cinema watch (own tier moved)', () => {
   const d = drift.computeDrift({ modelsDoc: models, checksDoc: checks,
     pricingDoc: pricing, historyDoc: history, nowMs: NOW });
   const byId = Object.fromEntries(d.per_model.map((r) => [r.model_id, r]));
@@ -89,9 +89,9 @@ ok('computeDrift: spot severities — PixVerse watched (price moved), Sora ok, S
   // signature in both runs); in 2.11 it answered only in an
   // inter-run probe. In 2.12 its docs source fetched clean at the
   // baseline signature (95c88c96…) inside both of the pass's first
-  // two completed runs — the second clean pass — so the record is
+  // two completed runs, the second clean pass, so the record is
   // stable and its severity is watch only on its own baseline
-  // pricing diff — the PixVerse pattern.
+  // pricing diff, the PixVerse pattern.
   assert.strictEqual(byId['pixverse-v6'].check_status, 'stable');
   assert.strictEqual(byId['pixverse-v6'].severity, 'watch');
   // The two zero-source records of the Oct 11 feed are watched and clean.
@@ -100,17 +100,16 @@ ok('computeDrift: spot severities — PixVerse watched (price moved), Sora ok, S
   assert.strictEqual(byId['marketing-studio-video'].check_status, 'stable');
   // Sora 2 carries a partial in the heavily gated final run
   // of 2.19, so it reads alert this pass (host gate, not a
-  // record change — the model is discontinued and unchanged).
+  // record change, the model is discontinued and unchanged).
   assert.strictEqual(byId['sora-2'].severity, 'alert');
   // Soul Cinema gained its first published rate in 2.3 (Higgsfield's
-  // API post, $0.0032/image) — no longer "unpublished"; it sits at
+  // API post, $0.0032/image), no longer "unpublished"; it sits at
   // watch only because its own new tier is a baseline diff.
   assert.strictEqual(byId['soul-cinema'].severity, 'watch');
   assert(byId['soul-cinema'].alerts.some((a) => a.includes('Pricing table moved')));
   assert(!byId['soul-cinema'].alerts.some((a) => a.includes('No published USD rate')));
   // Wan 2.7's first check is a baseline (stable), and its severity is
-  // watch only because its own pricing record is a baseline diff —
-  // the PixVerse pattern, one generation on.
+  // watch only because its own pricing record is a baseline diff, // the PixVerse pattern, one generation on.
   assert.strictEqual(byId['wan-2-7'].check_status, 'stable');
   assert.strictEqual(byId['wan-2-7'].severity, 'watch');
   // Gemini Omni's sources all answered in the final run and
@@ -118,7 +117,7 @@ ok('computeDrift: spot severities — PixVerse watched (price moved), Sora ok, S
   // 2.19 calibration, so it reads stable/ok this pass; its
   // latest event is the 2.19 verification-kind calibration
   // record. Kling 3.0 carries a partial in the final run
-  // (the rotating host-gated cohort — the drift engine
+  // (the rotating host-gated cohort, the drift engine
   // labels any record with a failed source 'error'), so it
   // reads alert this pass.
   assert.strictEqual(byId['gemini-omni'].severity, 'ok');

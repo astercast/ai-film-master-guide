@@ -7,7 +7,7 @@ description: One action, one camera move. Nothing more.
 
 ## What this gets you
 
-You will be able to say exactly what happens in a shot — one action, one camera move — in the form models follow most reliably.
+You will be able to say exactly what happens in a shot, one action, one camera move, in the form models follow most reliably.
 
 ## Use when
 
@@ -34,4 +34,4 @@ MOTION: Mara crosses the kitchen in three strides, sets the ledger down. Slow do
 
 ## Pitfalls
 
-- 'She walks over, picks it up, and turns' — three shots wearing a trench coat.
+- 'She walks over, picks it up, and turns', three shots wearing a trench coat.

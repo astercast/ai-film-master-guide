@@ -1,8 +1,8 @@
 'use strict';
-/* GET /api/models-pricing — film-watchtower v1.0.0 (ARCHITECTURE.md §7.1).
+/* GET /api/models-pricing, film-watchtower v1.0.0 (ARCHITECTURE.md §7.1).
  * Real pricing data endpoint. Serves the curated pricing table
- * (data/v1/pricing.json at the repo root — curated from models.json's verified
- * research by the wave engine; copied to site/data/v1/ at build time — the
+ * (data/v1/pricing.json at the repo root, curated from models.json's verified
+ * research by the wave engine; copied to site/data/v1/ at build time, the
  * watchtower cron flags pricing-page changes for review but never auto-edits
  * rates: fetched pages are unreliable signals).
  *
@@ -62,7 +62,7 @@ module.exports = function (req, res) {
   env.ok(res, SERVICE, VERSION, payload, {
     source: 'live',
     degraded: false,
-    note: unpublished ? unpublished + ' of ' + entries.length + ' models have no published USD rate; their tiers are empty — verify live before budgeting.' : null,
+    note: unpublished ? unpublished + ' of ' + entries.length + ' models have no published USD rate; their tiers are empty, verify live before budgeting.' : null,
     upstream: [{ source: 'pricing-table', ok: true, checked_at: PRICING.generated_at }]
   });
 };

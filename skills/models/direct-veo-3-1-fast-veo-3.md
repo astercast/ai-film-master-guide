@@ -7,7 +7,7 @@ description: Use Veo 3.1 Fast / Veo 3 well: costs, strengths, weaknesses, best u
 
 ## What this gets you
 
-You will know whether Veo 3.1 Fast / Veo 3 is worth your money for the shot you have in mind — what it costs, what it is best at, and the weakness to design around — before you spend on generations.
+You will know whether Veo 3.1 Fast / Veo 3 is worth your money for the shot you have in mind, what it costs, what it is best at, and the weakness to design around, before you spend on generations.
 
 ## Use when
 
@@ -21,9 +21,9 @@ You are generating on Veo 3.1 Fast / Veo 3 (Google DeepMind, video). Best use: B
 
 ## Procedure
 
-1. Budget first: Veo 3.1 Fast ~16/4s; Veo 3 720p ~58/8s; Veo 3 Fast ~22/8s. Multiply by 3–5× per hero shot for re-rolls.
+1. Budget first: Veo 3.1 Fast ~16/4s; Veo 3 720p ~58/8s; Veo 3 Fast ~22/8s. Multiply by 3 to 5× per hero shot for re-rolls.
 2. Lean into its strength: Veo quality at ~40% credit cost.
-3. Design around its weakness — do not fight it: Lower fidelity than full 3.1.
+3. Design around its weakness, do not fight it: Lower fidelity than full 3.1.
 4. Draft everything at the cheapest tier that still answers the creative question.
 5. Upscale or re-render at hero quality only for approved selects.
 
@@ -38,4 +38,4 @@ You are generating on Veo 3.1 Fast / Veo 3 (Google DeepMind, video). Best use: B
 ## Pitfalls
 
 - Weakness to respect: Lower fidelity than full 3.1.
-- Costs in models.json were refreshed 2026-10-11 — verify live before spending real money.
+- Costs in models.json were refreshed 2026-10-11, verify live before spending real money.

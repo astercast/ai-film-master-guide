@@ -7,7 +7,7 @@ description: Place, time, tone in under 15 seconds.
 
 ## What this gets you
 
-You will be able to tell an audience where they are, when it is, and how to feel — in under 15 seconds.
+You will be able to tell an audience where they are, when it is, and how to feel, in under 15 seconds.
 
 ## Use when
 
@@ -24,7 +24,7 @@ Openings and act transitions.
 1. Aerial or wide pull-back revealing geography (dawn mist optional but effective).
 2. One detail shot that says 'people live here.'
 3. Time-of-day baked into the plate; tone in the grade.
-4. Under 15 seconds — establishing is a door, not a room.
+4. Under 15 seconds, establishing is a door, not a room.
 
 ## Worked example
 
@@ -36,4 +36,4 @@ Coastal town, dawn: drone pull-back + fishing boat detail, 12 seconds, cool grad
 
 ## Pitfalls
 
-- The 45-second travelogue opening — judges fast-forward it.
+- The 45-second travelogue opening, judges fast-forward it.

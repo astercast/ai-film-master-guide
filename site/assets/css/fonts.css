@@ -1,12 +1,21 @@
 /* ============================================================
-   Self-hosted fonts — v2: exactly two families.
-   Inter (reading, operating, headlines) and Newsreader
-   (long-form chapter prose only). Anton and JetBrains Mono were
-   removed in v2: the condensed display face and the decorative
-   mono were the loudest vibecoded tells in v1. Code/data use the
-   system mono stack from tokens.css — no webfont is loaded for
-   them. All files SIL Open Font License; see FONTS.md.
+   Self-hosted fonts, v3: three families, three jobs.
+   Anton proclaims (headlines, slate lines, the brand): the
+   condensed voice of the cutting room, restored in the identity
+   pass after v2 cut it. Inter reads and operates. Newsreader
+   carries long-form chapter prose. Code and real data values
+   use the system mono stack from tokens.css; no webfont is
+   loaded for them, and JetBrains Mono stays cut. All files SIL
+   Open Font License; see FONTS.md.
    ============================================================ */
+
+@font-face {
+  font-family: "Anton";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/anton-latin-normal-400.woff2") format("woff2");
+}
 
 @font-face {
   font-family: "Inter";

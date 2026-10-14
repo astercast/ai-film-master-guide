@@ -7,7 +7,7 @@ description: Kinetic cutting with geography the audience can follow.
 
 ## What this gets you
 
-You will have a chase the audience can actually follow — fast, exciting, and never confusing about who is where.
+You will have a chase the audience can actually follow, fast, exciting, and never confusing about who is where.
 
 ## Use when
 
@@ -22,8 +22,8 @@ Chases, pursuits, escapes.
 
 1. Establish geography in ONE wide before the running starts.
 2. Alternate pursuer/pursued POVs; keep screen direction consistent.
-3. 2–4s shots; camera pace matches subject pace.
-4. End on the button: the caught moment or the clean escape — never a fade.
+3. 2 to 4s shots; camera pace matches subject pace.
+4. End on the button: the caught moment or the clean escape, never a fade.
 
 ## Worked example
 
@@ -35,4 +35,4 @@ Chases, pursuits, escapes.
 
 ## Pitfalls
 
-- Flipping screen direction — the audience gets lost in one cut.
+- Flipping screen direction, the audience gets lost in one cut.

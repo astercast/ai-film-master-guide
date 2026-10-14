@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Shot-list builder — AI Film Master Guide</title>
+  <title>Shot-list builder, AI Film Master Guide</title>
   <meta name="description" content="Plan your AI shoot shot by shot: add shots with models and takes, get live per-shot and total costs from models.json, save lists in the browser, and hand off to the budget optimizer.">
+  <link rel="preload" href="assets/fonts/anton-latin-normal-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/inter-latin-normal-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/fonts.css">
   <link rel="stylesheet" href="assets/css/tokens.css">
@@ -21,13 +22,13 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="canonical" href="https://ai-film-master-guide-live.vercel.app/shots">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Shot-list builder — AI Film Master Guide">
+  <meta property="og:title" content="Shot-list builder, AI Film Master Guide">
   <meta property="og:description" content="Plan your AI shoot shot by shot: add shots with models and takes, get live per-shot and total costs from models.json, save lists in the browser, and hand off to the budget optimizer.">
   <meta property="og:image" content="https://ai-film-master-guide-live.vercel.app/assets/og-card.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Shot-list builder — AI Film Master Guide">
+  <meta name="twitter:title" content="Shot-list builder, AI Film Master Guide">
   <meta name="twitter:description" content="Plan your AI shoot shot by shot: add shots with models and takes, get live per-shot and total costs from models.json, save lists in the browser, and hand off to the budget optimizer.">
   <meta name="twitter:image" content="https://ai-film-master-guide-live.vercel.app/assets/og-card.png">
 </head>
@@ -56,6 +57,7 @@
   <main id="main">
     <section class="hero" aria-labelledby="sh-title">
       <div class="container hero-inner">
+        <p class="hero-slate"><span>Tools</span></p>
         <h1 id="sh-title">Shot-list <span class="accent">builder.</span></h1>
         <p class="lede">The pre-production planner the optimizer was missing: list every shot with its model and takes, watch the cost add up live from <code>models.json</code>, then hand the whole plan to the budget optimizer. Lists save in your browser; export the JSON and take it to set.</p>
         
@@ -103,7 +105,7 @@
     </section>
     <section class="container" aria-labelledby="sh-list-h" style="margin-top:var(--space-6);">
       <h2 id="sh-list-h">Your shot list</h2>
-      <p class="empty-state" id="sh-empty">No shots yet — add your first shot above.</p>
+      <p class="empty-state" id="sh-empty">No shots yet, add your first shot above.</p>
       <div class="table-scroll" id="sh-table" hidden>
         <table>
           <caption>Per-shot cost computed live from <code>models.json</code>.</caption>
@@ -125,7 +127,7 @@
       <div class="card calc-form">
         <div class="field">
           <label for="sh-list-name">List name</label>
-          <input class="input" type="text" id="sh-list-name" placeholder="e.g. Neon short — v1">
+          <input class="input" type="text" id="sh-list-name" placeholder="e.g. Neon short, v1">
         </div>
         <div class="field">
           <button type="button" class="btn btn-ghost" id="sh-save-list">Save current list</button>
@@ -138,12 +140,12 @@
           <button type="button" class="btn btn-ghost" id="sh-delete-list">Delete selected</button>
         </div>
       </div>
-      <p class="calc-note">Lists live in your browser's localStorage — nothing leaves your machine.</p>
+      <p class="calc-note">Lists live in your browser's localStorage, nothing leaves your machine.</p>
     </section>
   </main>
   <footer class="site-footer">
     <div class="container footer-grid">
-      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <p>AI Film Master Guide, research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer"><a href="index.html">Guide</a><a href="skills.html">Skills</a><a href="workshop.html">Workshop</a><a href="quiz.html">Quiz</a><a href="compare.html">Compare</a><a href="gallery.html">Gallery</a><a href="teardown.html">Teardowns</a><a href="model-watch.html">Model watch</a><a href="showdown.html">Showdown</a><a href="forge.html">Episode forge</a><a href="clearance.html">Script clearance</a><a href="continuity.html">Continuity ledger</a><a href="cuesheet.html">Cue sheet</a><a href="grade.html">Grade sheet</a><a href="cut.html">Cut sheet</a><a href="take.html">Take sheet</a><a href="longform.html">Longform sheet</a><a href="path.html">The path</a><a href="checks/">Knowledge checks</a><a href="budget.html">Budget</a><a href="optimizer.html">Optimizer</a><a href="shots.html">Shot list</a><a href="style-bible.html">Style bible</a><a href="doctor.html">Doctor</a><a href="linter.html">Linter</a><a href="cutting-room.html">Cutting room</a><a href="prompts.html">Prompts</a><a href="models/">Models</a><a href="anatomy.html">Anatomy</a><a href="manifesto.html">Manifesto</a><a href="craft-not-buttons.html">Craft, not buttons</a><a href="recipes.html">Recipes</a><a href="field-guides/">Field guides</a><a href="changelog.html">Changelog</a><a href="skill-spec.html">Skill spec</a><a href="api.html">API</a></nav>
       <div class="footer-colophon"><span>AI Film Master Guide</span><span class="tail">Craft, not buttons</span></div>
     </div>

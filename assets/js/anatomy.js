@@ -1,4 +1,4 @@
-/* Anatomy of a prompt — interactive explorer.
+/* Anatomy of a prompt, interactive explorer.
    Nine layers + exclusion block from the prompt-anatomy field guide.
    Explore mode: hover/tap/focus any highlighted layer for its breakdown.
    Build mode: fill the nine layers, copy a production-ready prompt. */
@@ -13,33 +13,33 @@
 
   var LAYERS = [
     { id: "subject", num: 1, name: "Subject",
-      sample: "Mara, a weathered fisherwoman in her sixties — silver braid, oilskin coat, hands scarred from nets,",
+      sample: "Mara, a weathered fisherwoman in her sixties, silver braid, oilskin coat, hands scarred from nets,",
       what: "Who or what is in frame, with locked visual traits: age, wardrobe, distinguishing marks.",
       why: "Without a locked identity, every regeneration redesigns your character. Name three traits that never change.",
-      missing: "Identity drift — a different face in every shot." },
+      missing: "Identity drift, a different face in every shot." },
     { id: "action", num: 2, name: "Micro-action",
-      sample: "mending a torn net, fingers working the twine with practiced rhythm — one action only,",
-      what: "One believable verb. Not three. Fingers working twine — not mending, laughing, and turning.",
+      sample: "mending a torn net, fingers working the twine with practiced rhythm, one action only,",
+      what: "One believable verb. Not three. Fingers working twine, not mending, laughing, and turning.",
       why: "Models execute one action well. Stacked actions collapse into mush or morphs.",
       missing: "Muddy motion and half-rendered gestures." },
     { id: "environment", num: 3, name: "Environment",
       sample: "on a fog-draped wooden dock at dawn, gulls circling overhead, dark water lapping the pilings, a distant buoy bell;",
-      what: "Where — with subtle motion living in it. Gulls, water, fog.",
+      what: "Where, with subtle motion living in it. Gulls, water, fog.",
       why: "Dead backgrounds read as fake. Ambient motion sells reality more than detail does.",
       missing: "A stagey void; the subject floats in nothing." },
     { id: "camera", num: 4, name: "Camera behavior",
       sample: "the camera pushes in slowly from medium to close-up, gently stabilized, the move motivated by her hands;",
-      what: "One intentional move, motivated by the scene — a push-in motivated by her hands.",
+      what: "One intentional move, motivated by the scene, a push-in motivated by her hands.",
       why: "Every move needs a purpose. Ask what the move reveals or withholds.",
       missing: "Unmotivated drift; the camera wanders." },
     { id: "lighting", num: 5, name: "Lighting design",
       sample: "cold blue dawn light with a warm lantern glow from frame left, soft volumetric fog, long soft shadows;",
-      what: "Explicit and physical: named sources, direction, quality. Not vibes — physics.",
+      what: "Explicit and physical: named sources, direction, quality. Not vibes, physics.",
       why: "\u201cNice lighting\u201d means nothing to a model. Named sources do.",
       missing: "The flat video look." },
     { id: "style", num: 6, name: "Visual style",
       sample: "cinematic realism, anamorphic frame, 35mm film grain, coastal drama;",
-      what: "The style bible — one line, repeated verbatim in every prompt of the project.",
+      what: "The style bible, one line, repeated verbatim in every prompt of the project.",
       why: "This is the only layer that survives a 90-minute film. Verbatim repetition is the consistency system.",
       missing: "Style drift across scenes." },
     { id: "tone", num: 7, name: "Emotional tone",
@@ -111,8 +111,8 @@
       b.setAttribute("aria-current", "true");
     });
     els.detail.innerHTML =
-      "<h3>Layer " + l.num + " — " + esc(l.name) + "</h3>" +
-      '<dl><dt>What it is</dt><dd>"' + esc(l.sample) + '" — ' + esc(l.what) + "</dd>" +
+      "<h3>Layer " + l.num + ", " + esc(l.name) + "</h3>" +
+      '<dl><dt>What it is</dt><dd>"' + esc(l.sample) + '", ' + esc(l.what) + "</dd>" +
       "<dt>Why it matters</dt><dd>" + esc(l.why) + "</dd>" +
       "<dt>Missing it gives you</dt><dd>" + esc(l.missing) + "</dd></dl>";
     if (focusDetail) {
@@ -136,7 +136,7 @@
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape" && !els.explore.hidden) {
       clearActive();
-      els.detail.innerHTML = '<p class="calc-note">Pick a layer above — in the prompt or the list — to see what it does, why it matters, and what breaks without it.</p>';
+      els.detail.innerHTML = '<p class="calc-note">Pick a layer above, in the prompt or the list, to see what it does, why it matters, and what breaks without it.</p>';
     }
   });
 
@@ -155,12 +155,12 @@
   /* ---------- build mode ---------- */
 
   var FIELDS = [
-    ["subject", "1 · Subject", "e.g. Mara, a weathered fisherwoman in her sixties — silver braid, oilskin coat"],
+    ["subject", "1 · Subject", "e.g. Mara, a weathered fisherwoman in her sixties, silver braid, oilskin coat"],
     ["action", "2 · Micro-action", "e.g. mending a torn net, fingers working the twine"],
     ["environment", "3 · Environment", "e.g. fog-draped wooden dock at dawn, gulls circling"],
     ["camera", "4 · Camera behavior", "e.g. slow push-in from medium to close-up, motivated by her hands"],
     ["lighting", "5 · Lighting design", "e.g. cold blue dawn light, warm lantern glow from frame left"],
-    ["style", "6 · Visual style", "e.g. cinematic realism, anamorphic, 35mm film grain — keep identical across the project"],
+    ["style", "6 · Visual style", "e.g. cinematic realism, anamorphic, 35mm film grain, keep identical across the project"],
     ["tone", "7 · Emotional tone", "e.g. quiet resilience, melancholy hope"],
     ["physics", "8 · Physics & motion", "e.g. coat hem stirring in the sea breeze, mist drifting"],
     ["render", "9 · Rendering quality", "e.g. 4K, shallow depth of field, stable architecture"]
@@ -187,7 +187,7 @@
 
   function renderBuild() {
     var p = buildPrompt();
-    els.preview.textContent = p || "Fill in the layers above — your prompt assembles here, in order.";
+    els.preview.textContent = p || "Fill in the layers above, your prompt assembles here, in order.";
     els.copy.disabled = !p;
   }
 

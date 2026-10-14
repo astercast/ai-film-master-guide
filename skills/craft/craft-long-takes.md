@@ -7,7 +7,7 @@ description: Flow solved at generation beats flow faked in post.
 
 ## What this gets you
 
-Your scenes will flow in long unbroken shots instead of stitched fragments — solved while generating, not faked in the edit.
+Your scenes will flow in long unbroken shots instead of stitched fragments, solved while generating, not faked in the edit.
 
 ## Use when
 
@@ -25,8 +25,8 @@ Sustained sequences.
 
 ## Worked example
 
-20s market oner: tested at 10s, committed at 20s — no stitching needed.
+20s market oner: tested at 10s, committed at 20s, no stitching needed.
 
 ## Pitfalls
 
-- Stitching five clips and calling it a oner — the seams always show.
+- Stitching five clips and calling it a oner, the seams always show.

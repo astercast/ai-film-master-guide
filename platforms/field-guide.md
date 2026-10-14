@@ -6,10 +6,10 @@ Every major platform, honestly assessed. Strengths, weaknesses, costs, and what 
 
 | Platform | Signature strength | Weakness | Cost signal | Best for |
 |---|---|---|---|---|
-| **Higgsfield** | All-in-one: many engines, Soul ID, Cinema Studio presets, camera moves | Preset UI hides raw controls; shared credit pool obscures per-model price | Basic 120 / Pro 600 / Max 1,800 credits/mo; tiers Free–Premium (10+ credits) | Filmmaking workflow, character-led series |
+| **Higgsfield** | All-in-one: many engines, Soul ID, Cinema Studio presets, camera moves | Preset UI hides raw controls; shared credit pool obscures per-model price | Basic 120 / Pro 600 / Max 1,800 credits/mo; tiers Free to Premium (10+ credits) | Filmmaking workflow, character-led series |
 | **Kling** (direct) | Photoreal physics (water, fire, smoke); end-frame pinning; multi-reference `elements` | Prompt engineering required, no hand-holding | ~0.6 units/sec 720p standard (~$0.084/sec); 0.8 pro; 3.0 native 4K | Hero shots when you want raw control |
 | **Runway** (Gen-3/Gen-4) | Reference-image start + Motion Brush for exact motion control; human-centric scenes | Weaker without a strong start image | Paid tiers, full commercial rights | Ads, human scenes, precise motion |
-| **Sora** (discontinued Mar 2026) | — | — | — | Migrate to Kling 3.0 or Veo 3.1 |
+| **Sora** (discontinued Mar 2026) | n/a |, | n/a | Migrate to Kling 3.0 or Veo 3.1 |
 | **Luma Dream Machine** | Cinematic experimentation, smooth motion | Consistency weaker than leaders | Varies | Dreamlike / experimental passages |
 | **Pika** | Lip-sync, character animation, playful effects; most permissive creatively | Less "cinematic" out of the box | Subscription | Dialogue, social, stylized work |
 | **Hailuo / MiniMax** | VFX and fluid motion | Prompt nuance | Mid tier | Action, fluid dynamics |
@@ -19,7 +19,7 @@ Every major platform, honestly assessed. Strengths, weaknesses, costs, and what 
 
 ## Platform-specific prompting notes
 
-- **Sora (discontinued Mar 2026):** historical note only — prompts-as-mini-screenplays worked for vast scenes; migrate that thinking to Kling 3.0 or Veo 3.1.
+- **Sora (discontinued Mar 2026):** historical note only, prompts-as-mini-screenplays worked for vast scenes; migrate that thinking to Kling 3.0 or Veo 3.1.
 - **Runway:** start with a strong reference image, then Motion Brush for movement. More predictable than text-only.
 - **Kling:** keep prompts concise and direct; elaborate prose underperforms. Use motion templates.
 - **Pika:** stack creative effects; for lip-sync feed clean audio with minimal background noise.

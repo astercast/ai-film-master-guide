@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Build the costed shot list — Skill — AI Film Master Guide</title>
-  <meta name="description" content="You will have a shot list with a model and a price attached to every shot — the plan a whole production (and its budget) runs on.">
+  <title>Build the costed shot list, Skill, AI Film Master Guide</title>
+  <meta name="description" content="You will have a shot list with a model and a price attached to every shot, the plan a whole production (and its budget) runs on.">
+  <link rel="preload" href="../assets/fonts/anton-latin-normal-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/inter-latin-normal-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../assets/css/fonts.css">
   <link rel="stylesheet" href="../assets/css/tokens.css">
@@ -21,14 +22,14 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="canonical" href="https://ai-film-master-guide-live.vercel.app/skills/workflow-shot-list">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Build the costed shot list — Skill — AI Film Master Guide">
-  <meta property="og:description" content="You will have a shot list with a model and a price attached to every shot — the plan a whole production (and its budget) runs on.">
+  <meta property="og:title" content="Build the costed shot list, Skill, AI Film Master Guide">
+  <meta property="og:description" content="You will have a shot list with a model and a price attached to every shot, the plan a whole production (and its budget) runs on.">
   <meta property="og:image" content="https://ai-film-master-guide-live.vercel.app/assets/og-card.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Build the costed shot list — Skill — AI Film Master Guide">
-  <meta name="twitter:description" content="You will have a shot list with a model and a price attached to every shot — the plan a whole production (and its budget) runs on.">
+  <meta name="twitter:title" content="Build the costed shot list, Skill, AI Film Master Guide">
+  <meta name="twitter:description" content="You will have a shot list with a model and a price attached to every shot, the plan a whole production (and its budget) runs on.">
   <meta name="twitter:image" content="https://ai-film-master-guide-live.vercel.app/assets/og-card.png">
 </head>
 <body>
@@ -59,20 +60,20 @@
       <h1 id="skill-title">Build the costed shot list</h1>
       
       <section class="card skill-frontdoor" aria-label="This skill at a glance">
-        <p class="skill-gets"><strong>Gets you:</strong> You will have a shot list with a model and a price attached to every shot — the plan a whole production (and its budget) runs on.</p>
+        <p class="skill-gets"><strong>Gets you:</strong> You will have a shot list with a model and a price attached to every shot, the plan a whole production (and its budget) runs on.</p>
         <dl class="skill-facts">
           <div><dt>What this is</dt><dd>Turn a scene plan into a per-shot list with model assignments, takes, and live costs.</dd></div>
           <div><dt>First step</dt><dd>List every shot: number, type (wide/medium/close-up/insert), one-line description.</dd></div>
           <div><dt>You will need</dt><dd>Locked scene plan or script; Target seconds per shot; Quality bar per shot</dd></div>
-          <div><dt>Time</dt><dd>About 3 minutes for a first run-through (7 steps; estimated from the procedure itself — your model&rsquo;s generation time is extra).</dd></div>
-          <div><dt>Level</dt><dd>Beginner — made to be usable on a first project.</dd></div>
-          <div><dt>Before this</dt><dd>Best after the skill before it on the Path (skill 157 of 241: Debug a failing prompt) — but everything it needs is listed below, and nothing else is assumed.</dd></div>
-          <div><dt>Proof &mdash; the worked example</dt><dd>12-shot dialogue scene: 8 dialogue shots on the native-audio model at 5 takes, 4 wides on the cheap draft model — clean cost $18, 5× envelope $90 budgeted.</dd></div>
+          <div><dt>Time</dt><dd>About 3 minutes for a first run-through (7 steps; estimated from the procedure itself, your model&rsquo;s generation time is extra).</dd></div>
+          <div><dt>Level</dt><dd>Beginner, made to be usable on a first project.</dd></div>
+          <div><dt>Before this</dt><dd>Best after the skill before it on the Path (skill 157 of 241: Debug a failing prompt), but everything it needs is listed below, and nothing else is assumed.</dd></div>
+          <div><dt>Proof: the worked example</dt><dd>12-shot dialogue scene: 8 dialogue shots on the native-audio model at 5 takes, 4 wides on the cheap draft model, clean cost $18, 5× envelope $90 budgeted.</dd></div>
         </dl>
         
       </section>
       <article class="prose"><h2 id="use-when">Use when</h2>
-<p>Pre-production planning — before spending a single credit on generation.</p>
+<p>Pre-production planning, before spending a single credit on generation.</p>
 <h2 id="inputs">Inputs</h2>
 <ul>
 <li>Locked scene plan or script</li>
@@ -82,15 +83,15 @@
 <h2 id="procedure">Procedure</h2>
 <ol>
 <li>List every shot: number, type (wide/medium/close-up/insert), one-line description.</li>
-<li>Assign a model per shot from the guide&#x27;s model data — drafts on the cheap model, hero shots on the premium one; dialogue shots need native-audio capability.</li>
-<li>Set takes per keeper (3 = disciplined, 5 = typical, 8 = perfectionist) — takes are where the budget actually lives.</li>
-<li>Coverage check: every scene needs its establishing wide, its dialogue coverage, and its reaction shots — the listener&#x27;s eyes do half the acting.</li>
+<li>Assign a model per shot from the guide&#x27;s model data, drafts on the cheap model, hero shots on the premium one; dialogue shots need native-audio capability.</li>
+<li>Set takes per keeper (3 = disciplined, 5 = typical, 8 = perfectionist), takes are where the budget actually lives.</li>
+<li>Coverage check: every scene needs its establishing wide, its dialogue coverage, and its reaction shots, the listener&#x27;s eyes do half the acting.</li>
 <li>Shot economy: merge shots that serve the same beat; AI charges per generation, so fewer, better-planned shots beat many hopeful ones.</li>
-<li>Budget the 5× envelope, not the clean cost — rejections, re-grades, and consistency fixes multiply everything.</li>
+<li>Budget the 5× envelope, not the clean cost, rejections, re-grades, and consistency fixes multiply everything.</li>
 <li>Hand the list to the budget optimizer for the final model-mix check before generating.</li>
 </ol>
 <h2 id="worked-example">Worked example</h2>
-<p>12-shot dialogue scene: 8 dialogue shots on the native-audio model at 5 takes, 4 wides on the cheap draft model — clean cost $18, 5× envelope $90 budgeted.</p>
+<p>12-shot dialogue scene: 8 dialogue shots on the native-audio model at 5 takes, 4 wides on the cheap draft model, clean cost $18, 5× envelope $90 budgeted.</p>
 <h2 id="api-references">API references</h2>
 <ul>
 <li><code>data/v1/models.json</code></li>
@@ -98,8 +99,8 @@
 </ul>
 <h2 id="pitfalls">Pitfalls</h2>
 <ul>
-<li>Planning shots without model assignments — the cost surprise arrives after you&#x27;ve generated.</li>
-<li>Budgeting the clean cost instead of the envelope — the envelope is the real budget.</li>
+<li>Planning shots without model assignments, the cost surprise arrives after you&#x27;ve generated.</li>
+<li>Budgeting the clean cost instead of the envelope, the envelope is the real budget.</li>
 </ul></article>
       <nav class="skill-pagenav" aria-label="Skill navigation">
         <p><a href="workflow-prompt-debug.html" rel="prev">&larr; Debug a failing prompt</a></p>
@@ -110,7 +111,7 @@
   </main>
   <footer class="site-footer">
     <div class="container footer-grid">
-      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <p>AI Film Master Guide, research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer"><a href="../index.html">Guide</a><a href="../skills.html">Skills</a><a href="../workshop.html">Workshop</a><a href="../quiz.html">Quiz</a><a href="../compare.html">Compare</a><a href="../gallery.html">Gallery</a><a href="../teardown.html">Teardowns</a><a href="../model-watch.html">Model watch</a><a href="../showdown.html">Showdown</a><a href="../forge.html">Episode forge</a><a href="../clearance.html">Script clearance</a><a href="../continuity.html">Continuity ledger</a><a href="../cuesheet.html">Cue sheet</a><a href="../grade.html">Grade sheet</a><a href="../cut.html">Cut sheet</a><a href="../take.html">Take sheet</a><a href="../longform.html">Longform sheet</a><a href="../path.html">The path</a><a href="../checks/">Knowledge checks</a><a href="../budget.html">Budget</a><a href="../optimizer.html">Optimizer</a><a href="../shots.html">Shot list</a><a href="../style-bible.html">Style bible</a><a href="../doctor.html">Doctor</a><a href="../linter.html">Linter</a><a href="../cutting-room.html">Cutting room</a><a href="../prompts.html">Prompts</a><a href="../models/">Models</a><a href="../anatomy.html">Anatomy</a><a href="../manifesto.html">Manifesto</a><a href="../craft-not-buttons.html">Craft, not buttons</a><a href="../recipes.html">Recipes</a><a href="../field-guides/">Field guides</a><a href="../changelog.html">Changelog</a><a href="../skill-spec.html">Skill spec</a><a href="../api.html">API</a></nav>
       <div class="footer-colophon"><span>AI Film Master Guide</span><span class="tail">Craft, not buttons</span></div>
     </div>

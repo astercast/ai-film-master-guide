@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>The green light — a studio meeting, playable — AI Film Master Guide</title>
-  <meta name="description" content="The Green Light: pitch your film concept to the room. A six-layer cold read, a shot list built from the guide's real 47-template prompt library, per-shot pricing from the real pricing table, a day-by-day schedule, and a verdict — green light, conditional, or back to the room.">
+  <title>The green light, a studio meeting, playable, AI Film Master Guide</title>
+  <meta name="description" content="The Green Light: pitch your film concept to the room. A six-layer cold read, a shot list built from the guide's real 47-template prompt library, per-shot pricing from the real pricing table, a day-by-day schedule, and a verdict, green light, conditional, or back to the room.">
+  <link rel="preload" href="assets/fonts/anton-latin-normal-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/inter-latin-normal-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/fonts.css">
   <link rel="stylesheet" href="assets/css/tokens.css">
@@ -95,14 +96,14 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="canonical" href="https://ai-film-master-guide-live.vercel.app/greenlight">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="The green light — a studio meeting, playable — AI Film Master Guide">
-  <meta property="og:description" content="The Green Light: pitch your film concept to the room. A six-layer cold read, a shot list built from the guide's real 47-template prompt library, per-shot pricing from the real pricing table, a day-by-day schedule, and a verdict — green light, conditional, or back to the room.">
+  <meta property="og:title" content="The green light, a studio meeting, playable, AI Film Master Guide">
+  <meta property="og:description" content="The Green Light: pitch your film concept to the room. A six-layer cold read, a shot list built from the guide's real 47-template prompt library, per-shot pricing from the real pricing table, a day-by-day schedule, and a verdict, green light, conditional, or back to the room.">
   <meta property="og:image" content="https://ai-film-master-guide-live.vercel.app/assets/og-card.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="The green light — a studio meeting, playable — AI Film Master Guide">
-  <meta name="twitter:description" content="The Green Light: pitch your film concept to the room. A six-layer cold read, a shot list built from the guide's real 47-template prompt library, per-shot pricing from the real pricing table, a day-by-day schedule, and a verdict — green light, conditional, or back to the room.">
+  <meta name="twitter:title" content="The green light, a studio meeting, playable, AI Film Master Guide">
+  <meta name="twitter:description" content="The Green Light: pitch your film concept to the room. A six-layer cold read, a shot list built from the guide's real 47-template prompt library, per-shot pricing from the real pricing table, a day-by-day schedule, and a verdict, green light, conditional, or back to the room.">
   <meta name="twitter:image" content="https://ai-film-master-guide-live.vercel.app/assets/og-card.png">
 </head>
 <body>
@@ -130,14 +131,15 @@
   <main id="main">
     <section class="hero" aria-labelledby="gl-title-h">
       <div class="container hero-inner">
+        <p class="hero-slate"><span>Interactive tool</span></p>
         <h1 id="gl-title-h">The green <span class="accent">light.</span></h1>
-        <p class="lede">Every film starts as a pitch to a room. This is that room, playable: pitch your concept, and the room reads it cold — builds your shot list from the guide's real prompt library, prices every shot from the real pricing table, lays out the shoot day by day, then votes. A weak pitch gets a cheap plan. Punch it up and watch the money move.</p>
+        <p class="lede">Every film starts as a pitch to a room. This is that room, playable: pitch your concept, and the room reads it cold, builds your shot list from the guide's real prompt library, prices every shot from the real pricing table, lays out the shoot day by day, then votes. A weak pitch gets a cheap plan. Punch it up and watch the money move.</p>
         
       </div>
     </section>
     <section class="container" id="gl-form-sec" aria-labelledby="gl-pitch-h">
       <h2 id="gl-pitch-h">The pitch <span class="tc" aria-hidden="true">00:00:00:00</span></h2>
-      <p class="section-lede">One concept, plain words. The room does the rest — and tells you exactly what it charged you for.</p>
+      <p class="section-lede">One concept, plain words. The room does the rest, and tells you exactly what it charged you for.</p>
       <div class="card" id="gl-bridge" hidden></div>
       <form class="card calc-form" aria-label="Pitch your film to the room" onsubmit="return false;">
         <div class="gl-form-grid">
@@ -150,7 +152,7 @@
             <select class="input" id="gl-genre"></select>
           </div>
           <div class="field full">
-            <label for="gl-concept">The concept — what is the film?</label>
+            <label for="gl-concept">The concept, what is the film?</label>
             <textarea class="input" id="gl-concept" rows="4" placeholder="e.g. A retired lighthouse keeper rows out every dawn to relight the lamp the town switched off…"></textarea>
           </div>
           <div class="field">
@@ -164,16 +166,16 @@
           <div class="field">
             <label for="gl-res">Finish resolution</label>
             <select class="input" id="gl-res">
-              <option value="720p">720p — draft-friendly</option>
-              <option value="1080p" selected>1080p — the festival standard</option>
-              <option value="4k">4K — flagship money</option>
+              <option value="720p">720p, draft-friendly</option>
+              <option value="1080p" selected>1080p, the festival standard</option>
+              <option value="4k">4K, flagship money</option>
             </select>
           </div>
           <div class="field full">
             <span class="gl-kicker" id="gl-amb-label">Ambition</span>
             <div class="gl-ambition" role="radiogroup" aria-labelledby="gl-amb-label">
               <label class="radio-pill"><input type="radio" name="gl-ambition" value="draft" checked> <span class="gl-pill-t"><strong>Draft</strong><span class="gl-hint">cheapest usable models</span></span></label>
-              <label class="radio-pill"><input type="radio" name="gl-ambition" value="festival"> <span class="gl-pill-t"><strong>Festival</strong><span class="gl-hint">flagship pricing — earned, not assumed</span></span></label>
+              <label class="radio-pill"><input type="radio" name="gl-ambition" value="festival"> <span class="gl-pill-t"><strong>Festival</strong><span class="gl-hint">flagship pricing, earned, not assumed</span></span></label>
             </div>
           </div>
           <div class="field full">
@@ -183,7 +185,7 @@
               <button type="button" class="btn btn-sm btn-ghost" id="gl-strong">Strong sample</button>
               <button type="button" class="btn btn-sm btn-ghost" id="gl-clear">Clear</button>
             </div>
-            <p class="calc-note">Ctrl+Enter pitches. A take from the <a href="cutting-room.html">Cutting Room</a> can walk straight in — look for the “Green light →” button on any take.</p>
+            <p class="calc-note">Ctrl+Enter pitches. A take from the <a href="cutting-room.html">Cutting Room</a> can walk straight in, look for the “Green light →” button on any take.</p>
           </div>
         </div>
       </form>
@@ -193,9 +195,9 @@
     <section class="container" id="gl-how-sec" aria-labelledby="gl-how-h">
       <h2 id="gl-how-h">How the room works <span class="tc" aria-hidden="true">00:03:45:00</span></h2>
       <div class="prose">
-        <p>The room reads <strong>structure, not taste</strong>. Six layers — someone to watch, something happening, a camera decision, light, place and time, a feeling — scored 0–100 from the words on the page. Then the money rule: festival ambition only unlocks flagship pricing when the read clears 55. A cold read gets draft money no matter what was asked for, and the room says so on the record.</p>
-        <p>Every shot is built from the guide's 47-template prompt library and priced from the real per-second pricing table — low/high ranges, the tier priced, the arithmetic shown per shot. Envelopes are 5× and 20× the clean number. Post (assembly, audio, grade) is human time and software you already own; it isn't modeled. Ranges, not promises — verify live before spending.</p>
-        <p>The room also does hype hygiene: Veo 4 doesn't exist (the “release date” pages are SEO bait — verified Oct 2026), Kling 4.0 is announced but not shipped, and Sora is discontinued. Name one and the room corrects the record instead of pricing the fantasy.</p>
+        <p>The room reads <strong>structure, not taste</strong>. Six layers, someone to watch, something happening, a camera decision, light, place and time, a feeling, scored 0 to 100 from the words on the page. Then the money rule: festival ambition only unlocks flagship pricing when the read clears 55. A cold read gets draft money no matter what was asked for, and the room says so on the record.</p>
+        <p>Every shot is built from the guide's 47-template prompt library and priced from the real per-second pricing table, low/high ranges, the tier priced, the arithmetic shown per shot. Envelopes are 5× and 20× the clean number. Post (assembly, audio, grade) is human time and software you already own; it isn't modeled. Ranges, not promises, verify live before spending.</p>
+        <p>The room also does hype hygiene: Veo 4 doesn't exist (the “release date” pages are SEO bait, verified Oct 2026), Kling 4.0 is announced but not shipped, and Sora is discontinued. Name one and the room corrects the record instead of pricing the fantasy.</p>
       </div>
     </section>
   </main>

@@ -36,7 +36,7 @@ def parse_prompt_library():
             templates.append(current)
 
     for line in text.split("\n"):
-        m = re.match(r"^## SECTION (\d+) — (.+?) \((\d+)\)", line)
+        m = re.match(r"^## SECTION (\d+), (.+?) \((\d+)\)", line)
         if m:
             flush()
             current = None
@@ -97,7 +97,7 @@ def parse_glossary():
     text = (ART / "artifact-4-glossary.md").read_text()
     terms = []
     for line in text.split("\n"):
-        m = re.match(r"^-\s+\*\*(.+?)\*\*\s+[—–-]\s+(.+)$", line)
+        m = re.match(r"^-\s+\*\*(.+?)\*\*\s*,\s+(.+)$", line)
         if m:
             terms.append({"term": m.group(1).strip(), "definition": m.group(2).strip()})
     return terms
@@ -114,16 +114,16 @@ def competitions():
         "what_it_judges": ["directing & storytelling", "visual craft",
                            "sound & editing", "originality & concept"],
         "production_constraints": [
-            "Short-form runtime cap (3-5 minutes) — runtime discipline",
-            "16:9 or 21:9 aspect ratio — delivery spec discipline",
-            "All video/image generation on the platform — tool-constraint fluency",
-            "No real person's face or voice as input, even your own — likeness safety",
-            "Music, voice, and SFX AI-generated; creator holds rights — rights hygiene",
-            "Submission carries watermark + packshot — delivery-package discipline",
+            "Short-form runtime cap (3-5 minutes), runtime discipline",
+            "16:9 or 21:9 aspect ratio, delivery spec discipline",
+            "All video/image generation on the platform, tool-constraint fluency",
+            "No real person's face or voice as input, even your own, likeness safety",
+            "Music, voice, and SFX AI-generated; creator holds rights, rights hygiene",
+            "Submission carries watermark + packshot, delivery-package discipline",
         ],
         "craft_lessons": [
             "Judges reward story over spectacle, authorial intent, POV discipline, originality, sound design; polish is the floor.",
-            "Sound is scored — a film with designed sound beats a silent film at equal visuals.",
+            "Sound is scored, a film with designed sound beats a silent film at equal visuals.",
             "Small async teams (2-4) win when the asset pipeline is disciplined.",
             "AI used for impossible scale beats AI used for novelty.",
         ],
@@ -142,7 +142,7 @@ def competitions():
             "Concept-first films win: 'Total Pixel Space' (2025) made the medium the message.",
             "Hybrid craft wins: 'Get Me Out' (2024) shot the emotion for real, used AI only for what the budget couldn't do.",
             "A real screenplay beats a prompt: 'A Face Only a Mother Could Love' (2026) proved character-first photorealism.",
-            "Consistency is the floor — no hype forgives broken continuity.",
+            "Consistency is the floor, no hype forgives broken continuity.",
         ],
         "sources": [
             "https://news.artnet.com/art-world/total-pixel-space-jacob-adler-a-i-film-festival-2662774",
@@ -212,7 +212,7 @@ def main():
     checks = {"version": VERSION, "observed": OBSERVED, "checklists": checklists}
     gloss = {"version": VERSION, "observed": OBSERVED, "terms": glossary}
     comps_doc = {"version": VERSION, "observed": OBSERVED,
-                 "note": "Competition records teach production discipline: constraints, judging criteria, and delivery rules. No prizes, deadlines, or promotional material are tracked here — this file is about craft.",
+                 "note": "Competition records teach production discipline: constraints, judging criteria, and delivery rules. No prizes, deadlines, or promotional material are tracked here, this file is about craft.",
                  "competitions": comps}
 
     skills_index = {}
@@ -308,14 +308,14 @@ def main():
                            "data/v1/schema/model-checks.json",
                            n_checked,
                            "A 'changed' flag is a review signal, not a "
-                           "confirmed model change — check the review queue "
+                           "confirmed model change, check the review queue "
                            "before treating it as fact."),
         "model-history": ep("data/v1/model-history.json",
                            "Watchtower 2.0 event log: dated status, price, "
                            "tier, release, verification, and coverage events "
                            "for every tracked model, plus the pricing "
                            "baseline the drift engine diffs the live pricing "
-                           "table against. Hand-authored — every event "
+                           "table against. Hand-authored, every event "
                            "traces to models.json or model-updates.md.",
                            "data/v1/schema/model-history.json",
                            n_events,
@@ -332,7 +332,7 @@ def main():
                                "Watchtower review log: the adjudication "
                                "record for checker flags and failed sources. "
                                "Each pass re-fetches the flagged URLs and "
-                               "records a verdict with its basis — a cleared "
+                               "records a verdict with its basis, a cleared "
                                "queue is an audited queue. Hand-authored.",
                                "data/v1/schema/model-review-log.json",
                                n_reviews,
@@ -349,7 +349,7 @@ def main():
                                          "record updates, with dates and "
                                          "sources.",
                           "updated": generated_at, "records": None,
-                          "notes": "Markdown, not JSON — no schema."},
+                          "notes": "Markdown, not JSON, no schema."},
     }
 
     index = {
@@ -360,13 +360,13 @@ def main():
             "generated": generated_at,
             "base": "data/v1/",
             "auth": "none",
-            "notes": "Static files on any static host — no auth, no keys, "
+            "notes": "Static files on any static host, no auth, no keys, "
                      "no rate limits. Breaking changes ship as a new v2/ "
                      "path, never a silent shape change. Date-only fields "
                      "are YYYY-MM-DD; timestamps are ISO-8601 UTC.",
         },
         "repository": "https://github.com/astercast/ai-film-master-guide",
-        "for_agents": "Start at data/v1/index.json. For task procedures, read skills/index.json and load the relevant skill file — skills are the primary agentic interface for doing work, the JSON endpoints are the data layer. Repo-level agent guide: AGENT.md.",
+        "for_agents": "Start at data/v1/index.json. For task procedures, read skills/index.json and load the relevant skill file, skills are the primary agentic interface for doing work, the JSON endpoints are the data layer. Repo-level agent guide: AGENT.md.",
         "provenance": "Compiled from the 2026-10-10 mega-research pass (Higgsfield pricing page read live; competition details from official sources). Unverified values are listed explicitly, never invented.",
         "skills": {
             "directory": "skills/",

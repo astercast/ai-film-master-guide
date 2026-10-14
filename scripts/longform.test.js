@@ -1,10 +1,10 @@
 #!/usr/bin/env node
-/* longform.test.js — Longform Sheet engine tests.
+/* longform.test.js, Longform Sheet engine tests.
  * Pins the engine against the long-form pipelines chapter's
  * own rules (craft/longform-pipelines.md): the five pre-lock
  * gates, the stress-test rule (a scene generated without its
  * stress test reads untested), the chaining rule (a text
- * description reads drifting — a video reference doesn't),
+ * description reads drifting, a video reference doesn't),
  * the draft rule (full-res before the winner reads wasteful;
  * draft at 720p, upscale winners only), feature-lock
  * verdicts, and the markdown export's traces.
@@ -25,8 +25,8 @@ ok('gates: the chapter\u2019s five pre-lock gates, in order', () => {
 
 ok('refs: video / text / none, with the chapter\u2019s split', () => {
   assert.deepStrictEqual(E.REFS.map((s) => s.id), ['video', 'text', 'none']);
-  assert.strictEqual(E.refLabel('video'), 'Video reference — previous finished scene or previz');
-  assert.strictEqual(E.refLabel('nope'), '— no reference recorded —');
+  assert.strictEqual(E.refLabel('video'), 'Video reference, previous finished scene or previz');
+  assert.strictEqual(E.refLabel('nope'), 'No reference recorded ');
 });
 
 ok('dialogues + tiers + statuses: the chapter\u2019s three dialogue architectures + silent; draft / winner / full-res; building / locked / supervision / cut', () => {
@@ -34,20 +34,20 @@ ok('dialogues + tiers + statuses: the chapter\u2019s three dialogue architecture
   assert.deepStrictEqual(E.TIERS.map((s) => s.id), ['draft', 'winner', 'fullres']);
   assert.deepStrictEqual(E.STATUSES.map((s) => s.id), ['building', 'locked', 'supervision', 'cut']);
   assert.strictEqual(E.statusLabel('locked'), 'Picture-Locked');
-  assert.strictEqual(E.statusLabel('nope'), '— no route recorded —');
+  assert.strictEqual(E.statusLabel('nope'), 'No route recorded ');
   assert.strictEqual(E.tierLabel('draft'), '720p draft');
   assert.strictEqual(E.dialogueLabel('converted'), 'Human-recorded, AI-converted');
 });
 
-ok('default sheet: 6 scenes, 5 clean, 1 held, 0 stopped — verdict is the hold', () => {
+ok('default sheet: 6 scenes, 5 clean, 1 held, 0 stopped, verdict is the hold', () => {
   const r = E.evaluate(E.DEFAULT_ENTRIES);
   assert.strictEqual(r.total, 6);
   assert.strictEqual(r.clean, 5);
   assert.strictEqual(r.held, 1);
   assert.strictEqual(r.stopped, 0);
   assert.strictEqual(r.ready, false);
-  assert(r.verdict.includes('Hold feature lock — 1 scene is not ready'));
-  assert.strictEqual(r.heldEntries[0].scene, 'Seq 4 — Depot office, the radio news');
+  assert(r.verdict.includes('Hold feature lock, 1 scene is not ready'));
+  assert.strictEqual(r.heldEntries[0].scene, 'Seq 4, Depot office, the radio news');
   assert.strictEqual(E.effectiveStatus(r.heldEntries[0]), 'supervision');
 });
 
@@ -145,10 +145,10 @@ ok('gateState: counts, missing, complete', () => {
 
 ok('export: markdown carries title, gate marks, scenes with stress + reference + dialogue + tier + route, verdict, counts', () => {
   const md = E.sheetToMarkdown('The Night Bus (long form)', E.DEFAULT_ENTRIES, ['registry', 'stresstest']);
-  assert(md.startsWith('# Longform sheet — The Night Bus (long form)'));
+  assert(md.startsWith('# Longform sheet, The Night Bus (long form)'));
   assert(md.includes('- [x] Asset registry complete before shot one'));
   assert(md.includes('- [ ] Dialogue architecture chosen per scene, not per film'));
-  assert(md.includes('Seq 4 — Depot office, the radio news — In generation supervision'));
+  assert(md.includes('Seq 4, Depot office, the radio news, In generation supervision'));
   assert(md.includes('Stress test: done'));
   assert(md.includes('Reference: Video reference'));
   assert(md.includes('Dialogue: Decoupled'));

@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Anatomy of a prompt — AI Film Master Guide</title>
+  <title>Anatomy of a prompt, AI Film Master Guide</title>
   <meta name="description" content="The nine-layer prompt anatomy as an interactive annotated example: hover any layer to learn what it does, then build your own prompt layer by layer.">
+  <link rel="preload" href="assets/fonts/anton-latin-normal-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/inter-latin-normal-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/fonts.css">
   <link rel="stylesheet" href="assets/css/tokens.css">
@@ -21,13 +22,13 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="canonical" href="https://ai-film-master-guide-live.vercel.app/anatomy">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Anatomy of a prompt — AI Film Master Guide">
+  <meta property="og:title" content="Anatomy of a prompt, AI Film Master Guide">
   <meta property="og:description" content="The nine-layer prompt anatomy as an interactive annotated example: hover any layer to learn what it does, then build your own prompt layer by layer.">
   <meta property="og:image" content="https://ai-film-master-guide-live.vercel.app/assets/og-card.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Anatomy of a prompt — AI Film Master Guide">
+  <meta name="twitter:title" content="Anatomy of a prompt, AI Film Master Guide">
   <meta name="twitter:description" content="The nine-layer prompt anatomy as an interactive annotated example: hover any layer to learn what it does, then build your own prompt layer by layer.">
   <meta name="twitter:image" content="https://ai-film-master-guide-live.vercel.app/assets/og-card.png">
 </head>
@@ -56,8 +57,9 @@
   <main id="main">
     <section class="hero" aria-labelledby="anat-title">
       <div class="container hero-inner">
+        <p class="hero-slate"><span>Craft</span></p>
         <h1 id="anat-title">Anatomy of <span class="accent">a prompt.</span></h1>
-        <p class="lede">Treat the prompt as a directing system, not a description. Nine layers, in order — plus the exclusion block. Missing layers = randomness. Hover, tap, or focus any layer below to see what it does.</p>
+        <p class="lede">Treat the prompt as a directing system, not a description. Nine layers, in order, plus the exclusion block. Missing layers = randomness. Hover, tap, or focus any layer below to see what it does.</p>
         
       </div>
     </section>
@@ -68,15 +70,15 @@
         <button type="button" class="btn btn-ghost" id="anat-tab-build" aria-pressed="false">Build yours</button>
       </div>
       <div id="anat-explore">
-        <p class="calc-note">One real prompt, ten highlighted layers. Pick any layer — here or in the list — for its breakdown. Esc clears.</p>
+        <p class="calc-note">One real prompt, ten highlighted layers. Pick any layer, here or in the list, for its breakdown. Esc clears.</p>
         <div class="anatomy-sample" id="anat-sample" aria-label="Annotated sample prompt"></div>
         <ol class="anatomy-layers" id="anat-layers" aria-label="The ten layers"></ol>
         <div class="card anatomy-detail" id="anat-detail" aria-live="polite" aria-label="Layer breakdown">
-          <p class="calc-note">Pick a layer above — in the prompt or the list — to see what it does, why it matters, and what breaks without it.</p>
+          <p class="calc-note">Pick a layer above, in the prompt or the list, to see what it does, why it matters, and what breaks without it.</p>
         </div>
       </div>
       <div id="anat-build" hidden>
-        <p class="calc-note">Fill the nine layers in order. Your prompt assembles below — copy it, then continue in the workshop with a full template.</p>
+        <p class="calc-note">Fill the nine layers in order. Your prompt assembles below, copy it, then continue in the workshop with a full template.</p>
         <div class="card">
           <div class="anatomy-build-grid" id="anat-form"></div>
         </div>
@@ -92,7 +94,7 @@
   </main>
   <footer class="site-footer">
     <div class="container footer-grid">
-      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <p>AI Film Master Guide, research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer"><a href="index.html">Guide</a><a href="skills.html">Skills</a><a href="workshop.html">Workshop</a><a href="quiz.html">Quiz</a><a href="compare.html">Compare</a><a href="gallery.html">Gallery</a><a href="teardown.html">Teardowns</a><a href="model-watch.html">Model watch</a><a href="showdown.html">Showdown</a><a href="forge.html">Episode forge</a><a href="clearance.html">Script clearance</a><a href="continuity.html">Continuity ledger</a><a href="cuesheet.html">Cue sheet</a><a href="grade.html">Grade sheet</a><a href="cut.html">Cut sheet</a><a href="take.html">Take sheet</a><a href="longform.html">Longform sheet</a><a href="path.html">The path</a><a href="checks/">Knowledge checks</a><a href="budget.html">Budget</a><a href="optimizer.html">Optimizer</a><a href="shots.html">Shot list</a><a href="style-bible.html">Style bible</a><a href="doctor.html">Doctor</a><a href="linter.html">Linter</a><a href="cutting-room.html">Cutting room</a><a href="prompts.html">Prompts</a><a href="models/">Models</a><a href="anatomy.html">Anatomy</a><a href="manifesto.html">Manifesto</a><a href="craft-not-buttons.html">Craft, not buttons</a><a href="recipes.html">Recipes</a><a href="field-guides/">Field guides</a><a href="changelog.html">Changelog</a><a href="skill-spec.html">Skill spec</a><a href="api.html">API</a></nav>
       <div class="footer-colophon"><span>AI Film Master Guide</span><span class="tail">Craft, not buttons</span></div>
     </div>

@@ -21,7 +21,7 @@ Multi-scene productions with recurring characters.
 ## Procedure
 
 1. Check: was the base portrait ever re-run? If yes, rebuild from the original anchor.
-2. Re-anchor the original references — don't wait for drift to become visible.
+2. Re-anchor the original references, don't wait for drift to become visible.
 3. Chain the previous scene's finished video as reference.
 4. Verify wardrobe/palette match the registry, not your memory.
 
@@ -31,4 +31,4 @@ Scene 9 Mara vs scene 1: jawline drifted → rebuilt from mara_face_v1.png, chai
 
 ## Pitfalls
 
-- Describing the character 'from memory' in new prompts — the registry is the memory.
+- Describing the character 'from memory' in new prompts, the registry is the memory.

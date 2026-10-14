@@ -1,10 +1,10 @@
 /* ============================================================
-   Docs — landing sections, docs layout, prose reading experience
+   Docs, landing sections, docs layout, prose reading experience
    (wave 36: warm serif chapters, timecode-stamped sections)
    ============================================================ */
 .tracks { padding-block: var(--space-7) 0; }
 .tracks h2, .container > h2 {
-  font-size: var(--display-3); font-weight: 680; letter-spacing: -0.02em; margin-bottom: var(--space-4);
+  font-size: var(--display-2); font-weight: 400; letter-spacing: 0.01em; margin-bottom: var(--space-4);
 }
 .track-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-4); margin-bottom: var(--space-7); }
 
@@ -15,7 +15,7 @@
 .path-steps a { color: var(--ink); font-weight: 600; }
 .path-note { font-size: 0.8rem; color: var(--muted); }
 
-/* ——— Chapter reading experience ——— */
+/*  Chapter reading experience  */
 .docs-toc a.active { color: var(--gold); font-weight: 700; }
 .docs-toc a.active { color: var(--gold); font-weight: 700; }
 
@@ -42,17 +42,17 @@
 .back-to-top.show { opacity: 1; pointer-events: auto; transform: none; }
 .back-to-top:hover { color: var(--gold); border-color: var(--gold); box-shadow: var(--glow-gold); }
 
-/* ——— Prose: the warm-serif editorial read ——— */
+/*  Prose: the warm-serif editorial read  */
 .prose { max-width: 70ch; font-family: var(--font-serif); font-size: 1.08rem; font-optical-sizing: auto; }
 .prose h2, .prose h3 { font-family: var(--font-body); font-size: 1.14rem; font-weight: 700; margin-top: var(--space-5); color: var(--ink); letter-spacing: -0.01em; }
 .prose p { text-wrap: pretty; }
-.prose h1 { font-size: var(--display-2); font-weight: 680; letter-spacing: -0.03em; line-height: 1.08; margin-bottom: var(--space-4); text-wrap: balance; }
+.prose h1 { font-family: var(--font-display); text-transform: uppercase; font-size: var(--display-2); font-weight: 400; letter-spacing: 0.01em; line-height: 1.05; margin-bottom: var(--space-4); text-wrap: balance; }
 .prose h2 {
   font-size: 1.45rem; font-weight: 680; letter-spacing: -0.015em;
   margin-top: var(--space-8); margin-bottom: var(--space-3);
   display: flex; align-items: baseline; gap: var(--space-3); flex-wrap: wrap;
 }
-/* timecode stamp injected by docs.js — sits right of the section title */
+/* timecode stamp injected by docs.js, sits right of the section title */
 .prose h2 .tc { display: none; }
 .prose h3 { font-family: var(--font-body); font-size: 1.14rem; font-weight: 700; margin-top: var(--space-5); color: var(--ink); letter-spacing: -0.01em; }
 .prose h4 { font-size: 1rem; margin-top: var(--space-4); color: var(--ink); }
@@ -80,7 +80,7 @@
 .prose .task-list { list-style: none; padding-left: 0; }
 .prose .task-list input { margin-right: var(--space-2); accent-color: var(--gold); }
 
-/* ——— Budget calculator ——— */
+/*  Budget calculator  */
 .calc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--space-4); margin-bottom: var(--space-7); }
 .calc-form { display: grid; gap: var(--space-4); align-content: start; }
 .calc-form .field { display: grid; gap: var(--space-2); }
@@ -94,7 +94,7 @@
 .calc-label { font-family: var(--font-body); font-size: 0.7rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 2px; }
 .calc-note { grid-column: 1 / -1; font-size: 0.85rem; color: var(--muted); margin: 0; }
 
-/* ——— Calculator promo on landing ——— */
+/*  Calculator promo on landing  */
 .calc-promo {
   display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
   gap: var(--space-4); margin-bottom: var(--space-7); padding: var(--space-5) 0;
@@ -102,7 +102,7 @@
 .calc-promo h2 { font-size: 1.4rem; margin-bottom: var(--space-2); }
 .calc-promo p { color: var(--ink-dim); margin: 0; max-width: 60ch; }
 
-/* ——— Chapter index ——— */
+/*  Chapter index  */
 .chapter-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--space-3); counter-reset: scene; }
 .chapter-card { padding: var(--space-4); counter-increment: scene; overflow: hidden; }
 .chapter-card h3 { font-family: var(--font-body); font-size: 1rem; font-weight: 700; margin: 0 0 var(--space-1); letter-spacing: 0; padding-right: var(--space-6); }
@@ -110,7 +110,7 @@
 .chapter-card h3 a:hover { color: var(--gold); text-decoration: none; }
 .chapter-card p { font-size: 0.85rem; color: var(--muted); margin: 0; }
 
-/* ——— Docs three-column layout ——— */
+/*  Docs three-column layout  */
 .docs-layout {
   display: grid; grid-template-columns: 252px minmax(0, 1fr) 224px;
   gap: var(--space-6); padding-block: var(--space-6); align-items: start;

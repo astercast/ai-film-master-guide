@@ -7,7 +7,7 @@ description: The 30-second product film: macro, orbit, lifestyle.
 
 ## What this gets you
 
-You will have a 30-second product film — macro beauty shot, orbit, lifestyle moment — that looks like it cost an agency.
+You will have a 30-second product film, macro beauty shot, orbit, lifestyle moment, that looks like it cost an agency.
 
 ## Use when
 
@@ -22,9 +22,9 @@ Commercials, spec ads, portfolio pieces.
 ## Procedure
 
 1. Hero macro: orbit + focus pull on the feature (Wan 2.6 / Seedance).
-2. Texture shots: steam, sheen, fabric — prompted explicitly.
+2. Texture shots: steam, sheen, fabric, prompted explicitly.
 3. Lifestyle: product in a human hand, in a real-feeling world.
-4. Structure: hook (0–3s macro) → features → lifestyle → packshot.
+4. Structure: hook (0 to 3s macro) → features → lifestyle → packshot.
 
 ## Worked example
 
@@ -37,4 +37,4 @@ Watch spot: macro orbit + crystal-to-dial focus pull → wrist lifestyle → log
 
 ## Pitfalls
 
-- Feature soup — one feature per spot, fetishized.
+- Feature soup, one feature per spot, fetishized.

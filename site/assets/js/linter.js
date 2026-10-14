@@ -1,4 +1,4 @@
-/* Prompt linter — paste any prompt, get a structural analysis against the
+/* Prompt linter, paste any prompt, get a structural analysis against the
    ten-layer prompt anatomy. Client-side heuristics: this checks structure,
    not taste. Layer metadata mirrors assets/js/anatomy.js. */
 (function () {
@@ -20,8 +20,8 @@
              "uniform", "dress", "suit", "armor", "aged", "young", "old man", "old woman",
              "sixties", "twenties", "thirties", "protagonist", "character", "subject"],
       why: "Without a locked identity, every regeneration redesigns your character.",
-      missing: "Identity drift — a different face in every shot.",
-      tip: "Name the subject and lock 2–3 visual traits that never change (age, wardrobe, distinguishing marks)." },
+      missing: "Identity drift, a different face in every shot.",
+      tip: "Name the subject and lock 2 to 3 visual traits that never change (age, wardrobe, distinguishing marks)." },
     { id: "action", num: 2, name: "Micro-action",
       keys: ["walking", "running", "turning", "looking", "mending", "pouring", "lifting",
              "reaching", "sitting", "standing", "dancing", "fighting", "driving", "flying",
@@ -31,7 +31,7 @@
              "pulling", "opening", "closing", "knocking", "mends", "walks", "turns", "looks"],
       why: "Models execute one action well. Stacked actions collapse into mush or morphs.",
       missing: "Muddy motion and half-rendered gestures.",
-      tip: "Give the subject exactly one believable verb — fingers working twine, not mending, laughing, and turning." },
+      tip: "Give the subject exactly one believable verb, fingers working twine, not mending, laughing, and turning." },
     { id: "environment", num: 3, name: "Environment",
       keys: ["room", "street", "dock", "forest", "city", "desert", "beach", "mountain",
              "alley", "rooftop", "kitchen", "office", "station", "bridge", "cave", "castle",
@@ -40,7 +40,7 @@
              "sunrise", "overhead", "around", "behind", "beneath", "gulls", "trees"],
       why: "Dead backgrounds read as fake. Ambient motion sells reality more than detail does.",
       missing: "A stagey void; the subject floats in nothing.",
-      tip: "Place the shot somewhere with subtle motion living in it — gulls, water, fog, traffic." },
+      tip: "Place the shot somewhere with subtle motion living in it, gulls, water, fog, traffic." },
     { id: "camera", num: 4, name: "Camera behavior",
       keys: ["camera", "push-in", "push in", "pull-back", "pull back", "dolly", "pan",
              "tilt", "tracking", "crane", "aerial", "drone", "handheld", "steadicam",
@@ -49,7 +49,7 @@
              "orbit", "static shot", "locked-off", "slow motion", "timelapse"],
       why: "Every move needs a purpose. Ask what the move reveals or withholds.",
       missing: "Unmotivated drift; the camera wanders.",
-      tip: "Direct one intentional camera move and motivate it — a push-in motivated by the subject's hands." },
+      tip: "Direct one intentional camera move and motivate it, a push-in motivated by the subject's hands." },
     { id: "lighting", num: 5, name: "Lighting design",
       keys: ["light", "lighting", "lit", "glow", "glowing", "shadow", "shadows",
              "volumetric", "neon", "sunlight", "moonlight", "candlelight", "lantern",
@@ -57,7 +57,7 @@
              "silhouette", "lens flare", "practical", "fluorescent", "torchlight"],
       why: "\u201cNice lighting\u201d means nothing to a model. Named sources do.",
       missing: "The flat video look.",
-      tip: "Name the sources, their direction, and quality — cold dawn light plus a warm lantern from frame left." },
+      tip: "Name the sources, their direction, and quality, cold dawn light plus a warm lantern from frame left." },
     { id: "style", num: 6, name: "Visual style",
       keys: ["cinematic", "photorealistic", "photoreal", "film grain", "35mm", "anamorphic",
              "16mm", "70mm", "anime", "stylized", "painterly", "noir", "documentary",
@@ -73,7 +73,7 @@
              "melancholic", "bittersweet", "foreboding", "mood"],
       why: "Aligns performance, light, and grade toward a single feeling.",
       missing: "Emotionally blank footage.",
-      tip: "Name the feeling of the shot in two words — quiet resilience, not 'emotional'." },
+      tip: "Name the feeling of the shot in two words, quiet resilience, not 'emotional'." },
     { id: "physics", num: 8, name: "Physics & motion",
       keys: ["wind", "breeze", "drifting", "flowing", "swaying", "rippling", "steam",
              "dust", "smoke", "waves", "fluttering", "billowing", "splashing", "dripping",
@@ -81,14 +81,14 @@
              "rain falling", "snow falling", "stirring", "motion"],
       why: "Models render motion they are told about. Untold motion freezes.",
       missing: "Frozen, plasticky movement.",
-      tip: "Say how things move — coat hem stirring in the sea breeze, mist drifting across frame." },
+      tip: "Say how things move, coat hem stirring in the sea breeze, mist drifting across frame." },
     { id: "render", num: 9, name: "Rendering quality",
       keys: ["4k", "8k", "high resolution", "sharp", "detailed", "detail", "depth of field",
              "shallow depth", "bokeh", "texture", "skin texture", "ray tracing", "octane",
              "unreal engine", "crisp", "clean", "quality", "masterpiece", "intricate"],
       why: "Set the floor before generation, not after in post.",
       missing: "Soft, mushy output.",
-      tip: "Set the quality floor: resolution, depth of field, texture — before you generate, not after." },
+      tip: "Set the quality floor: resolution, depth of field, texture, before you generate, not after." },
     { id: "exclusion", num: 10, name: "Exclusion block",
       keys: ["exclude", "excludes", "excluding", "avoid", "no extra", "without",
              "never", "negative prompt", "--no", "do not include", "no text",
@@ -121,7 +121,7 @@
     });
     var weakHits = WEAK_WORDS.filter(function (w) { return wordRe(w).test(t); });
     var weakVerbHits = WEAK_VERBS.filter(function (w) { return wordRe(w).test(t); });
-    // Adjective density: crude proxy — words ending in common adjective suffixes
+    // Adjective density: crude proxy, words ending in common adjective suffixes
     var adjRe = /(ful|ous|ive|al|ic|y|ed)$/;
     var adjCount = words.filter(function (w) {
       return adjRe.test(w.toLowerCase()) && w.length > 4;
@@ -145,7 +145,7 @@
 
   function grade(score) {
     if (score >= 85) return ["Excellent", "This prompt directs all ten layers. Generate with confidence."];
-    if (score >= 70) return ["Strong", "Solid structure — fill the remaining gaps for a locked shot."];
+    if (score >= 70) return ["Strong", "Solid structure, fill the remaining gaps for a locked shot."];
     if (score >= 50) return ["Workable", "The bones are here, but missing layers will show on screen."];
     if (score >= 30) return ["Thin", "The model will improvise everything you didn't direct. It will improvise badly."];
     return ["Bare", "This is a wish, not a direction. Build it up layer by layer."];
@@ -157,7 +157,7 @@
     els[id] = document.getElementById(id);
   });
 
-  var SAMPLE = "Mara, a weathered fisherwoman in her sixties — silver braid, oilskin coat, " +
+  var SAMPLE = "Mara, a weathered fisherwoman in her sixties, silver braid, oilskin coat, " +
     "mending a torn net on a fog-draped wooden dock at dawn; the camera pushes in slowly " +
     "from medium to close-up; cold blue dawn light with a warm lantern glow from frame left; " +
     "cinematic realism, 35mm film grain; quiet resilience; coat hem stirring in the sea breeze; " +
@@ -169,13 +169,13 @@
       '<div class="lint-grade"><span class="lint-num">' + r.score + '</span>' +
       '<div><strong>' + esc(g[0]) + '</strong><p>' + esc(g[1]) + '</p>' +
       '<p class="calc-note">' + r.words + ' words · ' + r.presentCount + ' of 10 layers present. ' +
-      'Heuristic check — it measures structure, not taste.</p></div></div>';
+      'Heuristic check, it measures structure, not taste.</p></div></div>';
 
     els["lint-layers"].innerHTML = r.layers.map(function (l) {
       var cls = l.present ? "is-present" : "is-missing";
       var mark = l.present ? "✓" : "✕";
       var inner = '<span class="lint-mark" aria-hidden="true">' + mark + '</span> ' +
-        "<strong>Layer " + l.layer.num + " — " + esc(l.layer.name) + "</strong>";
+        "<strong>Layer " + l.layer.num + ", " + esc(l.layer.name) + "</strong>";
       if (!l.present) {
         inner += '<p class="lint-why"><em>Missing it gives you:</em> ' + esc(l.layer.missing) + "</p>" +
           '<p class="lint-tip">' + esc(l.layer.tip) + "</p>" +
@@ -200,7 +200,7 @@
     if (r.weakVerbHits.length > 3) {
       weakHtml += "<p class=\"calc-note\">Heavy on static verbs (" +
         esc(r.weakVerbHits.slice(0, 5).join(", ")) +
-        ") — the action layer probably needs one strong verb.</p>";
+        "), the action layer probably needs one strong verb.</p>";
     }
     els["lint-weak"].innerHTML = weakHtml;
 
@@ -208,7 +208,7 @@
     els["lint-fixes"].innerHTML = missing.length ?
       '<p><a class="btn" href="workshop.html">Continue in the prompt workshop →</a> ' +
       '<a class="btn btn-ghost" href="anatomy.html">Build it layer by layer →</a></p>' :
-      '<p><a class="btn" href="workshop.html">This one is ready — open the workshop →</a></p>';
+      '<p><a class="btn" href="workshop.html">This one is ready, open the workshop →</a></p>';
 
     els["lint-results"].hidden = false;
     els["lint-results"].querySelector("h2").setAttribute("tabindex", "-1");
@@ -217,12 +217,12 @@
 
   function scaffoldText(id) {
     var starters = {
-      subject: "[Name], a [age] [occupation] — [distinguishing trait], [wardrobe],",
-      action: "[one verb]ing [the object], [how] — one action only,",
+      subject: "[Name], a [age] [occupation], [distinguishing trait], [wardrobe],",
+      action: "[one verb]ing [the object], [how], one action only,",
       environment: "in/on [place] at [time], [ambient motion in the background];",
       camera: "the camera [move] from [framing] to [framing], motivated by [what];",
       lighting: "[quality] [source] light from [direction], [secondary source];",
-      style: "[style bible line — repeat verbatim every prompt];",
+      style: "[style bible line, repeat verbatim every prompt];",
       tone: "[two-word feeling];",
       physics: "[object] [moving how] in the [wind/light];",
       render: "[resolution], [depth of field], [texture];",
@@ -235,7 +235,7 @@
     var text = els["lint-input"].value;
     if (!text.trim()) {
       els["lint-error"].hidden = false;
-      els["lint-error"].textContent = "Paste a prompt first — the linter needs something to read.";
+      els["lint-error"].textContent = "Paste a prompt first, the linter needs something to read.";
       return;
     }
     els["lint-error"].hidden = true;
@@ -260,7 +260,7 @@
     var txt = scaffoldText(b.getAttribute("data-layer"));
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(txt).then(function () {
-        b.textContent = "Copied — paste it into your prompt";
+        b.textContent = "Copied, paste it into your prompt";
         setTimeout(function () { b.textContent = "Copy a starter line"; }, 2000);
       });
     } else {

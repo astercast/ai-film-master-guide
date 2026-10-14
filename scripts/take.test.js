@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-/* take.test.js — Take Sheet engine tests.
+/* take.test.js, Take Sheet engine tests.
  * Pins the engine against the directing-performance chapter's
  * own rules (craft/directing-performance.md): the five
  * pre-lock gates, the label rule (an emotion label reads
- * undirected — direct, don't describe), the three-rehearsal
+ * undirected, direct, don't describe), the three-rehearsal
  * rule (three failed rehearsals read overdue: simplify the
  * shot, not the actor), the close-up rule (a close-up away
  * from an emotional peak reads misspent), performance-lock
@@ -25,27 +25,27 @@ ok('gates: the chapter\u2019s five pre-lock gates, in order', () => {
 
 ok('modes: tactic / label, with the chapter\u2019s split', () => {
   assert.deepStrictEqual(E.MODES.map((s) => s.id), ['tactic', 'label']);
-  assert.strictEqual(E.modeLabel('tactic'), 'Playable tactic — a task a body can do');
-  assert.strictEqual(E.modeLabel('nope'), '— no direction recorded —');
+  assert.strictEqual(E.modeLabel('tactic'), 'Playable tactic, a task a body can do');
+  assert.strictEqual(E.modeLabel('nope'), 'no direction recorded ');
 });
 
 ok('framings + statuses: wide / medium / close-up; rehearsing / locked / simplify / hybrid', () => {
   assert.deepStrictEqual(E.FRAMINGS.map((s) => s.id), ['wide', 'medium', 'closeup']);
   assert.deepStrictEqual(E.STATUSES.map((s) => s.id), ['rehearsing', 'locked', 'simplify', 'hybrid']);
-  assert.strictEqual(E.statusLabel('locked'), "Scene-Locked — photograph it, don't regenerate it");
-  assert.strictEqual(E.statusLabel('nope'), '— no route recorded —');
+  assert.strictEqual(E.statusLabel('locked'), "Scene-Locked, photograph it, don't regenerate it");
+  assert.strictEqual(E.statusLabel('nope'), 'No route recorded ');
   assert.strictEqual(E.framingLabel('closeup'), 'Close-up');
 });
 
-ok('default sheet: 6 beats, 5 clean, 1 held, 0 stopped — verdict is the hold', () => {
+ok('default sheet: 6 beats, 5 clean, 1 held, 0 stopped, verdict is the hold', () => {
   const r = E.evaluate(E.DEFAULT_ENTRIES);
   assert.strictEqual(r.total, 6);
   assert.strictEqual(r.clean, 5);
   assert.strictEqual(r.held, 1);
   assert.strictEqual(r.stopped, 0);
   assert.strictEqual(r.ready, false);
-  assert(r.verdict.includes('Hold performance lock — 1 beat is not ready'));
-  assert.strictEqual(r.heldEntries[0].shot, 'Sc 4 · Sh 02 — Depot office, the driver hears the radio');
+  assert(r.verdict.includes('Hold performance lock, 1 beat is not ready'));
+  assert.strictEqual(r.heldEntries[0].shot, 'Sc 4 · Sh 02, Depot office, the driver hears the radio');
   assert.strictEqual(E.effectiveStatus(r.heldEntries[0]), 'rehearsing');
 });
 
@@ -145,10 +145,10 @@ ok('gateState: counts, missing, complete', () => {
 
 ok('export: markdown carries title, gate marks, beats with direction + eyeline + framing + route, verdict, counts', () => {
   const md = E.sheetToMarkdown('The Night Bus', E.DEFAULT_ENTRIES, ['tactics', 'eyelines']);
-  assert(md.startsWith('# Take sheet — The Night Bus'));
+  assert(md.startsWith('# Take sheet, The Night Bus'));
   assert(md.includes('- [x] Every beat rewritten as a playable tactic'));
   assert(md.includes('- [ ] Restraint pass done: negative constraints, subtext, under-directed faces'));
-  assert(md.includes('Sc 4 · Sh 02 — Depot office, the driver hears the radio — In rehearsal — drafts as takes. Direction: Playable tactic'));
+  assert(md.includes('Sc 4 · Sh 02, Depot office, the driver hears the radio, In rehearsal, drafts as takes. Direction: Playable tactic'));
   assert(md.includes('Eyeline: named'));
   assert(md.includes('Framing: Medium'));
   assert(md.includes('Failed rehearsals: 1'));

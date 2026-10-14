@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Soul Cinema — model deep dive — AI Film Master Guide</title>
-  <meta name="description" content="Soul Cinema (Higgsfield): cost math, prompt tips, and when to use it vs avoid it — from the guide's versioned model data.">
+  <title>Soul Cinema, model deep dive, AI Film Master Guide</title>
+  <meta name="description" content="Soul Cinema (Higgsfield): cost math, prompt tips, and when to use it vs avoid it, from the guide's versioned model data.">
+  <link rel="preload" href="../assets/fonts/anton-latin-normal-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/inter-latin-normal-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../assets/css/fonts.css">
   <link rel="stylesheet" href="../assets/css/tokens.css">
@@ -21,14 +22,14 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="canonical" href="https://ai-film-master-guide-live.vercel.app/models/soul-cinema">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Soul Cinema — model deep dive — AI Film Master Guide">
-  <meta property="og:description" content="Soul Cinema (Higgsfield): cost math, prompt tips, and when to use it vs avoid it — from the guide's versioned model data.">
+  <meta property="og:title" content="Soul Cinema, model deep dive, AI Film Master Guide">
+  <meta property="og:description" content="Soul Cinema (Higgsfield): cost math, prompt tips, and when to use it vs avoid it, from the guide's versioned model data.">
   <meta property="og:image" content="https://ai-film-master-guide-live.vercel.app/assets/og-card.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Soul Cinema — model deep dive — AI Film Master Guide">
-  <meta name="twitter:description" content="Soul Cinema (Higgsfield): cost math, prompt tips, and when to use it vs avoid it — from the guide's versioned model data.">
+  <meta name="twitter:title" content="Soul Cinema, model deep dive, AI Film Master Guide">
+  <meta name="twitter:description" content="Soul Cinema (Higgsfield): cost math, prompt tips, and when to use it vs avoid it, from the guide's versioned model data.">
   <meta name="twitter:image" content="https://ai-film-master-guide-live.vercel.app/assets/og-card.png">
 </head>
 <body>
@@ -56,6 +57,7 @@
   <main id="main">
     <section class="hero" aria-labelledby="md-title">
       <div class="container hero-inner">
+        <p class="hero-slate"><span>Model deep dive</span></p>
         <h1 id="md-title">Soul Cinema</h1>
         <p class="lede">Higgsfield · image</p>
         <p><span class="mw-badge mw-badge-active">Active</span> <span class="card-meta">last verified 2026-10-12</span> <span class="print-tag is-answer">ANSWER PRINT</span></p>
@@ -65,17 +67,17 @@
       <div class="card mw-card">
         <dl>
           <dt>Best use</dt><dd>Cinematic keyframes, close-ups, film-grain stills for I2V</dd>
-          <dt>Cost</dt><dd>In-app credit cost still unpublished — verify live. (API access is billed in USD, not credits: $0.0032 per image starting rate, from Higgsfield’s own API post)</dd>
+          <dt>Cost</dt><dd>In-app credit cost still unpublished, verify live. (API access is billed in USD, not credits: $0.0032 per image starting rate, from Higgsfield’s own API post)</dd>
           <dt>Strength</dt><dd>Prompt-driven cinematic look, natural grain, era-aware; feeds video models</dd>
           <dt>Weakness</dt><dd>Preview status at time of research; image only</dd>
         </dl>
-        <p class="mw-changed"><strong>What changed:</strong> Launched as a preview on March 4, 2026; per-image pricing still not published — verify live before budgeting. Re-verified 2026-10-11: Soul Cinema is now the DEFAULT image model in Cinema Studio 3.0 and 3.5&#x27;s image-mode picker (single-step cinematic scene generator, tops out at 2K). Cinema Studio 3.5 (480p/720p/1080p video tiers, up to 15s) coexists with 2.5 and 3.0 (Business/Team). Per-image cost still unpublished — verify live. Review pass 2026-10-12 (Watchtower 2.3): Higgsfield&#x27;s API post publishes a $0.0032/image starting rate for Soul Cinema — the first published rate for the model; it is now in the pricing table. The in-app credit cost remains unpublished.</p>
+        <p class="mw-changed"><strong>What changed:</strong> Launched as a preview on March 4, 2026; per-image pricing still not published, verify live before budgeting. Re-verified 2026-10-11: Soul Cinema is now the DEFAULT image model in Cinema Studio 3.0 and 3.5&#x27;s image-mode picker (single-step cinematic scene generator, tops out at 2K). Cinema Studio 3.5 (480p/720p/1080p video tiers, up to 15s) coexists with 2.5 and 3.0 (Business/Team). Per-image cost still unpublished, verify live. Review pass 2026-10-12 (Watchtower 2.3): Higgsfield&#x27;s API post publishes a $0.0032/image starting rate for Soul Cinema, the first published rate for the model; it is now in the pricing table. The in-app credit cost remains unpublished.</p>
       </div>
     </section>
     <section class="container" aria-labelledby="md-cost-h" style="margin-top:var(--space-6);">
       <h2 id="md-cost-h">Cost math</h2>
-      <p>No published rate in the captured data — <strong>verify live</strong> on the vendor's pricing page before budgeting. Recorded rate string: <code>In-app credit cost still unpublished — verify live. (API access is billed in USD, not credits: $0.0032 per image starting rate, from Higgsfield’s own API post)</code></p>
-      <p class="calc-note">USD at $0.0392/credit (Higgsfield Plus plan, observed 2026-10-10). Verify live before budgeting — rates change.</p>
+      <p>No published rate in the captured data, <strong>verify live</strong> on the vendor's pricing page before budgeting. Recorded rate string: <code>In-app credit cost still unpublished, verify live. (API access is billed in USD, not credits: $0.0032 per image starting rate, from Higgsfield’s own API post)</code></p>
+      <p class="calc-note">USD at $0.0392/credit (Higgsfield Plus plan, observed 2026-10-10). Verify live before budgeting, rates change.</p>
     </section>
     <section class="container" aria-labelledby="md-when-h" style="margin-top:var(--space-6);">
       <h2 id="md-when-h">Use it when / avoid it when</h2>
@@ -83,12 +85,12 @@
         <div class="card"><h3>Use it when</h3><p>Cinematic keyframes, close-ups, film-grain stills for I2V</p></div>
         <div class="card"><h3>Avoid it when</h3><p>Preview status at time of research; image only</p></div>
       </div>
-      <p class="calc-note">Drawn directly from the model's own best-use and weakness fields — the record's words, not ours.</p>
+      <p class="calc-note">Drawn directly from the model's own best-use and weakness fields, the record's words, not ours.</p>
     </section>
     <section class="container" aria-labelledby="md-tips-h" style="margin-top:var(--space-6);">
       <h2 id="md-tips-h">Prompt tips for this model</h2>
       <ul>
-      <li><strong>Plates carry the look.</strong> Image models make your keyframes and character sheets — lock them with the <a href="../craft/character-consistency.html">character-consistency</a> system and describe them with the <a href="../anatomy.html">prompt anatomy</a>.</li>
+      <li><strong>Plates carry the look.</strong> Image models make your keyframes and character sheets, lock them with the <a href="../craft/character-consistency.html">character-consistency</a> system and describe them with the <a href="../anatomy.html">prompt anatomy</a>.</li>
       <li><strong>Run it through the linter.</strong> <a href="../linter.html">Paste any prompt</a> for this model and check all ten layers before spending credits.</li>
       <li><strong>Not sure it's the right model?</strong> <a href="../quiz.html">Take the 5-question quiz</a> or <a href="../compare.html">compare it side-by-side</a> with alternatives.</li>
       </ul>
@@ -101,7 +103,7 @@
   </main>
   <footer class="site-footer">
     <div class="container footer-grid">
-      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <p>AI Film Master Guide, research notes for professional AI filmmaking. Sources linked per chapter.</p>
       <nav aria-label="Footer"><a href="../index.html">Guide</a><a href="../skills.html">Skills</a><a href="../workshop.html">Workshop</a><a href="../quiz.html">Quiz</a><a href="../compare.html">Compare</a><a href="../gallery.html">Gallery</a><a href="../teardown.html">Teardowns</a><a href="../model-watch.html">Model watch</a><a href="../showdown.html">Showdown</a><a href="../forge.html">Episode forge</a><a href="../clearance.html">Script clearance</a><a href="../continuity.html">Continuity ledger</a><a href="../cuesheet.html">Cue sheet</a><a href="../grade.html">Grade sheet</a><a href="../cut.html">Cut sheet</a><a href="../take.html">Take sheet</a><a href="../longform.html">Longform sheet</a><a href="../path.html">The path</a><a href="../checks/">Knowledge checks</a><a href="../budget.html">Budget</a><a href="../optimizer.html">Optimizer</a><a href="../shots.html">Shot list</a><a href="../style-bible.html">Style bible</a><a href="../doctor.html">Doctor</a><a href="../linter.html">Linter</a><a href="../cutting-room.html">Cutting room</a><a href="../prompts.html">Prompts</a><a href="../models/">Models</a><a href="../anatomy.html">Anatomy</a><a href="../manifesto.html">Manifesto</a><a href="../craft-not-buttons.html">Craft, not buttons</a><a href="../recipes.html">Recipes</a><a href="../field-guides/">Field guides</a><a href="../changelog.html">Changelog</a><a href="../skill-spec.html">Skill spec</a><a href="../api.html">API</a></nav>
       <div class="footer-colophon"><span>AI Film Master Guide</span><span class="tail">Craft, not buttons</span></div>
     </div>

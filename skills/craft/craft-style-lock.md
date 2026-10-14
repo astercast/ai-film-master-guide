@@ -1,13 +1,13 @@
 ---
 name: craft-style-lock
-description: Write one sentence that describes your film's look, then paste that exact sentence into every prompt — it is what stops every shot looking like a different film.
+description: Write one sentence that describes your film's look, then paste that exact sentence into every prompt, it is what stops every shot looking like a different film.
 ---
 
 # Lock the style bible
 
 ## What this gets you
 
-Every shot in your film will share one look, because one written style sentence — locked on day one — goes into every prompt word for word.
+Every shot in your film will share one look, because one written style sentence, locked on day one, goes into every prompt word for word.
 
 ## Use when
 
@@ -22,7 +22,7 @@ Day one of any production, before the second prompt is written. (Same discipline
 ## Procedure
 
 1. Write ONE style line: era + medium + palette + light + texture + lens.
-2. Append it verbatim to every prompt — never paraphrase, never 'improve' it mid-production.
+2. Append it verbatim to every prompt, never paraphrase, never 'improve' it mid-production.
 3. Share the document with every collaborator; two style lines in one film reads as two films.
 4. Changing the line mid-production = reshooting everything before it. Don't.
 
@@ -32,4 +32,4 @@ Day one of any production, before the second prompt is written. (Same discipline
 
 ## Pitfalls
 
-- Paraphrasing the line between shots — the fastest route to a cast that looks recast and a film that looks stitched.
+- Paraphrasing the line between shots, the fastest route to a cast that looks recast and a film that looks stitched.

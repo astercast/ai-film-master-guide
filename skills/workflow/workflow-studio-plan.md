@@ -5,15 +5,15 @@ description: Reproduce the Studio's deterministic planning logic from the raw AP
 
 # Plan a production with the Studio recipe
 
-> **Reference skill** — kept for the record, for agents, and for later: not a first-project skill. See SKILLS_AUDIT.md (rotation 20).
+> **Reference skill**, kept for the record, for agents, and for later: not a first-project skill. See SKILLS_AUDIT.md (rotation 20).
 
 ## What this gets you
 
-Reference for agents: the Studio planner's exact maths as a procedure — concept in, costed shot list out — for scripted, agent-driven pre-production.
+Reference for agents: the Studio planner's exact maths as a procedure, concept in, costed shot list out, for scripted, agent-driven pre-production.
 
 ## Use when
 
-Agent-driven pre-production when the Studio UI isn't in the loop — same math, same data, scriptable.
+Agent-driven pre-production when the Studio UI isn't in the loop, same math, same data, scriptable.
 
 ## Inputs
 
@@ -24,7 +24,7 @@ Agent-driven pre-production when the Studio UI isn't in the loop — same math, 
 
 ## Procedure
 
-1. Filter models.json: type == 'video' and status != 'discontinued' (Sora is discontinued — never plan on it).
+1. Filter models.json: type == 'video' and status != 'discontinued' (Sora is discontinued, never plan on it).
 2. Filter prompt-templates.json to the genre's tracks (horror = core + photorealistic; comedy = core + animated; see AGENT.md).
 3. Shot count = ceil(runtimeSec / secsPerShot) (min 2). Open with an establishing template, close with a payoff template, cycle development beats.
 4. Per shot: resolve template.models names against the model pool; draft tier picks the cheapest priced model, festival the priciest quality-flagged one.
@@ -44,6 +44,6 @@ Horror, 120s, draft: 20 shots x 6s, Kling 3.0 @ 1.4 credits/s -> 504 credits = $
 
 ## Pitfalls
 
-- Planning on discontinued models — filter status first, always.
-- Forgetting the takes multiplier — takes are where the budget lives (draft x3, festival x6).
-- Quoting the clean cost as the budget — the 5x envelope is the real number.
+- Planning on discontinued models, filter status first, always.
+- Forgetting the takes multiplier, takes are where the budget lives (draft x3, festival x6).
+- Quoting the clean cost as the budget, the 5x envelope is the real number.

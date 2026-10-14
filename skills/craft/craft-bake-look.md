@@ -26,8 +26,8 @@ Any recurring location or look.
 
 ## Worked example
 
-Anamorphic kitchen: squeeze + oval bokeh baked into the plate — 14 shots, one look.
+Anamorphic kitchen: squeeze + oval bokeh baked into the plate, 14 shots, one look.
 
 ## Pitfalls
 
-- Repeating lens language in every video prompt — it drifts; the plate doesn't.
+- Repeating lens language in every video prompt, it drifts; the plate doesn't.

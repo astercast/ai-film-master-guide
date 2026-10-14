@@ -1,10 +1,10 @@
 /* ============================================================
-   Components — buttons, cards, inputs, dialogs, tool widgets
+   Components, buttons, cards, inputs, dialogs, tool widgets
    ============================================================ */
 
-/* ——— Buttons: cutting-room transport chrome ——— */
+/*  Buttons: cutting-room transport chrome  */
 .btn {
-  /* r21: buttons set in the text face, flat, sentence case — the
+  /* r21: buttons set in the text face, flat, sentence case, the
      glossy gradient transport-chrome read as generated chrome. */
   display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
   border: 1px solid var(--line-bright); background: var(--panel-2); color: var(--ink);
@@ -30,23 +30,26 @@
 .btn-row { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-4); }
 .btn[disabled] { opacity: 0.45; cursor: not-allowed; transform: none; }
 
-/* ——— Cards ——— */
+/*  Cards  */
 .card {
-  /* r21: flat surfaces, hairline borders, no gradient top-bar —
-     elevation is earned on hover, not printed on every card. */
-  position: relative; background: var(--panel); border: 1px solid var(--line-soft);
+  /* v3: warm layered surfaces with real depth. A card is a thing on
+     the bench, lit from above, not a hairline outline on a void. */
+  position: relative;
+  background: linear-gradient(180deg, var(--panel-2), var(--panel));
+  border: 1px solid var(--line);
   border-radius: var(--radius-l); padding: var(--space-5);
+  box-shadow: var(--shadow-1);
   transition: transform var(--dur-2) var(--ease), border-color var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease);
 }
 a.card, .card.is-link { cursor: pointer; }
-a.card:hover, .card.is-link:hover { border-color: var(--line-bright); text-decoration: none; }
+a.card:hover, .card.is-link:hover { border-color: var(--gold); text-decoration: none; box-shadow: var(--shadow-lift); }
 .card h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: var(--space-2); letter-spacing: 0.01em; }
 .card p { color: var(--ink-dim); font-size: 0.94rem; }
 .card p.skill-gets { color: var(--ink); font-size: 0.94rem; }
 .card p.skill-gets strong { color: var(--muted); }
 .card-grid { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
 
-/* ——— Badges & pills ——— */
+/*  Badges & pills  */
 .badge {
   flex: none; display: inline-flex; align-items: center; gap: 6px;
   font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
@@ -57,7 +60,7 @@ a.card:hover, .card.is-link:hover { border-color: var(--line-bright); text-decor
 .badge.is-green { color: var(--ok); border-color: var(--ok); background: rgba(139, 226, 139, 0.07); }
 .badge.is-dim { color: var(--muted); border-color: var(--line-bright); background: transparent; }
 
-/* ——— Inputs ——— */
+/*  Inputs  */
 .input, select.input, textarea.input {
   width: 100%; background: var(--panel); border: 1px solid var(--line-bright);
   color: var(--ink); border-radius: var(--radius-m); padding: var(--space-2) var(--space-3);
@@ -70,9 +73,9 @@ label.field-label, .field label { display: block; font-family: var(--font-body);
 input[type="range"] { accent-color: var(--gold); }
 input[type="checkbox"], input[type="radio"] { accent-color: var(--gold); }
 
-/* (empty-state lives in motifs.css — the NO FOOTAGE slate) */
+/* (empty-state lives in motifs.css, the NO FOOTAGE slate) */
 
-/* ——— Command palette ——— */
+/*  Command palette  */
 .palette {
   position: fixed; inset: 0; z-index: var(--z-palette);
   background: rgba(5, 4, 3, 0.72); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
@@ -100,7 +103,7 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--gold); }
 #palette-results .r-meta { font-family: var(--font-body); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); }
 #palette-results .r-snippet { font-size: 0.85rem; color: var(--ink-dim); margin-top: 2px; }
 
-/* ——— Learning-path progress ——— */
+/*  Learning-path progress  */
 .path-steps { padding-left: 0; list-style: none; }
 .path-steps .path-check { accent-color: var(--gold); width: 1.05rem; height: 1.05rem; margin-right: var(--space-2); flex: none; cursor: pointer; }
 .path-steps li { display: flex; align-items: flex-start; margin-bottom: var(--space-2); }
@@ -110,7 +113,7 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--gold); }
 .path-bar-fill { display: block; height: 100%; width: 0%; background: linear-gradient(90deg, var(--amber-deep), var(--gold)); border-radius: 999px; transition: width var(--dur-3) var(--ease); }
 .path-progress { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); font-family: var(--font-body); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: var(--space-3); }
 
-/* ——— Prompt workshop ——— */
+/*  Prompt workshop  */
 .workshop-grid { display: grid; gap: var(--space-5); grid-template-columns: 1fr; margin-bottom: var(--space-7); }
 @media (min-width: 900px) { .workshop-grid { grid-template-columns: 1fr 1fr; } }
 .placeholder-grid { display: grid; gap: var(--space-2) var(--space-4); grid-template-columns: 1fr; }
@@ -139,7 +142,7 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--gold); }
 .star:hover { color: var(--gold); transform: scale(1.15); }
 .star:focus-visible, .btn:focus-visible, .path-check:focus-visible, .input:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 
-/* ——— Changelog ——— */
+/*  Changelog  */
 .change-list { list-style: none; padding: 0; margin: 0 0 var(--space-7); }
 .change-list li {
   display: grid; grid-template-columns: 8rem 5rem 1fr; gap: var(--space-3);
@@ -152,7 +155,7 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--gold); }
 .change-list li p { margin: 0; }
 @media (max-width: 560px) { .change-list li { grid-template-columns: 1fr; gap: var(--space-1); } }
 
-/* ——— Spec tables ——— */
+/*  Spec tables  */
 .spec-table { width: 100%; border-collapse: collapse; margin-bottom: var(--space-6); font-size: 0.92rem; }
 .spec-table th, .spec-table td { text-align: left; padding: var(--space-2) var(--space-3); border-bottom: 1px solid var(--line-soft); vertical-align: top; }
 .spec-table th { font-family: var(--font-body); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); }
@@ -160,7 +163,7 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--gold); }
 .spec-table code { color: var(--tungsten); }
 .example-meta { font-family: var(--font-body); font-size: 0.8rem; color: var(--muted); margin-bottom: var(--space-3); }
 
-/* ——— In-context glossary ——— */
+/*  In-context glossary  */
 .gloss-term { background: none; border: none; padding: 0; font: inherit; color: inherit; cursor: help; border-bottom: 1px dotted var(--gold); text-decoration: none; border-radius: 2px; transition: color var(--dur-1) var(--ease); }
 .gloss-term:hover, .gloss-term:focus-visible { color: var(--gold); outline: 2px solid var(--gold); outline-offset: 2px; }
 .gloss-pop {
@@ -171,7 +174,7 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--gold); }
 }
 .gloss-pop strong { color: var(--gold); }
 
-/* ——— Model-picker quiz ——— */
+/*  Model-picker quiz  */
 .quiz-options { display: grid; gap: var(--space-2); margin-bottom: var(--space-5); }
 .quiz-opt {
   display: flex; gap: var(--space-3); align-items: flex-start;
@@ -193,7 +196,7 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--gold); }
 .quiz-why { margin: 0 0 var(--space-4); padding-left: 1.2rem; font-size: 0.9rem; color: var(--ink-dim); }
 .quiz-why li { margin-bottom: var(--space-1); }
 
-/* ——— Shot-by-shot teardown viewer ——— */
+/*  Shot-by-shot teardown viewer  */
 .td-tabs { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: var(--space-5) 0 var(--space-4); }
 .td-tab {
   padding: var(--space-2) var(--space-4);
@@ -210,7 +213,7 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--gold); }
 .td-progress { flex: 1; height: 6px; background: var(--panel-2); border-radius: 999px; overflow: hidden; }
 .td-progress span { display: block; height: 100%; background: linear-gradient(90deg, var(--amber-deep), var(--gold)); border-radius: 999px; transition: width var(--dur-2) var(--ease); }
 .td-card { background: var(--panel); border: 1px solid var(--line-soft); border-radius: var(--radius-l); padding: var(--space-5); }
-/* Shot-card entrance — one job: shot-to-shot continuity. Decelerates in (transform + opacity only). */
+/* Shot-card entrance, one job: shot-to-shot continuity. Decelerates in (transform + opacity only). */
 @keyframes td-card-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 @keyframes td-card-in-reduced { from { opacity: 0; } to { opacity: 1; } }
 .td-card { animation: td-card-in var(--dur-2) var(--ease); }
@@ -230,7 +233,7 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--gold); }
 .td-note { color: var(--muted); font-size: 0.85rem; font-style: italic; margin-top: var(--space-5); }
 .td-error { color: var(--ember-soft); }
 
-/* ——— Field guides / recipes ——— */
+/*  Field guides / recipes  */
 .print-btn-row { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: var(--space-4) 0; }
 .read-time { font-family: var(--font-body); color: var(--muted); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; }
 .card-meta { color: var(--muted); font-size: 0.82rem; margin-top: var(--space-2); }
@@ -245,7 +248,7 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--gold); }
 .recipe-card ol, .recipe-card ul { margin: var(--space-1) 0 0; padding-left: 1.3em; color: var(--ink-dim); }
 .recipe-card ol li, .recipe-card ul li { margin-bottom: var(--space-1); }
 
-/* ——— Scrollable tables ——— */
+/*  Scrollable tables  */
 .table-scroll { overflow-x: auto; margin: var(--space-4) 0; border: 1px solid var(--line); border-radius: var(--radius-m); background: var(--panel); }
 .table-scroll table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
 .table-scroll caption { text-align: left; padding: var(--space-3); color: var(--muted); font-size: 0.85rem; caption-side: top; }
@@ -255,7 +258,7 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--gold); }
 .table-scroll tbody tr { transition: background var(--dur-1) var(--ease); }
 .table-scroll tbody tr:hover { background: rgba(223, 167, 46, 0.04); }
 
-/* ——— Anatomy explorer ——— */
+/*  Anatomy explorer  */
 .anatomy-tabs { display: flex; gap: var(--space-2); margin: var(--space-5) 0; flex-wrap: wrap; }
 .anatomy-sample { font-size: 1.12rem; line-height: 2; color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-l); padding: var(--space-5); margin: var(--space-4) 0; }
 .lyr { --lc: var(--gold); font: inherit; color: inherit; background: none; border: none; border-bottom: 2px solid var(--lc); border-radius: 3px; padding: 0 2px; cursor: pointer; text-align: left; transition: background var(--dur-1) var(--ease); }
@@ -282,7 +285,7 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--gold); }
 .anatomy-build-grid { display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin: var(--space-4) 0; }
 .anatomy-preview { white-space: pre-wrap; font-family: var(--font-body); }
 
-/* ——— Model watch ——— */
+/*  Model watch  */
 .verify-banner { border: 1px solid var(--line-bright); border-left: 3px solid var(--gold); border-radius: var(--radius-m); background: var(--panel); padding: var(--space-4) var(--space-5); margin: var(--space-5) 0; }
 .verify-banner strong { color: var(--ink); }
 .mw-filters { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: var(--space-4) 0; }
@@ -305,7 +308,7 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--gold); }
 .mw-card .mw-verified { margin-top: var(--space-3); font-size: 0.75rem; color: var(--muted); font-family: var(--font-body); }
 .mw-card.is-discontinued { opacity: 0.8; }
 
-/* ——— Knowledge checks ——— */
+/*  Knowledge checks  */
 .check-callout { border: 1px solid var(--line); border-left: 4px solid var(--gold); border-radius: var(--radius-m); background: var(--panel); padding: var(--space-4) var(--space-5); margin: var(--space-5) 0; }
 .check-callout p { margin: 0; }
 .checks-grid { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); margin: var(--space-5) 0; }
@@ -323,7 +326,7 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--gold); }
 .check-result p { margin: 0; }
 .check-actions { display: flex; gap: var(--space-3); flex-wrap: wrap; margin: var(--space-4) 0; }
 
-/* ——— Failure doctor ——— */
+/*  Failure doctor  */
 .doc-grid { display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); margin: var(--space-5) 0; }
 .doc-symptom {
   appearance: none; border: 1px solid var(--line); border-radius: var(--radius-l); background: var(--panel);
@@ -345,12 +348,12 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--gold); }
 .doc-links, .doc-sources { margin: var(--space-2) 0 var(--space-4); padding-left: var(--space-5); color: var(--ink-dim); }
 .doc-sources { font-size: 0.9rem; }
 
-/* ——— Style-bible prepend block ——— */
+/*  Style-bible prepend block  */
 .bible-preview { border-left: 3px solid var(--gold); padding: var(--space-2) var(--space-3); margin-bottom: var(--space-3); background: color-mix(in srgb, var(--gold) 6%, transparent); border-radius: 0 var(--radius-s) var(--radius-s) 0; }
 .bible-preview p { white-space: pre-wrap; font-family: var(--font-body); font-size: 0.85rem; margin: 0; }
 .bible-preview p.bible-label { font-family: var(--font-body); font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; color: var(--gold); margin-bottom: var(--space-1); }
 
-/* ——— Prompt linter ——— */
+/*  Prompt linter  */
 .lint-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-3); }
 .lint-layer { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-l); padding: var(--space-4); transition: transform var(--dur-1) var(--ease); }
 .lint-layer:hover { transform: translateX(3px); }
@@ -365,7 +368,7 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--gold); }
 .lint-num { font-family: var(--font-body); font-size: 3.2rem; font-weight: 600; color: var(--gold); line-height: 1; }
 @media (max-width: 640px) { .lint-grade { flex-direction: column; align-items: flex-start; } }
 
-/* ——— Disclosure widgets (content accordions; the nav Index drawer opts out) ——— */
+/*  Disclosure widgets (content accordions; the nav Index drawer opts out)  */
 details:not(.nav-idx):not(.bin):not(.path-row) { border: 1px solid var(--line-soft); border-radius: var(--radius-m); padding: var(--space-3) var(--space-4); background: var(--panel); margin-bottom: var(--space-3); }
 details:not(.nav-idx):not(.bin):not(.path-row) summary { cursor: pointer; font-weight: 600; color: var(--ink); }
 details:not(.nav-idx):not(.bin):not(.path-row) summary::marker { color: var(--gold); }
@@ -377,10 +380,9 @@ details:not(.nav-idx):not(.bin):not(.path-row)[open] { border-color: var(--line-
   .td-card { animation-name: td-card-in-reduced; }
 }
 
-/* ——— API status badge: The Watchtower fallback contract (ARCHITECTURE.md §3) ———
+/*  API status badge: The Watchtower fallback contract (ARCHITECTURE.md §3) 
    One per dynamic widget. Four states: live (green), cached (amber),
-   waking (muted pulse), none (hidden). The badge is the honesty mechanism —
-   cached data is never shown without its timestamp. Text colors are
+   waking (muted pulse), none (hidden). The badge is the honesty mechanism, cached data is never shown without its timestamp. Text colors are
    contrast-checked: --ok 12.72:1, --warn 11.30:1, --muted 7.56:1 on --bg. */
 .api-badge {
   display: inline-flex; align-items: center; gap: 6px;
@@ -412,7 +414,7 @@ details:not(.nav-idx):not(.bin):not(.path-row)[open] { border-color: var(--line-
   .api-badge { margin-left: 0; margin-top: 8px; }
 }
 
-/* ——— Model-watch freshness panel + check flags ——— */
+/*  Model-watch freshness panel + check flags  */
 .mw-freshness {
   border: 1px solid var(--line-soft); border-radius: var(--radius-m);
   background: var(--panel); padding: var(--space-4) var(--space-5);
@@ -429,7 +431,7 @@ details:not(.nav-idx):not(.bin):not(.path-row)[open] { border-color: var(--line-
   color: var(--ember-soft);
 }
 
-/* ——— Watchtower 2.0: since-visit panel, drift board, pricing diff, log ———
+/*  Watchtower 2.0: since-visit panel, drift board, pricing diff, log 
    The since-visit panel is the page's second hero: a slate, not a card.
    The grease-pencil edge and the oversized kind counts carry the delight;
    everything else stays quiet so the numbers read first. */
@@ -520,9 +522,9 @@ details:not(.nav-idx):not(.bin):not(.path-row)[open] { border-color: var(--line-
 }
 
 
-/* ——— The Cutting Room, playable (wow wave 1) ——— */
+/*  The Cutting Room, playable (wow wave 1)  */
 /* Motion: transform/opacity only. Reduced motion gets the full content
-   statically — the JS never hides content when motion is off. */
+   statically, the JS never hides content when motion is off. */
 .cr-slate {
   display: flex; align-items: baseline; gap: var(--space-3); flex-wrap: wrap;
   border-bottom: 1px solid var(--line-soft); padding-bottom: var(--space-3);
@@ -662,7 +664,7 @@ details:not(.nav-idx):not(.bin):not(.path-row)[open] { border-color: var(--line-
   .cr-timeline { padding: var(--space-2) 0; }
 }
 
-/* ——— Heritage figures (Foundry round 2) ———
+/*  Heritage figures (Foundry round 2) 
    Real sourced photography (CC BY-SA / public domain, Wikimedia
    Commons) placed only where the page's subject calls for it; the
    attribution line travels with the photo in every figcaption. */
@@ -687,7 +689,7 @@ details:not(.nav-idx):not(.bin):not(.path-row)[open] { border-color: var(--line-
   .heritage-grid { grid-template-columns: 1fr; }
 }
 
-/* ——— Skill pages (rotation 20 completion, VP-0010) ——— */
+/*  Skill pages (rotation 20 completion, VP-0010)  */
 .skill-frontdoor { margin: var(--space-5) 0 var(--space-6); }
 .skill-facts { display: grid; gap: var(--space-3); margin: var(--space-4) 0 0; }
 .skill-facts div { display: grid; grid-template-columns: 11rem 1fr; gap: var(--space-3); }
@@ -699,7 +701,7 @@ details:not(.nav-idx):not(.bin):not(.path-row)[open] { border-color: var(--line-
 .card p.skill-open { margin-top: var(--space-2); }
 @media (max-width: 640px) { .skill-facts div { grid-template-columns: 1fr; gap: 0; } }
 
-/* ——— Skills deck + skill pages (rotation 21 design polish) ———
+/*  Skills deck + skill pages (rotation 21 design polish) 
    The deck's 242 cards stop reading as a wall: category sections
    get ruled headers with mono counts, each card leads with its
    category eyebrow and gets-you line, and the id/open row sits
@@ -717,9 +719,8 @@ details:not(.nav-idx):not(.bin):not(.path-row)[open] { border-color: var(--line-
   margin-bottom: var(--space-7); counter-reset: skillrow;
 }
 /* Redesign: the deck is a catalogue, not a card wall (§2.6).
-   Every entry is the same slate row — mono position number,
-   category eyebrow, title, the gets-you lead, description —
-   with the id and the open action held at the right edge.
+   Every entry is the same slate row, mono position number,
+   category eyebrow, title, the gets-you lead, description, with the id and the open action held at the right edge.
    Uniform format is what makes 242 entries scannable. */
 .skill-card {
   counter-increment: skillrow;
@@ -787,7 +788,7 @@ details:not(.nav-idx):not(.bin):not(.path-row)[open] { border-color: var(--line-
 .skills-start .skills-start-path { margin-left: auto; color: var(--gold); font-weight: 600; }
 /* Per-skill page: one title, set once. The template prints the
    page h1; the authored body's duplicate H1 is stripped at the
-   generator (build_site.py) — exactly one h1 per page. */
+   generator (build_site.py), exactly one h1 per page. */
 #skill-title {
   font-size: var(--display-2); font-weight: 680;
   letter-spacing: -0.03em;

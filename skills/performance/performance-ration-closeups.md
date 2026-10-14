@@ -19,10 +19,10 @@ Planning coverage for any scene.
 
 ## Procedure
 
-1. Mark the 1–3 emotional peaks — those get the close-ups.
+1. Mark the 1 to 3 emotional peaks, those get the close-ups.
 2. Everything else: mediums and wides, which read as confident filmmaking.
-3. Micro-acting is the weakest link — don't ask for what models can't give.
-4. The listener's reaction shot is exempt — AI renders listening well.
+3. Micro-acting is the weakest link, don't ask for what models can't give.
+4. The listener's reaction shot is exempt, AI renders listening well.
 
 ## Worked example
 
@@ -30,4 +30,4 @@ Planning coverage for any scene.
 
 ## Pitfalls
 
-- Close-upping the whole scene — maximum exposure of the weakest capability.
+- Close-upping the whole scene, maximum exposure of the weakest capability.

@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "description": "Pending model-watch review items: changed source signatures awaiting human promotion. Empty items array = nothing pending. Maintained by the model-watch refresh loop, not by the API generator \u2014 preserved across rebuilds. A 'changed' flag is a review signal, not a confirmed model change.",
+  "description": "Pending model-watch review items: changed source signatures awaiting human promotion. Empty items array = nothing pending. Maintained by the model-watch refresh loop, not by the API generator, preserved across rebuilds. A 'changed' flag is a review signal, not a confirmed model change.",
   "properties": {
     "format": {
       "type": "string"

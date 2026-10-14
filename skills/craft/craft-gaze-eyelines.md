@@ -7,7 +7,7 @@ description: Eyes get their own prompt block before blocking.
 
 ## What this gets you
 
-Your characters will look at the right things — eyelines that match across cuts, so conversations feel like they happen in one room.
+Your characters will look at the right things, eyelines that match across cuts, so conversations feel like they happen in one room.
 
 ## Use when
 
@@ -26,8 +26,8 @@ Dialogue and ensemble scenes.
 
 ## Worked example
 
-GAZE: Mara holds on Vex's hands until 'the ledger' — then snaps to his eyes.
+GAZE: Mara holds on Vex's hands until 'the ledger', then snaps to his eyes.
 
 ## Pitfalls
 
-- 'She looks sad' — an emotion label, not an eyeline. Give the eyes a target.
+- 'She looks sad', an emotion label, not an eyeline. Give the eyes a target.

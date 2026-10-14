@@ -1,49 +1,54 @@
 /* ============================================================
-   Design tokens — AI Film Master Guide, v2 (rotation 21, second
-   attempt). The v1 "Cutting Room" system was rejected by the user
-   as messy and vibecoded: too much decorative chrome competing
-   for attention. This system is built on restraint:
+   Design tokens, AI Film Master Guide, v3 (rotation 21, identity
+   pass). The cutting room as a colour and type world.
 
-   - Near-monochrome warm-neutral base. Exactly one accent —
-     brass — used only for the primary action, the current
-     location, and a hover. Status colours survive only inside
-     data (Watchtower badges, verdicts), where colour carries
-     information, never decoration.
-   - Two type families, total. Inter does every job of reading
-     and operating, headlines included — no display face.
-     Newsreader is reserved for long-form chapter prose.
-     Code and numeric data use the system mono stack; no third
-     webfont is loaded and mono is never used as decoration.
-   - Sections are separated by space on a strict scale, not by
-     borders, textures, or dividers. No grain, no sprockets,
-     no rulers, no glows.
+   v2 stripped this system to a neutral near-monochrome base with
+   brass rationed to single pixels. The user rejected bare: sleek
+   and professional is the finish, not emptiness. v3 restores the
+   room's own materials, with discipline:
+
+   - Warm darks throughout. The neutrals are tungsten-lit browns
+     and charcoals, never pure grey: the ground of a working
+     cutting room at night.
+   - Brass is a world, not a ration. It carries the primary
+     action, the slate lines, the display accents and the hover
+     states. Status colours (red, blue, green, amber) still mean
+     data only: Watchtower badges and verdicts.
+   - Three type jobs, each with its own face. Anton, the condensed
+     display voice of slate boards and leader cards, proclaims.
+     Inter reads and operates. Newsreader carries long chapter
+     prose. Code and real data values use the system mono stack.
+     Display never sets body text; mono never sets a headline.
+   - Space stays on the v2 strict scale: distance means
+     relationship. Sections are grouped by warm surface shifts
+     as well as space, so the page has rooms, not voids.
    ============================================================ */
 :root {
   color-scheme: dark;
 
-  /* ——— Surfaces: flat neutrals in clear, quiet steps ——— */
-  --bg: #0c0c0c;
-  --bg-soft: #101010;
-  --bg-raise: #161616;
-  --panel: #121212;
-  --panel-2: #171717;
-  --panel-3: #1e1e1e;
-  --line: #262626;
-  --line-soft: #1c1c1c;
-  --line-bright: #3d3d3d;
+  /* Surfaces: warm steps, lit like a bench at night */
+  --bg: #0d0b08;
+  --bg-soft: #121009;
+  --bg-raise: #1a1610;
+  --panel: #15120d;
+  --panel-2: #1d1913;
+  --panel-3: #282219;
+  --line: #2f2820;
+  --line-soft: #251f17;
+  --line-bright: #4d4130;
 
-  /* ——— Ink ——— */
-  --ink: #f4f4f1;
-  --ink-dim: #cfcfc9;
-  --muted: #9d9d97;            /* ~7.5:1 on --bg — AA */
+  /* Ink: warm whites */
+  --ink: #f7f1e5;
+  --ink-dim: #d9cfbc;
+  --muted: #ab9c83;            /* ~7.6:1 on --bg, AA */
 
-  /* ——— The one accent: brass, for act/attend only ——— */
-  --gold: #dfa72e;
-  --tungsten: #eec27a;         /* brass at hover only */
-  --amber-deep: #9c6d10;
+  /* Brass: the room's metal. Actions, slates, accents. */
+  --gold: #e2a62f;
+  --tungsten: #f2cd82;         /* brass lit brighter: hovers */
+  --amber-deep: #a8741a;
 
-  /* ——— Data status only (Watchtower, verdicts, API states).
-     Never decoration, never hero furniture. ——— */
+  /* Data status only (Watchtower, verdicts, API states).
+     Never decoration, never hero furniture. */
   --ember: #d93636;
   --ember-deep: #a31218;
   --ember-soft: #f28b8e;
@@ -51,12 +56,10 @@
   --ok: #8be28b;
   --warn: #ffb35c;
 
-  /* ——— Type: two families ——— */
+  /* Type: three jobs, three faces */
+  --font-display: "Anton", "Inter", "Helvetica Neue", sans-serif;
   --font-body: "Inter", "Helvetica Neue", Arial, system-ui, sans-serif;
   --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
-  /* Legacy aliases point at the same two families so no rule can
-     resurrect a display or decorative mono voice. */
-  --font-display: var(--font-body);
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
   --text-xs: 0.75rem;
@@ -64,14 +67,14 @@
   --text-base: 1rem;
   --text-lg: 1.13rem;
 
-  /* One disciplined scale, generous leading. */
-  --display-1: clamp(2.3rem, 4.6vw, 3.9rem);
-  --display-2: clamp(1.75rem, 3.2vw, 2.5rem);
-  --display-3: clamp(1.3rem, 2.2vw, 1.6rem);
+  /* Display scale: Anton speaks rarely and large. */
+  --display-1: clamp(2.9rem, 6.2vw, 4.9rem);
+  --display-2: clamp(2rem, 3.8vw, 3rem);
+  --display-3: clamp(1.45rem, 2.4vw, 1.85rem);
 
-  /* ——— Space: one strict scale. Distance means relationship:
+  /* Space: one strict scale. Distance means relationship:
      tight within a group, standard between groups, wide and
-     reel between sections. ——— */
+     reel between sections. */
   --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
   --space-5: 24px; --space-6: 32px; --space-7: 48px; --space-8: 64px;
   --space-9: 96px;
@@ -80,21 +83,23 @@
   --measure-wide: var(--space-8);
   --measure-reel: var(--space-9);
 
-  /* ——— Shape: one quiet radius family ——— */
+  /* Shape: one radius family, slightly squarer than v2 */
   --radius: 6px;
   --radius-s: 4px;
   --radius-m: 6px;
   --radius-l: 10px;
-  --radius-xl: 10px;
+  --radius-xl: 12px;
 
-  /* ——— Elevation: flat. One shadow, for dialogs only. ——— */
-  --shadow-1: none;
+  /* Elevation: warm depth for panels and dialogs. Flat was the
+     v2 failure; depth here is layered surface and soft shadow,
+     never glow. */
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4);
   --shadow-2: 0 16px 40px rgba(0, 0, 0, 0.55);
-  --shadow-lift: none;
+  --shadow-lift: 0 10px 28px rgba(0, 0, 0, 0.42);
   --glow-gold: none;
   --glow-rec: none;
 
-  /* ——— Motion: calm, short, one easing family ——— */
+  /* Motion: calm, short, one easing family */
   --dur-1: 120ms;
   --dur-2: 200ms;
   --dur-3: 320ms;
@@ -106,7 +111,7 @@
   --ease-snap: cubic-bezier(0.3, 1.3, 0.5, 1);
   --ease-frames: steps(8, end);
 
-  /* ——— Layers ——— */
+  /* Layers */
   --z-grain: 400;
   --z-edges: 90;
   --z-header: 100;

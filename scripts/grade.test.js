@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* grade.test.js — Grade Sheet engine tests.
+/* grade.test.js, Grade Sheet engine tests.
  * Pins the engine against the color-grading chapter's own
  * rules (craft/color-grading.md): the five pre-grade gates,
  * the five matching steps in the chapter's order (unification
@@ -22,32 +22,32 @@ ok('gates: the chapter\u2019s five pre-grade gates, in order', () => {
   assert.strictEqual(E.GATES.length, 5);
 });
 
-ok('steps: exposure, contrast, saturation, texture, skin — unification then stack, skin last', () => {
+ok('steps: exposure, contrast, saturation, texture, skin, unification then stack, skin last', () => {
   assert.deepStrictEqual(E.STEPS.map((s) => s.id),
     ['exposure', 'contrast', 'saturation', 'texture', 'skin']);
 });
 
 ok('sources: single / mixed, with the house-grade rule on mixed', () => {
   assert.deepStrictEqual(E.SOURCES.map((r) => r.id), ['single', 'mixed']);
-  assert.strictEqual(E.sourceLabel('mixed'), 'Mixed models — house grades differ');
-  assert.strictEqual(E.sourceLabel('nope'), '— no source recorded —');
+  assert.strictEqual(E.sourceLabel('mixed'), 'Mixed models, house grades differ');
+  assert.strictEqual(E.sourceLabel('nope'), 'No source recorded ');
 });
 
 ok('statuses: unified / drifting / unmatched', () => {
   assert.deepStrictEqual(E.STATUSES.map((s) => s.id), ['unified', 'drifting', 'unmatched']);
-  assert.strictEqual(E.statusLabel('unmatched'), 'Unmatched — its own built-in grade');
-  assert.strictEqual(E.statusLabel('nope'), '— no state recorded —');
+  assert.strictEqual(E.statusLabel('unmatched'), 'Unmatched, its own built-in grade');
+  assert.strictEqual(E.statusLabel('nope'), 'No state recorded ');
 });
 
-ok('default sheet: 5 scenes, 4 unified, 1 drifting, 0 unmatched — verdict is the hold', () => {
+ok('default sheet: 5 scenes, 4 unified, 1 drifting, 0 unmatched, verdict is the hold', () => {
   const r = E.evaluate(E.DEFAULT_ENTRIES);
   assert.strictEqual(r.total, 5);
   assert.strictEqual(r.unified, 4);
   assert.strictEqual(r.drifting, 1);
   assert.strictEqual(r.unmatched, 0);
   assert.strictEqual(r.clean, false);
-  assert(r.verdict.includes('Hold the grade — 1 scene is drifting'));
-  assert.strictEqual(r.driftingEntries[0].scene, 'Sc 3 — The rain stop');
+  assert(r.verdict.includes('Hold the grade, 1 scene is drifting'));
+  assert.strictEqual(r.driftingEntries[0].scene, 'Sc 3, The rain stop');
   assert.strictEqual(E.stepCount(r.driftingEntries[0]), 2);
 });
 
@@ -106,12 +106,12 @@ ok('gateState: counts, missing, complete', () => {
 
 ok('export: markdown carries title, gate marks, scenes with source + steps, verdict, counts', () => {
   const md = E.sheetToMarkdown('The Night Bus', E.DEFAULT_ENTRIES, ['plategrade', 'reference']);
-  assert(md.startsWith('# Grade sheet — The Night Bus'));
+  assert(md.startsWith('# Grade sheet, The Night Bus'));
   assert(md.includes('- [x] Every element assigned: plate or grade'));
   assert(md.includes('- [ ] Pre-grade masters archived'));
-  assert(md.includes('Sc 3 — The rain stop — Drifting — partly matched. Source: Mixed models'));
+  assert(md.includes('Sc 3, The rain stop, Drifting, partly matched. Source: Mixed models'));
   assert(md.includes('Reference: hero chosen'));
-  assert(md.includes('Saturation —'));
+  assert(md.includes('Saturation '));
   assert(md.includes('## Grade verdict'));
   assert(md.includes('Unified: 4 · drifting: 1 · unmatched: 0.'));
   assert(md.endsWith('\n'));

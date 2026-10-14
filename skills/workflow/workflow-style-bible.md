@@ -7,7 +7,7 @@ description: Write the one style line that goes verbatim into every prompt.
 
 ## What this gets you
 
-You will have the one sentence that describes your film's look, ready to paste into every prompt — the habit that makes a film look like one film.
+You will have the one sentence that describes your film's look, ready to paste into every prompt, the habit that makes a film look like one film.
 
 ## Use when
 
@@ -22,7 +22,7 @@ Day one of any production.
 ## Procedure
 
 1. Write ONE style line: era + medium + palette + light + texture + lens.
-2. Append it verbatim to every prompt — never paraphrase.
+2. Append it verbatim to every prompt, never paraphrase.
 3. Changing the bible mid-production = reshooting. Don't.
 
 ## Worked example
@@ -31,4 +31,4 @@ Day one of any production.
 
 ## Pitfalls
 
-- Two collaborators with two style lines — lock one, share the doc.
+- Two collaborators with two style lines, lock one, share the doc.

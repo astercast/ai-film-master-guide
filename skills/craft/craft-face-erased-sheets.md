@@ -30,4 +30,4 @@ Profile angle: erased-sheet body + mara_face_v1.png → seamless profile.
 
 ## Pitfalls
 
-- Prompting 'same face, profile view' — the model will invent a new face.
+- Prompting 'same face, profile view', the model will invent a new face.

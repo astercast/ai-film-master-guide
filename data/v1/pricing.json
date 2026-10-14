@@ -1,7 +1,7 @@
 {
     "format": "pricing/1.0",
     "generated_at": "2026-10-12T00:00:00Z",
-    "generated_by": "Vercel Wave A curation from models.json cost_basis (mega-research 2026-10-10, re-verified 2026-10-11). Watchtower 2.0 (2026-10-12): PixVerse V6 record added (pricing coverage 30 \u2192 31 of 31) and FLUX 3 QHD/UHD/video-to-video tiers tabled from the Sept 10, 2026 BFL list. Wave-engine job; NOT auto-mutated by the watchtower cron (pricing changes need verification \u2014 repo promotion rule). Watchtower 2.4 (2026-10-12): Wan 2.7 record added (pricing coverage 31 -> 32 of 32) from the Alibaba Cloud Model Studio USD list, corroborated by fal's hosting of the same card.",
+    "generated_by": "Vercel Wave A curation from models.json cost_basis (mega-research 2026-10-10, re-verified 2026-10-11). Watchtower 2.0 (2026-10-12): PixVerse V6 record added (pricing coverage 30 \u2192 31 of 31) and FLUX 3 QHD/UHD/video-to-video tiers tabled from the Sept 10, 2026 BFL list. Wave-engine job; NOT auto-mutated by the watchtower cron (pricing changes need verification, repo promotion rule). Watchtower 2.4 (2026-10-12): Wan 2.7 record added (pricing coverage 31 -> 32 of 32) from the Alibaba Cloud Model Studio USD list, corroborated by fal's hosting of the same card.",
     "currency": "USD",
     "credit_usd": 0.0392,
     "credit_basis": "Higgsfield Plus plan: $47/1200 credits = $0.0392/credit, declared in models.json cost_basis",
@@ -21,7 +21,7 @@
                     "unit": "image",
                     "usd_low": 0.0047,
                     "usd_high": 0.0047,
-                    "basis": "0.12 credits/image; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary \u2014 verify live",
+                    "basis": "0.12 credits/image; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary, verify live",
                     "confidence": "credit-derived"
                 }
             ],
@@ -45,7 +45,7 @@
                     "unit": "image",
                     "usd_low": 0.0049,
                     "usd_high": 0.0049,
-                    "basis": "~0.125 credits/image (third-party); Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary \u2014 verify live",
+                    "basis": "~0.125 credits/image (third-party); Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary, verify live",
                     "confidence": "credit-derived"
                 }
             ],
@@ -68,7 +68,7 @@
                     "unit": "image",
                     "usd_low": 0.0032,
                     "usd_high": 0.0032,
-                    "basis": "Higgsfield API starting rate, published in Higgsfield's own API post (higgsfield.ai/blog/higgsfield-api, re-fetched 2026-10-12); the in-app per-image credit cost is still not published \u2014 verify live",
+                    "basis": "Higgsfield API starting rate, published in Higgsfield's own API post (higgsfield.ai/blog/higgsfield-api, re-fetched 2026-10-12); the in-app per-image credit cost is still not published, verify live",
                     "confidence": "official"
                 }
             ],
@@ -78,7 +78,7 @@
                 "https://github.com/dsm5e/aso-tracker/blob/HEAD/aso-video/docs/higgsfield-prompts/skills/higgsfield-soul/SKILL.md",
                 "https://higgsfield.ai/blog/higgsfield-api"
             ],
-            "note": "First published rate (API starting rate) added by Watchtower 2.3; in-app credit cost still unpublished \u2014 verify live."
+            "note": "First published rate (API starting rate) added by Watchtower 2.3; in-app credit cost still unpublished, verify live."
         },
         {
             "model_id": "dop",
@@ -94,7 +94,7 @@
                     "unit": "second",
                     "usd_low": 0.0392,
                     "usd_high": 0.0392,
-                    "basis": "Lite ~3 credits/3s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary \u2014 verify live",
+                    "basis": "Lite ~3 credits/3s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary, verify live",
                     "confidence": "credit-derived"
                 },
                 {
@@ -102,7 +102,7 @@
                     "unit": "second",
                     "usd_low": 0.0653,
                     "usd_high": 0.0653,
-                    "basis": "Turbo ~5 credits/3s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary \u2014 verify live",
+                    "basis": "Turbo ~5 credits/3s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary, verify live",
                     "confidence": "credit-derived"
                 },
                 {
@@ -110,7 +110,7 @@
                     "unit": "second",
                     "usd_low": 0.0915,
                     "usd_high": 0.0915,
-                    "basis": "Standard ~7 credits/3s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary \u2014 verify live",
+                    "basis": "Standard ~7 credits/3s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary, verify live",
                     "confidence": "credit-derived"
                 }
             ],
@@ -131,13 +131,13 @@
                     "unit": "second",
                     "usd_low": 0.196,
                     "usd_high": 0.196,
-                    "basis": "~60 credits/12s (~75/15s same rate), third-party; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary \u2014 verify live",
+                    "basis": "~60 credits/12s (~75/15s same rate), third-party; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary, verify live",
                     "confidence": "credit-derived"
                 }
             ],
             "updated_at": "2026-10-11T00:00:00Z",
             "source_urls": [],
-            "note": "Third-party rate \u2014 verify live."
+            "note": "Third-party rate, verify live."
         },
         {
             "model_id": "seedance-2-0",
@@ -153,7 +153,7 @@
                     "unit": "second",
                     "usd_low": 0.08,
                     "usd_high": 0.08,
-                    "basis": "2.0 Mini 720p ~$0.08/s, third-party estimate \u2014 verify live",
+                    "basis": "2.0 Mini 720p ~$0.08/s, third-party estimate, verify live",
                     "confidence": "third-party-estimate"
                 },
                 {
@@ -161,7 +161,7 @@
                     "unit": "second",
                     "usd_low": 0.37,
                     "usd_high": 0.37,
-                    "basis": "BytePlus API estimate ~$0.37/s at 1080p for 2.0, third-party estimate \u2014 verify live",
+                    "basis": "BytePlus API estimate ~$0.37/s at 1080p for 2.0, third-party estimate, verify live",
                     "confidence": "third-party-estimate"
                 }
             ],
@@ -194,7 +194,7 @@
                     "unit": "second",
                     "usd_low": 0.231,
                     "usd_high": 0.2311,
-                    "basis": "Sept 2026 benchmark $2.31/10s 720p; BytePlus official $0.2311/s \u2014 verify live",
+                    "basis": "Sept 2026 benchmark $2.31/10s 720p; BytePlus official $0.2311/s, verify live",
                     "confidence": "reported-benchmark"
                 },
                 {
@@ -232,7 +232,7 @@
                 "https://www.breakread.com/bytedance-ai-real-time-world-model/",
                 "https://www.versely.studio/blog/state-of-ai-video-oct-2026"
             ],
-            "note": "Not published \u2014 verify live."
+            "note": "Not published, verify live."
         },
         {
             "model_id": "kling-3-0",
@@ -248,7 +248,7 @@
                     "unit": "second",
                     "usd_low": 0.084,
                     "usd_high": 0.168,
-                    "basis": "kling-v3 $0.084/s std, $0.112/s pro, $0.126\u2013$0.168/s with audio; 3.0-turbo $0.112/s 720p (audio included). Sept 2026 benchmark $0.84/10s corroborates std. Third-party mirror of official docs, rechecked Oct 2026.",
+                    "basis": "kling-v3 $0.084/s std, $0.112/s pro, $0.126 to $0.168/s with audio; 3.0-turbo $0.112/s 720p (audio included). Sept 2026 benchmark $0.84/10s corroborates std. Third-party mirror of official docs, rechecked Oct 2026.",
                     "confidence": "third-party-mirror"
                 },
                 {
@@ -329,7 +329,7 @@
                 "https://apimart.ai/model/kling-4-0",
                 "https://finance.biggo.com/news/d4992938-39a9-4515-84b2-c35e4e2bdc27"
             ],
-            "note": "Announced, not GA as of Oct 11, 2026 \u2014 no date, pricing, API or benchmarks published."
+            "note": "Announced, not GA as of Oct 11, 2026, no date, pricing, API or benchmarks published."
         },
         {
             "model_id": "veo-3-1",
@@ -345,7 +345,7 @@
                     "unit": "second",
                     "usd_low": 0.4,
                     "usd_high": 0.4,
-                    "basis": "API ladder, third-party mirror of Google docs: Standard $0.40/s 720p/1080p \u2014 verify live",
+                    "basis": "API ladder, third-party mirror of Google docs: Standard $0.40/s 720p/1080p, verify live",
                     "confidence": "third-party-mirror"
                 },
                 {
@@ -353,7 +353,7 @@
                     "unit": "second",
                     "usd_low": 0.4,
                     "usd_high": 0.4,
-                    "basis": "API ladder, third-party mirror of Google docs \u2014 verify live",
+                    "basis": "API ladder, third-party mirror of Google docs, verify live",
                     "confidence": "third-party-mirror"
                 },
                 {
@@ -361,7 +361,7 @@
                     "unit": "second",
                     "usd_low": 0.6,
                     "usd_high": 0.6,
-                    "basis": "API ladder, third-party mirror of Google docs: Standard $0.60/s 4K \u2014 verify live",
+                    "basis": "API ladder, third-party mirror of Google docs: Standard $0.60/s 4K, verify live",
                     "confidence": "third-party-mirror"
                 },
                 {
@@ -369,7 +369,7 @@
                     "unit": "second",
                     "usd_low": 0.15,
                     "usd_high": 0.15,
-                    "basis": "API ladder: Fast $0.15/s 720p/1080p, third-party mirror \u2014 verify live",
+                    "basis": "API ladder: Fast $0.15/s 720p/1080p, third-party mirror, verify live",
                     "confidence": "third-party-mirror"
                 },
                 {
@@ -377,7 +377,7 @@
                     "unit": "second",
                     "usd_low": 0.15,
                     "usd_high": 0.15,
-                    "basis": "API ladder: Fast $0.15/s 720p/1080p, third-party mirror \u2014 verify live",
+                    "basis": "API ladder: Fast $0.15/s 720p/1080p, third-party mirror, verify live",
                     "confidence": "third-party-mirror"
                 },
                 {
@@ -385,7 +385,7 @@
                     "unit": "second",
                     "usd_low": 0.35,
                     "usd_high": 0.35,
-                    "basis": "API ladder: Fast $0.35/s 4K, third-party mirror \u2014 verify live",
+                    "basis": "API ladder: Fast $0.35/s 4K, third-party mirror, verify live",
                     "confidence": "third-party-mirror"
                 },
                 {
@@ -393,7 +393,7 @@
                     "unit": "second",
                     "usd_low": 0.05,
                     "usd_high": 0.05,
-                    "basis": "API ladder: Lite $0.05/s 720p (Gemini API; Vertex silent SKUs cheaper \u2014 single-source) \u2014 verify live",
+                    "basis": "API ladder: Lite $0.05/s 720p (Gemini API; Vertex silent SKUs cheaper, single-source), verify live",
                     "confidence": "third-party-mirror"
                 },
                 {
@@ -401,7 +401,7 @@
                     "unit": "second",
                     "usd_low": 0.08,
                     "usd_high": 0.08,
-                    "basis": "API ladder: Lite $0.08/s 1080p \u2014 verify live",
+                    "basis": "API ladder: Lite $0.08/s 1080p, verify live",
                     "confidence": "third-party-mirror"
                 },
                 {
@@ -409,7 +409,7 @@
                     "unit": "second",
                     "usd_low": 0.392,
                     "usd_high": 0.392,
-                    "basis": "App ~40 credits/4s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary \u2014 verify live; Sept 2026 benchmark $3.20/8s corroborates",
+                    "basis": "App ~40 credits/4s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary, verify live; Sept 2026 benchmark $3.20/8s corroborates",
                     "confidence": "credit-derived"
                 }
             ],
@@ -438,7 +438,7 @@
                     "unit": "second",
                     "usd_low": 0.1568,
                     "usd_high": 0.1568,
-                    "basis": "Veo 3.1 Fast ~16 credits/4s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary \u2014 verify live",
+                    "basis": "Veo 3.1 Fast ~16 credits/4s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary, verify live",
                     "confidence": "credit-derived"
                 },
                 {
@@ -446,7 +446,7 @@
                     "unit": "second",
                     "usd_low": 0.2842,
                     "usd_high": 0.2842,
-                    "basis": "Veo 3 720p ~58 credits/8s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary \u2014 verify live",
+                    "basis": "Veo 3 720p ~58 credits/8s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary, verify live",
                     "confidence": "credit-derived"
                 },
                 {
@@ -454,7 +454,7 @@
                     "unit": "second",
                     "usd_low": 0.1078,
                     "usd_high": 0.1078,
-                    "basis": "Veo 3 Fast ~22 credits/8s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary \u2014 verify live",
+                    "basis": "Veo 3 Fast ~22 credits/8s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary, verify live",
                     "confidence": "credit-derived"
                 }
             ],
@@ -478,7 +478,7 @@
                     "unit": "second",
                     "usd_low": 0.03,
                     "usd_high": 0.03,
-                    "basis": "RESOLUTION LADDER (reported benchmarks): 360p draft ~$0.03/s, up to 60% faster \u2014 verify live",
+                    "basis": "RESOLUTION LADDER (reported benchmarks): 360p draft ~$0.03/s, up to 60% faster, verify live",
                     "confidence": "reported-benchmark"
                 },
                 {
@@ -486,7 +486,7 @@
                     "unit": "second",
                     "usd_low": 0.1,
                     "usd_high": 0.1,
-                    "basis": "Gemini Omni Flash API ~$0.10/s at 720p, token-billed ($17.50/1M video tokens), reported benchmark \u2014 verify live",
+                    "basis": "Gemini Omni Flash API ~$0.10/s at 720p, token-billed ($17.50/1M video tokens), reported benchmark, verify live",
                     "confidence": "reported-benchmark"
                 },
                 {
@@ -494,7 +494,7 @@
                     "unit": "second",
                     "usd_low": 0.15,
                     "usd_high": 0.15,
-                    "basis": "RESOLUTION LADDER: 1080p ~$0.15/s (upscaled from 720p), reported benchmark \u2014 verify live",
+                    "basis": "RESOLUTION LADDER: 1080p ~$0.15/s (upscaled from 720p), reported benchmark, verify live",
                     "confidence": "reported-benchmark"
                 },
                 {
@@ -502,7 +502,7 @@
                     "unit": "second",
                     "usd_low": 0.3,
                     "usd_high": 0.3,
-                    "basis": "RESOLUTION LADDER: 4K ~$0.30/s (upscaled from 720p), reported benchmark \u2014 verify live",
+                    "basis": "RESOLUTION LADDER: 4K ~$0.30/s (upscaled from 720p), reported benchmark, verify live",
                     "confidence": "reported-benchmark"
                 }
             ],
@@ -548,7 +548,7 @@
                     "unit": "second",
                     "usd_low": 0.0392,
                     "usd_high": 0.0392,
-                    "basis": "480p ~5 credits/5s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary \u2014 verify live",
+                    "basis": "480p ~5 credits/5s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary, verify live",
                     "confidence": "credit-derived"
                 },
                 {
@@ -556,7 +556,7 @@
                     "unit": "second",
                     "usd_low": 0.0549,
                     "usd_high": 0.0549,
-                    "basis": "720p ~7 credits/5s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary \u2014 verify live",
+                    "basis": "720p ~7 credits/5s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary, verify live",
                     "confidence": "credit-derived"
                 },
                 {
@@ -564,7 +564,7 @@
                     "unit": "second",
                     "usd_low": 0.0784,
                     "usd_high": 0.0784,
-                    "basis": "1080p ~10 credits/5s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary \u2014 verify live",
+                    "basis": "1080p ~10 credits/5s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary, verify live",
                     "confidence": "credit-derived"
                 }
             ],
@@ -588,7 +588,7 @@
                     "unit": "second",
                     "usd_low": 0.0392,
                     "usd_high": 0.0392,
-                    "basis": "3.0: 480p 5 credits/5s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary \u2014 verify live",
+                    "basis": "3.0: 480p 5 credits/5s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary, verify live",
                     "confidence": "credit-derived"
                 },
                 {
@@ -596,7 +596,7 @@
                     "unit": "second",
                     "usd_low": 0.0686,
                     "usd_high": 0.0686,
-                    "basis": "3.0: 720p 8.75 credits/5s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary \u2014 verify live",
+                    "basis": "3.0: 720p 8.75 credits/5s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary, verify live",
                     "confidence": "credit-derived"
                 },
                 {
@@ -604,7 +604,7 @@
                     "unit": "second",
                     "usd_low": 0.1372,
                     "usd_high": 0.1372,
-                    "basis": "3.0: 1080p 17.5 credits/5s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary \u2014 verify live",
+                    "basis": "3.0: 1080p 17.5 credits/5s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary, verify live",
                     "confidence": "credit-derived"
                 },
                 {
@@ -612,7 +612,7 @@
                     "unit": "second",
                     "usd_low": 0.0588,
                     "usd_high": 0.0588,
-                    "basis": "Prime: 480p 7.5 credits/5s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary \u2014 verify live",
+                    "basis": "Prime: 480p 7.5 credits/5s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary, verify live",
                     "confidence": "credit-derived"
                 },
                 {
@@ -620,7 +620,7 @@
                     "unit": "second",
                     "usd_low": 0.1176,
                     "usd_high": 0.1176,
-                    "basis": "Prime: 720p 15 credits/5s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary \u2014 verify live",
+                    "basis": "Prime: 720p 15 credits/5s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary, verify live",
                     "confidence": "credit-derived"
                 },
                 {
@@ -628,7 +628,7 @@
                     "unit": "second",
                     "usd_low": 0.2352,
                     "usd_high": 0.2352,
-                    "basis": "Prime: 1080p 30 credits/5s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary \u2014 verify live",
+                    "basis": "Prime: 1080p 30 credits/5s; Higgsfield credits at Plus plan rate ($47/1200cr = $0.0392/credit); plan rates vary, verify live",
                     "confidence": "credit-derived"
                 },
                 {
@@ -636,7 +636,7 @@
                     "unit": "second",
                     "usd_low": 0.05,
                     "usd_high": 0.05,
-                    "basis": "Provider-list API: $0.05/s at 480p, 2\u201330s with native audio (reported benchmark \u2014 verify live)",
+                    "basis": "Provider-list API: $0.05/s at 480p, 2 to 30s with native audio (reported benchmark, verify live)",
                     "confidence": "reported-benchmark"
                 }
             ],
@@ -707,7 +707,7 @@
                     "unit": "second",
                     "usd_low": 0.13,
                     "usd_high": 0.13,
-                    "basis": "API MiniMax-H3: $0.13/s 2K \u2014 verify live",
+                    "basis": "API MiniMax-H3: $0.13/s 2K, verify live",
                     "confidence": "official"
                 },
                 {
@@ -715,7 +715,7 @@
                     "unit": "second",
                     "usd_low": 0.08,
                     "usd_high": 0.08,
-                    "basis": "API MiniMax-H3: $0.08/s 768p; H3 Max 768p $0.08/s (published) \u2014 verify live",
+                    "basis": "API MiniMax-H3: $0.08/s 768p; H3 Max 768p $0.08/s (published), verify live",
                     "confidence": "official"
                 },
                 {
@@ -723,7 +723,7 @@
                     "unit": "second",
                     "usd_low": 0.038,
                     "usd_high": 0.05,
-                    "basis": "480p $0.038/s (vendor-confirmed, unpublished); H3 Max 480p $0.05/s (published) \u2014 verify live",
+                    "basis": "480p $0.038/s (vendor-confirmed, unpublished); H3 Max 480p $0.05/s (published), verify live",
                     "confidence": "vendor-confirmed"
                 },
                 {
@@ -731,7 +731,7 @@
                     "unit": "second",
                     "usd_low": 0.04,
                     "usd_high": 0.04,
-                    "basis": "H3-Max-Turbo $0.04/s 768p (unpublished) \u2014 verify live",
+                    "basis": "H3-Max-Turbo $0.04/s 768p (unpublished), verify live",
                     "confidence": "vendor-confirmed"
                 },
                 {
@@ -739,7 +739,7 @@
                     "unit": "second",
                     "usd_low": 0.025,
                     "usd_high": 0.025,
-                    "basis": "H3-Max-Turbo $0.025/s 480p (unpublished) \u2014 verify live",
+                    "basis": "H3-Max-Turbo $0.025/s 480p (unpublished), verify live",
                     "confidence": "vendor-confirmed"
                 }
             ],
@@ -770,7 +770,7 @@
                     "unit": "second",
                     "usd_low": 0.012,
                     "usd_high": 0.012,
-                    "basis": "Luma API standard video: $0.06 (5s, 360p) \u2014 verify live",
+                    "basis": "Luma API standard video: $0.06 (5s, 360p), verify live",
                     "confidence": "official"
                 },
                 {
@@ -778,7 +778,7 @@
                     "unit": "second",
                     "usd_low": 0.09,
                     "usd_high": 0.09,
-                    "basis": "Sept 2026 benchmark ~$0.90/10s 720p \u2014 verify live",
+                    "basis": "Sept 2026 benchmark ~$0.90/10s 720p, verify live",
                     "confidence": "reported-benchmark"
                 },
                 {
@@ -786,7 +786,7 @@
                     "unit": "second",
                     "usd_low": 0.24,
                     "usd_high": 0.36,
-                    "basis": "Luma API: $1.20 (5s, 1080p) = $0.24/s; $0.18\u2013$3.60 for 10s generations ($0.018\u2013$0.36/s) \u2014 verify live",
+                    "basis": "Luma API: $1.20 (5s, 1080p) = $0.24/s; $0.18 to $3.60 for 10s generations ($0.018 to $0.36/s), verify live",
                     "confidence": "official"
                 }
             ],
@@ -815,7 +815,7 @@
                 "https://alphasignal.ai/news/pika-rebuilds-into-a-full-creative-studio-routing-across-seven-ai-tools",
                 "https://magichour.ai/blog/ai-video-api-magic-hour-vs-runway-vs-pika"
             ],
-            "note": "Not in the captured table; Pika native 12\u201380 credits/gen with no verified USD conversion \u2014 verify live."
+            "note": "Not in the captured table; Pika native 12 to 80 credits/gen with no verified USD conversion, verify live."
         },
         {
             "model_id": "grok-imagine-1-5",
@@ -831,7 +831,7 @@
                     "unit": "second",
                     "usd_low": 0.02,
                     "usd_high": 0.02,
-                    "basis": "xAI API docs, rechecked Oct 2026: Lite $0.02/s at 480p (third-party mirror) \u2014 verify live",
+                    "basis": "xAI API docs, rechecked Oct 2026: Lite $0.02/s at 480p (third-party mirror), verify live",
                     "confidence": "third-party-mirror"
                 },
                 {
@@ -839,7 +839,7 @@
                     "unit": "second",
                     "usd_low": 0.03,
                     "usd_high": 0.03,
-                    "basis": "xAI API docs: Lite $0.03/s at 720p (third-party mirror) \u2014 verify live",
+                    "basis": "xAI API docs: Lite $0.03/s at 720p (third-party mirror), verify live",
                     "confidence": "third-party-mirror"
                 },
                 {
@@ -847,7 +847,7 @@
                     "unit": "second",
                     "usd_low": 0.14,
                     "usd_high": 0.14,
-                    "basis": "xAI API docs: Lite $0.14/s at 1080p (third-party mirror) \u2014 verify live",
+                    "basis": "xAI API docs: Lite $0.14/s at 1080p (third-party mirror), verify live",
                     "confidence": "third-party-mirror"
                 },
                 {
@@ -855,7 +855,7 @@
                     "unit": "second",
                     "usd_low": 0.08,
                     "usd_high": 0.08,
-                    "basis": "xAI API docs: flagship 1.5 $0.08/s at 480p (third-party mirror) \u2014 verify live",
+                    "basis": "xAI API docs: flagship 1.5 $0.08/s at 480p (third-party mirror), verify live",
                     "confidence": "third-party-mirror"
                 },
                 {
@@ -863,7 +863,7 @@
                     "unit": "second",
                     "usd_low": 0.14,
                     "usd_high": 0.14,
-                    "basis": "xAI API docs: flagship 1.5 $0.14/s at 720p (third-party mirror) \u2014 verify live",
+                    "basis": "xAI API docs: flagship 1.5 $0.14/s at 720p (third-party mirror), verify live",
                     "confidence": "third-party-mirror"
                 },
                 {
@@ -871,7 +871,7 @@
                     "unit": "second",
                     "usd_low": 0.25,
                     "usd_high": 0.25,
-                    "basis": "xAI API docs: flagship 1.5 $0.25/s at 1080p (third-party mirror) \u2014 verify live",
+                    "basis": "xAI API docs: flagship 1.5 $0.25/s at 1080p (third-party mirror), verify live",
                     "confidence": "third-party-mirror"
                 }
             ],
@@ -886,7 +886,7 @@
                 "https://sloptvnews.com/grok-imagine-video-1-5-lite-pricing/",
                 "https://venice.ai/models/grok-imagine-1-5-lite"
             ],
-            "note": "Lite adds $0.01 per input image; clips 1\u201315s; headline API ~$0.08/s output."
+            "note": "Lite adds $0.01 per input image; clips 1 to 15s; headline API ~$0.08/s output."
         },
         {
             "model_id": "midjourney-v1-video",
@@ -903,7 +903,7 @@
                 "https://www.krea.ai/blog/is-midjourney-free-pricing-video-and-free-alternatives-in-2026",
                 "https://www.outlookbusiness.com/deeptech/artificial-intelligence/midjourney-launches-v1-ai-video-model-generating-5second-clips-from-images"
             ],
-            "note": "~8x image cost; 5s SD batch = 8 GPU-min \u2014 verify live."
+            "note": "~8x image cost; 5s SD batch = 8 GPU-min, verify live."
         },
         {
             "model_id": "runway-gen-4-5",
@@ -919,7 +919,7 @@
                     "unit": "second",
                     "usd_low": 0.12,
                     "usd_high": 0.12,
-                    "basis": "Gen-4.5 API $0.12/s; Sept 2026 benchmark $1.20/10s 720p corroborates \u2014 verify live",
+                    "basis": "Gen-4.5 API $0.12/s; Sept 2026 benchmark $1.20/10s 720p corroborates, verify live",
                     "confidence": "official"
                 }
             ],
@@ -948,7 +948,7 @@
                     "unit": "second",
                     "usd_low": 0.045,
                     "usd_high": 0.045,
-                    "basis": "List pricing, official Oct 7, 2026: $0.045/s at 540p \u2014 verify live (preview pricing may change)",
+                    "basis": "List pricing, official Oct 7, 2026: $0.045/s at 540p, verify live (preview pricing may change)",
                     "confidence": "official"
                 },
                 {
@@ -956,7 +956,7 @@
                     "unit": "second",
                     "usd_low": 0.12,
                     "usd_high": 0.12,
-                    "basis": "List pricing, official Oct 7, 2026: $0.12/s at 1080p \u2014 verify live (preview pricing may change)",
+                    "basis": "List pricing, official Oct 7, 2026: $0.12/s at 1080p, verify live (preview pricing may change)",
                     "confidence": "official"
                 },
                 {
@@ -964,7 +964,7 @@
                     "unit": "second",
                     "usd_low": 0.39,
                     "usd_high": 0.39,
-                    "basis": "List pricing, official Oct 7, 2026: $0.39/s at 4K \u2014 verify live (preview pricing may change)",
+                    "basis": "List pricing, official Oct 7, 2026: $0.39/s at 4K, verify live (preview pricing may change)",
                     "confidence": "official"
                 }
             ],
@@ -991,7 +991,7 @@
                     "unit": "clip",
                     "usd_low": 0.05,
                     "usd_high": 0.05,
-                    "basis": "Cheapest paid tier ~$0.05/clip reported \u2014 verify live",
+                    "basis": "Cheapest paid tier ~$0.05/clip reported, verify live",
                     "confidence": "reported-benchmark"
                 }
             ],
@@ -1018,7 +1018,7 @@
                     "unit": "second",
                     "usd_low": 0.06,
                     "usd_high": 0.06,
-                    "basis": "API: $0.06/s 720p draft \u2014 verify live",
+                    "basis": "API: $0.06/s 720p draft, verify live",
                     "confidence": "reported-benchmark"
                 },
                 {
@@ -1026,7 +1026,7 @@
                     "unit": "second",
                     "usd_low": 0.17,
                     "usd_high": 0.17,
-                    "basis": "API: $0.17/s 720p \u2014 verify live",
+                    "basis": "API: $0.17/s 720p, verify live",
                     "confidence": "reported-benchmark"
                 },
                 {
@@ -1034,7 +1034,7 @@
                     "unit": "second",
                     "usd_low": 0.29,
                     "usd_high": 0.29,
-                    "basis": "API: $0.29/s 1080p (~$2.90/10s HD) \u2014 verify live",
+                    "basis": "API: $0.29/s 1080p (~$2.90/10s HD), verify live",
                     "confidence": "reported-benchmark"
                 },
                 {
@@ -1042,7 +1042,7 @@
                     "unit": "second",
                     "usd_low": 0.4,
                     "usd_high": 0.4,
-                    "basis": "BFL list from Sept 10, 2026: QHD $0.40/s (versely.studio, Oct 2026) \u2014 verify live",
+                    "basis": "BFL list from Sept 10, 2026: QHD $0.40/s (versely.studio, Oct 2026), verify live",
                     "confidence": "reported-benchmark"
                 },
                 {
@@ -1050,7 +1050,7 @@
                     "unit": "second",
                     "usd_low": 0.8,
                     "usd_high": 0.8,
-                    "basis": "BFL list from Sept 10, 2026: UHD $0.80/s (versely.studio, Oct 2026) \u2014 verify live",
+                    "basis": "BFL list from Sept 10, 2026: UHD $0.80/s (versely.studio, Oct 2026), verify live",
                     "confidence": "reported-benchmark"
                 },
                 {
@@ -1058,7 +1058,7 @@
                     "unit": "second",
                     "usd_low": 0.65,
                     "usd_high": 0.65,
-                    "basis": "BFL list from Sept 10, 2026: video-to-video QHD $0.65/s (versely.studio, Oct 2026) \u2014 verify live",
+                    "basis": "BFL list from Sept 10, 2026: video-to-video QHD $0.65/s (versely.studio, Oct 2026), verify live",
                     "confidence": "reported-benchmark"
                 },
                 {
@@ -1066,7 +1066,7 @@
                     "unit": "second",
                     "usd_low": 0.95,
                     "usd_high": 0.95,
-                    "basis": "BFL list from Sept 10, 2026: video-to-video UHD $0.95/s (versely.studio, Oct 2026) \u2014 verify live",
+                    "basis": "BFL list from Sept 10, 2026: video-to-video UHD $0.95/s (versely.studio, Oct 2026), verify live",
                     "confidence": "reported-benchmark"
                 }
             ],
@@ -1095,7 +1095,7 @@
                     "unit": "second",
                     "usd_low": 0.003,
                     "usd_high": 0.003,
-                    "basis": "LTX 2.5 Fast API from ~$0.003/s (reported benchmark \u2014 verify live)",
+                    "basis": "LTX 2.5 Fast API from ~$0.003/s (reported benchmark, verify live)",
                     "confidence": "reported-benchmark"
                 }
             ],
@@ -1126,7 +1126,7 @@
                     "unit": "unlimited",
                     "usd_low": 0,
                     "usd_high": 0,
-                    "basis": "Local engine free (reported \u2014 verify live)",
+                    "basis": "Local engine free (reported, verify live)",
                     "confidence": "reported-benchmark"
                 }
             ],
@@ -1150,7 +1150,7 @@
             "source_urls": [
                 "https://lifestyle.nextmentors.com/story/878361/hidream-ai-makes-vivago-r1-available-globally-for-end-to-end-ai-video-production/"
             ],
-            "note": "Not published \u2014 verify live."
+            "note": "Not published, verify live."
         },
         {
             "model_id": "pixverse-v6",
@@ -1166,7 +1166,7 @@
                     "unit": "second",
                     "usd_low": 0.09,
                     "usd_high": 0.09,
-                    "basis": "API gateways (reported, third-party): ~$0.09/s at 720p with audio \u2014 verify live",
+                    "basis": "API gateways (reported, third-party): ~$0.09/s at 720p with audio, verify live",
                     "confidence": "third-party-estimate"
                 },
                 {
@@ -1174,7 +1174,7 @@
                     "unit": "second",
                     "usd_low": 0.18,
                     "usd_high": 0.23,
-                    "basis": "API gateways (reported, third-party): ~$0.18\u20130.23/s at 1080p \u2014 verify live",
+                    "basis": "API gateways (reported, third-party): ~$0.18 to 0.23/s at 1080p, verify live",
                     "confidence": "third-party-estimate"
                 }
             ],
@@ -1199,7 +1199,7 @@
                     "unit": "second",
                     "usd_low": 0.1,
                     "usd_high": 0.1,
-                    "basis": "Alibaba Cloud Model Studio list (USD): $0.10/s at 720p, the same rate on every wan2.7 video endpoint (wan2.7-t2v/-i2v/-r2v/-videoedit); fal hosts the same card at $0.10/s \u2014 verify live",
+                    "basis": "Alibaba Cloud Model Studio list (USD): $0.10/s at 720p, the same rate on every wan2.7 video endpoint (wan2.7-t2v/-i2v/-r2v/-videoedit); fal hosts the same card at $0.10/s, verify live",
                     "confidence": "official"
                 },
                 {
@@ -1207,7 +1207,7 @@
                     "unit": "second",
                     "usd_low": 0.15,
                     "usd_high": 0.15,
-                    "basis": "Alibaba Cloud Model Studio list (USD): $0.15/s at 1080p; fal hosts the same card at $0.15/s. China list: \u00a51.0/s at 1080p (\u00a50.6/s at 720p) \u2014 verify live",
+                    "basis": "Alibaba Cloud Model Studio list (USD): $0.15/s at 1080p; fal hosts the same card at $0.15/s. China list: \u00a51.0/s at 1080p (\u00a50.6/s at 720p), verify live",
                     "confidence": "official"
                 }
             ],
