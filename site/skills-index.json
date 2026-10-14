@@ -102,7 +102,7 @@
       "id": "prompt-t13",
       "title": "Prompt: Underwater reveal",
       "description": "Write an underwater reveal prompt (core track) using the guide's template.",
-      "gets_you": "You will have a finished prompt for an underwater reveal \u2014 the shot used for None \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "gets_you": "You will have a finished prompt for an underwater reveal \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
       "audience": "beginner",
       "path": "skills/prompts/prompt-t13.md"
     },
@@ -110,7 +110,7 @@
       "id": "prompt-t14",
       "title": "Prompt: Car commercial",
       "description": "Write a car commercial prompt (core track) using the guide's template.",
-      "gets_you": "You will have a finished prompt for a car commercial \u2014 the shot used for None \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "gets_you": "You will have a finished prompt for a car commercial \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
       "audience": "beginner",
       "path": "skills/prompts/prompt-t14.md"
     },
@@ -126,7 +126,7 @@
       "id": "prompt-a1",
       "title": "Prompt: Anime action (sakuga)",
       "description": "Write an anime action (sakuga) prompt (animated track) using the guide's template.",
-      "gets_you": "You will have a finished prompt for an anime action (sakuga) \u2014 the shot used for None \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "gets_you": "You will have a finished prompt for an anime action (sakuga) \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
       "audience": "beginner",
       "path": "skills/prompts/prompt-a1.md"
     },
@@ -134,7 +134,7 @@
       "id": "prompt-a2",
       "title": "Prompt: Ghibli-style landscape",
       "description": "Write a ghibli-style landscape prompt (animated track) using the guide's template.",
-      "gets_you": "You will have a finished prompt for a ghibli-style landscape \u2014 the shot used for None \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "gets_you": "You will have a finished prompt for a ghibli-style landscape \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
       "audience": "beginner",
       "path": "skills/prompts/prompt-a2.md"
     },
@@ -142,7 +142,7 @@
       "id": "prompt-a3",
       "title": "Prompt: Pixar-style 3D character beat",
       "description": "Write a pixar-style 3d character beat prompt (animated track) using the guide's template.",
-      "gets_you": "You will have a finished prompt for a pixar-style 3d character beat \u2014 the shot used for None \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "gets_you": "You will have a finished prompt for a pixar-style 3d character beat \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
       "audience": "beginner",
       "path": "skills/prompts/prompt-a3.md"
     },
@@ -150,7 +150,7 @@
       "id": "prompt-a4",
       "title": "Prompt: 2D cartoon dialogue",
       "description": "Write a 2d cartoon dialogue prompt (animated track) using the guide's template.",
-      "gets_you": "You will have a finished prompt for a 2d cartoon dialogue \u2014 the shot used for None \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "gets_you": "You will have a finished prompt for a 2d cartoon dialogue \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
       "audience": "beginner",
       "path": "skills/prompts/prompt-a4.md"
     },
@@ -158,7 +158,7 @@
       "id": "prompt-a5",
       "title": "Prompt: Stop-motion claymation gag",
       "description": "Write a stop-motion claymation gag prompt (animated track) using the guide's template.",
-      "gets_you": "You will have a finished prompt for a stop-motion claymation gag \u2014 the shot used for None \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "gets_you": "You will have a finished prompt for a stop-motion claymation gag \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
       "audience": "beginner",
       "path": "skills/prompts/prompt-a5.md"
     },
@@ -166,7 +166,7 @@
       "id": "prompt-a6",
       "title": "Prompt: Oil-painting painterly motion",
       "description": "Write an oil-painting painterly motion prompt (animated track) using the guide's template.",
-      "gets_you": "You will have a finished prompt for an oil-painting painterly motion \u2014 the shot used for None \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "gets_you": "You will have a finished prompt for an oil-painting painterly motion \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
       "audience": "beginner",
       "path": "skills/prompts/prompt-a6.md"
     },
@@ -174,7 +174,7 @@
       "id": "prompt-a7",
       "title": "Prompt: Pixel-art game cinematic",
       "description": "Write a pixel-art game cinematic prompt (animated track) using the guide's template.",
-      "gets_you": "You will have a finished prompt for a pixel-art game cinematic \u2014 the shot used for None \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "gets_you": "You will have a finished prompt for a pixel-art game cinematic \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
       "audience": "beginner",
       "path": "skills/prompts/prompt-a7.md"
     },
@@ -182,7 +182,7 @@
       "id": "prompt-a8",
       "title": "Prompt: Felt-art cozy scene",
       "description": "Write a felt-art cozy scene prompt (animated track) using the guide's template.",
-      "gets_you": "You will have a finished prompt for a felt-art cozy scene \u2014 the shot used for None \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "gets_you": "You will have a finished prompt for a felt-art cozy scene \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
       "audience": "beginner",
       "path": "skills/prompts/prompt-a8.md"
     },
@@ -190,7 +190,7 @@
       "id": "prompt-p1",
       "title": "Prompt: Dialogue drama close-up",
       "description": "Write a dialogue drama close-up prompt (photorealistic track) using the guide's template.",
-      "gets_you": "You will have a finished prompt for a dialogue drama close-up \u2014 the shot used for None \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "gets_you": "You will have a finished prompt for a dialogue drama close-up \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
       "audience": "beginner",
       "path": "skills/prompts/prompt-p1.md"
     },
@@ -198,7 +198,7 @@
       "id": "prompt-p2",
       "title": "Prompt: Documentary handheld",
       "description": "Write a documentary handheld prompt (photorealistic track) using the guide's template.",
-      "gets_you": "You will have a finished prompt for a documentary handheld \u2014 the shot used for None \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "gets_you": "You will have a finished prompt for a documentary handheld \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
       "audience": "beginner",
       "path": "skills/prompts/prompt-p2.md"
     },
@@ -206,7 +206,7 @@
       "id": "prompt-p3",
       "title": "Prompt: Car commercial (photoreal)",
       "description": "Write a car commercial (photoreal) prompt (photorealistic track) using the guide's template.",
-      "gets_you": "You will have a finished prompt for a car commercial (photoreal) \u2014 the shot used for None \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "gets_you": "You will have a finished prompt for a car commercial (photoreal) \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
       "audience": "beginner",
       "path": "skills/prompts/prompt-p3.md"
     },
@@ -214,7 +214,7 @@
       "id": "prompt-p4",
       "title": "Prompt: Food macro (photoreal)",
       "description": "Write a food macro (photoreal) prompt (photorealistic track) using the guide's template.",
-      "gets_you": "You will have a finished prompt for a food macro (photoreal) \u2014 the shot used for None \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "gets_you": "You will have a finished prompt for a food macro (photoreal) \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
       "audience": "beginner",
       "path": "skills/prompts/prompt-p4.md"
     },
@@ -222,7 +222,7 @@
       "id": "prompt-p5",
       "title": "Prompt: Horror corridor (photoreal)",
       "description": "Write a horror corridor (photoreal) prompt (photorealistic track) using the guide's template.",
-      "gets_you": "You will have a finished prompt for a horror corridor (photoreal) \u2014 the shot used for None \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "gets_you": "You will have a finished prompt for a horror corridor (photoreal) \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
       "audience": "beginner",
       "path": "skills/prompts/prompt-p5.md"
     },
@@ -230,7 +230,7 @@
       "id": "prompt-p6",
       "title": "Prompt: Sci-fi corridor dolly (photoreal)",
       "description": "Write a sci-fi corridor dolly (photoreal) prompt (photorealistic track) using the guide's template.",
-      "gets_you": "You will have a finished prompt for a sci-fi corridor dolly (photoreal) \u2014 the shot used for None \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "gets_you": "You will have a finished prompt for a sci-fi corridor dolly (photoreal) \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
       "audience": "beginner",
       "path": "skills/prompts/prompt-p6.md"
     },
@@ -238,7 +238,7 @@
       "id": "prompt-p7",
       "title": "Prompt: Fashion editorial (photoreal)",
       "description": "Write a fashion editorial (photoreal) prompt (photorealistic track) using the guide's template.",
-      "gets_you": "You will have a finished prompt for a fashion editorial (photoreal) \u2014 the shot used for None \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "gets_you": "You will have a finished prompt for a fashion editorial (photoreal) \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
       "audience": "beginner",
       "path": "skills/prompts/prompt-p7.md"
     },
@@ -246,7 +246,7 @@
       "id": "prompt-p8",
       "title": "Prompt: Nature drone (photoreal)",
       "description": "Write a nature drone (photoreal) prompt (photorealistic track) using the guide's template.",
-      "gets_you": "You will have a finished prompt for a nature drone (photoreal) \u2014 the shot used for None \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "gets_you": "You will have a finished prompt for a nature drone (photoreal) \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
       "audience": "beginner",
       "path": "skills/prompts/prompt-p8.md"
     },

@@ -1,45 +1,49 @@
 /* ============================================================
    Design tokens — AI Film Master Guide
-   "The Cutting Room": cinematic craft, not SaaS.
-   Deep blacks, tungsten warmth, REC-red accents. Heavy condensed
-   industrial display (Anton), warm serif
-   for long craft chapters (Newsreader), Inter for tool UI,
-   JetBrains Mono for timecode. Wave 36 identity rework;
-   wave 38: Anton replaces Archivo (Archivo-family conflict
-   with activity-vault's Archivo Black stamp face).
-   Rotation 21 (design polish): the same cutting room, finished
-   like a precision instrument — the brass is deeper and less
-   saturated, surfaces sit flatter, radii tighten, shadows get
-   quieter, and the display scale steps back half a notch so
-   type — not chrome — carries the hierarchy.
+   "The Cutting Room" — FULL REDESIGN, rotation 21.
+   The system is rebuilt from the ground up on the pattern book
+   (research cycle 145): three type jobs that never swap
+   (proclaim / read / data), a spacing scale where distance
+   means relationship, a palette with one accent job, two
+   depths only (the bench and the reel), and corners that
+   follow film objects. Identity is unchanged — cutting room,
+   brass on black, timecode — the discipline is new.
+   Type jobs: Anton proclaims (heroes, slates, section titles,
+   large sizes only). Inter reads and operates (UI, body, nav,
+   buttons). Newsreader reads long (craft chapters). JetBrains
+   Mono is data only — it appears where a real timecode, count,
+   or value stands, never as decoration (§2.1c).
+   Palette in one sentence: warm black ground, paper ink, one
+   brass accent for act/attend, REC red reserved for genuinely
+   live/record meanings, steel blue for links (§2.3c).
    ============================================================ */
 :root {
   color-scheme: dark;
 
-  /* ——— Surfaces: deep warm blacks, never blue ——— */
-  --bg: #0a0908;
-  --bg-soft: #0f0d0b;
-  --bg-raise: #14110c;
-  --panel: #15120e;
-  --panel-2: #1a1712;
-  --panel-3: #221e17;
-  --line: #2a251d;
-  --line-soft: #1f1b15;
-  --line-bright: #453b2a;
+  /* ——— Surfaces: the bench — flat warm blacks in clear steps ——— */
+  --bg: #0b0a08;
+  --bg-soft: #100e0b;
+  --bg-raise: #16130e;
+  --panel: #14110d;
+  --panel-2: #1b1813;
+  --panel-3: #242019;
+  --line: #2b261e;
+  --line-soft: #201c16;
+  --line-bright: #4a3f2c;
 
   /* ——— Ink ——— */
-  --ink: #f7f3eb;
-  --ink-dim: #d8d0bf;
-  --muted: #a79c86;            /* ~7.3:1 on --bg — AA */
+  --ink: #f6f2e9;
+  --ink-dim: #d9d2c1;
+  --muted: #a89d87;            /* ~7.4:1 on --bg — AA */
 
-  /* ——— Accents: tungsten key light + REC red ——— */
-  --gold: #e0a526;             /* tungsten brass — deepened in r21 */
-  --tungsten: #f0b95a;         /* hot tungsten */
+  /* ——— Accents: one brass job; red rationed; blue for links ——— */
+  --gold: #dfa72e;             /* tungsten brass — the act/attend accent */
+  --tungsten: #f2bc5c;         /* hot tungsten — brass at hover only */
   --amber-deep: #9c6d10;
-  --ember: #d93636;            /* REC red */
+  --ember: #d93636;            /* REC red — live/record meanings only */
   --ember-deep: #a31218;       /* deep REC, AA-safe text bg */
   --ember-soft: #f28b8e;
-  --reel: #82b8d4;             /* links, info — muted steel blue */
+  --reel: #84b9d6;             /* links, info — muted steel blue */
   --ok: #8be28b;
   --warn: #ffb35c;
 
@@ -54,31 +58,40 @@
   --text-base: 1rem;
   --text-lg: 1.13rem;
 
-  /* Fluid display scale — r21: stepped back so headlines read
-     as set type, not signage; hierarchy comes from weight,
-     spacing and the brass accent, not raw size. */
-  --display-1: clamp(2.75rem, 6.5vw, 5.1rem);
-  --display-2: clamp(2rem, 4.2vw, 3.1rem);
-  --display-3: clamp(1.35rem, 2.6vw, 1.85rem);
+  /* Type scale — few, widely separated steps (§2.1). Display
+     proclaims at large sizes only; reading sizes live in the
+     --text steps; data sizes in components, always mono. */
+  --display-1: clamp(2.9rem, 6.8vw, 5.4rem);
+  --display-2: clamp(2.1rem, 4.4vw, 3.3rem);
+  --display-3: clamp(1.4rem, 2.7vw, 1.95rem);
 
-  /* ——— Space ——— */
+  /* ——— Space: one strict scale (§2.2). Semantic measures:
+     tight = within a group, standard = between groups,
+     wide = between sections, reel = the major break. ——— */
   --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
   --space-5: 24px; --space-6: 32px; --space-7: 48px; --space-8: 64px;
   --space-9: 96px;
+  --measure-tight: var(--space-2);
+  --measure-standard: var(--space-5);
+  --measure-wide: var(--space-8);
+  --measure-reel: var(--space-9);
 
-  /* ——— Shape ——— */
+  /* ——— Shape: corners follow film objects (§2.4) — frames and
+     slates near-square, controls soft, sheets softest. ——— */
   --radius: 8px;
-  --radius-s: 5px;
+  --radius-s: 4px;
   --radius-m: 8px;
   --radius-l: 12px;
   --radius-xl: 16px;
 
-  /* ——— Elevation ——— */
-  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.45);
-  --shadow-2: 0 8px 28px rgba(0, 0, 0, 0.55);
-  --shadow-lift: 0 10px 32px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(224, 165, 38, 0.07);
-  --glow-gold: 0 0 18px rgba(224, 165, 38, 0.2);
-  --glow-rec: 0 0 10px rgba(217, 54, 54, 0.45);
+  /* ——— Elevation: two depths only (§2.4) — the bench is flat
+     (hairlines do the separation); the reel is raised (playable
+     media, dialogs, the one floating thing per view). ——— */
+  --shadow-1: none;
+  --shadow-2: 0 12px 32px rgba(0, 0, 0, 0.55);
+  --shadow-lift: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(223, 167, 46, 0.08);
+  --glow-gold: 0 0 16px rgba(223, 167, 46, 0.18);
+  --glow-rec: 0 0 8px rgba(217, 54, 54, 0.4);
 
   /* ——— Motion (web-craft motion-system: 5 durations, named easings) ——— */
   --dur-1: 120ms;

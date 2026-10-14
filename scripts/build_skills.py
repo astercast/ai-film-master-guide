@@ -110,7 +110,9 @@ def prompt_skills(templates):
             "cat": "prompts",
             "title": f"Prompt: {t['title']}",
             "desc": f"Write {article(t['title'])} {t['title'].lower()} prompt ({t['track']} track) using the guide's template.",
-            "gets": f"You will have a finished prompt for {article(t['title'])} {t['title'].lower()} — the shot used for {t['use']} — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+            "gets": f"You will have a finished prompt for {article(t['title'])} {t['title'].lower()}"
+                    + (f" — the shot used for {t['use']}" if t.get("use") else "")
+                    + " — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
             "use": f"You are directing a shot that needs: {t['title'].lower()}. "
                    + (f"Anatomy: {t['anatomy']}." if t.get("anatomy") else "")
                    + (f" Best for: {t['use']}." if t.get("use") else ""),

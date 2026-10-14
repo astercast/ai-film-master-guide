@@ -58,7 +58,7 @@ pre code { background: none; padding: 0; border: none; }
 /* Focus: tungsten ring, always visible, never removed */
 :focus-visible {
   outline: 2px solid var(--gold); outline-offset: 3px; border-radius: var(--radius-s);
-  box-shadow: 0 0 0 5px rgba(224, 165, 38, 0.16);
+  box-shadow: 0 0 0 5px rgba(223, 167, 46, 0.16);
 }
 /* Selection: REC red — the mark of the cut. White on #c81e23 = 5.73:1 (AA). */
 ::selection { background: #c81e23; color: #fff; }
@@ -92,8 +92,10 @@ pre code { background: none; padding: 0; border: none; }
   letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold);
 }
 .kicker::before {
-  content: ""; width: 9px; height: 9px; border-radius: 50%;
-  background: var(--ember); box-shadow: var(--glow-rec); flex: none;
+  /* §2.3c rationing: brass slate mark, not a REC light — red is
+     reserved for the deck's record meaning and live states. */
+  content: ""; width: 8px; height: 8px; border-radius: 2px;
+  background: var(--gold); flex: none;
 }
 .kicker.is-rec::after {
   content: "REC"; font-size: 0.62rem; letter-spacing: 0.3em;

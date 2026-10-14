@@ -20,7 +20,7 @@
   position: relative; overflow: clip;
   border-bottom: 1px solid var(--line-soft);
   background:
-    radial-gradient(1100px 460px at 50% -14%, rgba(224, 165, 38, 0.07), transparent 62%),
+    radial-gradient(1100px 460px at 50% -14%, rgba(223, 167, 46, 0.07), transparent 62%),
     radial-gradient(760px 380px at 90% 10%, rgba(217, 54, 54, 0.04), transparent 55%),
     radial-gradient(140% 90% at 50% 112%, transparent 55%, rgba(0, 0, 0, 0.4) 100%),
     var(--bg-soft);
@@ -36,9 +36,12 @@
 
 /* The timeline deck: ruler + tracks + playhead + leader frame */
 .tl-deck {
+  /* Redesign: the deck is now the hero's evidence strip, sitting
+     under the claim — it opens with a hairline, not a header. */
   position: relative; z-index: 1;
-  max-width: 1280px; margin-inline: auto;
-  padding: calc(var(--space-6) + 22px) var(--space-5) 0;
+  max-width: 1280px; margin-inline: auto; width: 100%;
+  padding: var(--space-5) var(--space-5) var(--space-2);
+  border-top: 1px solid var(--line-soft);
 }
 .tl-chrome {
   display: flex; align-items: center; gap: var(--space-4);
@@ -58,7 +61,7 @@
   font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.14em;
   text-transform: uppercase; color: var(--tungsten); white-space: nowrap;
   border: 1px solid var(--amber-deep); border-radius: 4px; padding: 2px 8px;
-  background: rgba(224, 165, 38, 0.06);
+  background: rgba(223, 167, 46, 0.06);
 }
 .tl-chrome { flex-wrap: wrap; row-gap: 6px; }
 
@@ -106,7 +109,7 @@
   letter-spacing: 0.2em; text-transform: uppercase; white-space: nowrap;
   border: 1px solid var(--line-bright); border-radius: 4px; padding: 2px 8px; color: var(--muted);
 }
-.print-tag.is-workprint { border-color: var(--amber-deep); color: var(--tungsten); background: rgba(224, 165, 38, 0.07); }
+.print-tag.is-workprint { border-color: var(--amber-deep); color: var(--tungsten); background: rgba(223, 167, 46, 0.07); }
 .print-tag.is-answer { border-color: #2c5a78; color: var(--reel); background: rgba(130, 184, 212, 0.06); }
 
 .tl-ruler {
@@ -143,7 +146,7 @@
   font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.08em;
   color: var(--ink-dim); text-transform: uppercase; white-space: nowrap;
 }
-.clip.is-gold { border-color: rgba(224, 165, 38, 0.45); background: #211a0f; color: var(--tungsten); }
+.clip.is-gold { border-color: rgba(223, 167, 46, 0.45); background: #211a0f; color: var(--tungsten); }
 .clip.is-rec { border-color: rgba(217, 54, 54, 0.5); background: #1d1011; color: var(--ember-soft); }
 .clip.is-blue { border-color: #2a465a; background: #0f181f; color: var(--reel); }
 
@@ -174,11 +177,11 @@
   width: 96px; height: 96px; border-radius: 50%; z-index: 2;
   border: 1px solid var(--line);
   display: grid; place-items: center; overflow: hidden;
-  background: radial-gradient(circle, transparent 58%, rgba(224, 165, 38, 0.06) 59%, transparent 70%);
+  background: radial-gradient(circle, transparent 58%, rgba(223, 167, 46, 0.06) 59%, transparent 70%);
   pointer-events: none; opacity: 0.92;
 }
 .leader-frame::before, .leader-frame::after {
-  content: ""; position: absolute; background: rgba(224, 165, 38, 0.35);
+  content: ""; position: absolute; background: rgba(223, 167, 46, 0.35);
 }
 .leader-frame::before { left: 50%; top: 6%; bottom: 6%; width: 1px; }
 .leader-frame::after { top: 50%; left: 6%; right: 6%; height: 1px; }
@@ -204,10 +207,11 @@
 @media (min-width: 1101px) {
   .tl-tracks { padding-right: 118px; }
   .tl-ruler span:last-child { visibility: hidden; }
+  .leader-frame { top: 64px; }
   .leader-frame {
     top: calc(var(--space-6) + 58px);
     background:
-      radial-gradient(circle, transparent 58%, rgba(224, 165, 38, 0.06) 59%, transparent 70%),
+      radial-gradient(circle, transparent 58%, rgba(223, 167, 46, 0.06) 59%, transparent 70%),
       var(--panel);
   }
 }
@@ -221,10 +225,8 @@
 
 /* ——— Reel head: the chapter slate (chapter template) ——— */
 .reel-head {
-  border: 1px solid var(--line-soft); border-radius: var(--radius-l);
-  background:
-    linear-gradient(180deg, rgba(224, 165, 38, 0.05), transparent 40%),
-    var(--panel);
+  border: 1px solid var(--line-soft); border-radius: var(--radius-m);
+  background: var(--panel);
   padding: var(--space-4) var(--space-5); margin-bottom: var(--space-5);
   display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-5);
   position: relative; overflow: hidden;
@@ -286,7 +288,7 @@
   text-align: center; padding: var(--space-8) var(--space-5); color: var(--muted);
   border: 1px dashed var(--line-bright); border-radius: var(--radius-l);
   background:
-    linear-gradient(180deg, rgba(224, 165, 38, 0.03), transparent 50%),
+    linear-gradient(180deg, rgba(223, 167, 46, 0.03), transparent 50%),
     rgba(255, 255, 255, 0.008);
 }
 .empty-state .es-slate {
@@ -294,7 +296,7 @@
   font-size: 1.6rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-dim);
   border: 1px solid var(--line-bright); border-radius: var(--radius-s);
   padding: var(--space-2) var(--space-4); margin-bottom: var(--space-3);
-  background: repeating-linear-gradient(-45deg, transparent 0 10px, rgba(224, 165, 38, 0.05) 10px 20px);
+  background: repeating-linear-gradient(-45deg, transparent 0 10px, rgba(223, 167, 46, 0.05) 10px 20px);
 }
 
 /* ——— 404: MISSING REEL ——— */
@@ -310,7 +312,7 @@
 
 /* ——— Reading progress as a playhead ——— */
 .progress-bar { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: var(--z-progress); pointer-events: none; background: rgba(255, 255, 255, 0.05); }
-.progress-bar span { display: block; height: 100%; background: linear-gradient(90deg, var(--amber-deep), var(--gold), var(--tungsten)); transform: scaleX(0); transform-origin: 0 50%; box-shadow: 0 0 12px rgba(224, 165, 38, 0.5); }
+.progress-bar span { display: block; height: 100%; background: linear-gradient(90deg, var(--amber-deep), var(--gold), var(--tungsten)); transform: scaleX(0); transform-origin: 0 50%; box-shadow: 0 0 12px rgba(223, 167, 46, 0.5); }
 /* Scroll-driven progress (rotation 13; graduated from the 9th site's
    test bed, fleet idiom per Button Mash's reading progress — Fleet
    Commons canonical v1.0.0 (patterns/scroll-driven-animations,
@@ -336,8 +338,16 @@
 }
 .progress-tc.show { opacity: 1; }
 
-/* ——— Header timecode ticker ——— */
-.hdr-tc {
+/* ——— Header timecode ticker ———
+   r21 pattern-book fold (§2.1c/§2.3c): retired from presentation.
+   The ticker ran a free-running counter dressed as a timecode —
+   mono spent as decoration and a second REC light burning in
+   every header. Film's mono register is honest or it is nothing:
+   mono appears where a real timecode, count, or value stands
+   (the deck ruler, the stats strip, stage counts). The element
+   stays in the markup; the register is rationed, not deleted. */
+.hdr-tc { display: none; }
+.hdr-tc-legacy {
   font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500;
   letter-spacing: 0.1em; color: var(--gold); font-variant-numeric: tabular-nums;
   border: 1px solid var(--line-soft); border-radius: 4px; padding: 4px 10px;
@@ -362,10 +372,8 @@
    labels are sized to their blocks so no label clips mid-word.
    Desktop composition is untouched (this block only). */
 @media (max-width: 720px) {
-  .hero-home { display: flex; flex-direction: column; }
-  .hero-home .hero-inner { order: -1; padding-top: var(--space-5); }
-  .hero-home .tl-deck { padding-top: var(--space-4); }
-  .tl-deck { padding-inline: var(--space-4); padding-top: calc(var(--space-4) + 22px); }
+  .hero-home .hero-inner { padding-top: var(--space-5); }
+  .tl-deck { padding-inline: var(--space-4); padding-top: var(--space-4); }
   /* r21: every hero deck compacts on phones, not just the homepage's —
      before r21 the skills/path decks kept desktop geometry at 390px
      and the ruler timecodes and clip labels collided mid-word. */

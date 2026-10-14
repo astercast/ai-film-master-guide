@@ -7,7 +7,7 @@ description: Write a car commercial prompt (core track) using the guide's templa
 
 ## What this gets you
 
-You will have a finished prompt for a car commercial — the shot used for None — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+You will have a finished prompt for a car commercial — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
 
 ## Use when
 

@@ -48,18 +48,22 @@ CSS = ["assets/css/tokens.css", "assets/css/base.css", "assets/css/layout.css",
        "assets/css/home.css", "assets/css/print.css"]
 
 NAV_TOP = [
+    # Navigation standard (rotation 21): five visible primaries,
+    # never a tab wall. Everything else — Compare included — lives
+    # in the Index drawer (the hub), the footer map, and in-page
+    # subnav. Destinations are never duplicated.
     ("index.html", "Guide"),
     ("cutting-room.html", "Cutting room"),
     ("teardown.html", "Teardowns"),
     ("workshop.html", "Workshop"),
     ("models/", "Models"),
-    ("compare.html", "Compare"),
 ]
 # Everything else lives in the Index drawer — progressive disclosure.
 # Groups are editorial, not taxonomic: where a working filmmaker would reach.
 NAV_INDEX = [
     ("On the bench", [
         ("prompts.html", "Prompts"),
+        ("compare.html", "Compare"),
         ("shots.html", "Shot list"),
         ("style-bible.html", "Style bible"),
         ("budget.html", "Budget"),
@@ -5180,13 +5184,14 @@ PATH_TMPL = """<!DOCTYPE html>
   <meta name="description" content="The Path: the guide's 241 skills sequenced into six stages in production order — the prompt and the camera, the style tracks, the models, direction, production, the finish — with per-skill check-off saved in the browser and a milestone per stage.">
   {css}
   <style>
-    .pathmap-verdict {{ font-size: 1.02rem; line-height: 1.6; color: var(--ink-dim); border-left: 2px solid var(--gold); padding-left: var(--space-4); margin-bottom: var(--space-6); max-width: 72ch; }}
-    .pathmap-stage {{ border: 1px solid var(--line-soft); border-radius: var(--radius-l); background: var(--panel); padding: var(--space-5) var(--space-6); margin-bottom: var(--space-4); }}
+    .pathmap-verdict {{ font-family: var(--font-serif); font-size: 1.14rem; line-height: 1.65; color: var(--ink-dim); border-left: 2px solid var(--gold); padding-left: var(--space-4); margin-bottom: var(--space-6); max-width: 72ch; }}
+    #path-stages {{ position: relative; margin-left: 15px; border-left: 2px solid var(--line); padding-left: var(--space-6); }}
+    .pathmap-stage {{ position: relative; border: 1px solid var(--line-soft); border-radius: var(--radius-l); background: var(--panel); padding: var(--space-5) var(--space-6); margin-bottom: var(--space-5); }}
     .pathmap-stage summary {{ cursor: pointer; list-style: none; display: flex; align-items: baseline; gap: var(--space-3); flex-wrap: wrap; }}
     .pathmap-stage summary::-webkit-details-marker {{ display: none; }}
     .pathmap-stage-head {{ display: flex; align-items: baseline; gap: var(--space-3); flex-wrap: wrap; }}
     .pathmap-stage-head h3 {{ margin: 0; font-family: var(--font-body); font-size: 1.18rem; font-weight: 700; letter-spacing: -0.01em; display: inline; }}
-    .pathmap-num {{ font-family: var(--font-mono); font-size: .8rem; font-weight: 700; color: var(--gold); border: 1px solid var(--line-bright); border-radius: 999px; min-width: 2em; text-align: center; padding: .15em .35em; }}
+    .pathmap-num {{ position: absolute; left: -51px; top: var(--space-5); width: 30px; height: 30px; display: grid; place-items: center; font-family: var(--font-mono); font-size: .8rem; font-weight: 700; color: #171106; background: var(--gold); border-radius: 50%; box-shadow: 0 0 0 4px var(--bg); }}
     .pathmap-tag {{ margin-left: auto; font-family: var(--font-mono); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }}
     .pathmap-focus, .pathmap-milestone, .pathmap-desc {{ color: var(--muted); line-height: 1.6; }}
     .pathmap-milestone strong {{ color: var(--ink); }}
@@ -5563,10 +5568,18 @@ def build_skill_pages(css_links):
                           'and for later: not a first-project skill. See '
                           'SKILLS_AUDIT.md (rotation 20).</p>')
 
-        body_md = re.sub(r"^# .*\n", "", md, count=1)
+        # Exactly one <h1> per skill page: the render chrome's
+        # #skill-title. The authored body's own H1 repeats it, so
+        # the generator strips it here. The old strip anchored at
+        # string start (^# ) and silently failed because the body
+        # begins with a blank line after the frontmatter split —
+        # all 242 pages shipped two h1s (Release round 132).
+        body_md = re.sub(r"\A\s*# .*\n", "", md, count=1)
         body_md = re.sub(r"^## What this gets you\n.*?(?=^## |\Z)", "",
                          body_md, flags=re.S | re.M)
         body = md2html.convert(body_md.strip())
+        # Belt and braces: any residual body h1 is demoted to h2.
+        body = re.sub(r"<h1(\s[^>]*)?>", "<h2>", body).replace("</h1>", "</h2>")
 
         prev_link = next_link = ""
         if i > 0:

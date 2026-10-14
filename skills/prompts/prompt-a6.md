@@ -7,7 +7,7 @@ description: Write an oil-painting painterly motion prompt (animated track) usin
 
 ## What this gets you
 
-You will have a finished prompt for an oil-painting painterly motion — the shot used for None — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+You will have a finished prompt for an oil-painting painterly motion — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
 
 ## Use when
 

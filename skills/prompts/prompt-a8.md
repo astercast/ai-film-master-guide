@@ -7,7 +7,7 @@ description: Write a felt-art cozy scene prompt (animated track) using the guide
 
 ## What this gets you
 
-You will have a finished prompt for a felt-art cozy scene — the shot used for None — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+You will have a finished prompt for a felt-art cozy scene — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
 
 ## Use when
 

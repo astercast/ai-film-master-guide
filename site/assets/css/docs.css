@@ -82,7 +82,7 @@
 .prose table { border: 1px solid var(--line-soft); border-radius: var(--radius-m); overflow: hidden; }
 .prose thead th { background: var(--panel-2); font-family: var(--font-mono); font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); }
 .prose tbody tr { transition: background var(--dur-1) var(--ease); }
-.prose tbody tr:hover { background: rgba(224, 165, 38, 0.04); }
+.prose tbody tr:hover { background: rgba(223, 167, 46, 0.04); }
 .prose code { font-size: 0.88em; }
 .prose img { border-radius: var(--radius-m); border: 1px solid var(--line-soft); }
 .prose table { width: 100%; border-collapse: collapse; margin-bottom: var(--space-5); font-size: 0.9rem; display: block; overflow-x: auto; }
@@ -147,7 +147,7 @@
 .docs-nav ul { list-style: none; margin: var(--space-1) 0 var(--space-3); padding: 0; }
 .docs-nav li a { display: block; color: var(--ink-dim); padding: var(--space-1) var(--space-2); border-radius: var(--radius-s); text-decoration: none; border-left: 2px solid transparent; transition: all var(--dur-1) var(--ease); }
 .docs-nav li a:hover { color: var(--ink); background: var(--panel-2); text-decoration: none; }
-.docs-nav li a[aria-current="page"], .docs-nav li a.active { color: var(--gold); border-left-color: var(--gold); background: rgba(224, 165, 38, 0.06); }
+.docs-nav li a[aria-current="page"], .docs-nav li a.active { color: var(--gold); border-left-color: var(--gold); background: rgba(223, 167, 46, 0.06); }
 
 .docs-main { min-width: 0; }
 .crumb { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.06em; color: var(--muted); margin-bottom: var(--space-3); text-transform: uppercase; }

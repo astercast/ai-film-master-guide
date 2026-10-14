@@ -12,10 +12,11 @@
   /* r21: the brass hairline stays as the header's signature, at a
      whisper — a ruled line, not a light strip. */
   content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(224, 165, 38, 0.28) 18%, rgba(224, 165, 38, 0.28) 82%, transparent);
+  background: linear-gradient(90deg, transparent, rgba(223, 167, 46, 0.28) 18%, rgba(223, 167, 46, 0.28) 82%, transparent);
   opacity: 0.6;
 }
-.header-bar { display: flex; align-items: center; gap: var(--space-4); padding-block: var(--space-3); }
+.header-bar { display: flex; align-items: center; gap: var(--space-4); padding-block: var(--space-2); }
+.palette-open { border-radius: 999px; padding-inline: var(--space-4); }
 .brand { display: flex; align-items: center; gap: var(--space-3); color: var(--ink); text-decoration: none; flex: none; }
 .brand:hover { text-decoration: none; }
 /* Brand mark: a 35mm film frame — sprockets top and bottom, AF in the gate */
@@ -99,9 +100,16 @@
 .nav-idx-group a[aria-current="page"] { color: var(--gold); }
 .palette-open { margin-left: var(--space-2); flex: none; }
 
-/* ——— Hero ——— */
+/* ——— Hero ———
+   Redesign hero model (§2.5): the claim leads — identity, one
+   line, one action — and the timeline deck follows as the
+   evidence strip, the real artefact shown under the claim.
+   Before the redesign the deck sat above the headline and the
+   3-second read started with chrome. */
 .hero { position: relative; overflow: clip; border-bottom: 1px solid var(--line-soft); background: var(--bg-soft); }
-.hero-inner { position: relative; z-index: 2; padding-block: var(--space-7); max-width: 940px; }
+.hero-cutroom { display: flex; flex-direction: column; }
+.hero-cutroom .hero-inner { order: -1; }
+.hero-inner { position: relative; z-index: 2; padding-block: calc(var(--space-7) + 22px) var(--space-6); max-width: 940px; }
 
 /* Hero entrance — decelerate in, staggered like a slate sequence */
 @media (prefers-reduced-motion: no-preference) {
@@ -120,11 +128,11 @@
   margin-bottom: var(--space-4);
 }
 .hero-kicker .rec {
-  display: inline-grid; place-items: center; width: 10px; height: 10px; border-radius: 50%;
-  background: var(--ember); box-shadow: var(--glow-rec);
-}
-@media (prefers-reduced-motion: no-preference) {
-  .hero-kicker .rec { animation: rec-blink 1.6s ease-in-out infinite; }
+  /* Pattern-book fold (§2.3c): the kicker's dot was a decorative
+     REC spend in every hero. It is now a brass slate mark — the
+     deck's own REC light is the view's one record meaning. */
+  display: inline-grid; place-items: center; width: 8px; height: 8px; border-radius: 2px;
+  background: var(--gold);
 }
 .hero h1 {
   font-size: var(--display-1); font-weight: 800; font-stretch: 62%;

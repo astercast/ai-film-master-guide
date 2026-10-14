@@ -7,7 +7,7 @@ description: Write a stop-motion claymation gag prompt (animated track) using th
 
 ## What this gets you
 
-You will have a finished prompt for a stop-motion claymation gag — the shot used for None — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+You will have a finished prompt for a stop-motion claymation gag — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
 
 ## Use when
 

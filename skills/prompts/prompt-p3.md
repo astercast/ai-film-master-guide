@@ -7,7 +7,7 @@ description: Write a car commercial (photoreal) prompt (photorealistic track) us
 
 ## What this gets you
 
-You will have a finished prompt for a car commercial (photoreal) — the shot used for None — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+You will have a finished prompt for a car commercial (photoreal) — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
 
 ## Use when
 

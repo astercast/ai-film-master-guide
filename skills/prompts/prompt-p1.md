@@ -7,7 +7,7 @@ description: Write a dialogue drama close-up prompt (photorealistic track) using
 
 ## What this gets you
 
-You will have a finished prompt for a dialogue drama close-up — the shot used for None — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+You will have a finished prompt for a dialogue drama close-up — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
 
 ## Use when
 

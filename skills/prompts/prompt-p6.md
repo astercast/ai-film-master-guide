@@ -7,7 +7,7 @@ description: Write a sci-fi corridor dolly (photoreal) prompt (photorealistic tr
 
 ## What this gets you
 
-You will have a finished prompt for a sci-fi corridor dolly (photoreal) — the shot used for None — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+You will have a finished prompt for a sci-fi corridor dolly (photoreal) — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
 
 ## Use when
 

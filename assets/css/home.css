@@ -62,12 +62,15 @@ body.home .tracks { padding-block: var(--space-7) 0; margin-bottom: var(--space-
 .marker-sm { font-size: 0.6rem; padding: 3px 8px; margin-left: var(--space-3); }
 
 /* ——— Learning paths: accordion rows, not a card wall ——— */
-.path-list { display: grid; gap: var(--space-3); margin-bottom: var(--space-7); }
-.path-row { padding: 0; overflow: clip; }
+.path-list { display: grid; gap: 0; margin-bottom: var(--space-7); border-top: 1px solid var(--line); }
+.path-row {
+  padding: 0; overflow: clip; background: transparent;
+  border: none; border-bottom: 1px solid var(--line); border-radius: 0;
+}
 .path-summary {
   list-style: none; cursor: pointer;
   display: flex; align-items: center; gap: var(--space-3);
-  padding: var(--space-4) var(--space-5);
+  padding: var(--space-4) var(--space-2);
 }
 .path-summary::-webkit-details-marker { display: none; }
 .path-summary::marker { content: ""; }
@@ -83,19 +86,22 @@ body.home .tracks { padding-block: var(--space-7) 0; margin-bottom: var(--space-
   letter-spacing: -0.005em;
 }
 .path-summary:hover .path-title { color: var(--gold); }
-.path-row > p, .path-row > .path-bar, .path-row > .path-progress { margin-inline: var(--space-5); }
+.path-row > p, .path-row > .path-bar, .path-row > .path-progress { margin-inline: var(--space-2); }
 .path-row > p { color: var(--ink-dim); max-width: 68ch; }
-.path-row > .path-steps { margin: var(--space-3) var(--space-5) var(--space-5); }
+.path-row > .path-steps { margin: var(--space-3) var(--space-2) var(--space-5); }
 
 /* ——— Chapter bins: the shelf, one bin open at a time ——— */
 .bin {
-  border: 1px solid var(--line-soft); border-radius: var(--radius-m);
-  background: var(--panel); margin-bottom: var(--space-3); overflow: clip;
+  /* Redesign: bins are reels on a shelf, not boxes — a hairline,
+     a label row, and the chapters beneath when opened. */
+  border: none; border-top: 1px solid var(--line);
+  background: transparent; margin-bottom: 0; overflow: clip;
 }
+.bin:last-of-type { border-bottom: 1px solid var(--line); }
 .bin-summary {
   list-style: none; cursor: pointer;
   display: flex; align-items: baseline; gap: var(--space-3);
-  padding: var(--space-4) var(--space-5);
+  padding: var(--space-4) var(--space-2);
 }
 .bin-summary::-webkit-details-marker { display: none; }
 .bin-summary::marker { content: ""; }
@@ -116,7 +122,7 @@ body.home .tracks { padding-block: var(--space-7) 0; margin-bottom: var(--space-
 .bin-summary:hover .bin-name { color: var(--gold); }
 .bin-meta { margin-left: auto; color: var(--muted); font-size: 0.85rem; white-space: nowrap; }
 .bin-tc { font-size: 0.72rem; white-space: nowrap; }
-.bin-body { padding: 0 var(--space-5) var(--space-5); }
+.bin-body { padding: 0 var(--space-2) var(--space-5); }
 .bin-body .chapter-grid { margin: 0; }
 
 /* ——— Workbench: four tools, compact tiles ——— */

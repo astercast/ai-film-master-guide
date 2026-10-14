@@ -7,7 +7,7 @@ description: Write a horror corridor (photoreal) prompt (photorealistic track) u
 
 ## What this gets you
 
-You will have a finished prompt for a horror corridor (photoreal) — the shot used for None — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+You will have a finished prompt for a horror corridor (photoreal) — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
 
 ## Use when
 
