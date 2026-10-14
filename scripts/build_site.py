@@ -303,25 +303,21 @@ INDEX_TMPL = """<!DOCTYPE html>
   
   <main id="main">
     <section class="hero hero-cutroom hero-home" aria-labelledby="hero-title">
-            <div class="container hero-inner hero-grid">
-        <div class="hero-claim">
-        <p class="hero-slate"><span>The cutting room</span></p>
+      <div class="container hero-inner">
+        <p class="hero-slate"><span>The cutting room</span><span class="tc hero-tc" aria-hidden="true">TC 00:00:00:00</span></p>
         <h1 id="hero-title">Make films with AI like a studio.</h1>
         <p class="lede">The craft manual for professional AI filmmaking, in thirty-one chapters, with a working cutting room that will teach you to make twelve separate clips feel like one film.</p>
         <div class="btn-row hero-cta">
-          <a class="btn btn-gold btn-lg" href="guides/first-short.html">Make your first short <span aria-hidden="true">&rarr;</span></a>
+          <a class="btn btn-slate btn-lg" href="guides/first-short.html"><span class="btn-clap" aria-hidden="true"></span>Make your first short</a>
           <a class="hero-alt" href="cutting-room.html">or watch a scene get built in the cutting room</a>
         </div>
+        <p class="hero-counts tc">{chapter_count} chapters &middot; {skill_count} task skills &middot; 47 prompt templates &middot; {model_count} model records &middot; 22 camera moves. Free to read, start to finish. No account. No sign-up.</p>
+        <div class="hero-records">
+          <p class="hero-records-h"><span>The full shelf, first lines</span><span class="tc" aria-hidden="true">ISSUE 01 &middot; REEL 01</span></p>
+          <ol class="shelf-lines hero-lines">
+{hero_lines}
+          </ol>
         </div>
-        <aside class="slate-board" aria-label="What the guide holds">
-          <p class="slate-title">In the room</p>
-          <div class="slate-row"><span>Chapters</span><b>{chapter_count}</b></div>
-          <div class="slate-row"><span>Task skills</span><b>{skill_count}</b></div>
-          <div class="slate-row"><span>Prompt templates</span><b>47</b></div>
-          <div class="slate-row"><span>Model records</span><b>{model_count}</b></div>
-          <div class="slate-row"><span>Camera moves</span><b>22</b></div>
-          <p class="slate-foot">Free to read, start to finish. No account. No sign-up.</p>
-        </aside>
       </div>
     </section>
 
@@ -329,20 +325,20 @@ INDEX_TMPL = """<!DOCTYPE html>
     <section class="container shelf" aria-labelledby="chapters-h">
       <h2 id="chapters-h">The full shelf</h2>
       <p class="section-lede">Thirty-one chapters. Read them by track, or by path. The full catalog stands below, every chapter a record line.</p>
-      <h3 class="shelf-order-h" id="tracks-h">First reading order: by track</h3>
+      <h3 class="shelf-order-h" id="tracks-h"><span class="tc rec-no" aria-hidden="true">ORD 01</span> First reading order: by track</h3>
       <div class="track-lines">
         <article class="track-line">
-          <h4>Animated / Stylized</h4>
+          <h4><span class="tc rec-no" aria-hidden="true">TRK 01</span> Animated / Stylized</h4>
           <p>Two ways to shoot. The craft overlaps; the prompt language doesn't. Anime, Ghibli-style, Pixar-style 3D, 2D cartoon, claymation. Cheaper to iterate, more forgiving on faces, judged in its own categories, with its own prompt register (no lens or depth-of-field language) and its own model shortlist.</p>
           <p class="track-links"><a href="higgsfield/prompt-engineering.html">Prompt engineering</a> · <a href="platforms/when-to-use-what.html">Model selection</a></p>
         </article>
         <article class="track-line">
-          <h4>Photorealistic</h4>
+          <h4><span class="tc rec-no" aria-hidden="true">TRK 02</span> Photorealistic</h4>
           <p>Premium models, identity discipline, and post-production craft that passes for real. The lane for drama, action, and trailer-grade work, where every shortcut shows.</p>
           <p class="track-links"><a href="higgsfield/soul-id-deep-dive.html">Soul ID deep dive</a> · <a href="craft/character-consistency.html">Character consistency</a></p>
         </article>
       </div>
-      <h3 class="shelf-order-h" id="paths-h">Second reading order: by path</h3>
+      <h3 class="shelf-order-h" id="paths-h"><span class="tc rec-no" aria-hidden="true">ORD 02</span> Second reading order: by path</h3>
       <p class="section-lede">Don't read thirty-one chapters in order. Pick the goal that matches the film you're trying to make, each path is the shortest honest route through the guide. Tick steps off as you finish them; your progress stays in this browser.</p>
       <div class="path-list">
         <details class="path-row path-card" data-path="first-film">
@@ -443,8 +439,8 @@ INDEX_TMPL = """<!DOCTYPE html>
           </ol>
         </details>
       </div>
-      <h3 class="shelf-order-h">The catalog, by shelf</h3>
-      <p class="section-lede">Ten shelves, thirty-one chapters.</p>
+      <h3 class="shelf-order-h"><span class="tc rec-no" aria-hidden="true">ORD 03</span> The catalog, by shelf</h3>
+      <p class="section-lede">Ten shelves, numbered as issues, thirty-one chapters.</p>
       {bins_section}
     </section>
 
@@ -7846,14 +7842,15 @@ def main():
     # contract sentence.
     bins_parts = []
     ch_no = 0
-    for section_id, section_name in SECTIONS:
+    all_lines = []  # every chapter's record line, in catalog order
+    for shelf_no, (section_id, section_name) in enumerate(SECTIONS, start=1):
         items = chapters[section_id]
         n = len(items)
         mins = sum(c["read_min"] for _, c in items)
         lines = []
         for slug, c in items:
             ch_no += 1
-            lines.append(
+            line = (
                 f'<li class="shelf-line"><a href="{section_id}/{slug}.html">'
                 f'<span class="shelf-no tc">CH {ch_no:02d}</span>'
                 f'<span class="shelf-title">{c["title"]}</span>'
@@ -7861,10 +7858,20 @@ def main():
                 f'<span class="shelf-time">{c["read_min"]} min</span>'
                 f'<span class="shelf-contract">{contract_sentence(c["md"])}</span>'
                 f'</a></li>')
+            lines.append(line)
+            all_lines.append(line)
+        # Numbering discipline (rotation 23, FINDINGS 5.3 direction B
+        # inside A): shelves are numbered as issues, Surfer's-Journal
+        # style, in the timecode voice at the head of each group row.
         bins_parts.append(
             f'<div class="shelf-group"><p class="slate-row shelf-group-row">'
-            f'<span>{section_name}</span><b>{n} {"chapter" if n == 1 else "chapters"} · {mins} min</b></p>'
+            f'<span><span class="tc shelf-issue">SHELF {shelf_no:02d}</span>{section_name}</span><b>{n} {"chapter" if n == 1 else "chapters"} · {mins} min</b></p>'
             f'<ol class="shelf-lines">{"".join(lines)}</ol></div>')
+    # The hero (rotation 23): the stat card is unbolted. The first
+    # screen is already the publication: the shelf's first five
+    # record lines, the same lines the catalog below prints, stand
+    # in the hero under a slate head row.
+    hero_lines = "\n            ".join(all_lines[:5])
 
     # The Watchtower door: the feed's published summary, read from the
     # same check file the model-watch page renders. Read-only: the
@@ -7902,6 +7909,7 @@ def main():
         wave3=waveform_divider(seed=37),
         wave4=waveform_divider(seed=51),
         bins_section="\n".join(bins_parts),
+        hero_lines=hero_lines,
         pack_rows=pack_rows,
         wt_total=ck_sum_home.get("models_total", model_count),
         wt_changed=ck_sum_home.get("changed", 0),

@@ -14,11 +14,13 @@
      action, the slate lines, the display accents and the hover
      states. Status colours (red, blue, green, amber) still mean
      data only: Watchtower badges and verdicts.
-   - Three type jobs, each with its own face. Anton, the condensed
-     display voice of slate boards and leader cards, proclaims.
-     Inter reads and operates. Newsreader carries long chapter
-     prose. Code and real data values use the system mono stack.
-     Display never sets body text; mono never sets a headline.
+   - Four type jobs, each with its own face (rotation 23). Anton,
+     the condensed display voice of slate boards and leader cards,
+     proclaims. Inter reads and operates. Newsreader carries long
+     chapter prose. JetBrains Mono is the timecode voice: timecodes,
+     slate labels, record numbers and metadata are set in it, so
+     metadata stops borrowing the body voice. Display never sets
+     body text; mono never sets a headline.
    - Space stays on the v2 strict scale: distance means
      relationship. Sections are grouped by warm surface shifts
      as well as space, so the page has rooms, not voids.
@@ -56,11 +58,11 @@
   --ok: #8be28b;
   --warn: #ffb35c;
 
-  /* Type: three jobs, three faces */
+  /* Type: four jobs, four faces (rotation 23) */
   --font-display: "Anton", "Inter", "Helvetica Neue", sans-serif;
   --font-body: "Inter", "Helvetica Neue", Arial, system-ui, sans-serif;
   --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
   --text-xs: 0.75rem;
   --text-sm: 0.86rem;

@@ -118,11 +118,15 @@ body.home .tracks { padding-block: 0; margin-bottom: var(--space-9); }
    Typography and real counts only. */
 .slate-board {
   /* r22 (C7 audit): flat panel ground. A slate board is a matte
-     board in the world; the two-stop shade depicted nothing. */
+     board in the world; the two-stop shade depicted nothing.
+     r23 (FINDINGS 5.3): squared slate edges. A slate is a squared
+     board with a hinged top, not a rounded card with a gold lid;
+     the radius and the lift shadow are gone, the board sits flat
+     on the page, its gold edge read as the slate's chalk line. */
   background: var(--panel-2);
   border: 1px solid var(--line-bright); border-top: 4px solid var(--gold);
-  border-radius: var(--radius-l); padding: var(--space-5) var(--space-6) var(--space-6);
-  box-shadow: var(--shadow-lift);
+  border-radius: 0; padding: var(--space-5) var(--space-6) var(--space-6);
+  box-shadow: none;
 }
 .slate-title {
   font-family: var(--font-display); font-size: 0.9rem; letter-spacing: 0.24em;
@@ -228,7 +232,11 @@ body.home main section h2::before {
 .shelf-line { border-bottom: 1px solid var(--line-soft); }
 .shelf-line a {
   display: grid; align-items: baseline; gap: var(--space-1) var(--space-4);
-  grid-template-columns: 58px minmax(170px, 1.1fr) 104px 52px 2fr;
+  /* r23 fix (first-build render): the 104px level column was
+     narrower than "STATE OF THE FIELD" at its own setting, and
+     the level collided with the read time beside it. The column
+     is sized to its longest value, the setting tightened. */
+  grid-template-columns: 58px minmax(170px, 1.1fr) 136px 52px 2fr;
   padding: var(--space-3) var(--space-1); color: var(--ink); text-decoration: none;
 }
 .shelf-line a:hover { background: var(--panel); text-decoration: none; }
@@ -236,7 +244,8 @@ body.home main section h2::before {
 .shelf-no { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); }
 .shelf-title { font-weight: 620; letter-spacing: -0.005em; }
 .shelf-level {
-  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
+  font-family: var(--font-mono);
+  font-size: 0.68rem; font-weight: 500; letter-spacing: 0.05em;
   text-transform: uppercase; color: var(--muted); white-space: nowrap;
 }
 .shelf-time { font-variant-numeric: tabular-nums; color: var(--ink-dim); font-size: 0.9rem; white-space: nowrap; }
@@ -314,6 +323,82 @@ a.bench-obj:hover h3 { color: var(--gold); }
 
 /*  The Watchtower door: the feed's summary as a slate board  */
 .wt-door-board { max-width: 640px; }
+
+/* ============================================================
+   r23 (FINDINGS 5.3, "The cutting room, drawn"). The hero's SaaS
+   stat card is unbolted: no aside, no split. The claim stands
+   full width, the counts print as one quiet mono line, and the
+   shelf's first record lines stand in the hero itself, so the
+   first screen is already the publication. The CTA takes slate
+   form. Record numbers everywhere on the home are set in the
+   timecode voice (mono), never the body voice.
+   ============================================================ */
+
+/* The slate line's timecode, set after the slate word, before the
+   rule runs to the edge. */
+.hero-slate .hero-tc { font-size: 0.8rem; }
+
+/* The CTA as a slate: squared gold board, a clapper stripe across
+   its top (hard-stop stripes on the object itself, the bench-slip
+   ruling precedent), its timecode printed on its face. */
+.btn-slate {
+  position: relative; background: var(--gold); border: 1px solid var(--gold);
+  border-radius: 0; color: #171106; font-weight: 650;
+  padding-top: calc(var(--space-3) + 7px);
+  box-shadow: none;
+}
+.btn-slate:hover { background: var(--tungsten); border-color: var(--tungsten); box-shadow: none; }
+.btn-clap {
+  /* The clapper stick's own stripes: black and cream, diagonal.
+     (First build used black on gold, which read as hazard tape;
+     redesigned in the same pass, see the landing record.) */
+  position: absolute; top: 0; left: 0; right: 0; height: 7px;
+  background: repeating-linear-gradient(-45deg, #171106 0 10px, var(--ink) 10px, var(--ink) 20px);
+  border-bottom: 1px solid #171106;
+}
+
+/* Proof, whispered: every count on the first screen in one mono
+   line, one colour (the fleet rule from FINDINGS Section 4). */
+.hero-counts {
+  color: var(--muted); font-size: 0.82rem; line-height: 1.7;
+  margin: var(--space-5) 0 0; white-space: normal; max-width: 110ch;
+}
+
+/* With the card gone the claim takes the hero's full measure:
+   the home headline sets at the top of the display scale, so the
+   first screen's left half is the statement, not a column beside
+   a missing panel (first-build critique, landing record). */
+body.home .hero h1 { font-size: clamp(3.2rem, 7.6vw, 6.3rem); max-width: 14ch; }
+
+/* The hero's record lines: the shelf's own furniture, from pixel
+   one. Head row is a slate row; the lines are the catalog's lines
+   (.shelf-line anatomy, home.css above), full width. */
+.hero-records { margin-top: var(--space-7); border-top: 2px solid var(--gold); }
+.hero-records-h {
+  display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-4);
+  padding: var(--space-3) var(--space-1); border-bottom: 1px solid var(--line-bright);
+  margin: 0;
+  font-family: var(--font-display); letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold); font-size: 0.95rem;
+}
+.hero-records-h .tc { font-size: 0.78rem; }
+.hero-lines { margin: 0; }
+
+/* Record numbers in the timecode voice: reading-order numbers,
+   track numbers, shelf issue numbers. */
+.rec-no { color: var(--gold); font-size: 0.82rem; margin-right: var(--space-3); }
+.track-line h4 .rec-no { font-size: 0.78rem; }
+.shelf-issue { color: var(--ink-dim); font-size: 0.8rem; margin-right: var(--space-4); }
+.shelf-group-row .slate-row b, .shelf-group-row b { font-variant-numeric: tabular-nums; }
+
+/* The screening room's frame caption gains its slate label in the
+   timecode voice (metadata in mono, r23). */
+.sr-frame figcaption { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.02em; }
+
+@media (max-width: 720px) {
+  .hero-records-h .tc { display: none; }
+  .hero-lines .shelf-line a { grid-template-columns: 52px 1fr 52px; }
+}
 
 @media (max-width: 1023px) {
   .bench-slip { grid-column: 1 / 13; }

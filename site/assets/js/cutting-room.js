@@ -577,10 +577,22 @@
         '<p class="calc-note">Library example applied: ' + esc(s.usedLibrary.join("; ")) + ' <span class="cr-libtag">library</span></p>' : "";
       var unf = s.unfilled.length ?
         '<p class="cr-flag"><strong>Still a placeholder:</strong> ' + esc(s.unfilled.map(function (u) { return "[" + u + "]"; }).join(", ")) + ', fill before generating.</p>' : "";
+      /* r23 (Paper Mono's lesson): the shot's anatomy, framing,
+         move, light, from the template's own facets, printed as
+         the shot's slate line. The notation is the art. */
+      var anat = "";
+      if (s.template.facet) {
+        var f = s.template.facet;
+        var words = function (v) { return String(v || "").replace(/-/g, " "); };
+        anat = '<p class="cr-anatomy"><span><b>Framing</b> ' + esc(words(f.shot_type)) + '</span>' +
+          '<span><b>Move</b> ' + esc(words(f.movement)) + '</span>' +
+          '<span><b>Light</b> ' + esc(words(f.lighting)) + '</span></p>';
+      }
       return '<article class="card cr-shot" aria-label="Shot ' + s.n + ' of ' + take.shots.length + '">' +
         '<div class="cr-shot-head"><span class="cr-shot-tc">' + s.tcIn + '</span>' +
         '<span class="cr-shot-role">' + esc(s.role) + '</span>' +
         '<span class="cr-shot-src">from <a href="prompts.html">' + esc(s.template.title) + '</a> <span class="calc-note">' + esc(s.template.id) + '</span></span></div>' +
+        anat +
         '<p class="cr-shot-text">' + esc(s.text) + '</p>' +
         '<p class="calc-note"><strong>Why this shot:</strong> ' + esc(s.template.anatomy || s.template.use || "coverage") + '</p>' +
         '<p class="calc-note"><strong>Model:</strong> ' + esc(s.model.name) + ' · ' + esc(s.model.tierName) + ' · ' +
@@ -847,7 +859,23 @@
           return r.json();
         }).then(function (j) { return j.templates || []; })
       : Promise.resolve([]);
+    /* r23: the facets file (the library's own shot data: framing,
+       move, light per template) rides along so each shot can print
+       its anatomy as a slate line. Optional by design: without it
+       the shoot renders exactly as before, minus the anatomy line. */
+    var facetP = (typeof fetch === "function")
+      ? fetch("prompts-facets.json").then(function (r) {
+          if (!r.ok) throw new Error("facets " + r.status);
+          return r.json();
+        }).then(function (j) { return j.facets || {}; })
+        .catch(function () { return {}; })
+      : Promise.resolve({});
     tplP.then(function (tpls) {
+      return facetP.then(function (facets) {
+        tpls.forEach(function (t) { if (facets[t.id]) t.facet = facets[t.id]; });
+        return tpls;
+      });
+    }).then(function (tpls) {
       TEMPLATES = tpls.length ? tpls : [];
       if (!TEMPLATES.length) {
         els["cr-note"].innerHTML = '<p class="cr-flag" role="note"><strong>The prompt library didn\'t load.</strong> ' +

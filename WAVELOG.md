@@ -1,3 +1,32 @@
+## Rotation 23 — Film: the cutting room, drawn (2026-10-14)
+
+FINDINGS §5.3 executed. The hero's SaaS stat card is unbolted: the
+rounded, gold-lidded slate-board aside is gone from the first
+screen, and the hero's furniture is the shelf's own, chapters as
+record lines from pixel one (the catalog's first five lines stand
+in the hero under a slate head row), the counts printed as one
+quiet mono line. JetBrains Mono returns as a self-hosted face
+with one job, the timecode voice: timecodes, slate labels, record
+numbers and metadata are set in it across the home, the shelf,
+skill pages and the Cutting Room, so metadata stops borrowing the
+body voice. Squared slate edges replace the rounded gold-lidded
+card language on the rebuilt surfaces (slate boards, the skill
+front door, Cutting Room shot/layer/take cards); the home CTA
+takes slate form, a squared gold board under a black-and-cream
+clapper stripe. Shelves are numbered as issues (SHELF 01 to 10,
+with ORD and TRK numbers on the reading orders). The Cutting
+Room prints each shot's anatomy, framing, move and light from
+the template's own facets (prompts-facets.json), as a mono slate
+line. The one signature motion is now a cut/wipe view transition
+(hard edge, three steps, no fade); reduced motion stills it
+entirely. Palette unchanged. Also fixed: the phone nav row
+measured 342px at a 320 client on every page at the r22 base;
+it now fits whole at 320 (zero overflow at 1440, 390 and 320 on
+all captured surfaces). Landing record:
+~/workspace/fleet-ops/wave-engine/landing-film-r23.md.
+validate.sh 29/29; the Watchtower feed stands undisturbed at
+32/0/0/0, its data, checker and drift pair byte-untouched.
+
 ## Rotation 22 — Film composition pass (2026-10-14)
 
 The home is four compositions (FILM-STUDY §4): the slate hero;

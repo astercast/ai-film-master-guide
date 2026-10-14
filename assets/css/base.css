@@ -72,10 +72,14 @@ pre code { background: none; padding: 0; border: none; }
   content: ""; width: 34px; height: 3px; background: var(--gold); flex: none;
 }
 
-/* Former timecode stamp: v2 renders it as plain muted text.
-   docs.js no longer injects stamps; the class survives only in
-   older markup and carries no costume. */
-.tc { font-size: 0.85em; color: var(--muted); white-space: nowrap; }
+/* Timecode stamp (rotation 23): the domain's own notation is the
+   micro-type ornament system. Every .tc, timecodes, slate labels,
+   record numbers, metadata, is set in the mono face (JetBrains
+   Mono, fonts.css), never in the body voice. */
+.tc {
+  font-family: var(--font-mono); font-size: 0.85em; color: var(--muted);
+  white-space: nowrap; letter-spacing: 0.02em;
+}
 
 /* VP-0006: docs.js appends this stamp directly after section-heading
    text. In the prose layout the stamp is a separated chip (.prose h2
@@ -101,13 +105,21 @@ main section h2 > .tc { margin-left: var(--space-3); }
    no settle, no drift: projection's own grammar. The names said
    "cut" since rotation 13 while the definitions faded and rose
    (Blacklist L14's type case); the definitions now keep the name.
+   Rotation 23 (FINDINGS 5.3): the ONE signature motion becomes a
+   cut/wipe, the cutting room's own transition. The old page holds,
+   unmoving; the new page wipes in over it left to right behind a
+   hard edge, in three steps, like a luma wipe on the bench, no
+   fade, no rise, no drift. Nothing else on any surface moves.
    Progressive enhancement only, browsers without cross-document
    view transitions ignore the rule and navigate as before; the
-   reduced-motion guard stills the pseudo-elements. */
+   reduced-motion guard below stills the pseudo-elements entirely
+   (no @view-transition rule exists under reduce). */
 @media (prefers-reduced-motion: no-preference) {
   @view-transition { navigation: auto; }
-  ::view-transition-old(root) { animation: vt-cut-out 0.12s ease-in both; }
-  ::view-transition-new(root) { animation: vt-cut-in 0.12s ease-out both; }
+  ::view-transition-old(root) { animation: none; }
+  ::view-transition-new(root) { animation: vt-wipe-in 0.28s steps(3, end) both; }
 }
-@keyframes vt-cut-out { to { opacity: 0; } }
-@keyframes vt-cut-in { from { opacity: 0; } }
+@keyframes vt-wipe-in {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}

@@ -1,12 +1,14 @@
 /* ============================================================
-   Self-hosted fonts, v3: three families, three jobs.
+   Self-hosted fonts, v4 (rotation 23): four families, four jobs.
    Anton proclaims (headlines, slate lines, the brand): the
    condensed voice of the cutting room, restored in the identity
    pass after v2 cut it. Inter reads and operates. Newsreader
-   carries long-form chapter prose. Code and real data values
-   use the system mono stack from tokens.css; no webfont is
-   loaded for them, and JetBrains Mono stays cut. All files SIL
-   Open Font License; see FONTS.md.
+   carries long-form chapter prose. JetBrains Mono is the
+   timecode voice (rotation 23, FINDINGS 5.3): timecodes, slate
+   labels, record numbers and metadata are set in it, so
+   metadata stops borrowing the body voice. It was cut in v2 as
+   decoration; it returns with a job, the domain's own notation.
+   All files SIL Open Font License; see FONTS.md.
    ============================================================ */
 
 @font-face {
@@ -35,6 +37,16 @@
   font-weight: 200 800;
   font-display: swap;
   src: url("../fonts/newsreader-latin-normal-var.woff2") format("woff2-variations");
+}
+@font-face {
+  /* Variable file (weight axis 400 to 800 in the file itself);
+     the variations format is declared per rule 2, the range per
+     rule 1. Weights are set with font-weight only (rule 3). */
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url("../fonts/jetbrains-mono-latin-var.woff2") format("woff2-variations");
 }
 @font-face {
   font-family: "Newsreader";

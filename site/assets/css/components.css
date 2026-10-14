@@ -222,7 +222,7 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--gold); }
 @keyframes td-card-in-reduced { from { opacity: 0; } to { opacity: 1; } }
 .td-card { animation: td-card-in var(--dur-2) var(--ease); }
 .td-films-nav { display: flex; justify-content: space-between; gap: var(--space-3); margin-top: var(--space-5); flex-wrap: wrap; }
-.td-shotno { font-family: var(--font-body); color: var(--gold); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; margin: 0 0 var(--space-2); }
+.td-shotno { font-family: var(--font-mono); color: var(--gold); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; margin: 0 0 var(--space-2); }
 .td-card h3 { margin: 0 0 var(--space-4); }
 .td-fields { display: grid; gap: var(--space-4); margin: 0; }
 .td-fields dt { font-family: var(--font-body); font-weight: 600; font-size: 0.72rem; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; margin-bottom: var(--space-1); }
@@ -575,12 +575,14 @@ details:not(.nav-idx):not(.bin):not(.path-row)[open] { border-color: var(--line-
   margin-bottom: var(--space-5);
 }
 .cr-slate .cr-take-tag {
-  font-family: var(--font-body); font-size: var(--text-xs); letter-spacing: 0.14em;
-  color: var(--bg); background: var(--gold); border-radius: var(--radius-s);
+  /* r23: slate labels are set in the timecode voice (mono), squared
+     like the slate they imitate. */
+  font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.14em;
+  color: var(--bg); background: var(--gold); border-radius: 0;
   padding: 3px 10px; font-weight: 700;
 }
 .cr-slate h2 { margin: 0; font-size: var(--display-3); }
-.cr-slate .tc { font-family: var(--font-body); font-size: var(--text-sm); color: var(--muted); }
+.cr-slate .tc { font-family: var(--font-mono); font-size: var(--text-sm); color: var(--muted); }
 
 .cr-grade-row { display: flex; gap: var(--space-5); align-items: center; }
 .cr-score { display: flex; align-items: baseline; gap: 4px; flex: none; }
@@ -601,7 +603,7 @@ details:not(.nav-idx):not(.bin):not(.path-row)[open] { border-color: var(--line-
 .cr-layers { list-style: none; margin: var(--space-4) 0 0; padding: 0; display: grid; gap: var(--space-2); }
 .cr-layer {
   display: flex; gap: var(--space-3); align-items: baseline; flex-wrap: wrap;
-  background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-m);
+  background: var(--panel); border: 1px solid var(--line); border-radius: 0;
   padding: var(--space-3) var(--space-4); font-size: var(--text-sm);
   transition: transform var(--dur-1) var(--ease);
 }
@@ -616,13 +618,27 @@ details:not(.nav-idx):not(.bin):not(.path-row)[open] { border-color: var(--line-
   display: flex; gap: var(--space-3); align-items: baseline; flex-wrap: wrap;
   margin-bottom: var(--space-2);
 }
-.cr-shot-tc { font-family: var(--font-body); font-size: var(--text-sm); color: var(--tungsten); }
+.cr-shot-tc { font-family: var(--font-mono); font-size: var(--text-sm); color: var(--tungsten); }
 .cr-shot-role {
-  font-family: var(--font-body); font-size: var(--text-xs); letter-spacing: 0.12em;
+  font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.12em;
   text-transform: uppercase; color: var(--gold); border: 1px solid var(--line-bright);
-  border-radius: var(--radius-s); padding: 2px 8px;
+  border-radius: 0; padding: 2px 8px;
 }
 .cr-shot-src { font-size: var(--text-sm); color: var(--muted); margin-left: auto; }
+.cr-shot-src .calc-note { font-family: var(--font-mono); font-size: 0.78rem; }
+/* r23 (Paper Mono's lesson, FINDINGS 5.3): a shot's anatomy is the
+   surface's art. Framing, move and light, read from the template's
+   own facets, print as one mono slate line under the shot's head:
+   the notation is the ornament. Squared shot cards to match. */
+.cr-shot.card, .cr-continuity.card, .cr-fixcard.card { border-radius: 0; }
+.cr-anatomy {
+  display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5);
+  font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.04em;
+  color: var(--muted); text-transform: uppercase;
+  border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft);
+  padding: var(--space-2) 0; margin: 0 0 var(--space-3);
+}
+.cr-anatomy b { color: var(--gold); font-weight: 500; }
 .cr-shot-text { font-family: var(--font-serif); font-size: var(--text-lg); line-height: 1.55; }
 .cr-libtag {
   font-family: var(--font-body); font-size: var(--text-xs); letter-spacing: 0.1em;
@@ -643,12 +659,12 @@ details:not(.nav-idx):not(.bin):not(.path-row)[open] { border-color: var(--line-
 .cr-takelog { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
 .cr-take {
   display: flex; gap: var(--space-4); align-items: baseline; flex-wrap: wrap;
-  background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-m);
+  background: var(--panel); border: 1px solid var(--line); border-radius: 0;
   padding: var(--space-3) var(--space-4); font-size: var(--text-sm);
 }
-.cr-take-n { font-family: var(--font-body); font-weight: 700; color: var(--tungsten); }
+.cr-take-n { font-family: var(--font-mono); font-weight: 700; color: var(--tungsten); }
 .cr-take-g { color: var(--ink-dim); }
-.cr-take-s, .cr-take-c { font-family: var(--font-body); color: var(--muted); }
+.cr-take-s, .cr-take-c { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); }
 .cr-take.is-best { border-color: var(--gold); }
 .cr-take-best {
   font-family: var(--font-body); font-size: var(--text-xs); letter-spacing: 0.1em;
@@ -669,7 +685,7 @@ details:not(.nav-idx):not(.bin):not(.path-row)[open] { border-color: var(--line-
 }
 .cr-tl-track {
   position: relative; height: 44px; background: var(--panel);
-  border: 1px solid var(--line); border-radius: var(--radius-m); overflow: hidden;
+  border: 1px solid var(--line); border-radius: 0; overflow: hidden;
 }
 .cr-tl-fill {
   position: absolute; inset: 0; transform-origin: 0 50%; transform: scaleX(0);
@@ -683,12 +699,12 @@ details:not(.nav-idx):not(.bin):not(.path-row)[open] { border-color: var(--line-
 .cr-tl-shot {
   flex: none; display: flex; align-items: center; gap: 6px;
   background: var(--panel-2); border: 1px solid var(--line-bright);
-  border-radius: var(--radius-s); padding: 4px 10px;
+  border-radius: 0; padding: 4px 10px;
 }
 .cr-tl-n {
-  font-family: var(--font-body); font-weight: 700; color: var(--gold); font-size: var(--text-sm);
+  font-family: var(--font-mono); font-weight: 700; color: var(--gold); font-size: var(--text-sm);
 }
-.cr-tl-tc { font-family: var(--font-body); font-size: var(--text-xs); color: var(--muted); }
+.cr-tl-tc { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); }
 
 /* Scroll reveals: JS adds .cr-will-reveal only when motion is safe. */
 .cr-will-reveal { opacity: 0; transform: translateY(16px); transition: opacity var(--dur-3) var(--ease), transform var(--dur-3) var(--ease); }
@@ -778,6 +794,7 @@ details:not(.nav-idx):not(.bin):not(.path-row)[open] { border-color: var(--line-
 .skill-card::before {
   content: counter(skillrow, decimal-leading-zero);
   grid-column: 1; grid-row: 1 / span 4;
+  font-family: var(--font-mono);
   font-size: 0.78rem; font-weight: 600;
   color: var(--muted); padding-top: 3px;
 }
@@ -839,8 +856,11 @@ details:not(.nav-idx):not(.bin):not(.path-row)[open] { border-color: var(--line-
   line-height: 1.08; text-wrap: balance; margin: var(--space-3) 0 var(--space-2);
 }
 .skill-frontdoor {
+  /* r23: the front door is a slate, squared edges, no rounded card
+     language on the rebuilt skill surface. */
   background: var(--panel); border: 1px solid var(--line-soft);
-  border-radius: var(--radius-m);
+  border-top: 4px solid var(--gold);
+  border-radius: 0;
   padding: var(--space-6);
 }
 .skill-frontdoor .skill-gets {

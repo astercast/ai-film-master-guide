@@ -94,8 +94,9 @@
 }
 .hero-cutroom { display: flex; flex-direction: column; }
 .hero-cutroom .hero-inner { position: relative; z-index: 2; padding-block: var(--space-9) var(--space-8); }
-.hero-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(270px, 5fr); gap: var(--space-7); align-items: end; }
-@media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; align-items: start; } }
+/* r23: .hero-grid is retired with the stat card it split the hero
+   for. The home hero is one column: claim, slate CTA, counts line,
+   record lines (home.css). */
 .hero-inner { position: relative; z-index: 2; padding-block: var(--space-9) var(--space-8); }
 
 /* v2: no hero entrance choreography. The page is simply there. */
@@ -154,4 +155,13 @@
     position: fixed; left: var(--space-4); right: var(--space-4); top: auto;
     min-width: 0; grid-template-columns: 1fr 1fr; max-height: 70vh; overflow: auto;
   }
+}
+/* r23 phone fitting: at 320 the VP-0014 nav row still measured
+   342px wide (document scrollWidth 342 against a 320 client on
+   every page at the r22 base, verified by capture). The labels
+   stay whole and untruncated; the row fits by type size and
+   padding alone, the smallest width this fleet composes for. */
+@media (max-width: 380px) {
+  .site-nav a, .nav-idx-btn { font-size: 0.64rem; padding: 6px 1px; }
+  .nav-idx-btn { gap: 3px; }
 }
