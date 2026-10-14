@@ -1,3 +1,218 @@
+## DATAOPS-002 — Watchtower checker adjudication (2026-10-14)
+
+Seedance 3.0's three-run `all_failed` streak adjudicated: **no watched
+source is dead or moved** — all four transport-failing sources returned
+HTTP 200 with full bodies to curl in the same window and answered the
+checker itself in the settled 2026-10-13T21:21Z run; through the checker
+path in the degraded-egress window every fetch truncates
+(`IncompleteRead`; a dedicated retry probe went 0/20), and Medium's 403
+is a standing content response. One supplement added to Seedance 3.0's
+`extra_urls` (probed live through the checker path twice, signature
+stable): the HighOnFilms Seedance 3.0 provider-verification page.
+`check_models.py`: the run summary now carries the per-model
+`source_status` distribution (`ok / partial / all_failed / no_sources`)
+in the header itself — `with_errors` alone masked 15–19-model partial
+masses in runs 2–4; the four standing summary keys are unchanged.
+Transport retry/backoff was **ruled out on measured evidence** (0/20
+same-path retries; the failure is deterministic within a degraded
+window) — the full ruling and per-source verdict table are recorded in
+`~/workspace/fleet-ops/tickets/DATAOPS-002-film-watchtower-errored-completions.md`.
+
+## Rotation 20 — Skills Usefulness Audit + VP-0010 structural fix (2026-10-13)
+
+**Flagship:** the Skills Usefulness Audit (SKILLS_AUDIT.md;
+machine record `data/v1/skills-audit.json`, format skills-audit/2.0,
+kept by `scripts/audit_skills.py`, on `build_api.py`'s preserve list).
+242 skills audited against the beginner bar: **222 pass / 12
+rewrite-to-usable / 8 demote-to-reference → 234 of 242
+beginner-usable** (audit v2.0 U1–U6 count: 234 pass all six,
+0 front-door fails, 8 class-fails = the reference set). The
+information-site pivot is **not** indicated by these counts; the
+call returns to the user. VP-0010's "how ✗ 12/12" was a
+**reachability** verdict (no card/row linked anywhere at fe22cc5),
+not a procedure verdict — the audit record states that distinction
+explicitly rather than contradicting the panel.
+
+**Structural fix (VP-0010's core):** `build_site.py`'s
+`build_skill_pages()` renders every skill's authored body into
+`site/skills/<id>.html` on every build (generator-owned,
+rebuild-proof; the build wipes `site/` first). Every skills-browser
+card links (title + "Open the skill →") — **242/242**; every Path
+row links in curriculum order — **241/241**; both proven from the
+rendered tree by `scripts/skill-pages.test.js` (6/6, executes the
+real card renderer), wired into `validate.sh` stage 7. Jargon
+glossed at first use on each page's front door (sakuga, J/L cuts,
+identity drift, Soul 2.0, face-morph, shot-reverse-shot;
+glossary-backed or curated in `SKILL_JARGON_PATTERNS`); "BAF" was
+removed from the skills-filter placeholder — it is defined nowhere
+in the guide and no expansion was invented. The 8 reference skills
+keep banner-marked pages and their own browser group: reachable,
+not deleted, not posing as beginner skills.
+
+**Commits:** `bcab9ed` (flagship — audit, gets-you front door,
+per-skill pages, link wiring; identity astercast) + `7506050`
+(checker-feed correction, below) + this WAVELOG record commit.
+**Suites:** validate.sh **29 passed, 0 failed — ALL STAGES PASS**
+(baseline 27/27 beaten: +audit --check, +skill-pages 6/6;
+path.test.js 15/15, watchtower 6/6 inside); tests/api.test.sh
+**55/55**.
+
+**Film error watch (Data-Ops round 126) — per-file disposition.**
+The Watchtower checker run that completed 2026-10-13T23:47:38Z
+wrote an errored set (Seedance 3.0 `source_status: all_failed` —
+upstream transport failure, honestly recorded by the checker;
+~19 unrelated models simultaneously `check_status: error` from
+this environment; drift alert count 19 vs the adjudicated 11;
+queue pending 4; changed=1 Gemini Omni). `check_models.py` writes
+exactly two files; both, plus every page that renders them, were
+handled as follows — **the landed tree carries the clean committed
+fe22cc5 checker outputs, not the errored run's**:
+
+| file | disposition |
+|---|---|
+| `data/v1/model-checks.json` | **Restored** to fe22cc5 (settled Watchtower 2.18 feed, 2026-10-13T21:21Z: changed=0, with_errors=0, 32 models / 0 errors) in `7506050` |
+| `data/v1/model-review-queue.json` | **Restored** to fe22cc5 in `7506050` (the errored run's pending-4 queue not carried) |
+| `site/data/v1/model-checks.json` | **Restored** to fe22cc5 in `7506050` (site copy of the same feed) |
+| `site/data/v1/model-review-queue.json` | **Restored** to fe22cc5 in `7506050` |
+| `site/model-watch.html` | **Restored** to fe22cc5 in `7506050` (renders the feed: "19 need review" → back to the 2.18 line "11 need review · 5 on watch") |
+| `site/showdown.html` | **Restored** to fe22cc5 in `7506050` (renders the same drift data) |
+| `scripts/refresh/model-check-config.json` | **Kept** from the worktree: it is a checker *input* (read by `check_models.py`, never written by it) carrying adjudicated signature-exclusion calibrations; restoring it would re-flag churn already dismissed on the record. Not a checker output; the error watch's outputs are the two JSONs above |
+| `data/v1/index.json` (+ site copy) | **Kept**: `build_api.py` manifest output (timestamps + the skills-audit endpoint), not checker-written |
+
+The flagship commit `bcab9ed` initially adopted the errored set
+as-is from the worktree; `7506050` is the correction, and the
+pushed tree is the corrected one. The 23:47Z run itself is a
+Watchtower-owner matter (a clean re-run + adjudication is a future
+review pass, not part of this rotation).
+
+## Watchtower 2.19 — the seventeenth review pass (2026-10-13)
+
+**Assignment:** Rotation 20, second duty — Watchtower 2.19 (the
+seventeenth review pass over the 32 watched models; the 3 standing
+watches get full checker-path passes), run exactly as 2.17/2.18 ran:
+completed runs read from on-disk logs only. This entry supersedes the
+flagship entry's error-watch note above on one point of fact: the
+23:47Z run it restored away was this pass's run 3, mid-adjudication —
+the pass it belonged to has since completed and been adjudicated in
+full, and the tree now carries the pass's final, verified feed.
+
+**Duty — Watchtower 2.19 (seventeenth review pass).** All 3 standing
+watches stand:
+
+- **Seedance 3.0 — unconfirmed, on absence of evidence.** This pass
+  its criteria pages never answered the checker path: Versely's
+  criteria page and the breakread article failed every fetch in all
+  five completed runs (IncompleteRead) and in four checker-path
+  probes (IncompleteRead at 0–129,422 bytes), and the model's
+  remaining sources gated likewise (all_failed in every completed
+  run). No ByteDance announcement, model card, API ID, or pricing
+  reached the record through any answering source, and the runs'
+  news sweep carries no Seedance 3.0 announcement (its one 3.0
+  headline is a "verify the model before you render" caution
+  piece). Watch stays open — the first pass in the 2.x series whose
+  Seedance criteria pages could not be content-read, stated plainly.
+- **Kling 4.0 — stays "announced".** APIMart's criteria page
+  answered at its baseline signature (fc55ce30…, 136,708 chars) in
+  every completed run — a fourteenth consecutive pass at the
+  identical signature — still "API Coming Soon", availability
+  "Not yet", pricing "has not been announced"; its text schedules
+  Kling 4.0 for October 2026 with Flash in limited early access.
+  Two probes returned the smaller known rendering (c612033c…,
+  9,434 chars), read in full: the same criteria text on every point
+  that matters. No GA model ID, no Kuaishou pricing.
+- **Soul Cinema — in-app credit cost still unpublished.**
+  Higgsfield's pricing page answered at the settled 428-char shell
+  (f14e9f4a…) in two checker-path probes, with no credit figure;
+  the API post, read via probes, still lists only the $0.0032/image
+  rate tabled in 2.3.
+- **FLUX follow-up:** BFL's docs pricing page answered at its 2.16
+  baseline (f95831ee…, 9,728 chars) in the pass's completed runs;
+  two probes returned the second known rendering (3f90e01a…,
+  7,057 chars), its rate table read and matching the record on
+  every carried tier. The three known renderings are all on record;
+  no flag on the rate source.
+- **PixVerse V6 — ninth clean pass claimed.** Its docs source
+  fetched clean at the baseline signature (95c88c96…, 4,278 chars)
+  in the pass's later completed runs (source_status ok in the
+  final feed) and in two checker-path probes — one earlier run's
+  fetch of it was gated (IncompleteRead) and is not counted. The
+  2.10 recovery now stands on nine consecutive clean passes.
+
+**Flags: 2 raised, 0 standalone dismissals, 2 calibrations; no
+record changes.** Run 1 (22:31–22:43Z) read changed=1,
+with_errors=1: **Soul Cinema** on aiforautomation.io's preview
+article (4f79c2aa…, 8,368 → 32052cd7…, 16,908). Run 2
+(23:13–23:27Z), the first re-baseline, read changed=1 again: the
+same article, drawing the long-standing baseline rendering
+(4f79c2aa…) against run 1's stored long rendering — proving the
+page alternates between an 8,368-char rendering and a ~16,900-char
+long rendering whose embedded tail payload varies per request
+(two probes: 19f1b5cc…/16,909, fc4b4c8c…/16,911; the article, read
+in full, matches the record on every carried point and publishes
+no postdating price or version fact). **2.19 calibration #1:** the
+article's URL is signature-excluded (exact URL) for Soul Cinema —
+still fetched and recorded every run; with it, all three of Soul
+Cinema's sources are signature-excluded (GitHub blob under the
+global exclusion, the API post under the 2.4 calibration), and its
+watch is carried by the per-pass probe reads, as since 2.3. Run 3
+(23:28–23:47Z) read changed=1, with_errors=1: Soul Cinema cleared
+under its calibration, and **Gemini Omni** was flagged on
+MarkTechPost's Omni 1.1 Flash article (539e26e4…, 6,590 →
+314f091d…, 4,924). Two checker-path probes returned BOTH
+signatures, one each — the longer rendering carries a lazyload
+competitor-comparison iframe embed the shorter omits; the article
+body matches the record on every carried point. Dismissed as
+rendering-variant churn — first counted flag on this URL for this
+model, a second to earn an exclusion. Run 4 (23:52Z–00:12Z) read
+changed=1: Gemini flagged a second time, drawing the other known
+rendering (539e26e4…) against run 3's stored signature — the
+second flag the dismissal prescribed. **2.19 calibration #2:** the
+article's URL is signature-excluded (exact URL) for Gemini Omni —
+still fetched and recorded every run; its facts stay
+signature-live on its remaining sources. Run 5 (00:13–00:32Z),
+the final confirming run, read **changed=0, with_errors=1,
+no_sources=0**, proving both calibrations together; the queue
+holds exactly the 3 standing watches, their notes carrying this
+pass's re-check lines. Final drift: **15 alerts / 7 watch / 10 ok,
+0 unwatched** — the alert count rose by four against 2.18's close
+on a heavily gated night; the alert set is exactly the final run's
+fifteen partial records (the standing host-gated cohort, Seedance
+3.0's all_failed among them). Unpublished rates 5; pricing diff
+vs the 2026-10-11 baseline 7 rows. History 158 → **164 events**
+(October window 138 → **144**); review log 34 → **36 entries**
+(pass 18 + addendum). models.json untouched by the pass. Process:
+every checker run was launched detached (setsid launcher +
+VERIFIED/SUSPECT status files, logs on a durable fleet-ops path)
+after a process-table check, exactly one checker verified alive
+during each. Incidents, disclosed: (1) the pass's first Gemini
+probe used a URL truncated from a log line and 404'd; it was
+discarded and the probe re-run against the exact URL read from
+the on-disk feed, which returned both renderings. (2) Mid-pass,
+the flagship commit bcab9ed adopted run 3's in-flight feed into
+the tree; the correction 7506050 restored the settled 2.18 feed —
+correct for an unadjudicated mid-pass state — and this pass's
+final feed supersedes that restoration on completion, as filed
+here. The QA corps' round-7 method law — figures only from direct
+reads of on-disk files — is the countermeasure, applied
+throughout.
+
+**Left open.** The 3 standing watches — all re-checked this pass,
+none moved. Seedance 3.0's criteria pages bear first watching next
+pass: they answered in no run or probe this pass. The standing
+partial cohort will keep surfacing as alerts while its hosts gate
+the checker. The two 2.19 calibrations (aiforautomation for Soul
+Cinema, MarkTechPost for Gemini Omni) join the standing exclusion
+set — both URLs still fetched and recorded every run. The Path
+still sequences the audit's 8 reference skills (tagged on the
+page); re-sequencing is a curriculum decision parked with the
+user's audit verdict. The fleet-wide minimal pass (rotation 19's
+Duty 4 scoping: index.html first) sequences after the audit
+verdict. Parked decisions: the information-site pivot — by count
+(234 of 242 beginner-usable) not indicated; the call is the
+user's. No fetch-rule skips occurred: every fetch used the
+checker's own path or its probe imports; no approval-card source
+was encountered.
+
 ## Rotation 19 — commit/push record (2026-10-13)
 
 Local `f57e46b` → pushed 2026-10-13 as remote commit

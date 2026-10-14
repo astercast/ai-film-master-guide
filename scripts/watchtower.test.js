@@ -52,34 +52,39 @@ ok('real diff: the 5 Watchtower 2.0 coverage changes + the 2.3 Soul Cinema tier 
   assert(added, 'pixverse-v6 model-added missing');
   assert.strictEqual(added.after_low, 0.09, 'new record shows its rate span');
   assert.strictEqual(added.after_high, 0.23);
-  // Watchtower 2.18 (2026-10-13): the sixteenth review pass
-  // ran two completed checker runs (20:58Z, 21:13Z confirming
-  // re-baseline) plus checker-path probes for every standing
-  // watch. All 3 standing watches stand (review log pass 17);
-  // zero flags raised across both runs — every signature-live
-  // source held its baseline. Kling 4.0's APIMart page held
-  // its baseline signature (fc55ce30…) — a thirteenth
-  // consecutive pass; this pass both probes drew the full
-  // baseline rendering itself. BFL's docs pricing page held
-  // its 2.16 baseline (f95831ee…) in both runs and both
-  // probes. PixVerse V6's docs source fetched clean at the
-  // baseline signature — the eighth clean pass. The final
-  // feed (2026-10-13T21:21Z): changed=0, with_errors=0; its
-  // 11 partials are the standing host-gated cohort — FLUX 3
-  // Video's MarkTechPost source gated the checker in the
-  // final run, so FLUX returns to the alert set and the
-  // count rose 10 → 11 against 2.17's close. Pricing diff
-  // 7 rows.
+  // Watchtower 2.19 (2026-10-13): the seventeenth review pass
+  // ran five completed checker runs plus checker-path probes
+  // for every standing watch and flagged source. All 3
+  // standing watches stand (review log pass 18); two flags
+  // were raised and both ended in calibrations — Soul
+  // Cinema's aiforautomation article (flagged runs 1–2 on
+  // proven rendering alternation) and Gemini Omni's
+  // MarkTechPost article (dismissed in run 3, calibrated
+  // after run 4's second flag drew the other known
+  // rendering). Kling 4.0's APIMart page held its baseline
+  // signature (fc55ce30…) — a fourteenth consecutive pass.
+  // BFL's docs pricing page held its 2.16 baseline
+  // (f95831ee…) in the completed runs. PixVerse V6's docs
+  // source fetched clean at baseline — the ninth clean
+  // pass. Seedance 3.0's criteria pages never answered the
+  // checker path this pass (IncompleteRead in every run and
+  // probe); its watch stands on absence of evidence. The
+  // final feed (2026-10-14T00:32Z): changed=0,
+  // with_errors=1; its 15 partials are the standing
+  // host-gated cohort on a heavily gated night — the alert
+  // set is exactly those 15 partial records, so the count
+  // rose 11 → 15 against 2.18's close. Pricing diff 7 rows.
   const d = drift.computeDrift({ modelsDoc: models, checksDoc: checks,
     pricingDoc: pricing, historyDoc: history, nowMs: NOW });
   assert.strictEqual(d.summary.models_total, 32);
   assert.strictEqual(d.summary.unwatched, 0, JSON.stringify(d.summary));
   assert.strictEqual(d.summary.pricing_unpublished, 5, JSON.stringify(d.summary));
-  assert.strictEqual(d.summary.alert, 11, JSON.stringify(d.per_model.filter((r) => r.severity === 'alert')));
+  assert.strictEqual(d.summary.alert, 15, JSON.stringify(d.per_model.filter((r) => r.severity === 'alert')));
   assert.strictEqual(d.summary.price_changes_vs_baseline, 7);
   const alertIds = d.per_model.filter((r) => r.severity === 'alert').map((r) => r.model_id).sort();
-  assert.deepStrictEqual(alertIds, ['flux-3-video', 'gemini-omni', 'grok-imagine-1-5', 'kling-4-0',
-    'luma-ray-3-2', 'midjourney-v1-video', 'minimax-h3', 'seedance-3-0', 'vidu-q4-preview', 'vidu-s2', 'wan-3-0']);
+  assert.deepStrictEqual(alertIds, ['grok-imagine-1-5', 'kling-3-0', 'kling-4-0', 'ltx-2-5',
+    'luma-ray-3-2', 'mirage-tesseract', 'runway-gen-4-5', 'seedance-2-0', 'seedance-2-5',
+    'seedance-3-0', 'sora-2', 'veo-3-1', 'vidu-q4-preview', 'vidu-s2', 'wan-3-0']);
 });
 
 ok('computeDrift: spot severities — PixVerse watched (price moved), Sora ok, Soul Cinema watch (own tier moved)', () => {
@@ -99,7 +104,10 @@ ok('computeDrift: spot severities — PixVerse watched (price moved), Sora ok, S
   assert.strictEqual(byId['dop'].check_status, 'stable');
   assert.strictEqual(byId['dop'].severity, 'ok');
   assert.strictEqual(byId['marketing-studio-video'].check_status, 'stable');
-  assert.strictEqual(byId['sora-2'].severity, 'ok');
+  // Sora 2 carries a partial in the heavily gated final run
+  // of 2.19, so it reads alert this pass (host gate, not a
+  // record change — the model is discontinued and unchanged).
+  assert.strictEqual(byId['sora-2'].severity, 'alert');
   // Soul Cinema gained its first published rate in 2.3 (Higgsfield's
   // API post, $0.0032/image) — no longer "unpublished"; it sits at
   // watch only because its own new tier is a baseline diff.
@@ -111,26 +119,27 @@ ok('computeDrift: spot severities — PixVerse watched (price moved), Sora ok, S
   // the PixVerse pattern, one generation on.
   assert.strictEqual(byId['wan-2-7'].check_status, 'stable');
   assert.strictEqual(byId['wan-2-7'].severity, 'watch');
-  // Gemini Omni carries a partial in the final run (the
-  // rotating host-gated cohort — the drift engine labels any
-  // record with a failed source 'error'), so it reads alert
-  // this pass; its latest event stays the 2.14 verification-
-  // kind calibration record. Kling 3.0's sources all answered
-  // this run, so it reads stable/ok again.
-  assert.strictEqual(byId['gemini-omni'].severity, 'alert');
-  assert.strictEqual(byId['gemini-omni'].check_status, 'error');
+  // Gemini Omni's sources all answered in the final run and
+  // its MarkTechPost article is signature-excluded under the
+  // 2.19 calibration, so it reads stable/ok this pass; its
+  // latest event is the 2.19 verification-kind calibration
+  // record. Kling 3.0 carries a partial in the final run
+  // (the rotating host-gated cohort — the drift engine
+  // labels any record with a failed source 'error'), so it
+  // reads alert this pass.
+  assert.strictEqual(byId['gemini-omni'].severity, 'ok');
+  assert.strictEqual(byId['gemini-omni'].check_status, 'stable');
   assert.strictEqual(byId['gemini-omni'].latest_event.kind, 'verification');
-  assert.strictEqual(byId['kling-3-0'].severity, 'ok');
-  assert.strictEqual(byId['kling-3-0'].check_status, 'stable');
-  // FLUX 3 Video carries a partial in the final run (its
-  // MarkTechPost source gated the checker — the rotating
-  // host-gated cohort), so it reads alert this pass; its
-  // rates stay verified on BFL's own docs page, which held
-  // its 2.16 baseline signature in both runs and both
-  // probes of 2.18, and its latest event is the 2.18
-  // verification-kind follow-up.
-  assert.strictEqual(byId['flux-3-video'].severity, 'alert');
-  assert.strictEqual(byId['flux-3-video'].check_status, 'error');
+  assert.strictEqual(byId['kling-3-0'].severity, 'alert');
+  assert.strictEqual(byId['kling-3-0'].check_status, 'error');
+  // FLUX 3 Video's sources all answered in the final run,
+  // so it reads stable/watch this pass (watch only on its
+  // own pricing diff); its rates stay verified on BFL's own
+  // docs page, which held its 2.16 baseline signature in
+  // the completed runs of 2.19, and its latest event is the
+  // 2.19 verification-kind follow-up.
+  assert.strictEqual(byId['flux-3-video'].severity, 'watch');
+  assert.strictEqual(byId['flux-3-video'].check_status, 'stable');
   assert.strictEqual(byId['flux-3-video'].latest_event.kind, 'verification');
 });
 

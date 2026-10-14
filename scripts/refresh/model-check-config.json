@@ -167,7 +167,11 @@
       ]
     },
     "Seedance 3.0": {
-      "news_query": "Seedance 3.0 ByteDance AI video"
+      "news_query": "Seedance 3.0 ByteDance AI video",
+      "extra_urls": [
+        "https://www.highonfilms.com/seedance-3-0-provider-checks/"
+      ],
+      "note": "DATAOPS-002 adjudication (2026-10-14): all five standing sources were probed through the checker path twice each. None is dead or moved — alltopstartups, urbansplatter, breakread and versely all returned HTTP 200 with full bodies to curl in the same window (70,527 / 284,704 / 195,277 / 135,190 bytes), and all four answered the checker itself in the settled 2026-10-13T21:21Z run; through the checker path in the degraded-egress window every fetch truncates (IncompleteRead, 0/20 successes across a dedicated retry probe), and Medium answers 403 (a content response, standing data). The all_failed streak is a checker-path transport failure, not source death, so no standing source is replaced or retired. Added as a supplement, not a replacement: the HighOnFilms Seedance 3.0 provider-verification page — a live criteria page for this watch, probed through the checker path twice in the adjudication session (HTTP 200 both times, 23,488 chars, identical signature 16ddd6be6f70 on both probes). seedance.com was probed and rejected: HTTP 200 but 0 chars of cleaned text (JS shell — no signable content)."
     },
     "Sora 2 / Pro / Max": {
       "news_query": "OpenAI Sora video model",
@@ -292,9 +296,10 @@
       "news_query": "Gemini Omni Google AI video model",
       "exclude_from_signature": [
         "deepmind.google/models/gemini/",
-        "https://ai.google.dev/gemini-api/docs/pricing$"
+        "https://ai.google.dev/gemini-api/docs/pricing$",
+        "marktechpost.com/2026/08/29/google-ai-releases-gemini-omni-1-1-flash-40-second-scene-extension-first-last-frame-control-and-4k-upscaling/"
       ],
-      "note": "Watched since 2026-10-12 (Watchtower 2.1). The Gemini API pricing page is the primary source: Omni Flash is token-billed, so a rate move shows there before any blog post. The DeepMind model page is fetched for reachability but excluded from the signature (marketing copy rotates). Watchtower 2.14 calibration (2026-10-13): the Gemini API pricing page in exclude_from_signature as an exact URL \u2014 it returned five different signatures across five same-day fetches at effectively identical length (58,539 chars at the 2.13 baseline; 66,663 in run 2 and in two checker-path probes at two further signatures; 66,665 in run 3), so it carries per-request variance and can never be signature-stable (the Soul Cinema API-post pattern, excluded since 2.4). Still fetched and recorded every run. The rate itself was verified verbatim on this page in 2.14 ($1.50 input / $17.50 per 1M video-output tokens / 5,792 tokens per second of 720p / \u2248$0.10 per second \u2014 matching the record exactly); a future rate move is caught by the manual rate read, which is now the standing backstop for this model."
+      "note": "Watched since 2026-10-12 (Watchtower 2.1). The Gemini API pricing page is the primary source: Omni Flash is token-billed, so a rate move shows there before any blog post. The DeepMind model page is fetched for reachability but excluded from the signature (marketing copy rotates). Watchtower 2.14 calibration (2026-10-13): the Gemini API pricing page in exclude_from_signature as an exact URL \u2014 it returned five different signatures across five same-day fetches at effectively identical length (58,539 chars at the 2.13 baseline; 66,663 in run 2 and in two checker-path probes at two further signatures; 66,665 in run 3), so it carries per-request variance and can never be signature-stable (the Soul Cinema API-post pattern, excluded since 2.4). Still fetched and recorded every run. The rate itself was verified verbatim on this page in 2.14 ($1.50 input / $17.50 per 1M video-output tokens / 5,792 tokens per second of 720p / \u2248$0.10 per second \u2014 matching the record exactly); a future rate move is caught by the manual rate read, which is now the standing backstop for this model. Watchtower 2.19 calibration (2026-10-13): the MarkTechPost Omni 1.1 Flash article in this entry's exclude_from_signature flagged in two consecutive checker runs (2.19 runs 3 and 4) on proven rendering variance \u2014 two checker-path probes returned both of the page's renderings, one each (539e26e4\u2026, 6,590 chars, carrying a lazyload competitor-comparison iframe embed; 314f091d\u2026, 4,924 chars, without it), the article body identical on every carried point in both. The scriptbyai/Veo 2.15 class: a proven rendering-variant page is signature-excluded on its second flag. Excluded from the signature (exact URL), still fetched and recorded every run; Gemini Omni's facts stay signature-live on its remaining sources."
     },
     "LTX-2.5": {
       "extra_urls": [

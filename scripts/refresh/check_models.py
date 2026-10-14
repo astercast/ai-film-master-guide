@@ -286,11 +286,22 @@ def main():
 
         records.append(rec)
 
+    # DATAOPS-002 header honesty: with_errors counts only all_failed models,
+    # which masked a ~19-model partial mass in one run and a 15-model one in
+    # another. The summary now also carries the full per-model source_status
+    # distribution so the header alone shows the run's real shape. The four
+    # standing keys are unchanged (the desk reads them).
+    status_counts = {"ok": 0, "partial": 0, "all_failed": 0, "no_sources": 0}
+    for r in records:
+        status_counts[r["source_status"]] = \
+            status_counts.get(r["source_status"], 0) + 1
+
     summary = {
         "models_total": len(models),
         "changed": changed_count,
         "with_errors": err_count,
         "no_sources": no_source_count,
+        "source_status": status_counts,
     }
 
     checks_doc = {
@@ -349,7 +360,9 @@ def main():
     QUEUE_JSON.write_text(json.dumps(queue_doc, indent=2, ensure_ascii=False) + "\n")
 
     print(f"[model-watch] {len(models)} models | changed={changed_count} "
-          f"| with_errors={err_count} | no_sources={no_source_count}")
+          f"| with_errors={err_count} | no_sources={no_source_count} "
+          f"| ok={status_counts['ok']} partial={status_counts['partial']} "
+          f"all_failed={status_counts['all_failed']}")
     if changed_count:
         for it in queue_items:
             if "what_triggered" in it:  # standing hand-authored items carry no trigger
