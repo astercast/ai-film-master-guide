@@ -5,6 +5,10 @@ description: Direct a rack focus / focus pull camera move with exact prompt phra
 
 # Direct: Rack focus / Focus pull
 
+## What this gets you
+
+Your shot will gain what this move is for — shifting story attention between planes; product label reveals; dialogue subtext — in the exact words models obey, ready to paste into any prompt.
+
 ## Use when
 
 Use when the shot needs what this move does: Shifting story attention between planes; product label reveals; dialogue subtext.

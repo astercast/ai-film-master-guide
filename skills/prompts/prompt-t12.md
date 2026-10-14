@@ -5,6 +5,10 @@ description: Write a sci-fi corridor dolly prompt (core track) using the guide's
 
 # Prompt: Sci-fi corridor dolly
 
+## What this gets you
+
+You will have a finished prompt for a sci-fi corridor dolly — the shot used for sci-fi — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+
 ## Use when
 
 You are directing a shot that needs: sci-fi corridor dolly. Anatomy: one corridor, one move, motivated practicals. Best for: sci-fi.

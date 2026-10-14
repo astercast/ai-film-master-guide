@@ -5,6 +5,10 @@ description: Use Vidu Q4 Preview well: costs, strengths, weaknesses, best use.
 
 # Direct with Vidu Q4 Preview
 
+## What this gets you
+
+You will know whether Vidu Q4 Preview is worth your money for the shot you have in mind — what it costs, what it is best at, and the weakness to design around — before you spend on generations.
+
 ## Use when
 
 You are generating on Vidu Q4 Preview (Vidu / Shengshu Technology, video). Best use: Expressive character performance, short dramas, ads — lifelike acting with voice consistency at flagship quality.

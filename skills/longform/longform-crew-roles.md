@@ -5,6 +5,10 @@ description: Assign the recurring functions observed on real AI features.
 
 # Staff a small AI feature crew
 
+## What this gets you
+
+If your production grows, you will know which jobs exist, what each one owns, and who to give them to — so nothing important is nobody's job.
+
 ## Use when
 
 Planning team for a 10+ minute production.

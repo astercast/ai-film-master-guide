@@ -5,6 +5,10 @@ description: The resolution discipline that saves budgets.
 
 # Draft at 720p, upscale winners
 
+## What this gets you
+
+You will prove every shot at cheap resolution first and only pay full price for winners — the discipline that saves most of a budget.
+
 ## Use when
 
 All generation until selects lock.

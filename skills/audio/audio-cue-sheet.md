@@ -5,6 +5,10 @@ description: The sound, music & audio chapter as a working cue sheet: the five p
 
 # Run the cue sheet
 
+## What this gets you
+
+You will have a working cue sheet (the Cue Sheet page) listing every scene's dialogue, music and sound layers — and a verdict on whether the mix is ready.
+
 ## Use when
 
 At picture lock, before the mix — and at every mix session after, until the sheet reads clean and survives the silence test.

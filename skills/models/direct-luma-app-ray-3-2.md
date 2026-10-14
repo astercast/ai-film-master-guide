@@ -5,6 +5,10 @@ description: Use Luma App / Ray 3.2 well: costs, strengths, weaknesses, best use
 
 # Direct with Luma App / Ray 3.2
 
+## What this gets you
+
+You will know whether Luma App / Ray 3.2 is worth your money for the shot you have in mind — what it costs, what it is best at, and the weakness to design around — before you spend on generations.
+
 ## Use when
 
 You are generating on Luma App / Ray 3.2 (Luma, video). Best use: Action/sports/physics, fluid dynamics, motion blur.

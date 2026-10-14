@@ -5,6 +5,10 @@ description: Multi-angle reference sheets that lock identity.
 
 # Build character sheet composites
 
+## What this gets you
+
+You will have a reference sheet of your character from several angles that keeps them the same person in every shot.
+
 ## Use when
 
 Any recurring character.

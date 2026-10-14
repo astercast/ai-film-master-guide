@@ -5,6 +5,10 @@ description: The 60–90s competition weapon, structured.
 
 # Cut a trailer
 
+## What this gets you
+
+You will have cut your footage into a 60–90 second trailer with a hook, a build and a title moment.
+
 ## Use when
 
 Trailers and teasers.

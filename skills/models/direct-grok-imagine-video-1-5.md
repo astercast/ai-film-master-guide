@@ -5,6 +5,10 @@ description: Use Grok Imagine Video 1.5 well: costs, strengths, weaknesses, best
 
 # Direct with Grok Imagine Video 1.5
 
+## What this gets you
+
+You will know whether Grok Imagine Video 1.5 is worth your money for the shot you have in mind — what it costs, what it is best at, and the weakness to design around — before you spend on generations.
+
 ## Use when
 
 You are generating on Grok Imagine Video 1.5 (xAI, video). Best use: Cheap high-volume social video; native-audio dialogue clips.

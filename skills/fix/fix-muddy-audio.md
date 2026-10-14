@@ -5,6 +5,10 @@ description: Clean up dull, washy, or phasey generated audio.
 
 # Fix muddy AI audio
 
+## What this gets you
+
+Dull, washy AI audio will come out clear enough that dialogue is understood the first time.
+
 ## Use when
 
 Native-audio generations that sound wrong.

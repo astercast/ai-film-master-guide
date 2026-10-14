@@ -5,6 +5,10 @@ description: Write an ai music cue brief prompt (audio track) using the guide's 
 
 # Prompt: AI music cue brief
 
+## What this gets you
+
+You will have a finished prompt for an ai music cue brief — the shot used for scoring AI films — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+
 ## Use when
 
 You are directing a shot that needs: ai music cue brief. Anatomy: brief the arc and demand stems; never temp-track with a song you cannot clear. Best for: scoring AI films.

@@ -5,6 +5,10 @@ description: Use Midjourney V1 Video well: costs, strengths, weaknesses, best us
 
 # Direct with Midjourney V1 Video
 
+## What this gets you
+
+You will know whether Midjourney V1 Video is worth your money for the shot you have in mind — what it costs, what it is best at, and the weakness to design around — before you spend on generations.
+
 ## Use when
 
 You are generating on Midjourney V1 Video (Midjourney, video). Best use: Stylized/animation shots from stills; distinctive Midjourney aesthetic in motion.

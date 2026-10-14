@@ -5,6 +5,10 @@ description: Use PixVerse V6 well: costs, strengths, weaknesses, best use.
 
 # Direct with PixVerse V6
 
+## What this gets you
+
+You will know whether PixVerse V6 is worth your money for the shot you have in mind — what it costs, what it is best at, and the weakness to design around — before you spend on generations.
+
 ## Use when
 
 You are generating on PixVerse V6 (AIsphere, video). Best use: Cinematic short-form and social video; anime/stylized work with multi-shot consistency; pre-viz and multi-shot scene sketches.

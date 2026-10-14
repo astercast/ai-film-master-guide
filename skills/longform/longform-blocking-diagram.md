@@ -5,6 +5,10 @@ description: Use a color-coded schematic when words can't stage multi-character 
 
 # Draw the blocking diagram
 
+## What this gets you
+
+You will have a simple colour-coded map of where every character stands in a complicated shot, so multi-person scenes stop coming out scrambled.
+
 ## Use when
 
 Any shot with 2+ characters where positions matter.

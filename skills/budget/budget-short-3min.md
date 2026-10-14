@@ -5,6 +5,10 @@ description: Realistic credit math for a competition-grade 3-minute film.
 
 # Budget a 3-minute short
 
+## What this gets you
+
+You will know what a good 3-minute short really costs, in credits and dollars, before you generate the first shot.
+
 ## Use when
 
 Planning a short before generating.

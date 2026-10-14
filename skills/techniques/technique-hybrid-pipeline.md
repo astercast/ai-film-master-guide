@@ -1,13 +1,17 @@
 ---
 name: technique-hybrid-pipeline
-description: Human craft at the center, AI as the impossible layer — the Passport Rush / Get Me Out method.
+description: Film the emotional moments for real and let AI build the impossible parts around them — so the feelings land and the spectacle still happens.
 ---
 
 # Build a hybrid pipeline
 
+## What this gets you
+
+You will have a plan where the emotional moments are filmed for real and AI builds the impossible parts around them — feelings that land, spectacle that still happens.
+
 ## Use when
 
-When the film needs emotional weight AI alone can't carry.
+When the film needs emotional weight AI alone can't carry: a real performance at the centre, AI for everything the budget couldn't shoot.
 
 ## Inputs
 

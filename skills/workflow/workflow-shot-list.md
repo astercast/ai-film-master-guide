@@ -5,6 +5,10 @@ description: Turn a scene plan into a per-shot list with model assignments, take
 
 # Build the costed shot list
 
+## What this gets you
+
+You will have a shot list with a model and a price attached to every shot — the plan a whole production (and its budget) runs on.
+
 ## Use when
 
 Pre-production planning — before spending a single credit on generation.

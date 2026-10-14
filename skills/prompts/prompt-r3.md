@@ -5,6 +5,10 @@ description: Write a plasticky wide-shot fix prompt (repair track) using the gui
 
 # Prompt: Plasticky wide-shot fix
 
+## What this gets you
+
+You will have a finished prompt for a plasticky wide-shot fix — the shot used for wide-shot face quality — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+
 ## Use when
 
 You are directing a shot that needs: plasticky wide-shot fix. Anatomy: AI faces need pixels — shoot closer or composite. Best for: wide-shot face quality.

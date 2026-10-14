@@ -5,6 +5,10 @@ description: Readable action: geography, rhythm, impact.
 
 # Shoot a fight scene
 
+## What this gets you
+
+You will have a fight that reads: the audience sees every hit, knows the geography, and feels the impact.
+
 ## Use when
 
 Fights, brawls, duels.

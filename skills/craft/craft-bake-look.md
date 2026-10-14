@@ -5,6 +5,10 @@ description: Grade, lens, and texture live in the image plate, not the video pro
 
 # Bake the look into plates
 
+## What this gets you
+
+Your look will survive every generation, because the grade and lens character live in the starting image itself, not in words the model can ignore.
+
 ## Use when
 
 Any recurring location or look.

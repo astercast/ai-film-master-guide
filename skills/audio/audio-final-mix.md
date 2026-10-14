@@ -5,6 +5,10 @@ description: Dialogue-first balance, loudness QC, and the three-device listen.
 
 # Run the final mix pass
 
+## What this gets you
+
+Your finished film will sound balanced on a phone, a laptop and a TV — dialogue first, nothing buried, nothing blaring.
+
 ## Use when
 
 Picture is locked and all stems exist (dialogue, SFX bed, score).

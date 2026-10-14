@@ -5,6 +5,10 @@ description: A commercial license is not copyright — know what you actually ho
 
 # Clear AI music rights properly
 
+## What this gets you
+
+You will know what your AI music licence really lets you do — sell, stream, monetise — before a claim teaches you the hard way.
+
 ## Use when
 
 Before locking any AI-generated music into the film.

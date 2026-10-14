@@ -5,6 +5,10 @@ description: Use Wan 3.0 / 3.0 Prime well: costs, strengths, weaknesses, best us
 
 # Direct with Wan 3.0 / 3.0 Prime
 
+## What this gets you
+
+You will know whether Wan 3.0 / 3.0 Prime is worth your money for the shot you have in mind — what it costs, what it is best at, and the weakness to design around — before you spend on generations.
+
 ## Use when
 
 You are generating on Wan 3.0 / 3.0 Prime (Alibaba, video). Best use: Next-gen Wan quality when budget allows.

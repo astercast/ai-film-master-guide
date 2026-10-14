@@ -5,6 +5,10 @@ description: Place, time, tone in under 15 seconds.
 
 # Shoot an establishing sequence
 
+## What this gets you
+
+You will be able to tell an audience where they are, when it is, and how to feel — in under 15 seconds.
+
 ## Use when
 
 Openings and act transitions.

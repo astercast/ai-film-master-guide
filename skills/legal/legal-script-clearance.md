@@ -1,13 +1,17 @@
 ---
 name: legal-script-clearance
-description: The ten-step clearance file (rules 1358–1367): report, annotation guide, chain of title, title report, releases, and the E&O gate.
+description: Check your finished script for legal trouble before you shoot: every name, place, brand and real person researched, coincidences fixed, and proof filed that you own the script — the ten-step file distributors and insurers require.
 ---
 
 # Run the script-clearance file
 
+## What this gets you
+
+Your script will be checked the way distributors' lawyers check it — names, places, brands, real people — with problems fixed before they can block release.
+
 ## Use when
 
-From the final shooting script through delivery — clearance starts before production and the completed file is the gate for E&O cover and distribution.
+From the final shooting script through delivery — clearance starts before production and the completed file is the gate for insurance (E&O) cover and distribution.
 
 ## Inputs
 

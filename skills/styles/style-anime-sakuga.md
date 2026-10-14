@@ -5,6 +5,10 @@ description: Cel-animated action with impact frames and painted backgrounds.
 
 # Direct anime (sakuga)
 
+## What this gets you
+
+Your action scenes will look like real anime — painted backgrounds, impact frames, movement with snap and weight.
+
 ## Use when
 
 Anime action sequences and shorts.

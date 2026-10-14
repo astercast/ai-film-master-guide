@@ -5,6 +5,10 @@ description: Use Marketing Studio video well: costs, strengths, weaknesses, best
 
 # Direct with Marketing Studio video
 
+## What this gets you
+
+You will know whether Marketing Studio video is worth your money for the shot you have in mind — what it costs, what it is best at, and the weakness to design around — before you spend on generations.
+
 ## Use when
 
 You are generating on Marketing Studio video (Higgsfield, video). Best use: Talking-presenter ads with speech + lip-sync + product lock.

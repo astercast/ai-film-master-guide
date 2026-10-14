@@ -5,6 +5,10 @@ description: Route dialogue through the right sync path.
 
 # Fix bad lip sync
 
+## What this gets you
+
+Dialogue that looked dubbed will line up with the voice, by routing it through the sync path that fits the scene.
+
 ## Use when
 
 Talking shots where mouths don't match words.

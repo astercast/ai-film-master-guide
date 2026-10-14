@@ -5,6 +5,10 @@ description: De-plasticize generative footage with grain, aberration, and restra
 
 # Kill the AI look
 
+## What this gets you
+
+Your footage will stop looking generated: grain, lens character and restraint added in the right order, so audiences see a film, not a demo.
+
 ## Use when
 
 Any photoreal footage that reads as synthetic.

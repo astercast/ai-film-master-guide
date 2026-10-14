@@ -5,6 +5,10 @@ description: Show, don't tell — the chaining rule.
 
 # Prefer video references over text
 
+## What this gets you
+
+Your scenes will continue from what is actually on screen — showing the model the previous video instead of describing it and hoping.
+
 ## Use when
 
 Scene-to-scene continuity.

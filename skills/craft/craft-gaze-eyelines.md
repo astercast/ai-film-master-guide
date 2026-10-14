@@ -5,6 +5,10 @@ description: Eyes get their own prompt block before blocking.
 
 # Direct gaze and eyelines
 
+## What this gets you
+
+Your characters will look at the right things — eyelines that match across cuts, so conversations feel like they happen in one room.
+
 ## Use when
 
 Dialogue and ensemble scenes.

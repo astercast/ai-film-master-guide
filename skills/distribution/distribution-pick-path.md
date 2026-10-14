@@ -5,6 +5,10 @@ description: AI-native distributor vs YouTube vs traditional indie vs self-hoste
 
 # Choose the release path
 
+## What this gets you
+
+You will choose where your film actually gets seen — AI-native distributor, YouTube, festivals, or your own site — with the trade-offs in plain view.
+
 ## Use when
 
 When the film is finished and needs an audience.

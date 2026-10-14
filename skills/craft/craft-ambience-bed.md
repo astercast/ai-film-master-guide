@@ -5,6 +5,10 @@ description: One continuous bed under the whole film.
 
 # Lay the ambience bed
 
+## What this gets you
+
+Your film will sound like one continuous place, because one unbroken background sound runs under all of it.
+
 ## Use when
 
 Every production, from minute one of post.

@@ -5,6 +5,10 @@ description: The directing-performance chapter as a working take sheet: the five
 
 # Run the take sheet
 
+## What this gets you
+
+You will have a working take sheet (the Take Sheet page) that logs every performance beat and tells you when the acting is ready to lock.
+
 ## Use when
 
 In rehearsal, from the first 720p draft to Scene Lock — and at every rehearsal review after, until the sheet reads clean.

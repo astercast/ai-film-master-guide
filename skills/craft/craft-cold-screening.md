@@ -5,6 +5,10 @@ description: The fine-cut test that finds what you can't see anymore.
 
 # Screen for cold viewers
 
+## What this gets you
+
+You will find the confusing, boring and broken moments you have gone blind to — by testing the cut on fresh viewers before it ships.
+
 ## Use when
 
 Fine cut stage.

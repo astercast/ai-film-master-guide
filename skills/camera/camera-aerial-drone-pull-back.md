@@ -5,6 +5,10 @@ description: Direct an aerial / drone pull-back camera move with exact prompt ph
 
 # Direct: Aerial / Drone pull-back
 
+## What this gets you
+
+Your shot will gain what this move is for — establishing geography; openings; epic scale — in the exact words models obey, ready to paste into any prompt.
+
 ## Use when
 
 Use when the shot needs what this move does: Establishing geography; openings; epic scale.

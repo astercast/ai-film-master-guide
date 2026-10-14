@@ -5,6 +5,10 @@ description: Direct a dolly out / pull-back camera move with exact prompt phrasi
 
 # Direct: Dolly out / Pull-back
 
+## What this gets you
+
+Your shot will gain what this move is for — creating distance, reflection, or scale reveals; ending shots — in the exact words models obey, ready to paste into any prompt.
+
 ## Use when
 
 Use when the shot needs what this move does: Creating distance, reflection, or scale reveals; ending shots.

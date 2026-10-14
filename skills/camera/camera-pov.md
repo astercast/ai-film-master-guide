@@ -5,6 +5,10 @@ description: Direct a pov camera move with exact prompt phrasing.
 
 # Direct: POV
 
+## What this gets you
+
+Your shot will gain what this move is for — immersion; horror; action sequences — in the exact words models obey, ready to paste into any prompt.
+
 ## Use when
 
 Use when the shot needs what this move does: Immersion; horror; action sequences.

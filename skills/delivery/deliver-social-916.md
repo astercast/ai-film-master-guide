@@ -5,6 +5,10 @@ description: Vertical delivery that doesn't destroy composition.
 
 # Deliver for social (9:16)
 
+## What this gets you
+
+Your film will work as a vertical phone video without the important parts being cropped off the sides.
+
 ## Use when
 
 Reels/Shorts/TikTok versions.

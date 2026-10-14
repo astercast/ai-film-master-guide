@@ -5,6 +5,10 @@ description: Time compression with emotional direction.
 
 # Cut a montage
 
+## What this gets you
+
+You will have compressed weeks or years into a sequence that still moves the audience in one direction.
+
 ## Use when
 
 Training, travel, transformation, passage of time.

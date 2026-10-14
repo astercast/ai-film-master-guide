@@ -5,6 +5,10 @@ description: Write a ghibli-style landscape prompt (animated track) using the gu
 
 # Prompt: Ghibli-style landscape
 
+## What this gets you
+
+You will have a finished prompt for a ghibli-style landscape — the shot used for None — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+
 ## Use when
 
 You are directing a shot that needs: ghibli-style landscape. 

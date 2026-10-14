@@ -5,6 +5,10 @@ description: Write an action tracking shot prompt (core track) using the guide's
 
 # Prompt: Action tracking shot
 
+## What this gets you
+
+You will have a finished prompt for an action tracking shot — the shot used for chases, action — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+
 ## Use when
 
 You are directing a shot that needs: action tracking shot. Anatomy: camera pace matches subject pace. Best for: chases, action.

@@ -5,6 +5,10 @@ description: Change one variable at a time until the generation obeys.
 
 # Debug a failing prompt
 
+## What this gets you
+
+When a generation ignores you, you will have a method — change one thing at a time — that finds the fix instead of burning credits on random re-rolls.
+
 ## Use when
 
 When a prompt keeps missing.

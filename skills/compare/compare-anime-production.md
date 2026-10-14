@@ -5,6 +5,10 @@ description: Cel/sakuga registers and the models that speak them.
 
 # Choose a model for anime production
 
+## What this gets you
+
+You will know which models actually speak anime — cel shading and impact frames — instead of imitating it badly.
+
 ## Use when
 
 Anime-style sequences or full anime shorts.

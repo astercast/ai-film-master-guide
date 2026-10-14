@@ -5,6 +5,10 @@ description: Direct a handheld / shoulder-cam camera move with exact prompt phra
 
 # Direct: Handheld / Shoulder-cam
 
+## What this gets you
+
+Your shot will gain what this move is for — documentary realism; urgency; found-footage; killing the over-polished AI look — in the exact words models obey, ready to paste into any prompt.
+
 ## Use when
 
 Use when the shot needs what this move does: Documentary realism; urgency; found-footage; killing the over-polished AI look.

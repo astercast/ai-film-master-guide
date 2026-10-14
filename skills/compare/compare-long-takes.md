@@ -5,6 +5,10 @@ description: Sustained single-shot sequences without cut-stitching.
 
 # Choose a model for long takes
 
+## What this gets you
+
+You will know which model can hold one long shot together without you stitching fragments in the edit.
+
 ## Use when
 
 Oners, walk-and-talks, sustained reveals.

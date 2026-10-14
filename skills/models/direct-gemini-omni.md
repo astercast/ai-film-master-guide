@@ -5,6 +5,10 @@ description: Use Gemini Omni well: costs, strengths, weaknesses, best use.
 
 # Direct with Gemini Omni
 
+## What this gets you
+
+You will know whether Gemini Omni is worth your money for the shot you have in mind — what it costs, what it is best at, and the weakness to design around — before you spend on generations.
+
 ## Use when
 
 You are generating on Gemini Omni (Google DeepMind, video). Best use: Conversational video generation and prompt-plus-reference clip editing inside Google's ecosystem (Gemini app, YouTube Shorts, Google Flow).

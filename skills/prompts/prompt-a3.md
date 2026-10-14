@@ -5,6 +5,10 @@ description: Write a pixar-style 3d character beat prompt (animated track) using
 
 # Prompt: Pixar-style 3D character beat
 
+## What this gets you
+
+You will have a finished prompt for a pixar-style 3d character beat — the shot used for None — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+
 ## Use when
 
 You are directing a shot that needs: pixar-style 3d character beat. 

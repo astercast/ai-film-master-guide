@@ -5,6 +5,10 @@ description: Write a dead-eyes fix — give the eyes a job prompt (performance t
 
 # Prompt: Dead-eyes fix — give the eyes a job
 
+## What this gets you
+
+You will have a finished prompt for a dead-eyes fix — give the eyes a job — the shot used for reaction shots, listening coverage — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+
 ## Use when
 
 You are directing a shot that needs: dead-eyes fix — give the eyes a job. Anatomy: eyes need a job every 2–3 seconds or they die on screen. Best for: reaction shots, listening coverage.

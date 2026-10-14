@@ -5,6 +5,12 @@ description: Two (or more) collaborators, one shared project, zero drift — the
 
 # Run an async remote production
 
+> **Reference skill** — kept for the record, for agents, and for later: not a first-project skill. See SKILLS_AUDIT.md (rotation 20).
+
+## What this gets you
+
+Reference for later: how a small team in different time zones makes one film together — one shared project, jobs split by craft, no drift between collaborators.
+
 ## Use when
 
 Collaborating across time zones on an AI film.

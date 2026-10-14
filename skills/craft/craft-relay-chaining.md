@@ -5,6 +5,10 @@ description: Every clip starts on the last frame of the previous approved clip.
 
 # Chain with relay frames
 
+## What this gets you
+
+Long sequences will hold together: every clip starts on the previous clip's last frame, so the film never visibly restarts.
+
 ## Use when
 
 Multi-clip scenes needing continuity.

@@ -5,6 +5,10 @@ description: Write a tactics-driven dialogue beat prompt (performance track) usi
 
 # Prompt: Tactics-driven dialogue beat
 
+## What this gets you
+
+You will have a finished prompt for a tactics-driven dialogue beat — the shot used for dialogue coverage — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+
 ## Use when
 
 You are directing a shot that needs: tactics-driven dialogue beat. Anatomy: tactic + line + one physical action = playable direction. Best for: dialogue coverage.

@@ -5,6 +5,10 @@ description: Native quotes vs post lip-sync, decided per scene.
 
 # Choose the lip-sync route
 
+## What this gets you
+
+For every dialogue scene, you will know which lip-sync method to use — the one that fits the words, the budget and the deadline.
+
 ## Use when
 
 Any dialogue scene.

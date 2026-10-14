@@ -5,6 +5,12 @@ description: Use Kling 4.0 well: costs, strengths, weaknesses, best use.
 
 # Direct with Kling 4.0
 
+> **Reference skill** — kept for the record, for agents, and for later: not a first-project skill. See SKILLS_AUDIT.md (rotation 20).
+
+## What this gets you
+
+A watched brief on Kling 4.0: what has been announced, what is still unconfirmed, and what to use instead today — so you never plan a film on a model you cannot actually use yet.
+
 ## Use when
 
 You are generating on Kling 4.0 (Kuaishou, video). Best use: Long-take narrative, keyframed sequences, broadcast-aspiring work — once generally available.

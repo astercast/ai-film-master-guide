@@ -5,6 +5,10 @@ description: Static, clean, credible interview framing.
 
 # Choose a model for talking heads
 
+## What this gets you
+
+You will know which model gives a clean, believable person-talking-to-camera shot for interviews and explainers.
+
 ## Use when
 
 Testimonials, UGC, documentary interviews.

@@ -5,6 +5,10 @@ description: Write a listening reaction — the other half of dialogue prompt (p
 
 # Prompt: Listening reaction — the other half of dialogue
 
+## What this gets you
+
+You will have a finished prompt for a listening reaction — the other half of dialogue — the shot used for shot-reverse-shot coverage — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+
 ## Use when
 
 You are directing a shot that needs: listening reaction — the other half of dialogue. Anatomy: listening shots sell dialogue; AI defaults to blank — direct the arc. Best for: shot-reverse-shot coverage.

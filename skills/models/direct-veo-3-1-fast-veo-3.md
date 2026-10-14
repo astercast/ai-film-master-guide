@@ -5,6 +5,10 @@ description: Use Veo 3.1 Fast / Veo 3 well: costs, strengths, weaknesses, best u
 
 # Direct with Veo 3.1 Fast / Veo 3
 
+## What this gets you
+
+You will know whether Veo 3.1 Fast / Veo 3 is worth your money for the shot you have in mind — what it costs, what it is best at, and the weakness to design around — before you spend on generations.
+
 ## Use when
 
 You are generating on Veo 3.1 Fast / Veo 3 (Google DeepMind, video). Best use: Budget b-roll, fast iteration of Veo look.

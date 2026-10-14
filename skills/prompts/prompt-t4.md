@@ -5,6 +5,10 @@ description: Write a product macro orbit prompt (core track) using the guide's t
 
 # Prompt: Product macro orbit
 
+## What this gets you
+
+You will have a finished prompt for a product macro orbit — the shot used for commercials — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+
 ## Use when
 
 You are directing a shot that needs: product macro orbit. Anatomy: one move (orbit) + one focus event. Best for: commercials.

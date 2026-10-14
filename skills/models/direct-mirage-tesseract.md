@@ -5,6 +5,10 @@ description: Use Mirage Tesseract well: costs, strengths, weaknesses, best use.
 
 # Direct with Mirage Tesseract
 
+## What this gets you
+
+You will know whether Mirage Tesseract is worth your money for the shot you have in mind — what it costs, what it is best at, and the weakness to design around — before you spend on generations.
+
 ## Use when
 
 You are generating on Mirage Tesseract (Mirage (formerly Captions), suite). Best use: Agent-driven editing and motion graphics; free local engine.

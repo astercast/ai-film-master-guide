@@ -5,6 +5,10 @@ description: Use Wan 2.7 well: costs, strengths, weaknesses, best use.
 
 # Direct with Wan 2.7
 
+## What this gets you
+
+You will know whether Wan 2.7 is worth your money for the shot you have in mind — what it costs, what it is best at, and the weakness to design around — before you spend on generations.
+
 ## Use when
 
 You are generating on Wan 2.7 (Alibaba, video). Best use: Directed mid-budget clips where the prompt is the storyboard: timed multi-shot prompts, reference-held characters and products, lip-synced talking heads from a supplied audio track, and prompt-guided edits of footage you already have — the videoedit endpoint is the one no neighbouring model in this price band matches..

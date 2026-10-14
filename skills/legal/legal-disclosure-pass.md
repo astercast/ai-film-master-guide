@@ -5,6 +5,10 @@ description: Set every platform's AI disclosure correctly at upload.
 
 # Run the disclosure pass
 
+## What this gets you
+
+Every platform's AI-disclosure setting will be set correctly when you upload — no takedowns or demonetisation for a checkbox.
+
 ## Use when
 
 Before publishing anywhere.

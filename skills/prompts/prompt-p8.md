@@ -5,6 +5,10 @@ description: Write a nature drone (photoreal) prompt (photorealistic track) usin
 
 # Prompt: Nature drone (photoreal)
 
+## What this gets you
+
+You will have a finished prompt for a nature drone (photoreal) — the shot used for None — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+
 ## Use when
 
 You are directing a shot that needs: nature drone (photoreal). 

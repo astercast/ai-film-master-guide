@@ -5,6 +5,10 @@ description: Write a character re-entry (consistency) prompt (longform track) us
 
 # Prompt: Character re-entry (consistency)
 
+## What this gets you
+
+You will have a finished prompt for a character re-entry (consistency) — the shot used for features, episodic work — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+
 ## Use when
 
 You are directing a shot that needs: character re-entry (consistency). Anatomy: re-entry prompts restate identity; never trust the model to remember. Best for: features, episodic work.

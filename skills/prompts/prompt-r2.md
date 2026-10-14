@@ -5,6 +5,10 @@ description: Write an identity-drift repair prompt (repair track) using the guid
 
 # Prompt: Identity-drift repair
 
+## What this gets you
+
+You will have a finished prompt for an identity-drift repair — the shot used for multi-shot consistency — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+
 ## Use when
 
 You are directing a shot that needs: identity-drift repair. Anatomy: the approved frame IS the identity; everything regenerates from it. Best for: multi-shot consistency.

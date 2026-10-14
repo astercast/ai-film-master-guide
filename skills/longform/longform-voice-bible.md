@@ -5,6 +5,10 @@ description: Paste identical voice direction into every generation — verbatim,
 
 # Lock the Voice Bible
 
+## What this gets you
+
+Your character will sound like the same person in every scene, because the exact same voice instructions go into every generation, word for word.
+
 ## Use when
 
 Any production with recurring characters who speak.

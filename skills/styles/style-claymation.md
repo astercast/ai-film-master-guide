@@ -5,6 +5,10 @@ description: Handcrafted stop-motion with fingerprints and stepped motion.
 
 # Direct claymation
 
+## What this gets you
+
+Your film will feel handmade — fingerprints, stepped motion, real-clay charm — instead of computer-smooth.
+
 ## Use when
 
 Tactile comedy and charm pieces.

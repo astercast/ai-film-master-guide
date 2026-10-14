@@ -43,6 +43,8 @@ a.card, .card.is-link { cursor: pointer; }
 a.card:hover, .card.is-link:hover { transform: translateY(-4px); border-color: var(--line-bright); box-shadow: var(--shadow-lift); text-decoration: none; }
 .card h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: var(--space-2); letter-spacing: 0.01em; }
 .card p { color: var(--ink-dim); font-size: 0.94rem; }
+.card p.skill-gets { color: var(--ink); font-size: 0.94rem; }
+.card p.skill-gets strong { color: var(--gold); }
 .card-grid { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
 
 /* ——— Badges & pills ——— */
@@ -691,3 +693,15 @@ details:not(.nav-idx):not(.bin):not(.path-row)[open] { border-color: var(--line-
 @media (max-width: 720px) {
   .heritage-grid { grid-template-columns: 1fr; }
 }
+
+/* ——— Skill pages (rotation 20 completion, VP-0010) ——— */
+.skill-frontdoor { margin: var(--space-5) 0 var(--space-6); }
+.skill-facts { display: grid; gap: var(--space-3); margin: var(--space-4) 0 0; }
+.skill-facts div { display: grid; grid-template-columns: 11rem 1fr; gap: var(--space-3); }
+.skill-facts dt { font-weight: 600; color: var(--gold); font-size: .85rem; letter-spacing: .04em; text-transform: uppercase; padding-top: .15em; }
+.skill-facts dd { margin: 0; color: var(--ink); }
+.skill-plain-h { font-size: 1rem; margin: var(--space-5) 0 0; }
+.skill-ref-banner { border: 1px solid var(--line); border-left: 3px solid var(--gold); padding: var(--space-3) var(--space-4); margin: var(--space-4) 0; }
+.skill-pagenav { display: flex; flex-wrap: wrap; gap: var(--space-4); justify-content: space-between; border-top: 1px solid var(--line); margin-top: var(--space-6); padding-top: var(--space-4); }
+.card p.skill-open { margin-top: var(--space-2); }
+@media (max-width: 640px) { .skill-facts div { grid-template-columns: 1fr; gap: 0; } }

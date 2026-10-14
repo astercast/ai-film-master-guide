@@ -5,6 +5,10 @@ description: Write an establishing drone shot prompt (core track) using the guid
 
 # Prompt: Establishing drone shot
 
+## What this gets you
+
+You will have a finished prompt for an establishing drone shot — the shot used for openings, transitions — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+
 ## Use when
 
 You are directing a shot that needs: establishing drone shot. Anatomy: starts wide → reveals geography. Best for: openings, transitions.

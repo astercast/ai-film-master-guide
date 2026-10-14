@@ -5,6 +5,10 @@ description: Dense brushstrokes in motion — the Le Drip method.
 
 # Direct living oil painting
 
+## What this gets you
+
+Your film will move like a living oil painting — dense brushstrokes in motion, a look no live camera can get.
+
 ## Use when
 
 Arthouse entries, music-driven pieces.

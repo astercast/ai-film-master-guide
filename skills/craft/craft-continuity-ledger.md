@@ -5,6 +5,10 @@ description: The character-consistency chapter as a working ledger: the five pre
 
 # Run the continuity ledger
 
+## What this gets you
+
+You will have a working ledger (the Continuity Ledger page) that tracks every character lock across a production and tells you when a scene is safe to generate.
+
 ## Use when
 
 Before the first generation of any multi-shot production, and at the start of every shoot day after — consistency is where most festival entries die.

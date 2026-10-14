@@ -5,6 +5,12 @@ description: Trailer-grade output in five days: the SCRATCH method.
 
 # Run a five-day sprint
 
+> **Reference skill** — kept for the record, for agents, and for later: not a first-project skill. See SKILLS_AUDIT.md (rotation 20).
+
+## What this gets you
+
+Reference for later: how fluent directors turn out a trailer-grade piece in five days — a method to grow into once the basics are fast.
+
 ## Use when
 
 You have days, not weeks, and deep tool fluency.

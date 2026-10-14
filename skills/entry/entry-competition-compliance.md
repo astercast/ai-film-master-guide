@@ -5,6 +5,10 @@ description: Verify an entry against competition delivery rules before submittin
 
 # Check competition delivery compliance
 
+## What this gets you
+
+You will know your entry actually follows the competition's rules — format, length, disclosure — before you submit, not after a disqualification email.
+
 ## Use when
 
 Before starting AND before submitting a competition entry.

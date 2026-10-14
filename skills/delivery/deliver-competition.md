@@ -5,6 +5,10 @@ description: Master a competition-ready file: spec, watermark, packshot.
 
 # Deliver for competitions
 
+## What this gets you
+
+You will have a finished film file that meets competition specs exactly — right format, watermark, packshot — ready to upload.
+
 ## Use when
 
 Final delivery to a competition.

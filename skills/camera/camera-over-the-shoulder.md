@@ -5,6 +5,10 @@ description: Direct an over-the-shoulder camera move with exact prompt phrasing.
 
 # Direct: Over-the-shoulder
 
+## What this gets you
+
+Your shot will gain what this move is for — dialogue coverage; grounding the viewer in a character's perspective — in the exact words models obey, ready to paste into any prompt.
+
 ## Use when
 
 Use when the shot needs what this move does: Dialogue coverage; grounding the viewer in a character's perspective.

@@ -5,6 +5,10 @@ description: Know when the emotional core needs a real human.
 
 # Decide AI vs hybrid performance
 
+## What this gets you
+
+You will know when a scene needs a real human performer at its centre — and when AI can honestly carry it.
+
 ## Use when
 
 Planning any scene whose job is one complicated feeling.

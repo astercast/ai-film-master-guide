@@ -5,6 +5,10 @@ description: Build the watermark, packshot, and public post a competition requir
 
 # Assemble the delivery package
 
+## What this gets you
+
+You will hand over everything a competition asks for — the film file, the watermark, the packshot, the public post — assembled in one go.
+
 ## Use when
 
 The final 48 hours before the entry closes.

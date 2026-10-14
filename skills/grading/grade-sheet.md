@@ -5,6 +5,10 @@ description: The color-grading chapter as a working grade sheet: the five pre-gr
 
 # Run the grade sheet
 
+## What this gets you
+
+You will have a working grade sheet (the Grade Sheet page) that matches every scene to its reference look and tells you when the colour is locked.
+
 ## Use when
 
 At picture lock, before the creative grade — and at every grading session after, until the sheet reads clean and survives the scopes check.

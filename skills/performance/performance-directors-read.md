@@ -5,6 +5,10 @@ description: One shared event + each character's physical channel, before genera
 
 # Write the director's read
 
+## What this gets you
+
+Before generating a scene, you will have written what it is really about and how each character shows it physically — the note that makes performances agree with each other.
+
 ## Use when
 
 Ensemble scenes, before the shotlist.

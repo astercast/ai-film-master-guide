@@ -5,6 +5,10 @@ description: Desaturate, grain, chromatic aberration, soften — in that order.
 
 # Run the de-plasticize stack
 
+## What this gets you
+
+The waxy, over-smooth AI skin and candy colour will be gone — desaturate, grain, soften, in the order that works.
+
 ## Use when
 
 Any AI footage that reads synthetic.

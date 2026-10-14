@@ -5,6 +5,10 @@ description: Static descriptors only: face, wardrobe, palette. No motion, no cam
 
 # Write the Identity Block
 
+## What this gets you
+
+You will be able to describe a character once, in a reusable block, so they look identical every time they appear.
+
 ## Use when
 
 Every prompt with a recurring character.

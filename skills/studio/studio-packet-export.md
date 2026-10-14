@@ -5,6 +5,10 @@ description: Turn any Studio plan into a hand-offable artifact: markdown downloa
 
 # Export the production packet for a collaborator
 
+## What this gets you
+
+You will have a document you can hand to a collaborator that contains the whole production — shots, prompts, costs, schedule, rules — in one file.
+
 ## Use when
 
 Handing the plan to a collaborator, a director, or your future self at generation time.

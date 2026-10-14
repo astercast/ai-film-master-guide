@@ -5,6 +5,10 @@ description: Use DoP (Lite/Standard/Turbo) well: costs, strengths, weaknesses, b
 
 # Direct with DoP (Lite/Standard/Turbo)
 
+## What this gets you
+
+You will know whether DoP (Lite/Standard/Turbo) is worth your money for the shot you have in mind — what it costs, what it is best at, and the weakness to design around — before you spend on generations.
+
 ## Use when
 
 You are generating on DoP (Lite/Standard/Turbo) (Higgsfield, video). Best use: Quick 3s directed shots.

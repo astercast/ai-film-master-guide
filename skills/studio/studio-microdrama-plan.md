@@ -1,13 +1,17 @@
 ---
 name: studio-microdrama-plan
-description: Plan a serialized AI-microdrama run's economics from the documented $150-microdrama figures: clip budget, the $50/min benchmark, the 3-5x retake budget, the character-regen reserve, and the documented-pace timeline.
+description: Work out what a run of short vertical episodes (a microdrama series) will really cost and how long it will take — clips, retakes and character fixes included — using figures documented from a real $150 microdrama production.
 ---
 
 # Plan a microdrama run's economics (Studio 2.5)
 
+## What this gets you
+
+You will know what a run of short episodes will cost and how long it will take — clips, retakes and character fixes included — before you commit to making it.
+
 ## Use when
 
-Pre-production budgeting for a microdrama run (1-40 episodes) — before committing to a shot packet. Every number traces to the storeel-off-campus teardown or data/v1/models.json.
+Before committing to a microdrama run (1–40 short episodes): open the Studio's microdrama mode and follow along. Every number traces to a documented real production or data/v1/models.json.
 
 ## Inputs
 

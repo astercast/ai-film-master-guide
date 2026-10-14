@@ -5,6 +5,10 @@ description: Waveforms and vectorscopes catch what AI footage hides from eyes.
 
 # Grade with scopes, not eyes
 
+## What this gets you
+
+Your colours will be right on every screen, not just yours — measured with the waveform and vectorscope tools the pros use.
+
 ## Use when
 
 Every grading session.

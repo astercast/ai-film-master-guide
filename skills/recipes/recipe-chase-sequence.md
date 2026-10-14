@@ -5,6 +5,10 @@ description: Kinetic cutting with geography the audience can follow.
 
 # Shoot a chase sequence
 
+## What this gets you
+
+You will have a chase the audience can actually follow — fast, exciting, and never confusing about who is where.
+
 ## Use when
 
 Chases, pursuits, escapes.

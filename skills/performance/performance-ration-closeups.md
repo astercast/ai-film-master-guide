@@ -5,6 +5,10 @@ description: Spend close-ups at emotional peaks; carry the rest in mediums and w
 
 # Ration close-ups
 
+## What this gets you
+
+Your close-ups will land like punches, because they are saved for the emotional peaks instead of spent everywhere.
+
 ## Use when
 
 Planning coverage for any scene.

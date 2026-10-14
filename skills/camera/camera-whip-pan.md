@@ -5,6 +5,10 @@ description: Direct a whip pan camera move with exact prompt phrasing.
 
 # Direct: Whip pan
 
+## What this gets you
+
+Your shot will gain what this move is for — energetic transitions; comedy; action punctuation (use sparingly) — in the exact words models obey, ready to paste into any prompt.
+
 ## Use when
 
 Use when the shot needs what this move does: Energetic transitions; comedy; action punctuation (use sparingly).

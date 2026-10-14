@@ -5,6 +5,10 @@ description: Stop a character slowly becoming someone else.
 
 # Fix identity drift across scenes
 
+## What this gets you
+
+A character who slowly turns into a stranger across scenes will stay recognisably themselves from first shot to last.
+
 ## Use when
 
 Multi-scene productions with recurring characters.

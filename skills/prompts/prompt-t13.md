@@ -5,6 +5,10 @@ description: Write an underwater reveal prompt (core track) using the guide's te
 
 # Prompt: Underwater reveal
 
+## What this gets you
+
+You will have a finished prompt for an underwater reveal — the shot used for None — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+
 ## Use when
 
 You are directing a shot that needs: underwater reveal. Anatomy: tilt reveals; light does the exposition. Models: Luma (fluid dynamics), Kling 3.0.

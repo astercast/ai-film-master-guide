@@ -5,6 +5,10 @@ description: Use Soul 2.0 well: costs, strengths, weaknesses, best use.
 
 # Direct with Soul 2.0
 
+## What this gets you
+
+You will know whether Soul 2.0 is worth your money for the shot you have in mind — what it costs, what it is best at, and the weakness to design around — before you spend on generations.
+
 ## Use when
 
 You are generating on Soul 2.0 (Higgsfield, image). Best use: Fashion/portrait/aesthetic keyframes; character-sheet generation.

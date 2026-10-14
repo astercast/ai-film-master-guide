@@ -5,6 +5,10 @@ description: Write a match-cut transition pair prompt (core track) using the gui
 
 # Prompt: Match-cut transition pair
 
+## What this gets you
+
+You will have a finished prompt for a match-cut transition pair — the shot used for transitions, transformations — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+
 ## Use when
 
 You are directing a shot that needs: match-cut transition pair. Anatomy: identical motion vector across the cut; lock endpoints. Best for: transitions, transformations.

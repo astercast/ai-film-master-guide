@@ -5,6 +5,10 @@ description: Direct a tracking shot camera move with exact prompt phrasing.
 
 # Direct: Tracking shot
 
+## What this gets you
+
+Your shot will gain what this move is for — following moving subjects (walks, runs, vehicles); matching subject pace sells realism — in the exact words models obey, ready to paste into any prompt.
+
 ## Use when
 
 Use when the shot needs what this move does: Following moving subjects (walks, runs, vehicles); matching subject pace sells realism.

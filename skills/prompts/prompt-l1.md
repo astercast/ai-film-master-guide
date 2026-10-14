@@ -5,6 +5,10 @@ description: Write a style-locked scene plate prompt (longform track) using the 
 
 # Prompt: Style-locked scene plate
 
+## What this gets you
+
+You will have a finished prompt for a style-locked scene plate — the shot used for multi-scene projects — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+
 ## Use when
 
 You are directing a shot that needs: style-locked scene plate. Anatomy: the style bible repeated verbatim is what survives 90 minutes. Best for: multi-scene projects.

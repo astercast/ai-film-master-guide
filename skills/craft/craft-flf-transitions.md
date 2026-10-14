@@ -5,6 +5,10 @@ description: Interpolate between composed start and end images.
 
 # Build first/last-frame transitions
 
+## What this gets you
+
+You will be able to morph smoothly between two composed images — a transition that looks designed, not accidental.
+
 ## Use when
 
 Match cuts, time jumps, impossible transitions.

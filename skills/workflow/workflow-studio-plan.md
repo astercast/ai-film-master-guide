@@ -5,6 +5,12 @@ description: Reproduce the Studio's deterministic planning logic from the raw AP
 
 # Plan a production with the Studio recipe
 
+> **Reference skill** — kept for the record, for agents, and for later: not a first-project skill. See SKILLS_AUDIT.md (rotation 20).
+
+## What this gets you
+
+Reference for agents: the Studio planner's exact maths as a procedure — concept in, costed shot list out — for scripted, agent-driven pre-production.
+
 ## Use when
 
 Agent-driven pre-production when the Studio UI isn't in the loop — same math, same data, scriptable.

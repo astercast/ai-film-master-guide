@@ -5,6 +5,10 @@ description: Coverage that cuts: the complete dialogue-scene recipe.
 
 # Shoot a dialogue scene
 
+## What this gets you
+
+You will have filmed a complete two-person conversation that cuts together like a real scene — both sides, reactions, rhythm.
+
 ## Use when
 
 Any conversation between two characters.

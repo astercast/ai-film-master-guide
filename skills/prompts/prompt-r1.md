@@ -5,6 +5,10 @@ description: Write a face-morph rescue prompt (repair track) using the guide's t
 
 # Prompt: Face-morph rescue
 
+## What this gets you
+
+You will have a finished prompt for a face-morph rescue — the shot used for fixing face morphs — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+
 ## Use when
 
 You are directing a shot that needs: face-morph rescue. Anatomy: shorter + locked frame + static camera starves the morph. Best for: fixing face morphs.

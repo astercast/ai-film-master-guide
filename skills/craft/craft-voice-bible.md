@@ -5,6 +5,10 @@ description: Identical voice direction in every generation.
 
 # Maintain the Voice Bible
 
+## What this gets you
+
+Your character's voice direction will be identical in every generation — the same written direction, pasted verbatim, every time.
+
 ## Use when
 
 Recurring speaking characters.

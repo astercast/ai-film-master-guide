@@ -1,13 +1,17 @@
 ---
 name: technique-entry-killer-audit
-description: The pre-submission audit that catches what judges punish.
+description: A final check that catches the flaws competition judges punish most — morphing faces, drifting costumes, shots that exist only to show off — before you submit.
 ---
 
 # Run the entry-killer audit
 
+## What this gets you
+
+You will submit knowing the flaws judges punish most — morphing faces, drifting costumes, show-off shots — have already been hunted down and fixed.
+
 ## Use when
 
-Before submitting to any competition.
+Before submitting to any competition, with the locked cut in front of you.
 
 ## Inputs
 

@@ -5,6 +5,10 @@ description: Write an interview / talking head prompt (core track) using the gui
 
 # Prompt: Interview / talking head
 
+## What this gets you
+
+You will have a finished prompt for an interview / talking head — the shot used for testimonials, UGC — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+
 ## Use when
 
 You are directing a shot that needs: interview / talking head. Anatomy: static camera, clean front face, short lines. Best for: testimonials, UGC.

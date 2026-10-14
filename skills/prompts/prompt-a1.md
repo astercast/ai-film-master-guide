@@ -5,6 +5,10 @@ description: Write an anime action (sakuga) prompt (animated track) using the gu
 
 # Prompt: Anime action (sakuga)
 
+## What this gets you
+
+You will have a finished prompt for an anime action (sakuga) — the shot used for None — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+
 ## Use when
 
 You are directing a shot that needs: anime action (sakuga). Anatomy: cel/sakuga/impact frames — NO lens or DOF language. Models: PixVerse (Anime), Vidu Q1, Pika.

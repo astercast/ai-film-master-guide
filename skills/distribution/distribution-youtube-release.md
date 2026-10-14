@@ -5,6 +5,10 @@ description: Disclosure + monetization-safe self-release checklist.
 
 # Release on YouTube safely
 
+## What this gets you
+
+Your YouTube release will be set up safely: AI disclosure done right, monetisation protected, no avoidable strikes.
+
 ## Use when
 
 Uploading any AI film to YouTube.

@@ -5,6 +5,10 @@ description: Write an emotional close-up prompt (core track) using the guide's t
 
 # Prompt: Emotional close-up
 
+## What this gets you
+
+You will have a finished prompt for an emotional close-up — the shot used for emotional peaks — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+
 ## Use when
 
 You are directing a shot that needs: emotional close-up. Anatomy: ration close-ups (micro-acting is the weakest link). Best for: emotional peaks.

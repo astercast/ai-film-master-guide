@@ -5,6 +5,10 @@ description: Scene Lock: photograph the approved performance, stop regenerating 
 
 # Lock the scene after approval
 
+## What this gets you
+
+An approved performance will stay approved: locked, photographed, and never accidentally regenerated into a worse take.
+
 ## Use when
 
 After any take is approved.

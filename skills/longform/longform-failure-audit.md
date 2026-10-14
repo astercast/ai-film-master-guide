@@ -5,6 +5,10 @@ description: Check a production against the nine documented long-form failure mo
 
 # Audit long-form failure modes
 
+## What this gets you
+
+You will catch the nine ways long AI films usually fall apart while yours can still be fixed cheaply.
+
 ## Use when
 
 At picture lock, and any time quality slips mid-production.

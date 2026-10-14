@@ -5,6 +5,10 @@ description: Write a dialogue two-shot (shot-reverse-shot pair) prompt (core tra
 
 # Prompt: Dialogue two-shot (shot-reverse-shot pair)
 
+## What this gets you
+
+You will have a finished prompt for a dialogue two-shot (shot-reverse-shot pair) — the shot used for conversations — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+
 ## Use when
 
 You are directing a shot that needs: dialogue two-shot (shot-reverse-shot pair). Anatomy: coverage, not chaos. Best for: conversations.

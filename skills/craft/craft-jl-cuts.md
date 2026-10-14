@@ -5,6 +5,10 @@ description: Overlap audio across cuts to mask transitions and build flow.
 
 # Cut with J/L cuts
 
+## What this gets you
+
+Your cuts will flow: dialogue starting before the picture changes (and lingering after) hides edits and makes AI footage feel continuous.
+
 ## Use when
 
 Every dialogue scene and most transitions.

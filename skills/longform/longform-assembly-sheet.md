@@ -5,6 +5,10 @@ description: The long-form pipelines chapter as a working sheet: the five pre-lo
 
 # Run the longform sheet
 
+## What this gets you
+
+You will have a working longform sheet (the Longform Sheet page) that tracks every scene of a long production and tells you when the film is ready to lock.
+
 ## Use when
 
 On any production past short length, from the registry pass to picture lock — and at every supervision review after, until the sheet reads clean.

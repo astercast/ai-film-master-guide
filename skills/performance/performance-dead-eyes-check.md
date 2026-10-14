@@ -5,6 +5,10 @@ description: The four biological markers of aliveness AI faces fail.
 
 # Run the dead-eyes checklist
 
+## What this gets you
+
+You will be able to spot lifeless AI eyes in seconds — and fix them by giving the eyes something to do.
+
 ## Use when
 
 Reviewing any close-up or dialogue coverage.

@@ -5,6 +5,10 @@ description: Surreal logic with emotional continuity.
 
 # Shoot a dream sequence
 
+## What this gets you
+
+You will have a dream sequence that feels dreamlike yet emotionally clear — strange images, unbroken feeling.
+
 ## Use when
 
 Dreams, memories, altered states.

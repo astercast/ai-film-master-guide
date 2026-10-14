@@ -5,6 +5,10 @@ description: Color-coded schematics for multi-character staging.
 
 # Stage with blocking diagrams
 
+## What this gets you
+
+Complicated multi-character shots will come out staged the way you drew them, not scrambled.
+
 ## Use when
 
 See longform-blocking-diagram — this is the short-form version.

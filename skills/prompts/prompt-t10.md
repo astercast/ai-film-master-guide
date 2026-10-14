@@ -5,6 +5,10 @@ description: Write a food commercial macro prompt (core track) using the guide's
 
 # Prompt: Food commercial macro
 
+## What this gets you
+
+You will have a finished prompt for a food commercial macro — the shot used for food ads — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+
 ## Use when
 
 You are directing a shot that needs: food commercial macro. Anatomy: texture + steam + dolly. Best for: food ads.

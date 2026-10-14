@@ -5,6 +5,10 @@ description: Realistic credit math for a feature-length AI film.
 
 # Budget a 90-minute feature
 
+## What this gets you
+
+You will know what a feature-length AI film really costs, and where that money actually goes.
+
 ## Use when
 
 Feasibility planning for features.

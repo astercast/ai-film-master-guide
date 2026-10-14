@@ -5,6 +5,10 @@ description: Portrait-strong models for close-ups and character work.
 
 # Choose a model for photoreal faces
 
+## What this gets you
+
+You will know which model to trust with faces in close-up, where every flaw is visible.
+
 ## Use when
 
 Dialogue close-ups, character pieces, beauty work.

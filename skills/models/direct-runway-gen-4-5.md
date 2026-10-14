@@ -5,6 +5,10 @@ description: Use Runway Gen-4.5 well: costs, strengths, weaknesses, best use.
 
 # Direct with Runway Gen-4.5
 
+## What this gets you
+
+You will know whether Runway Gen-4.5 is worth your money for the shot you have in mind — what it costs, what it is best at, and the weakness to design around — before you spend on generations.
+
 ## Use when
 
 You are generating on Runway Gen-4.5 (Runway, video). Best use: 4K with camera control; enterprise video pipelines; API access to a premium-tier model.

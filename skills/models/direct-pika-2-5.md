@@ -5,6 +5,10 @@ description: Use Pika 2.5 well: costs, strengths, weaknesses, best use.
 
 # Direct with Pika 2.5
 
+## What this gets you
+
+You will know whether Pika 2.5 is worth your money for the shot you have in mind — what it costs, what it is best at, and the weakness to design around — before you spend on generations.
+
 ## Use when
 
 You are generating on Pika 2.5 (Pika, video). Best use: Stylized/social content, animation styles, fast iteration.

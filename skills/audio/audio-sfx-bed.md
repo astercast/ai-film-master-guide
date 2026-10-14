@@ -5,6 +5,10 @@ description: Layered backgrounds → hard FX → Foley under everything.
 
 # Build the SFX bed
 
+## What this gets you
+
+Your scenes will sound like places: a layered bed of background, effects and Foley under every shot, instead of silence between lines.
+
 ## Use when
 
 Any film's sound design.

@@ -5,6 +5,10 @@ description: The 30-second product film: macro, orbit, lifestyle.
 
 # Shoot a product spot
 
+## What this gets you
+
+You will have a 30-second product film — macro beauty shot, orbit, lifestyle moment — that looks like it cost an agency.
+
 ## Use when
 
 Commercials, spec ads, portfolio pieces.

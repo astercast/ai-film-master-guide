@@ -5,6 +5,10 @@ description: Upscale winners only — never the timeline.
 
 # Decide what to upscale
 
+## What this gets you
+
+You will know which finished shots deserve expensive high-resolution renders and which never do — and stop paying to upscale rejects.
+
 ## Use when
 
 After selects are locked.

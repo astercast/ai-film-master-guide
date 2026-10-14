@@ -5,6 +5,10 @@ description: Feed each new scene the previous scene's finished video, not a text
 
 # Chain scenes with video references
 
+## What this gets you
+
+Each new scene will start from your last finished scene's actual video, so the film flows as one piece instead of drifting apart shot by shot.
+
 ## Use when
 
 Moving from one scene to the next in a multi-scene production.

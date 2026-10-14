@@ -5,6 +5,10 @@ description: Assembly → rough cut → generation supervision → fine cut → 
 
 # Run the five post stages
 
+## What this gets you
+
+You will have a finishing order for a long film — assembly, rough cut, supervision, fine cut, lock — so 'nearly done' stops lasting forever.
+
 ## Use when
 
 Post-production on any multi-minute AI film.

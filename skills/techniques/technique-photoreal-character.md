@@ -1,13 +1,17 @@
 ---
 name: technique-photoreal-character
-description: A real script + locked POV: the character-first photoreal lane.
+description: Make a realistic-looking short that feels acted, not generated: start from a real script and shoot every scene from one character's point of view.
 ---
 
 # Direct a photoreal character piece
 
+## What this gets you
+
+You will have a realistic short that feels acted rather than generated: a real script, one point of view, faces carrying the story.
+
 ## Use when
 
-Intimate, character-driven photoreal shorts.
+Intimate, character-driven photoreal shorts — the kind where the audience must believe a person.
 
 ## Inputs
 

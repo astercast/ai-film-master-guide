@@ -5,6 +5,10 @@ description: Write a horror creep prompt (core track) using the guide's template
 
 # Prompt: Horror creep
 
+## What this gets you
+
+You will have a finished prompt for a horror creep — the shot used for horror/suspense — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+
 ## Use when
 
 You are directing a shot that needs: horror creep. Anatomy: slow, hesitant verbs; danger hinted, not shown. Best for: horror/suspense.

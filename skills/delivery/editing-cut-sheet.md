@@ -5,6 +5,10 @@ description: The editing chapters as a working cut sheet: the five pre-lock gate
 
 # Run the cut sheet
 
+## What this gets you
+
+You will have a working cut sheet (the Cut Sheet page) that inspects every shot in your edit and tells you when the picture is ready to lock.
+
 ## Use when
 
 In the edit, from the first assembly to picture lock — and at every lock review after, until the sheet reads clean and survives the 24-hour rule.

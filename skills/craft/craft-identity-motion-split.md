@@ -5,6 +5,10 @@ description: The Identity Block / Motion Block discipline.
 
 # Separate identity from motion
 
+## What this gets you
+
+Your characters will stop changing appearance between shots, because who they are and what they do are written separately in every prompt.
+
 ## Use when
 
 Every prompt with a recurring subject.

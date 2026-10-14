@@ -5,6 +5,10 @@ description: Hook / escalation / title — the 60–90 second competition weapon
 
 # Structure a trailer cut
 
+## What this gets you
+
+You will have a 60–90 second trailer shape — hook, escalation, title — that makes a short film feel like an event.
+
 ## Use when
 
 Trailers, teasers, sprint productions.

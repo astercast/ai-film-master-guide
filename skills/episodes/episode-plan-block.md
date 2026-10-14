@@ -5,6 +5,10 @@ description: Build one episode block (one emotion, 3-5 beats, turn, cliffhanger)
 
 # Plan an episode block with runtime estimate
 
+## What this gets you
+
+You will have one episode fully planned — one emotion, a few beats, a turn and a cliffhanger — at a length you have verified works.
+
 ## Use when
 
 Every episode before generation — the block is the shooting script for serialized short-form.

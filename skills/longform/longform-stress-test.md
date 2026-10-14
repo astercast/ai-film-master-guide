@@ -5,6 +5,10 @@ description: Run Goal/Obstacle/Tactic/Reversal/Value-Shift verdicts on a scene p
 
 # Stress-test a scene before generating
 
+## What this gets you
+
+You will know whether a scene actually works — who wants what, what blocks them, what flips — before spending a single credit generating it.
+
 ## Use when
 
 Before spending a single credit on a scene.

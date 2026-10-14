@@ -5,6 +5,10 @@ description: Direct a slow motion camera move with exact prompt phrasing.
 
 # Direct: Slow motion
 
+## What this gets you
+
+Your shot will gain what this move is for — emphasizing peak action; fashion fabric; emotional beats — in the exact words models obey, ready to paste into any prompt.
+
 ## Use when
 
 Use when the shot needs what this move does: Emphasizing peak action; fashion fabric; emotional beats.

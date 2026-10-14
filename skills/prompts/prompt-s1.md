@@ -5,6 +5,10 @@ description: Write a tts dialogue line with direction tags prompt (audio track) 
 
 # Prompt: TTS dialogue line with direction tags
 
+## What this gets you
+
+You will have a finished prompt for a tts dialogue line with direction tags — the shot used for decoupled dialogue, narration — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+
 ## Use when
 
 You are directing a shot that needs: tts dialogue line with direction tags. Anatomy: bracketed tags and punctuation are the TTS director's camera moves. Best for: decoupled dialogue, narration.

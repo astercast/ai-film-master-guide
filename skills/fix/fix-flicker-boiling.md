@@ -5,6 +5,10 @@ description: Stabilize textures that crawl between frames.
 
 # Fix flicker and boiling
 
+## What this gets you
+
+Textures that crawl and shimmer between frames will settle down so the shot stops looking haunted.
+
 ## Use when
 
 Generations with shimmering surfaces, boiling backgrounds.

@@ -5,6 +5,10 @@ description: Direct a crane up / crane down camera move with exact prompt phrasi
 
 # Direct: Crane up / Crane down
 
+## What this gets you
+
+Your shot will gain what this move is for — epic reveals; moving from intimate detail to grand scale (or reverse) — in the exact words models obey, ready to paste into any prompt.
+
 ## Use when
 
 Use when the shot needs what this move does: Epic reveals; moving from intimate detail to grand scale (or reverse).

@@ -5,6 +5,10 @@ description: Direct a crash zoom / snap zoom camera move with exact prompt phras
 
 # Direct: Crash zoom / Snap zoom
 
+## What this gets you
+
+Your shot will gain what this move is for — comedy beats; shock reveals; high-energy punctuation — in the exact words models obey, ready to paste into any prompt.
+
 ## Use when
 
 Use when the shot needs what this move does: Comedy beats; shock reveals; high-energy punctuation.

@@ -5,6 +5,10 @@ description: Use Soul Cast well: costs, strengths, weaknesses, best use.
 
 # Direct with Soul Cast
 
+## What this gets you
+
+You will know whether Soul Cast is worth your money for the shot you have in mind — what it costs, what it is best at, and the weakness to design around — before you spend on generations.
+
 ## Use when
 
 You are generating on Soul Cast (Higgsfield, image). Best use: Consistent cinematic character identity / AI actors.

@@ -680,7 +680,7 @@ SKILLS_TMPL = """<!DOCTYPE html>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Skills browser — AI Film Master Guide</title>
-  <meta name="description" content="Browse all 192 task skills: prompts, camera, models, long-form pipelines, craft techniques and more.">
+  <meta name="description" content="Browse all 242 task skills: prompts, camera, models, long-form pipelines, craft techniques and more — every skill states in plain words what it gets you.">
   {css}
 </head>
 <body>
@@ -5195,6 +5195,8 @@ PATH_TMPL = """<!DOCTYPE html>
     .pathmap-skill {{ display: flex; gap: var(--space-3); align-items: baseline; padding: .35em 0; border-top: 1px solid var(--line); }}
     .pathmap-skill-n {{ color: var(--muted); min-width: 2.2em; text-align: right; font-size: .85rem; }}
     .pathmap-skill-id {{ font-size: .8rem; color: var(--muted); }}
+    .pathmap-gets {{ display: block; font-size: .85rem; color: var(--muted); margin-top: .15em; }}
+    .pathmap-ref {{ font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--line); border-radius: 999px; padding: .05em .5em; margin-left: .4em; }}
   </style>
 </head>
 <body>
@@ -5287,8 +5289,10 @@ def build_path(css_links):
                 f'<div class="pathmap-skill"><span class="pathmap-skill-n">{n}</span>'
                 f'<input type="checkbox" id="path-skill-{esc(sid)}" data-path-skill="{esc(sid)}" '
                 f'aria-label="Mark done: {esc(sk["title"])}">'
-                f'<span><a href="skills.html" data-path-title="{esc(sk["title"])}" data-path-title-id="{esc(sid)}">{esc(sk["title"])}</a> '
-                f'<span class="pathmap-skill-id"><code>{esc(sid)}</code></span></span></div>')
+                f'<span><a href="skills/{esc(sid)}.html" data-path-title="{esc(sk["title"])}" data-path-title-id="{esc(sid)}">{esc(sk["title"])}</a> '
+                f'<span class="pathmap-skill-id"><code>{esc(sid)}</code></span>'
+                + (f'<span class="pathmap-ref">reference</span>' if sk.get("audience") == "reference" else "")
+                + f'<span class="pathmap-gets">{esc(sk.get("gets_you", ""))}</span></span></div>')
         stage_html.append(
             f'<details class="pathmap-stage"{" open" if st["n"] == 1 else ""}>'
             f'<summary class="pathmap-stage-head"><span class="pathmap-num">{st["n"]}</span>'
@@ -5318,6 +5322,275 @@ def build_path(css_links):
         path_stages="".join(stage_html),
         path_curriculum_json=json.dumps(curr, ensure_ascii=False)))
     return [("path.html", "The path")]
+
+
+
+SKILL_PAGE_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{title} — Skill — AI Film Master Guide</title>
+  <meta name="description" content="{desc}">
+  {css}
+</head>
+<body>
+  <div class="edge-right" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="../index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        {sitenav}
+      </nav>
+      <span class="hdr-tc" data-hdr-tc aria-hidden="true"><span class="hdr-rec">●</span> <span class="hdr-tc-val">00:59:52:00</span></span>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">&#8984;K</span> Search
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="container" aria-labelledby="skill-title">
+      <p class="crumb"><a href="../index.html">Guide</a> / <a href="../skills.html">Skills</a>{path_crumb}</p>
+      <h1 id="skill-title">{title}</h1>
+      {ref_banner}
+      <section class="card skill-frontdoor" aria-label="This skill at a glance">
+        <p class="skill-gets"><strong>Gets you:</strong> {gets}</p>
+        <dl class="skill-facts">
+          <div><dt>What this is</dt><dd>{what}</dd></div>
+          <div><dt>First step</dt><dd>{first_step}</dd></div>
+          <div><dt>You will need</dt><dd>{needs}</dd></div>
+          <div><dt>Time</dt><dd>About {minutes} minutes for a first run-through ({steps} steps; estimated from the procedure itself — your model&rsquo;s generation time is extra).</dd></div>
+          <div><dt>Level</dt><dd>{level}</dd></div>
+          <div><dt>Before this</dt><dd>{prereq}</dd></div>
+          <div><dt>Proof &mdash; the worked example</dt><dd>{proof}</dd></div>
+        </dl>
+        {plain_words}
+      </section>
+      <article class="prose">{body}</article>
+      <nav class="skill-pagenav" aria-label="Skill navigation">
+        <p>{prev_link}</p>
+        <p><a href="../skills.html">All skills</a>{path_link}</p>
+        <p>{next_link}</p>
+      </nav>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide — research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span class="tc">TC 00:00:00:00</span><span class="tailpop">Tail pop</span><span>Cut in the cutting room</span><span class="tail">AI Film Master Guide — craft, not buttons</span></div>
+    </div>
+  </footer>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
+    <div class="palette-box">
+      <input id="palette-input" type="search" placeholder="Search chapters, prompts, models…" autocomplete="off" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="../assets/js/palette.js"></script>
+  <script src="../assets/js/glossary.js"></script>
+</body>
+</html>
+"""
+
+# Rotation 20 completion (VP-0010): jargon that can appear on a skill's
+# front door (title / description / gets-you line) and the plain-words
+# gloss the skill page prints for it. Glossary-backed entries pull their
+# definition from data/v1/glossary.json at build time, so the gloss can
+# never drift from the guide's own glossary; curated entries cover the
+# terms the glossary does not hold. scripts/skill-pages.test.js pins
+# the built pages against this set (the U6 gloss check) — one source.
+SKILL_JARGON_PATTERNS = [
+    (r"sakuga", "sakuga", "Sakuga"),
+    (r"j/l|j-cut|l-cut", "J/L cuts", None),
+    (r"identity[ -]drift", "identity drift", None),
+    (r"morph", "morphing / face-morph", None),
+    (r"soul 2\.0", "Soul 2.0", None),
+    (r"soul cinema", "Soul Cinema", "Soul Cinema"),
+    (r"soul cast", "Soul Cast", "Soul Cast"),
+    (r"soul id", "Soul ID", "Soul ID"),
+    (r"shot-reverse-shot", "shot-reverse-shot", "Shot-reverse-shot"),
+    (r"uncanny valley", "uncanny valley", "Uncanny valley"),
+    (r"lip sync", "lip sync", "Lip sync"),
+    (r"first/last frame|flf", "first/last frame (FLF)", "First/last frame (FLF)"),
+    (r"ai look", "the AI look", "AI look"),
+    (r"\bdrift\b", "drift", "Drift"),
+]
+SKILL_JARGON_CURATED = {
+    "J/L cuts": ("J/L cuts — a J-cut lets the next shot's sound start before "
+                 "its picture; an L-cut lets the current shot's sound linger "
+                 "over the next picture. Both make cuts feel smooth instead "
+                 "of abrupt."),
+    "identity drift": ("identity drift — a character's face, outfit or look "
+                       "slowly changing between shots, so they stop looking "
+                       "like the same person."),
+    "morphing / face-morph": ("morphing (a face-morph) — a face warping or "
+                              "melting as it changes between frames; a common "
+                              "AI-video flaw. A 'face-morph rescue' repairs a "
+                              "shot where it happened."),
+    "Soul 2.0": ("Soul 2.0 — a Higgsfield image model in its Soul family: it "
+                 "makes cinematic portrait and fashion stills and character "
+                 "sheets, which you then animate with a video model. It is a "
+                 "stills tool, not a video model."),
+}
+
+
+def build_skill_pages(css_links):
+    """Per-skill pages (rotation 20 completion, closing VP-0010's core):
+    every skill in the library opens INSIDE the site to the procedure it
+    names — inputs, steps, a worked example, pitfalls — rendered from the
+    generated skill files (skills/<cat>/<id>.md, owned by
+    build_skills.py) through this builder, so a rebuild can never orphan
+    them. The front-door box answers the audit's U1–U6 bar in seconds:
+    what it is (U1), what it gets you (U2), the first step + what you
+    will need + an effort estimate (U3), level + prerequisite (U4), the
+    worked example up front (U5), and plain-words glosses for any jargon
+    on the card (U6 — the prose additionally carries the in-context
+    glossary popovers via assets/js/glossary.js). Path position,
+    previous/next and the reference banner all derive from
+    skills/index.json + data/v1/curriculum.json; nothing is invented."""
+    def esc(s):
+        return html.escape(str(s if s is not None else ""))
+
+    def section(md, name):
+        m = re.search(r"^## " + re.escape(name) + r"\n(.*?)(?=^## |\Z)", md, re.S | re.M)
+        return m.group(1).strip() if m else ""
+
+    index = json.loads((ROOT / "skills" / "index.json").read_text())
+    by_id = {s["id"]: s for s in index["skills"]}
+    curr = json.loads((ROOT / "data" / "v1" / "curriculum.json").read_text())
+    gloss_doc = json.loads((ROOT / "data" / "v1" / "glossary.json").read_text())
+    gloss_defs = {t["term"]: t["definition"] for t in gloss_doc["terms"]}
+
+    pos = {}   # skill id -> (path number, stage n, stage title)
+    order = []
+    n = 0
+    for st in curr["stages"]:
+        for sid in st["skills"]:
+            n += 1
+            pos[sid] = (n, st["n"], st["title"])
+            order.append(sid)
+    for s in index["skills"]:
+        if s["id"] not in pos:
+            order.append(s["id"])  # the companion skill walks last
+
+    out_dir = SITE / "skills"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    css = css_links.replace('href="assets/', 'href="../assets/')
+    sitenav = nav_html("../", "skills.html")
+    footer = footer_html("../")
+    entries = []
+
+    for i, sid in enumerate(order):
+        sk = by_id[sid]
+        md = (ROOT / sk["path"]).read_text()
+        md = re.sub(r"\A---\n.*?\n---\n", "", md, flags=re.S)
+        title = sk["title"]
+        inputs = [ln[2:].strip() for ln in section(md, "Inputs").split("\n")
+                  if ln.strip().startswith("- ")]
+        proc = section(md, "Procedure")
+        steps = re.findall(r"^\d+\.\s+", proc, re.M)
+        first_step_m = re.search(r"^\d+\.\s+(.*)", proc, re.M)
+        first_step = first_step_m.group(1).strip() if first_step_m else ""
+        example = re.sub(r"\s+", " ", section(md, "Worked example")).strip()
+        proof = example if len(example) <= 300 else example[:297].rstrip() + "…"
+        words = len(md.split())
+        minutes = max(3, min(30, round(words / 120)))
+
+        front = f"{title} {sk['description']} {sk.get('gets_you', '')}"
+        glosses = []
+        seen = set()
+        for pat, label, gterm in SKILL_JARGON_PATTERNS:
+            if label in seen or not re.search(pat, front, re.I):
+                continue
+            if label == "drift" and "identity drift" in seen:
+                continue  # the specific gloss already covers the generic term
+            seen.add(label)
+            if label in SKILL_JARGON_CURATED:
+                glosses.append((label, SKILL_JARGON_CURATED[label]))
+            elif gterm and gterm in gloss_defs:
+                glosses.append((label, f"{gterm} — {gloss_defs[gterm]}"))
+        plain_words = ""
+        if glosses:
+            items = "".join(
+                f"<div><dt>{esc(lab)}</dt><dd>{esc(txt)}</dd></div>"
+                for lab, txt in glosses)
+            plain_words = ('<h2 class="skill-plain-h">In plain words</h2>'
+                           f'<dl class="skill-facts">{items}</dl>')
+
+        if sid in pos:
+            pn, sn, stitle = pos[sid]
+            path_crumb = f' / <a href="../path.html">The Path, stage {sn}</a>'
+            path_link = (f' · <a href="../path.html">This skill on the Path '
+                         f'(skill {pn} of 241, stage {sn})</a>')
+            if sk.get("audience") == "reference":
+                level = ("Reference — not a first-project skill. It is kept "
+                         "for the record, for agents, and for later.")
+                prereq = ("Come to it after the beginner skills around it on "
+                          "the Path feel easy — or when you are running a "
+                          "production with agents or a team.")
+            else:
+                level = "Beginner — made to be usable on a first project."
+                if pn > 1:
+                    prev_title = by_id[order[i - 1]]["title"] if order[i - 1] in pos else ""
+                    prereq = (f"Best after the skill before it on the Path "
+                              f"(skill {pn - 1} of 241"
+                              + (f": {prev_title}" if prev_title else "")
+                              + ") — but everything it needs is listed "
+                                "below, and nothing else is assumed.")
+                else:
+                    prereq = ("Nothing — this is skill 1 of 241 on the Path, "
+                              "where the walk starts.")
+        else:
+            path_crumb = ""
+            path_link = ' · <a href="../path.html">The Path this skill teaches</a>'
+            level = "Beginner — made to be usable on a first project."
+            prereq = ("No prerequisite — this is the Path's companion skill; "
+                      "it teaches the walk itself.")
+
+        ref_banner = ""
+        if sk.get("audience") == "reference":
+            ref_banner = ('<p class="skill-ref-banner"><strong>Reference '
+                          'skill</strong> — kept for the record, for agents, '
+                          'and for later: not a first-project skill. See '
+                          'SKILLS_AUDIT.md (rotation 20).</p>')
+
+        body_md = re.sub(r"^# .*\n", "", md, count=1)
+        body_md = re.sub(r"^## What this gets you\n.*?(?=^## |\Z)", "",
+                         body_md, flags=re.S | re.M)
+        body = md2html.convert(body_md.strip())
+
+        prev_link = next_link = ""
+        if i > 0:
+            pid = order[i - 1]
+            prev_link = (f'<a href="{esc(pid)}.html" rel="prev">&larr; '
+                         f'{esc(by_id[pid]["title"])}</a>')
+        if i < len(order) - 1:
+            nid = order[i + 1]
+            next_link = (f'<a href="{esc(nid)}.html" rel="next">'
+                         f'{esc(by_id[nid]["title"])} &rarr;</a>')
+
+        (out_dir / f"{sid}.html").write_text(SKILL_PAGE_TMPL.format(
+            title=esc(title), desc=esc(sk.get("gets_you") or sk["description"]),
+            css=css, sitenav=sitenav, footer=footer,
+            path_crumb=path_crumb, ref_banner=ref_banner,
+            gets=esc(sk.get("gets_you", "")), what=esc(sk["description"]),
+            first_step=md2html._inline(first_step),
+            needs="; ".join(md2html._inline(x) for x in inputs), minutes=minutes,
+            steps=len(steps), level=esc(level), prereq=esc(prereq),
+            proof=md2html._inline(proof), plain_words=plain_words, body=body,
+            prev_link=prev_link, next_link=next_link, path_link=path_link))
+        entries.append({
+            "url": f"skills/{sid}.html", "title": title, "section": "Skills",
+            "headings": ["What this gets you", "Use when", "Inputs",
+                         "Procedure", "Worked example", "Pitfalls"],
+            "text": f"{sk.get('gets_you', '')} {sk['description']}"})
+    return entries
+
 
 
 GALLERY_TMPL = """<!DOCTYPE html>
@@ -7701,11 +7974,11 @@ def main():
             hero=hero_cutroom(
                 kicker="""For agents &amp; humans""",
                 h1="""Task <span class="accent">skills.</span>""",
-                lede="""Every procedure in the guide as a loadable skill: inputs, steps, worked examples, pitfalls. <span id="skills-count" aria-live="polite"></span>""",
+                lede="""Every procedure in the guide as a loadable skill: inputs, steps, worked examples, pitfalls. Every skill states in plain words <strong>what it gets you</strong> — audited for first-time visitors in rotation 20; the few reference skills sit at the end, marked. <span id="skills-count" aria-live="polite"></span>""",
                 deck_title="""SKILL_LIBRARY — BIN_01""",
                 clips={"v2": [f'{skill_count} skills', 'Procedures'], "v1": ['Inputs', 'Steps', 'Worked examples'], "a1": ['Agent room tone', 'Pitfalls']},
                 h1_id="skills-title",
-                extra="""<div class="field" style="max-width:480px;"> <label for="skills-filter">Filter skills</label> <input class="input" id="skills-filter" type="search" placeholder="e.g. lip sync, BAF, budget…" autocomplete="off"> </div>"""),        css=css_links, sitenav=nav_html("", "skills.html"), footer=footer_html("")))
+                extra="""<div class="field" style="max-width:480px;"> <label for="skills-filter">Filter skills</label> <input class="input" id="skills-filter" type="search" placeholder="e.g. lip sync, budget, drone shot…" autocomplete="off"> </div>"""),        css=css_links, sitenav=nav_html("", "skills.html"), footer=footer_html("")))
     shutil.copy(ROOT / "skills" / "index.json", SITE / "skills-index.json")
     shutil.copy(ROOT / "data" / "v1" / "prompt-templates.json", SITE / "prompt-templates.json")
     shutil.copy(ROOT / "data" / "v1" / "models.json", SITE / "models.json")
@@ -7952,6 +8225,9 @@ def main():
     # The Path (rotation 19 flagship — the sequenced curriculum, T-FILM-5)
     build_path(css_links)
 
+    # Per-skill pages (rotation 20 completion — VP-0010's structural fix)
+    skill_page_entries = build_skill_pages(css_links)
+
     # Knowledge checks (generated from scripts/checks.json)
     wave7_checks = build_checks(css_links)
 
@@ -8089,6 +8365,7 @@ def main():
          "headings": [], "text": f"Knowledge check for the {c['title']} chapter: scenario questions with explained answers."}
         for c in wave7_checks
     ])
+    search_index.extend(skill_page_entries)
     (SITE / "search-index.json").write_text(json.dumps(search_index, ensure_ascii=False))
 
     # Bundle shared assets + API docs page into site/ so it is self-contained

@@ -5,6 +5,10 @@ description: Invisible AI: intimate, POV-locked, performance-first.
 
 # Direct photoreal drama
 
+## What this gets you
+
+Your drama will look like it was filmed with real actors — intimate, quiet, and believable enough that nobody asks how.
+
 ## Use when
 
 Competition drama entries.

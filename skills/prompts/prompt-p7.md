@@ -5,6 +5,10 @@ description: Write a fashion editorial (photoreal) prompt (photorealistic track)
 
 # Prompt: Fashion editorial (photoreal)
 
+## What this gets you
+
+You will have a finished prompt for a fashion editorial (photoreal) — the shot used for None — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+
 ## Use when
 
 You are directing a shot that needs: fashion editorial (photoreal). 

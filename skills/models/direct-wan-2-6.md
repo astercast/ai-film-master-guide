@@ -5,6 +5,10 @@ description: Use Wan 2.6 well: costs, strengths, weaknesses, best use.
 
 # Direct with Wan 2.6
 
+## What this gets you
+
+You will know whether Wan 2.6 is worth your money for the shot you have in mind — what it costs, what it is best at, and the weakness to design around — before you spend on generations.
+
 ## Use when
 
 You are generating on Wan 2.6 (Alibaba, video). Best use: Camera-first directing: precise dolly/orbit/crane paths.

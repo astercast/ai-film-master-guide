@@ -5,6 +5,10 @@ description: Direct a tilt up / tilt down camera move with exact prompt phrasing
 
 # Direct: Tilt up / Tilt down
 
+## What this gets you
+
+Your shot will gain what this move is for — revealing height or depth; horror/suspense reveals; establishing scale — in the exact words models obey, ready to paste into any prompt.
+
 ## Use when
 
 Use when the shot needs what this move does: Revealing height or depth; horror/suspense reveals; establishing scale.

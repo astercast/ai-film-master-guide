@@ -6,1452 +6,1936 @@
       "id": "prompt-t1",
       "title": "Prompt: Establishing drone shot",
       "description": "Write an establishing drone shot prompt (core track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for an establishing drone shot \u2014 the shot used for openings, transitions \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-t1.md"
     },
     {
       "id": "prompt-t2",
       "title": "Prompt: Dialogue two-shot (shot-reverse-shot pair)",
       "description": "Write a dialogue two-shot (shot-reverse-shot pair) prompt (core track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for a dialogue two-shot (shot-reverse-shot pair) \u2014 the shot used for conversations \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-t2.md"
     },
     {
       "id": "prompt-t3",
       "title": "Prompt: Emotional close-up",
       "description": "Write an emotional close-up prompt (core track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for an emotional close-up \u2014 the shot used for emotional peaks \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-t3.md"
     },
     {
       "id": "prompt-t4",
       "title": "Prompt: Product macro orbit",
       "description": "Write a product macro orbit prompt (core track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for a product macro orbit \u2014 the shot used for commercials \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-t4.md"
     },
     {
       "id": "prompt-t5",
       "title": "Prompt: Action tracking shot",
       "description": "Write an action tracking shot prompt (core track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for an action tracking shot \u2014 the shot used for chases, action \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-t5.md"
     },
     {
       "id": "prompt-t6",
       "title": "Prompt: Horror creep",
       "description": "Write a horror creep prompt (core track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for a horror creep \u2014 the shot used for horror/suspense \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-t6.md"
     },
     {
       "id": "prompt-t7",
       "title": "Prompt: Interview / talking head",
       "description": "Write an interview / talking head prompt (core track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for an interview / talking head \u2014 the shot used for testimonials, UGC \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-t7.md"
     },
     {
       "id": "prompt-t8",
       "title": "Prompt: Dream sequence",
       "description": "Write a dream sequence prompt (core track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for a dream sequence \u2014 the shot used for fantasy, transitions \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-t8.md"
     },
     {
       "id": "prompt-t9",
       "title": "Prompt: Time-lapse city",
       "description": "Write a time-lapse city prompt (core track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for a time-lapse city \u2014 the shot used for montages, transitions \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-t9.md"
     },
     {
       "id": "prompt-t10",
       "title": "Prompt: Food commercial macro",
       "description": "Write a food commercial macro prompt (core track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for a food commercial macro \u2014 the shot used for food ads \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-t10.md"
     },
     {
       "id": "prompt-t11",
       "title": "Prompt: Fashion film",
       "description": "Write a fashion film prompt (core track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for a fashion film \u2014 the shot used for fashion, lookbooks \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-t11.md"
     },
     {
       "id": "prompt-t12",
       "title": "Prompt: Sci-fi corridor dolly",
       "description": "Write a sci-fi corridor dolly prompt (core track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for a sci-fi corridor dolly \u2014 the shot used for sci-fi \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-t12.md"
     },
     {
       "id": "prompt-t13",
       "title": "Prompt: Underwater reveal",
       "description": "Write an underwater reveal prompt (core track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for an underwater reveal \u2014 the shot used for None \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-t13.md"
     },
     {
       "id": "prompt-t14",
       "title": "Prompt: Car commercial",
       "description": "Write a car commercial prompt (core track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for a car commercial \u2014 the shot used for None \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-t14.md"
     },
     {
       "id": "prompt-t15",
       "title": "Prompt: Match-cut transition pair",
       "description": "Write a match-cut transition pair prompt (core track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for a match-cut transition pair \u2014 the shot used for transitions, transformations \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-t15.md"
     },
     {
       "id": "prompt-a1",
       "title": "Prompt: Anime action (sakuga)",
       "description": "Write an anime action (sakuga) prompt (animated track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for an anime action (sakuga) \u2014 the shot used for None \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-a1.md"
     },
     {
       "id": "prompt-a2",
       "title": "Prompt: Ghibli-style landscape",
       "description": "Write a ghibli-style landscape prompt (animated track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for a ghibli-style landscape \u2014 the shot used for None \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-a2.md"
     },
     {
       "id": "prompt-a3",
       "title": "Prompt: Pixar-style 3D character beat",
       "description": "Write a pixar-style 3d character beat prompt (animated track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for a pixar-style 3d character beat \u2014 the shot used for None \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-a3.md"
     },
     {
       "id": "prompt-a4",
       "title": "Prompt: 2D cartoon dialogue",
       "description": "Write a 2d cartoon dialogue prompt (animated track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for a 2d cartoon dialogue \u2014 the shot used for None \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-a4.md"
     },
     {
       "id": "prompt-a5",
       "title": "Prompt: Stop-motion claymation gag",
       "description": "Write a stop-motion claymation gag prompt (animated track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for a stop-motion claymation gag \u2014 the shot used for None \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-a5.md"
     },
     {
       "id": "prompt-a6",
       "title": "Prompt: Oil-painting painterly motion",
       "description": "Write an oil-painting painterly motion prompt (animated track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for an oil-painting painterly motion \u2014 the shot used for None \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-a6.md"
     },
     {
       "id": "prompt-a7",
       "title": "Prompt: Pixel-art game cinematic",
       "description": "Write a pixel-art game cinematic prompt (animated track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for a pixel-art game cinematic \u2014 the shot used for None \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-a7.md"
     },
     {
       "id": "prompt-a8",
       "title": "Prompt: Felt-art cozy scene",
       "description": "Write a felt-art cozy scene prompt (animated track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for a felt-art cozy scene \u2014 the shot used for None \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-a8.md"
     },
     {
       "id": "prompt-p1",
       "title": "Prompt: Dialogue drama close-up",
       "description": "Write a dialogue drama close-up prompt (photorealistic track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for a dialogue drama close-up \u2014 the shot used for None \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-p1.md"
     },
     {
       "id": "prompt-p2",
       "title": "Prompt: Documentary handheld",
       "description": "Write a documentary handheld prompt (photorealistic track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for a documentary handheld \u2014 the shot used for None \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-p2.md"
     },
     {
       "id": "prompt-p3",
       "title": "Prompt: Car commercial (photoreal)",
       "description": "Write a car commercial (photoreal) prompt (photorealistic track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for a car commercial (photoreal) \u2014 the shot used for None \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-p3.md"
     },
     {
       "id": "prompt-p4",
       "title": "Prompt: Food macro (photoreal)",
       "description": "Write a food macro (photoreal) prompt (photorealistic track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for a food macro (photoreal) \u2014 the shot used for None \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-p4.md"
     },
     {
       "id": "prompt-p5",
       "title": "Prompt: Horror corridor (photoreal)",
       "description": "Write a horror corridor (photoreal) prompt (photorealistic track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for a horror corridor (photoreal) \u2014 the shot used for None \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-p5.md"
     },
     {
       "id": "prompt-p6",
       "title": "Prompt: Sci-fi corridor dolly (photoreal)",
       "description": "Write a sci-fi corridor dolly (photoreal) prompt (photorealistic track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for a sci-fi corridor dolly (photoreal) \u2014 the shot used for None \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-p6.md"
     },
     {
       "id": "prompt-p7",
       "title": "Prompt: Fashion editorial (photoreal)",
       "description": "Write a fashion editorial (photoreal) prompt (photorealistic track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for a fashion editorial (photoreal) \u2014 the shot used for None \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-p7.md"
     },
     {
       "id": "prompt-p8",
       "title": "Prompt: Nature drone (photoreal)",
       "description": "Write a nature drone (photoreal) prompt (photorealistic track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for a nature drone (photoreal) \u2014 the shot used for None \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-p8.md"
     },
     {
       "id": "prompt-f1",
       "title": "Prompt: Restraint pass \u2014 subtle acting",
       "description": "Write a restraint pass \u2014 subtle acting prompt (performance track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for a restraint pass \u2014 subtle acting \u2014 the shot used for dialogue scenes, emotional beats \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-f1.md"
     },
     {
       "id": "prompt-f2",
       "title": "Prompt: Dead-eyes fix \u2014 give the eyes a job",
       "description": "Write a dead-eyes fix \u2014 give the eyes a job prompt (performance track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for a dead-eyes fix \u2014 give the eyes a job \u2014 the shot used for reaction shots, listening coverage \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-f2.md"
     },
     {
       "id": "prompt-f3",
       "title": "Prompt: Tactics-driven dialogue beat",
       "description": "Write a tactics-driven dialogue beat prompt (performance track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for a tactics-driven dialogue beat \u2014 the shot used for dialogue coverage \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-f3.md"
     },
     {
       "id": "prompt-f4",
       "title": "Prompt: Scene-locked ensemble",
       "description": "Write a scene-locked ensemble prompt (performance track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for a scene-locked ensemble \u2014 the shot used for multi-character scenes \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-f4.md"
     },
     {
       "id": "prompt-f5",
       "title": "Prompt: Listening reaction \u2014 the other half of dialogue",
       "description": "Write a listening reaction \u2014 the other half of dialogue prompt (performance track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for a listening reaction \u2014 the other half of dialogue \u2014 the shot used for shot-reverse-shot coverage \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-f5.md"
     },
     {
       "id": "prompt-s1",
       "title": "Prompt: TTS dialogue line with direction tags",
       "description": "Write a tts dialogue line with direction tags prompt (audio track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for a tts dialogue line with direction tags \u2014 the shot used for decoupled dialogue, narration \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-s1.md"
     },
     {
       "id": "prompt-s2",
       "title": "Prompt: Voice-designed narration (Voice Bible)",
       "description": "Write a voice-designed narration (voice bible) prompt (audio track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for a voice-designed narration (voice bible) \u2014 the shot used for documentary VO, trailers \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-s2.md"
     },
     {
       "id": "prompt-s3",
       "title": "Prompt: AI music cue brief",
       "description": "Write an ai music cue brief prompt (audio track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for an ai music cue brief \u2014 the shot used for scoring AI films \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-s3.md"
     },
     {
       "id": "prompt-s4",
       "title": "Prompt: Foley pass \u2014 three-layer sound design",
       "description": "Write a foley pass \u2014 three-layer sound design prompt (audio track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for a foley pass \u2014 three-layer sound design \u2014 the shot used for sound-design passes \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-s4.md"
     },
     {
       "id": "prompt-l1",
       "title": "Prompt: Style-locked scene plate",
       "description": "Write a style-locked scene plate prompt (longform track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for a style-locked scene plate \u2014 the shot used for multi-scene projects \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-l1.md"
     },
     {
       "id": "prompt-l2",
       "title": "Prompt: Character re-entry (consistency)",
       "description": "Write a character re-entry (consistency) prompt (longform track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for a character re-entry (consistency) \u2014 the shot used for features, episodic work \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-l2.md"
     },
     {
       "id": "prompt-l3",
       "title": "Prompt: Native-audio dialogue scene",
       "description": "Write a native-audio dialogue scene prompt (longform track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for a native-audio dialogue scene \u2014 the shot used for dialogue-heavy scenes \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-l3.md"
     },
     {
       "id": "prompt-l4",
       "title": "Prompt: Sequence bridge (match-cut)",
       "description": "Write a sequence bridge (match-cut) prompt (longform track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for a sequence bridge (match-cut) \u2014 the shot used for sequence assembly \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-l4.md"
     },
     {
       "id": "prompt-r1",
       "title": "Prompt: Face-morph rescue",
       "description": "Write a face-morph rescue prompt (repair track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for a face-morph rescue \u2014 the shot used for fixing face morphs \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-r1.md"
     },
     {
       "id": "prompt-r2",
       "title": "Prompt: Identity-drift repair",
       "description": "Write an identity-drift repair prompt (repair track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for an identity-drift repair \u2014 the shot used for multi-shot consistency \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-r2.md"
     },
     {
       "id": "prompt-r3",
       "title": "Prompt: Plasticky wide-shot fix",
       "description": "Write a plasticky wide-shot fix prompt (repair track) using the guide's template.",
+      "gets_you": "You will have a finished prompt for a plasticky wide-shot fix \u2014 the shot used for wide-shot face quality \u2014 ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.",
+      "audience": "beginner",
       "path": "skills/prompts/prompt-r3.md"
     },
     {
       "id": "camera-dolly-in-push-in",
       "title": "Direct: Dolly in / Push-in",
       "description": "Direct a dolly in / push-in camera move with exact prompt phrasing.",
+      "gets_you": "Your shot will gain what this move is for \u2014 building intimacy or tension; revealing detail; product glamour (85mm equivalent) \u2014 in the exact words models obey, ready to paste into any prompt.",
+      "audience": "beginner",
       "path": "skills/camera/camera-dolly-in-push-in.md"
     },
     {
       "id": "camera-dolly-out-pull-back",
       "title": "Direct: Dolly out / Pull-back",
       "description": "Direct a dolly out / pull-back camera move with exact prompt phrasing.",
+      "gets_you": "Your shot will gain what this move is for \u2014 creating distance, reflection, or scale reveals; ending shots \u2014 in the exact words models obey, ready to paste into any prompt.",
+      "audience": "beginner",
       "path": "skills/camera/camera-dolly-out-pull-back.md"
     },
     {
       "id": "camera-tracking-shot",
       "title": "Direct: Tracking shot",
       "description": "Direct a tracking shot camera move with exact prompt phrasing.",
+      "gets_you": "Your shot will gain what this move is for \u2014 following moving subjects (walks, runs, vehicles); matching subject pace sells realism \u2014 in the exact words models obey, ready to paste into any prompt.",
+      "audience": "beginner",
       "path": "skills/camera/camera-tracking-shot.md"
     },
     {
       "id": "camera-orbit-arc-shot",
       "title": "Direct: Orbit / Arc shot",
       "description": "Direct an orbit / arc shot camera move with exact prompt phrasing.",
+      "gets_you": "Your shot will gain what this move is for \u2014 showcasing a subject from all sides (product, fashion, hero moments); dream sequences \u2014 in the exact words models obey, ready to paste into any prompt.",
+      "audience": "beginner",
       "path": "skills/camera/camera-orbit-arc-shot.md"
     },
     {
       "id": "camera-crane-up-crane-down",
       "title": "Direct: Crane up / Crane down",
       "description": "Direct a crane up / crane down camera move with exact prompt phrasing.",
+      "gets_you": "Your shot will gain what this move is for \u2014 epic reveals; moving from intimate detail to grand scale (or reverse) \u2014 in the exact words models obey, ready to paste into any prompt.",
+      "audience": "beginner",
       "path": "skills/camera/camera-crane-up-crane-down.md"
     },
     {
       "id": "camera-pedestal-up-pedestal-down",
       "title": "Direct: Pedestal up / Pedestal down",
       "description": "Direct a pedestal up / pedestal down camera move with exact prompt phrasing.",
+      "gets_you": "Your shot will gain what this move is for \u2014 vertical reveals without the swing of a crane; product and architectural shots \u2014 in the exact words models obey, ready to paste into any prompt.",
+      "audience": "beginner",
       "path": "skills/camera/camera-pedestal-up-pedestal-down.md"
     },
     {
       "id": "camera-truck-left-truck-right",
       "title": "Direct: Truck left / Truck right",
       "description": "Direct a truck left / truck right camera move with exact prompt phrasing.",
+      "gets_you": "Your shot will gain what this move is for \u2014 parallax reveals; following action across a scene; keeping framing constant while shifting viewpoint \u2014 in the exact words models obey, ready to paste into any prompt.",
+      "audience": "beginner",
       "path": "skills/camera/camera-truck-left-truck-right.md"
     },
     {
       "id": "camera-pan-left-pan-right",
       "title": "Direct: Pan left / Pan right",
       "description": "Direct a pan left / pan right camera move with exact prompt phrasing.",
+      "gets_you": "Your shot will gain what this move is for \u2014 surveying landscapes; following lateral action; transitions between subjects \u2014 in the exact words models obey, ready to paste into any prompt.",
+      "audience": "beginner",
       "path": "skills/camera/camera-pan-left-pan-right.md"
     },
     {
       "id": "camera-tilt-up-tilt-down",
       "title": "Direct: Tilt up / Tilt down",
       "description": "Direct a tilt up / tilt down camera move with exact prompt phrasing.",
+      "gets_you": "Your shot will gain what this move is for \u2014 revealing height or depth; horror/suspense reveals; establishing scale \u2014 in the exact words models obey, ready to paste into any prompt.",
+      "audience": "beginner",
       "path": "skills/camera/camera-tilt-up-tilt-down.md"
     },
     {
       "id": "camera-whip-pan",
       "title": "Direct: Whip pan",
       "description": "Direct a whip pan camera move with exact prompt phrasing.",
+      "gets_you": "Your shot will gain what this move is for \u2014 energetic transitions; comedy; action punctuation (use sparingly) \u2014 in the exact words models obey, ready to paste into any prompt.",
+      "audience": "beginner",
       "path": "skills/camera/camera-whip-pan.md"
     },
     {
       "id": "camera-crash-zoom-snap-zoom",
       "title": "Direct: Crash zoom / Snap zoom",
       "description": "Direct a crash zoom / snap zoom camera move with exact prompt phrasing.",
+      "gets_you": "Your shot will gain what this move is for \u2014 comedy beats; shock reveals; high-energy punctuation \u2014 in the exact words models obey, ready to paste into any prompt.",
+      "audience": "beginner",
       "path": "skills/camera/camera-crash-zoom-snap-zoom.md"
     },
     {
       "id": "camera-zoom-in-zoom-out",
       "title": "Direct: Zoom in / Zoom out",
       "description": "Direct a zoom in / zoom out camera move with exact prompt phrasing.",
+      "gets_you": "Your shot will gain what this move is for \u2014 slow emphasis without moving the camera body; surveillance/documentary feel \u2014 in the exact words models obey, ready to paste into any prompt.",
+      "audience": "beginner",
       "path": "skills/camera/camera-zoom-in-zoom-out.md"
     },
     {
       "id": "camera-rack-focus-focus-pull",
       "title": "Direct: Rack focus / Focus pull",
       "description": "Direct a rack focus / focus pull camera move with exact prompt phrasing.",
+      "gets_you": "Your shot will gain what this move is for \u2014 shifting story attention between planes; product label reveals; dialogue subtext \u2014 in the exact words models obey, ready to paste into any prompt.",
+      "audience": "beginner",
       "path": "skills/camera/camera-rack-focus-focus-pull.md"
     },
     {
       "id": "camera-handheld-shoulder-cam",
       "title": "Direct: Handheld / Shoulder-cam",
       "description": "Direct a handheld / shoulder-cam camera move with exact prompt phrasing.",
+      "gets_you": "Your shot will gain what this move is for \u2014 documentary realism; urgency; found-footage; killing the over-polished AI look \u2014 in the exact words models obey, ready to paste into any prompt.",
+      "audience": "beginner",
       "path": "skills/camera/camera-handheld-shoulder-cam.md"
     },
     {
       "id": "camera-gimbal-stabilizer-smooth",
       "title": "Direct: Gimbal / Stabilizer smooth",
       "description": "Direct a gimbal / stabilizer smooth camera move with exact prompt phrasing.",
+      "gets_you": "Your shot will gain what this move is for \u2014 luxury/commercial feel; car spots; fashion; when handheld would read as error \u2014 in the exact words models obey, ready to paste into any prompt.",
+      "audience": "beginner",
       "path": "skills/camera/camera-gimbal-stabilizer-smooth.md"
     },
     {
       "id": "camera-static-locked-off",
       "title": "Direct: Static locked-off",
       "description": "Direct a static locked-off camera move with exact prompt phrasing.",
+      "gets_you": "Your shot will gain what this move is for \u2014 timelapse; dialogue coverage; product stills; letting performance carry the shot \u2014 in the exact words models obey, ready to paste into any prompt.",
+      "audience": "beginner",
       "path": "skills/camera/camera-static-locked-off.md"
     },
     {
       "id": "camera-aerial-drone-pull-back",
       "title": "Direct: Aerial / Drone pull-back",
       "description": "Direct an aerial / drone pull-back camera move with exact prompt phrasing.",
+      "gets_you": "Your shot will gain what this move is for \u2014 establishing geography; openings; epic scale \u2014 in the exact words models obey, ready to paste into any prompt.",
+      "audience": "beginner",
       "path": "skills/camera/camera-aerial-drone-pull-back.md"
     },
     {
       "id": "camera-pov",
       "title": "Direct: POV",
       "description": "Direct a pov camera move with exact prompt phrasing.",
+      "gets_you": "Your shot will gain what this move is for \u2014 immersion; horror; action sequences \u2014 in the exact words models obey, ready to paste into any prompt.",
+      "audience": "beginner",
       "path": "skills/camera/camera-pov.md"
     },
     {
       "id": "camera-over-the-shoulder",
       "title": "Direct: Over-the-shoulder",
       "description": "Direct an over-the-shoulder camera move with exact prompt phrasing.",
+      "gets_you": "Your shot will gain what this move is for \u2014 dialogue coverage; grounding the viewer in a character's perspective \u2014 in the exact words models obey, ready to paste into any prompt.",
+      "audience": "beginner",
       "path": "skills/camera/camera-over-the-shoulder.md"
     },
     {
       "id": "camera-bird-s-eye-overhead",
       "title": "Direct: Bird's eye / Overhead",
       "description": "Direct a bird's eye / overhead camera move with exact prompt phrasing.",
+      "gets_you": "Your shot will gain what this move is for \u2014 patterns, crowds, tableaus; omniscient storytelling beats \u2014 in the exact words models obey, ready to paste into any prompt.",
+      "audience": "beginner",
       "path": "skills/camera/camera-bird-s-eye-overhead.md"
     },
     {
       "id": "camera-dutch-angle",
       "title": "Direct: Dutch angle",
       "description": "Direct a dutch angle camera move with exact prompt phrasing.",
+      "gets_you": "Your shot will gain what this move is for \u2014 unease, disorientation, psychological tension \u2014 in the exact words models obey, ready to paste into any prompt.",
+      "audience": "beginner",
       "path": "skills/camera/camera-dutch-angle.md"
     },
     {
       "id": "camera-slow-motion",
       "title": "Direct: Slow motion",
       "description": "Direct a slow motion camera move with exact prompt phrasing.",
+      "gets_you": "Your shot will gain what this move is for \u2014 emphasizing peak action; fashion fabric; emotional beats \u2014 in the exact words models obey, ready to paste into any prompt.",
+      "audience": "beginner",
       "path": "skills/camera/camera-slow-motion.md"
     },
     {
       "id": "direct-soul-2-0",
       "title": "Direct with Soul 2.0",
       "description": "Use Soul 2.0 well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether Soul 2.0 is worth your money for the shot you have in mind \u2014 what it costs, what it is best at, and the weakness to design around \u2014 before you spend on generations.",
+      "audience": "beginner",
       "path": "skills/models/direct-soul-2-0.md"
     },
     {
       "id": "direct-soul-cinema",
       "title": "Direct with Soul Cinema",
       "description": "Use Soul Cinema well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether Soul Cinema is worth your money for the shot you have in mind \u2014 what it costs, what it is best at, and the weakness to design around \u2014 before you spend on generations.",
+      "audience": "beginner",
       "path": "skills/models/direct-soul-cinema.md"
     },
     {
       "id": "direct-soul-cast",
       "title": "Direct with Soul Cast",
       "description": "Use Soul Cast well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether Soul Cast is worth your money for the shot you have in mind \u2014 what it costs, what it is best at, and the weakness to design around \u2014 before you spend on generations.",
+      "audience": "beginner",
       "path": "skills/models/direct-soul-cast.md"
     },
     {
       "id": "direct-seedance-2-0",
       "title": "Direct with Seedance 2.0",
       "description": "Use Seedance 2.0 well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether Seedance 2.0 is worth your money for the shot you have in mind \u2014 what it costs, what it is best at, and the weakness to design around \u2014 before you spend on generations.",
+      "audience": "beginner",
       "path": "skills/models/direct-seedance-2-0.md"
     },
     {
       "id": "direct-seedance-2-5",
       "title": "Direct with Seedance 2.5",
       "description": "Use Seedance 2.5 well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether Seedance 2.5 is worth your money for the shot you have in mind \u2014 what it costs, what it is best at, and the weakness to design around \u2014 before you spend on generations.",
+      "audience": "beginner",
       "path": "skills/models/direct-seedance-2-5.md"
     },
     {
       "id": "direct-seedance-3-0",
       "title": "Direct with Seedance 3.0",
       "description": "Use Seedance 3.0 well: costs, strengths, weaknesses, best use.",
+      "gets_you": "A watched brief on Seedance 3.0: what has been announced, what is still unconfirmed, and what to use instead today \u2014 so you never plan a film on a model you cannot actually use yet.",
+      "audience": "reference",
       "path": "skills/models/direct-seedance-3-0.md"
     },
     {
       "id": "direct-kling-3-0",
       "title": "Direct with Kling 3.0",
       "description": "Use Kling 3.0 well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether Kling 3.0 is worth your money for the shot you have in mind \u2014 what it costs, what it is best at, and the weakness to design around \u2014 before you spend on generations.",
+      "audience": "beginner",
       "path": "skills/models/direct-kling-3-0.md"
     },
     {
       "id": "direct-kling-2-5-turbo",
       "title": "Direct with Kling 2.5 Turbo",
       "description": "Use Kling 2.5 Turbo well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether Kling 2.5 Turbo is worth your money for the shot you have in mind \u2014 what it costs, what it is best at, and the weakness to design around \u2014 before you spend on generations.",
+      "audience": "beginner",
       "path": "skills/models/direct-kling-2-5-turbo.md"
     },
     {
       "id": "direct-veo-3-1",
       "title": "Direct with Veo 3.1",
       "description": "Use Veo 3.1 well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether Veo 3.1 is worth your money for the shot you have in mind \u2014 what it costs, what it is best at, and the weakness to design around \u2014 before you spend on generations.",
+      "audience": "beginner",
       "path": "skills/models/direct-veo-3-1.md"
     },
     {
       "id": "direct-veo-3-1-fast-veo-3",
       "title": "Direct with Veo 3.1 Fast / Veo 3",
       "description": "Use Veo 3.1 Fast / Veo 3 well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether Veo 3.1 Fast / Veo 3 is worth your money for the shot you have in mind \u2014 what it costs, what it is best at, and the weakness to design around \u2014 before you spend on generations.",
+      "audience": "beginner",
       "path": "skills/models/direct-veo-3-1-fast-veo-3.md"
     },
     {
       "id": "direct-wan-2-6",
       "title": "Direct with Wan 2.6",
       "description": "Use Wan 2.6 well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether Wan 2.6 is worth your money for the shot you have in mind \u2014 what it costs, what it is best at, and the weakness to design around \u2014 before you spend on generations.",
+      "audience": "beginner",
       "path": "skills/models/direct-wan-2-6.md"
     },
     {
       "id": "direct-wan-3-0-3-0-prime",
       "title": "Direct with Wan 3.0 / 3.0 Prime",
       "description": "Use Wan 3.0 / 3.0 Prime well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether Wan 3.0 / 3.0 Prime is worth your money for the shot you have in mind \u2014 what it costs, what it is best at, and the weakness to design around \u2014 before you spend on generations.",
+      "audience": "beginner",
       "path": "skills/models/direct-wan-3-0-3-0-prime.md"
     },
     {
       "id": "direct-hailuo-02-2-3",
       "title": "Direct with Hailuo 02 / 2.3",
       "description": "Use Hailuo 02 / 2.3 well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether Hailuo 02 / 2.3 is worth your money for the shot you have in mind \u2014 what it costs, what it is best at, and the weakness to design around \u2014 before you spend on generations.",
+      "audience": "beginner",
       "path": "skills/models/direct-hailuo-02-2-3.md"
     },
     {
       "id": "direct-minimax-h3",
       "title": "Direct with MiniMax H3",
       "description": "Use MiniMax H3 well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether MiniMax H3 is worth your money for the shot you have in mind \u2014 what it costs, what it is best at, and the weakness to design around \u2014 before you spend on generations.",
+      "audience": "beginner",
       "path": "skills/models/direct-minimax-h3.md"
     },
     {
       "id": "direct-luma-app-ray-3-2",
       "title": "Direct with Luma App / Ray 3.2",
       "description": "Use Luma App / Ray 3.2 well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether Luma App / Ray 3.2 is worth your money for the shot you have in mind \u2014 what it costs, what it is best at, and the weakness to design around \u2014 before you spend on generations.",
+      "audience": "beginner",
       "path": "skills/models/direct-luma-app-ray-3-2.md"
     },
     {
       "id": "direct-pika-2-5",
       "title": "Direct with Pika 2.5",
       "description": "Use Pika 2.5 well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether Pika 2.5 is worth your money for the shot you have in mind \u2014 what it costs, what it is best at, and the weakness to design around \u2014 before you spend on generations.",
+      "audience": "beginner",
       "path": "skills/models/direct-pika-2-5.md"
     },
     {
       "id": "direct-dop-lite-standard-turbo",
       "title": "Direct with DoP (Lite/Standard/Turbo)",
       "description": "Use DoP (Lite/Standard/Turbo) well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether DoP (Lite/Standard/Turbo) is worth your money for the shot you have in mind \u2014 what it costs, what it is best at, and the weakness to design around \u2014 before you spend on generations.",
+      "audience": "beginner",
       "path": "skills/models/direct-dop-lite-standard-turbo.md"
     },
     {
       "id": "direct-marketing-studio-video",
       "title": "Direct with Marketing Studio video",
       "description": "Use Marketing Studio video well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether Marketing Studio video is worth your money for the shot you have in mind \u2014 what it costs, what it is best at, and the weakness to design around \u2014 before you spend on generations.",
+      "audience": "beginner",
       "path": "skills/models/direct-marketing-studio-video.md"
     },
     {
       "id": "direct-grok-imagine-video-1-5",
       "title": "Direct with Grok Imagine Video 1.5",
       "description": "Use Grok Imagine Video 1.5 well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether Grok Imagine Video 1.5 is worth your money for the shot you have in mind \u2014 what it costs, what it is best at, and the weakness to design around \u2014 before you spend on generations.",
+      "audience": "beginner",
       "path": "skills/models/direct-grok-imagine-video-1-5.md"
     },
     {
       "id": "direct-midjourney-v1-video",
       "title": "Direct with Midjourney V1 Video",
       "description": "Use Midjourney V1 Video well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether Midjourney V1 Video is worth your money for the shot you have in mind \u2014 what it costs, what it is best at, and the weakness to design around \u2014 before you spend on generations.",
+      "audience": "beginner",
       "path": "skills/models/direct-midjourney-v1-video.md"
     },
     {
       "id": "direct-kling-4-0",
       "title": "Direct with Kling 4.0",
       "description": "Use Kling 4.0 well: costs, strengths, weaknesses, best use.",
+      "gets_you": "A watched brief on Kling 4.0: what has been announced, what is still unconfirmed, and what to use instead today \u2014 so you never plan a film on a model you cannot actually use yet.",
+      "audience": "reference",
       "path": "skills/models/direct-kling-4-0.md"
     },
     {
       "id": "direct-gemini-omni",
       "title": "Direct with Gemini Omni",
       "description": "Use Gemini Omni well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether Gemini Omni is worth your money for the shot you have in mind \u2014 what it costs, what it is best at, and the weakness to design around \u2014 before you spend on generations.",
+      "audience": "beginner",
       "path": "skills/models/direct-gemini-omni.md"
     },
     {
       "id": "direct-ltx-2-5",
       "title": "Direct with LTX-2.5",
       "description": "Use LTX-2.5 well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether LTX-2.5 is worth your money for the shot you have in mind \u2014 what it costs, what it is best at, and the weakness to design around \u2014 before you spend on generations.",
+      "audience": "beginner",
       "path": "skills/models/direct-ltx-2-5.md"
     },
     {
       "id": "direct-vidu-s2",
       "title": "Direct with Vidu S2",
       "description": "Use Vidu S2 well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether Vidu S2 is worth your money for the shot you have in mind \u2014 what it costs, what it is best at, and the weakness to design around \u2014 before you spend on generations.",
+      "audience": "beginner",
       "path": "skills/models/direct-vidu-s2.md"
     },
     {
       "id": "direct-mirage-tesseract",
       "title": "Direct with Mirage Tesseract",
       "description": "Use Mirage Tesseract well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether Mirage Tesseract is worth your money for the shot you have in mind \u2014 what it costs, what it is best at, and the weakness to design around \u2014 before you spend on generations.",
+      "audience": "beginner",
       "path": "skills/models/direct-mirage-tesseract.md"
     },
     {
       "id": "direct-runway-gen-4-5",
       "title": "Direct with Runway Gen-4.5",
       "description": "Use Runway Gen-4.5 well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether Runway Gen-4.5 is worth your money for the shot you have in mind \u2014 what it costs, what it is best at, and the weakness to design around \u2014 before you spend on generations.",
+      "audience": "beginner",
       "path": "skills/models/direct-runway-gen-4-5.md"
     },
     {
       "id": "direct-vidu-q4-preview",
       "title": "Direct with Vidu Q4 Preview",
       "description": "Use Vidu Q4 Preview well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether Vidu Q4 Preview is worth your money for the shot you have in mind \u2014 what it costs, what it is best at, and the weakness to design around \u2014 before you spend on generations.",
+      "audience": "beginner",
       "path": "skills/models/direct-vidu-q4-preview.md"
     },
     {
       "id": "direct-flux-3-video",
       "title": "Direct with FLUX 3 Video",
       "description": "Use FLUX 3 Video well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether FLUX 3 Video is worth your money for the shot you have in mind \u2014 what it costs, what it is best at, and the weakness to design around \u2014 before you spend on generations.",
+      "audience": "beginner",
       "path": "skills/models/direct-flux-3-video.md"
     },
     {
       "id": "direct-vivago-r1",
       "title": "Direct with vivago R1",
       "description": "Use vivago R1 well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether vivago R1 is worth your money for the shot you have in mind \u2014 what it costs, what it is best at, and the weakness to design around \u2014 before you spend on generations.",
+      "audience": "beginner",
       "path": "skills/models/direct-vivago-r1.md"
     },
     {
       "id": "direct-pixverse-v6",
       "title": "Direct with PixVerse V6",
       "description": "Use PixVerse V6 well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether PixVerse V6 is worth your money for the shot you have in mind \u2014 what it costs, what it is best at, and the weakness to design around \u2014 before you spend on generations.",
+      "audience": "beginner",
       "path": "skills/models/direct-pixverse-v6.md"
     },
     {
       "id": "direct-wan-2-7",
       "title": "Direct with Wan 2.7",
       "description": "Use Wan 2.7 well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether Wan 2.7 is worth your money for the shot you have in mind \u2014 what it costs, what it is best at, and the weakness to design around \u2014 before you spend on generations.",
+      "audience": "beginner",
       "path": "skills/models/direct-wan-2-7.md"
     },
     {
       "id": "audit-pre-production-checklist",
       "title": "Run the Pre-production checklist",
       "description": "Run the guide's pre-production checklist as a pass/fail audit.",
+      "gets_you": "You will have checked your work while mistakes are still free to fix: every item marked pass or fail, with the concrete fix written down \u2014 instead of finding the problem after paying for generations.",
+      "audience": "beginner",
       "path": "skills/checklists/audit-pre-production-checklist.md"
     },
     {
       "id": "audit-per-shot-checklist-before-every-generation",
       "title": "Run the Per-shot checklist (before every generation)",
       "description": "Run the guide's per-shot checklist (before every generation) as a pass/fail audit.",
+      "gets_you": "You will have checked your work while mistakes are still free to fix: every item marked pass or fail, with the concrete fix written down \u2014 instead of finding the problem after paying for generations.",
+      "audience": "beginner",
       "path": "skills/checklists/audit-per-shot-checklist-before-every-generation.md"
     },
     {
       "id": "audit-consistency-checklist",
       "title": "Run the Consistency checklist",
       "description": "Run the guide's consistency checklist as a pass/fail audit.",
+      "gets_you": "You will have checked your work while mistakes are still free to fix: every item marked pass or fail, with the concrete fix written down \u2014 instead of finding the problem after paying for generations.",
+      "audience": "beginner",
       "path": "skills/checklists/audit-consistency-checklist.md"
     },
     {
       "id": "audit-audio-checklist",
       "title": "Run the Audio checklist",
       "description": "Run the guide's audio checklist as a pass/fail audit.",
+      "gets_you": "You will have checked your work while mistakes are still free to fix: every item marked pass or fail, with the concrete fix written down \u2014 instead of finding the problem after paying for generations.",
+      "audience": "beginner",
       "path": "skills/checklists/audit-audio-checklist.md"
     },
     {
       "id": "audit-delivery-checklist",
       "title": "Run the Delivery checklist",
       "description": "Run the guide's delivery checklist as a pass/fail audit.",
+      "gets_you": "You will have checked your work while mistakes are still free to fix: every item marked pass or fail, with the concrete fix written down \u2014 instead of finding the problem after paying for generations.",
+      "audience": "beginner",
       "path": "skills/checklists/audit-delivery-checklist.md"
     },
     {
       "id": "longform-asset-registry",
       "title": "Set up the asset registry",
       "description": "Build the named, versioned asset registry before generating shot one.",
+      "gets_you": "You will have one named list of every character, place and prop in your film, locked before you generate anything \u2014 so shot 40 still matches shot 1.",
+      "audience": "beginner",
       "path": "skills/longform/longform-asset-registry.md"
     },
     {
       "id": "longform-shotlist",
       "title": "Build the per-scene shotlist",
       "description": "Write shotlist.md files with verbatim prompts, the source of truth for generation.",
+      "gets_you": "You will have a written plan for every shot in a scene \u2014 its exact prompt, length and look \u2014 that you generate from instead of re-inventing shots in the chat window.",
+      "audience": "beginner",
       "path": "skills/longform/longform-shotlist.md"
     },
     {
       "id": "longform-stress-test",
       "title": "Stress-test a scene before generating",
       "description": "Run Goal/Obstacle/Tactic/Reversal/Value-Shift verdicts on a scene pre-generation.",
+      "gets_you": "You will know whether a scene actually works \u2014 who wants what, what blocks them, what flips \u2014 before spending a single credit generating it.",
+      "audience": "beginner",
       "path": "skills/longform/longform-stress-test.md"
     },
     {
       "id": "longform-blocking-diagram",
       "title": "Draw the blocking diagram",
       "description": "Use a color-coded schematic when words can't stage multi-character shots.",
+      "gets_you": "You will have a simple colour-coded map of where every character stands in a complicated shot, so multi-person scenes stop coming out scrambled.",
+      "audience": "beginner",
       "path": "skills/longform/longform-blocking-diagram.md"
     },
     {
       "id": "longform-depth-map",
       "title": "Add depth maps for room-heavy scenes",
-      "description": "Fix room geometry with a black-and-white depth channel alongside blocking.",
+      "description": "Stop a room rearranging itself between shots: give the model a simple black-and-white map of what's near and what's far, alongside your blocking diagram.",
+      "gets_you": "Your rooms will stay the same room: furniture, doors and windows hold their places across every shot in the location.",
+      "audience": "beginner",
       "path": "skills/longform/longform-depth-map.md"
     },
     {
       "id": "longform-island-prompts",
       "title": "Write island prompts",
       "description": "Make every prompt self-contained: the model has no memory of the last shot.",
+      "gets_you": "Every prompt you write will work on its own \u2014 the model has no memory of your last shot, and after this, it will not need any.",
+      "audience": "beginner",
       "path": "skills/longform/longform-island-prompts.md"
     },
     {
       "id": "longform-voice-bible",
       "title": "Lock the Voice Bible",
       "description": "Paste identical voice direction into every generation \u2014 verbatim, no synonyms.",
+      "gets_you": "Your character will sound like the same person in every scene, because the exact same voice instructions go into every generation, word for word.",
+      "audience": "beginner",
       "path": "skills/longform/longform-voice-bible.md"
     },
     {
       "id": "longform-video-chaining",
       "title": "Chain scenes with video references",
       "description": "Feed each new scene the previous scene's finished video, not a text description.",
+      "gets_you": "Each new scene will start from your last finished scene's actual video, so the film flows as one piece instead of drifting apart shot by shot.",
+      "audience": "beginner",
       "path": "skills/longform/longform-video-chaining.md"
     },
     {
       "id": "longform-compute-envelope",
-      "title": "Budget the compute envelope",
-      "description": "Compute the realistic cost envelope for a 20-min or 90-min AI film.",
+      "title": "Work out what a long film really costs",
+      "description": "The honest total cost of a 20-minute or 90-minute AI film \u2014 including the re-generations every shot needs, not just the perfect first pass.",
+      "gets_you": "You will know the honest price range of your long film before you start \u2014 including re-generations \u2014 so the budget does not die halfway through production.",
+      "audience": "beginner",
       "path": "skills/longform/longform-compute-envelope.md"
     },
     {
       "id": "longform-post-stages",
       "title": "Run the five post stages",
       "description": "Assembly \u2192 rough cut \u2192 generation supervision \u2192 fine cut \u2192 picture lock.",
+      "gets_you": "You will have a finishing order for a long film \u2014 assembly, rough cut, supervision, fine cut, lock \u2014 so 'nearly done' stops lasting forever.",
+      "audience": "beginner",
       "path": "skills/longform/longform-post-stages.md"
     },
     {
       "id": "longform-failure-audit",
       "title": "Audit long-form failure modes",
       "description": "Check a production against the nine documented long-form failure modes.",
+      "gets_you": "You will catch the nine ways long AI films usually fall apart while yours can still be fixed cheaply.",
+      "audience": "beginner",
       "path": "skills/longform/longform-failure-audit.md"
     },
     {
       "id": "longform-crew-roles",
       "title": "Staff a small AI feature crew",
       "description": "Assign the recurring functions observed on real AI features.",
+      "gets_you": "If your production grows, you will know which jobs exist, what each one owns, and who to give them to \u2014 so nothing important is nobody's job.",
+      "audience": "beginner",
       "path": "skills/longform/longform-crew-roles.md"
     },
     {
       "id": "technique-async-remote",
       "title": "Run an async remote production",
       "description": "Two (or more) collaborators, one shared project, zero drift \u2014 the GRANDMA vs WASP method.",
+      "gets_you": "Reference for later: how a small team in different time zones makes one film together \u2014 one shared project, jobs split by craft, no drift between collaborators.",
+      "audience": "reference",
       "path": "skills/techniques/technique-async-remote.md"
     },
     {
       "id": "technique-five-day-sprint",
       "title": "Run a five-day sprint",
       "description": "Trailer-grade output in five days: the SCRATCH method.",
+      "gets_you": "Reference for later: how fluent directors turn out a trailer-grade piece in five days \u2014 a method to grow into once the basics are fast.",
+      "audience": "reference",
       "path": "skills/techniques/technique-five-day-sprint.md"
     },
     {
       "id": "technique-hybrid-pipeline",
       "title": "Build a hybrid pipeline",
-      "description": "Human craft at the center, AI as the impossible layer \u2014 the Passport Rush / Get Me Out method.",
+      "description": "Film the emotional moments for real and let AI build the impossible parts around them \u2014 so the feelings land and the spectacle still happens.",
+      "gets_you": "You will have a plan where the emotional moments are filmed for real and AI builds the impossible parts around them \u2014 feelings that land, spectacle that still happens.",
+      "audience": "beginner",
       "path": "skills/techniques/technique-hybrid-pipeline.md"
     },
     {
       "id": "technique-authored-style",
       "title": "Commit to an authored style",
-      "description": "Pick a style for what it forgives \u2014 the Le Drip / Peony method.",
+      "description": "Choose a visual style that hides AI's mistakes instead of exposing them \u2014 the right style makes small flaws invisible.",
+      "gets_you": "You will have picked a look that hides AI's small mistakes instead of exposing them \u2014 the single cheapest quality upgrade a first film can make.",
+      "audience": "beginner",
       "path": "skills/techniques/technique-authored-style.md"
     },
     {
       "id": "technique-photoreal-character",
       "title": "Direct a photoreal character piece",
-      "description": "A real script + locked POV: the character-first photoreal lane.",
+      "description": "Make a realistic-looking short that feels acted, not generated: start from a real script and shoot every scene from one character's point of view.",
+      "gets_you": "You will have a realistic short that feels acted rather than generated: a real script, one point of view, faces carrying the story.",
+      "audience": "beginner",
       "path": "skills/techniques/technique-photoreal-character.md"
     },
     {
       "id": "technique-longform-discipline",
       "title": "Apply long-form discipline to shorts",
-      "description": "ONEIRIC's systems thinking, compressed for sub-10-minute work.",
+      "description": "Use the habits that keep long AI films consistent \u2014 map every shot, lock identities, draft cheap \u2014 on a short film, so your characters and rooms stop changing between shots.",
+      "gets_you": "Your short film will hold together like a long one: every shot mapped, identities locked, drafts cheap \u2014 no character or room changing between shots.",
+      "audience": "beginner",
       "path": "skills/techniques/technique-longform-discipline.md"
     },
     {
       "id": "technique-entry-killer-audit",
       "title": "Run the entry-killer audit",
-      "description": "The pre-submission audit that catches what judges punish.",
+      "description": "A final check that catches the flaws competition judges punish most \u2014 morphing faces, drifting costumes, shots that exist only to show off \u2014 before you submit.",
+      "gets_you": "You will submit knowing the flaws judges punish most \u2014 morphing faces, drifting costumes, show-off shots \u2014 have already been hunted down and fixed.",
+      "audience": "beginner",
       "path": "skills/techniques/technique-entry-killer-audit.md"
     },
     {
       "id": "entry-competition-compliance",
       "title": "Check competition delivery compliance",
       "description": "Verify an entry against competition delivery rules before submitting.",
+      "gets_you": "You will know your entry actually follows the competition's rules \u2014 format, length, disclosure \u2014 before you submit, not after a disqualification email.",
+      "audience": "beginner",
       "path": "skills/entry/entry-competition-compliance.md"
     },
     {
       "id": "entry-competition-planner",
       "title": "Plan a competition entry",
       "description": "Turn competition constraints into a production plan.",
+      "gets_you": "You will have a production plan built backwards from the competition's deadline and constraints, so the film gets finished, not just started.",
+      "audience": "beginner",
       "path": "skills/entry/entry-competition-planner.md"
     },
     {
       "id": "entry-delivery-package",
       "title": "Assemble the delivery package",
       "description": "Build the watermark, packshot, and public post a competition requires.",
+      "gets_you": "You will hand over everything a competition asks for \u2014 the film file, the watermark, the packshot, the public post \u2014 assembled in one go.",
+      "audience": "beginner",
       "path": "skills/entry/entry-delivery-package.md"
     },
     {
       "id": "entry-credit-budget",
       "title": "Budget credits for a competition entry",
       "description": "Credit math for a 3\u20135 minute competition entry.",
+      "gets_you": "You will know how many credits a competition entry really takes, so a 3\u20135 minute film does not run out of money at minute two.",
+      "audience": "beginner",
       "path": "skills/entry/entry-credit-budget.md"
     },
     {
       "id": "workflow-style-bible",
       "title": "Lock the style bible",
       "description": "Write the one style line that goes verbatim into every prompt.",
+      "gets_you": "You will have the one sentence that describes your film's look, ready to paste into every prompt \u2014 the habit that makes a film look like one film.",
+      "audience": "beginner",
       "path": "skills/workflow/workflow-style-bible.md"
     },
     {
       "id": "workflow-identity-block",
       "title": "Write the Identity Block",
       "description": "Static descriptors only: face, wardrobe, palette. No motion, no camera.",
+      "gets_you": "You will be able to describe a character once, in a reusable block, so they look identical every time they appear.",
+      "audience": "beginner",
       "path": "skills/workflow/workflow-identity-block.md"
     },
     {
       "id": "workflow-motion-block",
       "title": "Write the Motion Block",
       "description": "One action, one camera move. Nothing more.",
+      "gets_you": "You will be able to say exactly what happens in a shot \u2014 one action, one camera move \u2014 in the form models follow most reliably.",
+      "audience": "beginner",
       "path": "skills/workflow/workflow-motion-block.md"
     },
     {
       "id": "workflow-draft-loop",
       "title": "Run the 720p draft loop",
       "description": "Draft cheap, select fast, escalate only winners.",
+      "gets_you": "You will test every shot cheaply first and only pay full price for the takes that already work \u2014 most of your budget stays unspent.",
+      "audience": "beginner",
       "path": "skills/workflow/workflow-draft-loop.md"
     },
     {
       "id": "workflow-upscale-decision",
       "title": "Decide what to upscale",
       "description": "Upscale winners only \u2014 never the timeline.",
+      "gets_you": "You will know which finished shots deserve expensive high-resolution renders and which never do \u2014 and stop paying to upscale rejects.",
+      "audience": "beginner",
       "path": "skills/workflow/workflow-upscale-decision.md"
     },
     {
       "id": "workflow-sound-first",
       "title": "Cut sound-first",
       "description": "Assemble the radio edit before locking picture.",
+      "gets_you": "You will have a version of your film that already works with your eyes closed \u2014 dialogue and sound cut first, picture fitted to it.",
+      "audience": "beginner",
       "path": "skills/workflow/workflow-sound-first.md"
     },
     {
       "id": "workflow-trailer-structure",
       "title": "Structure a trailer cut",
       "description": "Hook / escalation / title \u2014 the 60\u201390 second competition weapon.",
+      "gets_you": "You will have a 60\u201390 second trailer shape \u2014 hook, escalation, title \u2014 that makes a short film feel like an event.",
+      "audience": "beginner",
       "path": "skills/workflow/workflow-trailer-structure.md"
     },
     {
       "id": "workflow-prompt-debug",
       "title": "Debug a failing prompt",
       "description": "Change one variable at a time until the generation obeys.",
+      "gets_you": "When a generation ignores you, you will have a method \u2014 change one thing at a time \u2014 that finds the fix instead of burning credits on random re-rolls.",
+      "audience": "beginner",
       "path": "skills/workflow/workflow-prompt-debug.md"
     },
     {
       "id": "compare-dialogue-lipsync",
       "title": "Choose a model for dialogue + lip sync",
       "description": "Pick between native-audio models for talking heads and dialogue scenes.",
+      "gets_you": "You will know which model to pay for when characters talk on screen, so lips and voices match instead of floating apart.",
+      "audience": "beginner",
       "path": "skills/compare/compare-dialogue-lipsync.md"
     },
     {
       "id": "compare-fast-action",
       "title": "Choose a model for fast action",
       "description": "Motion-strong models for chases, fights, and kinetic sequences.",
+      "gets_you": "You will know which model keeps chases and fights readable and fast, instead of melting them into blur.",
+      "audience": "beginner",
       "path": "skills/compare/compare-fast-action.md"
     },
     {
       "id": "compare-cheap-drafts",
       "title": "Choose the cheapest draft model",
       "description": "Minimize spend while answering creative questions.",
+      "gets_you": "You will know the cheapest model that still answers 'does this shot work?', so testing ideas costs pennies.",
+      "audience": "beginner",
       "path": "skills/compare/compare-cheap-drafts.md"
     },
     {
       "id": "compare-product-commercial",
       "title": "Choose a model for product commercials",
       "description": "Camera-first models for macro, orbit, and packshot work.",
+      "gets_you": "You will know which model makes a product look expensive on camera \u2014 macro detail, clean orbits, a packshot that sells.",
+      "audience": "beginner",
       "path": "skills/compare/compare-product-commercial.md"
     },
     {
       "id": "compare-anime-production",
       "title": "Choose a model for anime production",
       "description": "Cel/sakuga registers and the models that speak them.",
+      "gets_you": "You will know which models actually speak anime \u2014 cel shading and impact frames \u2014 instead of imitating it badly.",
+      "audience": "beginner",
       "path": "skills/compare/compare-anime-production.md"
     },
     {
       "id": "compare-photoreal-faces",
       "title": "Choose a model for photoreal faces",
       "description": "Portrait-strong models for close-ups and character work.",
+      "gets_you": "You will know which model to trust with faces in close-up, where every flaw is visible.",
+      "audience": "beginner",
       "path": "skills/compare/compare-photoreal-faces.md"
     },
     {
       "id": "compare-long-takes",
       "title": "Choose a model for long takes",
       "description": "Sustained single-shot sequences without cut-stitching.",
+      "gets_you": "You will know which model can hold one long shot together without you stitching fragments in the edit.",
+      "audience": "beginner",
       "path": "skills/compare/compare-long-takes.md"
     },
     {
       "id": "compare-talking-head",
       "title": "Choose a model for talking heads",
       "description": "Static, clean, credible interview framing.",
+      "gets_you": "You will know which model gives a clean, believable person-talking-to-camera shot for interviews and explainers.",
+      "audience": "beginner",
       "path": "skills/compare/compare-talking-head.md"
     },
     {
       "id": "compare-stylized-3d",
       "title": "Choose a model for stylized 3D",
       "description": "Pixar-grade character animation looks.",
+      "gets_you": "You will know which model delivers that polished animated-feature look for stylised 3D characters.",
+      "audience": "beginner",
       "path": "skills/compare/compare-stylized-3d.md"
     },
     {
       "id": "compare-music-video",
       "title": "Choose a model for music videos",
       "description": "Beat-driven visuals with style velocity.",
+      "gets_you": "You will know which model cuts to a beat without falling apart \u2014 style, speed and rhythm in one pick.",
+      "audience": "beginner",
       "path": "skills/compare/compare-music-video.md"
     },
     {
       "id": "fix-morphing-faces",
       "title": "Fix morphing faces",
       "description": "Diagnose and fix faces that shift between frames or shots.",
+      "gets_you": "A face that keeps melting or changing mid-shot will hold still and stay the same person.",
+      "audience": "beginner",
       "path": "skills/fix/fix-morphing-faces.md"
     },
     {
       "id": "fix-identity-drift",
       "title": "Fix identity drift across scenes",
       "description": "Stop a character slowly becoming someone else.",
+      "gets_you": "A character who slowly turns into a stranger across scenes will stay recognisably themselves from first shot to last.",
+      "audience": "beginner",
       "path": "skills/fix/fix-identity-drift.md"
     },
     {
       "id": "fix-bad-lip-sync",
       "title": "Fix bad lip sync",
       "description": "Route dialogue through the right sync path.",
+      "gets_you": "Dialogue that looked dubbed will line up with the voice, by routing it through the sync path that fits the scene.",
+      "audience": "beginner",
       "path": "skills/fix/fix-bad-lip-sync.md"
     },
     {
       "id": "fix-plasticky-look",
       "title": "Fix the plasticky AI look",
       "description": "Kill over-smooth, over-saturated generative rendering.",
+      "gets_you": "Footage that screams 'AI' \u2014 waxy skin, candy colours \u2014 will come out looking filmed instead.",
+      "audience": "beginner",
       "path": "skills/fix/fix-plasticky-look.md"
     },
     {
       "id": "fix-flicker-boiling",
       "title": "Fix flicker and boiling",
       "description": "Stabilize textures that crawl between frames.",
+      "gets_you": "Textures that crawl and shimmer between frames will settle down so the shot stops looking haunted.",
+      "audience": "beginner",
       "path": "skills/fix/fix-flicker-boiling.md"
     },
     {
       "id": "fix-muddy-audio",
       "title": "Fix muddy AI audio",
       "description": "Clean up dull, washy, or phasey generated audio.",
+      "gets_you": "Dull, washy AI audio will come out clear enough that dialogue is understood the first time.",
+      "audience": "beginner",
       "path": "skills/fix/fix-muddy-audio.md"
     },
     {
       "id": "budget-short-3min",
       "title": "Budget a 3-minute short",
       "description": "Realistic credit math for a competition-grade 3-minute film.",
+      "gets_you": "You will know what a good 3-minute short really costs, in credits and dollars, before you generate the first shot.",
+      "audience": "beginner",
       "path": "skills/budget/budget-short-3min.md"
     },
     {
       "id": "budget-film-20min",
       "title": "Budget a 20-minute film",
       "description": "Realistic credit math for a 20-minute AI film.",
+      "gets_you": "You will know what a 20-minute film really costs \u2014 retakes included \u2014 while there is still time to change the plan.",
+      "audience": "beginner",
       "path": "skills/budget/budget-film-20min.md"
     },
     {
       "id": "budget-feature-90min",
       "title": "Budget a 90-minute feature",
       "description": "Realistic credit math for a feature-length AI film.",
+      "gets_you": "You will know what a feature-length AI film really costs, and where that money actually goes.",
+      "audience": "beginner",
       "path": "skills/budget/budget-feature-90min.md"
     },
     {
       "id": "deliver-competition",
       "title": "Deliver for competitions",
       "description": "Master a competition-ready file: spec, watermark, packshot.",
+      "gets_you": "You will have a finished film file that meets competition specs exactly \u2014 right format, watermark, packshot \u2014 ready to upload.",
+      "audience": "beginner",
       "path": "skills/delivery/deliver-competition.md"
     },
     {
       "id": "deliver-social-916",
       "title": "Deliver for social (9:16)",
       "description": "Vertical delivery that doesn't destroy composition.",
+      "gets_you": "Your film will work as a vertical phone video without the important parts being cropped off the sides.",
+      "audience": "beginner",
       "path": "skills/delivery/deliver-social-916.md"
     },
     {
       "id": "deliver-trailer",
       "title": "Deliver a trailer master",
       "description": "The 60\u201390s competition weapon, mastered.",
+      "gets_you": "You will have a finished 60\u201390 second trailer file, mastered and ready to post or submit.",
+      "audience": "beginner",
       "path": "skills/delivery/deliver-trailer.md"
     },
     {
       "id": "audio-direct-voiceover",
       "title": "Direct an AI voiceover",
       "description": "Get directed, human-feeling VO from AI voices.",
+      "gets_you": "Your AI narrator or character will sound directed \u2014 paced, emphasised, human \u2014 instead of reading like a satnav.",
+      "audience": "beginner",
       "path": "skills/audio/audio-direct-voiceover.md"
     },
     {
       "id": "audio-sfx-bed",
       "title": "Build the SFX bed",
       "description": "Layered backgrounds \u2192 hard FX \u2192 Foley under everything.",
+      "gets_you": "Your scenes will sound like places: a layered bed of background, effects and Foley under every shot, instead of silence between lines.",
+      "audience": "beginner",
       "path": "skills/audio/audio-sfx-bed.md"
     },
     {
       "id": "audio-music-brief",
       "title": "Brief AI music (Suno-style)",
       "description": "Write music prompts that return usable score.",
+      "gets_you": "You will be able to ask an AI music tool for a score cue and actually get back something your film can use.",
+      "audience": "beginner",
       "path": "skills/audio/audio-music-brief.md"
     },
     {
       "id": "audio-lip-sync-route",
       "title": "Choose the lip-sync route",
       "description": "Native quotes vs post lip-sync, decided per scene.",
+      "gets_you": "For every dialogue scene, you will know which lip-sync method to use \u2014 the one that fits the words, the budget and the deadline.",
+      "audience": "beginner",
       "path": "skills/audio/audio-lip-sync-route.md"
     },
     {
       "id": "audio-final-mix",
       "title": "Run the final mix pass",
       "description": "Dialogue-first balance, loudness QC, and the three-device listen.",
+      "gets_you": "Your finished film will sound balanced on a phone, a laptop and a TV \u2014 dialogue first, nothing buried, nothing blaring.",
+      "audience": "beginner",
       "path": "skills/audio/audio-final-mix.md"
     },
     {
       "id": "recipe-dialogue-scene",
       "title": "Shoot a dialogue scene",
       "description": "Coverage that cuts: the complete dialogue-scene recipe.",
+      "gets_you": "You will have filmed a complete two-person conversation that cuts together like a real scene \u2014 both sides, reactions, rhythm.",
+      "audience": "beginner",
       "path": "skills/recipes/recipe-dialogue-scene.md"
     },
     {
       "id": "recipe-chase-sequence",
       "title": "Shoot a chase sequence",
       "description": "Kinetic cutting with geography the audience can follow.",
+      "gets_you": "You will have a chase the audience can actually follow \u2014 fast, exciting, and never confusing about who is where.",
+      "audience": "beginner",
       "path": "skills/recipes/recipe-chase-sequence.md"
     },
     {
       "id": "recipe-product-spot",
       "title": "Shoot a product spot",
       "description": "The 30-second product film: macro, orbit, lifestyle.",
+      "gets_you": "You will have a 30-second product film \u2014 macro beauty shot, orbit, lifestyle moment \u2014 that looks like it cost an agency.",
+      "audience": "beginner",
       "path": "skills/recipes/recipe-product-spot.md"
     },
     {
       "id": "recipe-horror-short",
       "title": "Shoot a horror short",
       "description": "Dread engineering: what you don't show.",
+      "gets_you": "You will have a horror short that scares by what it withholds \u2014 dread built from sound, shadow and timing, not jump-scare spam.",
+      "audience": "beginner",
       "path": "skills/recipes/recipe-horror-short.md"
     },
     {
       "id": "recipe-music-video",
       "title": "Shoot a music video",
       "description": "Beat-mapped visuals with style velocity.",
+      "gets_you": "You will have a music video whose pictures hit the beat and change with the song's energy.",
+      "audience": "beginner",
       "path": "skills/recipes/recipe-music-video.md"
     },
     {
       "id": "recipe-trailer-cut",
       "title": "Cut a trailer",
       "description": "The 60\u201390s competition weapon, structured.",
+      "gets_you": "You will have cut your footage into a 60\u201390 second trailer with a hook, a build and a title moment.",
+      "audience": "beginner",
       "path": "skills/recipes/recipe-trailer-cut.md"
     },
     {
       "id": "recipe-interview",
       "title": "Shoot an interview",
       "description": "Credible talking heads: the documentary recipe.",
+      "gets_you": "You will have an interview that looks and sounds credible \u2014 the talking-head backbone of documentaries and explainers.",
+      "audience": "beginner",
       "path": "skills/recipes/recipe-interview.md"
     },
     {
       "id": "recipe-dream-sequence",
       "title": "Shoot a dream sequence",
       "description": "Surreal logic with emotional continuity.",
+      "gets_you": "You will have a dream sequence that feels dreamlike yet emotionally clear \u2014 strange images, unbroken feeling.",
+      "audience": "beginner",
       "path": "skills/recipes/recipe-dream-sequence.md"
     },
     {
       "id": "recipe-fight-scene",
       "title": "Shoot a fight scene",
       "description": "Readable action: geography, rhythm, impact.",
+      "gets_you": "You will have a fight that reads: the audience sees every hit, knows the geography, and feels the impact.",
+      "audience": "beginner",
       "path": "skills/recipes/recipe-fight-scene.md"
     },
     {
       "id": "recipe-montage",
       "title": "Cut a montage",
       "description": "Time compression with emotional direction.",
+      "gets_you": "You will have compressed weeks or years into a sequence that still moves the audience in one direction.",
+      "audience": "beginner",
       "path": "skills/recipes/recipe-montage.md"
     },
     {
       "id": "recipe-establishing",
       "title": "Shoot an establishing sequence",
       "description": "Place, time, tone in under 15 seconds.",
+      "gets_you": "You will be able to tell an audience where they are, when it is, and how to feel \u2014 in under 15 seconds.",
+      "audience": "beginner",
       "path": "skills/recipes/recipe-establishing.md"
     },
     {
       "id": "recipe-finale-button",
       "title": "Land the finale button",
       "description": "The last image the jury remembers.",
+      "gets_you": "Your film will end on the image people remember and describe to friends afterwards.",
+      "audience": "beginner",
       "path": "skills/recipes/recipe-finale-button.md"
     },
     {
       "id": "style-anime-sakuga",
       "title": "Direct anime (sakuga)",
       "description": "Cel-animated action with impact frames and painted backgrounds.",
+      "gets_you": "Your action scenes will look like real anime \u2014 painted backgrounds, impact frames, movement with snap and weight.",
+      "audience": "beginner",
       "path": "skills/styles/style-anime-sakuga.md"
     },
     {
       "id": "style-ghibli-pastoral",
       "title": "Direct Ghibli-style pastoral",
       "description": "Hand-painted landscapes, drifting clouds, gentle held frames.",
+      "gets_you": "Your scenes will have that hand-painted, gentle, drifting-cloud calm \u2014 landscapes the audience wants to live inside.",
+      "audience": "beginner",
       "path": "skills/styles/style-ghibli-pastoral.md"
     },
     {
       "id": "style-pixar-3d",
       "title": "Direct Pixar-style 3D",
       "description": "Stylized 3D character animation with appeal and clarity.",
+      "gets_you": "Your characters will have the appeal and clarity of a big-studio animated feature \u2014 expressions that read instantly.",
+      "audience": "beginner",
       "path": "skills/styles/style-pixar-3d.md"
     },
     {
       "id": "style-western-2d",
       "title": "Direct western 2D cartoon",
       "description": "Flat colors, thick outlines, limited animation with snap.",
+      "gets_you": "Your cartoon will have flat colour, thick outlines and snappy limited animation \u2014 the classic TV-cartoon energy.",
+      "audience": "beginner",
       "path": "skills/styles/style-western-2d.md"
     },
     {
       "id": "style-claymation",
       "title": "Direct claymation",
       "description": "Handcrafted stop-motion with fingerprints and stepped motion.",
+      "gets_you": "Your film will feel handmade \u2014 fingerprints, stepped motion, real-clay charm \u2014 instead of computer-smooth.",
+      "audience": "beginner",
       "path": "skills/styles/style-claymation.md"
     },
     {
       "id": "style-photoreal-drama",
       "title": "Direct photoreal drama",
       "description": "Invisible AI: intimate, POV-locked, performance-first.",
+      "gets_you": "Your drama will look like it was filmed with real actors \u2014 intimate, quiet, and believable enough that nobody asks how.",
+      "audience": "beginner",
       "path": "skills/styles/style-photoreal-drama.md"
     },
     {
       "id": "style-photoreal-action",
       "title": "Direct photoreal action",
       "description": "Trailer-grade kinetic photorealism.",
+      "gets_you": "Your action will look like a theatrical trailer \u2014 kinetic, glossy, and physically convincing.",
+      "audience": "beginner",
       "path": "skills/styles/style-photoreal-action.md"
     },
     {
       "id": "style-oil-painting",
       "title": "Direct living oil painting",
       "description": "Dense brushstrokes in motion \u2014 the Le Drip method.",
+      "gets_you": "Your film will move like a living oil painting \u2014 dense brushstrokes in motion, a look no live camera can get.",
+      "audience": "beginner",
       "path": "skills/styles/style-oil-painting.md"
     },
     {
       "id": "craft-kill-ai-look",
       "title": "Kill the AI look",
       "description": "De-plasticize generative footage with grain, aberration, and restraint.",
+      "gets_you": "Your footage will stop looking generated: grain, lens character and restraint added in the right order, so audiences see a film, not a demo.",
+      "audience": "beginner",
       "path": "skills/craft/craft-kill-ai-look.md"
     },
     {
       "id": "craft-jl-cuts",
       "title": "Cut with J/L cuts",
       "description": "Overlap audio across cuts to mask transitions and build flow.",
+      "gets_you": "Your cuts will flow: dialogue starting before the picture changes (and lingering after) hides edits and makes AI footage feel continuous.",
+      "audience": "beginner",
       "path": "skills/craft/craft-jl-cuts.md"
     },
     {
       "id": "craft-identity-motion-split",
       "title": "Separate identity from motion",
       "description": "The Identity Block / Motion Block discipline.",
+      "gets_you": "Your characters will stop changing appearance between shots, because who they are and what they do are written separately in every prompt.",
+      "audience": "beginner",
       "path": "skills/craft/craft-identity-motion-split.md"
     },
     {
       "id": "craft-flf-transitions",
       "title": "Build first/last-frame transitions",
       "description": "Interpolate between composed start and end images.",
+      "gets_you": "You will be able to morph smoothly between two composed images \u2014 a transition that looks designed, not accidental.",
+      "audience": "beginner",
       "path": "skills/craft/craft-flf-transitions.md"
     },
     {
       "id": "craft-relay-chaining",
       "title": "Chain with relay frames",
       "description": "Every clip starts on the last frame of the previous approved clip.",
+      "gets_you": "Long sequences will hold together: every clip starts on the previous clip's last frame, so the film never visibly restarts.",
+      "audience": "beginner",
       "path": "skills/craft/craft-relay-chaining.md"
     },
     {
       "id": "craft-reanchoring",
       "title": "Re-anchor references",
       "description": "Refresh identity references before drift becomes visible.",
+      "gets_you": "Before a character's face drifts too far, you will have refreshed their reference \u2014 drift fixed while it is still invisible to audiences.",
+      "audience": "beginner",
       "path": "skills/craft/craft-reanchoring.md"
     },
     {
       "id": "craft-bake-look",
       "title": "Bake the look into plates",
       "description": "Grade, lens, and texture live in the image plate, not the video prompt.",
+      "gets_you": "Your look will survive every generation, because the grade and lens character live in the starting image itself, not in words the model can ignore.",
+      "audience": "beginner",
       "path": "skills/craft/craft-bake-look.md"
     },
     {
       "id": "craft-blocking-diagram",
       "title": "Stage with blocking diagrams",
       "description": "Color-coded schematics for multi-character staging.",
+      "gets_you": "Complicated multi-character shots will come out staged the way you drew them, not scrambled.",
+      "audience": "beginner",
       "path": "skills/craft/craft-blocking-diagram.md"
     },
     {
       "id": "craft-voice-bible",
       "title": "Maintain the Voice Bible",
       "description": "Identical voice direction in every generation.",
+      "gets_you": "Your character's voice direction will be identical in every generation \u2014 the same written direction, pasted verbatim, every time.",
+      "audience": "beginner",
       "path": "skills/craft/craft-voice-bible.md"
     },
     {
       "id": "craft-draft-720p",
       "title": "Draft at 720p, upscale winners",
       "description": "The resolution discipline that saves budgets.",
+      "gets_you": "You will prove every shot at cheap resolution first and only pay full price for winners \u2014 the discipline that saves most of a budget.",
+      "audience": "beginner",
       "path": "skills/craft/craft-draft-720p.md"
     },
     {
       "id": "craft-character-sheets",
       "title": "Build character sheet composites",
       "description": "Multi-angle reference sheets that lock identity.",
+      "gets_you": "You will have a reference sheet of your character from several angles that keeps them the same person in every shot.",
+      "audience": "beginner",
       "path": "skills/craft/craft-character-sheets.md"
     },
     {
       "id": "craft-style-lock",
       "title": "Lock the style bible",
-      "description": "One style line, verbatim, everywhere. See workflow-style-bible.",
+      "description": "Write one sentence that describes your film's look, then paste that exact sentence into every prompt \u2014 it is what stops every shot looking like a different film.",
+      "gets_you": "Every shot in your film will share one look, because one written style sentence \u2014 locked on day one \u2014 goes into every prompt word for word.",
+      "audience": "beginner",
       "path": "skills/craft/craft-style-lock.md"
     },
     {
       "id": "craft-one-motion",
       "title": "Enforce one motion per prompt",
       "description": "The single highest-leverage prompt discipline.",
+      "gets_you": "Your shots will do one thing cleanly instead of three things badly \u2014 the single habit that fixes more prompts than any other.",
+      "audience": "beginner",
       "path": "skills/craft/craft-one-motion.md"
     },
     {
       "id": "craft-face-erased-sheets",
       "title": "Use face-erased sheets for new angles",
       "description": "Get new angles without re-rolling identity.",
+      "gets_you": "You will get your character from new camera angles without their face changing, by starting from sheets with the face left blank.",
+      "audience": "beginner",
       "path": "skills/craft/craft-face-erased-sheets.md"
     },
     {
       "id": "craft-video-over-text",
       "title": "Prefer video references over text",
       "description": "Show, don't tell \u2014 the chaining rule.",
+      "gets_you": "Your scenes will continue from what is actually on screen \u2014 showing the model the previous video instead of describing it and hoping.",
+      "audience": "beginner",
       "path": "skills/craft/craft-video-over-text.md"
     },
     {
       "id": "craft-negatives-policy",
       "title": "Apply the negatives policy",
       "description": "Say what you want, not what you avoid.",
+      "gets_you": "Your prompts will get what you ask for more often, because they say what TO show instead of listing what to avoid (which models often render anyway).",
+      "audience": "beginner",
       "path": "skills/craft/craft-negatives-policy.md"
     },
     {
       "id": "craft-gaze-eyelines",
       "title": "Direct gaze and eyelines",
       "description": "Eyes get their own prompt block before blocking.",
+      "gets_you": "Your characters will look at the right things \u2014 eyelines that match across cuts, so conversations feel like they happen in one room.",
+      "audience": "beginner",
       "path": "skills/craft/craft-gaze-eyelines.md"
     },
     {
       "id": "craft-ambience-bed",
       "title": "Lay the ambience bed",
       "description": "One continuous bed under the whole film.",
+      "gets_you": "Your film will sound like one continuous place, because one unbroken background sound runs under all of it.",
+      "audience": "beginner",
       "path": "skills/craft/craft-ambience-bed.md"
     },
     {
       "id": "craft-long-takes",
       "title": "Prefer long takes over cut-stitching",
       "description": "Flow solved at generation beats flow faked in post.",
+      "gets_you": "Your scenes will flow in long unbroken shots instead of stitched fragments \u2014 solved while generating, not faked in the edit.",
+      "audience": "beginner",
       "path": "skills/craft/craft-long-takes.md"
     },
     {
       "id": "craft-cold-screening",
       "title": "Screen for cold viewers",
       "description": "The fine-cut test that finds what you can't see anymore.",
+      "gets_you": "You will find the confusing, boring and broken moments you have gone blind to \u2014 by testing the cut on fresh viewers before it ships.",
+      "audience": "beginner",
       "path": "skills/craft/craft-cold-screening.md"
     },
     {
       "id": "performance-tactics-not-emotions",
       "title": "Rewrite emotions as tactics",
       "description": "Turn emotion labels into playable tactics AI can render.",
+      "gets_you": "Your characters will act believably, because you will direct them with things they can DO ('she hides the letter') instead of feelings models cannot render ('she is sad').",
+      "audience": "beginner",
       "path": "skills/performance/performance-tactics-not-emotions.md"
     },
     {
       "id": "performance-directors-read",
       "title": "Write the director's read",
       "description": "One shared event + each character's physical channel, before generating.",
+      "gets_you": "Before generating a scene, you will have written what it is really about and how each character shows it physically \u2014 the note that makes performances agree with each other.",
+      "audience": "beginner",
       "path": "skills/performance/performance-directors-read.md"
     },
     {
       "id": "performance-ration-closeups",
       "title": "Ration close-ups",
       "description": "Spend close-ups at emotional peaks; carry the rest in mediums and wides.",
+      "gets_you": "Your close-ups will land like punches, because they are saved for the emotional peaks instead of spent everywhere.",
+      "audience": "beginner",
       "path": "skills/performance/performance-ration-closeups.md"
     },
     {
       "id": "performance-hybrid-decision",
       "title": "Decide AI vs hybrid performance",
       "description": "Know when the emotional core needs a real human.",
+      "gets_you": "You will know when a scene needs a real human performer at its centre \u2014 and when AI can honestly carry it.",
+      "audience": "beginner",
       "path": "skills/performance/performance-hybrid-decision.md"
     },
     {
       "id": "grade-unify-first",
       "title": "Unify before grading",
       "description": "Match every shot to a per-scene reference before any creative look.",
+      "gets_you": "All your shots will match each other \u2014 same light, same colour world \u2014 before any creative look is applied, so the film stops looking stitched from different cameras.",
+      "audience": "beginner",
       "path": "skills/grading/grade-unify-first.md"
     },
     {
       "id": "grade-deplasticize",
       "title": "Run the de-plasticize stack",
       "description": "Desaturate, grain, chromatic aberration, soften \u2014 in that order.",
+      "gets_you": "The waxy, over-smooth AI skin and candy colour will be gone \u2014 desaturate, grain, soften, in the order that works.",
+      "audience": "beginner",
       "path": "skills/grading/grade-deplasticize.md"
     },
     {
       "id": "grade-scopes-not-eyes",
       "title": "Grade with scopes, not eyes",
       "description": "Waveforms and vectorscopes catch what AI footage hides from eyes.",
+      "gets_you": "Your colours will be right on every screen, not just yours \u2014 measured with the waveform and vectorscope tools the pros use.",
+      "audience": "beginner",
       "path": "skills/grading/grade-scopes-not-eyes.md"
     },
     {
       "id": "performance-restraint-pass",
       "title": "Run the restraint pass",
       "description": "Strip theatrical over-acting: negative constraints, subtext, under-direction.",
+      "gets_you": "Your characters will stop over-acting: smaller, quieter, more believable performances, directed with restraint instead of melodrama.",
+      "audience": "beginner",
       "path": "skills/performance/performance-restraint-pass.md"
     },
     {
       "id": "performance-dialogue-roads",
       "title": "Choose the dialogue road",
       "description": "Road A (native audio) vs Road B (decoupled voice + lip-sync).",
+      "gets_you": "For every dialogue scene you will pick the right route \u2014 the model speaks it natively, or you record the voice and sync it \u2014 before it costs you re-renders.",
+      "audience": "beginner",
       "path": "skills/performance/performance-dialogue-roads.md"
     },
     {
       "id": "performance-direct-tts",
       "title": "Direct TTS voices through text",
       "description": "ElevenLabs has no emotion dial \u2014 the punctuation is the direction.",
+      "gets_you": "Your text-to-speech voices will sound directed, because you will write the punctuation, pauses and emphasis that are the only controls these tools give you.",
+      "audience": "beginner",
       "path": "skills/performance/performance-direct-tts.md"
     },
     {
       "id": "performance-dead-eyes-check",
       "title": "Run the dead-eyes checklist",
       "description": "The four biological markers of aliveness AI faces fail.",
+      "gets_you": "You will be able to spot lifeless AI eyes in seconds \u2014 and fix them by giving the eyes something to do.",
+      "audience": "beginner",
       "path": "skills/performance/performance-dead-eyes-check.md"
     },
     {
       "id": "performance-scene-lock",
       "title": "Lock the scene after approval",
       "description": "Scene Lock: photograph the approved performance, stop regenerating it.",
+      "gets_you": "An approved performance will stay approved: locked, photographed, and never accidentally regenerated into a worse take.",
+      "audience": "beginner",
       "path": "skills/performance/performance-scene-lock.md"
     },
     {
       "id": "distribution-pick-path",
       "title": "Choose the release path",
       "description": "AI-native distributor vs YouTube vs traditional indie vs self-hosted.",
+      "gets_you": "You will choose where your film actually gets seen \u2014 AI-native distributor, YouTube, festivals, or your own site \u2014 with the trade-offs in plain view.",
+      "audience": "beginner",
       "path": "skills/distribution/distribution-pick-path.md"
     },
     {
       "id": "distribution-youtube-release",
       "title": "Release on YouTube safely",
       "description": "Disclosure + monetization-safe self-release checklist.",
+      "gets_you": "Your YouTube release will be set up safely: AI disclosure done right, monetisation protected, no avoidable strikes.",
+      "audience": "beginner",
       "path": "skills/distribution/distribution-youtube-release.md"
     },
     {
       "id": "legal-disclosure-pass",
       "title": "Run the disclosure pass",
       "description": "Set every platform's AI disclosure correctly at upload.",
+      "gets_you": "Every platform's AI-disclosure setting will be set correctly when you upload \u2014 no takedowns or demonetisation for a checkbox.",
+      "audience": "beginner",
       "path": "skills/legal/legal-disclosure-pass.md"
     },
     {
       "id": "legal-likeness-check",
       "title": "Verify likeness clearance",
       "description": "Never generate a recognizable real person without a signed license.",
+      "gets_you": "You will never accidentally (or actually) put a real person's face in a film without the signed permission that makes it legal.",
+      "audience": "beginner",
       "path": "skills/legal/legal-likeness-check.md"
     },
     {
       "id": "legal-music-rights",
       "title": "Clear AI music rights properly",
       "description": "A commercial license is not copyright \u2014 know what you actually hold.",
+      "gets_you": "You will know what your AI music licence really lets you do \u2014 sell, stream, monetise \u2014 before a claim teaches you the hard way.",
+      "audience": "beginner",
       "path": "skills/legal/legal-music-rights.md"
     },
     {
       "id": "legal-paperwork-stack",
       "title": "Assemble the paperwork stack",
-      "description": "Chain of title + E&O + the AI-specific records no standard form covers.",
+      "description": "Gather the legal papers a distributor or festival will ask for \u2014 proof you own the film, insurance, and the AI-specific records (likeness licences, generation logs) no standard form covers.",
+      "gets_you": "When a distributor or festival asks for your papers, you will hand over the complete stack in one go \u2014 ownership proof, insurance, AI records \u2014 and the deal will not stall.",
+      "audience": "beginner",
       "path": "skills/legal/legal-paperwork-stack.md"
     },
     {
       "id": "legal-script-clearance",
       "title": "Run the script-clearance file",
-      "description": "The ten-step clearance file (rules 1358\u20131367): report, annotation guide, chain of title, title report, releases, and the E&O gate.",
+      "description": "Check your finished script for legal trouble before you shoot: every name, place, brand and real person researched, coincidences fixed, and proof filed that you own the script \u2014 the ten-step file distributors and insurers require.",
+      "gets_you": "Your script will be checked the way distributors' lawyers check it \u2014 names, places, brands, real people \u2014 with problems fixed before they can block release.",
+      "audience": "beginner",
       "path": "skills/legal/legal-script-clearance.md"
     },
     {
       "id": "craft-continuity-ledger",
       "title": "Run the continuity ledger",
       "description": "The character-consistency chapter as a working ledger: the five pre-generation locks, every lock logged with its state, and the chaining verdict from the rejection rules.",
+      "gets_you": "You will have a working ledger (the Continuity Ledger page) that tracks every character lock across a production and tells you when a scene is safe to generate.",
+      "audience": "beginner",
       "path": "skills/craft/craft-continuity-ledger.md"
     },
     {
       "id": "audio-cue-sheet",
       "title": "Run the cue sheet",
       "description": "The sound, music & audio chapter as a working cue sheet: the five pre-mix gates, every scene logged with its three layers and dialogue route, and the mix verdict from the chapter's rules.",
+      "gets_you": "You will have a working cue sheet (the Cue Sheet page) listing every scene's dialogue, music and sound layers \u2014 and a verdict on whether the mix is ready.",
+      "audience": "beginner",
       "path": "skills/audio/audio-cue-sheet.md"
     },
     {
       "id": "grade-sheet",
       "title": "Run the grade sheet",
       "description": "The color-grading chapter as a working grade sheet: the five pre-grade gates, every scene logged with its hero reference, source, and five matching steps, and the grade verdict from the chapter's rules.",
+      "gets_you": "You will have a working grade sheet (the Grade Sheet page) that matches every scene to its reference look and tells you when the colour is locked.",
+      "audience": "beginner",
       "path": "skills/grading/grade-sheet.md"
     },
     {
       "id": "editing-cut-sheet",
       "title": "Run the cut sheet",
       "description": "The editing chapters as a working cut sheet: the five pre-lock gates, every shot logged with its duration, three inspection passes, finding, and route, and the picture-lock verdict from the chapters' rules.",
+      "gets_you": "You will have a working cut sheet (the Cut Sheet page) that inspects every shot in your edit and tells you when the picture is ready to lock.",
+      "audience": "beginner",
       "path": "skills/delivery/editing-cut-sheet.md"
     },
     {
       "id": "directing-take-sheet",
       "title": "Run the take sheet",
       "description": "The directing-performance chapter as a working take sheet: the five pre-lock gates, every performance beat logged with its direction, eyeline, dead-eyes check, framing, and route, and the performance-lock verdict from the chapter's rules.",
+      "gets_you": "You will have a working take sheet (the Take Sheet page) that logs every performance beat and tells you when the acting is ready to lock.",
+      "audience": "beginner",
       "path": "skills/craft/directing-take-sheet.md"
     },
     {
       "id": "longform-assembly-sheet",
       "title": "Run the longform sheet",
       "description": "The long-form pipelines chapter as a working sheet: the five pre-lock gates, every scene logged with its stress test, storyboard, reference, dialogue route, draft tier, re-rolls, and route, and the feature-lock verdict from the chapter's rules.",
+      "gets_you": "You will have a working longform sheet (the Longform Sheet page) that tracks every scene of a long production and tells you when the film is ready to lock.",
+      "audience": "beginner",
       "path": "skills/longform/longform-assembly-sheet.md"
     },
     {
       "id": "workflow-walk-the-path",
       "title": "Walk the Path \u2014 the sequenced curriculum",
       "description": "The guide's 241 skills sequenced into six stages in production order (data/v1/curriculum.json): walk them in order on path.html, check each skill off as it is actually done, and let each stage's milestone \u2014 not the calendar \u2014 say when to move on.",
+      "gets_you": "You will always know what to learn next: all 241 skills laid out in production order on the Path page, each checked off only when you have actually done it on a real film.",
+      "audience": "beginner",
       "path": "skills/workflow/workflow-walk-the-path.md"
     },
     {
       "id": "workflow-shot-list",
       "title": "Build the costed shot list",
       "description": "Turn a scene plan into a per-shot list with model assignments, takes, and live costs.",
+      "gets_you": "You will have a shot list with a model and a price attached to every shot \u2014 the plan a whole production (and its budget) runs on.",
+      "audience": "beginner",
       "path": "skills/workflow/workflow-shot-list.md"
     },
     {
       "id": "workflow-studio-plan",
       "title": "Plan a production with the Studio recipe",
       "description": "Reproduce the Studio's deterministic planning logic from the raw API data: concept in, costed shot list + budget envelopes out.",
+      "gets_you": "Reference for agents: the Studio planner's exact maths as a procedure \u2014 concept in, costed shot list out \u2014 for scripted, agent-driven pre-production.",
+      "audience": "reference",
       "path": "skills/workflow/workflow-studio-plan.md"
     },
     {
       "id": "workflow-model-price-watch",
       "title": "Track a model's price and status changes",
       "description": "Follow one model across models.json, the model-watch freshness feed, and the review queue to answer 'what changed and when'.",
+      "gets_you": "Reference for agents: how to answer 'what changed about this model, and when' from the guide's own watched data files.",
+      "audience": "reference",
       "path": "skills/workflow/workflow-model-price-watch.md"
     },
     {
       "id": "episode-lock-series",
       "title": "Lock a mini-drama series bible",
       "description": "Set up the series record the episode planner persists: title, logline, hashtag, and the cast with voice IDs + one-line visual anchors.",
+      "gets_you": "You will have the written bible for a short episode series \u2014 title, premise, cast with voices and looks locked \u2014 that every episode is made from.",
+      "audience": "beginner",
       "path": "skills/episodes/episode-lock-series.md"
     },
     {
       "id": "episode-format-pick",
       "title": "Pick the serialized format for a series",
       "description": "Choose among the five proven serialized formats (mini-drama, POV series, day-in-the-life, revenge arc, interactive) or custom \u2014 each with its runtime band and beat skeleton.",
+      "gets_you": "You will pick the episode shape that fits your idea \u2014 mini-drama, point-of-view series, day-in-the-life, revenge arc, or audience-decides \u2014 with its length and story skeleton set.",
+      "audience": "beginner",
       "path": "skills/episodes/episode-format-pick.md"
     },
     {
       "id": "episode-plan-block",
       "title": "Plan an episode block with runtime estimate",
       "description": "Build one episode block (one emotion, 3-5 beats, turn, cliffhanger) and verify it against the format's runtime band.",
+      "gets_you": "You will have one episode fully planned \u2014 one emotion, a few beats, a turn and a cliffhanger \u2014 at a length you have verified works.",
+      "audience": "beginner",
       "path": "skills/episodes/episode-plan-block.md"
     },
     {
       "id": "episode-studio-bridge",
       "title": "Send planner blocks to the Studio",
-      "description": "One-click bridge: stage the episode planner's saved series (title, logline, cast anchors, every block's format/runtime/beats) into the Studio's series mode for a full costed packet \u2014 or into microdrama mode for the run economics.",
+      "description": "Turn the episodes you planned in the episode planner into a full production plan in the Studio \u2014 per-episode shot lists and budgets \u2014 with one button, instead of re-typing everything.",
+      "gets_you": "Your planned episodes will become a full Studio production plan \u2014 shot lists and budgets per episode \u2014 without re-typing anything.",
+      "audience": "beginner",
       "path": "skills/episodes/episode-studio-bridge.md"
     },
     {
       "id": "episode-interactive-format",
       "title": "Plan comment-driven interactive episodes",
       "description": "Run the interactive serialized format: one decision per episode, a poll/comment beat that freezes on the choice, and a cliffhanger at the next decision \u2014 with viewer comments shaping the following episode's block.",
+      "gets_you": "You will have episodes your audience steers: each one ends on a choice, viewers vote in the comments, and the next episode obeys them.",
+      "audience": "beginner",
       "path": "skills/episodes/episode-interactive-format.md"
     },
     {
       "id": "studio-series-plan",
       "title": "Plan a mini-drama season with Studio 2.0",
       "description": "Plan 3-10 episodes in one pass: pick one of the 4 serialized format presets, lock the series bible, get per-episode shot lists with prompts, model picks, budget, and schedule.",
+      "gets_you": "You will have a whole mini-drama season planned in the Studio \u2014 every episode's shots, prompts, models, budget and schedule \u2014 before generating anything.",
+      "audience": "beginner",
       "path": "skills/studio/studio-series-plan.md"
     },
     {
       "id": "studio-packet-export",
       "title": "Export the production packet for a collaborator",
       "description": "Turn any Studio plan into a hand-offable artifact: markdown download, self-contained HTML (series), or print/PDF \u2014 with shots, prompts, model math, budget, schedule, bible, and checklist.",
+      "gets_you": "You will have a document you can hand to a collaborator that contains the whole production \u2014 shots, prompts, costs, schedule, rules \u2014 in one file.",
+      "audience": "beginner",
       "path": "skills/studio/studio-packet-export.md"
     },
     {
       "id": "studio-microdrama-plan",
       "title": "Plan a microdrama run's economics (Studio 2.5)",
-      "description": "Plan a serialized AI-microdrama run's economics from the documented $150-microdrama figures: clip budget, the $50/min benchmark, the 3-5x retake budget, the character-regen reserve, and the documented-pace timeline.",
+      "description": "Work out what a run of short vertical episodes (a microdrama series) will really cost and how long it will take \u2014 clips, retakes and character fixes included \u2014 using figures documented from a real $150 microdrama production.",
+      "gets_you": "You will know what a run of short episodes will cost and how long it will take \u2014 clips, retakes and character fixes included \u2014 before you commit to making it.",
+      "audience": "beginner",
       "path": "skills/studio/studio-microdrama-plan.md"
     },
     {
       "id": "workflow-production-office",
       "title": "Run a file-driven production office",
       "description": "Set up an agent crew as the film's production office: a SKILL.md pipeline file, a references/ folder (templates, safety memory, style lock, story notes), and a tracking/ folder \u2014 so the production survives context death.",
+      "gets_you": "Reference for later: how to run a production through agent-readable files \u2014 a pipeline file, a references folder, a tracker \u2014 so the film survives long sessions and handoffs.",
+      "audience": "reference",
       "path": "skills/workflow/workflow-production-office.md"
     },
     {
       "id": "workflow-component-separation",
       "title": "Split the production into separately controllable components",
       "description": "Architect a generation pipeline as separate character-identity, world, and action components with progressive-change workflows \u2014 so any element can be revised without regenerating the others, and late ideas land as parameter changes instead of restarts.",
+      "gets_you": "Reference for later: how to structure a production so characters, world and action can each be changed without regenerating everything else.",
+      "audience": "reference",
       "path": "skills/workflow/workflow-component-separation.md"
     }
   ]

@@ -5,6 +5,10 @@ description: Use MiniMax H3 well: costs, strengths, weaknesses, best use.
 
 # Direct with MiniMax H3
 
+## What this gets you
+
+You will know whether MiniMax H3 is worth your money for the shot you have in mind — what it costs, what it is best at, and the weakness to design around — before you spend on generations.
+
 ## Use when
 
 You are generating on MiniMax H3 (MiniMax, video). Best use: Native-audio dialogue and multi-shot scenes on a budget; open-weights experimentation.

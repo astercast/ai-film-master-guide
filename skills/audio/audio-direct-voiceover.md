@@ -5,6 +5,10 @@ description: Get directed, human-feeling VO from AI voices.
 
 # Direct an AI voiceover
 
+## What this gets you
+
+Your AI narrator or character will sound directed — paced, emphasised, human — instead of reading like a satnav.
+
 ## Use when
 
 Narration, documentary VO, essay films.

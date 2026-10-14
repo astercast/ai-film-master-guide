@@ -5,6 +5,10 @@ description: Use Hailuo 02 / 2.3 well: costs, strengths, weaknesses, best use.
 
 # Direct with Hailuo 02 / 2.3
 
+## What this gets you
+
+You will know whether Hailuo 02 / 2.3 is worth your money for the shot you have in mind — what it costs, what it is best at, and the weakness to design around — before you spend on generations.
+
 ## Use when
 
 You are generating on Hailuo 02 / 2.3 (MiniMax, video). Best use: Emotional close-ups, subtle facial performance, clean stylized moments.

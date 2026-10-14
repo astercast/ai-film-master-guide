@@ -5,6 +5,10 @@ description: The last image the jury remembers.
 
 # Land the finale button
 
+## What this gets you
+
+Your film will end on the image people remember and describe to friends afterwards.
+
 ## Use when
 
 Endings.

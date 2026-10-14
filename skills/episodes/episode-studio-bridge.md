@@ -1,13 +1,17 @@
 ---
 name: episode-studio-bridge
-description: One-click bridge: stage the episode planner's saved series (title, logline, cast anchors, every block's format/runtime/beats) into the Studio's series mode for a full costed packet — or into microdrama mode for the run economics.
+description: Turn the episodes you planned in the episode planner into a full production plan in the Studio — per-episode shot lists and budgets — with one button, instead of re-typing everything.
 ---
 
 # Send planner blocks to the Studio
 
+## What this gets you
+
+Your planned episodes will become a full Studio production plan — shot lists and budgets per episode — without re-typing anything.
+
 ## Use when
 
-When episode blocks are saved and you want per-episode shot budgets, the locked bible, and reuse math before generating — or the clip/retake budget and benchmark math for the run.
+After you've planned episode blocks in the episode planner (episode-plan-block) and want shot budgets and costs before generating anything.
 
 ## Inputs
 

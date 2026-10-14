@@ -5,6 +5,10 @@ description: Pixar-grade character animation looks.
 
 # Choose a model for stylized 3D
 
+## What this gets you
+
+You will know which model delivers that polished animated-feature look for stylised 3D characters.
+
 ## Use when
 
 Family, comedy, character-driven stylized work.

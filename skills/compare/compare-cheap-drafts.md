@@ -5,6 +5,10 @@ description: Minimize spend while answering creative questions.
 
 # Choose the cheapest draft model
 
+## What this gets you
+
+You will know the cheapest model that still answers 'does this shot work?', so testing ideas costs pennies.
+
 ## Use when
 
 Previz, blocking tests, style experiments.

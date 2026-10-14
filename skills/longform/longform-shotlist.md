@@ -5,6 +5,10 @@ description: Write shotlist.md files with verbatim prompts, the source of truth 
 
 # Build the per-scene shotlist
 
+## What this gets you
+
+You will have a written plan for every shot in a scene — its exact prompt, length and look — that you generate from instead of re-inventing shots in the chat window.
+
 ## Use when
 
 Breaking a script into generatable units.

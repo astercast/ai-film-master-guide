@@ -5,6 +5,10 @@ description: Direct a static locked-off camera move with exact prompt phrasing.
 
 # Direct: Static locked-off
 
+## What this gets you
+
+Your shot will gain what this move is for — timelapse; dialogue coverage; product stills; letting performance carry the shot — in the exact words models obey, ready to paste into any prompt.
+
 ## Use when
 
 Use when the shot needs what this move does: Timelapse; dialogue coverage; product stills; letting performance carry the shot.

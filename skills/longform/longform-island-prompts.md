@@ -5,6 +5,10 @@ description: Make every prompt self-contained: the model has no memory of the la
 
 # Write island prompts
 
+## What this gets you
+
+Every prompt you write will work on its own — the model has no memory of your last shot, and after this, it will not need any.
+
 ## Use when
 
 Every generation on a production longer than one scene.

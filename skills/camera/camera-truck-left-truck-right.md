@@ -5,6 +5,10 @@ description: Direct a truck left / truck right camera move with exact prompt phr
 
 # Direct: Truck left / Truck right
 
+## What this gets you
+
+Your shot will gain what this move is for — parallax reveals; following action across a scene; keeping framing constant while shifting viewpoint — in the exact words models obey, ready to paste into any prompt.
+
 ## Use when
 
 Use when the shot needs what this move does: Parallax reveals; following action across a scene; keeping framing constant while shifting viewpoint.

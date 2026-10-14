@@ -5,6 +5,10 @@ description: Direct a pedestal up / pedestal down camera move with exact prompt 
 
 # Direct: Pedestal up / Pedestal down
 
+## What this gets you
+
+Your shot will gain what this move is for — vertical reveals without the swing of a crane; product and architectural shots — in the exact words models obey, ready to paste into any prompt.
+
 ## Use when
 
 Use when the shot needs what this move does: Vertical reveals without the swing of a crane; product and architectural shots.

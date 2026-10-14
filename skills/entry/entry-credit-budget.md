@@ -5,6 +5,10 @@ description: Credit math for a 3–5 minute competition entry.
 
 # Budget credits for a competition entry
 
+## What this gets you
+
+You will know how many credits a competition entry really takes, so a 3–5 minute film does not run out of money at minute two.
+
 ## Use when
 
 Planning spend before generating.

@@ -5,6 +5,10 @@ description: The single highest-leverage prompt discipline.
 
 # Enforce one motion per prompt
 
+## What this gets you
+
+Your shots will do one thing cleanly instead of three things badly — the single habit that fixes more prompts than any other.
+
 ## Use when
 
 Every prompt you write.

@@ -5,6 +5,10 @@ description: Flow solved at generation beats flow faked in post.
 
 # Prefer long takes over cut-stitching
 
+## What this gets you
+
+Your scenes will flow in long unbroken shots instead of stitched fragments — solved while generating, not faked in the edit.
+
 ## Use when
 
 Sustained sequences.

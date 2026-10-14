@@ -5,6 +5,10 @@ description: Use LTX-2.5 well: costs, strengths, weaknesses, best use.
 
 # Direct with LTX-2.5
 
+## What this gets you
+
+You will know whether LTX-2.5 is worth your money for the shot you have in mind — what it costs, what it is best at, and the weakness to design around — before you spend on generations.
+
 ## Use when
 
 You are generating on LTX-2.5 (Lightricks, video). Best use: 4K fast-drafting and multi-shot sequences with commercial-legal safety.

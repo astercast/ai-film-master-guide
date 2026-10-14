@@ -5,6 +5,12 @@ description: Set up an agent crew as the film's production office: a SKILL.md pi
 
 # Run a file-driven production office
 
+> **Reference skill** — kept for the record, for agents, and for later: not a first-project skill. See SKILLS_AUDIT.md (rotation 20).
+
+## What this gets you
+
+Reference for later: how to run a production through agent-readable files — a pipeline file, a references folder, a tracker — so the film survives long sessions and handoffs.
+
 ## Use when
 
 Any solo/small-team production with enough moving parts that memory becomes the bottleneck (multiple characters, multiple scenes, real retakes) — roughly: if you'd hire a coordinator on a conventional shoot, build the file office instead.

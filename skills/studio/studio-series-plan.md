@@ -5,6 +5,10 @@ description: Plan 3-10 episodes in one pass: pick one of the 4 serialized format
 
 # Plan a mini-drama season with Studio 2.0
 
+## What this gets you
+
+You will have a whole mini-drama season planned in the Studio — every episode's shots, prompts, models, budget and schedule — before generating anything.
+
 ## Use when
 
 Pre-production for a serialized short-form series — every number traces to data/v1 data.

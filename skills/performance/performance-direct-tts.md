@@ -5,6 +5,10 @@ description: ElevenLabs has no emotion dial — the punctuation is the direction
 
 # Direct TTS voices through text
 
+## What this gets you
+
+Your text-to-speech voices will sound directed, because you will write the punctuation, pauses and emphasis that are the only controls these tools give you.
+
 ## Use when
 
 Any AI voiceover on v3/v4 models.

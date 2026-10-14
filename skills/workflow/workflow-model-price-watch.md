@@ -5,6 +5,12 @@ description: Follow one model across models.json, the model-watch freshness feed
 
 # Track a model's price and status changes
 
+> **Reference skill** — kept for the record, for agents, and for later: not a first-project skill. See SKILLS_AUDIT.md (rotation 20).
+
+## What this gets you
+
+Reference for agents: how to answer 'what changed about this model, and when' from the guide's own watched data files.
+
 ## Use when
 
 Before budgeting a production on a model, or when a headline says a model changed.

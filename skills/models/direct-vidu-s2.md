@@ -5,6 +5,10 @@ description: Use Vidu S2 well: costs, strengths, weaknesses, best use.
 
 # Direct with Vidu S2
 
+## What this gets you
+
+You will know whether Vidu S2 is worth your money for the shot you have in mind — what it costs, what it is best at, and the weakness to design around — before you spend on generations.
+
 ## Use when
 
 You are generating on Vidu S2 (Vidu, video). Best use: Real-time interactive character video; live-stream editing.

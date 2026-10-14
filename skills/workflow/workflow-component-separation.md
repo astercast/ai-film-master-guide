@@ -5,6 +5,12 @@ description: Architect a generation pipeline as separate character-identity, wor
 
 # Split the production into separately controllable components
 
+> **Reference skill** — kept for the record, for agents, and for later: not a first-project skill. See SKILLS_AUDIT.md (rotation 20).
+
+## What this gets you
+
+Reference for later: how to structure a production so characters, world and action can each be changed without regenerating everything else.
+
 ## Use when
 
 Any production where shots must stay revisable until delivery — commercials, music videos, multi-scene shorts; mandatory when choreography or performance must survive art-direction changes.

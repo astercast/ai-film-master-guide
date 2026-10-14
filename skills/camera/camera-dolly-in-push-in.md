@@ -5,6 +5,10 @@ description: Direct a dolly in / push-in camera move with exact prompt phrasing.
 
 # Direct: Dolly in / Push-in
 
+## What this gets you
+
+Your shot will gain what this move is for — building intimacy or tension; revealing detail; product glamour (85mm equivalent) — in the exact words models obey, ready to paste into any prompt.
+
 ## Use when
 
 Use when the shot needs what this move does: Building intimacy or tension; revealing detail; product glamour (85mm equivalent).

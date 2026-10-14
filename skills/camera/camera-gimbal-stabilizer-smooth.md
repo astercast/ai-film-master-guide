@@ -5,6 +5,10 @@ description: Direct a gimbal / stabilizer smooth camera move with exact prompt p
 
 # Direct: Gimbal / Stabilizer smooth
 
+## What this gets you
+
+Your shot will gain what this move is for — luxury/commercial feel; car spots; fashion; when handheld would read as error — in the exact words models obey, ready to paste into any prompt.
+
 ## Use when
 
 Use when the shot needs what this move does: Luxury/commercial feel; car spots; fashion; when handheld would read as error.

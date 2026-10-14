@@ -5,6 +5,10 @@ description: Run the interactive serialized format: one decision per episode, a 
 
 # Plan comment-driven interactive episodes
 
+## What this gets you
+
+You will have episodes your audience steers: each one ends on a choice, viewers vote in the comments, and the next episode obeys them.
+
 ## Use when
 
 When the series concept is a story the audience can vote on or argue about. The engine is participation, not just emotion.

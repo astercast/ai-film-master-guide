@@ -5,6 +5,10 @@ description: Refresh identity references before drift becomes visible.
 
 # Re-anchor references
 
+## What this gets you
+
+Before a character's face drifts too far, you will have refreshed their reference — drift fixed while it is still invisible to audiences.
+
 ## Use when
 
 Any sequence longer than a few generations.

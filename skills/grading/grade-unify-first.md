@@ -5,6 +5,10 @@ description: Match every shot to a per-scene reference before any creative look.
 
 # Unify before grading
 
+## What this gets you
+
+All your shots will match each other — same light, same colour world — before any creative look is applied, so the film stops looking stitched from different cameras.
+
 ## Use when
 
 Start of the color pass.

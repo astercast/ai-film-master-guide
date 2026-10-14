@@ -5,6 +5,10 @@ description: Never generate a recognizable real person without a signed license.
 
 # Verify likeness clearance
 
+## What this gets you
+
+You will never accidentally (or actually) put a real person's face in a film without the signed permission that makes it legal.
+
 ## Use when
 
 Before generating any face or voice resembling a real person.

@@ -5,6 +5,10 @@ description: Kill over-smooth, over-saturated generative rendering.
 
 # Fix the plasticky AI look
 
+## What this gets you
+
+Footage that screams 'AI' — waxy skin, candy colours — will come out looking filmed instead.
+
 ## Use when
 
 Any footage that reads as 'AI' instead of photographed.

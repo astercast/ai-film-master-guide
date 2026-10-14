@@ -5,6 +5,10 @@ description: Diagnose and fix faces that shift between frames or shots.
 
 # Fix morphing faces
 
+## What this gets you
+
+A face that keeps melting or changing mid-shot will hold still and stay the same person.
+
 ## Use when
 
 Any generation where the face won't hold.

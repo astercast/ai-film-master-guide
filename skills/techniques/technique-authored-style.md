@@ -1,13 +1,17 @@
 ---
 name: technique-authored-style
-description: Pick a style for what it forgives — the Le Drip / Peony method.
+description: Choose a visual style that hides AI's mistakes instead of exposing them — the right style makes small flaws invisible.
 ---
 
 # Commit to an authored style
 
+## What this gets you
+
+You will have picked a look that hides AI's small mistakes instead of exposing them — the single cheapest quality upgrade a first film can make.
+
 ## Use when
 
-Choosing the visual lane for a competition entry.
+Choosing the visual lane for a film or competition entry, before generating anything.
 
 ## Inputs
 

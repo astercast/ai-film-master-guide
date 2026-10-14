@@ -5,6 +5,10 @@ description: Use FLUX 3 Video well: costs, strengths, weaknesses, best use.
 
 # Direct with FLUX 3 Video
 
+## What this gets you
+
+You will know whether FLUX 3 Video is worth your money for the shot you have in mind — what it costs, what it is best at, and the weakness to design around — before you spend on generations.
+
 ## Use when
 
 You are generating on FLUX 3 Video (Black Forest Labs, video). Best use: Dialogue-heavy scenes, multi-shot single takes, typography-in-video; draft-then-finish cost control.

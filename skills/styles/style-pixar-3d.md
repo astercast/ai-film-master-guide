@@ -5,6 +5,10 @@ description: Stylized 3D character animation with appeal and clarity.
 
 # Direct Pixar-style 3D
 
+## What this gets you
+
+Your characters will have the appeal and clarity of a big-studio animated feature — expressions that read instantly.
+
 ## Use when
 
 Family, comedy, character pieces.

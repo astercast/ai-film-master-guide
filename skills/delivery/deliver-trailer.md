@@ -5,6 +5,10 @@ description: The 60–90s competition weapon, mastered.
 
 # Deliver a trailer master
 
+## What this gets you
+
+You will have a finished 60–90 second trailer file, mastered and ready to post or submit.
+
 ## Use when
 
 Trailer/teaser delivery.

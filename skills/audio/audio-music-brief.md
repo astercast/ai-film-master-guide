@@ -5,6 +5,10 @@ description: Write music prompts that return usable score.
 
 # Brief AI music (Suno-style)
 
+## What this gets you
+
+You will be able to ask an AI music tool for a score cue and actually get back something your film can use.
+
 ## Use when
 
 Original score on an AI budget.

@@ -5,6 +5,10 @@ description: Write a pixel-art game cinematic prompt (animated track) using the 
 
 # Prompt: Pixel-art game cinematic
 
+## What this gets you
+
+You will have a finished prompt for a pixel-art game cinematic — the shot used for None — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+
 ## Use when
 
 You are directing a shot that needs: pixel-art game cinematic. 

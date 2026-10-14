@@ -5,6 +5,10 @@ description: Write a native-audio dialogue scene prompt (longform track) using t
 
 # Prompt: Native-audio dialogue scene
 
+## What this gets you
+
+You will have a finished prompt for a native-audio dialogue scene — the shot used for dialogue-heavy scenes — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+
 ## Use when
 
 You are directing a shot that needs: native-audio dialogue scene. Anatomy: native-audio models keep voice and face in one generation — no dub drift. Best for: dialogue-heavy scenes.

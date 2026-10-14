@@ -1,13 +1,17 @@
 ---
 name: technique-longform-discipline
-description: ONEIRIC's systems thinking, compressed for sub-10-minute work.
+description: Use the habits that keep long AI films consistent — map every shot, lock identities, draft cheap — on a short film, so your characters and rooms stop changing between shots.
 ---
 
 # Apply long-form discipline to shorts
 
+## What this gets you
+
+Your short film will hold together like a long one: every shot mapped, identities locked, drafts cheap — no character or room changing between shots.
+
 ## Use when
 
-Any multi-scene short where consistency matters.
+Any multi-scene short where consistency matters (which is most of them).
 
 ## Inputs
 

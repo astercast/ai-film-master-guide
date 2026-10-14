@@ -5,6 +5,10 @@ description: Realistic credit math for a 20-minute AI film.
 
 # Budget a 20-minute film
 
+## What this gets you
+
+You will know what a 20-minute film really costs — retakes included — while there is still time to change the plan.
+
 ## Use when
 
 Greenlighting a mid-length production.

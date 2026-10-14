@@ -5,6 +5,10 @@ description: Write a 2d cartoon dialogue prompt (animated track) using the guide
 
 # Prompt: 2D cartoon dialogue
 
+## What this gets you
+
+You will have a finished prompt for a 2d cartoon dialogue — the shot used for None — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+
 ## Use when
 
 You are directing a shot that needs: 2d cartoon dialogue. 

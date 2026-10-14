@@ -5,6 +5,10 @@ description: Road A (native audio) vs Road B (decoupled voice + lip-sync).
 
 # Choose the dialogue road
 
+## What this gets you
+
+For every dialogue scene you will pick the right route — the model speaks it natively, or you record the voice and sync it — before it costs you re-renders.
+
 ## Use when
 
 Any scene with scripted dialogue.

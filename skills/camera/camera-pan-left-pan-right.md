@@ -5,6 +5,10 @@ description: Direct a pan left / pan right camera move with exact prompt phrasin
 
 # Direct: Pan left / Pan right
 
+## What this gets you
+
+Your shot will gain what this move is for — surveying landscapes; following lateral action; transitions between subjects — in the exact words models obey, ready to paste into any prompt.
+
 ## Use when
 
 Use when the shot needs what this move does: Surveying landscapes; following lateral action; transitions between subjects.

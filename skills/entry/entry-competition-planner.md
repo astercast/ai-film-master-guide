@@ -5,6 +5,10 @@ description: Turn competition constraints into a production plan.
 
 # Plan a competition entry
 
+## What this gets you
+
+You will have a production plan built backwards from the competition's deadline and constraints, so the film gets finished, not just started.
+
 ## Use when
 
 Deciding whether and how to enter.

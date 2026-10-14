@@ -5,6 +5,10 @@ description: Write a voice-designed narration (voice bible) prompt (audio track)
 
 # Prompt: Voice-designed narration (Voice Bible)
 
+## What this gets you
+
+You will have a finished prompt for a voice-designed narration (voice bible) — the shot used for documentary VO, trailers — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+
 ## Use when
 
 You are directing a shot that needs: voice-designed narration (voice bible). Anatomy: cast the voice like an actor; consistency comes from the bible, not the engine. Best for: documentary VO, trailers.

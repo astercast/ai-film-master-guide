@@ -5,6 +5,10 @@ description: Use Seedance 2.0 well: costs, strengths, weaknesses, best use.
 
 # Direct with Seedance 2.0
 
+## What this gets you
+
+You will know whether Seedance 2.0 is worth your money for the shot you have in mind — what it costs, what it is best at, and the weakness to design around — before you spend on generations.
+
 ## Use when
 
 You are generating on Seedance 2.0 (ByteDance, video). Best use: Multi-shot narrative, reference-driven continuity, dialogue scenes.

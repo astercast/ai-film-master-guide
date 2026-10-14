@@ -5,6 +5,10 @@ description: Trailer-grade kinetic photorealism.
 
 # Direct photoreal action
 
+## What this gets you
+
+Your action will look like a theatrical trailer — kinetic, glossy, and physically convincing.
+
 ## Use when
 
 Action entries, trailers, spectacle.

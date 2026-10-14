@@ -5,6 +5,10 @@ description: Write a foley pass — three-layer sound design prompt (audio track
 
 # Prompt: Foley pass — three-layer sound design
 
+## What this gets you
+
+You will have a finished prompt for a foley pass — three-layer sound design — the shot used for sound-design passes — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+
 ## Use when
 
 You are directing a shot that needs: foley pass — three-layer sound design. Anatomy: three layers spotted to picture — production, foley, design. Best for: sound-design passes.

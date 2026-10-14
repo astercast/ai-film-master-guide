@@ -5,6 +5,10 @@ description: Build the named, versioned asset registry before generating shot on
 
 # Set up the asset registry
 
+## What this gets you
+
+You will have one named list of every character, place and prop in your film, locked before you generate anything — so shot 40 still matches shot 1.
+
 ## Use when
 
 Starting any production longer than ~3 minutes. Nothing shoots until the registry is locked.

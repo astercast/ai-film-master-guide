@@ -5,6 +5,10 @@ description: Direct a bird's eye / overhead camera move with exact prompt phrasi
 
 # Direct: Bird's eye / Overhead
 
+## What this gets you
+
+Your shot will gain what this move is for — patterns, crowds, tableaus; omniscient storytelling beats — in the exact words models obey, ready to paste into any prompt.
+
 ## Use when
 
 Use when the shot needs what this move does: Patterns, crowds, tableaus; omniscient storytelling beats.

@@ -504,6 +504,25 @@ else
   LF_OK=0
 fi
 
+# Skills Usefulness Audit: record in sync + gets-you law (rotation 20)
+AU_OUT=$(python3 scripts/audit_skills.py --check 2>&1)
+if echo "$AU_OUT" | grep -q "^ok:"; then
+  pass "audit_skills.py --check: audit record in sync (242 skills, every skill carries its 'what this gets you' line)"
+else
+  fail "audit_skills.py --check failed:"
+  echo "$AU_OUT" | head -4 | sed 's/^/    /'
+fi
+
+# Per-skill pages + link wiring: VP-0010 structural fix (rotation 20)
+SP_OUT=$(node scripts/skill-pages.test.js 2>&1)
+if echo "$SP_OUT" | tail -1 | grep -q "all pass"; then
+  SP_N=$(echo "$SP_OUT" | grep -c "^ok ")
+  pass "skill-pages.test.js: $SP_N assertions pass (242 in-site pages with procedure/example/pitfalls, 242 linked cards, 241 Path rows in curriculum order, 8 reference pages marked, ticket jargon glossed)"
+else
+  fail "skill-pages.test.js failures:"
+  echo "$SP_OUT" | grep -E "^(FAIL|AssertionError)" | head -8 | sed 's/^/    /'
+fi
+
 # The Path: engine + page + curriculum data (rotation 19 flagship)
 PA_OK=1
 for f in assets/js/path.js site/path.html site/assets/js/path.js data/v1/curriculum.json site/data/v1/curriculum.json; do

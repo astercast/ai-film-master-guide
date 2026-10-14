@@ -5,6 +5,10 @@ description: Write a restraint pass — subtle acting prompt (performance track)
 
 # Prompt: Restraint pass — subtle acting
 
+## What this gets you
+
+You will have a finished prompt for a restraint pass — subtle acting — the shot used for dialogue scenes, emotional beats — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+
 ## Use when
 
 You are directing a shot that needs: restraint pass — subtle acting. Anatomy: one tactic, one micro-action — the restraint pass tames AI over-acting. Best for: dialogue scenes, emotional beats.

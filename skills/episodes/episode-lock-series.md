@@ -5,6 +5,10 @@ description: Set up the series record the episode planner persists: title, logli
 
 # Lock a mini-drama series bible
 
+## What this gets you
+
+You will have the written bible for a short episode series — title, premise, cast with voices and looks locked — that every episode is made from.
+
 ## Use when
 
 Starting any serialized short-form series — nothing shoots until the bible is locked.

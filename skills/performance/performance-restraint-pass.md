@@ -5,6 +5,10 @@ description: Strip theatrical over-acting: negative constraints, subtext, under-
 
 # Run the restraint pass
 
+## What this gets you
+
+Your characters will stop over-acting: smaller, quieter, more believable performances, directed with restraint instead of melodrama.
+
 ## Use when
 
 Any AI performance that reads as soap opera.

@@ -5,6 +5,10 @@ description: Get new angles without re-rolling identity.
 
 # Use face-erased sheets for new angles
 
+## What this gets you
+
+You will get your character from new camera angles without their face changing, by starting from sheets with the face left blank.
+
 ## Use when
 
 Needing a character angle the sheet doesn't have.

@@ -5,6 +5,10 @@ description: Direct a dutch angle camera move with exact prompt phrasing.
 
 # Direct: Dutch angle
 
+## What this gets you
+
+Your shot will gain what this move is for — unease, disorientation, psychological tension — in the exact words models obey, ready to paste into any prompt.
+
 ## Use when
 
 Use when the shot needs what this move does: Unease, disorientation, psychological tension.

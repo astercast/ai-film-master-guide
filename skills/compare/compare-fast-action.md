@@ -5,6 +5,10 @@ description: Motion-strong models for chases, fights, and kinetic sequences.
 
 # Choose a model for fast action
 
+## What this gets you
+
+You will know which model keeps chases and fights readable and fast, instead of melting them into blur.
+
 ## Use when
 
 Action scenes where motion quality is the whole shot.

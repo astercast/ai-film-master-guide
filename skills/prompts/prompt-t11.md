@@ -5,6 +5,10 @@ description: Write a fashion film prompt (core track) using the guide's template
 
 # Prompt: Fashion film
 
+## What this gets you
+
+You will have a finished prompt for a fashion film — the shot used for fashion, lookbooks — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+
 ## Use when
 
 You are directing a shot that needs: fashion film. Anatomy: wardrobe locked in Identity Block. Best for: fashion, lookbooks.

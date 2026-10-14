@@ -5,6 +5,10 @@ description: Write a car commercial prompt (core track) using the guide's templa
 
 # Prompt: Car commercial
 
+## What this gets you
+
+You will have a finished prompt for a car commercial — the shot used for None — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+
 ## Use when
 
 You are directing a shot that needs: car commercial. Anatomy: low angle = power; smooth move = luxury. Models: Kling 3.0, Veo 3.1.

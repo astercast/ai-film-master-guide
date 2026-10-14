@@ -5,6 +5,10 @@ description: Write a food macro (photoreal) prompt (photorealistic track) using 
 
 # Prompt: Food macro (photoreal)
 
+## What this gets you
+
+You will have a finished prompt for a food macro (photoreal) — the shot used for None — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+
 ## Use when
 
 You are directing a shot that needs: food macro (photoreal). 

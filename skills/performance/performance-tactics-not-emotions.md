@@ -5,6 +5,10 @@ description: Turn emotion labels into playable tactics AI can render.
 
 # Rewrite emotions as tactics
 
+## What this gets you
+
+Your characters will act believably, because you will direct them with things they can DO ('she hides the letter') instead of feelings models cannot render ('she is sad').
+
 ## Use when
 
 Every performance beat in every prompt.

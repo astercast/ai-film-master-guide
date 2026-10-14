@@ -5,6 +5,10 @@ description: Draft cheap, select fast, escalate only winners.
 
 # Run the 720p draft loop
 
+## What this gets you
+
+You will test every shot cheaply first and only pay full price for the takes that already work — most of your budget stays unspent.
+
 ## Use when
 
 All generation until the select is locked.

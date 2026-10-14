@@ -5,6 +5,10 @@ description: Use Veo 3.1 well: costs, strengths, weaknesses, best use.
 
 # Direct with Veo 3.1
 
+## What this gets you
+
+You will know whether Veo 3.1 is worth your money for the shot you have in mind — what it costs, what it is best at, and the weakness to design around — before you spend on generations.
+
 ## Use when
 
 You are generating on Veo 3.1 (Google DeepMind, video). Best use: Controlled narrative production, cinematic realism, dialogue w/ lip-sync.

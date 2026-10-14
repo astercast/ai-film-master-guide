@@ -5,6 +5,10 @@ description: Credible talking heads: the documentary recipe.
 
 # Shoot an interview
 
+## What this gets you
+
+You will have an interview that looks and sounds credible — the talking-head backbone of documentaries and explainers.
+
 ## Use when
 
 Testimonials, documentary, UGC.

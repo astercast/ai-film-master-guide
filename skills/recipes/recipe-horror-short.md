@@ -5,6 +5,10 @@ description: Dread engineering: what you don't show.
 
 # Shoot a horror short
 
+## What this gets you
+
+You will have a horror short that scares by what it withholds — dread built from sound, shadow and timing, not jump-scare spam.
+
 ## Use when
 
 Horror/suspense competition entries.

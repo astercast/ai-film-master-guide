@@ -5,6 +5,10 @@ description: One action, one camera move. Nothing more.
 
 # Write the Motion Block
 
+## What this gets you
+
+You will be able to say exactly what happens in a shot — one action, one camera move — in the form models follow most reliably.
+
 ## Use when
 
 Every prompt, every shot.

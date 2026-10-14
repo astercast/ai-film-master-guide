@@ -5,6 +5,10 @@ description: Pick between native-audio models for talking heads and dialogue sce
 
 # Choose a model for dialogue + lip sync
 
+## What this gets you
+
+You will know which model to pay for when characters talk on screen, so lips and voices match instead of floating apart.
+
 ## Use when
 
 Any scene with synced dialogue.

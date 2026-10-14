@@ -5,6 +5,10 @@ description: Hand-painted landscapes, drifting clouds, gentle held frames.
 
 # Direct Ghibli-style pastoral
 
+## What this gets you
+
+Your scenes will have that hand-painted, gentle, drifting-cloud calm — landscapes the audience wants to live inside.
+
 ## Use when
 
 Contemplative, nature-driven work.

@@ -5,6 +5,10 @@ description: Direct an orbit / arc shot camera move with exact prompt phrasing.
 
 # Direct: Orbit / Arc shot
 
+## What this gets you
+
+Your shot will gain what this move is for — showcasing a subject from all sides (product, fashion, hero moments); dream sequences — in the exact words models obey, ready to paste into any prompt.
+
 ## Use when
 
 Use when the shot needs what this move does: Showcasing a subject from all sides (product, fashion, hero moments); dream sequences.

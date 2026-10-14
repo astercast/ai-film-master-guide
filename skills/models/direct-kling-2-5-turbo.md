@@ -5,6 +5,10 @@ description: Use Kling 2.5 Turbo well: costs, strengths, weaknesses, best use.
 
 # Direct with Kling 2.5 Turbo
 
+## What this gets you
+
+You will know whether Kling 2.5 Turbo is worth your money for the shot you have in mind — what it costs, what it is best at, and the weakness to design around — before you spend on generations.
+
 ## Use when
 
 You are generating on Kling 2.5 Turbo (Kuaishou, video). Best use: Cheap drafts, fast start-frame animation.

@@ -5,6 +5,10 @@ description: Beat-mapped visuals with style velocity.
 
 # Shoot a music video
 
+## What this gets you
+
+You will have a music video whose pictures hit the beat and change with the song's energy.
+
 ## Use when
 
 Music videos and visualizers.

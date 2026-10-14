@@ -5,6 +5,10 @@ description: Beat-driven visuals with style velocity.
 
 # Choose a model for music videos
 
+## What this gets you
+
+You will know which model cuts to a beat without falling apart — style, speed and rhythm in one pick.
+
 ## Use when
 
 Music videos, visualizers, performance pieces.

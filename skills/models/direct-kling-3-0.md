@@ -5,6 +5,10 @@ description: Use Kling 3.0 well: costs, strengths, weaknesses, best use.
 
 # Direct with Kling 3.0
 
+## What this gets you
+
+You will know whether Kling 3.0 is worth your money for the shot you have in mind — what it costs, what it is best at, and the weakness to design around — before you spend on generations.
+
 ## Use when
 
 You are generating on Kling 3.0 (Kuaishou, video). Best use: Motion-heavy cinematic clips, action, multi-shot, camera direction.

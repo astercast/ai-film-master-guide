@@ -5,6 +5,10 @@ description: Write a scene-locked ensemble prompt (performance track) using the 
 
 # Prompt: Scene-locked ensemble
 
+## What this gets you
+
+You will have a finished prompt for a scene-locked ensemble — the shot used for multi-character scenes — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+
 ## Use when
 
 You are directing a shot that needs: scene-locked ensemble. Anatomy: spatial locks stop the model merging or teleporting performers. Best for: multi-character scenes.

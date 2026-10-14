@@ -5,6 +5,10 @@ description: Assemble the radio edit before locking picture.
 
 # Cut sound-first
 
+## What this gets you
+
+You will have a version of your film that already works with your eyes closed — dialogue and sound cut first, picture fitted to it.
+
 ## Use when
 
 Before the fine cut.

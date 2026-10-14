@@ -5,6 +5,10 @@ description: Flat colors, thick outlines, limited animation with snap.
 
 # Direct western 2D cartoon
 
+## What this gets you
+
+Your cartoon will have flat colour, thick outlines and snappy limited animation — the classic TV-cartoon energy.
+
 ## Use when
 
 Comedy, dialogue-driven shorts.

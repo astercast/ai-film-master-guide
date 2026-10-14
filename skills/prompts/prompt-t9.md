@@ -5,6 +5,10 @@ description: Write a time-lapse city prompt (core track) using the guide's templ
 
 # Prompt: Time-lapse city
 
+## What this gets you
+
+You will have a finished prompt for a time-lapse city — the shot used for montages, transitions — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+
 ## Use when
 
 You are directing a shot that needs: time-lapse city. Anatomy: static camera mandatory for timelapse. Best for: montages, transitions.

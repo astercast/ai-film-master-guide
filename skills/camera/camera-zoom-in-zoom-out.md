@@ -5,6 +5,10 @@ description: Direct a zoom in / zoom out camera move with exact prompt phrasing.
 
 # Direct: Zoom in / Zoom out
 
+## What this gets you
+
+Your shot will gain what this move is for — slow emphasis without moving the camera body; surveillance/documentary feel — in the exact words models obey, ready to paste into any prompt.
+
 ## Use when
 
 Use when the shot needs what this move does: Slow emphasis without moving the camera body; surveillance/documentary feel.

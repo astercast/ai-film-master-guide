@@ -5,6 +5,10 @@ description: Run the guide's audio checklist as a pass/fail audit.
 
 # Run the Audio checklist
 
+## What this gets you
+
+You will have checked your work while mistakes are still free to fix: every item marked pass or fail, with the concrete fix written down — instead of finding the problem after paying for generations.
+
 ## Use when
 
 Run this audit at the matching production gate. Every item must pass before moving on.

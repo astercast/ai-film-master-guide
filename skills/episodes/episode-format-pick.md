@@ -5,6 +5,10 @@ description: Choose among the five proven serialized formats (mini-drama, POV se
 
 # Pick the serialized format for a series
 
+## What this gets you
+
+You will pick the episode shape that fits your idea — mini-drama, point-of-view series, day-in-the-life, revenge arc, or audience-decides — with its length and story skeleton set.
+
 ## Use when
 
 When the series concept exists but the episode shape doesn't. Format is a completion-rate decision, not a vibe.

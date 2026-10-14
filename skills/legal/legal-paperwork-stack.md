@@ -1,13 +1,17 @@
 ---
 name: legal-paperwork-stack
-description: Chain of title + E&O + the AI-specific records no standard form covers.
+description: Gather the legal papers a distributor or festival will ask for — proof you own the film, insurance, and the AI-specific records (likeness licences, generation logs) no standard form covers.
 ---
 
 # Assemble the paperwork stack
 
+## What this gets you
+
+When a distributor or festival asks for your papers, you will hand over the complete stack in one go — ownership proof, insurance, AI records — and the deal will not stall.
+
 ## Use when
 
-Before any distributor conversation or festival submission.
+Before any distributor conversation or festival submission — assembling this late is the expensive version.
 
 ## Inputs
 

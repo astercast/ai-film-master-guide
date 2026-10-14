@@ -1,13 +1,17 @@
 ---
 name: longform-compute-envelope
-description: Compute the realistic cost envelope for a 20-min or 90-min AI film.
+description: The honest total cost of a 20-minute or 90-minute AI film — including the re-generations every shot needs, not just the perfect first pass.
 ---
 
-# Budget the compute envelope
+# Work out what a long film really costs
+
+## What this gets you
+
+You will know the honest price range of your long film before you start — including re-generations — so the budget does not die halfway through production.
 
 ## Use when
 
-Before committing to a long-form production.
+Before committing to a long-form production, so the budget survives contact with real re-roll counts.
 
 ## Inputs
 

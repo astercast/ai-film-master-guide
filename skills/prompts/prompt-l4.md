@@ -5,6 +5,10 @@ description: Write a sequence bridge (match-cut) prompt (longform track) using t
 
 # Prompt: Sequence bridge (match-cut)
 
+## What this gets you
+
+You will have a finished prompt for a sequence bridge (match-cut) — the shot used for sequence assembly — ready to paste into a video model: fill the bracketed blanks, generate a cheap draft first, and keep the take that works.
+
 ## Use when
 
 You are directing a shot that needs: sequence bridge (match-cut). Anatomy: design the seam — AI features die in the transitions. Best for: sequence assembly.

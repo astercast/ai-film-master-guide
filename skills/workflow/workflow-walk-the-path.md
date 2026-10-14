@@ -5,6 +5,10 @@ description: The guide's 241 skills sequenced into six stages in production orde
 
 # Walk the Path — the sequenced curriculum
 
+## What this gets you
+
+You will always know what to learn next: all 241 skills laid out in production order on the Path page, each checked off only when you have actually done it on a real film.
+
 ## Use when
 
 Starting the guide from zero, onboarding a collaborator, or finding the hole in a self-taught practice — whenever the question is 'what do I learn next', not 'how do I do this one thing'.

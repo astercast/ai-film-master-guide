@@ -5,6 +5,10 @@ description: Say what you want, not what you avoid.
 
 # Apply the negatives policy
 
+## What this gets you
+
+Your prompts will get what you ask for more often, because they say what TO show instead of listing what to avoid (which models often render anyway).
+
 ## Use when
 
 Every prompt.

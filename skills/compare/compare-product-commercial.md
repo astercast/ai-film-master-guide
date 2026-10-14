@@ -5,6 +5,10 @@ description: Camera-first models for macro, orbit, and packshot work.
 
 # Choose a model for product commercials
 
+## What this gets you
+
+You will know which model makes a product look expensive on camera — macro detail, clean orbits, a packshot that sells.
+
 ## Use when
 
 Product spots, food, fashion film.
