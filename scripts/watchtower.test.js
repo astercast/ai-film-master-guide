@@ -52,39 +52,33 @@ ok('real diff: the 5 Watchtower 2.0 coverage changes + the 2.3 Soul Cinema tier 
   assert(added, 'pixverse-v6 model-added missing');
   assert.strictEqual(added.after_low, 0.09, 'new record shows its rate span');
   assert.strictEqual(added.after_high, 0.23);
-  // Watchtower 2.19 (2026-10-13): the seventeenth review pass
-  // ran five completed checker runs plus checker-path probes
-  // for every standing watch and flagged source. All 3
-  // standing watches stand (review log pass 18); two flags
-  // were raised and both ended in calibrations — Soul
-  // Cinema's aiforautomation article (flagged runs 1–2 on
-  // proven rendering alternation) and Gemini Omni's
-  // MarkTechPost article (dismissed in run 3, calibrated
-  // after run 4's second flag drew the other known
-  // rendering). Kling 4.0's APIMart page held its baseline
-  // signature (fc55ce30…) — a fourteenth consecutive pass.
-  // BFL's docs pricing page held its 2.16 baseline
-  // (f95831ee…) in the completed runs. PixVerse V6's docs
-  // source fetched clean at baseline — the ninth clean
-  // pass. Seedance 3.0's criteria pages never answered the
-  // checker path this pass (IncompleteRead in every run and
-  // probe); its watch stands on absence of evidence. The
-  // final feed (2026-10-14T00:32Z): changed=0,
-  // with_errors=1; its 15 partials are the standing
-  // host-gated cohort on a heavily gated night — the alert
-  // set is exactly those 15 partial records, so the count
-  // rose 11 → 15 against 2.18's close. Pricing diff 7 rows.
+  // DATAOPS-002 clean feed (2026-10-14): the committed
+  // model-checks.json is the clean checker run — per-model
+  // checks span 2026-10-14T00:43:45Z to 00:55:54Z and the
+  // feed's checked_at is 2026-10-14T00:56:09Z. Its summary:
+  // 32 models · changed 0 · with_errors 0 · no_sources 0 ·
+  // source_status ok 15 · partial 17 · all_failed 0. No
+  // record changed and no check run errored at the feed
+  // level; the drift engine still labels any record with a
+  // failed source 'error', so the alert set is exactly the
+  // clean run's 17 partial records — the previous pin's 15
+  // plus minimax-h3 and soul-2-0, which are partial in this
+  // run. The neighbouring pins are unchanged against the
+  // clean feed: models_total 32, unwatched 0,
+  // pricing_unpublished 5, price_changes_vs_baseline 7.
+  // Pricing diff 7 rows.
   const d = drift.computeDrift({ modelsDoc: models, checksDoc: checks,
     pricingDoc: pricing, historyDoc: history, nowMs: NOW });
   assert.strictEqual(d.summary.models_total, 32);
   assert.strictEqual(d.summary.unwatched, 0, JSON.stringify(d.summary));
   assert.strictEqual(d.summary.pricing_unpublished, 5, JSON.stringify(d.summary));
-  assert.strictEqual(d.summary.alert, 15, JSON.stringify(d.per_model.filter((r) => r.severity === 'alert')));
+  assert.strictEqual(d.summary.alert, 17, JSON.stringify(d.per_model.filter((r) => r.severity === 'alert')));
   assert.strictEqual(d.summary.price_changes_vs_baseline, 7);
   const alertIds = d.per_model.filter((r) => r.severity === 'alert').map((r) => r.model_id).sort();
   assert.deepStrictEqual(alertIds, ['grok-imagine-1-5', 'kling-3-0', 'kling-4-0', 'ltx-2-5',
-    'luma-ray-3-2', 'mirage-tesseract', 'runway-gen-4-5', 'seedance-2-0', 'seedance-2-5',
-    'seedance-3-0', 'sora-2', 'veo-3-1', 'vidu-q4-preview', 'vidu-s2', 'wan-3-0']);
+    'luma-ray-3-2', 'minimax-h3', 'mirage-tesseract', 'runway-gen-4-5', 'seedance-2-0',
+    'seedance-2-5', 'seedance-3-0', 'sora-2', 'soul-2-0', 'veo-3-1', 'vidu-q4-preview',
+    'vidu-s2', 'wan-3-0']);
 });
 
 ok('computeDrift: spot severities — PixVerse watched (price moved), Sora ok, Soul Cinema watch (own tier moved)', () => {
