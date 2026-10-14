@@ -929,3 +929,19 @@ details:not(.nav-idx):not(.bin):not(.path-row)[open] { border-color: var(--line-
   align-items: baseline;
 }
 .skill-facts > div:last-child { border-bottom: 1px solid var(--line-soft); }
+
+/* SUB-44 (r29): controls reach the 44px tap floor on phones.
+   Buttons (the .btn family at every size, teardown tabs), form
+   fields, and the skill deck's two links per card were 26-41px
+   tall at phone widths. Heights only, this block only: desktop
+   control geometry is unchanged, and no width moves, so no
+   phone fitting built on widths (VP-0014, VP-0030) is disturbed.
+   Native radio/checkbox inputs are deliberately NOT grown here:
+   each rides inside a padded label that is the real target. */
+@media (max-width: 720px) {
+  .btn, .td-tab { min-height: 44px; min-width: 44px; }
+  .input { min-height: 44px; }
+  .skill-card h3 a { display: flex; align-items: center; min-height: 44px; }
+  .skill-card .skill-open a { display: inline-flex; align-items: center; min-height: 44px; }
+  .skill-pagenav a { display: inline-flex; align-items: center; min-height: 44px; }
+}

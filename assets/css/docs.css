@@ -178,3 +178,14 @@
 @media (prefers-reduced-motion: reduce) {
   .progress-bar span, .back-to-top, .copy-btn { transition: none; }
 }
+
+/* SUB-44 (r29): the chapter navigation reaches the 44px tap floor
+   on phones. Below 760px the docs nav is a stacked list on the
+   page, so its group summaries and its links are phone targets
+   in their own right; both take 44px rows with the label centred.
+   Heights only, this block only: the desktop three-column docs
+   layout and every width are unchanged. */
+@media (max-width: 720px) {
+  .docs-nav summary { display: flex; align-items: center; min-height: 44px; }
+  .docs-nav li a { display: flex; align-items: center; min-height: 44px; }
+}

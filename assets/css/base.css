@@ -59,6 +59,12 @@ pre code { background: none; padding: 0; border: none; }
   transition: top var(--dur-1) var(--ease); text-decoration: none;
 }
 .skip-link:focus { top: var(--space-3); text-decoration: none; }
+/* SUB-44 (r29): the skip link reaches the 44px tap floor on phones.
+   It parks at top: -56px, so a 44px box still clears the screen
+   (-56 + 44 = -12); the focused position is unchanged. */
+@media (max-width: 720px) {
+  .skip-link { display: inline-flex; align-items: center; min-height: 44px; }
+}
 
 /* Eyebrow label: plain small caps in the text face, muted.
    v2 removed its brass square and its REC variant. */

@@ -148,6 +148,23 @@
   .site-nav a, .nav-idx-btn {
     font-size: 0.72rem; letter-spacing: 0; padding: 6px 2px; white-space: nowrap;
   }
+  /* SUB-44 (r29): the phone chrome reaches the 44px tap floor.
+     Heights only: every width in the VP-0014/r23 nav fitting is
+     untouched, and the desktop chrome is untouched (this block
+     only). Nav links and the Index button centre their label in
+     a 44px row; the brand row takes the same floor; Index-panel
+     links and footer links, both block lists of pure navigation,
+     take 44px rows with the label centred. The footer also takes
+     a 44px min-width (its short labels, Guide/Quiz/API, were
+     22-43px wide): the footer wraps freely, so width is safe
+     there. The site-nav row takes NO min-width: its 320px fit is
+     proven to the pixel (VP-0014, r23), and width growth there
+     would reopen the overflow VP-0030 closed. */
+  .brand { min-height: 44px; }
+  .site-nav a { display: flex; align-items: center; min-height: 44px; }
+  .nav-idx-btn { min-height: 44px; }
+  .nav-idx-group a { display: flex; align-items: center; min-height: 44px; }
+  .site-footer a { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; min-width: 44px; }
   .site-nav a::after { left: 2px; right: 2px; }
   .palette-open { margin-left: auto; }
   /* VP-0030 (r28): the display face fits the phone measure. The desktop
