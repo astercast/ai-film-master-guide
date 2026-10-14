@@ -16,23 +16,27 @@
   <link rel="stylesheet" href="assets/css/home.css">
   <link rel="stylesheet" href="assets/css/print.css">
   <style>
-    .pathmap-verdict { font-size: 1.05rem; border-left: 3px solid var(--gold); padding-left: var(--space-4); margin-bottom: var(--space-6); }
-    .pathmap-stage { border: 1px solid var(--line); border-radius: 12px; padding: var(--space-4) var(--space-5); margin-bottom: var(--space-4); }
+    .pathmap-verdict { font-size: 1.02rem; line-height: 1.6; color: var(--ink-dim); border-left: 2px solid var(--gold); padding-left: var(--space-4); margin-bottom: var(--space-6); max-width: 72ch; }
+    .pathmap-stage { border: 1px solid var(--line-soft); border-radius: var(--radius-l); background: var(--panel); padding: var(--space-5) var(--space-6); margin-bottom: var(--space-4); }
     .pathmap-stage summary { cursor: pointer; list-style: none; display: flex; align-items: baseline; gap: var(--space-3); flex-wrap: wrap; }
     .pathmap-stage summary::-webkit-details-marker { display: none; }
     .pathmap-stage-head { display: flex; align-items: baseline; gap: var(--space-3); flex-wrap: wrap; }
-    .pathmap-stage-head h3 { margin: 0; font-size: 1.25rem; display: inline; }
-    .pathmap-num { display: inline-block; min-width: 1.7em; text-align: center; background: var(--gold); color: #111; border-radius: 999px; font-weight: 800; padding: .1em .3em; }
-    .pathmap-tag { margin-left: auto; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
-    .pathmap-focus, .pathmap-milestone, .pathmap-desc { color: var(--muted); }
-    .pathmap-milestone strong { color: var(--text); }
-    .pathmap-bar { height: 6px; background: var(--line); border-radius: 999px; overflow: hidden; margin: var(--space-3) 0; }
-    .pathmap-bar-fill { height: 100%; background: var(--gold); width: 0%; }
-    .pathmap-skill { display: flex; gap: var(--space-3); align-items: baseline; padding: .35em 0; border-top: 1px solid var(--line); }
-    .pathmap-skill-n { color: var(--muted); min-width: 2.2em; text-align: right; font-size: .85rem; }
+    .pathmap-stage-head h3 { margin: 0; font-family: var(--font-body); font-size: 1.18rem; font-weight: 700; letter-spacing: -0.01em; display: inline; }
+    .pathmap-num { font-family: var(--font-mono); font-size: .8rem; font-weight: 700; color: var(--gold); border: 1px solid var(--line-bright); border-radius: 999px; min-width: 2em; text-align: center; padding: .15em .35em; }
+    .pathmap-tag { margin-left: auto; font-family: var(--font-mono); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+    .pathmap-focus, .pathmap-milestone, .pathmap-desc { color: var(--muted); line-height: 1.6; }
+    .pathmap-milestone strong { color: var(--ink); }
+    .pathmap-bar { height: 4px; background: var(--panel-2); border-radius: 999px; overflow: hidden; margin: var(--space-3) 0; }
+    .pathmap-bar-fill { height: 100%; background: var(--gold); width: 0%; transition: width var(--dur-3) var(--ease); }
+    .pathmap-skill { display: flex; gap: var(--space-3); align-items: baseline; padding: .55em var(--space-2); border-top: 1px solid var(--line-soft); border-radius: var(--radius-s); }
+    .pathmap-skill:hover { background: rgba(224,165,38,.03); }
+    .pathmap-skill a { color: var(--ink); font-weight: 550; }
+    .pathmap-skill a:hover { color: var(--gold); text-decoration: none; }
+    .pathmap-skill-n { font-family: var(--font-mono); color: var(--muted); min-width: 2.2em; text-align: right; font-size: .78rem; }
     .pathmap-skill-id { font-size: .8rem; color: var(--muted); }
-    .pathmap-gets { display: block; font-size: .85rem; color: var(--muted); margin-top: .15em; }
-    .pathmap-ref { font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--line); border-radius: 999px; padding: .05em .5em; margin-left: .4em; }
+    .pathmap-skill-id code { background: none; border: none; padding: 0; font-size: .72rem; }
+    .pathmap-gets { display: block; font-size: .86rem; line-height: 1.5; color: var(--muted); margin-top: .2em; max-width: 68ch; }
+    .pathmap-ref { font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--line-bright); border-radius: 999px; padding: .1em .55em; margin-left: .4em; }
   </style>
   <meta name="theme-color" content="#090807">
   <link rel="icon" href="/favicon.ico" sizes="48x48">

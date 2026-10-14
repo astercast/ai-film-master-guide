@@ -20,16 +20,16 @@
   position: relative; overflow: clip;
   border-bottom: 1px solid var(--line-soft);
   background:
-    radial-gradient(1100px 460px at 50% -14%, rgba(245, 179, 1, 0.16), transparent 62%),
-    radial-gradient(760px 380px at 90% 10%, rgba(230, 36, 41, 0.09), transparent 55%),
-    radial-gradient(140% 90% at 50% 112%, transparent 55%, rgba(0, 0, 0, 0.55) 100%),
+    radial-gradient(1100px 460px at 50% -14%, rgba(224, 165, 38, 0.07), transparent 62%),
+    radial-gradient(760px 380px at 90% 10%, rgba(217, 54, 54, 0.04), transparent 55%),
+    radial-gradient(140% 90% at 50% 112%, transparent 55%, rgba(0, 0, 0, 0.4) 100%),
     var(--bg-soft);
 }
 .hero-cutroom::before, .hero-cutroom::after {
-  content: ""; position: absolute; left: 0; right: 0; height: 30px;
+  content: ""; position: absolute; left: 0; right: 0; height: 22px;
   background-color: #050403; background-image: var(--sprocket);
-  background-size: 26px 30px; background-position: center; background-repeat: repeat-x;
-  z-index: 3;
+  background-size: 22px 22px; background-position: center; background-repeat: repeat-x;
+  z-index: 3; opacity: 0.75;
 }
 .hero-cutroom::before { top: 0; border-bottom: 1px solid var(--line-soft); }
 .hero-cutroom::after { bottom: 0; border-top: 1px solid var(--line-soft); }
@@ -38,7 +38,7 @@
 .tl-deck {
   position: relative; z-index: 1;
   max-width: 1280px; margin-inline: auto;
-  padding: calc(var(--space-8) + 30px) var(--space-5) 0;
+  padding: calc(var(--space-6) + 22px) var(--space-5) 0;
 }
 .tl-chrome {
   display: flex; align-items: center; gap: var(--space-4);
@@ -58,7 +58,7 @@
   font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.14em;
   text-transform: uppercase; color: var(--tungsten); white-space: nowrap;
   border: 1px solid var(--amber-deep); border-radius: 4px; padding: 2px 8px;
-  background: rgba(245, 179, 1, 0.06);
+  background: rgba(224, 165, 38, 0.06);
 }
 .tl-chrome { flex-wrap: wrap; row-gap: 6px; }
 
@@ -76,7 +76,7 @@
   display: inline-block; transform: rotate(180deg);
   border: 1px solid var(--line-bright); border-radius: var(--radius-s);
   background:
-    repeating-linear-gradient(-45deg, transparent 0 12px, rgba(230, 36, 41, 0.07) 12px 24px),
+    repeating-linear-gradient(-45deg, transparent 0 12px, rgba(217, 54, 54, 0.07) 12px 24px),
     var(--panel);
   padding: var(--space-3) var(--space-5); margin-top: var(--space-5);
   font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.24em;
@@ -106,8 +106,8 @@
   letter-spacing: 0.2em; text-transform: uppercase; white-space: nowrap;
   border: 1px solid var(--line-bright); border-radius: 4px; padding: 2px 8px; color: var(--muted);
 }
-.print-tag.is-workprint { border-color: var(--amber-deep); color: var(--tungsten); background: rgba(245, 179, 1, 0.07); }
-.print-tag.is-answer { border-color: #2c5a78; color: var(--reel); background: rgba(127, 212, 255, 0.06); }
+.print-tag.is-workprint { border-color: var(--amber-deep); color: var(--tungsten); background: rgba(224, 165, 38, 0.07); }
+.print-tag.is-answer { border-color: #2c5a78; color: var(--reel); background: rgba(130, 184, 212, 0.06); }
 
 .tl-ruler {
   position: relative; height: 26px;
@@ -121,10 +121,10 @@
 .tl-ruler span:first-child { transform: none; }
 .tl-ruler span:last-child { transform: translateX(-100%); }
 
-.tl-tracks { position: relative; padding: var(--space-3) 0 var(--space-2); }
+.tl-tracks { position: relative; padding: var(--space-2) 0 var(--space-1); }
 .tl-track {
-  position: relative; height: 44px; margin-bottom: 8px;
-  background: rgba(255, 255, 255, 0.018);
+  position: relative; height: 34px; margin-bottom: 6px;
+  background: rgba(255, 255, 255, 0.014);
   border: 1px solid var(--line-soft); border-radius: var(--radius-s);
   overflow: hidden;
 }
@@ -136,30 +136,30 @@
   background: rgba(9, 8, 7, 0.72); padding: 2px 6px; border-radius: 3px;
 }
 .clip {
-  position: absolute; top: 6px; bottom: 6px; border-radius: 4px;
-  border: 1px solid var(--line-bright);
-  background: linear-gradient(180deg, var(--panel-3), var(--panel-2));
+  position: absolute; top: 5px; bottom: 5px; border-radius: 3px;
+  border: 1px solid var(--line);
+  background: var(--panel-2);
   display: flex; align-items: center; padding: 0 10px; overflow: hidden;
-  font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em;
+  font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.08em;
   color: var(--ink-dim); text-transform: uppercase; white-space: nowrap;
 }
-.clip.is-gold { border-color: var(--amber-deep); background: linear-gradient(180deg, #2c2210, #1d1710); color: var(--tungsten); }
-.clip.is-rec { border-color: var(--ember); background: linear-gradient(180deg, #2a1214, #1a0e10); color: var(--ember-soft); }
-.clip.is-blue { border-color: #2c5a78; background: linear-gradient(180deg, #101d26, #0d161e); color: var(--reel); }
+.clip.is-gold { border-color: rgba(224, 165, 38, 0.45); background: #211a0f; color: var(--tungsten); }
+.clip.is-rec { border-color: rgba(217, 54, 54, 0.5); background: #1d1011; color: var(--ember-soft); }
+.clip.is-blue { border-color: #2a465a; background: #0f181f; color: var(--reel); }
 
 /* The playhead — sweeps the deck. Frame-advance steps when moving. */
 .tl-playhead {
-  position: absolute; top: 0; bottom: 0; left: 34%; width: 2px; z-index: 4;
+  position: absolute; top: 0; bottom: 0; left: 34%; width: 1px; z-index: 4;
   background: var(--ember);
-  box-shadow: 0 0 14px rgba(230, 36, 41, 0.8);
+  box-shadow: 0 0 8px rgba(217, 54, 54, 0.55);
   pointer-events: none;
 }
 .tl-playhead::before {
   content: ""; position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
-  border: 7px solid transparent; border-top: 10px solid var(--ember);
+  border: 5px solid transparent; border-top: 8px solid var(--ember);
 }
 @media (prefers-reduced-motion: no-preference) {
-  .tl-playhead { animation: playhead-sweep 16s linear infinite; }
+  .tl-playhead { animation: playhead-sweep 28s linear infinite; }
   .tl-rec i { animation: rec-blink 1.6s ease-in-out infinite; }
 }
 @keyframes playhead-sweep { from { left: 4%; } to { left: 96%; } }
@@ -167,27 +167,50 @@
 
 /* Leader-countdown frame: the 3-2-1 that opens the cut */
 .leader-frame {
-  position: absolute; right: var(--space-5); top: calc(var(--space-7) + 30px);
-  width: 120px; height: 120px; border-radius: 50%; z-index: 2;
-  border: 1px solid var(--line-bright);
+  /* r21: smaller, set lower-right of the deck, and the deck title
+     now truncates before it — the countdown no longer collides
+     with the ASSEMBLY title (the before-frame's clearest defect). */
+  position: absolute; right: var(--space-5); top: calc(var(--space-6) + 26px);
+  width: 96px; height: 96px; border-radius: 50%; z-index: 2;
+  border: 1px solid var(--line);
   display: grid; place-items: center; overflow: hidden;
-  background: radial-gradient(circle, transparent 58%, rgba(245, 179, 1, 0.08) 59%, transparent 70%);
-  pointer-events: none;
+  background: radial-gradient(circle, transparent 58%, rgba(224, 165, 38, 0.06) 59%, transparent 70%);
+  pointer-events: none; opacity: 0.92;
 }
 .leader-frame::before, .leader-frame::after {
-  content: ""; position: absolute; background: rgba(245, 179, 1, 0.35);
+  content: ""; position: absolute; background: rgba(224, 165, 38, 0.35);
 }
 .leader-frame::before { left: 50%; top: 6%; bottom: 6%; width: 1px; }
 .leader-frame::after { top: 50%; left: 6%; right: 6%; height: 1px; }
 .leader-frame b {
   font-family: var(--font-display); font-weight: 800; font-stretch: 62%;
-  font-size: 3.4rem; color: var(--gold); line-height: 1; z-index: 1;
+  font-size: 2.7rem; color: var(--gold); line-height: 1; z-index: 1;
 }
 .leader-frame .lf-label {
   position: absolute; bottom: 8px; font-family: var(--font-mono); font-size: 0.55rem;
   letter-spacing: 0.3em; color: var(--muted); text-transform: uppercase;
 }
-@media (max-width: 900px) { .leader-frame { display: none; } }
+@media (max-width: 1100px) { .leader-frame { display: none; } }
+.tl-title { max-width: 34%; }
+/* r21 (second pass, from the after-frames): the first clip on each
+   track starts at 2% and runs under the V1/V2/A1 track label, so
+   the two texts read as one garbled word ("V1INPUTS"). Shifting
+   only the first clip per track clears the label's gate. */
+.tl-track-label + .clip { margin-left: 30px; }
+/* The countdown seal gets its own column: on wide screens the
+   tracks end 118px early and the seal sits in that gate, below
+   the ruler — it no longer overlaps the ruler's final timecode
+   or the last clip on any track. */
+@media (min-width: 1101px) {
+  .tl-tracks { padding-right: 118px; }
+  .tl-ruler span:last-child { visibility: hidden; }
+  .leader-frame {
+    top: calc(var(--space-6) + 58px);
+    background:
+      radial-gradient(circle, transparent 58%, rgba(224, 165, 38, 0.06) 59%, transparent 70%),
+      var(--panel);
+  }
+}
 
 /* ——— Timecode-stamped section headers ——— */
 .tc-head { display: flex; align-items: baseline; gap: var(--space-3); flex-wrap: wrap; }
@@ -200,7 +223,7 @@
 .reel-head {
   border: 1px solid var(--line-soft); border-radius: var(--radius-l);
   background:
-    linear-gradient(180deg, rgba(245, 179, 1, 0.05), transparent 40%),
+    linear-gradient(180deg, rgba(224, 165, 38, 0.05), transparent 40%),
     var(--panel);
   padding: var(--space-4) var(--space-5); margin-bottom: var(--space-5);
   display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-5);
@@ -263,7 +286,7 @@
   text-align: center; padding: var(--space-8) var(--space-5); color: var(--muted);
   border: 1px dashed var(--line-bright); border-radius: var(--radius-l);
   background:
-    linear-gradient(180deg, rgba(245, 179, 1, 0.03), transparent 50%),
+    linear-gradient(180deg, rgba(224, 165, 38, 0.03), transparent 50%),
     rgba(255, 255, 255, 0.008);
 }
 .empty-state .es-slate {
@@ -271,7 +294,7 @@
   font-size: 1.6rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-dim);
   border: 1px solid var(--line-bright); border-radius: var(--radius-s);
   padding: var(--space-2) var(--space-4); margin-bottom: var(--space-3);
-  background: repeating-linear-gradient(-45deg, transparent 0 10px, rgba(245, 179, 1, 0.05) 10px 20px);
+  background: repeating-linear-gradient(-45deg, transparent 0 10px, rgba(224, 165, 38, 0.05) 10px 20px);
 }
 
 /* ——— 404: MISSING REEL ——— */
@@ -287,7 +310,7 @@
 
 /* ——— Reading progress as a playhead ——— */
 .progress-bar { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: var(--z-progress); pointer-events: none; background: rgba(255, 255, 255, 0.05); }
-.progress-bar span { display: block; height: 100%; background: linear-gradient(90deg, var(--amber-deep), var(--gold), var(--tungsten)); transform: scaleX(0); transform-origin: 0 50%; box-shadow: 0 0 12px rgba(245, 179, 1, 0.5); }
+.progress-bar span { display: block; height: 100%; background: linear-gradient(90deg, var(--amber-deep), var(--gold), var(--tungsten)); transform: scaleX(0); transform-origin: 0 50%; box-shadow: 0 0 12px rgba(224, 165, 38, 0.5); }
 /* Scroll-driven progress (rotation 13; graduated from the 9th site's
    test bed, fleet idiom per Button Mash's reading progress — Fleet
    Commons canonical v1.0.0 (patterns/scroll-driven-animations,
@@ -342,9 +365,17 @@
   .hero-home { display: flex; flex-direction: column; }
   .hero-home .hero-inner { order: -1; padding-top: var(--space-5); }
   .hero-home .tl-deck { padding-top: var(--space-4); }
-  .hero-home .tl-track { height: 36px; }
-  .tl-deck { padding-inline: var(--space-4); }
-  .hero-home .clip, .tl-deck .clip {
-    font-size: 0.44rem; letter-spacing: 0.01em; padding: 0 3px;
+  .tl-deck { padding-inline: var(--space-4); padding-top: calc(var(--space-4) + 22px); }
+  /* r21: every hero deck compacts on phones, not just the homepage's —
+     before r21 the skills/path decks kept desktop geometry at 390px
+     and the ruler timecodes and clip labels collided mid-word. */
+  .tl-track { height: 30px; }
+  .tl-pop { display: none; }
+  .tl-title { display: none; }
+  .tl-ruler span:nth-child(2), .tl-ruler span:nth-child(4), .tl-ruler span:nth-child(5) { display: none; }
+  .tl-deck .clip {
+    font-size: 0.5rem; letter-spacing: 0.02em; padding: 0 4px;
+    text-overflow: ellipsis;
   }
+  .tl-track-label { font-size: 0.52rem; padding: 1px 4px; }
 }

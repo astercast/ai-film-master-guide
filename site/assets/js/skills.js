@@ -41,7 +41,9 @@
 
   function card(s) {
     var href = "skills/" + encodeURIComponent(s.id) + ".html";
+    var cat = CAT_NAMES[catOf(s.path)] || catOf(s.path);
     return '<article class="card skill-card">' +
+      '<p class="skill-cat">' + esc(cat) + "</p>" +
       '<h3><a href="' + href + '">' + esc(s.title) + "</a></h3>" +
       (s.gets_you ? '<p class="skill-gets"><strong>Gets you:</strong> ' + esc(s.gets_you) + "</p>" : "") +
       "<p>" + esc(s.description) + "</p>" +

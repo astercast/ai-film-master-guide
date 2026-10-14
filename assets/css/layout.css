@@ -9,27 +9,29 @@
   border-bottom: 1px solid var(--line-soft);
 }
 .site-header::after {
+  /* r21: the brass hairline stays as the header's signature, at a
+     whisper — a ruled line, not a light strip. */
   content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(245, 179, 1, 0.55) 18%, rgba(245, 179, 1, 0.55) 82%, transparent);
-  opacity: 0.5;
+  background: linear-gradient(90deg, transparent, rgba(224, 165, 38, 0.28) 18%, rgba(224, 165, 38, 0.28) 82%, transparent);
+  opacity: 0.6;
 }
 .header-bar { display: flex; align-items: center; gap: var(--space-4); padding-block: var(--space-3); }
 .brand { display: flex; align-items: center; gap: var(--space-3); color: var(--ink); text-decoration: none; flex: none; }
 .brand:hover { text-decoration: none; }
 /* Brand mark: a 35mm film frame — sprockets top and bottom, AF in the gate */
 .brand-mark {
-  position: relative; display: grid; place-items: center; width: 44px; height: 44px; flex: none;
-  background: linear-gradient(150deg, #241b0e, #14100a 60%, #0c0a07);
+  position: relative; display: grid; place-items: center; width: 40px; height: 40px; flex: none;
+  background: var(--panel-2);
   color: var(--gold); font-family: var(--font-display); font-weight: 800; font-stretch: 62%;
-  font-size: 1.02rem; letter-spacing: 0.03em;
+  font-size: 0.98rem; letter-spacing: 0.03em;
   border: 1px solid var(--line-bright); border-radius: var(--radius-s);
-  box-shadow: var(--shadow-1), inset 0 0 0 3px #050403;
+  box-shadow: inset 0 0 0 3px #050403;
 }
 .brand-mark::before, .brand-mark::after {
   content: ""; position: absolute; left: 6px; right: 6px; height: 5px;
   background-image: radial-gradient(circle, var(--gold) 1.5px, transparent 2px);
   background-size: 8px 5px; background-repeat: repeat-x; background-position: center;
-  opacity: 0.85;
+  opacity: 0.45;
 }
 .brand-mark::before { top: 5px; }
 .brand-mark::after { bottom: 5px; }
@@ -38,14 +40,17 @@
 
 .site-nav { display: flex; gap: 2px; margin-left: auto; flex-wrap: wrap; }
 .site-nav a {
+  /* r21: quiet navigation — set in the text face at reading size.
+     The display face is reserved for headlines and the brand;
+     chrome that shouts in condensed caps reads as signage. */
   position: relative; color: var(--ink-dim);
-  font-family: var(--font-display); font-size: 0.82rem; font-weight: 600; font-stretch: 75%;
-  letter-spacing: 0.1em; text-transform: uppercase;
+  font-family: var(--font-body); font-size: 0.86rem; font-weight: 550;
+  letter-spacing: 0.01em;
   padding: var(--space-2) var(--space-3); border-radius: var(--radius-s); text-decoration: none;
   transition: color var(--dur-1) var(--ease), background var(--dur-1) var(--ease);
 }
 .site-nav a::after {
-  content: ""; position: absolute; left: var(--space-3); right: var(--space-3); bottom: 4px; height: 2px;
+  content: ""; position: absolute; left: var(--space-3); right: var(--space-3); bottom: 3px; height: 2px;
   background: var(--gold); border-radius: 2px; transform: scaleX(0); transform-origin: 0 50%;
   transition: transform var(--dur-2) var(--ease);
 }
@@ -59,8 +64,8 @@
 .nav-idx-btn {
   list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
   color: var(--ink-dim);
-  font-family: var(--font-display); font-size: 0.82rem; font-weight: 600; font-stretch: 75%;
-  letter-spacing: 0.1em; text-transform: uppercase;
+  font-family: var(--font-body); font-size: 0.86rem; font-weight: 550;
+  letter-spacing: 0.01em;
   padding: var(--space-2) var(--space-3); border-radius: var(--radius-s);
   transition: color var(--dur-1) var(--ease), background var(--dur-1) var(--ease);
 }
@@ -123,17 +128,17 @@
 }
 .hero h1 {
   font-size: var(--display-1); font-weight: 800; font-stretch: 62%;
-  text-transform: uppercase; letter-spacing: 0.005em; line-height: 0.94;
-  margin-bottom: var(--space-4); text-wrap: balance;
+  text-transform: uppercase; letter-spacing: 0.008em; line-height: 0.98;
+  margin-bottom: var(--space-5); text-wrap: balance;
 }
 .hero h1 .accent { color: var(--gold); }
-.hero p.lede { font-size: var(--text-lg); color: var(--ink-dim); max-width: 62ch; }
+.hero p.lede { font-size: 1.14rem; line-height: 1.62; color: var(--ink-dim); max-width: 60ch; }
 
 /* ——— Page head ——— */
 .page-head { padding-block: var(--space-7) var(--space-5); max-width: 900px; }
 .page-head .kicker { margin-bottom: var(--space-3); }
-.page-head h1 { font-size: var(--display-2); font-weight: 800; font-stretch: 62%; text-transform: uppercase; letter-spacing: 0.01em; line-height: 0.96; text-wrap: balance; }
-.page-head h1::after { content: ""; display: block; width: 88px; height: 3px; background: var(--gold); margin-top: var(--space-4); border-radius: 2px; }
+.page-head h1 { font-size: var(--display-2); font-weight: 800; font-stretch: 62%; text-transform: uppercase; letter-spacing: 0.01em; line-height: 0.98; text-wrap: balance; }
+.page-head h1::after { content: ""; display: block; width: 48px; height: 2px; background: var(--gold); margin-top: var(--space-4); border-radius: 2px; }
 .page-head .lede { color: var(--ink-dim); max-width: 70ch; font-size: var(--text-lg); margin-top: var(--space-3); }
 
 /* ——— Footer: the tail leader ——— */

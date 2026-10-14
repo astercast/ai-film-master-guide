@@ -7,34 +7,39 @@
    JetBrains Mono for timecode. Wave 36 identity rework;
    wave 38: Anton replaces Archivo (Archivo-family conflict
    with activity-vault's Archivo Black stamp face).
+   Rotation 21 (design polish): the same cutting room, finished
+   like a precision instrument — the brass is deeper and less
+   saturated, surfaces sit flatter, radii tighten, shadows get
+   quieter, and the display scale steps back half a notch so
+   type — not chrome — carries the hierarchy.
    ============================================================ */
 :root {
   color-scheme: dark;
 
   /* ——— Surfaces: deep warm blacks, never blue ——— */
-  --bg: #090807;
-  --bg-soft: #0e0c0a;
-  --bg-raise: #131009;
-  --panel: #14110d;
-  --panel-2: #1c1813;
-  --panel-3: #262017;
-  --line: #2c251c;
-  --line-soft: #201a13;
-  --line-bright: #4a3e2b;
+  --bg: #0a0908;
+  --bg-soft: #0f0d0b;
+  --bg-raise: #14110c;
+  --panel: #15120e;
+  --panel-2: #1a1712;
+  --panel-3: #221e17;
+  --line: #2a251d;
+  --line-soft: #1f1b15;
+  --line-bright: #453b2a;
 
   /* ——— Ink ——— */
-  --ink: #f8f4ea;
-  --ink-dim: #d9d1c0;
-  --muted: #a89e8b;            /* 7.47:1 on --bg — AA */
+  --ink: #f7f3eb;
+  --ink-dim: #d8d0bf;
+  --muted: #a79c86;            /* ~7.3:1 on --bg — AA */
 
   /* ——— Accents: tungsten key light + REC red ——— */
-  --gold: #f5b301;             /* tungsten key light */
-  --tungsten: #ffb648;         /* hot tungsten */
-  --amber-deep: #a86e03;
-  --ember: #e62429;            /* REC red */
+  --gold: #e0a526;             /* tungsten brass — deepened in r21 */
+  --tungsten: #f0b95a;         /* hot tungsten */
+  --amber-deep: #9c6d10;
+  --ember: #d93636;            /* REC red */
   --ember-deep: #a31218;       /* deep REC, AA-safe text bg */
-  --ember-soft: #ff8f93;
-  --reel: #7fd4ff;             /* links, info */
+  --ember-soft: #f28b8e;
+  --reel: #82b8d4;             /* links, info — muted steel blue */
   --ok: #8be28b;
   --warn: #ffb35c;
 
@@ -49,10 +54,12 @@
   --text-base: 1rem;
   --text-lg: 1.13rem;
 
-  /* Fluid display scale, one ratio (1.333 dramatic) */
-  --display-1: clamp(3.2rem, 8vw, 6.2rem);
-  --display-2: clamp(2.3rem, 5vw, 3.6rem);
-  --display-3: clamp(1.5rem, 3vw, 2.1rem);
+  /* Fluid display scale — r21: stepped back so headlines read
+     as set type, not signage; hierarchy comes from weight,
+     spacing and the brass accent, not raw size. */
+  --display-1: clamp(2.75rem, 6.5vw, 5.1rem);
+  --display-2: clamp(2rem, 4.2vw, 3.1rem);
+  --display-3: clamp(1.35rem, 2.6vw, 1.85rem);
 
   /* ——— Space ——— */
   --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
@@ -60,18 +67,18 @@
   --space-9: 96px;
 
   /* ——— Shape ——— */
-  --radius: 10px;
-  --radius-s: 6px;
-  --radius-m: 10px;
-  --radius-l: 16px;
-  --radius-xl: 22px;
+  --radius: 8px;
+  --radius-s: 5px;
+  --radius-m: 8px;
+  --radius-l: 12px;
+  --radius-xl: 16px;
 
   /* ——— Elevation ——— */
-  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.55);
-  --shadow-2: 0 12px 36px rgba(0, 0, 0, 0.65);
-  --shadow-lift: 0 18px 48px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(245, 179, 1, 0.08);
-  --glow-gold: 0 0 24px rgba(245, 179, 1, 0.28);
-  --glow-rec: 0 0 16px rgba(230, 36, 41, 0.55);
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.45);
+  --shadow-2: 0 8px 28px rgba(0, 0, 0, 0.55);
+  --shadow-lift: 0 10px 32px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(224, 165, 38, 0.07);
+  --glow-gold: 0 0 18px rgba(224, 165, 38, 0.2);
+  --glow-rec: 0 0 10px rgba(217, 54, 54, 0.45);
 
   /* ——— Motion (web-craft motion-system: 5 durations, named easings) ——— */
   --dur-1: 120ms;

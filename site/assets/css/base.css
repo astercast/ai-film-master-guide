@@ -9,11 +9,12 @@ body {
   font-optical-sizing: auto;
 }
 
-/* Cinematic film grain — fixed, non-interactive, whisper-quiet */
+/* Cinematic film grain — fixed, non-interactive, whisper-quiet.
+   r21: pulled back further — texture you feel, not see. */
 body::after {
   content: ""; position: fixed; inset: 0; z-index: var(--z-grain);
   background-image: var(--grain); background-size: 160px 160px;
-  opacity: 0.055; pointer-events: none;
+  opacity: 0.03; pointer-events: none;
 }
 
 /* Sprocket-hole page edges — the cutting room's signature.
@@ -26,7 +27,7 @@ body::after {
     background-image: var(--sprocket-sm);
     background-size: 26px 30px; background-position: center top; background-repeat: repeat-y;
     border-right: 1px solid var(--line-soft);
-    opacity: 0.9;
+    opacity: 0.5;
   }
   .edge-right {
     position: fixed; top: 0; bottom: 0; right: 0; width: 26px;
@@ -35,7 +36,7 @@ body::after {
     background-image: var(--sprocket-sm);
     background-size: 26px 30px; background-position: center top; background-repeat: repeat-y;
     border-left: 1px solid var(--line-soft);
-    opacity: 0.9;
+    opacity: 0.5;
   }
 }
 
@@ -57,7 +58,7 @@ pre code { background: none; padding: 0; border: none; }
 /* Focus: tungsten ring, always visible, never removed */
 :focus-visible {
   outline: 2px solid var(--gold); outline-offset: 3px; border-radius: var(--radius-s);
-  box-shadow: 0 0 0 5px rgba(245, 179, 1, 0.16);
+  box-shadow: 0 0 0 5px rgba(224, 165, 38, 0.16);
 }
 /* Selection: REC red — the mark of the cut. White on #c81e23 = 5.73:1 (AA). */
 ::selection { background: #c81e23; color: #fff; }

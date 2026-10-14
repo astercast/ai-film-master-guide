@@ -44,9 +44,9 @@ body.home .tracks { padding-block: var(--space-7) 0; margin-bottom: var(--space-
 /* ——— Waveform divider: room tone between sections ——— */
 .waveform {
   display: flex; align-items: center; justify-content: center; gap: 3px;
-  height: 64px; padding-block: var(--space-2); overflow: hidden;
+  height: 44px; padding-block: var(--space-2); overflow: hidden; opacity: 0.65;
 }
-.waveform i { width: 3px; min-height: 3px; border-radius: 2px; background: var(--line-bright); }
+.waveform i { width: 2px; min-height: 3px; border-radius: 2px; background: var(--line-bright); }
 .waveform i:nth-child(3n) { background: color-mix(in srgb, var(--gold) 55%, var(--line-bright)); }
 .waveform i:nth-child(5n) { background: color-mix(in srgb, var(--gold) 30%, var(--line-bright)); }
 
@@ -77,8 +77,10 @@ body.home .tracks { padding-block: var(--space-7) 0; margin-bottom: var(--space-
 }
 .path-row[open] > .path-summary::before { transform: rotate(90deg); }
 .path-title {
-  font-family: var(--font-display); font-size: 1.05rem; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.06em;
+  /* r21: row titles in the text face — the accordion reads as a
+     programme, not a stack of signs. */
+  font-family: var(--font-body); font-size: 1rem; font-weight: 650;
+  letter-spacing: -0.005em;
 }
 .path-summary:hover .path-title { color: var(--gold); }
 .path-row > p, .path-row > .path-bar, .path-row > .path-progress { margin-inline: var(--space-5); }
@@ -107,8 +109,8 @@ body.home .tracks { padding-block: var(--space-7) 0; margin-bottom: var(--space-
   color: var(--gold); white-space: nowrap;
 }
 .bin-name {
-  font-family: var(--font-display); font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.08em; font-size: 1rem;
+  font-family: var(--font-body); font-weight: 650;
+  letter-spacing: -0.005em; font-size: 1rem;
   transition: color var(--dur-2) var(--ease);
 }
 .bin-summary:hover .bin-name { color: var(--gold); }
@@ -123,18 +125,18 @@ body.home .tracks { padding-block: var(--space-7) 0; margin-bottom: var(--space-
   display: flex; flex-direction: column; gap: var(--space-2);
   padding: var(--space-5);
   background: var(--panel); border: 1px solid var(--line-soft);
-  border-top: 2px solid var(--line-bright); border-radius: var(--radius-m);
+  border-radius: var(--radius-m);
   color: var(--ink); text-decoration: none;
   transition: transform var(--dur-2) var(--ease), border-color var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease);
 }
-.bench-tile:hover { text-decoration: none; transform: translateY(-3px); border-top-color: var(--gold); box-shadow: var(--shadow-lift); }
+.bench-tile:hover { text-decoration: none; transform: translateY(-2px); border-color: var(--gold); box-shadow: var(--shadow-lift); }
 .bench-kicker {
   font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.22em;
   text-transform: uppercase; color: var(--gold); margin: 0;
 }
 .bench-tile h3 {
-  font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.05em;
-  font-size: 1.15rem; margin: 0;
+  font-family: var(--font-body); font-weight: 650; letter-spacing: -0.005em;
+  font-size: 1.08rem; margin: 0;
 }
 .bench-tile > p { color: var(--ink-dim); font-size: 0.92rem; margin: 0; flex: 1; }
 .bench-go {
