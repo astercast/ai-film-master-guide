@@ -11,3 +11,5 @@
 *.woff binary
 *.woff2 binary
 *.pdf binary
+*.wav binary
+*.cube text eol=lf

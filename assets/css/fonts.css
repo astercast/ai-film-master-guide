@@ -18,11 +18,15 @@
 }
 
 @font-face {
+  /* Variable file: the variations format is declared so Safari
+     treats it as variable (aesthetics round 1, Section 5, rule 2);
+     the weight range above is rule 1. Anton stays a static face
+     with one exact weight (rule 4). */
   font-family: "Inter";
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url("../fonts/inter-latin-normal-var.woff2") format("woff2");
+  src: url("../fonts/inter-latin-normal-var.woff2") format("woff2-variations");
 }
 
 @font-face {
@@ -30,12 +34,12 @@
   font-style: normal;
   font-weight: 200 800;
   font-display: swap;
-  src: url("../fonts/newsreader-latin-normal-var.woff2") format("woff2");
+  src: url("../fonts/newsreader-latin-normal-var.woff2") format("woff2-variations");
 }
 @font-face {
   font-family: "Newsreader";
   font-style: italic;
   font-weight: 200 800;
   font-display: swap;
-  src: url("../fonts/newsreader-latin-italic-var.woff2") format("woff2");
+  src: url("../fonts/newsreader-latin-italic-var.woff2") format("woff2-variations");
 }

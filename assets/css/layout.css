@@ -84,10 +84,12 @@
    Before the redesign the deck sat above the headline and the
    3-second read started with chrome. */
 .hero {
+  /* r22 (C7 audit): the gold wash and the ground fade are gone. No
+     lamp, projector, or window in the room sits where the wash
+     fell; the hero's identity is its slate furniture, not a glow.
+     The ground is flat soft background over the page ground. */
   position: relative;
-  background:
-    radial-gradient(1100px 480px at 85% -10%, rgba(226, 166, 47, 0.13), transparent 60%),
-    linear-gradient(180deg, #171208 0%, var(--bg-soft) 55%, var(--bg) 100%);
+  background: var(--bg-soft);
   border-bottom: 1px solid var(--line);
 }
 .hero-cutroom { display: flex; flex-direction: column; }

@@ -1,3 +1,40 @@
+## Rotation 22 — Film composition pass (2026-10-14)
+
+The home is four compositions (FILM-STUDY §4): the slate hero;
+the SHELF (tracks and paths folded in as its two reading orders,
+named at its head; the thirty-one chapters as ruled catalog record
+lines grouped by shelf, slate-row group heads, zero chapter cards);
+the WORKBENCH full bleed (tools in native shapes: ledger slip,
+console, catalog strip, machine ticket, plus the bench pack);
+the SCREENING ROOM (single column, Filmmaker's unit: headline,
+captioned frame, opening prose, byline); and the WATCHTOWER DOOR
+(the feed's summary as slate rows). Model watch is a STATE LEDGER:
+all 32 models sorted by state (changed 7, newly arrived 4, current
+20, retired 1, derived from status + the log's state-defining
+events inside the page's own 30-day window), each unit carrying
+its state-began date in the timecode voice and the fact that set
+it; the feed summary prints as a slate board, zero stat tiles.
+The Watchtower's data, checker, and drift pair are untouched;
+validate.sh 29/29, watchtower.test.js 6/6.
+
+Closes T-FILM-3: the bench pack ships downloadable editor assets
+as actual files, generated deterministically by
+scripts/build_bench_pack.py (3 .cube LUTs, 2 luma-wipe transition
+mattes, 3 letterbox mattes, 2 synthesized SFX). T-FILM-1/-2/-4
+untouched, stated in the landing record
+(~/workspace/fleet-ops/wave-engine/landing-film-r22.md).
+
+Also: the C7 per-declaration audit executed (the kit shade removed
+from .card, .hero, .slate-board, .td-timeline; the .bench-tile and
+.curator-note rules retired with their surfaces; the three gold
+data ramps and the bench slip's ruling survive, attributed), the
+navigation view transition is now a true cut through black (the
+fade-rise it replaced was Blacklist L14's type case), and the two
+variable fonts declare format("woff2-variations") per the iPhone
+Safari rules. Known pre-existing failure, verified identical at
+the base commit: tests/api.test.sh's drift-summary alert-count pin
+(54/55), a wall-clock staleness pin outside this pass's scope.
+
 ## DATAOPS-002 — Watchtower checker adjudication (2026-10-14)
 
 Seedance 3.0's three-run `all_failed` streak adjudicated: **no watched

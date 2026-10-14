@@ -117,7 +117,9 @@ body.home .tracks { padding-block: 0; margin-bottom: var(--space-9); }
 /* Slate board: the guide's contents, boarded like a slate.
    Typography and real counts only. */
 .slate-board {
-  background: linear-gradient(180deg, var(--panel-3), var(--panel-2));
+  /* r22 (C7 audit): flat panel ground. A slate board is a matte
+     board in the world; the two-stop shade depicted nothing. */
+  background: var(--panel-2);
   border: 1px solid var(--line-bright); border-top: 4px solid var(--gold);
   border-radius: var(--radius-l); padding: var(--space-5) var(--space-6) var(--space-6);
   box-shadow: var(--shadow-lift);
@@ -152,14 +154,9 @@ body.home main section h2::before {
   letter-spacing: 0.05em; font-size: 1.4rem;
 }
 
-/* Workbench tiles: tools on the bench, warm and raised */
-.bench-tile {
-  background: linear-gradient(180deg, var(--panel-2), var(--panel));
-  border: 1px solid var(--line); border-radius: var(--radius-l);
-  padding: var(--space-5); box-shadow: var(--shadow-1);
-  transition: border-color var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease);
-}
-.bench-tile:hover { border-color: var(--gold); box-shadow: var(--shadow-lift); }
+/* Workbench tiles: retired in r22. The bench is rebuilt below as
+   objects in native shapes (.bench-obj family); the tile and its
+   kit shade (a C7 instance at audit) do not survive. */
 .bench-kicker {
   font-family: var(--font-display); letter-spacing: 0.2em; color: var(--gold);
   font-size: 0.75rem;
@@ -174,11 +171,162 @@ body.home main section h2::before {
 .bin[open], .path-row[open] { background: var(--panel-2); border-color: var(--line-bright); }
 .bin:last-of-type { border-bottom: 1px solid var(--line-soft); }
 
-/* The editor's note: a kept panel, brass ruled */
-.curator-note {
-  max-width: 80ch;
-  background: linear-gradient(180deg, var(--panel-2), var(--panel));
+/* The editor's note as a kept panel: retired in r22. The note is
+   now the screening room's piece (.sr-piece below), Filmmaker's
+   unit, and wears no panel shade (the gradient here was the third
+   home instance in the C7 audit). */
+
+/* ============================================================
+   r22 composition pass (FILM-STUDY Section 4). The home is four
+   compositions now: the slate (hero, above), the shelf, the
+   workbench, the screening room, plus the Watchtower door.
+   Tracks and paths are the shelf's two reading orders, named at
+   its head; the chapters print as catalog record lines.
+   ============================================================ */
+
+/*  The shelf's reading-order heads  */
+.shelf-order-h {
+  font-family: var(--font-display); font-weight: 400; text-transform: uppercase;
+  letter-spacing: 0.08em; font-size: 1.15rem; color: var(--ink);
+  margin: var(--space-7) 0 var(--space-3);
+}
+.shelf-order-h:first-of-type { margin-top: var(--space-5); }
+
+/*  Reading order one: the two tracks as ruled lines, not cards  */
+.track-lines { border-top: 1px solid var(--line); }
+.track-line {
+  display: grid; grid-template-columns: minmax(170px, 220px) 1fr auto;
+  gap: var(--space-2) var(--space-5); align-items: baseline;
+  padding: var(--space-4) 0; border-bottom: 1px solid var(--line);
+}
+.track-line h4 {
+  font-family: var(--font-display); font-weight: 400; text-transform: uppercase;
+  letter-spacing: 0.05em; font-size: 1.05rem; margin: 0;
+}
+.track-line p { margin: 0; color: var(--ink-dim); max-width: 62ch; }
+.track-line .track-links { white-space: nowrap; font-size: 0.9rem; }
+
+/*  Reading order two: the paths, ruled rows on the shelf  */
+.shelf .path-row {
+  background: transparent; border: none; border-bottom: 1px solid var(--line-soft);
+  border-radius: 0; padding-inline: 0; margin-bottom: 0;
+}
+.shelf .path-row[open] { background: transparent; border-color: var(--line-soft); }
+
+/*  The catalog: slate-row group heads, record lines under them  */
+.shelf-group { margin-top: var(--space-6); }
+.shelf-group-row {
+  border-top: 2px solid var(--gold); border-bottom: 1px solid var(--line-bright);
+  padding-block: var(--space-2);
+}
+.shelf-group-row span {
+  font-family: var(--font-display); letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--gold); font-size: 0.95rem;
+}
+.shelf-group-row b { font-size: 1rem; }
+.shelf-lines { list-style: none; margin: 0; padding: 0; }
+.shelf-line { border-bottom: 1px solid var(--line-soft); }
+.shelf-line a {
+  display: grid; align-items: baseline; gap: var(--space-1) var(--space-4);
+  grid-template-columns: 58px minmax(170px, 1.1fr) 104px 52px 2fr;
+  padding: var(--space-3) var(--space-1); color: var(--ink); text-decoration: none;
+}
+.shelf-line a:hover { background: var(--panel); text-decoration: none; }
+.shelf-line a:hover .shelf-title { color: var(--gold); }
+.shelf-no { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); }
+.shelf-title { font-weight: 620; letter-spacing: -0.005em; }
+.shelf-level {
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted); white-space: nowrap;
+}
+.shelf-time { font-variant-numeric: tabular-nums; color: var(--ink-dim); font-size: 0.9rem; white-space: nowrap; }
+.shelf-contract { color: var(--ink-dim); font-size: 0.92rem; }
+
+/*  The workbench: full bleed, one bench, native shapes  */
+.workbench {
+  background: var(--bg-raise); border-block: 1px solid var(--line);
+  padding-block: var(--space-7); margin-bottom: var(--space-9);
+}
+.bench-bleed { max-width: 1440px; margin-inline: auto; padding-inline: var(--space-5); }
+.bench-layout { display: grid; gap: var(--space-5); grid-template-columns: repeat(12, 1fr); margin-top: var(--space-5); }
+.bench-obj { display: block; color: var(--ink); text-decoration: none; padding: var(--space-5); }
+a.bench-obj:hover { text-decoration: none; }
+.bench-obj h3 { font-size: 1.15rem; font-weight: 650; margin: 0 0 var(--space-2); }
+a.bench-obj:hover h3 { color: var(--gold); }
+.bench-obj > p { color: var(--ink-dim); font-size: 0.94rem; margin: 0; }
+.bench-obj .bench-kicker { margin: 0 0 var(--space-3); }
+/* The slip: a wide ledger slip, ruled lines are its own ruling. */
+.bench-slip {
+  grid-column: 1 / 9; background-color: var(--panel);
+  background-image: repeating-linear-gradient(180deg, transparent 0 27px, var(--line-soft) 27px, var(--line-soft) 28px);
   border: 1px solid var(--line); border-left: 4px solid var(--gold);
-  border-radius: var(--radius-l); padding: var(--space-6);
-  box-shadow: var(--shadow-1);
+}
+/* The console: a recessed well, tall on the bench. */
+.bench-console {
+  grid-column: 9 / 13; grid-row: 1 / 3; background: var(--bg);
+  border: 1px solid var(--line-bright);
+  box-shadow: inset 0 2px 16px rgba(0, 0, 0, 0.5);
+}
+/* The strip: a narrow catalog strip, ruled top and bottom only. */
+.bench-strip {
+  grid-column: 1 / 5; background: transparent;
+  border-top: 1px solid var(--line-bright); border-bottom: 1px solid var(--line-bright);
+}
+/* The ticket: machine-printed, perforated stub edge. */
+.bench-ticket {
+  grid-column: 5 / 9; background: var(--panel);
+  border: 1px solid var(--line); border-left: 2px dashed var(--line-bright);
+}
+.bench-ticket > p { font-family: var(--font-mono); font-size: 0.84rem; line-height: 1.6; }
+/* The kit box: the bench pack, a wide box with a brass lid line. */
+.bench-pack {
+  grid-column: 1 / 13; background: var(--panel);
+  border: 1px solid var(--line-bright); border-top: 4px solid var(--gold);
+}
+.pack-list { list-style: none; margin: var(--space-4) 0 0; padding: 0; }
+.pack-list li {
+  display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-4);
+  padding: var(--space-2) 0; border-bottom: 1px solid var(--line-soft);
+}
+.pack-list li:last-child { border-bottom: none; }
+.pack-list a { font-family: var(--font-mono); font-size: 0.85rem; }
+.pack-list span { color: var(--muted); font-size: 0.8rem; white-space: nowrap; }
+
+/*  The screening room: one column, Filmmaker's unit  */
+.screening .sr-piece { max-width: 72ch; }
+.sr-headline {
+  font-family: var(--font-serif); font-weight: 560; font-size: 1.65rem;
+  line-height: 1.2; letter-spacing: 0; margin: 0 0 var(--space-4);
+  text-transform: none;
+}
+.sr-frame { margin: 0 0 var(--space-4); }
+.sr-frame img { border: 1px solid var(--line); border-radius: var(--radius-m); width: 100%; }
+.sr-frame figcaption { color: var(--muted); font-size: 0.85rem; margin-top: var(--space-2); }
+.sr-prose {
+  font-family: var(--font-serif); font-size: 1.14rem; line-height: 1.7;
+  color: var(--ink-dim); margin: 0 0 var(--space-4);
+}
+.sr-prose a { color: var(--ink); }
+.sr-byline {
+  color: var(--muted); font-size: 0.85rem; margin: 0;
+  border-top: 1px solid var(--line-soft); padding-top: var(--space-3);
+}
+
+/*  The Watchtower door: the feed's summary as a slate board  */
+.wt-door-board { max-width: 640px; }
+
+@media (max-width: 1023px) {
+  .bench-slip { grid-column: 1 / 13; }
+  .bench-console { grid-column: 1 / 13; grid-row: auto; }
+  .bench-strip { grid-column: 1 / 7; }
+  .bench-ticket { grid-column: 7 / 13; }
+}
+@media (max-width: 720px) {
+  .track-line { grid-template-columns: 1fr; }
+  .track-line .track-links { white-space: normal; }
+  .shelf-line a { grid-template-columns: 52px 1fr 52px; }
+  .shelf-level { display: none; }
+  .shelf-contract { grid-column: 1 / -1; }
+  .bench-strip, .bench-ticket { grid-column: 1 / 13; }
+  .bench-bleed { padding-inline: 12px; }
 }

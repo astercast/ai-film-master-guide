@@ -326,37 +326,23 @@ INDEX_TMPL = """<!DOCTYPE html>
     </section>
 
 
-    {wave1}
-
-    <section class="container tracks" aria-labelledby="tracks-h">
-      {cue_tracks}
-      <h2 id="tracks-h">Pick your track</h2>
-      <p class="section-lede">Two ways to shoot. The craft overlaps; the prompt language doesn't. Pick the lane your film lives in.</p>
-      <div class="track-grid">
-        <article class="card track-card">
-          <h3>Animated / Stylized</h3>
-          <p>Anime, Ghibli-style, Pixar-style 3D, 2D cartoon, claymation. Cheaper to iterate, more forgiving on faces, judged in its own categories, with its own prompt register (no lens or depth-of-field language) and its own model shortlist.</p>
-          <div class="btn-row">
-            <a class="btn btn-sm" href="higgsfield/prompt-engineering.html">Prompt engineering</a>
-            <a class="btn btn-sm" href="platforms/when-to-use-what.html">Model selection</a>
-          </div>
+    <section class="container shelf" aria-labelledby="chapters-h">
+      <h2 id="chapters-h">The full shelf</h2>
+      <p class="section-lede">Thirty-one chapters. Read them by track, or by path. The full catalog stands below, every chapter a record line.</p>
+      <h3 class="shelf-order-h" id="tracks-h">First reading order: by track</h3>
+      <div class="track-lines">
+        <article class="track-line">
+          <h4>Animated / Stylized</h4>
+          <p>Two ways to shoot. The craft overlaps; the prompt language doesn't. Anime, Ghibli-style, Pixar-style 3D, 2D cartoon, claymation. Cheaper to iterate, more forgiving on faces, judged in its own categories, with its own prompt register (no lens or depth-of-field language) and its own model shortlist.</p>
+          <p class="track-links"><a href="higgsfield/prompt-engineering.html">Prompt engineering</a> · <a href="platforms/when-to-use-what.html">Model selection</a></p>
         </article>
-        <article class="card track-card">
-          <h3>Photorealistic</h3>
+        <article class="track-line">
+          <h4>Photorealistic</h4>
           <p>Premium models, identity discipline, and post-production craft that passes for real. The lane for drama, action, and trailer-grade work, where every shortcut shows.</p>
-          <div class="btn-row">
-            <a class="btn btn-sm" href="higgsfield/soul-id-deep-dive.html">Soul ID deep dive</a>
-            <a class="btn btn-sm" href="craft/character-consistency.html">Character consistency</a>
-          </div>
+          <p class="track-links"><a href="higgsfield/soul-id-deep-dive.html">Soul ID deep dive</a> · <a href="craft/character-consistency.html">Character consistency</a></p>
         </article>
       </div>
-    </section>
-
-    {wave2}
-
-<section class="container" aria-labelledby="paths-h">
-      {cue_paths}
-      <h2 id="paths-h">Pick your path</h2>
+      <h3 class="shelf-order-h" id="paths-h">Second reading order: by path</h3>
       <p class="section-lede">Don't read thirty-one chapters in order. Pick the goal that matches the film you're trying to make, each path is the shortest honest route through the guide. Tick steps off as you finish them; your progress stays in this browser.</p>
       <div class="path-list">
         <details class="path-row path-card" data-path="first-film">
@@ -457,58 +443,74 @@ INDEX_TMPL = """<!DOCTYPE html>
           </ol>
         </details>
       </div>
-    </section>
-
-    {wave3}
-
-    <section class="container bins" aria-labelledby="chapters-h">
-      {cue_chapters}
-      <h2 id="chapters-h">The full shelf</h2>
-      <p class="section-lede">Thirty-one chapters across ten bins. Open a bin; every chapter lists its read time. The order that matters is your path's, not this one's.</p>
+      <h3 class="shelf-order-h">The catalog, by shelf</h3>
+      <p class="section-lede">Ten shelves, thirty-one chapters.</p>
       {bins_section}
     </section>
 
-    {wave4}
-
-    <section class="container workbench" aria-labelledby="bench-h">
-      {cue_bench}
+    <section class="workbench" aria-labelledby="bench-h">
+      <div class="bench-bleed">
       <h2 id="bench-h">The workbench</h2>
-      <p class="section-lede">Four tools, no filler. Each one answers a question you'll actually ask at 2 a.m.</p>
-      <div class="bench-grid">
-        <a class="bench-tile" href="budget.html">
+      <p class="section-lede">Four tools, no filler. Each one answers a question you'll actually ask at 2 a.m. The bench pack lies with them, free to download.</p>
+      <div class="bench-layout">
+        <a class="bench-obj bench-slip" href="budget.html">
           <p class="bench-kicker">Economics</p>
           <h3>Budget calculator</h3>
           <p>What will this film actually cost? Runtime in, cost envelope out, per-clip math from the credit-math chapter.</p>
           <span class="bench-go" aria-hidden="true">Open <span>&rarr;</span></span>
         </a>
-        <a class="bench-tile" href="workshop.html">
+        <a class="bench-obj bench-console" href="workshop.html">
           <p class="bench-kicker">Craft</p>
           <h3>Prompt workshop</h3>
           <p>A pro prompt in sixty seconds. Pick a template, pick a model, learn why it works, copy it.</p>
           <span class="bench-go" aria-hidden="true">Open <span>&rarr;</span></span>
         </a>
-        <a class="bench-tile" href="prompts.html">
+        <a class="bench-obj bench-strip" href="prompts.html">
           <p class="bench-kicker">Library</p>
           <h3>Prompt library</h3>
           <p>All 47 templates, filterable by shot, camera move, lighting, and mood. Remix and send to the Studio.</p>
           <span class="bench-go" aria-hidden="true">Open <span>&rarr;</span></span>
         </a>
-        <a class="bench-tile" href="api.html">
+        <a class="bench-obj bench-ticket" href="api.html">
           <p class="bench-kicker">Machine-readable</p>
           <h3>For agents</h3>
           <p>Versioned JSON: {model_count} model records, 47 templates, the 22-move camera lexicon, checklists, glossary, with schemas and llms.txt.</p>
           <span class="bench-go" aria-hidden="true">Open <span>&rarr;</span></span>
         </a>
+        <div class="bench-obj bench-pack">
+          <p class="bench-kicker">Downloads</p>
+          <h3>The bench pack</h3>
+          <p>Editor assets as actual files, made in this room: three LUTs, two transition mattes, three letterbox mattes, two sound effects. No account, no licence wall.</p>
+          <ul class="pack-list">
+{pack_rows}
+          </ul>
+        </div>
+      </div>
       </div>
     </section>
 
-    <section class="container curator" aria-labelledby="curator-h">
-      {cue_curator}
+    <section class="container screening" aria-labelledby="curator-h">
       <h2 id="curator-h">From the cutting room</h2>
-      <div class="curator-note">
-        
-        <p>If you read one chapter this week, make it <a href="higgsfield/prompt-engineering.html">prompt engineering</a>. Everything downstream, the budget, the edit, the grade, gets cheaper when the prompt is right on the first take. And skip the model-comparison rabbit hole until you've finished three clips on whatever you already have. The model is never the reason the film is bad; the cut is.</p>
-        <p class="curator-sign">The editor</p>
+      <article class="sr-piece">
+        <h3 class="sr-headline">If you read one chapter this week</h3>
+        <figure class="sr-frame">
+          <img src="assets/film-editing-reels.webp" alt="Reels of film on the editing bench" loading="lazy">
+          <figcaption>Reels on the bench. The cutting room, 2026.</figcaption>
+        </figure>
+        <p class="sr-prose">Make it <a href="higgsfield/prompt-engineering.html">prompt engineering</a>. Everything downstream, the budget, the edit, the grade, gets cheaper when the prompt is right on the first take. And skip the model-comparison rabbit hole until you've finished three clips on whatever you already have. The model is never the reason the film is bad; the cut is.</p>
+        <p class="sr-byline">The editor</p>
+      </article>
+    </section>
+
+    <section class="container wt-door" aria-labelledby="wt-door-h">
+      <h2 id="wt-door-h">The Watchtower</h2>
+      <div class="slate-board wt-door-board">
+        <p class="slate-title">The feed, as published</p>
+        <div class="slate-row"><span>Models tracked</span><b>{wt_total}</b></div>
+        <div class="slate-row"><span>Changed at the last check</span><b>{wt_changed}</b></div>
+        <div class="slate-row"><span>Check errors</span><b>{wt_errors}</b></div>
+        <div class="slate-row"><span>Unwatched</span><b>{wt_unwatched}</b></div>
+        <p class="slate-foot">Last published check {wt_when}. Every model, sorted by its state, at <a href="model-watch.html">model watch</a>.</p>
       </div>
     </section>
   </main>
@@ -6291,9 +6293,13 @@ MODELWATCH_TMPL = """<!DOCTYPE html>
         <button type="button" class="btn btn-sm" data-mw-filter="reported" aria-pressed="false">Reported ({n_reported})</button>
         <button type="button" class="btn btn-sm" data-mw-filter="discontinued" aria-pressed="false">Discontinued ({n_discontinued})</button>
       </div>
-      <div class="mw-freshness">
-        <h2 class="mw-freshness-h">Watchtower freshness <span class="api-badge" id="mw-api-badge" data-api-state="none" role="status" tabindex="0"></span></h2>
-        <p class="card-meta" id="mw-freshness-line">{freshness_line}</p>
+      <div class="slate-board mw-slate">
+        <p class="slate-title">Watchtower freshness <span class="api-badge" id="mw-api-badge" data-api-state="none" role="status" tabindex="0"></span></p>
+        <div class="slate-row"><span>Models tracked</span><b>{total}</b></div>
+        <div class="slate-row"><span>Changed at the last check</span><b>{n_changed}</b></div>
+        <div class="slate-row"><span>Check errors</span><b>{n_errors}</b></div>
+        <div class="slate-row"><span>Unwatched</span><b>{n_unwatched}</b></div>
+        <p class="slate-foot" id="mw-freshness-line">{freshness_line}</p>
       </div>
       <div class="wt-since" id="wt-since">
         <h2 class="wt-since-h"><span id="wt-since-title">{since_title}</span> <span class="api-badge" id="wt-api-badge" data-api-state="none" role="status" tabindex="0"></span></h2>
@@ -6334,7 +6340,7 @@ MODELWATCH_TMPL = """<!DOCTYPE html>
         </details>
       </div>
       <h2>Every model, on the record</h2>
-      <p class="card-meta">{total} models · <a href="../data/v1/model-updates.md">changelog</a> · <a href="../data/v1/models.json">raw JSON</a> · <a href="../data/v1/model-checks.json">check feed</a> · <a href="../data/v1/model-history.json">event log</a></p>
+      <p class="card-meta">{total} models, sorted by state: changed, newly arrived, current, retired. · <a href="../data/v1/model-updates.md">changelog</a> · <a href="../data/v1/models.json">raw JSON</a> · <a href="../data/v1/model-checks.json">check feed</a> · <a href="../data/v1/model-history.json">event log</a></p>
       <div class="mw-grid" id="mw-grid">
 {cards}
       </div>
@@ -6371,6 +6377,10 @@ MODELWATCH_TMPL = """<!DOCTYPE html>
         btns.forEach(function (x) {{ x.setAttribute("aria-pressed", x === b ? "true" : "false"); }});
         cards.forEach(function (c) {{
           c.hidden = (f !== "all" && c.getAttribute("data-status") !== f);
+        }});
+        Array.prototype.forEach.call(document.querySelectorAll("#mw-grid .wt-state"), function (s) {{
+          var any = Array.prototype.some.call(s.querySelectorAll(".mw-card"), function (c) {{ return !c.hidden; }});
+          s.hidden = !any;
         }});
       }});
     }});
@@ -6611,6 +6621,44 @@ def build_model_watch(css_links):
     history_recent = "\n".join(event_row(e) for e in all_events[:10])
     history_more = "\n".join(event_row(e) for e in all_events[10:])
 
+    # --- the state ledger (FILM-STUDY 4.3, NEON's sort): every model
+    # filed under the state of its record: changed, newly arrived,
+    # current, retired. The derivation reads only filed data: the
+    # record's status, and its latest state-defining event in the log
+    # (release / price / tier / status kinds; verification and coverage
+    # events confirm a state, they do not set one). "Inside the last
+    # thirty days" is this page's own window, the since-panel's, read
+    # against the same reproducible ref_day. State began = the date of
+    # the event that set the state; the fact = that event's summary.
+    STATE_ORDER = ["changed", "newly arrived", "current", "retired"]
+    win_start = (ref_day - _dt.timedelta(days=30)).isoformat()
+
+    def model_state(m):
+        d = m.get("_drift", {})
+        mid = d.get("mid")
+        defining = [e for e in history.get("events", [])
+                    if e.get("model_id") == mid
+                    and e["kind"] in ("release", "price", "tier", "status")]
+        defining.sort(key=lambda e: e["date"], reverse=True)
+        last_def = defining[0] if defining else None
+        if m.get("status") == "discontinued":
+            ev = last_def
+            return ("retired",
+                    ev["date"] if ev else m.get("last_verified"),
+                    ev["summary"] if ev else m.get("what_changed", ""))
+        if last_def and last_def["kind"] in ("price", "tier", "status") \
+                and last_def["date"] >= win_start:
+            return ("changed", last_def["date"], last_def["summary"])
+        if last_def and last_def["kind"] == "release" \
+                and last_def["date"] >= win_start:
+            return ("newly arrived", last_def["date"], last_def["summary"])
+        if last_def:
+            return ("current", last_def["date"], last_def["summary"])
+        lev = d.get("latest")
+        if lev:
+            return ("current", lev["date"], lev["summary"])
+        return ("current", m.get("last_verified"), m.get("what_changed", ""))
+
     def card(m):
         status = m.get("status", "active")
         badge = {"active": "Active", "reported": "Reported, unconfirmed",
@@ -6633,6 +6681,14 @@ def build_model_watch(css_links):
             chips += '<span class="mw-drift-chip is-watch">No automated watch</span>'
         elif d.get("pricing") == "unpublished" and status != "discontinued":
             chips += '<span class="mw-drift-chip is-watch">Rate unpublished</span>'
+        st = m.get("_state", {})
+        state_line = ""
+        if st:
+            began = fmt_day(st["began"]) if st.get("began") else "an unrecorded date"
+            state_line = (
+                f'  <p class="mw-state-line"><span class="mw-state-word">{st["state"]}</span> '
+                f'<span class="tc">since {began}</span> · '
+                f'{html.escape(str(st.get("fact", "")))}</p>\n')
         return (
             f'<article class="mw-card{" is-discontinued" if status == "discontinued" else ""}" data-status="{status}">\n'
             f'  <span class="mw-badge mw-badge-{status}">{badge}</span>\n'
@@ -6640,6 +6696,7 @@ def build_model_watch(css_links):
             f'{"WORKPRINT" if status == "reported" else "ANSWER PRINT"}</span>\n'
             f'  <h3>{html.escape(m["model"])}</h3>\n'
             f'  <p class="mw-platform">{html.escape(str(m.get("platform", "")))} · {html.escape(str(m.get("type", "")))}</p>\n'
+            f'{state_line}'
             f'  <dl>\n'
             f'    <dt>Best use</dt><dd>{html.escape(str(m.get("best_use", "")))}</dd>\n'
             f'    <dt>Cost</dt><dd>{html.escape(str(m.get("est_cost_credits", "")))}</dd>\n'
@@ -6655,6 +6712,29 @@ def build_model_watch(css_links):
     counts = {"active": 0, "reported": 0, "discontinued": 0}
     for m in models:
         counts[m.get("status", "active")] = counts.get(m.get("status", "active"), 0) + 1
+
+    by_state = {s: [] for s in STATE_ORDER}
+    for m in models:
+        st, began, fact = model_state(m)
+        m["_state"] = {"state": st, "began": began, "fact": fact}
+        by_state[st].append(m)
+    state_blurb = {
+        "changed": "A price, a tier, or a status moved in the last thirty days.",
+        "newly arrived": "Entered the guide in the last thirty days.",
+        "current": "Verified, standing, nothing pending.",
+        "retired": "Off the board. The record stays, dated, so old budgets still read true.",
+    }
+    ledger_parts = []
+    for st in STATE_ORDER:
+        group = sorted(by_state[st], key=lambda m: m["model"])
+        group.sort(key=lambda m: m["_state"]["began"] or "", reverse=True)
+        ledger_parts.append(
+            f'<section class="wt-state" data-state="{st.replace(" ", "-")}">'
+            f'<h3 class="wt-state-h">{st.capitalize()} '
+            f'<span class="wt-state-n">{len(group)} {"model" if len(group) == 1 else "models"}</span></h3>'
+            f'<p class="wt-state-note">{state_blurb[st]}</p>'
+            + "\n".join(card(m) for m in group) + "</section>")
+    ledger_html = "\n".join(ledger_parts)
     (SITE / "model-watch.html").write_text(MODELWATCH_TMPL.format(
             hero=hero_cutroom(
                 kicker="""Trust, dated""",
@@ -6664,8 +6744,10 @@ def build_model_watch(css_links):
                 clips={"v2": ['Last checked'], "v1": ['What it is', 'What it costs', 'What changed'], "a1": ['Watch beep', 'Never drifts']},
                 h1_id="mw-title",
                 extra=""""""),        css=css_links, sitenav=nav_html("", "model-watch.html"), footer=footer_html(""),
-        cards="\n".join(card(m) for m in models),
+        cards=ledger_html,
         total=len(models), n_active=counts.get("active", 0),
+        n_changed=ck_sum.get("changed", 0), n_errors=ck_sum.get("with_errors", 0),
+        n_unwatched=ck_sum.get("no_sources", 0),
         n_reported=counts.get("reported", 0), n_discontinued=counts.get("discontinued", 0),
         freshness_line=freshness_line,
         since_title=since_title, since_line=since_line, since_events=since_events,
@@ -7736,22 +7818,73 @@ def main():
     model_count = len(models_data["models"])
     chapter_count = len(flat)
     skill_count = json.loads((ROOT / "skills" / "index.json").read_text())["count"]
+    def contract_sentence(md):
+        # The chapter's first full sentence: the record line's contract.
+        # Same source chapter_desc reads, but whole: no mid-word cuts.
+        import html as _html_mod  # the module; `html` is a page string here
+        started = False
+        for line in md.split("\n"):
+            s = line.strip()
+            if s.startswith("#"):
+                started = True
+                continue
+            if started and s and not s.startswith(("!", "[", ">", "-", "|", "<")):
+                clean = re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", s)
+                clean = re.sub(r"[*_`]", "", clean)
+                m = re.match(r"^(.+?[.!?])(\s|$)", clean)
+                sent = m.group(1) if m else clean
+                if len(sent) > 200:
+                    sent = sent[:197].rsplit(" ", 1)[0] + "."
+                return _html_mod.escape(sent)
+        return "AI filmmaking guide chapter."
+
+    # The shelf (FILM-STUDY 4.2): chapters as catalog record lines in
+    # the slate register, grouped by shelf, the grouping printed as a
+    # slate row. Fixed order per line: number in the timecode voice,
+    # title, shelf (the level the record stands on; the guide carries
+    # no per-chapter difficulty data and none is invented), read time,
+    # contract sentence.
     bins_parts = []
-    for s_idx, (section_id, section_name) in enumerate(SECTIONS):
+    ch_no = 0
+    for section_id, section_name in SECTIONS:
         items = chapters[section_id]
         n = len(items)
         mins = sum(c["read_min"] for _, c in items)
-        cards = "".join(
-            f'<article class="card chapter-card"><h3><a href="{section_id}/{slug}.html">{c["title"]}</a></h3>'
-            f'<p>{c["desc"]}</p><p class="card-meta">{c["read_min"]} min read</p></article>'
-            for slug, c in items
-        )
-        open_attr = " open" if s_idx == 0 else ""
+        lines = []
+        for slug, c in items:
+            ch_no += 1
+            lines.append(
+                f'<li class="shelf-line"><a href="{section_id}/{slug}.html">'
+                f'<span class="shelf-no tc">CH {ch_no:02d}</span>'
+                f'<span class="shelf-title">{c["title"]}</span>'
+                f'<span class="shelf-level">{section_name}</span>'
+                f'<span class="shelf-time">{c["read_min"]} min</span>'
+                f'<span class="shelf-contract">{contract_sentence(c["md"])}</span>'
+                f'</a></li>')
         bins_parts.append(
-            f'<details class="bin"{open_attr}><summary class="bin-summary">'
-            f'<span class="bin-name">{section_name}</span>'
-            f'<span class="bin-meta">{n} {"chapter" if n == 1 else "chapters"} · {mins} min</span>'
-            f'</summary><div class="bin-body"><div class="chapter-grid">{cards}</div></div></details>')
+            f'<div class="shelf-group"><p class="slate-row shelf-group-row">'
+            f'<span>{section_name}</span><b>{n} {"chapter" if n == 1 else "chapters"} · {mins} min</b></p>'
+            f'<ol class="shelf-lines">{"".join(lines)}</ol></div>')
+
+    # The Watchtower door: the feed's published summary, read from the
+    # same check file the model-watch page renders. Read-only: the
+    # feed's data and checker contract are not touched by this pass.
+    checks_doc = json.loads((ROOT / "data" / "v1" / "model-checks.json").read_text())
+    ck_sum_home = checks_doc.get("summary", {})
+    wt_when = str(checks_doc.get("checked_at", "")).replace("T", " ").replace("+00:00", " UTC")
+
+    # The bench pack (T-FILM-3): files generated by
+    # scripts/build_bench_pack.py, listed with their real sizes.
+    pack_dir = ROOT / "assets" / "packs" / "bench-pack"
+    pack_kinds = {"cutting-room-tungsten.cube": "LUT", "daylight-answer.cube": "LUT",
+                  "ember-night.cube": "LUT", "wipe-linear.png": "transition matte",
+                  "wipe-soft.png": "transition matte", "letterbox-239.png": "letterbox matte",
+                  "letterbox-185.png": "letterbox matte", "letterbox-43.png": "letterbox matte",
+                  "sfx-whoosh.wav": "sound effect", "sfx-tape-stop.wav": "sound effect"}
+    pack_rows = "\n".join(
+        f'            <li><a href="assets/packs/bench-pack/{name}" download>{name}</a>'
+        f'<span>{kind} · {round((pack_dir / name).stat().st_size / 1024)} KB</span></li>'
+        for name, kind in pack_kinds.items())
     total_read = fmt_total_minutes(sum(c["read_min"] for _, _, c in flat))
     (SITE / "index.html").write_text(INDEX_TMPL.format(
         css=css_links,
@@ -7769,6 +7902,12 @@ def main():
         wave3=waveform_divider(seed=37),
         wave4=waveform_divider(seed=51),
         bins_section="\n".join(bins_parts),
+        pack_rows=pack_rows,
+        wt_total=ck_sum_home.get("models_total", model_count),
+        wt_changed=ck_sum_home.get("changed", 0),
+        wt_errors=ck_sum_home.get("with_errors", 0),
+        wt_unwatched=ck_sum_home.get("no_sources", 0),
+        wt_when=wt_when,
         sitenav=nav_html("", "index.html"), footer=footer_html("")))
     (SITE / "budget.html").write_text(BUDGET_TMPL.format(
             hero=hero_cutroom(

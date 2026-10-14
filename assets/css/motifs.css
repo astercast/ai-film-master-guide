@@ -44,7 +44,8 @@
    the active clip marked with the one accent.  */
 .td-timeline {
   border: 1px solid var(--line); border-radius: var(--radius-l);
-  background: linear-gradient(180deg, var(--panel-2), var(--panel));
+  /* r22 (C7 audit): flat panel ground; the kit shade lit nothing. */
+  background: var(--panel);
   box-shadow: var(--shadow-1);
   padding: var(--space-4) var(--space-5) var(--space-5);
   margin-bottom: var(--space-4);

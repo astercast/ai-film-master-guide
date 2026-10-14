@@ -33,9 +33,13 @@
 /*  Cards  */
 .card {
   /* v3: warm layered surfaces with real depth. A card is a thing on
-     the bench, lit from above, not a hairline outline on a void. */
+     the bench, lit from above, not a hairline outline on a void.
+     r22 (C7 audit): the two-stop panel shade is gone. It lit
+     nothing, no lamp, window, or object in the room accounts for
+     it; the ground is flat panel and the card's identity is its
+     border, its rule, and its contents. */
   position: relative;
-  background: linear-gradient(180deg, var(--panel-2), var(--panel));
+  background: var(--panel);
   border: 1px solid var(--line);
   border-radius: var(--radius-l); padding: var(--space-5);
   box-shadow: var(--shadow-1);
@@ -290,7 +294,47 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--gold); }
 .verify-banner strong { color: var(--ink); }
 .mw-filters { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: var(--space-4) 0; }
 .mw-filters .btn[aria-pressed="true"] { outline: 2px solid var(--gold); outline-offset: 2px; background: rgba(223, 167, 46, 0.08); }
-.mw-grid { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); margin: var(--space-5) 0; }
+.mw-grid { display: block; margin: var(--space-5) 0; }
+
+/*  The state ledger (r22, FILM-STUDY 4.3): the grid of cards is now
+   a ledger of units grouped by state. Sections are named by the
+   state; inside a section the units stack as ruled records, newest
+   state first. The unit keeps the card's contents; the state line
+   at its head carries the date the state began, in the timecode
+   voice, and the fact that changed it.  */
+.wt-state { margin-bottom: var(--space-7); }
+.wt-state-h {
+  font-family: var(--font-display); font-weight: 400; text-transform: uppercase;
+  letter-spacing: 0.06em; font-size: var(--display-3); margin: 0 0 var(--space-1);
+  display: flex; align-items: baseline; gap: var(--space-3); flex-wrap: wrap;
+}
+.wt-state-n {
+  font-family: var(--font-body); font-size: var(--text-sm); font-weight: 600;
+  letter-spacing: 0.04em; text-transform: none; color: var(--muted);
+}
+.wt-state-note { color: var(--muted); margin: 0 0 var(--space-4); max-width: 68ch; }
+.wt-state .mw-card {
+  border: none; border-top: 1px solid var(--line); border-radius: 0;
+  background: transparent; padding: var(--space-4) 0 var(--space-5);
+  transition: none;
+}
+.wt-state .mw-card:last-child { border-bottom: 1px solid var(--line); }
+.wt-state .mw-card:hover { box-shadow: none; border-color: var(--line); }
+.mw-state-line {
+  color: var(--ink-dim); font-size: var(--text-sm);
+  border-left: 3px solid var(--gold); padding-left: var(--space-3);
+  margin: 0 0 var(--space-3);
+}
+.wt-state[data-state="changed"] .mw-state-line { border-left-color: var(--warn); }
+.wt-state[data-state="newly-arrived"] .mw-state-line { border-left-color: var(--ok); }
+.wt-state[data-state="retired"] .mw-state-line { border-left-color: var(--ember); }
+.mw-state-word {
+  font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+  font-size: 0.78rem; color: var(--ink);
+}
+.mw-state-line .tc { font-family: var(--font-mono); font-size: 0.82rem; }
+.mw-slate { margin-bottom: var(--space-5); }
+.mw-slate .api-badge { margin-left: var(--space-3); }
 .mw-card { border: 1px solid var(--line-soft); border-radius: var(--radius-m); background: var(--panel); padding: var(--space-4) var(--space-5); transition: border-color var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease); }
 .mw-card:hover { border-color: var(--gold); box-shadow: var(--shadow-lift); }
 .mw-card h3 { margin: 0 0 var(--space-1); font-size: 1.3rem; }

@@ -95,15 +95,19 @@ main section h2 > .tc { margin-left: var(--space-3); }
    (patterns/view-transitions), extracted from this adoption;
    aligned on touch in rotation 14, comments only, behaviour
    unchanged. The guard is the pattern: @view-transition inside
-   the no-preference guard below). Shaped as a cut, not a dissolve: the
-   old reel leaves in 180ms, the new one enters with a 6px settle.
+   the no-preference guard below).
+   Rotation 22: the cut is now a cut. The old reel drops to black
+   and the new one comes up from black, one beat each way, no rise,
+   no settle, no drift: projection's own grammar. The names said
+   "cut" since rotation 13 while the definitions faded and rose
+   (Blacklist L14's type case); the definitions now keep the name.
    Progressive enhancement only, browsers without cross-document
    view transitions ignore the rule and navigate as before; the
-   reduced-motion block above also stills the pseudo-elements. */
+   reduced-motion guard stills the pseudo-elements. */
 @media (prefers-reduced-motion: no-preference) {
   @view-transition { navigation: auto; }
-  ::view-transition-old(root) { animation: vt-cut-out 0.18s ease-in both; }
-  ::view-transition-new(root) { animation: vt-cut-in 0.26s ease-out both; }
+  ::view-transition-old(root) { animation: vt-cut-out 0.12s ease-in both; }
+  ::view-transition-new(root) { animation: vt-cut-in 0.12s ease-out both; }
 }
 @keyframes vt-cut-out { to { opacity: 0; } }
-@keyframes vt-cut-in { from { opacity: 0; transform: translateY(6px); } }
+@keyframes vt-cut-in { from { opacity: 0; } }
