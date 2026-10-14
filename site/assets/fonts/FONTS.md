@@ -14,11 +14,11 @@ Keep only the `/* latin */` @font-face blocks.
 
 | file | family | style | weight | notes |
 |---|---|---|---|---|
-| anton-latin-normal-400.woff2 | Anton | normal | 400 (static) | display face; declared 400–800 / 50–100% stretch in fonts.css |
+| anton-latin-normal-400.woff2 | Anton | normal | 400 (static) | REMOVED in v2 (rotation 21 second attempt) — display face cut under the restraint spec; file deleted |
 | newsreader-latin-normal-var.woff2 | Newsreader | normal | 200–800 variable | prose |
 | newsreader-latin-italic-var.woff2 | Newsreader | italic | 200–800 variable | prose italics |
 | inter-latin-normal-var.woff2 | Inter | normal | 100–900 variable | tool UI body |
-| jetbrainsmono-latin-normal-var.woff2 | JetBrains Mono | normal | 100–800 variable | timecode + code |
+| jetbrainsmono-latin-normal-var.woff2 | JetBrains Mono | normal | 100–800 variable | REMOVED in v2 — decorative mono cut; code now uses the system mono stack; file deleted |
 
 Note: Google's css2 API now serves Inter and JetBrains Mono as single
 variable files even when discrete weights are requested (all five/six

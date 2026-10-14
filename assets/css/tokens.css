@@ -1,73 +1,77 @@
 /* ============================================================
-   Design tokens — AI Film Master Guide
-   "The Cutting Room" — FULL REDESIGN, rotation 21.
-   The system is rebuilt from the ground up on the pattern book
-   (research cycle 145): three type jobs that never swap
-   (proclaim / read / data), a spacing scale where distance
-   means relationship, a palette with one accent job, two
-   depths only (the bench and the reel), and corners that
-   follow film objects. Identity is unchanged — cutting room,
-   brass on black, timecode — the discipline is new.
-   Type jobs: Anton proclaims (heroes, slates, section titles,
-   large sizes only). Inter reads and operates (UI, body, nav,
-   buttons). Newsreader reads long (craft chapters). JetBrains
-   Mono is data only — it appears where a real timecode, count,
-   or value stands, never as decoration (§2.1c).
-   Palette in one sentence: warm black ground, paper ink, one
-   brass accent for act/attend, REC red reserved for genuinely
-   live/record meanings, steel blue for links (§2.3c).
+   Design tokens — AI Film Master Guide, v2 (rotation 21, second
+   attempt). The v1 "Cutting Room" system was rejected by the user
+   as messy and vibecoded: too much decorative chrome competing
+   for attention. This system is built on restraint:
+
+   - Near-monochrome warm-neutral base. Exactly one accent —
+     brass — used only for the primary action, the current
+     location, and a hover. Status colours survive only inside
+     data (Watchtower badges, verdicts), where colour carries
+     information, never decoration.
+   - Two type families, total. Inter does every job of reading
+     and operating, headlines included — no display face.
+     Newsreader is reserved for long-form chapter prose.
+     Code and numeric data use the system mono stack; no third
+     webfont is loaded and mono is never used as decoration.
+   - Sections are separated by space on a strict scale, not by
+     borders, textures, or dividers. No grain, no sprockets,
+     no rulers, no glows.
    ============================================================ */
 :root {
   color-scheme: dark;
 
-  /* ——— Surfaces: the bench — flat warm blacks in clear steps ——— */
-  --bg: #0b0a08;
-  --bg-soft: #100e0b;
-  --bg-raise: #16130e;
-  --panel: #14110d;
-  --panel-2: #1b1813;
-  --panel-3: #242019;
-  --line: #2b261e;
-  --line-soft: #201c16;
-  --line-bright: #4a3f2c;
+  /* ——— Surfaces: flat neutrals in clear, quiet steps ——— */
+  --bg: #0c0c0c;
+  --bg-soft: #101010;
+  --bg-raise: #161616;
+  --panel: #121212;
+  --panel-2: #171717;
+  --panel-3: #1e1e1e;
+  --line: #262626;
+  --line-soft: #1c1c1c;
+  --line-bright: #3d3d3d;
 
   /* ——— Ink ——— */
-  --ink: #f6f2e9;
-  --ink-dim: #d9d2c1;
-  --muted: #a89d87;            /* ~7.4:1 on --bg — AA */
+  --ink: #f4f4f1;
+  --ink-dim: #cfcfc9;
+  --muted: #9d9d97;            /* ~7.5:1 on --bg — AA */
 
-  /* ——— Accents: one brass job; red rationed; blue for links ——— */
-  --gold: #dfa72e;             /* tungsten brass — the act/attend accent */
-  --tungsten: #f2bc5c;         /* hot tungsten — brass at hover only */
+  /* ——— The one accent: brass, for act/attend only ——— */
+  --gold: #dfa72e;
+  --tungsten: #eec27a;         /* brass at hover only */
   --amber-deep: #9c6d10;
-  --ember: #d93636;            /* REC red — live/record meanings only */
-  --ember-deep: #a31218;       /* deep REC, AA-safe text bg */
+
+  /* ——— Data status only (Watchtower, verdicts, API states).
+     Never decoration, never hero furniture. ——— */
+  --ember: #d93636;
+  --ember-deep: #a31218;
   --ember-soft: #f28b8e;
-  --reel: #84b9d6;             /* links, info — muted steel blue */
+  --reel: #84b9d6;
   --ok: #8be28b;
   --warn: #ffb35c;
 
-  /* ——— Type ——— */
-  --font-display: "Anton", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
-  --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
+  /* ——— Type: two families ——— */
   --font-body: "Inter", "Helvetica Neue", Arial, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
+  /* Legacy aliases point at the same two families so no rule can
+     resurrect a display or decorative mono voice. */
+  --font-display: var(--font-body);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
   --text-xs: 0.75rem;
   --text-sm: 0.86rem;
   --text-base: 1rem;
   --text-lg: 1.13rem;
 
-  /* Type scale — few, widely separated steps (§2.1). Display
-     proclaims at large sizes only; reading sizes live in the
-     --text steps; data sizes in components, always mono. */
-  --display-1: clamp(2.9rem, 6.8vw, 5.4rem);
-  --display-2: clamp(2.1rem, 4.4vw, 3.3rem);
-  --display-3: clamp(1.4rem, 2.7vw, 1.95rem);
+  /* One disciplined scale, generous leading. */
+  --display-1: clamp(2.3rem, 4.6vw, 3.9rem);
+  --display-2: clamp(1.75rem, 3.2vw, 2.5rem);
+  --display-3: clamp(1.3rem, 2.2vw, 1.6rem);
 
-  /* ——— Space: one strict scale (§2.2). Semantic measures:
-     tight = within a group, standard = between groups,
-     wide = between sections, reel = the major break. ——— */
+  /* ——— Space: one strict scale. Distance means relationship:
+     tight within a group, standard between groups, wide and
+     reel between sections. ——— */
   --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
   --space-5: 24px; --space-6: 32px; --space-7: 48px; --space-8: 64px;
   --space-9: 96px;
@@ -76,42 +80,31 @@
   --measure-wide: var(--space-8);
   --measure-reel: var(--space-9);
 
-  /* ——— Shape: corners follow film objects (§2.4) — frames and
-     slates near-square, controls soft, sheets softest. ——— */
-  --radius: 8px;
+  /* ——— Shape: one quiet radius family ——— */
+  --radius: 6px;
   --radius-s: 4px;
-  --radius-m: 8px;
-  --radius-l: 12px;
-  --radius-xl: 16px;
+  --radius-m: 6px;
+  --radius-l: 10px;
+  --radius-xl: 10px;
 
-  /* ——— Elevation: two depths only (§2.4) — the bench is flat
-     (hairlines do the separation); the reel is raised (playable
-     media, dialogs, the one floating thing per view). ——— */
+  /* ——— Elevation: flat. One shadow, for dialogs only. ——— */
   --shadow-1: none;
-  --shadow-2: 0 12px 32px rgba(0, 0, 0, 0.55);
-  --shadow-lift: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(223, 167, 46, 0.08);
-  --glow-gold: 0 0 16px rgba(223, 167, 46, 0.18);
-  --glow-rec: 0 0 8px rgba(217, 54, 54, 0.4);
+  --shadow-2: 0 16px 40px rgba(0, 0, 0, 0.55);
+  --shadow-lift: none;
+  --glow-gold: none;
+  --glow-rec: none;
 
-  /* ——— Motion (web-craft motion-system: 5 durations, named easings) ——— */
+  /* ——— Motion: calm, short, one easing family ——— */
   --dur-1: 120ms;
   --dur-2: 200ms;
   --dur-3: 320ms;
   --dur-4: 480ms;
   --dur-5: 900ms;
-  --ease: cubic-bezier(0.22, 1, 0.36, 1);        /* decelerate — entrances */
-  --ease-standard: cubic-bezier(0.2, 0, 0, 1);   /* between-states */
-  --ease-in: cubic-bezier(0.3, 0, 1, 1);         /* exits only */
-  --ease-snap: cubic-bezier(0.3, 1.3, 0.5, 1);   /* playful, gated */
-  --ease-frames: steps(8, end);                  /* frame-advance */
-
-  /* ——— Texture ——— */
-  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
-  /* sprocket-hole strip: 35mm film edge. Tuned once, reused everywhere. */
-  --sprocket: radial-gradient(circle, #3a2f20 4.5px, transparent 5.5px);
-  --sprocket-sm: radial-gradient(circle, #3a2f20 2.5px, transparent 3.5px);
-  /* timecode ruler ticks */
-  --ruler: repeating-linear-gradient(90deg, var(--line-bright) 0 1px, transparent 1px 12px);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-in: cubic-bezier(0.3, 0, 1, 1);
+  --ease-snap: cubic-bezier(0.3, 1.3, 0.5, 1);
+  --ease-frames: steps(8, end);
 
   /* ——— Layers ——— */
   --z-grain: 400;

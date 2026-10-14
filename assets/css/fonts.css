@@ -1,26 +1,21 @@
 /* ============================================================
-   Self-hosted font stack — AI Film Master Guide, "The Cutting Room"
-   Wave 38 identity hardening: zero remote font requests.
-   All files SIL Open Font License (OFL); see assets/fonts/FONTS.md
-   for provenance. Served from /assets/fonts/, copied to
-   site/assets/fonts/ by the build (assets/ is copied wholesale).
+   Self-hosted fonts — v2: exactly two families.
+   Inter (reading, operating, headlines) and Newsreader
+   (long-form chapter prose only). Anton and JetBrains Mono were
+   removed in v2: the condensed display face and the decorative
+   mono were the loudest vibecoded tells in v1. Code/data use the
+   system mono stack from tokens.css — no webfont is loaded for
+   them. All files SIL Open Font License; see FONTS.md.
    ============================================================ */
 
-/* ——— Anton: display (heroes, headings, slate chrome) ———
-   Wave 38: replaces Archivo variable. Single static 400 face, declared
-   over the weight (400–800) and stretch (50–100%) ranges the existing
-   display declarations use, so font-weight:800 / font-stretch:62%
-   bind straight to Anton with no synthetic bold and no layout shift. */
 @font-face {
-  font-family: "Anton";
+  font-family: "Inter";
   font-style: normal;
-  font-weight: 400 800;
-  font-stretch: 50% 100%;
+  font-weight: 100 900;
   font-display: swap;
-  src: url("../fonts/anton-latin-normal-400.woff2") format("woff2");
+  src: url("../fonts/inter-latin-normal-var.woff2") format("woff2");
 }
 
-/* ——— Newsreader variable: long craft chapters (.prose) ——— */
 @font-face {
   font-family: "Newsreader";
   font-style: normal;
@@ -34,22 +29,4 @@
   font-weight: 200 800;
   font-display: swap;
   src: url("../fonts/newsreader-latin-italic-var.woff2") format("woff2");
-}
-
-/* ——— Inter variable: tool UI body ——— */
-@font-face {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url("../fonts/inter-latin-normal-var.woff2") format("woff2");
-}
-
-/* ——— JetBrains Mono variable: timecode + code ——— */
-@font-face {
-  font-family: "JetBrains Mono";
-  font-style: normal;
-  font-weight: 100 800;
-  font-display: swap;
-  src: url("../fonts/jetbrainsmono-latin-normal-var.woff2") format("woff2");
 }

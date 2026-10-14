@@ -9,49 +9,21 @@ body {
   font-optical-sizing: auto;
 }
 
-/* Cinematic film grain — fixed, non-interactive, whisper-quiet.
-   r21: pulled back further — texture you feel, not see. */
-body::after {
-  content: ""; position: fixed; inset: 0; z-index: var(--z-grain);
-  background-image: var(--grain); background-size: 160px 160px;
-  opacity: 0.03; pointer-events: none;
-}
+/* v2: no film grain. Texture was decoration; the page is flat. */
 
-/* Sprocket-hole page edges — the cutting room's signature.
-   Fixed film strips flanking the viewport on wide screens only. */
-@media (min-width: 1440px) {
-  body::before {
-    content: ""; position: fixed; top: 0; bottom: 0; left: 0; width: 26px;
-    z-index: var(--z-edges); pointer-events: none;
-    background-color: #050403;
-    background-image: var(--sprocket-sm);
-    background-size: 26px 30px; background-position: center top; background-repeat: repeat-y;
-    border-right: 1px solid var(--line-soft);
-    opacity: 0.5;
-  }
-  .edge-right {
-    position: fixed; top: 0; bottom: 0; right: 0; width: 26px;
-    z-index: var(--z-edges); pointer-events: none;
-    background-color: #050403;
-    background-image: var(--sprocket-sm);
-    background-size: 26px 30px; background-position: center top; background-repeat: repeat-y;
-    border-left: 1px solid var(--line-soft);
-    opacity: 0.5;
-  }
-}
+/* v2: no sprocket page edges. */
 
 h1, h2, h3 {
-  font-family: var(--font-display); line-height: 1.02; letter-spacing: 0.004em;
-  margin: 0 0 var(--space-3); font-weight: 750; text-wrap: balance;
-  font-stretch: 78%;
-}
+  font-family: var(--font-body); line-height: 1.15; letter-spacing: -0.02em;
+  margin: 0 0 var(--space-3); font-weight: 650; text-wrap: balance;
+  }
 h4, h5, h6 { font-family: var(--font-body); line-height: 1.25; margin: 0 0 var(--space-2); }
 p { margin: 0 0 var(--space-4); }
-a { color: var(--reel); text-decoration: none; text-underline-offset: 3px; }
-a:hover { text-decoration: underline; }
+a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--line-bright); text-underline-offset: 3px; }
+a:hover { color: var(--gold); text-decoration-color: var(--gold); }
 img { max-width: 100%; display: block; }
 button, input, select, textarea { font: inherit; color: inherit; }
-code { font-family: var(--font-mono); font-size: 0.86em; background: var(--panel-2); padding: 1px 6px; border-radius: 4px; border: 1px solid var(--line-soft); }
+code { font-family: var(--font-body); font-size: 0.86em; background: var(--panel-2); padding: 1px 6px; border-radius: 4px; border: 1px solid var(--line-soft); }
 pre { background: var(--panel); border: 1px solid var(--line-soft); border-radius: var(--radius-m); padding: var(--space-4); overflow-x: auto; }
 pre code { background: none; padding: 0; border: none; }
 
@@ -61,7 +33,7 @@ pre code { background: none; padding: 0; border: none; }
   box-shadow: 0 0 0 5px rgba(223, 167, 46, 0.16);
 }
 /* Selection: REC red — the mark of the cut. White on #c81e23 = 5.73:1 (AA). */
-::selection { background: #c81e23; color: #fff; }
+::selection { background: var(--gold); color: #171106; }
 [id] { scroll-margin-top: 110px; }
 
 /* Scrollbars — edit-bay chrome: sprocket-dotted thumb */
@@ -69,8 +41,6 @@ pre code { background: none; padding: 0; border: none; }
 *::-webkit-scrollbar { width: 11px; height: 11px; }
 *::-webkit-scrollbar-thumb {
   background-color: var(--line-bright);
-  background-image: var(--sprocket-sm);
-  background-size: 11px 14px; background-position: center; background-repeat: repeat-y;
   border-radius: 8px; border: 2px solid var(--bg);
 }
 *::-webkit-scrollbar-track { background: transparent; }
@@ -85,30 +55,18 @@ pre code { background: none; padding: 0; border: none; }
 }
 .skip-link:focus { top: var(--space-3); text-decoration: none; }
 
-/* Kicker — timecode-style eyebrow used across the site */
+/* Eyebrow label: plain small caps in the text face, muted.
+   v2 removed its brass square and its REC variant. */
 .kicker {
-  display: inline-flex; align-items: center; gap: var(--space-2);
-  font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 600;
-  letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold);
-}
-.kicker::before {
-  /* §2.3c rationing: brass slate mark, not a REC light — red is
-     reserved for the deck's record meaning and live states. */
-  content: ""; width: 8px; height: 8px; border-radius: 2px;
-  background: var(--gold); flex: none;
-}
-.kicker.is-rec::after {
-  content: "REC"; font-size: 0.62rem; letter-spacing: 0.3em;
-  color: var(--ember-soft); border: 1px solid var(--ember);
-  border-radius: 3px; padding: 1px 6px 1px 8px;
+  display: inline-block;
+  font-size: var(--text-xs); font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
 }
 
-/* Timecode stamp — mono, tabular, the signature inline motif */
-.tc {
-  font-family: var(--font-mono); font-variant-numeric: tabular-nums;
-  font-size: 0.78em; font-weight: 500; letter-spacing: 0.08em;
-  color: var(--gold); white-space: nowrap;
-}
+/* Former timecode stamp: v2 renders it as plain muted text.
+   docs.js no longer injects stamps; the class survives only in
+   older markup and carries no costume. */
+.tc { font-size: 0.85em; color: var(--muted); white-space: nowrap; }
 
 /* VP-0006: docs.js appends this stamp directly after section-heading
    text. In the prose layout the stamp is a separated chip (.prose h2
@@ -121,18 +79,7 @@ pre code { background: none; padding: 0; border: none; }
    carry more specific rules and are untouched. */
 main section h2 > .tc { margin-left: var(--space-3); }
 
-/* Reveal-on-scroll (JS adds .reveal; no-JS keeps everything visible).
-   Choreography: decelerate in, 55ms sibling stagger via --rd, travel killed under reduced motion. */
-@media (prefers-reduced-motion: no-preference) {
-  html { scroll-behavior: smooth; }
-  .reveal { opacity: 0; transform: translateY(18px); transition: opacity var(--dur-3) var(--ease), transform var(--dur-3) var(--ease); transition-delay: var(--rd, 0ms); will-change: opacity, transform; }
-  .reveal.is-visible { opacity: 1; transform: none; }
-}
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
-  .reveal { opacity: 1; transform: none; }
-}
+/* v2: no reveal-on-scroll choreography — content is simply present. */
 
 /* Cross-page view transitions (rotation 13; graduated from the 9th
    site's test bed — Fleet Commons canonical v1.0.0

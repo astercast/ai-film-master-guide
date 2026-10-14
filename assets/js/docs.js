@@ -11,25 +11,12 @@
     return pad(h) + ":" + pad(m) + ":" + pad(s) + ":00";
   }
 
-  /* Timecode-stamped section headers — the cutting-room signature.
-     Each h2 gets the next mark on the reel: 45 seconds apart, from 00:00:45:00.
-     Chapter pages stamp .prose h2s; tool/data/docs pages stamp their top-level
-     section h2s (same reel, same marks). Skips hidden headers and hero chrome. */
-  var h2s = document.querySelectorAll(".prose h2, main > section h2");
-  Array.prototype.forEach.call(h2s, function (h, i) {
-    if (h.querySelector(".tc")) return;
-    if (h.classList.contains("visually-hidden")) return;
-    if (h.closest(".hero") || h.closest("[hidden]")) return;
-    var stamp = document.createElement("span");
-    stamp.className = "tc";
-    stamp.setAttribute("aria-hidden", "true");
-    stamp.textContent = tcFromSeconds((i + 1) * 45);
-    h.appendChild(stamp);
-  });
+  /* v2: section headings carry no timecode stamps. The stamps were
+     invented numbers dressed as data — decoration, removed. */
 
-  /* Reading progress bar + playhead timecode readout */
+  /* Reading progress bar (a plain line; no timecode readout) */
   var progress = document.querySelector(".progress-bar span");
-  var progressTc = document.querySelector(".progress-tc");
+  var progressTc = null;
   if (progress) {
     /* Scroll-driven where supported (motifs.css: animation-timeline:
        scroll(root) scrubs the bar on the compositor) — then this
@@ -121,27 +108,4 @@
     });
   }
 
-  /* Reveal-on-scroll — cinematic entrance for cards and sections.
-     JS-gated: without JS (or with reduced motion) everything stays visible. */
-  if (!reduceMotion && "IntersectionObserver" in window) {
-    var revealEls = document.querySelectorAll(
-      ".card, .chapter-card, .mw-card, .stat, .check, .td-card, .recipe-card, " +
-      ".track-card, .path-card, .quiz-card, .calc-promo, .verify-banner, .check-callout"
-    );
-    if (revealEls.length) {
-      var robs = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) {
-            e.target.classList.add("is-visible");
-            robs.unobserve(e.target);
-          }
-        });
-      }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
-      Array.prototype.forEach.call(revealEls, function (el, i) {
-        el.classList.add("reveal");
-        el.style.setProperty("--rd", ((i % 5) * 55) + "ms");
-        robs.observe(el);
-      });
-    }
-  }
 })();

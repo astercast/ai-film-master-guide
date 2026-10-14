@@ -1,72 +1,31 @@
 /* ============================================================
-   Home — the landing cut (wave 39: extreme makeover)
-   One hero, one action; everything else reveals progressively.
-   Bins, path accordion, workbench, curator's note, waveform dividers.
+   Home — v2. One hero (headline, subline, one action, one quiet
+   link, whitespace), then content sections separated by space.
+   No stats wall, no waveform dividers, no slate cues, no marker
+   flags, no drop caps. Lists keep hairlines because a list is
+   content, not section furniture.
    ============================================================ */
 
-/* Homepage sections breathe; the hero handles the first impression. */
 body.home main > section.container { margin-bottom: var(--space-9); }
-body.home .tracks { padding-block: var(--space-7) 0; margin-bottom: var(--space-9); }
+body.home .tracks { padding-block: 0; margin-bottom: var(--space-9); }
 
-/* ——— Slate cue above each section: timecode + scene ——— */
-.reel-cue {
-  display: flex; align-items: baseline; gap: var(--space-3);
-  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.2em;
-  text-transform: uppercase; color: var(--muted); margin: 0 0 var(--space-3);
-}
-.reel-cue .tc { color: var(--gold); }
-.reel-cue-scene { color: var(--ink-dim); }
-.reel-cue-label { color: var(--muted); }
-
-/* ——— Hero: one primary action, one quiet alternative ——— */
+/* ——— Hero action row ——— */
 .hero-cta { align-items: center; gap: var(--space-4); margin-top: var(--space-6); }
 .btn-lg { padding: var(--space-3) var(--space-6); font-size: 0.95rem; }
 .hero-alt {
   color: var(--ink-dim); font-size: 0.92rem;
   text-decoration: underline; text-decoration-color: var(--line-bright);
   text-underline-offset: 4px; text-decoration-thickness: 1px;
-  transition: color var(--dur-2) var(--ease), text-decoration-color var(--dur-2) var(--ease);
 }
 .hero-alt:hover { color: var(--gold); text-decoration-color: var(--gold); }
 
-/* ——— Reel-stats strip: the numbers, one quiet line ——— */
-.reel-stats {
-  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: center;
-  gap: var(--space-2) var(--space-4);
-  padding: var(--space-4) var(--space-5);
-  border-block: 1px solid var(--line-soft); background: var(--bg-soft);
-  font-family: var(--font-mono); font-size: 0.76rem; letter-spacing: 0.16em;
-  text-transform: uppercase; color: var(--muted);
-}
-.reel-stats b { color: var(--ink); font-weight: 600; }
-.reel-stats i { color: var(--gold); font-style: normal; }
-
-/* ——— Waveform divider: room tone between sections ——— */
-.waveform {
-  display: flex; align-items: center; justify-content: center; gap: 3px;
-  height: 44px; padding-block: var(--space-2); overflow: hidden; opacity: 0.65;
-}
-.waveform i { width: 2px; min-height: 3px; border-radius: 2px; background: var(--line-bright); }
-.waveform i:nth-child(3n) { background: color-mix(in srgb, var(--gold) 55%, var(--line-bright)); }
-.waveform i:nth-child(5n) { background: color-mix(in srgb, var(--gold) 30%, var(--line-bright)); }
-
-/* ——— Marker flag: grease-pencil "good take" ——— */
-.marker-flag {
-  display: inline-block;
-  font-family: var(--font-mono); font-size: 0.68rem; font-weight: 700;
-  letter-spacing: 0.18em; text-transform: uppercase; white-space: nowrap;
-  color: #14100a; background: var(--gold);
-  padding: 4px 10px; border-radius: 2px;
-  transform: rotate(-1.6deg); box-shadow: var(--shadow-1);
-}
-.marker-sm { font-size: 0.6rem; padding: 3px 8px; margin-left: var(--space-3); }
-
-/* ——— Learning paths: accordion rows, not a card wall ——— */
-.path-list { display: grid; gap: 0; margin-bottom: var(--space-7); border-top: 1px solid var(--line); }
+/* ——— Learning paths: plain accordion rows ——— */
+.path-list { display: grid; gap: 0; margin-bottom: var(--space-7); }
 .path-row {
   padding: 0; overflow: clip; background: transparent;
-  border: none; border-bottom: 1px solid var(--line); border-radius: 0;
+  border: none; border-bottom: 1px solid var(--line-soft); border-radius: 0;
 }
+.path-row:first-child { border-top: 1px solid var(--line-soft); }
 .path-summary {
   list-style: none; cursor: pointer;
   display: flex; align-items: center; gap: var(--space-3);
@@ -75,29 +34,22 @@ body.home .tracks { padding-block: var(--space-7) 0; margin-bottom: var(--space-
 .path-summary::-webkit-details-marker { display: none; }
 .path-summary::marker { content: ""; }
 .path-summary::before {
-  content: "\25B8"; color: var(--gold); font-size: 0.9em; flex: none;
+  content: "\25B8"; color: var(--muted); font-size: 0.9em; flex: none;
   transition: transform var(--dur-2) var(--ease);
 }
 .path-row[open] > .path-summary::before { transform: rotate(90deg); }
-.path-title {
-  /* r21: row titles in the text face — the accordion reads as a
-     programme, not a stack of signs. */
-  font-family: var(--font-body); font-size: 1rem; font-weight: 650;
-  letter-spacing: -0.005em;
-}
+.path-title { font-size: 1rem; font-weight: 650; letter-spacing: -0.005em; }
 .path-summary:hover .path-title { color: var(--gold); }
 .path-row > p, .path-row > .path-bar, .path-row > .path-progress { margin-inline: var(--space-2); }
 .path-row > p { color: var(--ink-dim); max-width: 68ch; }
 .path-row > .path-steps { margin: var(--space-3) var(--space-2) var(--space-5); }
 
-/* ——— Chapter bins: the shelf, one bin open at a time ——— */
+/* ——— Chapter bins: plain disclosure rows ——— */
 .bin {
-  /* Redesign: bins are reels on a shelf, not boxes — a hairline,
-     a label row, and the chapters beneath when opened. */
-  border: none; border-top: 1px solid var(--line);
+  border: none; border-top: 1px solid var(--line-soft);
   background: transparent; margin-bottom: 0; overflow: clip;
 }
-.bin:last-of-type { border-bottom: 1px solid var(--line); }
+.bin:last-of-type { border-bottom: 1px solid var(--line-soft); }
 .bin-summary {
   list-style: none; cursor: pointer;
   display: flex; align-items: baseline; gap: var(--space-3);
@@ -106,92 +58,51 @@ body.home .tracks { padding-block: var(--space-7) 0; margin-bottom: var(--space-
 .bin-summary::-webkit-details-marker { display: none; }
 .bin-summary::marker { content: ""; }
 .bin-summary::before {
-  content: "\25B8"; color: var(--gold); font-size: 0.85em; flex: none;
+  content: "\25B8"; color: var(--muted); font-size: 0.85em; flex: none;
   transition: transform var(--dur-2) var(--ease);
 }
 .bin[open] > .bin-summary::before { transform: rotate(90deg); }
-.bin-no {
-  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.2em;
-  color: var(--gold); white-space: nowrap;
-}
-.bin-name {
-  font-family: var(--font-body); font-weight: 650;
-  letter-spacing: -0.005em; font-size: 1rem;
-  transition: color var(--dur-2) var(--ease);
-}
+.bin-name { font-weight: 650; letter-spacing: -0.005em; font-size: 1rem; }
 .bin-summary:hover .bin-name { color: var(--gold); }
 .bin-meta { margin-left: auto; color: var(--muted); font-size: 0.85rem; white-space: nowrap; }
-.bin-tc { font-size: 0.72rem; white-space: nowrap; }
 .bin-body { padding: 0 var(--space-2) var(--space-5); }
 .bin-body .chapter-grid { margin: 0; }
 
-/* ——— Workbench: four tools, compact tiles ——— */
-.bench-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); }
+/* ——— Workbench: four plain links, no tiles ——— */
+.bench-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-6); }
 .bench-tile {
   display: flex; flex-direction: column; gap: var(--space-2);
-  padding: var(--space-5);
-  background: var(--panel); border: 1px solid var(--line-soft);
-  border-radius: var(--radius-m);
+  padding: 0; background: transparent; border: none; border-radius: 0;
   color: var(--ink); text-decoration: none;
-  transition: transform var(--dur-2) var(--ease), border-color var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease);
 }
-.bench-tile:hover { text-decoration: none; transform: translateY(-2px); border-color: var(--gold); box-shadow: var(--shadow-lift); }
+.bench-tile:hover { text-decoration: none; }
 .bench-kicker {
-  font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.22em;
-  text-transform: uppercase; color: var(--gold); margin: 0;
+  font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--muted); margin: 0;
 }
-.bench-tile h3 {
-  font-family: var(--font-body); font-weight: 650; letter-spacing: -0.005em;
-  font-size: 1.08rem; margin: 0;
-}
+.bench-tile h3 { font-size: 1.05rem; font-weight: 650; letter-spacing: -0.005em; margin: 0; }
+.bench-tile:hover h3 { color: var(--gold); }
 .bench-tile > p { color: var(--ink-dim); font-size: 0.92rem; margin: 0; flex: 1; }
-.bench-go {
-  font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--muted); margin-top: var(--space-3);
-}
+.bench-go { font-size: 0.85rem; color: var(--muted); margin-top: var(--space-2); }
 .bench-tile:hover .bench-go { color: var(--gold); }
 
-/* ——— Curator's note: a signed opinion, taped to the bin ——— */
-.curator-note {
-  position: relative; background: var(--panel);
-  border: 1px solid var(--line-soft); border-radius: var(--radius-m);
-  padding: var(--space-6); max-width: 74ch;
-}
-.curator-note .marker-flag { position: absolute; top: -13px; left: var(--space-5); }
+/* ——— Curator's note: editorial prose, no taped card, no drop cap ——— */
+.curator-note { max-width: 68ch; }
 .curator-note > p {
-  font-family: var(--font-serif); font-size: 1.08rem; line-height: 1.65; color: var(--ink-dim);
+  font-family: var(--font-serif); font-size: 1.14rem; line-height: 1.7; color: var(--ink-dim);
 }
-.curator-note > p:first-of-type::first-letter {
-  font-family: var(--font-display); font-size: 2.7em; float: left;
-  line-height: 0.88; padding-right: 10px; color: var(--gold);
-}
-.curator-note a { color: var(--ink); text-decoration-color: var(--gold); }
-.curator-sign {
-  font-family: var(--font-mono) !important; font-size: 0.78rem !important;
-  letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted) !important;
-  margin-top: var(--space-4); margin-bottom: 0;
-}
+.curator-note a { color: var(--ink); }
+.curator-sign { font-family: var(--font-body) !important; font-size: 0.85rem !important; color: var(--muted) !important; margin-top: var(--space-4); }
 
-/* ——— Leader frame: click to roll the countdown again ——— */
-.leader-frame { cursor: pointer; }
-
-/* ——— Print: bins and paths open on paper ——— */
 @media print {
   details.bin:not([open]) > :not(summary),
   details.path-row:not([open]) > :not(summary) { content-visibility: visible; }
-  .waveform, .reel-stats { display: none; }
 }
-
 @media (prefers-reduced-motion: reduce) {
-  .bench-tile:hover { transform: none; }
   .path-summary::before, .bin-summary::before, .nav-idx-caret { transition: none; }
 }
-
-@media (max-width: 1080px) {
-  .bench-grid { grid-template-columns: repeat(2, 1fr); }
-}
+@media (max-width: 1080px) { .bench-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 640px) {
   .bench-grid { grid-template-columns: 1fr; }
   .bin-meta { display: none; }
-  .curator-note { padding: var(--space-5); }
 }
