@@ -65,6 +65,19 @@
   letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold);
   margin: 0 0 var(--space-2);
 }
+/* VP-0044 (r30): the drawer names itself and describes its groups.
+   The head line spans the panel; each group keeps one plain line
+   under its name saying what its pages are. */
+.nav-idx-head {
+  grid-column: 1 / -1; margin: 0; max-width: 62ch;
+  color: var(--ink-dim); font-size: 0.9rem; line-height: 1.5;
+}
+.nav-idx-group > p.idx-desc {
+  font-size: 0.82rem; font-weight: 400; letter-spacing: 0;
+  text-transform: none; color: var(--muted); line-height: 1.45;
+  margin: 0 0 var(--space-3);
+}
+.idx-short { display: none; }
 .nav-idx-group ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; }
 .nav-idx-group a {
   display: block; padding: 6px 8px; border-radius: var(--radius-s);
@@ -123,6 +136,10 @@
 .site-footer { margin-top: var(--space-9); padding-block: var(--space-8); color: var(--muted); font-size: 0.85rem; }
 .footer-grid { display: flex; flex-wrap: wrap; gap: var(--space-5); justify-content: space-between; align-items: flex-start; padding-top: var(--space-3); }
 .footer-grid nav { display: flex; gap: var(--space-4); flex-wrap: wrap; }
+.footer-map-h {
+  flex-basis: 100%; font-size: 0.68rem; font-weight: 600;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold);
+}
 .footer-grid a { color: var(--ink-dim); font-size: 0.85rem; }
 .footer-grid a:hover { color: var(--gold); }
 .footer-colophon { flex-basis: 100%; margin-top: var(--space-4); display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-6); align-items: center; font-size: 0.8rem; }
@@ -145,6 +162,10 @@
     margin-left: 0; order: 3; width: 100%;
     flex-wrap: nowrap; overflow: visible; gap: 0;
   }
+  /* VP-0044: the phone bar keeps the short toggle label, so the
+     proven phone fitting gains no width from the longer label. */
+  .idx-full { display: none; }
+  .idx-short { display: inline; }
   .site-nav a, .nav-idx-btn {
     font-size: 0.72rem; letter-spacing: 0; padding: 6px 2px; white-space: nowrap;
   }

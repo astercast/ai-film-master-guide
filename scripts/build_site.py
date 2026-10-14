@@ -50,19 +50,27 @@ CSS = ["assets/css/tokens.css", "assets/css/base.css", "assets/css/layout.css",
 NAV_TOP = [
     # Navigation standard (rotation 21): five visible primaries,
     # never a tab wall. Everything else, Compare included, lives
-    # in the Index drawer (the hub), the footer map, and in-page
+    # in the All pages drawer (the hub), the footer map, and in-page
     # subnav. Destinations are never duplicated.
-    ("index.html", "Guide"),
+    # VP-0044 (rotation 30): the wordmark is the one home label in
+    # the bar; the old "Guide" primary duplicated it on every page.
+    # Prompts, a primary-class surface, takes the freed slot so it
+    # is reachable from the bar alone. Skills stays one tap away in
+    # the labelled drawer and in the footer site map.
     ("cutting-room.html", "Cutting room"),
     ("teardown.html", "Teardowns"),
     ("workshop.html", "Workshop"),
+    ("prompts.html", "Prompts"),
     ("models/", "Models"),
 ]
-# Everything else lives in the Index drawer, progressive disclosure.
+# Everything else lives in the All pages drawer, progressive disclosure.
 # Groups are editorial, not taxonomic: where a working filmmaker would reach.
+# Each group carries one plain line saying what its pages are, so the
+# drawer reads as a labelled hub, not a shadow nav (VP-0044).
 NAV_INDEX = [
-    ("On the bench", [
+    ("On the bench", "Working tools for a film in progress: planners, sheets, and fixes.", [
         ("prompts.html", "Prompts"),
+        ("studio.html", "Studio"),
         ("compare.html", "Compare"),
         ("shots.html", "Shot list"),
         ("style-bible.html", "Style bible"),
@@ -81,7 +89,7 @@ NAV_INDEX = [
         ("recipes.html", "Recipes"),
         ("forge.html", "Episode forge"),
     ]),
-    ("Study", [
+    ("Study", "Reading and reference: the argument, the guides, and the model watch.", [
         ("manifesto.html", "Manifesto"),
         ("craft-not-buttons.html", "Craft, not buttons"),
         ("field-guides/", "Field guides"),
@@ -92,7 +100,7 @@ NAV_INDEX = [
         ("model-watch.html", "Model watch"),
         ("showdown.html", "Model showdown"),
     ]),
-    ("For agents", [
+    ("For agents", "The machine-readable shelf: loadable task skills, the spec, and the API.", [
         ("skills.html", "Skills"),
         ("skill-spec.html", "Skill spec"),
         ("api.html", "API"),
@@ -101,7 +109,7 @@ NAV_INDEX = [
 ]
 
 FOOTER_ITEMS = [
-    ("index.html", "Guide"),
+    ("index.html", "Home"),
     ("skills.html", "Skills"),
     ("workshop.html", "Workshop"),
     ("quiz.html", "Quiz"),
@@ -147,7 +155,7 @@ def nav_html(prefix, current):
         parts.append(f'<a href="{prefix}{href}"{cur}>{label}</a>')
     groups = []
     index_current = False
-    for gname, items in NAV_INDEX:
+    for gname, gdesc, items in NAV_INDEX:
         lis = []
         for href, label in items:
             if href == current:
@@ -156,17 +164,25 @@ def nav_html(prefix, current):
             else:
                 lis.append(f'<li><a href="{prefix}{href}">{label}</a></li>')
         groups.append(
-            f'<div class="nav-idx-group"><p>{gname}</p><ul>{"".join(lis)}</ul></div>')
+            f'<div class="nav-idx-group"><p>{gname}</p>'
+            f'<p class="idx-desc">{gdesc}</p><ul>{"".join(lis)}</ul></div>')
     idx_cls = " is-current" if index_current else ""
+    # VP-0044: the toggle names what it holds. Desktop reads the full
+    # label; the phone bar keeps the short form so the VP-0014/r23
+    # phone fitting (type size and padding alone) is untouched.
     parts.append(
         f'<details class="nav-idx"><summary class="nav-idx-btn{idx_cls}">'
-        f'<span>Index</span><span class="nav-idx-caret" aria-hidden="true">▾</span></summary>'
-        f'<div class="nav-idx-panel">{"".join(groups)}</div></details>')
+        f'<span class="idx-full">All pages</span><span class="idx-short">Index</span>'
+        f'<span class="nav-idx-caret" aria-hidden="true">▾</span></summary>'
+        f'<div class="nav-idx-panel"><p class="nav-idx-head">Every page in the guide. '
+        f'The bar holds the five working rooms; the rest of the building is here, '
+        f'grouped by the job it does.</p>{"".join(groups)}</div></details>')
     return "\n        ".join(parts)
 
 
 def footer_html(prefix):
-    return "".join(f'<a href="{prefix}{href}">{label}</a>' for href, label in FOOTER_ITEMS)
+    links = "".join(f'<a href="{prefix}{href}">{label}</a>' for href, label in FOOTER_ITEMS)
+    return '<span class="footer-map-h">Site map: every page in the guide</span>' + links
 
 
 def _deck_clips(labels, cls):
@@ -1298,7 +1314,7 @@ STUDIO_TMPL = """<!DOCTYPE html>
     <section class="hero hero-cutroom" aria-labelledby="st-title-h">
       <div class="container hero-inner">
         <h1 id="st-title-h">The Studio<span class="accent">.</span></h1>
-        <p class="lede">Plan my AI film, or my AI series, or my microdrama run. A standalone film (title, logline, genre and mood, target runtime, quality tier) or a serialized series (3 to 10 episodes in one of the five proven serialized formats) in, and the Studio builds the production packet: a shot list with per-shot prompts written from the guide's 47-template library, a model pick for every shot with the real credit math, a budget table that shows its work, and a shooting schedule. A <strong>microdrama run</strong> in, and the Studio plans the run's economics from the documented $150-microdrama figures: clip budget (10 to 15s clip units), per-episode and run budgets against the $50/min benchmark, the 3 to 5× "drawing cards" retake budget, a character-regen reserve, and a timeline from the documented 4-days-for-4-episodes pace. Series get a locked bible with prompt DNA that keeps every episode consistent, plus a self-contained HTML packet you can hand to a collaborator. Every number traces back to <code>models.json</code> or a documented figure, ranges, not promises.</p>
+        <p class="lede">Plan my AI film, or my AI series, or my microdrama run. The Studio plans the whole production at once; one prompt at a time belongs in the <a href="workshop.html">Workshop</a>, and rebuilding one scene belongs in the <a href="cutting-room.html">Cutting Room</a>. A standalone film (title, logline, genre and mood, target runtime, quality tier) or a serialized series (3 to 10 episodes in one of the five proven serialized formats) in, and the Studio builds the production packet: a shot list with per-shot prompts written from the guide's 47-template library, a model pick for every shot with the real credit math, a budget table that shows its work, and a shooting schedule. A <strong>microdrama run</strong> in, and the Studio plans the run's economics from the documented $150-microdrama figures: clip budget (10 to 15s clip units), per-episode and run budgets against the $50/min benchmark, the 3 to 5× "drawing cards" retake budget, a character-regen reserve, and a timeline from the documented 4-days-for-4-episodes pace. Series get a locked bible with prompt DNA that keeps every episode consistent, plus a self-contained HTML packet you can hand to a collaborator. Every number traces back to <code>models.json</code> or a documented figure, ranges, not promises.</p>
       </div>
     </section>
     <section class="container" aria-labelledby="st-in-h" id="st-form-sec">
@@ -2180,6 +2196,15 @@ PROMPTS_TMPL = """<!DOCTYPE html>
     .pr-teardowns li a {{ color: var(--ink-dim); }}
     .pr-actions .btn {{ margin-bottom: var(--space-2); }}
     #pr-count {{ color: var(--muted); font-size: 0.9rem; }}
+    .pr-contents {{ list-style: none; padding: 0; margin: 0 0 var(--space-6); columns: 2; column-gap: var(--space-6); }}
+    @media (max-width: 720px) {{ .pr-contents {{ columns: 1; }} }}
+    .pr-contents li {{ break-inside: avoid; margin: 0 0 2px; }}
+    .pr-contents a {{ display: block; padding: 5px 8px; border-radius: var(--radius-s); color: var(--ink-dim); text-decoration: none; font-size: 0.92rem; }}
+    .pr-contents a:hover {{ color: var(--ink); background: var(--panel); }}
+    .pr-contents .pr-tid {{ color: var(--gold); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; margin-right: 0.6em; }}
+    .pr-card {{ scroll-margin-top: 120px; }}
+    .pr-card-head h3 a {{ color: inherit; text-decoration: none; }}
+    .pr-card-head h3 a:hover {{ text-decoration: underline; }}
     #pr-remix-dialog {{ border: 1px solid var(--line-bright); border-radius: var(--radius-l); background: var(--bg); color: var(--ink); max-width: 42rem; width: calc(100% - 2rem); padding: var(--space-5); }}
     #pr-remix-dialog::backdrop {{ background: rgba(0, 0, 0, 0.6); }}
     #pr-remix-dialog h2 {{ margin-top: 0; }}
@@ -2209,6 +2234,11 @@ PROMPTS_TMPL = """<!DOCTYPE html>
   </header>
   <main id="main">
     {hero}
+    <section class="container" aria-labelledby="pr-contents-h">
+      <h2 id="pr-contents-h">Contents: all 47 templates</h2>
+      <p class="section-lede">Every template on this page, in shelf order. Pick a name to jump straight to its card; each card title is its own link, so a template can be shared by its anchor, for example <code>prompts.html#t3</code>.</p>
+      <ol class="pr-contents" id="pr-contents"></ol>
+    </section>
     <section class="container" aria-labelledby="pr-filters-h" id="pr-app">
       <div class="card" style="margin-bottom:var(--space-5);">
         <h2 id="pr-filters-h">Find a template</h2>
@@ -7972,7 +8002,7 @@ def main():
             hero=hero_cutroom(
                 kicker="""Interactive tool""",
                 h1="""Prompt <span class="accent">workshop.</span>""",
-                lede="""Pick a template, a model, and a track, fill the placeholders and copy a production-ready prompt. Every template carries its anatomy notes, so you learn why it works while you use it. New to prompt structure? Start with the <a href="anatomy.html">anatomy explorer</a>.""",
+                lede="""Pick a template, a model, and a track, fill the placeholders and copy a production-ready prompt. Every template carries its anatomy notes, so you learn why it works while you use it. New to prompt structure? Start with the <a href="anatomy.html">anatomy explorer</a>. The Workshop is the one-prompt bench; the <a href="studio.html">Studio</a> plans a whole film at once, and the <a href="cutting-room.html">Cutting Room</a> rebuilds one scene take by take.""",
                 deck_title="""PROMPT_WORKSHOP, TAKE_01""",
                 clips={"v2": ['Saved prompts'], "v1": ['Pick ingredients', 'Fill placeholders', 'Copy prompt'], "a1": ['Bench tone', 'Production-ready']},
                 h1_id="workshop-title",
@@ -8108,7 +8138,7 @@ def main():
             hero=hero_cutroom(
                 kicker="""Interactive tool""",
                 h1="""The cutting <span class="accent">room.</span>""",
-                lede="""A playable cutting room: type a weak prompt, roll the camera, and watch the scene get built shot by shot from the guide's real prompt library, then improve the prompt in the fix bay and watch the cut improve, take by take. Real templates, real model pricing, real cost math.""",
+                lede="""A playable cutting room: type a weak prompt, roll the camera, and watch the scene get built shot by shot from the guide's real prompt library, then improve the prompt in the fix bay and watch the cut improve, take by take. Real templates, real model pricing, real cost math. The Cutting Room works on one scene; one prompt at a time belongs in the <a href="workshop.html">Workshop</a>, and a whole film is planned in the <a href="studio.html">Studio</a>.""",
                 deck_title="""CUTTING_ROOM, TAKE_01""",
                 clips={"v2": ['The bench'], "v1": ['Dailies', 'The shoot', 'Fix bay'], "a1": ['Take log', 'Cost desk', 'Print it']},
                 h1_id="cr-title",

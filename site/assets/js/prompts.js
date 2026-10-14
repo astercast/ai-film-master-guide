@@ -99,8 +99,8 @@
         " teardown →</a></li>";
     }).join("");
     var models = (t.models || []).map(function (m) { return "<li>" + esc(m) + "</li>"; }).join("");
-    return '<article class="card pr-card" data-tid="' + esc(t.id) + '">' +
-      '<div class="pr-card-head"><h3>' + esc(t.title) + '</h3>' +
+    return '<article class="card pr-card" id="' + esc(t.id) + '" data-tid="' + esc(t.id) + '">' +
+      '<div class="pr-card-head"><h3><a href="#' + esc(t.id) + '">' + esc(t.title) + '</a></h3>' +
       '<span class="pr-track">' + esc(t.track) + '</span></div>' +
       '<p class="pr-id">Template ' + esc(t.id) + (t.use ? " · " + esc(t.use) : "") + "</p>" +
       '<pre class="pr-prompt" tabindex="0">' + highlightPrompt(t.prompt) + "</pre>" +
@@ -327,6 +327,17 @@
       return '<option value="' + esc(t.id) + '">' + esc(t.id) + ", " + esc(t.title) + "</option>";
     }).join("");
 
+    /* Contents list (VP-0044): one anchor link per template, in shelf
+       order, so the library can be scanned and deep-linked without
+       scrolling the whole shelf. */
+    var contents = document.getElementById("pr-contents");
+    if (contents) {
+      contents.innerHTML = TEMPLATES.map(function (t) {
+        return '<li><a href="#' + esc(t.id) + '"><span class="pr-tid">' +
+          esc(t.id) + "</span>" + esc(t.title) + "</a></li>";
+      }).join("");
+    }
+
     ["q", "track", "shotType", "movement", "lighting", "mood"].forEach(function (k) {
       var el = els[k];
       el.addEventListener(k === "q" ? "input" : "change", render);
@@ -346,6 +357,26 @@
     });
     bindCardActions();
     render();
+
+    /* Deep links (VP-0044): prompts.html#t3 lands on template t3's
+       card. If the active filters would hide that card, clear them
+       first so the anchor always resolves to a visible card. */
+    function goToHash() {
+      var id = (location.hash || "").replace(/^#/, "");
+      if (!id || !templateById(id)) return;
+      var card = document.getElementById(id);
+      if (!card) {
+        els.q.value = "";
+        ["track", "shotType", "movement", "lighting", "mood"].forEach(function (k) {
+          els[k].value = "all";
+        });
+        render();
+        card = document.getElementById(id);
+      }
+      if (card) card.scrollIntoView({ block: "start" });
+    }
+    window.addEventListener("hashchange", goToHash);
+    goToHash();
   }).catch(function () {
     msg(els.error, "Could not load the prompt library data (prompt-templates.json / prompts-facets.json). The explorer needs the built site data.", false);
   });
