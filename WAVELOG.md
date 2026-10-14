@@ -18,6 +18,28 @@ same-path retries; the failure is deterministic within a degraded
 window) — the full ruling and per-source verdict table are recorded in
 `~/workspace/fleet-ops/tickets/DATAOPS-002-film-watchtower-errored-completions.md`.
 
+## Rotation 20 — commit/push record (2026-10-13)
+
+Rotation 20 landed in three local commits: `bcab9ed` (the Skills
+Usefulness Audit flagship + VP-0010 structural fix, entry below) +
+`7506050` (its checker-feed correction) + `cf38f34` (Watchtower
+2.19, the seventeenth review pass, entry below; LIVE_CHECKLIST
+refreshed to 2.19). The `cf38f34` commit also carries the tree's
+uncommitted DATAOPS-002 header-honesty change to
+`scripts/refresh/check_models.py` (the checker summary now reports
+the full per-model source_status distribution; the four standing
+summary keys are unchanged). Pushed 2026-10-13 as remote commit
+`6c3a71d5c47a8fd94f2cbff8f9ea200212849cc9`; verified via the
+GitHub Trees API: remote tree
+`b3e87febe178f3fabbd88ad9689f07c1fccf67d3` == local HEAD tree,
+1,043 entries, not truncated; key files present (SKILLS_AUDIT.md,
+data/v1/skills-audit.json, skills/index.json, site/skills.html,
+site/skills/prompt-t1.html, site/path.html, site/model-watch.html,
+data/v1/model-history.json, data/v1/model-review-log.json,
+LIVE_CHECKLIST.md). Post-commit validation: validate.sh 29/29
+ALL STAGES PASS, tests/api.test.sh 55/55. Working repo only;
+nothing was pushed to any -live repo.
+
 ## Rotation 20 — Skills Usefulness Audit + VP-0010 structural fix (2026-10-13)
 
 **Flagship:** the Skills Usefulness Audit (SKILLS_AUDIT.md;
