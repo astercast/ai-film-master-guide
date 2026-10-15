@@ -89,7 +89,8 @@ NAV_INDEX = [
         ("recipes.html", "Recipes"),
         ("forge.html", "Episode forge"),
     ]),
-    ("Study", "Reading and reference: the argument, the guides, and the model watch.", [
+    ("Study", "Reading and reference: every chapter, the argument, the guides, and the model watch.", [
+        ("chapters.html", "Chapters"),
         ("manifesto.html", "Manifesto"),
         ("craft-not-buttons.html", "Craft, not buttons"),
         ("field-guides/", "Field guides"),
@@ -110,6 +111,7 @@ NAV_INDEX = [
 
 FOOTER_ITEMS = [
     ("index.html", "Home"),
+    ("chapters.html", "Chapters"),
     ("skills.html", "Skills"),
     ("workshop.html", "Workshop"),
     ("quiz.html", "Quiz"),
@@ -302,7 +304,7 @@ INDEX_TMPL = """<!DOCTYPE html>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AI Film Master Guide, Professional AI Filmmaking</title>
-  <meta name="description" content="The master guide to professional AI filmmaking: Higgsfield mastery, pro craft, animated and photorealistic tracks, competition-entry craft, and a machine-readable API.">
+  <meta name="description" content="The master guide to professional AI filmmaking: pick the film you want to make and walk a guided path through it, chapter by chapter. Higgsfield mastery, pro craft, animated and photorealistic tracks, competition-entry craft, and a machine-readable API.">
   {css}
 </head>
 <body class="home">
@@ -321,46 +323,32 @@ INDEX_TMPL = """<!DOCTYPE html>
         <span aria-hidden="true">⌘K</span> Search
       </button>
     </div>
-  
+  </header>
+
   <main id="main">
-    <section class="hero hero-cutroom hero-home" aria-labelledby="hero-title">
-      <div class="container hero-inner">
-        <p class="hero-slate"><span>The cutting room</span><span class="tc hero-tc" aria-hidden="true">TC 00:00:00:00</span></p>
+    <section class="hero-scene" aria-labelledby="hero-title">
+      <figure class="hero-still">
+        <img src="assets/film-projector.webp" alt="A film projector throwing its beam in a dark room" fetchpriority="high">
+        <canvas class="hero-grain" id="hero-grain" aria-hidden="true"></canvas>
+        <figcaption class="tc">The projector, mid-reel</figcaption>
+      </figure>
+      <div class="hero-shade" aria-hidden="true"></div>
+      <div class="container hero-card">
+        <p class="hero-kicker tc">The cutting room</p>
         <h1 id="hero-title">Make films with AI like a studio.</h1>
-        <p class="lede">The craft manual for professional AI filmmaking, in thirty-one chapters, with a working cutting room that will teach you to make twelve separate clips feel like one film.</p>
+        <p class="lede">The craft manual for professional AI filmmaking. Pick the film you want to make, and the guide walks you through it, chapter by chapter, in the right order.</p>
         <div class="btn-row hero-cta">
-          <a class="btn btn-slate btn-lg" href="guides/first-short.html"><span class="btn-clap" aria-hidden="true"></span>Make your first short</a>
-          <a class="hero-alt" href="cutting-room.html">or watch a scene get built in the cutting room</a>
+          <a class="btn btn-slate btn-lg" href="#paths"><span class="btn-clap" aria-hidden="true"></span>Pick your film</a>
+          <a class="hero-alt" href="guides/first-short.html">or start the first-short guide now</a>
         </div>
         <p class="hero-counts tc">{chapter_count} chapters &middot; {skill_count} task skills &middot; 47 prompt templates &middot; {model_count} model records &middot; 22 camera moves. Free to read, start to finish. No account. No sign-up.</p>
-        <div class="hero-records">
-          <p class="hero-records-h"><span>The full shelf, first lines</span><span class="tc" aria-hidden="true">ISSUE 01 &middot; REEL 01</span></p>
-          <ol class="shelf-lines hero-lines">
-{hero_lines}
-          </ol>
-        </div>
       </div>
     </section>
 
-
-    <section class="container shelf" aria-labelledby="chapters-h">
-      <h2 id="chapters-h">The full shelf</h2>
-      <p class="section-lede">Thirty-one chapters. Read them by track, or by path. The full catalog stands below, every chapter a record line.</p>
-      <h3 class="shelf-order-h" id="tracks-h"><span class="tc rec-no" aria-hidden="true">ORD 01</span> First reading order: by track</h3>
-      <div class="track-lines">
-        <article class="track-line">
-          <h4><span class="tc rec-no" aria-hidden="true">TRK 01</span> Animated / Stylized</h4>
-          <p>Two ways to shoot. The craft overlaps; the prompt language doesn't. Anime, Ghibli-style, Pixar-style 3D, 2D cartoon, claymation. Cheaper to iterate, more forgiving on faces, judged in its own categories, with its own prompt register (no lens or depth-of-field language) and its own model shortlist.</p>
-          <p class="track-links"><a href="higgsfield/prompt-engineering.html">Prompt engineering</a> · <a href="platforms/when-to-use-what.html">Model selection</a></p>
-        </article>
-        <article class="track-line">
-          <h4><span class="tc rec-no" aria-hidden="true">TRK 02</span> Photorealistic</h4>
-          <p>Premium models, identity discipline, and post-production craft that passes for real. The lane for drama, action, and trailer-grade work, where every shortcut shows.</p>
-          <p class="track-links"><a href="higgsfield/soul-id-deep-dive.html">Soul ID deep dive</a> · <a href="craft/character-consistency.html">Character consistency</a></p>
-        </article>
-      </div>
-      <h3 class="shelf-order-h" id="paths-h"><span class="tc rec-no" aria-hidden="true">ORD 02</span> Second reading order: by path</h3>
-      <p class="section-lede">Don't read thirty-one chapters in order. Pick the goal that matches the film you're trying to make, each path is the shortest honest route through the guide. Tick steps off as you finish them; your progress stays in this browser.</p>
+    <section class="container paths-door scene" id="paths" aria-labelledby="paths-h">
+      <p class="door-kicker tc">Start here</p>
+      <h2 id="paths-h">Pick the film you want to make.</h2>
+      <p class="section-lede">Seven honest routes through the guide. Each names its chapters in order; tick steps off as you finish them and your progress stays in this browser. New to all of it? The 60-second short is open below: one finished minute in seven days.</p>
       <div class="path-list">
         <details class="path-row path-card" data-path="first-film">
           <summary class="path-summary"><span class="path-title">Your first AI film <span class="path-time">a weekend</span></span></summary>
@@ -460,12 +448,10 @@ INDEX_TMPL = """<!DOCTYPE html>
           </ol>
         </details>
       </div>
-      <h3 class="shelf-order-h"><span class="tc rec-no" aria-hidden="true">ORD 03</span> The catalog, by shelf</h3>
-      <p class="section-lede">Ten shelves, numbered as issues, thirty-one chapters.</p>
-      {bins_section}
+      <p class="paths-note">Every path crosses the same fork: animated, or photoreal. <a href="chapters.html">The index</a> lays both ways out before the shelves.</p>
     </section>
 
-    <section class="workbench" aria-labelledby="bench-h">
+    <section class="workbench scene" aria-labelledby="bench-h">
       <div class="bench-bleed">
       <h2 id="bench-h">The workbench</h2>
       <p class="section-lede">Four tools, no filler. Each one answers a question you'll actually ask at 2 a.m. The bench pack lies with them, free to download.</p>
@@ -506,7 +492,7 @@ INDEX_TMPL = """<!DOCTYPE html>
       </div>
     </section>
 
-    <section class="container screening" aria-labelledby="curator-h">
+    <section class="container screening scene" aria-labelledby="curator-h">
       <h2 id="curator-h">From the cutting room</h2>
       <article class="sr-piece">
         <h3 class="sr-headline">If you read one chapter this week</h3>
@@ -519,16 +505,14 @@ INDEX_TMPL = """<!DOCTYPE html>
       </article>
     </section>
 
-    <section class="container wt-door" aria-labelledby="wt-door-h">
-      <h2 id="wt-door-h">The Watchtower</h2>
-      <div class="slate-board wt-door-board">
-        <p class="slate-title">The feed, as published</p>
-        <div class="slate-row"><span>Models tracked</span><b>{wt_total}</b></div>
-        <div class="slate-row"><span>Changed at the last check</span><b>{wt_changed}</b></div>
-        <div class="slate-row"><span>Check errors</span><b>{wt_errors}</b></div>
-        <div class="slate-row"><span>Unwatched</span><b>{wt_unwatched}</b></div>
-        <p class="slate-foot">Last published check {wt_when}. Every model, sorted by its state, at <a href="model-watch.html">model watch</a>.</p>
-      </div>
+    <section class="container home-close scene" aria-labelledby="close-h">
+      <h2 id="close-h" class="close-h">The feed, and the whole shelf</h2>
+      <p class="wt-line"><span class="tc wt-tag">The Watchtower</span><span class="wt-facts">{wt_total} models tracked &middot; {wt_changed} changed at the last check &middot; {wt_errors} check errors &middot; {wt_unwatched} unwatched &middot; last published check {wt_when}.</span> <a href="model-watch.html">Open model watch</a></p>
+      <a class="index-door" href="chapters.html">
+        <span class="index-door-t">Every chapter, one index</span>
+        <span class="index-door-s">{chapter_count} chapters on ten shelves, the two ways to shoot, and a filter that narrows as you type. Nothing stacked twice.</span>
+        <span class="index-door-go" aria-hidden="true">Open the index &rarr;</span>
+      </a>
     </section>
   </main>
 
@@ -548,6 +532,91 @@ INDEX_TMPL = """<!DOCTYPE html>
   <script src="assets/js/palette.js"></script>
   <script src="assets/js/paths.js"></script>
   <script src="assets/js/identity.js"></script>
+  <script src="assets/js/grain.js"></script>
+</body>
+</html>
+"""
+
+
+CHAPTERS_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Every chapter, AI Film Master Guide</title>
+  <meta name="description" content="The full index of the AI Film Master Guide: all thirty-one chapters on ten shelves, the two ways to shoot, and a filter that narrows as you type.">
+  {css}
+</head>
+<body class="chapters">
+  <div class="edge-right" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
+        <span class="brand-mark" aria-hidden="true">AF</span>
+        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        {sitenav}
+      </nav>
+      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
+        <span aria-hidden="true">⌘K</span> Search
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="container chapters-head">
+      <p class="hero-kicker tc">The index</p>
+      <h1>Every chapter.</h1>
+      <p class="section-lede">All {chapter_count} chapters, on ten shelves, each a record line: its number, its name, its shelf, its reading time, and the one promise it makes. The whole shelf reads in {total_read}. Filter by any word, or press ⌘K to search the entire guide.</p>
+      <div class="field chapters-filter-field">
+        <label for="chapters-filter">Filter the chapters</label>
+        <input class="input" id="chapters-filter" type="search" placeholder="e.g. sound, grading, Higgsfield…" autocomplete="off">
+        <p class="chapters-count tc" id="chapters-count" aria-live="polite">{chapter_count} chapters</p>
+      </div>
+    </section>
+
+    <section class="container chapters-tracks" aria-labelledby="tracks-h">
+      <h2 id="tracks-h">Two ways to shoot</h2>
+      <p class="section-lede">The craft overlaps; the prompt language doesn't. Pick your lane before the shelves: the paths on the <a href="index.html#paths">home page</a> walk each lane in order.</p>
+      <div class="track-lines">
+        <article class="track-line">
+          <h4><span class="tc rec-no" aria-hidden="true">TRK 01</span> Animated / Stylized</h4>
+          <p>Anime, Ghibli-style, Pixar-style 3D, 2D cartoon, claymation. Cheaper to iterate, more forgiving on faces, judged in its own categories, with its own prompt register (no lens or depth-of-field language) and its own model shortlist.</p>
+          <p class="track-links"><a href="higgsfield/prompt-engineering.html">Prompt engineering</a> · <a href="platforms/when-to-use-what.html">Model selection</a></p>
+        </article>
+        <article class="track-line">
+          <h4><span class="tc rec-no" aria-hidden="true">TRK 02</span> Photorealistic</h4>
+          <p>Premium models, identity discipline, and post-production craft that passes for real. The lane for drama, action, and trailer-grade work, where every shortcut shows.</p>
+          <p class="track-links"><a href="higgsfield/soul-id-deep-dive.html">Soul ID deep dive</a> · <a href="craft/character-consistency.html">Character consistency</a></p>
+        </article>
+      </div>
+    </section>
+
+    <section class="container shelf chapters-shelf" aria-labelledby="shelf-h">
+      <h2 id="shelf-h">The shelves</h2>
+      {bins_section}
+      <p class="chapters-none" id="chapters-none" hidden>No chapter matches that word. Try a shorter word, or clear the filter.</p>
+    </section>
+  </main>
+
+<footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide, research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span>AI Film Master Guide</span><span class="tail">Craft, not buttons</span></div>
+    </div>
+  </footer>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
+    <div class="palette-box">
+      <input id="palette-input" type="search" placeholder="Search chapters, prompts, models…" autocomplete="off" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/identity.js"></script>
+  <script src="assets/js/chapters-filter.js"></script>
 </body>
 </html>
 """
@@ -7907,11 +7976,9 @@ def main():
             f'<div class="shelf-group"><p class="slate-row shelf-group-row">'
             f'<span><span class="tc shelf-issue">SHELF {shelf_no:02d}</span>{section_name}</span><b>{n} {"chapter" if n == 1 else "chapters"} · {mins} min</b></p>'
             f'<ol class="shelf-lines">{"".join(lines)}</ol></div>')
-    # The hero (rotation 23): the stat card is unbolted. The first
-    # screen is already the publication: the shelf's first five
-    # record lines, the same lines the catalog below prints, stand
-    # in the hero under a slate head row.
-    hero_lines = "\n            ".join(all_lines[:5])
+    # The 2026-10-15 rebuild: the hero is a title card over a graded
+    # still (no record lines in it), and the full shelf (bins_parts,
+    # built above) prints once, on the chapters index page.
 
     # The Watchtower door: the feed's published summary, read from the
     # same check file the model-watch page renders. Read-only: the
@@ -7948,8 +8015,6 @@ def main():
         wave2=waveform_divider(seed=23),
         wave3=waveform_divider(seed=37),
         wave4=waveform_divider(seed=51),
-        bins_section="\n".join(bins_parts),
-        hero_lines=hero_lines,
         pack_rows=pack_rows,
         wt_total=ck_sum_home.get("models_total", model_count),
         wt_changed=ck_sum_home.get("changed", 0),
@@ -7957,6 +8022,22 @@ def main():
         wt_unwatched=ck_sum_home.get("no_sources", 0),
         wt_when=wt_when,
         sitenav=nav_html("", "index.html"), footer=footer_html("")))
+
+    # The chapters index (2026-10-15 rebuild): the two ways to shoot
+    # plus the full shelf, one page, behind one door. The shelf lines
+    # (bins_parts) are the same record lines the home used to stack.
+    (SITE / "chapters.html").write_text(CHAPTERS_TMPL.format(
+        css=css_links,
+        chapter_count=chapter_count,
+        total_read=total_read,
+        bins_section="\n".join(bins_parts),
+        sitenav=nav_html("", "chapters.html"), footer=footer_html("")))
+    search_index.append({
+        "t": "Every chapter: the full index",
+        "u": "chapters.html",
+        "s": "All 31 chapters on ten shelves, with the two ways to shoot and a filter.",
+        "k": "index chapters catalog shelves filter animated photorealistic",
+    })
     (SITE / "budget.html").write_text(BUDGET_TMPL.format(
             hero=hero_cutroom(
                 kicker="""Economics""",
