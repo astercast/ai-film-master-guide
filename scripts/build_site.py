@@ -229,6 +229,11 @@ def hero_cutroom(kicker, h1, lede, deck_title, clips, h1_id, extra=""):
       </div>
     </section>"""
 
+# VP-0044 (rotation 37): the chapter crumb's first segment is plain
+# text, not a home link. It sits in the reel-head header at the top
+# of the chapter column, so as a link it read as a second home in
+# the bar next to the wordmark (Panel round 132: 31 chapter pages).
+# The crumb wording and the chapter counter are unchanged.
 PAGE_TMPL = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -261,7 +266,7 @@ PAGE_TMPL = """<!DOCTYPE html>
       <div class="progress-bar" aria-hidden="true"><span></span></div>
       <header class="reel-head">
         <div>
-          <p class="crumb"><a href="../index.html">Guide</a> / {section_name}</p>
+          <p class="crumb">Guide / {section_name}</p>
           <p class="reel-meta">{read_min} min read · {words} words · chapter {reel} of {total_chapters}</p>
         </div>
       </header>
