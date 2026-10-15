@@ -43,7 +43,7 @@
 .back-to-top:hover { color: var(--gold); border-color: var(--gold); box-shadow: var(--glow-gold); }
 
 /*  Prose: the warm-serif editorial read  */
-.prose { max-width: 70ch; font-family: var(--font-serif); font-size: 1.08rem; font-optical-sizing: auto; }
+.prose { max-width: 70ch; font-family: var(--font-serif); font-size: 1.11rem; font-optical-sizing: auto; }
 .prose h2, .prose h3 { font-family: var(--font-body); font-size: 1.14rem; font-weight: 700; margin-top: var(--space-5); color: var(--ink); letter-spacing: -0.01em; }
 .prose p { text-wrap: pretty; }
 .prose h1 { font-family: var(--font-display); text-transform: uppercase; font-size: var(--display-2); font-weight: 400; letter-spacing: 0.01em; line-height: 1.05; margin-bottom: var(--space-4); text-wrap: balance; }

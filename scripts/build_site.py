@@ -341,7 +341,7 @@ INDEX_TMPL = """<!DOCTYPE html>
           <a class="btn btn-slate btn-lg" href="#paths"><span class="btn-clap" aria-hidden="true"></span>Pick your film</a>
           <a class="hero-alt" href="guides/first-short.html">or start the first-short guide now</a>
         </div>
-        <p class="hero-counts tc">{chapter_count} chapters &middot; {skill_count} task skills &middot; 47 prompt templates &middot; {model_count} model records &middot; 22 camera moves. Free to read, start to finish. No account. No sign-up.</p>
+        <p class="hero-counts tc"><span class="hc">{chapter_count} chapters</span> &middot; <span class="hc">{skill_count} task skills</span> &middot; <span class="hc">47 prompt templates</span> &middot; <span class="hc">{model_count} model records</span> &middot; <span class="hc">22 camera moves.</span> <span class="hc">Free to read, start to finish.</span> <span class="hc">No account. No sign-up.</span></p>
       </div>
     </section>
 
@@ -1267,7 +1267,7 @@ STUDIO_TMPL = """<!DOCTYPE html>
   {css}
   <style>
     .radio-row {{ display: flex; flex-wrap: wrap; gap: var(--space-3); }}
-    .radio-pill {{ display: inline-flex; align-items: center; gap: var(--space-2); border: 1px solid var(--line); border-radius: 999px; padding: var(--space-2) var(--space-4); cursor: pointer; }}
+    .radio-pill {{ display: inline-flex; align-items: center; gap: var(--space-2); border: 1px solid var(--line); border-radius: var(--radius-s); padding: var(--space-2) var(--space-4); cursor: pointer; }}
     .radio-pill input {{ accent-color: var(--gold); }}
     .radio-pill:has(input:checked) {{ border-color: var(--gold); background: color-mix(in srgb, var(--gold) 12%, transparent); }}
     .radio-pill:has(input:focus-visible) {{ outline: 2px solid var(--gold); outline-offset: 2px; }}
@@ -1287,7 +1287,7 @@ STUDIO_TMPL = """<!DOCTYPE html>
     .st-track {{ color: var(--muted); }}
     .st-prompt {{ white-space: pre-wrap; word-break: break-word; background: var(--bg-raise); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-3); font-size: 0.92rem; }}
     .st-note {{ font-size: 0.9rem; color: var(--muted); }}
-    .st-badge {{ display: inline-block; font-size: 0.78rem; border: 1px solid var(--gold); color: var(--gold); border-radius: 999px; padding: 0.1em 0.7em; margin-left: 0.4em; }}
+    .st-badge {{ display: inline-block; font-family: var(--font-mono); font-size: 0.78rem; border: 1px solid var(--gold); color: var(--gold); border-radius: 2px; padding: 0.1em 0.7em; margin-left: 0.4em; }}
     .st-math {{ font-variant-numeric: tabular-nums; font-size: 0.88rem; color: var(--muted); }}
     #st-actions .btn-row {{ margin-top: var(--space-4); }}
     @media (prefers-reduced-motion: reduce) {{
@@ -2251,9 +2251,9 @@ PROMPTS_TMPL = """<!DOCTYPE html>
   <meta name="description" content="Browse all 47 guide prompt templates: search full text, filter by shot type, camera movement, lighting, and mood, see which prompt-anatomy layers each template demonstrates, copy any prompt, remix it, or send it to the Studio.">
   {css}
   <style>
-    .pr-grid {{ display: grid; gap: var(--space-4); grid-template-columns: 1fr; margin-bottom: var(--space-7); }}
-    @media (min-width: 1100px) {{ .pr-grid {{ grid-template-columns: 1fr 1fr; }} }}
-    .pr-card-head {{ display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-3); }}
+    .pr-grid {{ display: grid; gap: var(--space-4); grid-template-columns: minmax(0, 1fr); margin-bottom: var(--space-7); }}
+    @media (min-width: 1100px) {{ .pr-grid {{ grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }} }}
+    .pr-card-head {{ display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-3); flex-wrap: wrap; }}
     .pr-card-head h3 {{ margin: 0; }}
     .pr-track {{ flex: none; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold); border: 1px solid var(--gold); border-radius: 999px; padding: 0.15em 0.8em; }}
     .pr-id {{ color: var(--muted); font-size: 0.85rem; margin-top: var(--space-2); }}
@@ -2277,7 +2277,12 @@ PROMPTS_TMPL = """<!DOCTYPE html>
     @media (max-width: 720px) {{ .pr-contents a {{ display: flex; align-items: center; min-height: 44px; }} }}
     .pr-contents a:hover {{ color: var(--ink); background: var(--panel); }}
     .pr-contents .pr-tid {{ color: var(--gold); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; margin-right: 0.6em; }}
-    .pr-card {{ scroll-margin-top: 120px; }}
+    /* Pro rework (2026-10-15): with the real webfonts loaded, the
+       cards' min-content sized the single phone column to 338px on
+       a 296px measure (30px of page overflow at 320). minmax(0, 1fr)
+       tracks plus a shrinkable card fix the column to the measure;
+       every card child already fits 288px, so nothing inside moves. */
+    .pr-card {{ scroll-margin-top: 120px; min-width: 0; }}
     .pr-card-head h3 a {{ color: inherit; text-decoration: none; }}
     .pr-card-head h3 a:hover {{ text-decoration: underline; }}
     #pr-remix-dialog {{ border: 1px solid var(--line-bright); border-radius: var(--radius-l); background: var(--bg); color: var(--ink); max-width: 42rem; width: calc(100% - 2rem); padding: var(--space-5); }}
@@ -5155,7 +5160,7 @@ PATH_TMPL = """<!DOCTYPE html>
   <style>
     .pathmap-verdict {{ font-family: var(--font-serif); font-size: 1.14rem; line-height: 1.65; color: var(--ink-dim); border-left: 2px solid var(--line-bright); padding-left: var(--space-4); margin-bottom: var(--space-6); max-width: 72ch; }}
     #path-stages {{ position: relative; margin-left: 15px; border-left: 2px solid var(--line); padding-left: var(--space-6); }}
-    .pathmap-stage {{ position: relative; border: 1px solid var(--line-soft); border-radius: var(--radius-l); background: var(--panel); padding: var(--space-5) var(--space-6); margin-bottom: var(--space-5); }}
+    .pathmap-stage {{ position: relative; border: 1px solid var(--line-soft); border-radius: var(--radius-m); background: var(--panel); padding: var(--space-5) var(--space-6); margin-bottom: var(--space-5); }}
     .pathmap-stage summary {{ cursor: pointer; list-style: none; display: flex; align-items: baseline; gap: var(--space-3); flex-wrap: wrap; }}
     .pathmap-stage summary::-webkit-details-marker {{ display: none; }}
     .pathmap-stage-head {{ display: flex; align-items: baseline; gap: var(--space-3); flex-wrap: wrap; }}
@@ -5174,7 +5179,11 @@ PATH_TMPL = """<!DOCTYPE html>
     .pathmap-skill-id {{ font-size: .8rem; color: var(--muted); }}
     .pathmap-skill-id code {{ background: none; border: none; padding: 0; font-size: .72rem; }}
     .pathmap-gets {{ display: block; font-size: .86rem; line-height: 1.5; color: var(--muted); margin-top: .2em; max-width: 68ch; }}
-    .pathmap-ref {{ font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--line-bright); border-radius: 999px; padding: .1em .55em; margin-left: .4em; }}
+    .pathmap-ref {{ font-family: var(--font-mono); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--line-bright); border-radius: 2px; padding: .1em .55em; margin-left: .4em; }}
+    /* Pro rework (2026-10-15): a skill row's text cell may shrink
+       below its longest token (model names like the DoP
+       (Lite/Standard/Turbo) token measured 5px past a 320px frame). */
+    .pathmap-skill > span {{ min-width: 0; overflow-wrap: break-word; }}
   </style>
 </head>
 <body>
@@ -6978,9 +6987,7 @@ MODELS_INDEX_TMPL = """<!DOCTYPE html>
   <main id="main">
     {hero}
     <section class="container" aria-label="All models">
-      <div class="chapter-grid">
 {cards}
-      </div>
     </section>
   </main>
   <footer class="site-footer">
@@ -7486,14 +7493,45 @@ def build_models(css_links):
             tips=model_chapter_tips(m),
             sources=sources_html,
             css=css_sub, sitenav=nav_html("../", ""), footer=footer_html("../")))
+        raw_cost = str(m.get("est_cost_credits", ""))
+        # The ledger prints the cost's lead clause only (the rate a
+        # reader scans for); the full cost record, prose and all,
+        # lives on the model's own page, one click down the row.
+        cost_short = re.split(r"[,;(]", raw_cost, maxsplit=1)[0].strip()
+        if len(cost_short) > 42:
+            cost_short = cost_short[:42].rsplit(" ", 1)[0].strip()
         pages.append({"slug": slug, "name": str(m.get("model", "")),
                       "platform": str(m.get("platform", "")), "status": status,
+                      "type": str(m.get("type", "")),
+                      "cost": cost_short,
                       "best_use": str(m.get("best_use", ""))})
+    # Pro rework (2026-10-15): the index is a ledger, not a card grid.
+    # Record lines grouped by kind, in the room's own notation: name
+    # in the display voice, vendor and kind as mono notation, the
+    # best-use line as the record's one line of judgment, the cost as
+    # mono notation, the status as a slate tag. Every value is the
+    # model's own published data; nothing is scored or invented.
+    def ledger_row(p):
+        return (
+            f'<li class="ledger-row"><a href="{p["slug"]}.html">'
+            f'<span><span class="ledger-name">{html.escape(p["name"])}</span>'
+            f'<span class="ledger-vendor">{html.escape(p["platform"])} · {html.escape(p["type"])}</span></span>'
+            f'<span class="ledger-use">{html.escape(p["best_use"])}</span>'
+            f'<span class="ledger-cost">{html.escape(p["cost"])}</span>'
+            f'<span class="mw-badge mw-badge-{p["status"]}">{status_badge.get(p["status"], p["status"])}</span>'
+            f'</a></li>')
+    groups = {}
+    for p in pages:
+        groups.setdefault(p["type"] or "Other", []).append(p)
+    # Shelf order is the reader's order, not the data file's: a film
+    # guide's model ledger opens on video, then image, then audio.
+    shelf = ["video", "image", "audio"]
+    ordered = sorted(groups.items(),
+                     key=lambda kv: shelf.index(kv[0]) if kv[0] in shelf else len(shelf))
     cards = "\n".join(
-        f'<article class="card chapter-card"><h3><a href="{p["slug"]}.html">{html.escape(p["name"])}</a></h3>'
-        f'<p>{html.escape(p["platform"])} · <span class="mw-badge mw-badge-{p["status"]}">'
-        f'{status_badge.get(p["status"], p["status"])}</span></p></article>'
-        for p in pages)
+        f'<h2 class="ledger-h">{html.escape(t)} · {len(rs)} records</h2>\n'
+        f'<ul class="ledger">\n' + "\n".join(ledger_row(p) for p in rs) + "\n</ul>"
+        for t, rs in ordered)
     (out_dir / "index.html").write_text(MODELS_INDEX_TMPL.format(
             hero=hero_cutroom(
                 kicker="""Reference""",

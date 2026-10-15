@@ -41,7 +41,7 @@
   position: relative;
   background: var(--panel);
   border: 1px solid var(--line);
-  border-radius: var(--radius-l); padding: var(--space-5);
+  border-radius: var(--radius-m); padding: var(--space-5);
   box-shadow: var(--shadow-1);
   transition: transform var(--dur-2) var(--ease), border-color var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease);
 }
@@ -55,9 +55,12 @@ a.card:hover, .card.is-link:hover { border-color: var(--gold); text-decoration: 
 
 /*  Badges & pills  */
 .badge {
+  /* Pro rework (2026-10-15): a slate tag, not a pill. Squared edge,
+     set in the timecode voice (mono), like a mark chalked on a slate. */
   flex: none; display: inline-flex; align-items: center; gap: 6px;
-  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
-  color: var(--ink-dim); border: 1px solid var(--line-bright); border-radius: 999px; padding: 0.3em 0.8em; white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink-dim); border: 1px solid var(--line-bright); border-radius: var(--radius-s); padding: 0.3em 0.8em; white-space: nowrap;
 }
 .badge.is-blue { color: var(--reel); border-color: var(--reel); background: rgba(130, 184, 212, 0.07); }
 .badge.is-red { color: var(--ember-soft); border-color: var(--ember); background: rgba(217, 54, 54, 0.08); }
@@ -76,6 +79,61 @@ label.field-label, .field label { display: block; font-family: var(--font-body);
 .field { margin-bottom: var(--space-4); }
 input[type="range"] { accent-color: var(--gold); }
 input[type="checkbox"], input[type="radio"] { accent-color: var(--gold); }
+
+/* Pro rework (2026-10-15): bare tool fieldsets take the bench form.
+   The UA default (groove border, legend struck through it) read as
+   unfinished chrome on the Studio and the sheets. A fieldset is a
+   slate: flat panel, squared edge, its legend seated on the ground
+   with padding. .check fieldsets carry their own stronger rule and
+   are untouched. */
+fieldset {
+  border: 1px solid var(--line); border-radius: var(--radius-m);
+  padding: var(--space-4) var(--space-5); margin: 0 0 var(--space-4);
+  background: var(--panel);
+  /* The UA fieldset's min-content inline size otherwise forces the
+     box past its column at phone widths (measured 9px over at 320
+     on the Studio's project-type set). */
+  min-width: 0;
+}
+fieldset > legend {
+  font-family: var(--font-body); font-weight: 600; letter-spacing: 0.04em;
+  padding: 0 var(--space-2); color: var(--ink);
+}
+
+/* Pro rework (2026-10-15): the ledger. An index drawn as ruled
+   record lines in the room's own notation, replacing card grids:
+   name in the display voice, vendor and kind as mono notation, one
+   line of judgment (the reason the record is here), the cost as
+   mono notation, the status as a slate tag. */
+.ledger { list-style: none; margin: 0 0 var(--space-6); padding: 0; border-top: 1px solid var(--line); }
+.ledger-row { border-bottom: 1px solid var(--line-soft); }
+.ledger-row a {
+  display: grid; grid-template-columns: minmax(170px, 1fr) 2fr auto auto;
+  gap: var(--space-1) var(--space-5); align-items: center;
+  padding: var(--space-4) var(--space-2); text-decoration: none;
+}
+.ledger-row a:hover { background: var(--panel); text-decoration: none; }
+.ledger-row a:hover .ledger-name { color: var(--gold); }
+.ledger-name { display: block; font-family: var(--font-display); font-size: 1.28rem; font-weight: 400; letter-spacing: 0.01em; text-transform: uppercase; color: var(--ink); line-height: 1.1; }
+.ledger-vendor { display: block; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
+.ledger-use { color: var(--ink-dim); font-size: 0.94rem; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.ledger-cost { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); max-width: 36ch; }
+.ledger-row .mw-badge { margin: 0; }
+/* The (0,2,1) form is deliberate: docs.css sets every .container > h2
+   at display size, and an ordinary .ledger-h rule loses to it, which
+   set the group label as a second Anton headline on first build. */
+.container > h2.ledger-h, .ledger-h {
+  display: flex; align-items: center; gap: var(--space-3);
+  font-family: var(--font-mono); font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold);
+  margin: var(--space-7) 0 var(--space-3);
+}
+.ledger-h::after { content: ""; height: 1px; background: var(--line-bright); flex: 1; opacity: 0.6; }
+@media (max-width: 720px) {
+  .ledger-row a { grid-template-columns: 1fr auto; }
+  .ledger-use { grid-column: 1 / -1; }
+  .ledger-cost { grid-column: 1 / -1; }
+}
 
 /* (empty-state lives in motifs.css, the NO FOOTAGE slate) */
 
@@ -382,7 +440,7 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--gold); }
 .mw-card:hover { border-color: var(--gold); box-shadow: var(--shadow-lift); }
 .mw-card h3 { margin: 0 0 var(--space-1); font-size: 1.3rem; }
 .mw-card .mw-platform { color: var(--muted); font-family: var(--font-body); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-3); }
-.mw-badge { display: inline-block; font-family: var(--font-body); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; border-radius: var(--radius-s); padding: 3px 9px; margin-bottom: var(--space-3); }
+.mw-badge { display: inline-block; font-family: var(--font-mono); font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; border-radius: var(--radius-s); padding: 3px 9px; margin-bottom: var(--space-3); }
 .mw-badge-active { background: rgba(139, 226, 139, 0.12); color: var(--ok); border: 1px solid var(--ok); }
 .mw-badge-reported { background: rgba(223, 167, 46, 0.1); color: var(--gold); border: 1px solid var(--gold); }
 .mw-badge-announced { background: rgba(130, 184, 212, 0.1); color: var(--reel); border: 1px solid var(--reel); }
@@ -409,7 +467,7 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--gold); }
 .checks-grid { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); margin: var(--space-5) 0; }
 .check-status { display: inline-block; font-family: var(--font-body); font-size: 0.75rem; letter-spacing: 0.06em; color: var(--muted); border: 1px solid var(--line-bright); border-radius: var(--radius-s); padding: 2px 8px; margin-top: var(--space-2); }
 .check-status.is-done { color: var(--ok); border-color: var(--ok); }
-.check fieldset { border: 1px solid var(--line); border-radius: var(--radius-l); padding: var(--space-4) var(--space-5); margin: 0 0 var(--space-4); background: var(--panel); transition: border-color var(--dur-2) var(--ease); }
+.check fieldset { border: 1px solid var(--line); border-radius: var(--radius-m); padding: var(--space-4) var(--space-5); margin: 0 0 var(--space-4); background: var(--panel); transition: border-color var(--dur-2) var(--ease); }
 .check fieldset legend { font-family: var(--font-body); font-weight: 600; letter-spacing: 0.04em; padding: 0 var(--space-2); }
 .check fieldset label { display: block; border: 1px solid var(--line-soft); border-radius: var(--radius-s); padding: var(--space-2) var(--space-3); margin: var(--space-2) 0; cursor: pointer; color: var(--ink-dim); transition: border-color var(--dur-1) var(--ease), background var(--dur-1) var(--ease); }
 .check fieldset label:hover { border-color: var(--gold); background: rgba(223, 167, 46, 0.04); }
@@ -464,10 +522,16 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--gold); }
 @media (max-width: 640px) { .lint-grade { flex-direction: column; align-items: flex-start; } }
 
 /*  Disclosure widgets (content accordions; the nav Index drawer opts out)  */
-details:not(.nav-idx):not(.bin):not(.path-row) { border: 1px solid var(--line-soft); border-radius: var(--radius-m); padding: var(--space-3) var(--space-4); background: var(--panel); margin-bottom: var(--space-3); }
-details:not(.nav-idx):not(.bin):not(.path-row) summary { cursor: pointer; font-weight: 600; color: var(--ink); }
-details:not(.nav-idx):not(.bin):not(.path-row) summary::marker { color: var(--gold); }
-details:not(.nav-idx):not(.bin):not(.path-row)[open] { border-color: var(--line-bright); }
+/* Pro rework (2026-10-15): the chained :not() form gave this rule
+   specificity (0,3,1), silently outranking the docs.css chapter-nav
+   reset (0,1,1), so chapter rail groups rendered as rounded boxes
+   against the slate law. The list form of :not() carries only the
+   strongest argument's specificity (0,1,1), so the docs.css reset,
+   later in the bundle, wins the tie as designed. */
+details:not(.nav-idx, .bin, .path-row) { border: 1px solid var(--line-soft); border-radius: var(--radius-m); padding: var(--space-3) var(--space-4); background: var(--panel); margin-bottom: var(--space-3); }
+details:not(.nav-idx, .bin, .path-row) summary { cursor: pointer; font-weight: 600; color: var(--ink); }
+details:not(.nav-idx, .bin, .path-row) summary::marker { color: var(--gold); }
+details:not(.nav-idx, .bin, .path-row)[open] { border-color: var(--line-bright); }
 
 @media (prefers-reduced-motion: reduce) {
   .btn, .star, .copy-btn, .card, .quiz-opt, .doc-symptom, .lint-layer, .mw-card { transition: none; }

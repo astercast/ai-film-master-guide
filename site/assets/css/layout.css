@@ -53,6 +53,14 @@
 .nav-idx-btn.is-current { color: var(--gold); }
 .nav-idx-caret { font-size: 0.72em; line-height: 1; transition: transform var(--dur-2) var(--ease); }
 .nav-idx[open] .nav-idx-caret { transform: rotate(180deg); }
+/* Pro rework (2026-10-15): a closed drawer's panel must not exist
+   in layout at all. Engines that hide closed <details> content via
+   content-visibility still reported the panel's would-be box in the
+   page's scrollable overflow (5 to 30px past a 320px viewport on
+   several pages). Display removes the box; opening the drawer
+   restores the grid below. No visual change: closed was already
+   invisible. */
+.nav-idx:not([open]) .nav-idx-panel { display: none; }
 .nav-idx-panel {
   position: absolute; top: calc(100% + 10px); right: 0; z-index: var(--z-header);
   display: grid; grid-template-columns: repeat(3, minmax(150px, 1fr)); gap: var(--space-5);
@@ -123,7 +131,18 @@
 .hero-slate::before { content: ""; width: 40px; height: 3px; background: var(--gold); flex: none; }
 .hero-slate::after { content: ""; height: 1px; background: var(--line-bright); flex: 1; opacity: 0.6; }
 .hero h1 { max-width: 16ch; font-size: var(--display-1); font-weight: 400; letter-spacing: 0.008em; line-height: 1.02; margin-bottom: var(--space-5); text-wrap: balance; }
-.hero h1 .accent { color: var(--gold); }
+/* Pro rework (2026-10-15): headlines set in ONE ink on every surface.
+   The white/brass split headline was a template rhythm repeated on
+   ~30 tool pages; a studio publication sets the headline in one
+   voice and lets the furniture (the slate rule above it, the CTA)
+   carry the brass. The .accent span stays in the markup for
+   call-site compatibility and now renders as the headline's ink. */
+.hero h1 .accent { color: var(--ink); }
+/* Pro rework (2026-10-15): the first section after a hero takes a
+   full section gap. Measured defect: on tool pages the section H2's
+   top edge sat exactly on the hero panel's bottom edge (margin-top
+   0), so the headline read as clipped by the panel. */
+main > .hero + section { padding-top: var(--space-8); }
 .hero p.lede { font-size: 1.15rem; line-height: 1.6; color: var(--ink-dim); max-width: 56ch; }
 
 /*  Page head  */
@@ -222,7 +241,14 @@
   .nav-idx-panel {
     position: fixed; left: var(--space-4); right: var(--space-4); top: auto;
     min-width: 0; grid-template-columns: 1fr 1fr; max-height: 70vh; overflow: auto;
+    /* Pro rework (2026-10-15): the panel's columns were sized by
+       their longest unbreakable label, pushing the panel's right
+       edge 5 to 30px past a 320px viewport on several pages (the
+       site's last standing phone overflow). The panel is capped at
+       the viewport and its labels may wrap. */
+    max-width: calc(100vw - 2 * var(--space-4));
   }
+  .nav-idx-panel a { white-space: normal; overflow-wrap: break-word; }
 }
 /* r23 phone fitting: at 320 the VP-0014 nav row still measured
    342px wide (document scrollWidth 342 against a 320 client on

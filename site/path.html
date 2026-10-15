@@ -19,7 +19,7 @@
   <style>
     .pathmap-verdict { font-family: var(--font-serif); font-size: 1.14rem; line-height: 1.65; color: var(--ink-dim); border-left: 2px solid var(--line-bright); padding-left: var(--space-4); margin-bottom: var(--space-6); max-width: 72ch; }
     #path-stages { position: relative; margin-left: 15px; border-left: 2px solid var(--line); padding-left: var(--space-6); }
-    .pathmap-stage { position: relative; border: 1px solid var(--line-soft); border-radius: var(--radius-l); background: var(--panel); padding: var(--space-5) var(--space-6); margin-bottom: var(--space-5); }
+    .pathmap-stage { position: relative; border: 1px solid var(--line-soft); border-radius: var(--radius-m); background: var(--panel); padding: var(--space-5) var(--space-6); margin-bottom: var(--space-5); }
     .pathmap-stage summary { cursor: pointer; list-style: none; display: flex; align-items: baseline; gap: var(--space-3); flex-wrap: wrap; }
     .pathmap-stage summary::-webkit-details-marker { display: none; }
     .pathmap-stage-head { display: flex; align-items: baseline; gap: var(--space-3); flex-wrap: wrap; }
@@ -38,7 +38,11 @@
     .pathmap-skill-id { font-size: .8rem; color: var(--muted); }
     .pathmap-skill-id code { background: none; border: none; padding: 0; font-size: .72rem; }
     .pathmap-gets { display: block; font-size: .86rem; line-height: 1.5; color: var(--muted); margin-top: .2em; max-width: 68ch; }
-    .pathmap-ref { font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--line-bright); border-radius: 999px; padding: .1em .55em; margin-left: .4em; }
+    .pathmap-ref { font-family: var(--font-mono); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--line-bright); border-radius: 2px; padding: .1em .55em; margin-left: .4em; }
+    /* Pro rework (2026-10-15): a skill row's text cell may shrink
+       below its longest token (model names like the DoP
+       (Lite/Standard/Turbo) token measured 5px past a 320px frame). */
+    .pathmap-skill > span { min-width: 0; overflow-wrap: break-word; }
   </style>
   <meta name="theme-color" content="#090807">
   <link rel="icon" href="/favicon.ico" sizes="48x48">

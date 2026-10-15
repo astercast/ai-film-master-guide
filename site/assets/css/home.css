@@ -474,6 +474,10 @@ body.home .hero h1 { font-size: clamp(3.2rem, 7.6vw, 6.3rem); max-width: 14ch; }
   font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.7;
   color: rgba(247, 241, 229, 0.72); margin: 0; max-width: 74ch;
 }
+/* Pro rework (2026-10-15): each count is one unbreakable segment, so
+   the line wraps between records, never inside one ("No sign-up."
+   split across lines at desktop width before this). */
+.hero-counts .hc { white-space: nowrap; }
 
 /* The title card settles: one coordinated load-in, lines rising
    in order with a hair of letterspacing settle on the headline. */
