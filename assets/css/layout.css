@@ -183,6 +183,15 @@
      would reopen the overflow VP-0030 closed. */
   .brand { min-height: 44px; }
   .site-nav a { display: flex; align-items: center; min-height: 44px; }
+  /* VP-0044 residue (r30): the legacy nav (craft-not-buttons) WRAPS
+     to a second row on phones, so its three short labels (Skills,
+     Quiz, API at 19-33px wide) can take the 44px min-width the main
+     nav row cannot: the main row's six items already sum to 293 of
+     the 296px available at 320, so Models (+6) and the Index button
+     (+8) stay named-not-forced there. The skills deck's start line
+     is a link line, not prose: its four links take 44px rows. */
+  .site-nav.nav-legacy a { min-width: 44px; justify-content: center; }
+  .skills-start a { display: inline-flex; align-items: center; min-height: 44px; }
   .nav-idx-btn { min-height: 44px; }
   .nav-idx-group a { display: flex; align-items: center; min-height: 44px; }
   .site-footer a { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; min-width: 44px; }
