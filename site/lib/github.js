@@ -63,7 +63,9 @@ async function ghFetch(path, method, bodyObj, token, repo, prefix, timeoutMs) {
   };
   var r = await fetchx.fetchTimeout(url, {
     timeoutMs: timeoutMs || API_TIMEOUT_MS,
-    headers: headers
+    headers: headers,
+    method: method || 'GET',
+    body: bodyObj ? JSON.stringify(bodyObj) : undefined
   });
   if (!r.ok) return { ok: false, error: r.error, status: r.status };
   try {
@@ -94,8 +96,16 @@ async function putJson(path, obj, message, sha, timeoutMs) {
   };
   if (sha) body.sha = sha;
   var url = 'https://api.github.com/repos/' + c.repo + '/contents/' + c.prefix + path;
+  // Body-drop fix (2026-10-15, mirroring aster-da-master e9830cb): the
+  // payload MUST ride as the request body with method PUT. It was
+  // previously built above and then dropped: the call went out as a
+  // body-less GET, GitHub answered with the file's current contents,
+  // and writeJsonIfChanged reported committed:true while committing
+  // nothing.
   var r = await fetchx.fetchTimeout(url, {
     timeoutMs: timeoutMs || API_TIMEOUT_MS,
+    method: 'PUT',
+    body: JSON.stringify(body),
     headers: {
       'Accept': 'application/vnd.github+json',
       'X-GitHub-Api-Version': '2022-11-28',
