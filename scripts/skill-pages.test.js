@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 /* skill-pages.test.js, VP-0010 structural-fix tests (rotation 20).
  * Proves, from the built tree alone:
- *  - every one of the 242 skills has an in-site page carrying its
+ *  - every one of the 258 skills has an in-site page carrying its
  *    procedure, worked example and pitfalls;
  *  - the skills browser's card renderer links every card to its page
- *    (executed against the real skills-index.json with a DOM stub, *    242 cards, each with title + "Open the skill" anchors);
- *  - every Path row (241) links to its skill page, in curriculum order;
+ *    (executed against the real skills-index.json with a DOM stub, *    258 cards, each with title + "Open the skill" anchors);
+ *  - every Path row (257) links to its skill page, in curriculum order;
  *  - the 8 reference skills' pages are marked as reference;
  *  - the ticket's named jargon is glossed on the pages where it leads;
  *  - the skills filter placeholder no longer uses the unglossed "BAF".
@@ -25,10 +25,10 @@ const REF = INDEX.skills.filter((s) => s.audience === 'reference').map((s) => s.
 let n = 0;
 function ok(name, fn) { fn(); n += 1; console.log('ok ' + name); }
 
-ok('pages: all 242 skills have an in-site page', () => {
-  assert.strictEqual(INDEX.skills.length, 242);
+ok('pages: all 258 skills have an in-site page', () => {
+  assert.strictEqual(INDEX.skills.length, 258);
   const pages = fs.readdirSync(path.join(SITE, 'skills')).filter((f) => f.endsWith('.html'));
-  assert.strictEqual(pages.length, 242, 'site/skills/*.html count');
+  assert.strictEqual(pages.length, 258, 'site/skills/*.html count');
   INDEX.skills.forEach((s) => {
     assert(fs.existsSync(path.join(SITE, 'skills', s.id + '.html')), 'missing page ' + s.id);
   });
@@ -51,7 +51,7 @@ ok('pages: the 8 reference skills are marked as reference, not deleted', () => {
   });
 });
 
-ok('path: all 241 rows link to their skill page, in curriculum order', () => {
+ok('path: all 257 rows link to their skill page, in curriculum order', () => {
   const t = fs.readFileSync(path.join(SITE, 'path.html'), 'utf8');
   const links = [...t.matchAll(/href="skills\/([^"]+)\.html"/g)].map((m) => m[1]);
   const flat = CURR.stages.flatMap((s) => s.skills);
@@ -90,13 +90,13 @@ require(path.join(ROOT, 'assets/js/skills.js'));
 setImmediate(() => setImmediate(() => {
   const htmlOut = els['skills-list'].innerHTML;
   const cards = (htmlOut.match(/<article class="card skill-card">/g) || []).length;
-  assert.strictEqual(cards, 242, 'rendered cards');
+  assert.strictEqual(cards, 258, 'rendered cards');
   INDEX.skills.forEach((s) => {
     assert(htmlOut.includes('href="skills/' + s.id + '.html"'), 'card for ' + s.id + ' has no page link');
   });
   const opens = (htmlOut.match(/Open the skill/g) || []).length;
-  assert.strictEqual(opens, 242, 'explicit open links');
+  assert.strictEqual(opens, 258, 'explicit open links');
   n += 1;
-  console.log('ok cards: skills.js renders 242 cards, every card linked to its page');
+  console.log('ok cards: skills.js renders 258 cards, every card linked to its page');
   console.log('skill-pages.test.js: ' + n + ' tests, all pass');
 }));

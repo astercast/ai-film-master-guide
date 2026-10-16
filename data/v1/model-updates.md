@@ -785,5 +785,42 @@ desk, the two flagged revisit inputs, verified before this wave built on them:
   filmmakers) and AFRO TV's Cue Film Fest (Christmas-themed AI shorts, Oct
   5 to Nov 20, live Dec 12 awards broadcast).
 
+## Completeness wave, image, audio, editing, finishing (2026-10-15)
+
+Eleven records added, closing the lanes the first research pass missed. The
+guide tracked 27 video models but only 3 image models (all Higgsfield Soul),
+zero audio models, no video editing model, and no upscaler, while its
+chapters assumed all four.
+
+- **Nano Banana 2 and Pro** (Google DeepMind, image): the Gemini image
+  family, 2 (Gemini 3.1 Flash Image, Feb 2026) and Pro (Gemini 3 Pro Image,
+  Nov 2025). The single-source "2.1" report is not recorded, unverified.
+- **Seedream 5.0 Pro** (ByteDance, image): flagship over the 4.5 workhorse.
+- **FLUX.2** (Black Forest Labs, image): dev, klein, Pro, Flex.
+- **GPT Image 2** (OpenAI, image): ChatGPT Images 2.0, April 2026.
+- **Midjourney V8.2** (Midjourney, image): default since July 2026, plus the
+  Edit Model in public testing.
+- **Runway Aleph 2.0** (Runway, video editing): in-context edits from a
+  keyframe or a sentence, May 2026. This corrects the Gen-4.5 record, which
+  claimed Runway shipped no new model in 2026: Gen-4.5 stays the latest
+  generation model, Aleph 2.0 is the 2026 release.
+- **Runway Act-Two** (Runway, video): performance capture, a driving
+  performance (face, head, hands, body) transferred onto a character
+  image or video, up to 30 s at 24 fps, 5 credits per second. Added by
+  the coordinator's addendum the same day: Runway Dev's first-party
+  line is Gen-4.5, Aleph 2.0 and Act-Two, and the lanes carried the
+  first two. Kling 4.0 and Seedance 3.0 were re-verified the same day;
+  both statuses stand (announced, reported), notes on their records.
+- **Adobe Firefly** (Adobe, suite): Firefly Image Model 5, the Firefly Video
+  model behind Premiere's Generative Extend, and the partner hub.
+- **ElevenLabs Eleven v3** (audio), **Suno v5.5** (audio), **Lyria 3 Pro**
+  (audio): the first audio records in the guide.
+- **Topaz Astra** (Topaz Labs, suite): creative upscaling to 4K.
+- **Luma App / Ray 3.2** record gains the Ray3.14 completeness note (the
+  Ray3 reasoning line, Jan 2026, runs alongside Ray 3.2).
+
+Four task skills ship with the records: compare-image-keyframes,
+craft-video-edit-route, deliver-upscale-route, audio-music-model-route.
+
 *Next refresh: when a model in the table changes version, price, or status. The
 `model-watch.html` page renders this file's data live from `models.json`.*

@@ -4,20 +4,20 @@
   "date": "2026-10-13",
   "bar": "Research cycle-138 criteria U1-U6, front-door only, all six to pass: U1 FOR (verb+object job stated) \u00b7 U2 GET (a named, countable deliverable) \u00b7 U3 FIRST ACTION + EFFORT (step 1 + minutes + what-you'll-need up front) \u00b7 U4 LEVEL + PREREQUISITE (one-clause honest gate) \u00b7 U5 PROOF (a worked example visible at the front door) \u00b7 U6 NO UNPAID JARGON (terms glossed at first use).",
   "counts": {
-    "total": 242,
-    "beginner_denominator": 234,
-    "pass": 234,
+    "total": 258,
+    "beginner_denominator": 250,
+    "pass": 250,
     "front_door_fail": 0,
     "class_fail_reference": 8,
     "per_criterion_pass": {
-      "U1": 242,
-      "U2": 242,
-      "U3": 242,
-      "U4": 241,
-      "U5": 242,
-      "U6": 242
+      "U1": 258,
+      "U2": 258,
+      "U3": 258,
+      "U4": 257,
+      "U5": 258,
+      "U6": 258
     },
-    "beginner_usable_after_rotation_20": 234
+    "beginner_usable_after_rotation_20": 250
   },
   "skills": [
     {
@@ -1819,6 +1819,222 @@
       "gets_you": "You will know whether Wan 2.7 is worth your money for the shot you have in mind, what it costs, what it is best at, and the weakness to design around, before you spend on generations.",
       "rewritten_in_rotation_20": false,
       "page": "site/skills/direct-wan-2-7.html"
+    },
+    {
+      "id": "direct-nano-banana-2-and-pro",
+      "title": "Direct with Nano Banana 2 and Pro",
+      "audience": "beginner",
+      "verdict": "pass",
+      "research_class": null,
+      "criteria": {
+        "U1": true,
+        "U2": true,
+        "U3": true,
+        "U4": true,
+        "U5": true,
+        "U6": true
+      },
+      "gets_you": "You will know whether Nano Banana 2 and Pro is worth your money for the shot you have in mind, what it costs, what it is best at, and the weakness to design around, before you spend on generations.",
+      "rewritten_in_rotation_20": false,
+      "page": "site/skills/direct-nano-banana-2-and-pro.html"
+    },
+    {
+      "id": "direct-seedream-5-0-pro",
+      "title": "Direct with Seedream 5.0 Pro",
+      "audience": "beginner",
+      "verdict": "pass",
+      "research_class": null,
+      "criteria": {
+        "U1": true,
+        "U2": true,
+        "U3": true,
+        "U4": true,
+        "U5": true,
+        "U6": true
+      },
+      "gets_you": "You will know whether Seedream 5.0 Pro is worth your money for the shot you have in mind, what it costs, what it is best at, and the weakness to design around, before you spend on generations.",
+      "rewritten_in_rotation_20": false,
+      "page": "site/skills/direct-seedream-5-0-pro.html"
+    },
+    {
+      "id": "direct-flux-2",
+      "title": "Direct with FLUX.2",
+      "audience": "beginner",
+      "verdict": "pass",
+      "research_class": null,
+      "criteria": {
+        "U1": true,
+        "U2": true,
+        "U3": true,
+        "U4": true,
+        "U5": true,
+        "U6": true
+      },
+      "gets_you": "You will know whether FLUX.2 is worth your money for the shot you have in mind, what it costs, what it is best at, and the weakness to design around, before you spend on generations.",
+      "rewritten_in_rotation_20": false,
+      "page": "site/skills/direct-flux-2.html"
+    },
+    {
+      "id": "direct-gpt-image-2",
+      "title": "Direct with GPT Image 2",
+      "audience": "beginner",
+      "verdict": "pass",
+      "research_class": null,
+      "criteria": {
+        "U1": true,
+        "U2": true,
+        "U3": true,
+        "U4": true,
+        "U5": true,
+        "U6": true
+      },
+      "gets_you": "You will know whether GPT Image 2 is worth your money for the shot you have in mind, what it costs, what it is best at, and the weakness to design around, before you spend on generations.",
+      "rewritten_in_rotation_20": false,
+      "page": "site/skills/direct-gpt-image-2.html"
+    },
+    {
+      "id": "direct-midjourney-v8-2",
+      "title": "Direct with Midjourney V8.2",
+      "audience": "beginner",
+      "verdict": "pass",
+      "research_class": null,
+      "criteria": {
+        "U1": true,
+        "U2": true,
+        "U3": true,
+        "U4": true,
+        "U5": true,
+        "U6": true
+      },
+      "gets_you": "You will know whether Midjourney V8.2 is worth your money for the shot you have in mind, what it costs, what it is best at, and the weakness to design around, before you spend on generations.",
+      "rewritten_in_rotation_20": false,
+      "page": "site/skills/direct-midjourney-v8-2.html"
+    },
+    {
+      "id": "direct-runway-aleph-2-0",
+      "title": "Direct with Runway Aleph 2.0",
+      "audience": "beginner",
+      "verdict": "pass",
+      "research_class": null,
+      "criteria": {
+        "U1": true,
+        "U2": true,
+        "U3": true,
+        "U4": true,
+        "U5": true,
+        "U6": true
+      },
+      "gets_you": "You will know whether Runway Aleph 2.0 is worth your money for the shot you have in mind, what it costs, what it is best at, and the weakness to design around, before you spend on generations.",
+      "rewritten_in_rotation_20": false,
+      "page": "site/skills/direct-runway-aleph-2-0.html"
+    },
+    {
+      "id": "direct-adobe-firefly",
+      "title": "Direct with Adobe Firefly",
+      "audience": "beginner",
+      "verdict": "pass",
+      "research_class": null,
+      "criteria": {
+        "U1": true,
+        "U2": true,
+        "U3": true,
+        "U4": true,
+        "U5": true,
+        "U6": true
+      },
+      "gets_you": "You will know whether Adobe Firefly is worth your money for the shot you have in mind, what it costs, what it is best at, and the weakness to design around, before you spend on generations.",
+      "rewritten_in_rotation_20": false,
+      "page": "site/skills/direct-adobe-firefly.html"
+    },
+    {
+      "id": "direct-elevenlabs-eleven-v3",
+      "title": "Direct with ElevenLabs Eleven v3",
+      "audience": "beginner",
+      "verdict": "pass",
+      "research_class": null,
+      "criteria": {
+        "U1": true,
+        "U2": true,
+        "U3": true,
+        "U4": true,
+        "U5": true,
+        "U6": true
+      },
+      "gets_you": "You will know whether ElevenLabs Eleven v3 is worth your money for the shot you have in mind, what it costs, what it is best at, and the weakness to design around, before you spend on generations.",
+      "rewritten_in_rotation_20": false,
+      "page": "site/skills/direct-elevenlabs-eleven-v3.html"
+    },
+    {
+      "id": "direct-suno-v5-5",
+      "title": "Direct with Suno v5.5",
+      "audience": "beginner",
+      "verdict": "pass",
+      "research_class": null,
+      "criteria": {
+        "U1": true,
+        "U2": true,
+        "U3": true,
+        "U4": true,
+        "U5": true,
+        "U6": true
+      },
+      "gets_you": "You will know whether Suno v5.5 is worth your money for the shot you have in mind, what it costs, what it is best at, and the weakness to design around, before you spend on generations.",
+      "rewritten_in_rotation_20": false,
+      "page": "site/skills/direct-suno-v5-5.html"
+    },
+    {
+      "id": "direct-lyria-3-pro",
+      "title": "Direct with Lyria 3 Pro",
+      "audience": "beginner",
+      "verdict": "pass",
+      "research_class": null,
+      "criteria": {
+        "U1": true,
+        "U2": true,
+        "U3": true,
+        "U4": true,
+        "U5": true,
+        "U6": true
+      },
+      "gets_you": "You will know whether Lyria 3 Pro is worth your money for the shot you have in mind, what it costs, what it is best at, and the weakness to design around, before you spend on generations.",
+      "rewritten_in_rotation_20": false,
+      "page": "site/skills/direct-lyria-3-pro.html"
+    },
+    {
+      "id": "direct-topaz-astra",
+      "title": "Direct with Topaz Astra",
+      "audience": "beginner",
+      "verdict": "pass",
+      "research_class": null,
+      "criteria": {
+        "U1": true,
+        "U2": true,
+        "U3": true,
+        "U4": true,
+        "U5": true,
+        "U6": true
+      },
+      "gets_you": "You will know whether Topaz Astra is worth your money for the shot you have in mind, what it costs, what it is best at, and the weakness to design around, before you spend on generations.",
+      "rewritten_in_rotation_20": false,
+      "page": "site/skills/direct-topaz-astra.html"
+    },
+    {
+      "id": "direct-runway-act-two",
+      "title": "Direct with Runway Act-Two",
+      "audience": "beginner",
+      "verdict": "pass",
+      "research_class": null,
+      "criteria": {
+        "U1": true,
+        "U2": true,
+        "U3": true,
+        "U4": true,
+        "U5": true,
+        "U6": true
+      },
+      "gets_you": "You will know whether Runway Act-Two is worth your money for the shot you have in mind, what it costs, what it is best at, and the weakness to design around, before you spend on generations.",
+      "rewritten_in_rotation_20": false,
+      "page": "site/skills/direct-runway-act-two.html"
     },
     {
       "id": "audit-pre-production-checklist",
@@ -4138,7 +4354,7 @@
         "U5": true,
         "U6": true
       },
-      "gets_you": "You will always know what to learn next: all 241 skills laid out in production order on the Path page, each checked off only when you have actually done it on a real film.",
+      "gets_you": "You will always know what to learn next: all 257 skills laid out in production order on the Path page, each checked off only when you have actually done it on a real film.",
       "rewritten_in_rotation_20": false,
       "page": "site/skills/workflow-walk-the-path.html"
     },
@@ -4375,6 +4591,78 @@
       "gets_you": "Reference for later: how to structure a production so characters, world and action can each be changed without regenerating everything else.",
       "rewritten_in_rotation_20": false,
       "page": "site/skills/workflow-component-separation.html"
+    },
+    {
+      "id": "compare-image-keyframes",
+      "title": "Choose an image model for keyframes",
+      "audience": "beginner",
+      "verdict": "pass",
+      "research_class": null,
+      "criteria": {
+        "U1": true,
+        "U2": true,
+        "U3": true,
+        "U4": true,
+        "U5": true,
+        "U6": true
+      },
+      "gets_you": "You will know which image model should make your keyframes and character sheets, and why, before you build a whole film on the wrong stills.",
+      "rewritten_in_rotation_20": false,
+      "page": "site/skills/compare-image-keyframes.html"
+    },
+    {
+      "id": "craft-video-edit-route",
+      "title": "Fix footage with video-to-video editing",
+      "audience": "beginner",
+      "verdict": "pass",
+      "research_class": null,
+      "criteria": {
+        "U1": true,
+        "U2": true,
+        "U3": true,
+        "U4": true,
+        "U5": true,
+        "U6": true
+      },
+      "gets_you": "You will be able to rescue a take that is 90 percent right by editing the 10 percent that is wrong, instead of paying to regenerate the whole shot and losing the 90.",
+      "rewritten_in_rotation_20": false,
+      "page": "site/skills/craft-video-edit-route.html"
+    },
+    {
+      "id": "deliver-upscale-route",
+      "title": "Run the upscaling route",
+      "audience": "beginner",
+      "verdict": "pass",
+      "research_class": null,
+      "criteria": {
+        "U1": true,
+        "U2": true,
+        "U3": true,
+        "U4": true,
+        "U5": true,
+        "U6": true
+      },
+      "gets_you": "Your finished film will reach its delivery resolution shot by shot, heroes faithful, rescues creative, nothing upscaled blind, and you will know what each route costs.",
+      "rewritten_in_rotation_20": false,
+      "page": "site/skills/deliver-upscale-route.html"
+    },
+    {
+      "id": "audio-music-model-route",
+      "title": "Choose the music model for the job",
+      "audience": "beginner",
+      "verdict": "pass",
+      "research_class": null,
+      "criteria": {
+        "U1": true,
+        "U2": true,
+        "U3": true,
+        "U4": true,
+        "U5": true,
+        "U6": true
+      },
+      "gets_you": "You will know which music model writes which cue in your film, a structured score bed, a full song with vocals, or a trailer track, and what each choice means for your rights.",
+      "rewritten_in_rotation_20": false,
+      "page": "site/skills/audio-music-model-route.html"
     }
   ]
 }

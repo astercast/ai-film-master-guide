@@ -59,16 +59,16 @@ for p in models-status models-pricing models-changes; do
 done
 
 echo "== 3. models-status payload shape =="
-chk "models-status 32 models, status enum" bash -c "curl -sf '$BASE/api/models-status' | python3 -c \"
+chk "models-status 44 models, status enum" bash -c "curl -sf '$BASE/api/models-status' | python3 -c \"
 import json,sys; e=json.load(sys.stdin); ms=e['data']['models']
-assert len(ms)==32, len(ms)
+assert len(ms)==44, len(ms)
 assert all(m['status'] in ('stable','changed','error','unwatched') for m in ms)
 assert all(m['id'] and m['name'] and isinstance(m['source_urls'],list) for m in ms)\""
 
 echo "== 4. models-pricing payload shape =="
-chk "models-pricing 32 models" bash -c "curl -sf '$BASE/api/models-pricing' | python3 -c \"
+chk "models-pricing 44 models" bash -c "curl -sf '$BASE/api/models-pricing' | python3 -c \"
 import json,sys; e=json.load(sys.stdin); ms=e['data']['models']
-assert len(ms)==32, len(ms)
+assert len(ms)==44, len(ms)
 veo=[m for m in ms if m['model_id']=='veo-3-1'][0]
 assert any(t['tier']=='standard-720p' and t['usd_low']==0.4 for t in veo['tiers'])
 assert e['data']['currency']=='USD'\""
@@ -84,21 +84,24 @@ import json,sys; e=json.load(sys.stdin); d=e['data']
 ids=[x['id'] for x in d['events']]
 assert '2026-10-07-vidu-q4-rate-card' in ids, ids
 assert '2026-09-28-kling-40-announced' not in ids
-assert d['counts']['total']==len(d['events']) and d['counts']['total']==144, d['counts']
+assert d['counts']['total']==len(d['events']) and d['counts']['total']==156, d['counts']
 assert d['since']=='2026-10-01' and d['baseline_at'].startswith('2026-10-11')\""
 chk "models-changes future window empty" bash -c "curl -sf '$BASE/api/models-changes?since=2999-01-01' | python3 -c \"
 import json,sys; e=json.load(sys.stdin); assert e['data']['counts']['total']==0 and e['data']['events']==[]\""
 chk "models-changes bad since -> 400 BAD_INPUT" bash -c "[ \"\$(curl -s -o /dev/null -w '%{http_code}' '$BASE/api/models-changes?since=banana')\" = 400 ]"
-chk "models-changes price diff == 5 coverage changes + Soul Cinema tier (2.3) + Wan 2.7 (2.4)" bash -c "curl -sf '$BASE/api/models-changes' | python3 -c \"
+chk "models-changes price diff == 5 coverage changes + Soul Cinema tier (2.3) + Wan 2.7 (2.4) + 11 completeness records (2026-10-15) + Act-Two (coordinator addendum)" bash -c "curl -sf '$BASE/api/models-changes' | python3 -c \"
 import json,sys; e=json.load(sys.stdin); pc=e['data']['price_changes']
-assert len(pc)==7, pc
+assert len(pc)==19, pc
 assert any(c['kind']=='model-added' and c['model_id']=='pixverse-v6' for c in pc)
 assert any(c['kind']=='model-added' and c['model_id']=='wan-2-7' for c in pc)
+assert any(c['kind']=='model-added' and c['model_id']=='runway-act-two' for c in pc)
+assert any(c['kind']=='model-added' and c['model_id']=='nano-banana-2-and-pro' for c in pc)
+assert any(c['kind']=='model-added' and c['model_id']=='topaz-astra' for c in pc)
 assert sum(1 for c in pc if c['kind']=='tier-added')==5
 assert any(c['kind']=='tier-added' and c['model_id']=='soul-cinema' for c in pc)\""
-chk "models-changes drift summary 32 models, 15 alerts, 0 unwatched" bash -c "curl -sf '$BASE/api/models-changes' | python3 -c \"
+chk "models-changes drift summary 44 models, 15 alerts, 0 unwatched" bash -c "curl -sf '$BASE/api/models-changes' | python3 -c \"
 import json,sys; e=json.load(sys.stdin); s=e['data']['drift_summary']
-assert s['models_total']==32 and s['alert']==15 and s['unwatched']==0, s
+assert s['models_total']==44 and s['alert']==15 and s['unwatched']==0, s
 assert len(e['data']['drift_alerts'])==s['alert']+s['watch']\""
 chk "models-changes ?model_id= filter" bash -c "curl -sf '$BASE/api/models-changes?since=2025-01-01&model_id=kling-3-0' | python3 -c \"
 import json,sys; e=json.load(sys.stdin)
@@ -106,7 +109,7 @@ assert all(x['model_id']=='kling-3-0' for x in e['data']['events']) and len(e['d
 chk "models-changes ?model_id=bogus -> 404 NOT_FOUND" bash -c "[ \"\$(curl -s -o /dev/null -w '%{http_code}' '$BASE/api/models-changes?model_id=bogus')\" = 404 ]"
 chk "models-status carries drift fields" bash -c "curl -sf '$BASE/api/models-status' | python3 -c \"
 import json,sys; e=json.load(sys.stdin); d=e['data']
-assert d['drift_summary']['models_total']==32
+assert d['drift_summary']['models_total']==44
 assert all('drift_severity' in m and 'drift_alerts' in m for m in d['models'])\""
 chk "health freshness resolves (Watchtower 2.0 path fix)" bash -c "curl -sf '$BASE/api/health' | python3 -c \"
 import json,sys; e=json.load(sys.stdin); d=e['data']
@@ -156,7 +159,7 @@ chk "cron schema" bash -c "$VAL < /tmp/watchtower-cron-out.json"
 chk "cron payload shape" bash -c "python3 -c \"
 import json; e=json.load(open('/tmp/watchtower-cron-out.json')); d=e['data']
 assert isinstance(d['checked'],int) and isinstance(d['models_changed'],list) and 'sources_ok' in d
-assert isinstance(d.get('drift'),dict) and d['drift']['summary']['models_total']==32
+assert isinstance(d.get('drift'),dict) and d['drift']['summary']['models_total']==44
 assert isinstance(e['meta']['upstream'],list)\""
 
 echo "== 9. vercel.json lint =="

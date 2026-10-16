@@ -34,17 +34,17 @@ ok('curriculum: six stages, in the authored production order', () => {
   CURR.stages.forEach((s) => { assert.strictEqual(s.skill_count, s.skills.length); });
 });
 
-ok('curriculum: stage sizes 37 / 40 / 41 / 44 / 43 / 36', () => {
-  assert.deepStrictEqual(CURR.stages.map((s) => s.skills.length), [37, 40, 41, 44, 43, 36]);
-  assert.strictEqual(CURR.skill_count, 241);
+ok('curriculum: stage sizes 37 / 41 / 54 / 44 / 43 / 38', () => {
+  assert.deepStrictEqual(CURR.stages.map((s) => s.skills.length), [37, 41, 54, 44, 43, 38]);
+  assert.strictEqual(CURR.skill_count, 257);
 });
 
-ok('coverage: every one of the 241 skills appears exactly once across the stages', () => {
+ok('coverage: every one of the 257 skills appears exactly once across the stages', () => {
   const flat = CURR.stages.flatMap((s) => s.skills);
-  assert.strictEqual(flat.length, 241);
-  assert.strictEqual(new Set(flat).size, 241, 'duplicate skill id in the curriculum');
+  assert.strictEqual(flat.length, 257);
+  assert.strictEqual(new Set(flat).size, 257, 'duplicate skill id in the curriculum');
   const expected = INDEX.skills.map((s) => s.id).filter((id) => id !== COMPANION);
-  assert.strictEqual(expected.length, 241);
+  assert.strictEqual(expected.length, 257);
   assert.deepStrictEqual([...flat].sort(), [...expected].sort());
 });
 
@@ -54,16 +54,16 @@ ok('companion: the walk-the-path skill exists in the library and is not a stop o
   assert(!CURR.stages.flatMap((s) => s.skills).includes(COMPANION));
 });
 
-ok('flatten: global order is stage order, numbered 1..241', () => {
+ok('flatten: global order is stage order, numbered 1..257', () => {
   const flat = E.flatten(CURR);
-  assert.strictEqual(flat.length, 241);
+  assert.strictEqual(flat.length, 257);
   assert.strictEqual(flat[0].id, 'prompt-t1');
   assert.strictEqual(flat[0].n, 1);
   assert.strictEqual(flat[0].stageId, 'first-light');
   assert.strictEqual(flat[36].stageId, 'first-light');
   assert.strictEqual(flat[37].stageId, 'look-and-voice');
-  assert.strictEqual(flat[240].n, 241);
-  assert.strictEqual(flat[240].stageId, 'the-finish');
+  assert.strictEqual(flat[256].n, 257);
+  assert.strictEqual(flat[256].stageId, 'the-finish');
 });
 
 ok('stageProgress: counts, pct, complete, next', () => {
@@ -83,7 +83,7 @@ ok('stageProgress: counts, pct, complete, next', () => {
 ok('progress: empty walk, stage 1 current, next is skill 1', () => {
   const p = E.progress(CURR, []);
   assert.strictEqual(p.done, 0);
-  assert.strictEqual(p.total, 241);
+  assert.strictEqual(p.total, 257);
   assert.strictEqual(p.pct, 0);
   assert.strictEqual(p.finished, false);
   assert.strictEqual(p.currentStage.id, 'first-light');
@@ -110,7 +110,7 @@ ok('progress: a stray check in a later stage does not skip the current stage', (
 ok('progress: the full walk is finished, no current stage, no next', () => {
   const all = CURR.stages.flatMap((s) => s.skills);
   const p = E.progress(CURR, all);
-  assert.strictEqual(p.done, 241);
+  assert.strictEqual(p.done, 257);
   assert.strictEqual(p.pct, 100);
   assert.strictEqual(p.finished, true);
   assert.strictEqual(p.currentStage, null);
@@ -127,7 +127,7 @@ ok('progress: unknown ids and junk input count for nothing', () => {
 ok('verdict: not started names the first skill and the done-on-a-production rule', () => {
   const v = E.verdict(CURR, []);
   assert(v.includes('Not started'));
-  assert(v.includes('241 skills'));
+  assert(v.includes('257 skills'));
   assert(v.includes('prompt-t1'));
   assert(v.includes('done on a real production'));
 });
@@ -135,7 +135,7 @@ ok('verdict: not started names the first skill and the done-on-a-production rule
 ok('verdict: mid-walk names the stage, the counts, and the next skill', () => {
   const v = E.verdict(CURR, CURR.stages[0].skills.concat(['prompt-a1']));
   assert(v.includes('Stage 2'));
-  assert(v.includes('1 of 40 skills done'));
+  assert(v.includes('1 of 41 skills done'));
   assert(v.includes('prompt-a2'));
   assert(v.includes('milestone'));
 });
@@ -155,7 +155,7 @@ ok('export: markdown carries stages, milestones, check marks, counts, standing',
   assert(md.includes('- [ ] '));
   assert(md.includes('Milestone: You can write a core-track prompt'));
   assert(md.includes('## Stage 6, The Finish'));
-  assert(md.includes('Done: 1 of 241 (0%).'));
+  assert(md.includes('Done: 1 of 257 (0%).'));
   assert(md.endsWith('\n'));
 });
 

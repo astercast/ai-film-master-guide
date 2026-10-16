@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "observed": "2026-10-11",
+  "observed": "2026-10-15",
   "conventions": "Placeholders: [SHOT] [MOVE] [SUBJECT] [ACTION] [ENV] [LIGHT] [STYLE] [AUDIO]. Keep [STYLE] identical across a project. One primary motion per prompt.",
   "templates": [
     {

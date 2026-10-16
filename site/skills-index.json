@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "count": 242,
+  "count": 258,
   "skills": [
     {
       "id": "prompt-t1",
@@ -801,6 +801,102 @@
       "gets_you": "You will know whether Wan 2.7 is worth your money for the shot you have in mind, what it costs, what it is best at, and the weakness to design around, before you spend on generations.",
       "audience": "beginner",
       "path": "skills/models/direct-wan-2-7.md"
+    },
+    {
+      "id": "direct-nano-banana-2-and-pro",
+      "title": "Direct with Nano Banana 2 and Pro",
+      "description": "Use Nano Banana 2 and Pro well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether Nano Banana 2 and Pro is worth your money for the shot you have in mind, what it costs, what it is best at, and the weakness to design around, before you spend on generations.",
+      "audience": "beginner",
+      "path": "skills/models/direct-nano-banana-2-and-pro.md"
+    },
+    {
+      "id": "direct-seedream-5-0-pro",
+      "title": "Direct with Seedream 5.0 Pro",
+      "description": "Use Seedream 5.0 Pro well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether Seedream 5.0 Pro is worth your money for the shot you have in mind, what it costs, what it is best at, and the weakness to design around, before you spend on generations.",
+      "audience": "beginner",
+      "path": "skills/models/direct-seedream-5-0-pro.md"
+    },
+    {
+      "id": "direct-flux-2",
+      "title": "Direct with FLUX.2",
+      "description": "Use FLUX.2 well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether FLUX.2 is worth your money for the shot you have in mind, what it costs, what it is best at, and the weakness to design around, before you spend on generations.",
+      "audience": "beginner",
+      "path": "skills/models/direct-flux-2.md"
+    },
+    {
+      "id": "direct-gpt-image-2",
+      "title": "Direct with GPT Image 2",
+      "description": "Use GPT Image 2 well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether GPT Image 2 is worth your money for the shot you have in mind, what it costs, what it is best at, and the weakness to design around, before you spend on generations.",
+      "audience": "beginner",
+      "path": "skills/models/direct-gpt-image-2.md"
+    },
+    {
+      "id": "direct-midjourney-v8-2",
+      "title": "Direct with Midjourney V8.2",
+      "description": "Use Midjourney V8.2 well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether Midjourney V8.2 is worth your money for the shot you have in mind, what it costs, what it is best at, and the weakness to design around, before you spend on generations.",
+      "audience": "beginner",
+      "path": "skills/models/direct-midjourney-v8-2.md"
+    },
+    {
+      "id": "direct-runway-aleph-2-0",
+      "title": "Direct with Runway Aleph 2.0",
+      "description": "Use Runway Aleph 2.0 well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether Runway Aleph 2.0 is worth your money for the shot you have in mind, what it costs, what it is best at, and the weakness to design around, before you spend on generations.",
+      "audience": "beginner",
+      "path": "skills/models/direct-runway-aleph-2-0.md"
+    },
+    {
+      "id": "direct-adobe-firefly",
+      "title": "Direct with Adobe Firefly",
+      "description": "Use Adobe Firefly well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether Adobe Firefly is worth your money for the shot you have in mind, what it costs, what it is best at, and the weakness to design around, before you spend on generations.",
+      "audience": "beginner",
+      "path": "skills/models/direct-adobe-firefly.md"
+    },
+    {
+      "id": "direct-elevenlabs-eleven-v3",
+      "title": "Direct with ElevenLabs Eleven v3",
+      "description": "Use ElevenLabs Eleven v3 well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether ElevenLabs Eleven v3 is worth your money for the shot you have in mind, what it costs, what it is best at, and the weakness to design around, before you spend on generations.",
+      "audience": "beginner",
+      "path": "skills/models/direct-elevenlabs-eleven-v3.md"
+    },
+    {
+      "id": "direct-suno-v5-5",
+      "title": "Direct with Suno v5.5",
+      "description": "Use Suno v5.5 well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether Suno v5.5 is worth your money for the shot you have in mind, what it costs, what it is best at, and the weakness to design around, before you spend on generations.",
+      "audience": "beginner",
+      "path": "skills/models/direct-suno-v5-5.md"
+    },
+    {
+      "id": "direct-lyria-3-pro",
+      "title": "Direct with Lyria 3 Pro",
+      "description": "Use Lyria 3 Pro well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether Lyria 3 Pro is worth your money for the shot you have in mind, what it costs, what it is best at, and the weakness to design around, before you spend on generations.",
+      "audience": "beginner",
+      "path": "skills/models/direct-lyria-3-pro.md"
+    },
+    {
+      "id": "direct-topaz-astra",
+      "title": "Direct with Topaz Astra",
+      "description": "Use Topaz Astra well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether Topaz Astra is worth your money for the shot you have in mind, what it costs, what it is best at, and the weakness to design around, before you spend on generations.",
+      "audience": "beginner",
+      "path": "skills/models/direct-topaz-astra.md"
+    },
+    {
+      "id": "direct-runway-act-two",
+      "title": "Direct with Runway Act-Two",
+      "description": "Use Runway Act-Two well: costs, strengths, weaknesses, best use.",
+      "gets_you": "You will know whether Runway Act-Two is worth your money for the shot you have in mind, what it costs, what it is best at, and the weakness to design around, before you spend on generations.",
+      "audience": "beginner",
+      "path": "skills/models/direct-runway-act-two.md"
     },
     {
       "id": "audit-pre-production-checklist",
@@ -1829,8 +1925,8 @@
     {
       "id": "workflow-walk-the-path",
       "title": "Walk the Path, the sequenced curriculum",
-      "description": "The guide's 241 skills sequenced into six stages in production order (data/v1/curriculum.json): walk them in order on path.html, check each skill off as it is actually done, and let each stage's milestone, not the calendar, say when to move on.",
-      "gets_you": "You will always know what to learn next: all 241 skills laid out in production order on the Path page, each checked off only when you have actually done it on a real film.",
+      "description": "The guide's 257 skills sequenced into six stages in production order (data/v1/curriculum.json): walk them in order on path.html, check each skill off as it is actually done, and let each stage's milestone, not the calendar, say when to move on.",
+      "gets_you": "You will always know what to learn next: all 257 skills laid out in production order on the Path page, each checked off only when you have actually done it on a real film.",
       "audience": "beginner",
       "path": "skills/workflow/workflow-walk-the-path.md"
     },
@@ -1937,6 +2033,38 @@
       "gets_you": "Reference for later: how to structure a production so characters, world and action can each be changed without regenerating everything else.",
       "audience": "reference",
       "path": "skills/workflow/workflow-component-separation.md"
+    },
+    {
+      "id": "compare-image-keyframes",
+      "title": "Choose an image model for keyframes",
+      "description": "Pick between the keyframe image models for character sheets, plates, and first frames.",
+      "gets_you": "You will know which image model should make your keyframes and character sheets, and why, before you build a whole film on the wrong stills.",
+      "audience": "beginner",
+      "path": "skills/compare/compare-image-keyframes.md"
+    },
+    {
+      "id": "craft-video-edit-route",
+      "title": "Fix footage with video-to-video editing",
+      "description": "Change what a finished clip shows, a colour, a sky, a wardrobe, a season, a removed object, by editing the footage instead of regenerating the shot.",
+      "gets_you": "You will be able to rescue a take that is 90 percent right by editing the 10 percent that is wrong, instead of paying to regenerate the whole shot and losing the 90.",
+      "audience": "beginner",
+      "path": "skills/craft/craft-video-edit-route.md"
+    },
+    {
+      "id": "deliver-upscale-route",
+      "title": "Run the upscaling route",
+      "description": "Take finished clips to delivery resolution: native re-render, faithful upscale, or creative upscale, chosen per shot.",
+      "gets_you": "Your finished film will reach its delivery resolution shot by shot, heroes faithful, rescues creative, nothing upscaled blind, and you will know what each route costs.",
+      "audience": "beginner",
+      "path": "skills/delivery/deliver-upscale-route.md"
+    },
+    {
+      "id": "audio-music-model-route",
+      "title": "Choose the music model for the job",
+      "description": "Pick between Suno v5.5, Lyria 3 Pro, and Eleven Music for a score cue, a full song, or a trailer track.",
+      "gets_you": "You will know which music model writes which cue in your film, a structured score bed, a full song with vocals, or a trailer track, and what each choice means for your rights.",
+      "audience": "beginner",
+      "path": "skills/audio/audio-music-model-route.md"
     }
   ]
 }

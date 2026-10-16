@@ -1,13 +1,13 @@
 ---
 name: workflow-walk-the-path
-description: The guide's 241 skills sequenced into six stages in production order (data/v1/curriculum.json): walk them in order on path.html, check each skill off as it is actually done, and let each stage's milestone, not the calendar, say when to move on.
+description: The guide's 257 skills sequenced into six stages in production order (data/v1/curriculum.json): walk them in order on path.html, check each skill off as it is actually done, and let each stage's milestone, not the calendar, say when to move on.
 ---
 
 # Walk the Path, the sequenced curriculum
 
 ## What this gets you
 
-You will always know what to learn next: all 241 skills laid out in production order on the Path page, each checked off only when you have actually done it on a real film.
+You will always know what to learn next: all 257 skills laid out in production order on the Path page, each checked off only when you have actually done it on a real film.
 
 ## Use when
 
@@ -30,7 +30,7 @@ Starting the guide from zero, onboarding a collaborator, or finding the hole in 
 
 ## Worked example
 
-A new learner opens path.html at Stage 1 (37 skills: the 15 core prompts, then the 22 camera moves), checks them off across their first short, and reaches Stage 3's milestone, name the model, the fallback, and the evidence, before spending on a flagship model. Full map: path.html; data: data/v1/curriculum.json (241 skills, each exactly once).
+A new learner opens path.html at Stage 1 (37 skills: the 15 core prompts, then the 22 camera moves), checks them off across their first short, and reaches Stage 3's milestone, name the model, the fallback, and the evidence, before spending on a flagship model. Full map: path.html; data: data/v1/curriculum.json (257 skills, each exactly once).
 
 ## API references
 
@@ -41,4 +41,4 @@ A new learner opens path.html at Stage 1 (37 skills: the 15 core prompts, then t
 
 - Checking skills off for reading them, the Path counts done-on-a-production, the same standard the sheets apply: what is written down and exercised, not intentions.
 - Walking the stages out of order because a later tool looks more fun, the gaps surface later at production prices; the sequence exists so they surface at practice prices.
-- Confusing the Path with the homepage's goal routes, those order 4 to 5 chapters toward one goal; the Path orders all 241 skills toward the whole craft.
+- Confusing the Path with the homepage's goal routes, those order 4 to 5 chapters toward one goal; the Path orders all 257 skills toward the whole craft.

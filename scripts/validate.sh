@@ -506,7 +506,7 @@ fi
 # Skills Usefulness Audit: record in sync + gets-you law (rotation 20)
 AU_OUT=$(python3 scripts/audit_skills.py --check 2>&1)
 if echo "$AU_OUT" | grep -q "^ok:"; then
-  pass "audit_skills.py --check: audit record in sync (242 skills, every skill carries its 'what this gets you' line)"
+  pass "audit_skills.py --check: audit record in sync (258 skills, every skill carries its 'what this gets you' line)"
 else
   fail "audit_skills.py --check failed:"
   echo "$AU_OUT" | head -4 | sed 's/^/    /'
@@ -516,7 +516,7 @@ fi
 SP_OUT=$(node scripts/skill-pages.test.js 2>&1)
 if echo "$SP_OUT" | tail -1 | grep -q "all pass"; then
   SP_N=$(echo "$SP_OUT" | grep -c "^ok ")
-  pass "skill-pages.test.js: $SP_N assertions pass (242 in-site pages with procedure/example/pitfalls, 242 linked cards, 241 Path rows in curriculum order, 8 reference pages marked, ticket jargon glossed)"
+  pass "skill-pages.test.js: $SP_N assertions pass (258 in-site pages with procedure/example/pitfalls, 258 linked cards, 257 Path rows in curriculum order, 8 reference pages marked, ticket jargon glossed)"
 else
   fail "skill-pages.test.js failures:"
   echo "$SP_OUT" | grep -E "^(FAIL|AssertionError)" | head -8 | sed 's/^/    /'
@@ -530,7 +530,7 @@ done
 PA_OUT=$(node scripts/path.test.js 2>&1)
 if echo "$PA_OUT" | tail -1 | grep -q "all pass"; then
   PA_N=$(echo "$PA_OUT" | grep -c "^ok ")
-  pass "path.test.js: $PA_N engine assertions pass (six stages, 241 skills exactly once, progress/verdict rules, export traces)"
+  pass "path.test.js: $PA_N engine assertions pass (six stages, 257 skills exactly once, progress/verdict rules, export traces)"
 else
   fail "path.test.js failures:"
   echo "$PA_OUT" | grep "^FAIL" | head -8 | sed 's/^/    /'

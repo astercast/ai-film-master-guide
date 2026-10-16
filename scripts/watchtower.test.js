@@ -43,11 +43,11 @@ function ok(name, fn) {
 }
 
 /* --- pricing diff against the real baseline --------------------------- */
-ok('real diff: the 5 Watchtower 2.0 coverage changes + the 2.3 Soul Cinema tier + Wan 2.7 (2.4)', () => {
+ok('real diff: the 5 Watchtower 2.0 coverage changes + the 2.3 Soul Cinema tier + Wan 2.7 (2.4) + the 11 completeness-wave records (2026-10-15) + Act-Two (coordinator addendum)', () => {
   const changes = drift.diffPricing(history.pricing_baseline.entries, pricing.entries);
-  assert.strictEqual(changes.length, 7, JSON.stringify(changes));
+  assert.strictEqual(changes.length, 19, JSON.stringify(changes));
   const kinds = changes.map((c) => c.kind).sort();
-  assert.deepStrictEqual(kinds, ['model-added', 'model-added', 'tier-added', 'tier-added', 'tier-added', 'tier-added', 'tier-added']);
+  assert.deepStrictEqual(kinds, ['model-added', 'model-added', 'model-added', 'model-added', 'model-added', 'model-added', 'model-added', 'model-added', 'model-added', 'model-added', 'model-added', 'model-added', 'model-added', 'model-added', 'tier-added', 'tier-added', 'tier-added', 'tier-added', 'tier-added']);
   const added = changes.find((c) => c.kind === 'model-added' && c.model_id === 'pixverse-v6');
   assert(added, 'pixverse-v6 model-added missing');
   assert.strictEqual(added.after_low, 0.09, 'new record shows its rate span');
@@ -56,7 +56,7 @@ ok('real diff: the 5 Watchtower 2.0 coverage changes + the 2.3 Soul Cinema tier 
   // model-checks.json is the clean checker run, per-model
   // checks span 2026-10-14T00:43:45Z to 00:55:54Z and the
   // feed's checked_at is 2026-10-14T00:56:09Z. Its summary:
-  // 32 models · changed 0 · with_errors 0 · no_sources 0 ·
+  // 32 models at that feed (43 after the 2026-10-15 completeness wave) · changed 0 · with_errors 0 · no_sources 0 ·
   // source_status ok 15 · partial 17 · all_failed 0. No
   // record changed and no check run errored at the feed
   // level; the drift engine still labels any record with a
@@ -64,16 +64,22 @@ ok('real diff: the 5 Watchtower 2.0 coverage changes + the 2.3 Soul Cinema tier 
   // clean run's 17 partial records, the previous pin's 15
   // plus minimax-h3 and soul-2-0, which are partial in this
   // run. The neighbouring pins are unchanged against the
-  // clean feed: models_total 32, unwatched 0,
+  // clean feed: models_total 32 at the feed (44 now), unwatched 0,
   // pricing_unpublished 5, price_changes_vs_baseline 7.
-  // Pricing diff 7 rows.
+  // Pricing diff 7 rows. Completeness wave (2026-10-15): 11 records
+  // added with pricing entries outside the 2026-10-11 baseline, so the
+  // diff grows to 19 rows (14 model-added + the same 5 tier-added), the
+  // catalogue to 44 models, and pricing_unpublished to 10 (the five new
+  // records whose labs publish no tableable rate). The 2026-10-14 clean
+  // feed still governs the old records: its 17 partials remain the alert
+  // set, unchanged, and the 11 new records check in stable.
   const d = drift.computeDrift({ modelsDoc: models, checksDoc: checks,
     pricingDoc: pricing, historyDoc: history, nowMs: NOW });
-  assert.strictEqual(d.summary.models_total, 32);
+  assert.strictEqual(d.summary.models_total, 44);
   assert.strictEqual(d.summary.unwatched, 0, JSON.stringify(d.summary));
-  assert.strictEqual(d.summary.pricing_unpublished, 5, JSON.stringify(d.summary));
+  assert.strictEqual(d.summary.pricing_unpublished, 10, JSON.stringify(d.summary));
   assert.strictEqual(d.summary.alert, 17, JSON.stringify(d.per_model.filter((r) => r.severity === 'alert')));
-  assert.strictEqual(d.summary.price_changes_vs_baseline, 7);
+  assert.strictEqual(d.summary.price_changes_vs_baseline, 19);
   const alertIds = d.per_model.filter((r) => r.severity === 'alert').map((r) => r.model_id).sort();
   assert.deepStrictEqual(alertIds, ['grok-imagine-1-5', 'kling-3-0', 'kling-4-0', 'ltx-2-5',
     'luma-ray-3-2', 'minimax-h3', 'mirage-tesseract', 'runway-gen-4-5', 'seedance-2-0',

@@ -15,7 +15,7 @@ ART = Path.home() / "workspace/research_notes/ai-film-mega-research-20261010-031
 API = ROOT / "data" / "v1"
 VERSION = "1.0.0"
 MANIFEST_VERSION = "1.1.0"  # index.json is the manifest; additive enrichment only
-OBSERVED = "2026-10-11"
+OBSERVED = "2026-10-15"
 
 
 def utcnow():
@@ -187,7 +187,7 @@ def main():
     assert len(templates) == 47, f"expected 47 prompt templates, got {len(templates)}"
     assert len(checklists) == 5, f"expected 5 checklists, got {len(checklists)}"
     assert len(glossary) >= 60, f"expected 60+ glossary terms, got {len(glossary)}"
-    assert len(model_data["models"]) == 32, f"expected 32 models, got {len(model_data['models'])}"  # wave 39: +PixVerse V6; wave 40 (Watchtower 2.4): +Wan 2.7
+    assert len(model_data["models"]) == 44, f"expected 44 models, got {len(model_data['models'])}"  # wave 39: +PixVerse V6; wave 40 (Watchtower 2.4): +Wan 2.7; completeness wave 2026-10-15: +11 (image, audio, editing, finishing lanes); wave 41 coordinator addendum: +Runway Act-Two
     assert len(camera_data["lexicon"]) == 22
 
     models = {

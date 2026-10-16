@@ -23,7 +23,7 @@ You are generating on Runway Gen-4.5 (Runway, video). Best use: 4K with camera c
 
 1. Budget first: API ~$1.20/10s 720p (reported Sept 2026 benchmark); consumer plans from ~$15/mo, verify live Gen-4.5: 12 credits/s (5s = 60 credits, 10s = 120); API $0.12/s. Standard $15/mo (625 credits) / Pro $35/mo (2,250) / Max $95/mo (9,500, 1-mo rollover).. Multiply by 3 to 5× per hero shot for re-rolls.
 2. Lean into its strength: 4K with camera control; enterprise NRR reportedly 300%+; $200M ARR with $350M year-end projection (company-claimed); Sept 30, 2026 Summit.
-3. Design around its weakness, do not fight it: No new model in 2026, Gen-4.5 still latest; premium-tier pricing.
+3. Design around its weakness, do not fight it: Gen-4.5 (Dec 2025) remains the latest Runway generation model, but Runway's 2026 releases were editing and performance tools (Aleph 2.0, Act-Two), not a Gen-5; premium-tier pricing.
 4. Draft everything at the cheapest tier that still answers the creative question.
 5. Upscale or re-render at hero quality only for approved selects.
 
@@ -37,5 +37,5 @@ You are generating on Runway Gen-4.5 (Runway, video). Best use: 4K with camera c
 
 ## Pitfalls
 
-- Weakness to respect: No new model in 2026, Gen-4.5 still latest; premium-tier pricing.
+- Weakness to respect: Gen-4.5 (Dec 2025) remains the latest Runway generation model, but Runway's 2026 releases were editing and performance tools (Aleph 2.0, Act-Two), not a Gen-5; premium-tier pricing.
 - Costs in models.json were refreshed 2026-10-11, verify live before spending real money.

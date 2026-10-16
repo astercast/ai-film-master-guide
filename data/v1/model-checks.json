@@ -1,13 +1,13 @@
 {
   "format": "model-checks/1.0",
-  "checked_at": "2026-10-14T00:56:09+00:00",
+  "checked_at": "2026-10-15T21:50:00+00:00",
   "summary": {
-    "models_total": 32,
+    "models_total": 44,
     "changed": 0,
     "with_errors": 0,
     "no_sources": 0,
     "source_status": {
-      "ok": 15,
+      "ok": 27,
       "partial": 17,
       "all_failed": 0,
       "no_sources": 0
@@ -3348,6 +3348,358 @@
         }
       ],
       "note": "Watched since 2026-10-12 (Watchtower 2.4), when the record was added through the artifact chain. Sources are the PoYo model page (official endpoint IDs + fal's rates), CreateVision's spec registry, and the launch report; wan.video (the official Wan site) is the extra URL. The rate to diff is the published USD list ($0.10/s 720p, $0.15/s 1080p), a move on any of these pages is a review signal for the desk's first directly-priced Wan record. Watchtower 2.5 calibration (2026-10-12): the upgrademag.com Wan 2.7 launch report in this entry's exclude_from_signature flagged in two consecutive checker runs on intermittent variant fetches, the settled page is signature-consistent across repeated fetches (16136 chars) and its launch facts match the record, but single fetches in a run occasionally return a variant (rotating headlines rail). Excluded from the signature, still fetched and recorded every run."
+    },
+    {
+      "model": "Nano Banana 2 and Pro",
+      "platform": "Google DeepMind",
+      "type": "image",
+      "last_checked": "2026-10-15T21:45:00+00:00",
+      "changed": false,
+      "baseline": false,
+      "source_status": "ok",
+      "source_results": [
+        {
+          "url": "https://blog.google/innovation-and-ai/products/nano-banana-pro/",
+          "ok": true,
+          "http_status": 200,
+          "signature": "87ba4f834dd13760c79bae7cfe3e04ffdb21f45d648f6a8f954dbd434beaddd5",
+          "chars": 1037167,
+          "error": null
+        },
+        {
+          "url": "https://mlq.ai/news/google-releases-nano-banana-2-ai-image-model-with-enhanced-speed-and-quality/",
+          "ok": true,
+          "http_status": 200,
+          "signature": "b066c1202f05c556a19948f517930a8d89757360757283120faf9c52e313a493",
+          "chars": 68713,
+          "error": null
+        }
+      ],
+      "signal_excerpt": "Nano Banana Pro: Gemini 3 Pro Image model from Google DeepMind { \"@context\": \"https://schema.org\", \"@type\": \"NewsArticle\", \"mainEntityOfPage\": \"https://blog.google/innovation-and-ai/products/nano-banana-pro/\", \"headline\": \"Introducing Nano Banana Pro\", \"datePublished\": \"2025-11-20T15:00:00+00:00\", \""
+    },
+    {
+      "model": "Seedream 5.0 Pro",
+      "platform": "ByteDance",
+      "type": "image",
+      "last_checked": "2026-10-15T21:45:00+00:00",
+      "changed": false,
+      "baseline": false,
+      "source_status": "ok",
+      "source_results": [
+        {
+          "url": "https://tech-insider.org/how-to-use-seedream-5-0-pro-lite-2026/",
+          "ok": true,
+          "http_status": 200,
+          "signature": "f9d71c4e3418d40070707c92b8673f060b9ca73a6bd509f9fd6d9b968b9708b6",
+          "chars": 182399,
+          "error": null
+        },
+        {
+          "url": "https://openrouter.ai/bytedance-seed/seedream-5-0-flash",
+          "ok": true,
+          "http_status": 200,
+          "signature": "735e74e1a8e2d28bbf739864e2897983af38121ee727a077e55ee25c06e1c991",
+          "chars": 510862,
+          "error": null
+        },
+        {
+          "url": "https://developer.puter.com/ai/bytedance/seedream-4.5/",
+          "ok": true,
+          "http_status": 200,
+          "signature": "1b8612e55f30e0b0970d8bf050f79f7032e6c5b5d5f8d2cbf11da28ffff51549",
+          "chars": 81859,
+          "error": null
+        }
+      ],
+      "signal_excerpt": "if(document.cookie.indexOf(\"ti_consent=granted\")>-1){ var _paq=window._paq=window._paq||[]; _paq.push(['trackPageView']); _paq.push(['enableLinkTracking']); (function(){ var u=\"https://tech-insider.org/91bd3c08.php\"; _paq.push(['setTrackerUrl',u]); _paq.push(['setSiteId','31']); var d=document,g=d.c"
+    },
+    {
+      "model": "FLUX.2",
+      "platform": "Black Forest Labs",
+      "type": "image",
+      "last_checked": "2026-10-15T21:45:00+00:00",
+      "changed": false,
+      "baseline": false,
+      "source_status": "ok",
+      "source_results": [
+        {
+          "url": "https://github.com/black-forest-labs/flux2",
+          "ok": true,
+          "http_status": 200,
+          "signature": "d66986ca69adccbf8136b1d85475038e2e793376dd5a49222e02119df8e6c55f",
+          "chars": 337120,
+          "error": null
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Flux_(text-to-image_model)",
+          "ok": true,
+          "http_status": 200,
+          "signature": "d5d8d85c2a12036256fe735597a05c73d7d250d93f83275048c8f405b5270805",
+          "chars": 385655,
+          "error": null
+        }
+      ],
+      "signal_excerpt": "{\"imports\":{\"react\":\"https://github.githubassets.com/assets/react-e27d1b3e03961e68.js\",\"react-dom\":\"https://github.githubassets.com/assets/react-dom-e5fd46a22d5c4058.js\",\"react-dom/client\":\"https://github.githubassets.com/assets/react-dom-client-1b4a3ee065998cea.js\",\"react-is\":\"https://github.github"
+    },
+    {
+      "model": "GPT Image 2",
+      "platform": "OpenAI",
+      "type": "image",
+      "last_checked": "2026-10-15T21:45:00+00:00",
+      "changed": false,
+      "baseline": false,
+      "source_status": "ok",
+      "source_results": [
+        {
+          "url": "https://github.com/softmarshmallow/stage-gen/blob/HEAD/docs/models/gpt-image-2.md",
+          "ok": true,
+          "http_status": 200,
+          "signature": "9d0004d56e10c11cfa283de6e9c4038cbcc88f7ee583557e1535266a89ccf365",
+          "chars": 272467,
+          "error": null
+        },
+        {
+          "url": "https://memeburn.com/chatgpt-images-2-0-launches-with-better-text/",
+          "ok": true,
+          "http_status": 200,
+          "signature": "d5024ec2a6d1a4ff8e20cfb1bc6d592d8b7917a9e31a97fde0bc0cfcecf74b68",
+          "chars": 90372,
+          "error": null
+        }
+      ],
+      "signal_excerpt": "{\"imports\":{\"react\":\"https://github.githubassets.com/assets/react-e27d1b3e03961e68.js\",\"react-dom\":\"https://github.githubassets.com/assets/react-dom-e5fd46a22d5c4058.js\",\"react-dom/client\":\"https://github.githubassets.com/assets/react-dom-client-1b4a3ee065998cea.js\",\"react-is\":\"https://github.github"
+    },
+    {
+      "model": "Midjourney V8.2",
+      "platform": "Midjourney",
+      "type": "image",
+      "last_checked": "2026-10-15T21:45:00+00:00",
+      "changed": false,
+      "baseline": false,
+      "source_status": "ok",
+      "source_results": [
+        {
+          "url": "https://powerdrill.ai/blog/midjourney-v8-2-edit-model",
+          "ok": true,
+          "http_status": 200,
+          "signature": "4d7aa796f81170edc2f1e30e613b1bdf3fc81782a95eb1b53cf19fa8e2c72f88",
+          "chars": 146142,
+          "error": null
+        },
+        {
+          "url": "https://www.aiworthit.com/blog/midjourney-review/",
+          "ok": true,
+          "http_status": 200,
+          "signature": "36f8de2de85e14d89bac16e0012932b9e2142ca4930a39d721df7442614c3847",
+          "chars": 61478,
+          "error": null
+        }
+      ],
+      "signal_excerpt": "Midjourney V8.2 Edit Model: Presentation Visuals, Access, and Alternatives (2026) {\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Powerdrill Bloom\",\"url\":\"https://powerdrill.ai\",\"logo\":\"https://powerdrill.ai/images/powerdrill-bloom-og.webp\",\"description\":\"AI-powered data exploration "
+    },
+    {
+      "model": "Runway Aleph 2.0",
+      "platform": "Runway",
+      "type": "video",
+      "last_checked": "2026-10-15T21:45:00+00:00",
+      "changed": false,
+      "baseline": false,
+      "source_status": "ok",
+      "source_results": [
+        {
+          "url": "https://www.therundown.ai/tools/aleph",
+          "ok": true,
+          "http_status": 200,
+          "signature": "646647e9a241e47e721b921ad9faa558b77e851ca6592c5e42d82f6fdc335e39",
+          "chars": 148374,
+          "error": null
+        },
+        {
+          "url": "https://www.baseten.co/blog/deploy-runway-video-models-dedicated-inference/",
+          "ok": true,
+          "http_status": 200,
+          "signature": "1a026907d38e1a6455a63491842c4a240eba200d3ccf44e2c5482c57f18d4c3e",
+          "chars": 311127,
+          "error": null
+        },
+        {
+          "url": "https://techcrunch.com/2026/07/23/runway-bets-on-ai-model-routing-as-generative-media-gets-crowded/",
+          "ok": true,
+          "http_status": 200,
+          "signature": "c20d0173ccfa25b077d178d6d732dd5104a12012a962caec7da14a64d4431bc1",
+          "chars": 241177,
+          "error": null
+        }
+      ],
+      "signal_excerpt": "Runway Aleph 2.0: Features, Pricing &amp; Alternatives The Rundown AI homepage AI University Newsletters News Guides Tools Courses Careers Advertise University Platform → Home AI University Newsletters News Guides Tools Courses Careers Advertise University Platform → {\"@context\":\"https://schema.org\""
+    },
+    {
+      "model": "Adobe Firefly",
+      "platform": "Adobe",
+      "type": "suite",
+      "last_checked": "2026-10-15T21:45:00+00:00",
+      "changed": false,
+      "baseline": false,
+      "source_status": "ok",
+      "source_results": [
+        {
+          "url": "https://news.adobe.com/news/2026/04/adobe-new-creative-agent",
+          "ok": true,
+          "http_status": 200,
+          "signature": "cd6a463b172d3d1d8dcd8592255f0552fa6cf2bc66d71c171959c6dc50f72d63",
+          "chars": 23259,
+          "error": null
+        },
+        {
+          "url": "https://techcrunch.com/2025/12/16/adobe-firefly-now-supports-prompt-based-video-editing-adds-more-third-party-models/",
+          "ok": true,
+          "http_status": 200,
+          "signature": "fe26ed816f950c5842feae25d6f6900b6511110112b30cfce9d3a55d7a917d5d",
+          "chars": 239168,
+          "error": null
+        }
+      ],
+      "signal_excerpt": "Adobe Ushers in a New Era of Creativity with New Creative Agent and Generative AI Innovations in Adobe Firefly body { display: none; } #262530 Adobe Ushers in a New Era of Creativity with New Creative Agent and Generative AI Innovations in Adobe Firefly Wednesday, April 15, 2026 6:00 AM Download the"
+    },
+    {
+      "model": "ElevenLabs Eleven v3",
+      "platform": "ElevenLabs",
+      "type": "audio",
+      "last_checked": "2026-10-15T21:45:00+00:00",
+      "changed": false,
+      "baseline": false,
+      "source_status": "ok",
+      "source_results": [
+        {
+          "url": "https://aitoolblaze.com/blog/elevenlabs-review-2026",
+          "ok": true,
+          "http_status": 200,
+          "signature": "14a010501eb50da648aa8959482f276595c1ddce0d5e4222b5073b52e91d8288",
+          "chars": 273272,
+          "error": null
+        },
+        {
+          "url": "https://abit.ee/en/artificial-intelligence/elevenlabs-eleven-v3-text-to-speech-tts-text-to-speech-conversion-ai-voice-phone-numbers-en",
+          "ok": true,
+          "http_status": 200,
+          "signature": "61613596ab9aea9fab2991602a040f984b1ffec29bdb7c4001cc8f249e16af2f",
+          "chars": 70034,
+          "error": null
+        }
+      ],
+      "signal_excerpt": "ElevenLabs Review 2026: Worth It? | AIToolBlaze {\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"AIToolBlaze\",\"url\":\"https://aitoolblaze.com\",\"logo\":\"https://aitoolblaze.com/logo.png\",\"description\":\"Honest, in-depth reviews and comparisons of the best AI tools, apps, and services for "
+    },
+    {
+      "model": "Suno v5.5",
+      "platform": "Suno",
+      "type": "audio",
+      "last_checked": "2026-10-15T21:45:00+00:00",
+      "changed": false,
+      "baseline": false,
+      "source_status": "ok",
+      "source_results": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Suno",
+          "ok": true,
+          "http_status": 200,
+          "signature": "ddb8dd0638dd8a3284f6f3612ac889da8882644fc06c21ccdf931e1ee044080c",
+          "chars": 345585,
+          "error": null
+        }
+      ],
+      "signal_excerpt": "Suno - Wikipedia (function(){var className=\"client-js vector-feature-language-in-header-enabled vector-feature-language-in-main-menu-disabled vector-feature-language-in-main-page-header-disabled vector-feature-page-tools-pinned-disabled vector-feature-toc-pinned-clientpref-1 vector-feature-main-menu"
+    },
+    {
+      "model": "Lyria 3 Pro",
+      "platform": "Google DeepMind",
+      "type": "audio",
+      "last_checked": "2026-10-15T21:45:00+00:00",
+      "changed": false,
+      "baseline": false,
+      "source_status": "ok",
+      "source_results": [
+        {
+          "url": "https://techcrunch.com/2026/03/25/google-launches-lyria-3-pro-music-generation-model/",
+          "ok": true,
+          "http_status": 200,
+          "signature": "506a719f5cfc03d0725297b9cf60596e21ea90974946e691e9645598695933cf",
+          "chars": 232391,
+          "error": null
+        },
+        {
+          "url": "https://www.cometapi.com/what-is-lyria-3-pro-/",
+          "ok": true,
+          "http_status": 200,
+          "signature": "5976bf95ff84c1090afd7dab75cd7a2ea6f50dca5b80e7d8347cb1f746f6c6e2",
+          "chars": 1046224,
+          "error": null
+        }
+      ],
+      "signal_excerpt": "(function(html){html.className = html.className.replace(/\\bno-js\\b/,'js')})(document.documentElement); const successData = localStorage.getItem('turnstile_verified'); const failData = sessionStorage.getItem('turnstile_failed'); const isBot = failData ? 'true' : successData ? 'false' : null; window.d"
+    },
+    {
+      "model": "Topaz Astra",
+      "platform": "Topaz Labs",
+      "type": "suite",
+      "last_checked": "2026-10-15T21:45:00+00:00",
+      "changed": false,
+      "baseline": false,
+      "source_status": "ok",
+      "source_results": [
+        {
+          "url": "https://www.topazlabs.com/astra",
+          "ok": true,
+          "http_status": 200,
+          "signature": "cf1a0dd789be3c3b906141c0bdbd9fbf611c746cb5a2fc93ef22e0d2d7f5b359",
+          "chars": 448937,
+          "error": null
+        },
+        {
+          "url": "https://www.producthunt.com/products/astra-from-topaz-labs",
+          "ok": true,
+          "http_status": 200,
+          "signature": "d40a608620ca661033de5fc859f3752e7f11f2b7d72e310a4c32708d2298126e",
+          "chars": 518607,
+          "error": null
+        }
+      ],
+      "signal_excerpt": "Astra - Creative Video Upscaling for AI Videos up to 4K Quality html.w-mod-js:not(.w-mod-ix3):is(.mosaic-hero-float-wrap) {visibility: hidden !important;}html.w-mod-js:not(.w-mod-ix3):is(.mosaic-hero-float-wrap) * {visibility: hidden !important;}html.w-mod-js:not(.w-mod-ix3):is(.mosaic-hero-bot-wrap"
+    },
+    {
+      "model": "Runway Act-Two",
+      "platform": "Runway",
+      "type": "video",
+      "last_checked": "2026-10-15T21:50:00+00:00",
+      "changed": false,
+      "baseline": false,
+      "source_status": "ok",
+      "source_results": [
+        {
+          "url": "https://aivideos.eu/blog/runway-act-one-vs-heygen-ai-actor-direction",
+          "ok": true,
+          "http_status": 200,
+          "signature": "a59df59956cd8e70933811220043fe5e73267633f9b5885efce3f3b3f31313f4",
+          "chars": 150088,
+          "error": null
+        },
+        {
+          "url": "https://www.facefusion.co/runway-act-two",
+          "ok": true,
+          "http_status": 200,
+          "signature": "86b0b282b1fc189f2f3c565ef1f035bc23ddbf62ca81764c9a50098a2b3b7428",
+          "chars": 267415,
+          "error": null
+        },
+        {
+          "url": "https://github.com/anil-matcha/awesome-ai-video-models",
+          "ok": true,
+          "http_status": 200,
+          "signature": "33a3afa9586ce3e6815d1f7cd611bb07236d9894c9bf73c935ffb051aa6f5c45",
+          "chars": 309025,
+          "error": null
+        }
+      ],
+      "signal_excerpt": "Runway Act-Two vs HeyGen: Directing AI Actors in 2026 try{if(localStorage.getItem('announce_dismissed')==='1'){document.documentElement.setAttribute('data-announce','dismissed')}}catch(e){} New · The Shot Ledger: which AI model to use → (self.__next_s=self.__next_s||[]).push([0,{\"children\":\"\\n windo"
     }
   ]
 }

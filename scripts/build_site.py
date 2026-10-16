@@ -696,7 +696,7 @@ SKILLS_TMPL = """<!DOCTYPE html>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Skills browser, AI Film Master Guide</title>
-  <meta name="description" content="Browse all 242 task skills: prompts, camera, models, long-form pipelines, craft techniques and more, every skill states in plain words what it gets you.">
+  <meta name="description" content="Browse all 258 task skills: prompts, camera, models, long-form pipelines, craft techniques and more, every skill states in plain words what it gets you.">
   {css}
 </head>
 <body>
@@ -5155,7 +5155,7 @@ PATH_TMPL = """<!DOCTYPE html>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>The path, AI Film Master Guide</title>
-  <meta name="description" content="The Path: the guide's 241 skills sequenced into six stages in production order, the prompt and the camera, the style tracks, the models, direction, production, the finish, with per-skill check-off saved in the browser and a milestone per stage.">
+  <meta name="description" content="The Path: the guide's 257 skills sequenced into six stages in production order, the prompt and the camera, the style tracks, the models, direction, production, the finish, with per-skill check-off saved in the browser and a milestone per stage.">
   {css}
   <style>
     .pathmap-verdict {{ font-family: var(--font-serif); font-size: 1.14rem; line-height: 1.65; color: var(--ink-dim); border-left: 2px solid var(--line-bright); padding-left: var(--space-4); margin-bottom: var(--space-6); max-width: 72ch; }}
@@ -5207,7 +5207,7 @@ PATH_TMPL = """<!DOCTYPE html>
     {hero}
     <section class="container" aria-labelledby="path-h">
       <h2 id="path-h">The map</h2>
-      <p>Every skill in the guide, 241, in the order to learn them: six stages, one milestone per stage. Check a skill off only when it has been <strong>done on a real production</strong>; progress is saved in this browser. (Not the homepage's <a href="index.html#paths-h">goal routes</a>, those order a few chapters per goal. This orders the skills themselves. The sequence is data: <code>data/v1/curriculum.json</code>.)</p>
+      <p>Every skill in the guide, 257, in the order to learn them: six stages, one milestone per stage. Check a skill off only when it has been <strong>done on a real production</strong>; progress is saved in this browser. (Not the homepage's <a href="index.html#paths-h">goal routes</a>, those order a few chapters per goal. This orders the skills themselves. The sequence is data: <code>data/v1/curriculum.json</code>.)</p>
       <p class="pathmap-verdict" id="path-verdict" aria-live="polite">{path_verdict}</p>
       <p><strong id="path-overall">{path_overall}</strong></p>
       <div id="path-stages">{path_stages}</div>
@@ -5246,7 +5246,7 @@ PATH_TMPL = """<!DOCTYPE html>
 def build_path(css_links):
     """The Path, the sequenced curriculum (rotation 19 flagship,
     closing competitor gap T-FILM-5): data/v1/curriculum.json orders
-    all 241 skills into six stages; this page is the stage map.
+    all 257 skills into six stages; this page is the stage map.
     The sequence is hand-authored data, never invented here: the
     builder reads curriculum.json + skills/index.json and renders
     every skill exactly as the curriculum orders it, and embeds
@@ -5261,7 +5261,7 @@ def build_path(css_links):
     index = json.loads((ROOT / "skills" / "index.json").read_text())
     by_id = {s["id"]: s for s in index["skills"]}
     flat = [sid for st in curr["stages"] for sid in st["skills"]]
-    assert len(flat) == 241 and len(set(flat)) == 241, "curriculum must sequence 241 skills exactly once"
+    assert len(flat) == 257 and len(set(flat)) == 257, "curriculum must sequence 257 skills exactly once"
     assert all(sid in by_id for sid in flat), "curriculum names a skill the library does not hold"
 
     n = 0
@@ -5290,7 +5290,7 @@ def build_path(css_links):
             f'<div class="pathmap-bar" aria-hidden="true"><div class="pathmap-bar-fill" data-path-stage-bar="{esc(st["id"])}"></div></div>'
             + "".join(rows) + "</details>")
     first = flat[0]
-    verdict = (f"Not started, 241 skills stand in six stages, in the order to learn them. Begin at Stage 1, "
+    verdict = (f"Not started, 257 skills stand in six stages, in the order to learn them. Begin at Stage 1, "
                f"skill 1 ({first}): the prompt and the camera are the two languages everything else is spoken in. "
                f"Check a skill off only when it has been done on a real production.")
     (SITE / "path.html").write_text(PATH_TMPL.format(
@@ -5298,13 +5298,13 @@ def build_path(css_links):
         hero=hero_cutroom(
             kicker="""The curriculum""",
             h1="""The <span class="accent">path.</span>""",
-            lede="""All 241 skills in the guide, in the order to learn them: six stages in production order, a milestone at the end of each, and a check-off for every skill, counted when it is done on a real production, not when it is read.""",
+            lede="""All 257 skills in the guide, in the order to learn them: six stages in production order, a milestone at the end of each, and a check-off for every skill, counted when it is done on a real production, not when it is read.""",
             deck_title="""WALK, THE_PATH""",
             clips={"v2": ['The order'], "v1": ['Learn', 'Direct', 'Ship'], "a1": ['The walk']},
             h1_id="path-title-h",
             extra=""" """),
         path_verdict=html.escape(verdict),
-        path_overall="0 of 241 skills done (0%)",
+        path_overall="0 of 257 skills done (0%)",
         path_stages="".join(stage_html),
         path_curriculum_json=json.dumps(curr, ensure_ascii=False)))
     return [("path.html", "The path")]
@@ -5511,7 +5511,7 @@ def build_skill_pages(css_links):
             pn, sn, stitle = pos[sid]
             path_crumb = f' / <a href="../path.html">The Path, stage {sn}</a>'
             path_link = (f' · <a href="../path.html">This skill on the Path '
-                         f'(skill {pn} of 241, stage {sn})</a>')
+                         f'(skill {pn} of 257, stage {sn})</a>')
             if sk.get("audience") == "reference":
                 level = ("Reference, not a first-project skill. It is kept "
                          "for the record, for agents, and for later.")
@@ -5523,12 +5523,12 @@ def build_skill_pages(css_links):
                 if pn > 1:
                     prev_title = by_id[order[i - 1]]["title"] if order[i - 1] in pos else ""
                     prereq = (f"Best after the skill before it on the Path "
-                              f"(skill {pn - 1} of 241"
+                              f"(skill {pn - 1} of 257"
                               + (f": {prev_title}" if prev_title else "")
                               + "), but everything it needs is listed "
                                 "below, and nothing else is assumed.")
                 else:
-                    prereq = ("Nothing, this is skill 1 of 241 on the Path, "
+                    prereq = ("Nothing, this is skill 1 of 257 on the Path, "
                               "where the walk starts.")
         else:
             path_crumb = ""
@@ -5548,7 +5548,7 @@ def build_skill_pages(css_links):
         # #skill-title. The authored body's own H1 repeats it, so
         # the generator strips it here. The old strip anchored at
         # string start (^# ) and silently failed because the body
-        # begins with a blank line after the frontmatter split, # all 242 pages shipped two h1s (Release round 132).
+        # begins with a blank line after the frontmatter split, # all 258 pages shipped two h1s (Release round 132).
         body_md = re.sub(r"\A\s*# .*\n", "", md, count=1)
         body_md = re.sub(r"^## What this gets you\n.*?(?=^## |\Z)", "",
                          body_md, flags=re.S | re.M)
@@ -8464,7 +8464,7 @@ def main():
          "text": "The Longform Sheet: the long-form pipelines chapter as a working sheet, the asset registry complete before shot one, every scene stress-tested and storyboarded, the architecture chosen (scene-by-scene chaining, or sequence assembly with a registry wrangler), the dialogue architecture chosen per scene, and lock discipline (the base portrait never re-run, plates carry the look, the Voice Bible verbatim, island prompts). Log every scene with its stress test, its storyboard, its reference (video, text, or none), its dialogue route (native, human-recorded and converted, decoupled, or silent), its draft tier (720p draft, upscaled winner, or full-res generation), its re-rolls, and its route (in production, picture-locked, in generation supervision, or cut from the film), and read the feature-lock verdict computed from the chapter's rules: a scene generated without its stress test reads untested, a scene chained off a text description reads drifting, a scene generated at full resolution before its winner is chosen reads wasteful, and a clean sheet still owes picture-lock discipline and the 5 to 20× overhead envelope. Export the sheet as markdown. Chapter: craft/longform-pipelines.md."},
         {"url": "path.html", "title": "The path", "section": "Tools",
          "headings": ["The map", "Take the walk"],
-         "text": "The Path: the guide's sequenced curriculum (rotation 19, closing competitor gap T-FILM-5), all 241 skills in the library ordered exactly once into six stages in production order (First Light, the prompt and the camera; The Look, the Voice, the style tracks; The Instrument, choosing the model; Direction, craft, performance, workflow; Production, recipes, series, the long form; The Finish, repair, grade, deliver, ship), each stage with its focus and its milestone, every skill checkable as it is done on a real production, progress saved in the browser, and the walk exportable as markdown. The sequence is published as data in data/v1/curriculum.json; the companion skill is workflow-walk-the-path. Not the homepage's 'Pick your path' goal routes, which order a handful of chapters per goal, the Path orders the skills themselves."},
+         "text": "The Path: the guide's sequenced curriculum (rotation 19, closing competitor gap T-FILM-5), all 257 skills in the library ordered exactly once into six stages in production order (First Light, the prompt and the camera; The Look, the Voice, the style tracks; The Instrument, choosing the model; Direction, craft, performance, workflow; Production, recipes, series, the long form; The Finish, repair, grade, deliver, ship), each stage with its focus and its milestone, every skill checkable as it is done on a real production, progress saved in the browser, and the walk exportable as markdown. The sequence is published as data in data/v1/curriculum.json; the companion skill is workflow-walk-the-path. Not the homepage's 'Pick your path' goal routes, which order a handful of chapters per goal, the Path orders the skills themselves."},
         {"url": "cuesheet.html", "title": "Cue sheet", "section": "Tools",
          "headings": ["The five gates, before the mix", "Your cue sheet", "Take the sheet"],
          "text": "The Cue Sheet: the sound, music & audio chapter as a working cue sheet, the Voice Bible, the per-scene dialogue route (native or decoupled, never mixed mid-scene), score briefed per cue to the locked cut, stems kept, generation receipts saved. Log every scene with its three layers (bed, foley, accents), its route, and its state, designed, thin, or dry, and read the mix verdict computed from the chapter's rules: a scene with no bed reads dry whatever its owner claims, a thin scene holds the mix, and a clean sheet still owes the three-way listen and the silence test. Export the sheet as markdown. Chapter: craft/sound-music-audio.md."},
