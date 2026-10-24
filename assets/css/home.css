@@ -264,10 +264,13 @@ a.bench-obj:hover { text-decoration: none; }
 a.bench-obj:hover h3 { color: var(--gold); }
 .bench-obj > p { color: var(--ink-dim); font-size: 0.94rem; margin: 0; }
 .bench-obj .bench-kicker { margin: 0 0 var(--space-3); }
-/* The slip: a wide ledger slip, ruled lines are its own ruling. */
+/* The slip: a wide ledger slip. Round 2 fix: the ruled-paper lines
+   that used to run behind this tile sat on a 28px grid the text does
+   not follow, so lines cut through the Budget calculator copy. The
+   ruling is removed; the gold edge carries the slip on its own. */
 .bench-slip {
   grid-column: 1 / 9; background-color: var(--panel);
-  background-image: repeating-linear-gradient(180deg, transparent 0 27px, var(--line-soft) 27px, var(--line-soft) 28px);
+  background-image: none;
   border: 1px solid var(--line); border-left: 4px solid var(--gold);
 }
 /* The console: a recessed well, tall on the bench. */
@@ -531,6 +534,9 @@ body.home .paths-door h2 { margin-top: 0; }
   font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.18em;
   text-transform: uppercase; color: var(--gold);
 }
+/* Round 2 honesty flag: printed next to the Watchtower line only
+   when the last published check is days old at build time. */
+.wt-stale { font-weight: 650; color: var(--ink); }
 .wt-line a { font-weight: 600; white-space: nowrap; }
 .index-door {
   display: grid; gap: var(--space-2);

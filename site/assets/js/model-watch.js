@@ -101,6 +101,15 @@
       panelLine.textContent = src + " · " + fresh.total + " models checked " +
         fmtWhen(fresh.checkedAt) + ", " + fresh.changed + " changed · " +
         fresh.errors + " check errors · " + fresh.unwatched + " unwatched.";
+      /* Round 2 honesty: a check older than its daily cycle is named
+         as old on the page, so the panel never reads as a live feed
+         when the feed is behind. */
+      var ckAgeMs = fresh.checkedAt ? (Date.now() - Date.parse(fresh.checkedAt)) : NaN;
+      if (!isNaN(ckAgeMs) && ckAgeMs > 24 * 3600 * 1000) {
+        var ckDays = Math.floor(ckAgeMs / 86400000);
+        panelLine.textContent += " That check is " + ckDays + (ckDays === 1 ? " day" : " days") +
+          " old, so this is the last published picture, not a live one.";
+      }
 
       Array.prototype.forEach.call(grid.querySelectorAll(".mw-card"), function (card) {
         var h3 = card.querySelector("h3");

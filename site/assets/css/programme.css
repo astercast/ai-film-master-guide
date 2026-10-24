@@ -119,6 +119,10 @@ a:hover { text-decoration-color: var(--tally); }
   .house-nav {
     grid-column: 1 / -1; grid-row: 2; overflow-x: auto; scrollbar-width: none;
     margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); gap: var(--s-3);
+    /* Round 2: the row scrolls on a phone but used to clip with no
+       sign of it. The fade at the right edge is the scroll hint. */
+    -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent);
+    mask-image: linear-gradient(90deg, #000 85%, transparent);
   }
   .house-nav > a { white-space: nowrap; }
 }
@@ -141,6 +145,37 @@ a:hover { text-decoration-color: var(--tally); }
 .picture { position: relative; overflow: hidden; background: var(--picture); container: picture / size; }
 .picture .hero-grain { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; opacity: .35; pointer-events: none; }
 
+/* Round 2, fix A: a real still behind the title card, one per open
+   reel. Black and white, never glowing. The stills already ship in
+   assets/ and were previously only used on gallery.html. */
+.picture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--still, none) 50% 40% / cover no-repeat;
+  filter: grayscale(1) contrast(1.05);
+  opacity: .5;
+  transition: opacity .5s ease;
+}
+.picture::after { /* plain scrim so the title card always reads */
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to top, var(--picture) 0, transparent 65%);
+}
+.picture .tc { z-index: 1; }
+.door:has(.bill[data-path="first-short"][open]) { --still: url("../film-editing-reels.webp"); }
+.door:has(.bill[data-path="first-film"][open]) { --still: url("../silent-era-camera.webp"); }
+.door:has(.bill[data-path="animated"][open]) { --still: url("../movie-theater-marquee.webp"); }
+.door:has(.bill[data-path="photoreal"][open]) { --still: url("../silent-era-camera.webp"); }
+.door:has(.bill[data-path="competition"][open]) { --still: url("../movie-theater-marquee.webp"); }
+.door:has(.bill[data-path="longform"][open]) { --still: url("../film-editing-reels.webp"); }
+.door:has(.bill[data-path="filmmaker"][open]) { --still: url("../film-projector.webp"); }
+@media (prefers-reduced-motion: reduce) {
+  .picture::before { transition: none; }
+}
+
 /* the title card: lower third, never centered */
 .tc {
   position: absolute;
@@ -155,6 +190,9 @@ a:hover { text-decoration-color: var(--tally); }
   line-height: .95; letter-spacing: -.012em; max-inline-size: 13ch; text-wrap: balance;
 }
 .tc-title em { font-style: italic; }
+/* Round 2, fix B: keep a styled run on one line, so the Reel 01 card
+   reads "60-second" whole instead of breaking as "60-" / "second". */
+.tc-title em { white-space: nowrap; }
 .tc-line { font-size: var(--fs-lede); color: var(--screen-soft); max-inline-size: 40ch; }
 
 /* which card is on screen: base, then the open path, then whatever you point at */
@@ -265,6 +303,26 @@ a:hover { text-decoration-color: var(--tally); }
   .bill-meter { grid-column: 2 / -1; }
   .bill-body { padding-inline-start: var(--s-2); }
 }
+
+/* Round 2, fix B (second half): an open bill repeats the title card
+   above it when it also prints its logline, and the two column body
+   then leaves a large empty left column. The card already says the
+   logline, so the open bill drops it and runs in one column. */
+.bill[open] .bill-logline { display: none; }
+.bill[open] .bill-body { grid-template-columns: minmax(0, 1fr); }
+.bill[open] .path-steps { max-inline-size: 44rem; }
+@container programme (width >= 52rem) {
+  .bill[open] .bill-body { grid-template-areas: "steps" "foot"; }
+}
+
+/* Round 2, fix G: one left edge for the home sections. The door, the
+   workbench, the screening room and the close used to start at three
+   different edges (the bench bleed ran to 1440px, the .container
+   sections to 1280px with a 24px pad). All of them now share the
+   programme measure: var(--page) wide, var(--gutter) in from its
+   edge, which is the edge .programme already uses. */
+.workbench .bench-bleed { max-width: var(--page); padding-inline: var(--gutter); }
+.home .screening, .home .home-close { max-width: var(--page); padding-inline: var(--gutter); }
 
 /* ============ 6. MOTION: gate, dissolve, house lights ============ */
 @media (prefers-reduced-motion: no-preference) {
