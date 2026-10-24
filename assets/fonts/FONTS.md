@@ -23,3 +23,7 @@ Keep only the `/* latin */` @font-face blocks.
 Note: Google's css2 API now serves Inter and JetBrains Mono as single
 variable files even when discrete weights are requested (all five/six
 latin blocks point at the same URL), one file each is all we ship.
+| bodoni-moda-latin.woff2 | Bodoni Moda | normal | 400 to 800 variable (opsz 6 to 96) | v5 (rotation 129, Tonight's Programme): title cards + programme titles |
+| bodoni-moda-latin-italic.woff2 | Bodoni Moda | italic | 400 to 800 variable (opsz 6 to 96) | v5: runtimes and emphases in titles |
+| geist-latin.woff2 | Geist | normal | 400 to 700 variable | v5: reading + interface on the redesigned homepage |
+| geist-mono-latin.woff2 | Geist Mono | normal | 400 to 700 variable | v5: reel numbers + credit lines |

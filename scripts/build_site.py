@@ -305,150 +305,200 @@ INDEX_TMPL = """<!DOCTYPE html>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AI Film Master Guide, Professional AI Filmmaking</title>
   <meta name="description" content="The master guide to professional AI filmmaking: pick the film you want to make and walk a guided path through it, chapter by chapter. Higgsfield mastery, pro craft, animated and photorealistic tracks, competition-entry craft, and a machine-readable API.">
+  <meta name="theme-color" content="#000000">
   {css}
 </head>
 <body class="home">
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
+  <header class="house-head">
+    <a class="wordmark" href="index.html" aria-current="page"><span class="wm-a">AI Film</span> <span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">
         {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">⌘K</span> Search
-      </button>
-    </div>
+    </nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
 
   <main id="main">
-    <section class="hero-scene" aria-labelledby="hero-title">
-      <figure class="hero-still">
-        <img src="assets/film-projector.webp" alt="A film projector throwing its beam in a dark room" fetchpriority="high">
-        <canvas class="hero-grain" id="hero-grain" aria-hidden="true"></canvas>
-        <figcaption class="tc">The projector, mid-reel</figcaption>
-      </figure>
-      <div class="hero-shade" aria-hidden="true"></div>
-      <div class="container hero-card">
-        <p class="hero-kicker tc">The cutting room</p>
-        <h1 id="hero-title">Make films with AI like a studio.</h1>
-        <p class="lede">The craft manual for professional AI filmmaking. Pick the film you want to make, and the guide walks you through it, chapter by chapter, in the right order.</p>
-        <div class="btn-row hero-cta">
-          <a class="btn btn-slate btn-lg" href="#paths"><span class="btn-clap" aria-hidden="true"></span>Pick your film</a>
-          <a class="hero-alt" href="guides/first-short.html">or start the first-short guide now</a>
+    <section class="door" id="paths" aria-labelledby="door-title">
+      <div class="screen">
+        <div class="bar bar-top">
+          <h1 id="door-title">Pick the film you want to make.</h1>
+          <p class="bar-meta">Repertory programme · One path at a time</p>
         </div>
-        <p class="hero-counts tc"><span class="hc">{chapter_count} chapters</span> &middot; <span class="hc">{skill_count} task skills</span> &middot; <span class="hc">47 prompt templates</span> &middot; <span class="hc">{model_count} model records</span> &middot; <span class="hc">22 camera moves.</span> <span class="hc">Free to read, start to finish.</span> <span class="hc">No account. No sign-up.</span></p>
+        <div class="picture">
+          <canvas id="hero-grain" class="hero-grain" aria-hidden="true"></canvas>
+          <div class="tc" data-for="none">
+            <p class="tc-kicker">Tonight</p>
+            <p class="tc-title">Pick the film you want to make.</p>
+            <p class="tc-line">Seven films on the bill. Each one is a path through the whole guide, in the order the work happens.</p>
+          </div>
+          <div class="tc" data-for="first-short">
+            <p class="tc-kicker">Reel 01 · 7 days · 7 steps</p>
+            <p class="tc-title">Your first <em>60-second</em> short</p>
+            <p class="tc-line">A first short you finish, not start. Seven days, an evening at a time.</p>
+          </div>
+          <div class="tc" data-for="first-film">
+            <p class="tc-kicker">Reel 02 · a weekend · 5 steps</p>
+            <p class="tc-title">Your first <em>AI</em> film</p>
+            <p class="tc-line">The same spine as the short, opened up to a full weekend.</p>
+          </div>
+          <div class="tc" data-for="animated">
+            <p class="tc-kicker">Reel 03 · 1 to 2 weeks · 4 steps</p>
+            <p class="tc-title"><em>Animated</em> / stylized</p>
+            <p class="tc-line">Style first. The story gets drawn, not shot.</p>
+          </div>
+          <div class="tc" data-for="photoreal">
+            <p class="tc-kicker">Reel 04 · 3 to 6 weeks · 4 steps</p>
+            <p class="tc-title"><em>Photorealistic</em> drama</p>
+            <p class="tc-line">Where the craft is making it look shot, not made.</p>
+          </div>
+          <div class="tc" data-for="competition">
+            <p class="tc-kicker">Reel 05 · 2 to 4 weeks · 5 steps</p>
+            <p class="tc-title">Competition-ready <em>craft</em></p>
+            <p class="tc-line">Craft, polish and a deadline. The one to open when the short is already done.</p>
+          </div>
+          <div class="tc" data-for="longform">
+            <p class="tc-kicker">Reel 06 · ongoing · 4 steps</p>
+            <p class="tc-title">Long-form: <em>20+ minutes</em></p>
+            <p class="tc-line">Episodes, chapters and a film that stays one film.</p>
+          </div>
+          <div class="tc" data-for="filmmaker">
+            <p class="tc-kicker">Reel 07 · 12 weeks · 12 steps</p>
+            <p class="tc-title">The <em>90-day</em> filmmaker</p>
+            <p class="tc-line">Everything, in order, over a season. The full programme.</p>
+          </div>
+        </div>
+        <div class="bar bar-bottom">
+          <p>AI Film Master Guide · {chapter_count} chapters · 7 paths</p>
+          <a href="chapters.html">See all {chapter_count} chapters</a>
+        </div>
       </div>
-    </section>
-
-    <section class="container paths-door scene" id="paths" aria-labelledby="paths-h">
-      <p class="door-kicker tc">Start here</p>
-      <h2 id="paths-h">Pick the film you want to make.</h2>
-      <p class="section-lede">Seven honest routes through the guide. Each names its chapters in order; tick steps off as you finish them and your progress stays in this browser. New to all of it? The 60-second short is open below: one finished minute in seven days.</p>
-      <div class="path-list">
-        <details class="path-row path-card" data-path="first-film">
-          <summary class="path-summary"><span class="path-title">Your first AI film <span class="path-time">a weekend</span></span></summary>
-          <p>Story to finished short in two days. The minimum viable path.</p>
-          <div class="path-bar" aria-hidden="true"><span class="path-bar-fill"></span></div>
-          <p class="path-progress"><span data-path-progress aria-live="polite">0 of 5 complete</span><button type="button" class="btn btn-sm btn-ghost" data-path-reset="first-film">Reset</button></p>
-          <ol class="path-steps">
-            <li><input type="checkbox" class="path-check" id="pc-first-film-1" data-step="first-film-1" aria-label="Mark complete: Story structure"><a href="craft/story-structure.html">Story structure</a></li>
-            <li><input type="checkbox" class="path-check" id="pc-first-film-2" data-step="first-film-2" aria-label="Mark complete: Prompt engineering"><a href="higgsfield/prompt-engineering.html">Prompt engineering</a></li>
-            <li><input type="checkbox" class="path-check" id="pc-first-film-3" data-step="first-film-3" aria-label="Mark complete: Model selection"><a href="platforms/when-to-use-what.html">Model selection</a></li>
-            <li><input type="checkbox" class="path-check" id="pc-first-film-4" data-step="first-film-4" aria-label="Mark complete: Credit math"><a href="economics/credit-math.html">Credit math</a></li>
-            <li><input type="checkbox" class="path-check" id="pc-first-film-5" data-step="first-film-5" aria-label="Mark complete: Editing pipeline"><a href="craft/editing-pipeline.html">Editing pipeline</a></li>
-          </ol>
-        </details>
-        <details class="path-row path-card" data-path="competition">
-          <summary class="path-summary"><span class="path-title">Competition-ready craft <span class="path-time">2 to 4 weeks</span></span></summary>
-          <p>What judged competitions teach about production. The craft bar, taught by the judging table.</p>
-          <div class="path-bar" aria-hidden="true"><span class="path-bar-fill"></span></div>
-          <p class="path-progress"><span data-path-progress aria-live="polite">0 of 5 complete</span><button type="button" class="btn btn-sm btn-ghost" data-path-reset="competition">Reset</button></p>
-          <ol class="path-steps">
-            <li><input type="checkbox" class="path-check" id="pc-competition-1" data-step="competition-1" aria-label="Mark complete: Competition-entry craft"><a href="higgsfield/competition-entry-craft.html">Competition-entry craft</a></li>
-            <li><input type="checkbox" class="path-check" id="pc-competition-2" data-step="competition-2" aria-label="Mark complete: Directing performance"><a href="craft/directing-performance.html">Directing performance</a></li>
-            <li><input type="checkbox" class="path-check" id="pc-competition-3" data-step="competition-3" aria-label="Mark complete: Color grading"><a href="craft/color-grading.html">Color grading</a></li>
-            <li><input type="checkbox" class="path-check" id="pc-competition-4" data-step="competition-4" aria-label="Mark complete: Sound and music"><a href="craft/sound-music-audio.html">Sound &amp; music</a></li>
-            <li><input type="checkbox" class="path-check" id="pc-competition-5" data-step="competition-5" aria-label="Mark complete: Entry craft teardowns"><a href="case-studies/entry-craft-teardowns.html">Entry craft teardowns</a></li>
-          </ol>
-        </details>
-        <details class="path-row path-card" data-path="animated">
-          <summary class="path-summary"><span class="path-title">Animated / stylized <span class="path-time">1 to 2 weeks</span></span></summary>
-          <p>Cheaper, more forgiving, dedicated judged categories.</p>
-          <div class="path-bar" aria-hidden="true"><span class="path-bar-fill"></span></div>
-          <p class="path-progress"><span data-path-progress aria-live="polite">0 of 4 complete</span><button type="button" class="btn btn-sm btn-ghost" data-path-reset="animated">Reset</button></p>
-          <ol class="path-steps">
-            <li><input type="checkbox" class="path-check" id="pc-animated-1" data-step="animated-1" aria-label="Mark complete: Prompt engineering, animated register"><a href="higgsfield/prompt-engineering.html">Prompt engineering</a> <span class="path-note">animated register</span></li>
-            <li><input type="checkbox" class="path-check" id="pc-animated-2" data-step="animated-2" aria-label="Mark complete: Cinematic language"><a href="craft/cinematic-language.html">Cinematic language</a></li>
-            <li><input type="checkbox" class="path-check" id="pc-animated-3" data-step="animated-3" aria-label="Mark complete: Character consistency"><a href="craft/character-consistency.html">Character consistency</a></li>
-            <li><input type="checkbox" class="path-check" id="pc-animated-4" data-step="animated-4" aria-label="Mark complete: Model selection"><a href="platforms/when-to-use-what.html">Model selection</a></li>
-          </ol>
-        </details>
-        <details class="path-row path-card" data-path="photoreal">
-          <summary class="path-summary"><span class="path-title">Photorealistic drama <span class="path-time">3 to 6 weeks</span></span></summary>
-          <p>The premium lane: invisible AI, visible craft.</p>
-          <div class="path-bar" aria-hidden="true"><span class="path-bar-fill"></span></div>
-          <p class="path-progress"><span data-path-progress aria-live="polite">0 of 4 complete</span><button type="button" class="btn btn-sm btn-ghost" data-path-reset="photoreal">Reset</button></p>
-          <ol class="path-steps">
-            <li><input type="checkbox" class="path-check" id="pc-photoreal-1" data-step="photoreal-1" aria-label="Mark complete: Soul ID deep dive"><a href="higgsfield/soul-id-deep-dive.html">Soul ID deep dive</a></li>
-            <li><input type="checkbox" class="path-check" id="pc-photoreal-2" data-step="photoreal-2" aria-label="Mark complete: Character consistency"><a href="craft/character-consistency.html">Character consistency</a></li>
-            <li><input type="checkbox" class="path-check" id="pc-photoreal-3" data-step="photoreal-3" aria-label="Mark complete: Directing performance"><a href="craft/directing-performance.html">Directing performance</a></li>
-            <li><input type="checkbox" class="path-check" id="pc-photoreal-4" data-step="photoreal-4" aria-label="Mark complete: Color grading"><a href="craft/color-grading.html">Color grading</a></li>
-          </ol>
-        </details>
-        <details class="path-row path-card" data-path="longform">
-          <summary class="path-summary"><span class="path-title">Long-form: 20+ minutes <span class="path-time">ongoing</span></span></summary>
-          <p>Systems, not prompts. How features actually get made.</p>
-          <div class="path-bar" aria-hidden="true"><span class="path-bar-fill"></span></div>
-          <p class="path-progress"><span data-path-progress aria-live="polite">0 of 4 complete</span><button type="button" class="btn btn-sm btn-ghost" data-path-reset="longform">Reset</button></p>
-          <ol class="path-steps">
-            <li><input type="checkbox" class="path-check" id="pc-longform-1" data-step="longform-1" aria-label="Mark complete: Long-form pipelines"><a href="craft/longform-pipelines.html">Long-form pipelines</a></li>
-            <li><input type="checkbox" class="path-check" id="pc-longform-2" data-step="longform-2" aria-label="Mark complete: Directing performance"><a href="craft/directing-performance.html">Directing performance</a></li>
-            <li><input type="checkbox" class="path-check" id="pc-longform-3" data-step="longform-3" aria-label="Mark complete: Editing pipeline"><a href="craft/editing-pipeline.html">Editing pipeline</a></li>
-            <li><input type="checkbox" class="path-check" id="pc-longform-4" data-step="longform-4" aria-label="Mark complete: Credit math, compute envelopes"><a href="economics/credit-math.html">Credit math</a> <span class="path-note">compute envelopes</span></li>
-          </ol>
-        </details>
-        <details class="path-row path-card" data-path="first-short" open>
-          <summary class="path-summary"><span class="path-title">Your first 60-second short <span class="path-time">7 days</span></span></summary>
-          <p>Zero to one finished minute. A day-by-day production plan with checkpoints, the whole guide compressed into a shippable week.</p>
-          <div class="path-bar" aria-hidden="true"><span class="path-bar-fill"></span></div>
-          <p class="path-progress"><span data-path-progress aria-live="polite">0 of 7 complete</span><button type="button" class="btn btn-sm btn-ghost" data-path-reset="first-short">Reset</button></p>
-          <ol class="path-steps">
-            <li><input type="checkbox" class="path-check" id="pc-first-short-1" data-step="first-short-1" aria-label="Mark complete: Day 1, concept lock"><a href="guides/first-short.html">Day 1</a> <span class="path-note">concept lock</span></li>
-            <li><input type="checkbox" class="path-check" id="pc-first-short-2" data-step="first-short-2" aria-label="Mark complete: Day 2, prompt workshop"><a href="guides/first-short.html">Day 2</a> <span class="path-note">prompt workshop</span></li>
-            <li><input type="checkbox" class="path-check" id="pc-first-short-3" data-step="first-short-3" aria-label="Mark complete: Day 3, generation batches"><a href="guides/first-short.html">Day 3</a> <span class="path-note">generation batches</span></li>
-            <li><input type="checkbox" class="path-check" id="pc-first-short-4" data-step="first-short-4" aria-label="Mark complete: Day 4, selects and assembly"><a href="guides/first-short.html">Day 4</a> <span class="path-note">selects &amp; assembly</span></li>
-            <li><input type="checkbox" class="path-check" id="pc-first-short-5" data-step="first-short-5" aria-label="Mark complete: Day 5, performance fixes"><a href="guides/first-short.html">Day 5</a> <span class="path-note">performance fixes</span></li>
-            <li><input type="checkbox" class="path-check" id="pc-first-short-6" data-step="first-short-6" aria-label="Mark complete: Day 6, sound"><a href="guides/first-short.html">Day 6</a> <span class="path-note">sound</span></li>
-            <li><input type="checkbox" class="path-check" id="pc-first-short-7" data-step="first-short-7" aria-label="Mark complete: Day 7, grade and export"><a href="guides/first-short.html">Day 7</a> <span class="path-note">grade &amp; export</span></li>
-          </ol>
-        </details>
-        <details class="path-row path-card" data-path="filmmaker">
-          <summary class="path-summary"><span class="path-title">The 90-day filmmaker <span class="path-time">12 weeks</span></span></summary>
-          <p>From first short to competition-ready entry. The advanced arc the 7-day plan feeds into, one milestone project per month.</p>
-          <div class="path-bar" aria-hidden="true"><span class="path-bar-fill"></span></div>
-          <p class="path-progress"><span data-path-progress aria-live="polite">0 of 12 complete</span><button type="button" class="btn btn-sm btn-ghost" data-path-reset="filmmaker">Reset</button></p>
-          <ol class="path-steps">
-            <li><input type="checkbox" class="path-check" id="pc-filmmaker-1" data-step="filmmaker-1" aria-label="Mark complete: Weeks 1 and 2, story foundations"><a href="craft/story-structure.html">Weeks 1 to 2</a> <span class="path-note">story foundations, logline + beat sheet</span></li>
-            <li><input type="checkbox" class="path-check" id="pc-filmmaker-2" data-step="filmmaker-2" aria-label="Mark complete: Week 3, prompt craft"><a href="higgsfield/prompt-engineering.html">Week 3</a> <span class="path-note">prompt craft + <a href="anatomy.html">anatomy explorer</a></span></li>
-            <li><input type="checkbox" class="path-check" id="pc-filmmaker-3" data-step="filmmaker-3" aria-label="Mark complete: Week 4, consistency system"><a href="craft/character-consistency.html">Week 4</a> <span class="path-note">consistency system, build a <a href="style-bible.html">style bible</a></span></li>
-            <li><input type="checkbox" class="path-check" id="pc-filmmaker-4" data-step="filmmaker-4" aria-label="Mark complete: Weeks 5 and 6, directing performance"><a href="craft/directing-performance.html">Weeks 5 to 6</a> <span class="path-note">directing performance</span></li>
-            <li><input type="checkbox" class="path-check" id="pc-filmmaker-5" data-step="filmmaker-5" aria-label="Mark complete: Week 7, first 60-second short"><a href="guides/first-short.html">Week 7</a> <span class="path-note">milestone: finished 60-second short</span></li>
-            <li><input type="checkbox" class="path-check" id="pc-filmmaker-6" data-step="filmmaker-6" aria-label="Mark complete: Week 8, grade and sound"><a href="craft/color-grading.html">Week 8</a> <span class="path-note">grade + <a href="craft/sound-music-audio.html">sound</a></span></li>
-            <li><input type="checkbox" class="path-check" id="pc-filmmaker-7" data-step="filmmaker-7" aria-label="Mark complete: Week 9, edit and repair"><a href="craft/editing-pipeline.html">Week 9</a> <span class="path-note">edit + <a href="doctor.html">failure doctor</a> repairs</span></li>
-            <li><input type="checkbox" class="path-check" id="pc-filmmaker-8" data-step="filmmaker-8" aria-label="Mark complete: Week 10, the 3-minute short"><a href="craft/longform-pipelines.html">Week 10</a> <span class="path-note">milestone: 3-minute short</span></li>
-            <li><input type="checkbox" class="path-check" id="pc-filmmaker-9" data-step="filmmaker-9" aria-label="Mark complete: Week 11, competition craft"><a href="higgsfield/competition-entry-craft.html">Week 11</a> <span class="path-note">competition-entry craft</span></li>
-            <li><input type="checkbox" class="path-check" id="pc-filmmaker-10" data-step="filmmaker-10" aria-label="Mark complete: Week 12, distribution and rights"><a href="distribution/release-paths.html">Week 12</a> <span class="path-note"><a href="legal/rights-and-disclosure.html">rights</a> + release plan</span></li>
-            <li><input type="checkbox" class="path-check" id="pc-filmmaker-11" data-step="filmmaker-11" aria-label="Mark complete: study the teardowns"><a href="teardown.html">Study</a> <span class="path-note">shot-by-shot teardowns, all ten films</span></li>
-            <li><input type="checkbox" class="path-check" id="pc-filmmaker-12" data-step="filmmaker-12" aria-label="Mark complete: ship the entry"><a href="case-studies/entry-craft-teardowns.html">Ship</a> <span class="path-note">milestone: competition entry submitted</span></li>
-          </ol>
-        </details>
-      </div>
-      <p class="paths-note">Every path crosses the same fork: animated, or photoreal. <a href="chapters.html">The index</a> lays both ways out before the shelves.</p>
+      <ol class="programme">
+        <li>
+          <details class="bill path-card" data-path="first-short" name="programme" open>
+            <summary>
+              <span class="bill-reel">01</span>
+              <span class="bill-title">Your first 60-second short</span>
+              <span class="bill-time">7 days</span>
+              <span class="bill-meter"><span class="path-bar-fill"></span></span>
+            </summary>
+            <div class="bill-body">
+              <p class="bill-logline">A first short you finish, not start. Seven days, an evening at a time.</p>
+              <ol class="path-steps">
+                <li><input type="checkbox" class="path-check" id="pc-first-short-1" data-step="first-short-1" aria-label="Mark complete: Day 1, concept lock"><a href="guides/first-short.html">Day 1</a> <span class="path-note">concept lock</span></li>
+                <li><input type="checkbox" class="path-check" id="pc-first-short-2" data-step="first-short-2" aria-label="Mark complete: Day 2, prompt workshop"><a href="guides/first-short.html">Day 2</a> <span class="path-note">prompt workshop</span></li>
+                <li><input type="checkbox" class="path-check" id="pc-first-short-3" data-step="first-short-3" aria-label="Mark complete: Day 3, generation batches"><a href="guides/first-short.html">Day 3</a> <span class="path-note">generation batches</span></li>
+                <li><input type="checkbox" class="path-check" id="pc-first-short-4" data-step="first-short-4" aria-label="Mark complete: Day 4, selects and assembly"><a href="guides/first-short.html">Day 4</a> <span class="path-note">selects &amp; assembly</span></li>
+                <li><input type="checkbox" class="path-check" id="pc-first-short-5" data-step="first-short-5" aria-label="Mark complete: Day 5, performance fixes"><a href="guides/first-short.html">Day 5</a> <span class="path-note">performance fixes</span></li>
+                <li><input type="checkbox" class="path-check" id="pc-first-short-6" data-step="first-short-6" aria-label="Mark complete: Day 6, sound"><a href="guides/first-short.html">Day 6</a> <span class="path-note">sound</span></li>
+                <li><input type="checkbox" class="path-check" id="pc-first-short-7" data-step="first-short-7" aria-label="Mark complete: Day 7, grade and export"><a href="guides/first-short.html">Day 7</a> <span class="path-note">grade &amp; export</span></li>
+              </ol>
+              <p class="bill-foot"><span data-path-progress>0 of 7 complete</span><button type="button" class="bill-reset" data-path-reset="first-short">Start again</button></p>
+            </div>
+          </details>
+        </li>
+        <li>
+          <details class="bill path-card" data-path="first-film" name="programme">
+            <summary><span class="bill-reel">02</span><span class="bill-title">Your first AI film</span><span class="bill-time">a weekend</span><span class="bill-meter"><span class="path-bar-fill"></span></span></summary>
+            <div class="bill-body">
+              <p class="bill-logline">The same spine as the short, opened up to a full weekend.</p>
+              <ol class="path-steps">
+                <li><input type="checkbox" class="path-check" id="pc-first-film-1" data-step="first-film-1" aria-label="Mark complete: Story structure"><a href="craft/story-structure.html">Story structure</a></li>
+                <li><input type="checkbox" class="path-check" id="pc-first-film-2" data-step="first-film-2" aria-label="Mark complete: Prompt engineering"><a href="higgsfield/prompt-engineering.html">Prompt engineering</a></li>
+                <li><input type="checkbox" class="path-check" id="pc-first-film-3" data-step="first-film-3" aria-label="Mark complete: Model selection"><a href="platforms/when-to-use-what.html">Model selection</a></li>
+                <li><input type="checkbox" class="path-check" id="pc-first-film-4" data-step="first-film-4" aria-label="Mark complete: Credit math"><a href="economics/credit-math.html">Credit math</a></li>
+                <li><input type="checkbox" class="path-check" id="pc-first-film-5" data-step="first-film-5" aria-label="Mark complete: Editing pipeline"><a href="craft/editing-pipeline.html">Editing pipeline</a></li>
+              </ol>
+              <p class="bill-foot"><span data-path-progress>0 of 5 complete</span><button type="button" class="bill-reset" data-path-reset="first-film">Start again</button></p>
+            </div>
+          </details>
+        </li>
+        <li>
+          <details class="bill path-card" data-path="animated" name="programme">
+            <summary><span class="bill-reel">03</span><span class="bill-title">Animated / stylized</span><span class="bill-time">1 to 2 weeks</span><span class="bill-meter"><span class="path-bar-fill"></span></span></summary>
+            <div class="bill-body">
+              <p class="bill-logline">Style first. The story gets drawn, not shot.</p>
+              <ol class="path-steps">
+                <li><input type="checkbox" class="path-check" id="pc-animated-1" data-step="animated-1" aria-label="Mark complete: Prompt engineering, animated register"><a href="higgsfield/prompt-engineering.html">Prompt engineering</a> <span class="path-note">animated register</span></li>
+                <li><input type="checkbox" class="path-check" id="pc-animated-2" data-step="animated-2" aria-label="Mark complete: Cinematic language"><a href="craft/cinematic-language.html">Cinematic language</a></li>
+                <li><input type="checkbox" class="path-check" id="pc-animated-3" data-step="animated-3" aria-label="Mark complete: Character consistency"><a href="craft/character-consistency.html">Character consistency</a></li>
+                <li><input type="checkbox" class="path-check" id="pc-animated-4" data-step="animated-4" aria-label="Mark complete: Model selection"><a href="platforms/when-to-use-what.html">Model selection</a></li>
+              </ol>
+              <p class="bill-foot"><span data-path-progress>0 of 4 complete</span><button type="button" class="bill-reset" data-path-reset="animated">Start again</button></p>
+            </div>
+          </details>
+        </li>
+        <li>
+          <details class="bill path-card" data-path="photoreal" name="programme">
+            <summary><span class="bill-reel">04</span><span class="bill-title">Photorealistic drama</span><span class="bill-time">3 to 6 weeks</span><span class="bill-meter"><span class="path-bar-fill"></span></span></summary>
+            <div class="bill-body">
+              <p class="bill-logline">Where the craft is making it look shot, not made.</p>
+              <ol class="path-steps">
+                <li><input type="checkbox" class="path-check" id="pc-photoreal-1" data-step="photoreal-1" aria-label="Mark complete: Soul ID deep dive"><a href="higgsfield/soul-id-deep-dive.html">Soul ID deep dive</a></li>
+                <li><input type="checkbox" class="path-check" id="pc-photoreal-2" data-step="photoreal-2" aria-label="Mark complete: Character consistency"><a href="craft/character-consistency.html">Character consistency</a></li>
+                <li><input type="checkbox" class="path-check" id="pc-photoreal-3" data-step="photoreal-3" aria-label="Mark complete: Directing performance"><a href="craft/directing-performance.html">Directing performance</a></li>
+                <li><input type="checkbox" class="path-check" id="pc-photoreal-4" data-step="photoreal-4" aria-label="Mark complete: Color grading"><a href="craft/color-grading.html">Color grading</a></li>
+              </ol>
+              <p class="bill-foot"><span data-path-progress>0 of 4 complete</span><button type="button" class="bill-reset" data-path-reset="photoreal">Start again</button></p>
+            </div>
+          </details>
+        </li>
+        <li>
+          <details class="bill path-card" data-path="competition" name="programme">
+            <summary><span class="bill-reel">05</span><span class="bill-title">Competition-ready craft</span><span class="bill-time">2 to 4 weeks</span><span class="bill-meter"><span class="path-bar-fill"></span></span></summary>
+            <div class="bill-body">
+              <p class="bill-logline">Craft, polish and a deadline. The one to open when the short is already done.</p>
+              <ol class="path-steps">
+                <li><input type="checkbox" class="path-check" id="pc-competition-1" data-step="competition-1" aria-label="Mark complete: Competition-entry craft"><a href="higgsfield/competition-entry-craft.html">Competition-entry craft</a></li>
+                <li><input type="checkbox" class="path-check" id="pc-competition-2" data-step="competition-2" aria-label="Mark complete: Directing performance"><a href="craft/directing-performance.html">Directing performance</a></li>
+                <li><input type="checkbox" class="path-check" id="pc-competition-3" data-step="competition-3" aria-label="Mark complete: Color grading"><a href="craft/color-grading.html">Color grading</a></li>
+                <li><input type="checkbox" class="path-check" id="pc-competition-4" data-step="competition-4" aria-label="Mark complete: Sound and music"><a href="craft/sound-music-audio.html">Sound &amp; music</a></li>
+                <li><input type="checkbox" class="path-check" id="pc-competition-5" data-step="competition-5" aria-label="Mark complete: Entry craft teardowns"><a href="case-studies/entry-craft-teardowns.html">Entry craft teardowns</a></li>
+              </ol>
+              <p class="bill-foot"><span data-path-progress>0 of 5 complete</span><button type="button" class="bill-reset" data-path-reset="competition">Start again</button></p>
+            </div>
+          </details>
+        </li>
+        <li>
+          <details class="bill path-card" data-path="longform" name="programme">
+            <summary><span class="bill-reel">06</span><span class="bill-title">Long-form: 20+ minutes</span><span class="bill-time">ongoing</span><span class="bill-meter"><span class="path-bar-fill"></span></span></summary>
+            <div class="bill-body">
+              <p class="bill-logline">Episodes, chapters and a film that stays one film.</p>
+              <ol class="path-steps">
+                <li><input type="checkbox" class="path-check" id="pc-longform-1" data-step="longform-1" aria-label="Mark complete: Long-form pipelines"><a href="craft/longform-pipelines.html">Long-form pipelines</a></li>
+                <li><input type="checkbox" class="path-check" id="pc-longform-2" data-step="longform-2" aria-label="Mark complete: Directing performance"><a href="craft/directing-performance.html">Directing performance</a></li>
+                <li><input type="checkbox" class="path-check" id="pc-longform-3" data-step="longform-3" aria-label="Mark complete: Editing pipeline"><a href="craft/editing-pipeline.html">Editing pipeline</a></li>
+                <li><input type="checkbox" class="path-check" id="pc-longform-4" data-step="longform-4" aria-label="Mark complete: Credit math, compute envelopes"><a href="economics/credit-math.html">Credit math</a> <span class="path-note">compute envelopes</span></li>
+              </ol>
+              <p class="bill-foot"><span data-path-progress>0 of 4 complete</span><button type="button" class="bill-reset" data-path-reset="longform">Start again</button></p>
+            </div>
+          </details>
+        </li>
+        <li>
+          <details class="bill path-card" data-path="filmmaker" name="programme">
+            <summary><span class="bill-reel">07</span><span class="bill-title">The 90-day filmmaker</span><span class="bill-time">12 weeks</span><span class="bill-meter"><span class="path-bar-fill"></span></span></summary>
+            <div class="bill-body">
+              <p class="bill-logline">Everything, in order, over a season. The full programme.</p>
+              <ol class="path-steps">
+                <li><input type="checkbox" class="path-check" id="pc-filmmaker-1" data-step="filmmaker-1" aria-label="Mark complete: Weeks 1 and 2, story foundations"><a href="craft/story-structure.html">Weeks 1 to 2</a> <span class="path-note">story foundations, logline + beat sheet</span></li>
+                <li><input type="checkbox" class="path-check" id="pc-filmmaker-2" data-step="filmmaker-2" aria-label="Mark complete: Week 3, prompt craft"><a href="higgsfield/prompt-engineering.html">Week 3</a> <span class="path-note">prompt craft + <a href="anatomy.html">anatomy explorer</a></span></li>
+                <li><input type="checkbox" class="path-check" id="pc-filmmaker-3" data-step="filmmaker-3" aria-label="Mark complete: Week 4, consistency system"><a href="craft/character-consistency.html">Week 4</a> <span class="path-note">consistency system, build a <a href="style-bible.html">style bible</a></span></li>
+                <li><input type="checkbox" class="path-check" id="pc-filmmaker-4" data-step="filmmaker-4" aria-label="Mark complete: Weeks 5 and 6, directing performance"><a href="craft/directing-performance.html">Weeks 5 to 6</a> <span class="path-note">directing performance</span></li>
+                <li><input type="checkbox" class="path-check" id="pc-filmmaker-5" data-step="filmmaker-5" aria-label="Mark complete: Week 7, first 60-second short"><a href="guides/first-short.html">Week 7</a> <span class="path-note">milestone: finished 60-second short</span></li>
+                <li><input type="checkbox" class="path-check" id="pc-filmmaker-6" data-step="filmmaker-6" aria-label="Mark complete: Week 8, grade and sound"><a href="craft/color-grading.html">Week 8</a> <span class="path-note">grade + <a href="craft/sound-music-audio.html">sound</a></span></li>
+                <li><input type="checkbox" class="path-check" id="pc-filmmaker-7" data-step="filmmaker-7" aria-label="Mark complete: Week 9, edit and repair"><a href="craft/editing-pipeline.html">Week 9</a> <span class="path-note">edit + <a href="doctor.html">failure doctor</a> repairs</span></li>
+                <li><input type="checkbox" class="path-check" id="pc-filmmaker-8" data-step="filmmaker-8" aria-label="Mark complete: Week 10, the 3-minute short"><a href="craft/longform-pipelines.html">Week 10</a> <span class="path-note">milestone: 3-minute short</span></li>
+                <li><input type="checkbox" class="path-check" id="pc-filmmaker-9" data-step="filmmaker-9" aria-label="Mark complete: Week 11, competition craft"><a href="higgsfield/competition-entry-craft.html">Week 11</a> <span class="path-note">competition-entry craft</span></li>
+                <li><input type="checkbox" class="path-check" id="pc-filmmaker-10" data-step="filmmaker-10" aria-label="Mark complete: Week 12, distribution and rights"><a href="distribution/release-paths.html">Week 12</a> <span class="path-note"><a href="legal/rights-and-disclosure.html">rights</a> + release plan</span></li>
+                <li><input type="checkbox" class="path-check" id="pc-filmmaker-11" data-step="filmmaker-11" aria-label="Mark complete: study the teardowns"><a href="teardown.html">Study</a> <span class="path-note">shot-by-shot teardowns, all ten films</span></li>
+                <li><input type="checkbox" class="path-check" id="pc-filmmaker-12" data-step="filmmaker-12" aria-label="Mark complete: ship the entry"><a href="case-studies/entry-craft-teardowns.html">Ship</a> <span class="path-note">milestone: competition entry submitted</span></li>
+              </ol>
+              <p class="bill-foot"><span data-path-progress>0 of 12 complete</span><button type="button" class="bill-reset" data-path-reset="filmmaker">Start again</button></p>
+            </div>
+          </details>
+        </li>
+      </ol>
     </section>
 
     <section class="workbench scene" aria-labelledby="bench-h">
@@ -7917,6 +7967,17 @@ def main():
         '<link rel="stylesheet" href="assets/css/fonts.css">\n  '
     )
     css_links = font_links + "\n  ".join(f'<link rel="stylesheet" href="{c}">' for c in CSS)
+    font_links_home = (
+        '<link rel="preload" href="assets/fonts/bodoni-moda-latin.woff2" as="font" type="font/woff2" crossorigin>\n  '
+        '<link rel="preload" href="assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>\n  '
+        '<link rel="stylesheet" href="assets/css/fonts.css">\n  '
+    )
+    css_home_list = []
+    for c in CSS:
+        css_home_list.append(c)
+        if c == "assets/css/home.css":
+            css_home_list.append("assets/css/programme.css")
+    css_links_home = font_links_home + "\n  ".join(f'<link rel="stylesheet" href="{c}">' for c in css_home_list)
 
     # Chapter pages
     flat = [(sid, slug, c) for sid, sname in SECTIONS for slug, c in chapters[sid] for sname in [dict(SECTIONS)[sid]]]
@@ -8039,7 +8100,7 @@ def main():
         for name, kind in pack_kinds.items())
     total_read = fmt_total_minutes(sum(c["read_min"] for _, _, c in flat))
     (SITE / "index.html").write_text(INDEX_TMPL.format(
-        css=css_links,
+        css=css_links_home,
         total_read=total_read,
         model_count=model_count,
         chapter_count=chapter_count,

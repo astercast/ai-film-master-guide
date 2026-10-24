@@ -55,3 +55,44 @@
   font-display: swap;
   src: url("../fonts/newsreader-latin-italic-var.woff2") format("woff2-variations");
 }
+
+/* ============================================================
+   v5 (rotation 129, Tonight's Programme): three families for the
+   redesigned homepage system. Bodoni Moda sets title cards and
+   programme titles (60s title-sequence contrast, optical sizes),
+   Geist reads and operates, Geist Mono is the projectionist's
+   voice for reel numbers and credit lines. The v4 faces above
+   stay for the pages that have not been redesigned yet.
+   All files SIL Open Font License; see FONTS.md.
+   ============================================================ */
+
+@font-face {
+  font-family: "Bodoni Moda";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  font-optical-sizing: auto;
+  src: url("../fonts/bodoni-moda-latin.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Bodoni Moda";
+  font-style: italic;
+  font-weight: 400 800;
+  font-display: swap;
+  font-optical-sizing: auto;
+  src: url("../fonts/bodoni-moda-latin-italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Geist";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("../fonts/geist-latin.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Geist Mono";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("../fonts/geist-mono-latin.woff2") format("woff2");
+}

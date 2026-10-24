@@ -1,0 +1,296 @@
+/* ============ cascade order for the title cards ============ */
+@layer card-base, card-open, card-hover;
+
+/* ============ 1. TOKENS: Tonight's Programme ============ */
+:root {
+  color-scheme: dark;
+  interpolate-size: allow-keywords;
+  --bar: #000000;
+  --house: #0C0B0A;
+  --picture: #151311;
+  --screen: #EEEAE0;
+  --aisle: #8F8A80;
+  --rule: #2A2724;
+  --tally: #D0232B;
+  --screen-soft: color-mix(in oklab, var(--screen) 82%, var(--house));
+  --row-lit: color-mix(in oklab, var(--screen) 5%, var(--house));
+  --font-title: "Bodoni Moda", "Bodoni 72", Didot, Georgia, serif;
+  --font-ui: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-tc: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --fs-bill: clamp(1.3rem, .95rem + 1.4vw, 2.2rem);
+  --fs-h1: clamp(1.02rem, .9rem + .5vw, 1.32rem);
+  --fs-lede: clamp(1.05rem, .98rem + .35vw, 1.25rem);
+  --fs-body: clamp(.98rem, .95rem + .15vw, 1.06rem);
+  --fs-small: .875rem;
+  --fs-tc: .72rem;
+  /* space: 6px unit, steps 1 2 3 4 6 10 16 */
+  --u: .375rem;
+  --s-1: var(--u);
+  --s-2: calc(var(--u) * 2);
+  --s-3: calc(var(--u) * 3);
+  --s-4: calc(var(--u) * 4);
+  --s-5: calc(var(--u) * 6);
+  --s-6: calc(var(--u) * 10);
+  --s-7: calc(var(--u) * 16);
+  --gutter: clamp(1rem, .25rem + 3vw, 3rem);
+  --page: 78rem;
+  --row-h: 4rem;
+  --reel-col: 3rem;
+  /* motion: a projector, not an app */
+  --ease-gate: cubic-bezier(.65, 0, .2, 1);
+  --ease-dissolve: cubic-bezier(.4, 0, .2, 1);
+  --dur-gate: 1100ms;
+  --dur-dissolve: 450ms;
+  --dur-reel: 380ms;
+  /* legacy names, so every other page joins the programme */
+  --bg: var(--house);
+  --bg-soft: var(--house);
+  --bg-raise: var(--picture);
+  --panel: var(--picture);
+  --panel-2: var(--picture);
+  --panel-3: var(--rule);
+  --line: var(--rule);
+  --line-soft: var(--rule);
+  --line-bright: var(--aisle);
+  --ink: var(--screen);
+  --ink-dim: var(--screen-soft);
+  --muted: var(--aisle);
+  --gold: var(--screen);
+  --tungsten: #FFFFFF;
+  --amber-deep: var(--tally);
+  --font-display: var(--font-title);
+  --font-serif: var(--font-title);
+  --font-body: var(--font-ui);
+  --font-mono: var(--font-tc);
+  --radius: 0;
+  --radius-s: 0;
+  --radius-m: 0;
+  --radius-l: 0;
+  --radius-xl: 0;
+  --shadow-1: none;
+  --shadow-2: none;
+  --shadow-lift: none;
+}
+
+/* ============ 2. BASE ============ */
+html { background: var(--house); }
+body {
+  margin: 0;
+  background: var(--house);
+  color: var(--screen);
+  font-family: var(--font-ui);
+  font-size: var(--fs-body);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration-thickness: 1px; text-decoration-color: var(--aisle); text-underline-offset: .25em; }
+a:hover { text-decoration-color: var(--tally); }
+:focus-visible { outline: 2px solid var(--tally); outline-offset: 3px; }
+.skip-link {
+  position: absolute; left: var(--gutter); top: -4rem; z-index: 300;
+  background: var(--screen); color: var(--bar);
+  padding: var(--s-1) var(--s-2); text-decoration: none;
+}
+.skip-link:focus { top: var(--s-1); }
+
+/* ============ 3. HEADER: the projection booth ============ */
+.house-head {
+  position: sticky; top: 0; z-index: 100;
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center;
+  gap: var(--s-5); padding: var(--s-2) var(--gutter);
+  background: var(--bar); border-bottom: 1px solid var(--rule);
+}
+.wordmark { display: inline-flex; align-items: baseline; gap: .5em; text-decoration: none; white-space: nowrap; }
+.wm-a { font: 600 .74rem/1 var(--font-ui); letter-spacing: .24em; text-transform: uppercase; }
+.wm-b { font: italic 500 1.22rem/1 var(--font-title); font-variation-settings: "opsz" 24; }
+.house-nav { display: flex; align-items: center; gap: var(--s-4); min-width: 0; }
+.house-nav > a { font: 500 var(--fs-small)/1 var(--font-ui); color: var(--aisle); text-decoration: none; padding-block: .55rem; }
+.house-nav > a:hover, .house-nav > a[aria-current="page"] { color: var(--screen); }
+.house-search {
+  display: inline-flex; align-items: center; gap: .65em;
+  font: 500 var(--fs-small)/1 var(--font-ui); color: var(--screen);
+  background: none; border: 1px solid var(--rule); border-radius: 0;
+  padding: .55em .8em; cursor: pointer;
+}
+.house-search kbd { font: 500 var(--fs-tc)/1 var(--font-tc); color: var(--aisle); }
+.house-search:hover { border-color: var(--aisle); }
+@media (width < 56rem) {
+  .house-head { grid-template-columns: 1fr auto; row-gap: var(--s-1); }
+  .house-nav {
+    grid-column: 1 / -1; grid-row: 2; overflow-x: auto; scrollbar-width: none;
+    margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); gap: var(--s-3);
+  }
+  .house-nav > a { white-space: nowrap; }
+}
+
+/* ============ 4. THE SCREEN: letterbox, bars carry the words ============ */
+.screen {
+  display: grid; grid-template-rows: auto 1fr auto;
+  block-size: clamp(18rem, 50svh, 34rem); background: var(--bar);
+}
+.bar {
+  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline;
+  gap: var(--s-1) var(--s-4); padding: var(--s-3) var(--gutter);
+}
+.bar h1 { margin: 0; font: 500 var(--fs-h1)/1.3 var(--font-ui); letter-spacing: -.005em; }
+.bar-meta, .bar-bottom p {
+  margin: 0; font: 500 var(--fs-tc)/1.4 var(--font-tc);
+  letter-spacing: .14em; text-transform: uppercase; color: var(--aisle);
+}
+.bar-bottom a { font: 500 var(--fs-small)/1.3 var(--font-ui); }
+.picture { position: relative; overflow: hidden; background: var(--picture); container: picture / size; }
+.picture .hero-grain { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; opacity: .35; pointer-events: none; }
+
+/* the title card: lower third, never centered */
+.tc {
+  position: absolute;
+  inset: auto var(--gutter) clamp(1rem, 7cqb, 2.75rem) var(--gutter);
+  display: grid; gap: var(--s-2);
+}
+.tc p { margin: 0; }
+.tc-kicker { font: 500 var(--fs-tc)/1 var(--font-tc); letter-spacing: .16em; text-transform: uppercase; color: var(--aisle); }
+.tc-title {
+  font-family: var(--font-title); font-weight: 500; font-variation-settings: "opsz" 96;
+  font-size: clamp(2rem, min(19cqb, 8.5cqi), 5.75rem);
+  line-height: .95; letter-spacing: -.012em; max-inline-size: 13ch; text-wrap: balance;
+}
+.tc-title em { font-style: italic; }
+.tc-line { font-size: var(--fs-lede); color: var(--screen-soft); max-inline-size: 40ch; }
+
+/* which card is on screen: base, then the open path, then whatever you point at */
+@layer card-base {
+  .tc { opacity: 0; translate: 0 .4rem; }
+}
+@layer card-open {
+  .door:not(:has(.bill[open])) .tc[data-for="none"],
+  .door:has(.bill[data-path="first-short"][open]) .tc[data-for="first-short"],
+  .door:has(.bill[data-path="first-film"][open]) .tc[data-for="first-film"],
+  .door:has(.bill[data-path="animated"][open]) .tc[data-for="animated"],
+  .door:has(.bill[data-path="photoreal"][open]) .tc[data-for="photoreal"],
+  .door:has(.bill[data-path="competition"][open]) .tc[data-for="competition"],
+  .door:has(.bill[data-path="longform"][open]) .tc[data-for="longform"],
+  .door:has(.bill[data-path="filmmaker"][open]) .tc[data-for="filmmaker"] { opacity: 1; translate: 0; }
+}
+@layer card-hover {
+  .door:has(.bill > summary:hover, .bill:focus-within) .tc { opacity: 0; translate: 0 .4rem; }
+  .door:has(.bill[data-path="first-short"] > summary:hover, .bill[data-path="first-short"]:focus-within) .tc[data-for="first-short"],
+  .door:has(.bill[data-path="first-film"] > summary:hover, .bill[data-path="first-film"]:focus-within) .tc[data-for="first-film"],
+  .door:has(.bill[data-path="animated"] > summary:hover, .bill[data-path="animated"]:focus-within) .tc[data-for="animated"],
+  .door:has(.bill[data-path="photoreal"] > summary:hover, .bill[data-path="photoreal"]:focus-within) .tc[data-for="photoreal"],
+  .door:has(.bill[data-path="competition"] > summary:hover, .bill[data-path="competition"]:focus-within) .tc[data-for="competition"],
+  .door:has(.bill[data-path="longform"] > summary:hover, .bill[data-path="longform"]:focus-within) .tc[data-for="longform"],
+  .door:has(.bill[data-path="filmmaker"] > summary:hover, .bill[data-path="filmmaker"]:focus-within) .tc[data-for="filmmaker"] { opacity: 1; translate: 0; }
+}
+/* ============ 5. THE PROGRAMME: tonight's bill ============ */
+.programme {
+  container: programme / inline-size;
+  list-style: none; max-inline-size: var(--page);
+  margin: 0 auto; padding: var(--s-4) var(--gutter) var(--s-7);
+}
+.programme > li { border-bottom: 1px solid var(--rule); }
+.programme > li:first-child { border-top: 1px solid var(--rule); }
+.programme .bill { background: none; border: 0; border-radius: 0; box-shadow: none; padding: 0; margin: 0; }
+.bill > summary {
+  list-style: none;
+  display: grid; grid-template-columns: var(--reel-col) minmax(0, 1fr) auto 6rem;
+  align-items: center; gap: var(--s-2) var(--s-4);
+  min-block-size: var(--row-h); padding: var(--s-2); cursor: pointer;
+}
+.bill > summary::-webkit-details-marker { display: none; }
+.bill > summary:hover { background: var(--row-lit); }
+.bill-reel { position: relative; font: 500 var(--fs-tc)/1 var(--font-tc); letter-spacing: .12em; color: var(--aisle); }
+.bill-title { font: 400 var(--fs-bill)/1.1 var(--font-title); font-variation-settings: "opsz" 48; }
+.bill-time { font: italic 400 1.05rem/1 var(--font-title); color: var(--aisle); white-space: nowrap; }
+.bill-meter { position: relative; display: block; block-size: 2px; background: var(--rule); }
+.bill-meter .path-bar-fill { position: absolute; inset: 0 auto 0 0; width: 0; background: var(--tally); }
+
+/* open row: the reel number becomes the tally light */
+.bill[open] > summary .bill-reel { color: transparent; }
+.bill[open] > summary .bill-reel::before {
+  content: ""; position: absolute; inset-block-start: 50%; inset-inline-start: 0;
+  inline-size: .6rem; block-size: .6rem; border-radius: 50%;
+  background: var(--tally); translate: 0 -50%;
+}
+
+/* the running order */
+.bill::details-content { block-size: 0; overflow: clip; }
+.bill[open]::details-content { block-size: auto; }
+.bill-body {
+  display: grid; gap: var(--s-4);
+  padding: var(--s-2) var(--s-2) var(--s-5) calc(var(--reel-col) + var(--s-4) + var(--s-2));
+}
+.bill-logline { margin: 0; font-size: var(--fs-lede); line-height: 1.45; color: var(--screen-soft); max-inline-size: 38ch; }
+.programme .path-steps { list-style: none; margin: 0; padding: 0; counter-reset: shot; }
+.programme .path-steps > li {
+  counter-increment: shot;
+  display: grid; grid-template-columns: 2.25rem 1.1rem auto minmax(0, 1fr);
+  align-items: baseline; gap: var(--s-2);
+  padding-block: .55rem; border-top: 1px solid var(--rule);
+}
+.programme .path-steps > li::before {
+  content: counter(shot, decimal-leading-zero);
+  font: 500 var(--fs-tc)/1 var(--font-tc); letter-spacing: .1em; color: var(--aisle);
+}
+.programme .path-note { font-size: var(--fs-small); color: var(--aisle); }
+.programme .path-check {
+  appearance: none; margin: 0;
+  inline-size: .95rem; block-size: .95rem;
+  border: 1.5px solid var(--aisle); border-radius: 50%;
+  background: transparent; translate: 0 .14em; cursor: pointer;
+}
+.programme .path-check:checked { background: var(--tally); border-color: var(--tally); }
+.programme .path-check:checked ~ a { color: var(--aisle); }
+.bill-foot {
+  margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--s-3);
+  font: 500 var(--fs-tc)/1 var(--font-tc); letter-spacing: .12em;
+  text-transform: uppercase; color: var(--aisle);
+}
+.bill-reset {
+  font: inherit; letter-spacing: inherit; text-transform: inherit; color: var(--screen);
+  background: none; border: 0; padding: 0;
+  text-decoration: underline 1px var(--aisle); text-underline-offset: .3em; cursor: pointer;
+}
+@container programme (width >= 52rem) {
+  .bill-body {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    grid-template-areas: "log steps" "foot steps";
+    align-items: start; column-gap: var(--s-6);
+  }
+  .bill-logline { grid-area: log; }
+  .programme .path-steps { grid-area: steps; }
+  .bill-foot { grid-area: foot; }
+}
+@container programme (width < 40rem) {
+  .bill > summary { grid-template-columns: 2rem minmax(0, 1fr) auto; }
+  .bill-meter { grid-column: 2 / -1; }
+  .bill-body { padding-inline-start: var(--s-2); }
+}
+
+/* ============ 6. MOTION: gate, dissolve, house lights ============ */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+  ::view-transition-old(root) { animation: to-black 180ms ease-in both; }
+  ::view-transition-new(root) { animation: from-black 260ms ease-out 60ms both; }
+  .picture { animation: gate-open var(--dur-gate) var(--ease-gate) 150ms both; }
+  .tc { transition: opacity var(--dur-dissolve) var(--ease-dissolve), translate var(--dur-dissolve) var(--ease-dissolve); }
+  .bill::details-content { transition: block-size var(--dur-reel) var(--ease-dissolve), content-visibility var(--dur-reel) allow-discrete; }
+  .bill-meter .path-bar-fill { transition: width 600ms var(--ease-dissolve); }
+  .programme .path-check { transition: background-color 200ms, border-color 200ms; }
+}
+@supports (animation-timeline: view()) {
+  .screen { animation: house-lights linear both; animation-timeline: view(); animation-range: exit 0% exit 70%; }
+}
+@keyframes gate-open { from { clip-path: inset(50% 0 50% 0); } to { clip-path: inset(0); } }
+@keyframes house-lights { to { filter: brightness(.35); } }
+@keyframes to-black { to { opacity: 0; } }
+@keyframes from-black { from { opacity: 0; } }
+
+/* ============ BUILD GLUE (wave lane, R129 — not part of the extracted design) ============
+   1. base.css carries a .tc utility (mono, muted, nowrap) for timecode stamps in
+      headings. Inside the screen, the title card owns the class: reset the
+      utility so card copy wraps and reads in the programme's own voices.
+   2. The generated All pages drawer lives inside .house-nav; give its summary
+      the nav's own voice. Its panel keeps the fleet's existing drawer styles. */
+.picture .tc { font-family: var(--font-ui); font-size: 1rem; color: var(--screen); white-space: normal; letter-spacing: normal; }
+.house-nav .nav-idx summary { font: 500 var(--fs-small)/1 var(--font-ui); color: var(--aisle); cursor: pointer; padding-block: .55rem; }
+.house-nav .nav-idx summary:hover { color: var(--screen); }

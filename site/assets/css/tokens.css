@@ -44,8 +44,10 @@
   --ink-dim: #d9cfbc;
   --muted: #ab9c83;            /* ~7.6:1 on --bg, AA */
 
-  /* Brass: the room's metal. Actions, slates, accents. */
-  --gold: #e2a62f;
+  /* Brass retired (v5, rotation 129, Aesthetics R357 F3 residue purge):
+     the old brass hex is purged repo-wide; --gold now carries the
+     programme's Screen white, the design-system value. */
+  --gold: #EEEAE0;
   --tungsten: #f2cd82;         /* brass lit brighter: hovers */
   --amber-deep: #a8741a;
 
