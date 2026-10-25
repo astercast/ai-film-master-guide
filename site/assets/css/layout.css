@@ -12,8 +12,8 @@
 .palette-open { border-radius: 999px; padding-inline: var(--space-4); }
 .brand { display: flex; align-items: center; gap: var(--space-3); color: var(--ink); text-decoration: none; flex: none; }
 .brand:hover { text-decoration: none; }
-.brand-mark { display:grid; place-items:center; flex:none; width:36px; height:36px; background:var(--gold); color:#1a1206; font-family:var(--font-display); font-weight:400; font-size:1.02rem; letter-spacing:0.03em; border-radius: var(--radius-s); box-shadow: var(--shadow-1); }
-.brand-name { font-family: var(--font-display); font-weight: 400; letter-spacing: 0.06em; font-size: 1.05rem; line-height: 1.2; text-transform: uppercase; }
+.brand-mark { display:grid; place-items:center; flex:none; width:36px; height:36px; background:var(--gold); color:#1a1206; font-family:var(--font-display); font-weight: 700; font-size:1.02rem; letter-spacing:0.03em; border-radius: var(--radius-s); box-shadow: var(--shadow-1); }
+.brand-name { font-family: var(--font-display); font-weight: 700; letter-spacing: 0.06em; font-size: 1.05rem; line-height: 1.2; text-transform: uppercase; }
 .brand-name small { display: block; font-weight: 500; letter-spacing: 0.04em; font-size: 0.68rem; color: var(--muted); margin-top: 1px; text-transform: uppercase; }
 
 .site-nav { display: flex; gap: 2px; margin-left: auto; flex-wrap: wrap; }
@@ -130,7 +130,7 @@
 }
 .hero-slate::before { content: ""; width: 40px; height: 3px; background: var(--gold); flex: none; }
 .hero-slate::after { content: ""; height: 1px; background: var(--line-bright); flex: 1; opacity: 0.6; }
-.hero h1 { max-width: 16ch; font-size: var(--display-1); font-weight: 400; letter-spacing: 0.008em; line-height: 1.02; margin-bottom: var(--space-5); text-wrap: balance; }
+.hero h1 { max-width: 16ch; font-size: var(--display-1); font-weight: 700; letter-spacing: 0.008em; line-height: 1.02; margin-bottom: var(--space-5); text-wrap: balance; }
 /* Pro rework (2026-10-15): headlines set in ONE ink on every surface.
    The white/brass split headline was a template rhythm repeated on
    ~30 tool pages; a studio publication sets the headline in one
@@ -148,7 +148,7 @@ main > .hero + section { padding-top: var(--space-8); }
 /*  Page head  */
 .page-head { padding-block: var(--space-7) var(--space-5); max-width: 900px; }
 .page-head .kicker { margin-bottom: var(--space-3); }
-.page-head h1 { font-size: var(--display-2); font-weight: 400; letter-spacing: 0.01em; line-height: 1.05; text-wrap: balance; }
+.page-head h1 { font-size: var(--display-2); font-weight: 700; letter-spacing: 0.01em; line-height: 1.05; text-wrap: balance; }
 .page-head .lede { color: var(--ink-dim); max-width: 70ch; font-size: var(--text-lg); margin-top: var(--space-3); }
 
 /*  Footer: the tail leader  */

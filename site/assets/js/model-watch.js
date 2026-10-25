@@ -77,7 +77,11 @@
       var s = data.summary || {};
       return { checkedAt: data.checked_at || null,
         total: s.models_total || 0, changed: s.changed || 0,
-        errors: s.with_errors || 0, unwatched: s.no_sources || 0, perModel: per };
+        errors: s.with_errors || 0, unwatched: s.no_sources || 0, perModel: per,
+        /* Not ok when any model source check failed, even when the
+           summary's with_errors reads 0 (it counts only all-failed
+           models, so a partial run masks as 0). */
+        degraded: Object.keys(per).some(function (k) { return per[k].status === "error"; }) };
     }
     function fromStatic(doc) {
       var per = {};
@@ -90,17 +94,29 @@
         per[m.model] = { status: st, lastChecked: m.last_checked || null, note: null };
       });
       var s = doc.summary || {};
+      var notOk = (doc.models || []).some(function (m) {
+        if (!m) return false;
+        if (m.source_status && m.source_status !== "ok") return true;
+        return (m.source_results || []).some(function (r) { return !r.ok; });
+      });
       return { checkedAt: doc.checked_at || null,
         total: s.models_total || 0, changed: s.changed || 0,
-        errors: s.with_errors || 0, unwatched: s.no_sources || 0, perModel: per };
+        errors: s.with_errors || 0, unwatched: s.no_sources || 0, perModel: per,
+        degraded: notOk };
     }
     function render(fresh, isLive, degraded, note) {
       var src = !isLive ? "Last published check"
         : degraded ? "Watchtower · degraded, " + (note || "some sources failed")
         : "Watchtower live";
+      /* The check-errors segment can never read 0 while the status
+         is not ok: a degraded run says checks failed on the last run
+         instead of a number. */
+      var errorsText = (degraded || fresh.degraded)
+        ? "Checks failed on the last run"
+        : fresh.errors + " check errors";
       panelLine.textContent = src + " · " + fresh.total + " models checked " +
         fmtWhen(fresh.checkedAt) + ", " + fresh.changed + " changed · " +
-        fresh.errors + " check errors · " + fresh.unwatched + " unwatched.";
+        errorsText + " · " + fresh.unwatched + " unwatched.";
       /* Round 2 honesty: a check older than its daily cycle is named
          as old on the page, so the panel never reads as a live feed
          when the feed is behind. */

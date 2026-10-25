@@ -1,0 +1,426 @@
+{
+ "format": "pulse/1",
+ "generated_at": "2026-10-24T13:38:48Z",
+ "healthy": true,
+ "sources_ok": 5,
+ "sources_total": 5,
+ "sources": [
+  {
+   "id": "arxiv",
+   "label": "arXiv video generation",
+   "url": "http://export.arxiv.org/api/query?search_query=all:%22video+generation%22&start=0&max_results=20&sortBy=submittedDate&sortOrder=descending",
+   "ok": true,
+   "items": 20,
+   "checked_at": "2026-10-24T13:38:30Z",
+   "last_ok_at": "2026-10-24T13:38:30Z",
+   "error": null,
+   "fails_in_a_row": 0
+  },
+  {
+   "id": "github",
+   "label": "GitHub release feeds",
+   "url": "https://github.com/huggingface/diffusers/releases",
+   "ok": true,
+   "items": 10,
+   "checked_at": "2026-10-24T13:38:48Z",
+   "last_ok_at": "2026-10-24T13:38:48Z",
+   "error": null,
+   "fails_in_a_row": 0
+  },
+  {
+   "id": "hf",
+   "label": "Hugging Face text-to-video list",
+   "url": "https://huggingface.co/api/models?pipeline_tag=text-to-video&sort=lastModified&direction=-1&limit=30",
+   "ok": true,
+   "items": 30,
+   "checked_at": "2026-10-24T13:38:27Z",
+   "last_ok_at": "2026-10-24T13:38:27Z",
+   "error": null,
+   "fails_in_a_row": 0
+  },
+  {
+   "id": "hn",
+   "label": "Hacker News AI video (50+ points)",
+   "url": "https://hn.algolia.com/api/v1/search?query=AI%20video&tags=story&numericFilters=points%3E%3D50&hitsPerPage=20",
+   "ok": true,
+   "items": 20,
+   "checked_at": "2026-10-24T13:38:34Z",
+   "last_ok_at": "2026-10-24T13:38:34Z",
+   "error": null,
+   "fails_in_a_row": 0
+  },
+  {
+   "id": "models",
+   "label": "Model source pages (44)",
+   "url": "data/v1/model-checks.json",
+   "ok": true,
+   "items": 44,
+   "checked_at": "2026-10-24T13:38:22Z",
+   "last_ok_at": "2026-10-24T13:38:22Z",
+   "error": null,
+   "fails_in_a_row": 0
+  }
+ ],
+ "changes": [
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "new-model",
+   "title": "New text-to-video model listed on Hugging Face: emdashthreee/pix-vid-wn-2.1-t2v-14b",
+   "ref": "https://huggingface.co/emdashthreee/pix-vid-wn-2.1-t2v-14b"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "new-model",
+   "title": "New text-to-video model listed on Hugging Face: RunningHubAI/rh-moss-image-bf16-miaomiao-anima-unet",
+   "ref": "https://huggingface.co/RunningHubAI/rh-moss-image-bf16-miaomiao-anima-unet"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "new-model",
+   "title": "New text-to-video model listed on Hugging Face: Kompaktion/Movetoy",
+   "ref": "https://huggingface.co/Kompaktion/Movetoy"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "new-model",
+   "title": "New text-to-video model listed on Hugging Face: onocloud/onoai-motion-1.0-pro",
+   "ref": "https://huggingface.co/onocloud/onoai-motion-1.0-pro"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "new-model",
+   "title": "New text-to-video model listed on Hugging Face: PedroMarinhoDev/Hy-Nomas-ComfyUI",
+   "ref": "https://huggingface.co/PedroMarinhoDev/Hy-Nomas-ComfyUI"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "new-model",
+   "title": "New text-to-video model listed on Hugging Face: dragonlimited/LTX2-marimo",
+   "ref": "https://huggingface.co/dragonlimited/LTX2-marimo"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "new-model",
+   "title": "New text-to-video model listed on Hugging Face: berryber09/FastH3-OmniRef-8step-pruned-w4a8",
+   "ref": "https://huggingface.co/berryber09/FastH3-OmniRef-8step-pruned-w4a8"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "new-model",
+   "title": "New text-to-video model listed on Hugging Face: ducvh5/looptrans-a5-b5x4-c5-tf-fm-tm",
+   "ref": "https://huggingface.co/ducvh5/looptrans-a5-b5x4-c5-tf-fm-tm"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "new-model",
+   "title": "New text-to-video model listed on Hugging Face: yaleiyaleichiling/NSFW-Anime-wan-5B",
+   "ref": "https://huggingface.co/yaleiyaleichiling/NSFW-Anime-wan-5B"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "new-model",
+   "title": "New text-to-video model listed on Hugging Face: EXCAI/ForcingBooster",
+   "ref": "https://huggingface.co/EXCAI/ForcingBooster"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "new-model",
+   "title": "New text-to-video model listed on Hugging Face: Sistafistaz/text-to-video-ms-1.7b",
+   "ref": "https://huggingface.co/Sistafistaz/text-to-video-ms-1.7b"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "new-model",
+   "title": "New text-to-video model listed on Hugging Face: Wuli-art/MiniMax-H3-Turbo",
+   "ref": "https://huggingface.co/Wuli-art/MiniMax-H3-Turbo"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "new-model",
+   "title": "New text-to-video model listed on Hugging Face: sanjeevkumar70550932/LTX-Video-0.9.7-distilled",
+   "ref": "https://huggingface.co/sanjeevkumar70550932/LTX-Video-0.9.7-distilled"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "new-model",
+   "title": "New text-to-video model listed on Hugging Face: nvidia/Wan2.2-T2V-A14B-Diffusers-FP8",
+   "ref": "https://huggingface.co/nvidia/Wan2.2-T2V-A14B-Diffusers-FP8"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "new-model",
+   "title": "New text-to-video model listed on Hugging Face: nvidia/Wan2.2-T2V-A14B-Diffusers-NVFP4",
+   "ref": "https://huggingface.co/nvidia/Wan2.2-T2V-A14B-Diffusers-NVFP4"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "new-model",
+   "title": "New text-to-video model listed on Hugging Face: epfl-neuroai/NEvo",
+   "ref": "https://huggingface.co/epfl-neuroai/NEvo"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "new-model",
+   "title": "New text-to-video model listed on Hugging Face: dragonlimited/comfyui-molab",
+   "ref": "https://huggingface.co/dragonlimited/comfyui-molab"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "new-model",
+   "title": "New text-to-video model listed on Hugging Face: nynxz/MiniMax-H3-PTD-LoRAs",
+   "ref": "https://huggingface.co/nynxz/MiniMax-H3-PTD-LoRAs"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "new-model",
+   "title": "New text-to-video model listed on Hugging Face: infosave/LTX-2.5-cmf",
+   "ref": "https://huggingface.co/infosave/LTX-2.5-cmf"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "new-model",
+   "title": "New text-to-video model listed on Hugging Face: infosave/MiniMax-H3-Turbo-cmf",
+   "ref": "https://huggingface.co/infosave/MiniMax-H3-Turbo-cmf"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "new-model",
+   "title": "New text-to-video model listed on Hugging Face: unsloth/Wan2.2-TI2V-5B-FP8",
+   "ref": "https://huggingface.co/unsloth/Wan2.2-TI2V-5B-FP8"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "new-model",
+   "title": "New text-to-video model listed on Hugging Face: sjxknukkji/wan2.2-t2v-a14b-transformers-bf16",
+   "ref": "https://huggingface.co/sjxknukkji/wan2.2-t2v-a14b-transformers-bf16"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "new-model",
+   "title": "New text-to-video model listed on Hugging Face: Lightricks/LTX-2.5-Diffusers",
+   "ref": "https://huggingface.co/Lightricks/LTX-2.5-Diffusers"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "new-model",
+   "title": "New text-to-video model listed on Hugging Face: Lightricks/LTX-2.3-22b-IC-LoRA-Cross-Eyed",
+   "ref": "https://huggingface.co/Lightricks/LTX-2.3-22b-IC-LoRA-Cross-Eyed"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "new-model",
+   "title": "New text-to-video model listed on Hugging Face: Lightricks/LTX-2-19b-LoRA-Camera-Control-Static",
+   "ref": "https://huggingface.co/Lightricks/LTX-2-19b-LoRA-Camera-Control-Static"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "new-model",
+   "title": "New text-to-video model listed on Hugging Face: Lightricks/LTX-2-19b-LoRA-Camera-Control-Jib-Up",
+   "ref": "https://huggingface.co/Lightricks/LTX-2-19b-LoRA-Camera-Control-Jib-Up"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "new-model",
+   "title": "New text-to-video model listed on Hugging Face: Lightricks/LTX-2-19b-LoRA-Camera-Control-Jib-Down",
+   "ref": "https://huggingface.co/Lightricks/LTX-2-19b-LoRA-Camera-Control-Jib-Down"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "new-model",
+   "title": "New text-to-video model listed on Hugging Face: Lightricks/LTX-2-19b-LoRA-Camera-Control-Dolly-Right",
+   "ref": "https://huggingface.co/Lightricks/LTX-2-19b-LoRA-Camera-Control-Dolly-Right"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "new-model",
+   "title": "New text-to-video model listed on Hugging Face: Lightricks/LTX-2-19b-LoRA-Camera-Control-Dolly-Out",
+   "ref": "https://huggingface.co/Lightricks/LTX-2-19b-LoRA-Camera-Control-Dolly-Out"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "new-model",
+   "title": "New text-to-video model listed on Hugging Face: Lightricks/LTX-2-19b-LoRA-Camera-Control-Dolly-Left",
+   "ref": "https://huggingface.co/Lightricks/LTX-2-19b-LoRA-Camera-Control-Dolly-Left"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "paper",
+   "title": "New arXiv paper: WorldForge V2: Eliciting Camera-Trajectory Alignment in Video Diffusion Models",
+   "ref": "http://arxiv.org/abs/2610.31640v1"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "paper",
+   "title": "New arXiv paper: AnyGameRenderer: Entity-Consistent Generative Rendering Across Games and an Entity-Level Benchmark",
+   "ref": "http://arxiv.org/abs/2610.31466v1"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "paper",
+   "title": "New arXiv paper: PhysTrace: Interpretable Temporal Evaluation of Physical Consistency in Video Generative Models",
+   "ref": "http://arxiv.org/abs/2610.31429v1"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "paper",
+   "title": "New arXiv paper: RGraph-Eval: Task-Grounded Scene Graphs for Evaluating Robot Video Generation",
+   "ref": "http://arxiv.org/abs/2610.31121v1"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "paper",
+   "title": "New arXiv paper: Making MLLM Latents Matter: Factor-Aware Predictive Learning for Cinematic Video Generation",
+   "ref": "http://arxiv.org/abs/2610.30926v1"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "paper",
+   "title": "New arXiv paper: Verus-Insight: Towards Explainable Artifact Detection in AI-Generated Videos",
+   "ref": "http://arxiv.org/abs/2610.30866v1"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "paper",
+   "title": "New arXiv paper: Direct Forcing: A Single-Stage Training Recipe for Few-Step Autoregressive Text-to-Video Generation",
+   "ref": "http://arxiv.org/abs/2610.30861v1"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "paper",
+   "title": "New arXiv paper: DeXplicit: Making Physical State Explicit in Dexterous Manipulation World Models",
+   "ref": "http://arxiv.org/abs/2610.30781v1"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "paper",
+   "title": "New arXiv paper: PhyEvolve: Multi-Agent State-Evolution Planning for Physics-Aware Video Generation",
+   "ref": "http://arxiv.org/abs/2610.30717v1"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "paper",
+   "title": "New arXiv paper: Latent Space Jam: Layout Guided Video Synthesis",
+   "ref": "http://arxiv.org/abs/2610.30390v1"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "paper",
+   "title": "New arXiv paper: Self-Distilling Future Video Representations for World Action Models",
+   "ref": "http://arxiv.org/abs/2610.30320v1"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "paper",
+   "title": "New arXiv paper: Rethinking Video Autoencoders for Interactive World Models",
+   "ref": "http://arxiv.org/abs/2610.30129v1"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "paper",
+   "title": "New arXiv paper: Attn-Forcing: Learning Full-Context Attention Proxies for Streaming Video Generation",
+   "ref": "http://arxiv.org/abs/2610.30036v1"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "paper",
+   "title": "New arXiv paper: Looking Ahead: Modeling Future Evolution in Autoregressive Video Generation",
+   "ref": "http://arxiv.org/abs/2610.29989v1"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "paper",
+   "title": "New arXiv paper: CausalAlign: Causal Alignment of Video Generation Models for Consistent Ego-Motion",
+   "ref": "http://arxiv.org/abs/2610.29915v1"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "paper",
+   "title": "New arXiv paper: CineEvolve: An Agentic Self-Evolution Framework for Cinematic Multi-Shot Video Generation",
+   "ref": "http://arxiv.org/abs/2610.29590v1"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "paper",
+   "title": "New arXiv paper: Pair-Free Coarse-to-Real Video Generation via Real-to-Coarse Image Supervision",
+   "ref": "http://arxiv.org/abs/2610.28954v1"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "paper",
+   "title": "New arXiv paper: HorizonComposer: Spatiotemporally Consistent Driving Video Editing with Enriched Traffic Semantics",
+   "ref": "http://arxiv.org/abs/2610.28829v1"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "paper",
+   "title": "New arXiv paper: Joints, Camera, Action! Co-Generating 3D Motion and Video for Arbitrary Rigs",
+   "ref": "http://arxiv.org/abs/2610.28632v1"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "paper",
+   "title": "New arXiv paper: AEON: Unifying Video and 3D World Models",
+   "ref": "http://arxiv.org/abs/2610.28631v1"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "story",
+   "title": "Andrej Karpathy: Software in the era of AI [video]",
+   "ref": "https://www.youtube.com/watch?v=LCEmiRjPEtQ"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "story",
+   "title": "YouTube to automatically label AI-generated videos",
+   "ref": "https://blog.youtube/news-and-events/improving-ai-labels-viewers-creators/"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "story",
+   "title": "Make-A-Video: AI system that generates videos from text",
+   "ref": "https://makeavideo.studio/"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "story",
+   "title": "French supermarket's Christmas advert is worldwide hit (without AI) [video]",
+   "ref": "https://www.youtube.com/watch?v=Na9VmMNJvsA"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "story",
+   "title": "Show HN: A real time AI video agent with under 1 second of latency",
+   "ref": "https://news.ycombinator.com/item?id=41710227"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "story",
+   "title": "Jeff Dean’s Lecture for YC AI [video]",
+   "ref": "http://blog.ycombinator.com/jeff-deans-lecture-for-yc-ai?src=hn"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "story",
+   "title": "$100 AI Music Video: Claude Fable 5 vs. GPT-5.6 Sol",
+   "ref": "https://www.tryai.dev/blog/ai-music-video-arena-claude-vs-gpt-5.6"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "story",
+   "title": "All AI Videos Are Harmful (2025)",
+   "ref": "https://idiallo.com/blog/all-ai-videos-are-harmful"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "story",
+   "title": "Andrew Ng: Building Faster with AI [video]",
+   "ref": "https://www.youtube.com/watch?v=RNJCfif1dPY"
+  },
+  {
+   "at": "2026-10-24T13:33:52Z",
+   "kind": "story",
+   "title": "Show HN: Real-time AI (audio/video in, voice out) on an M3 Pro with Gemma E2B",
+   "ref": "https://github.com/fikrikarim/parlor"
+  }
+ ]
+}

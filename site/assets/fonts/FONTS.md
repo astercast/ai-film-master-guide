@@ -1,29 +1,17 @@
-# Self-hosted fonts, provenance
+# Self-hosted fonts, provenance (v6, rotation 130)
 
-All files in this directory are SIL Open Font License (OFL) webfonts,
-downloaded 2026-10-12 from the Google Fonts css2 API (latin subset,
-woff2) and served locally so the site makes **zero remote font
-requests**. Re-download with `/tmp/fetch_fonts.py`-style flow:
+All files are SIL Open Font License 1.1 webfonts, self-hosted, zero remote font requests.
+Source: the Fontsource npm packages (`@fontsource-variable/archivo`, `@fontsource-variable/newsreader`),
+which repackage the official Google Fonts releases. The OFL text ships in each package's LICENSE file;
+keep a copy beside the fonts when you commit them.
+Subset to Latin plus the punctuation, arrows and symbols the site uses; axes trimmed with fontTools.
 
-```
-UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-curl -s -A "$UA" "https://fonts.googleapis.com/css2?family=Anton&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
-```
+| file | family | axes | used for |
+|---|---|---|---|
+| archivo-var.woff2 | Archivo (Omnibus-Type) | wght 400 to 800, wdth 70 to 112 | titles, headings, interface |
+| newsreader-text.woff2 | Newsreader (Production Type) | wght 400 to 700 | long reading text |
+| newsreader-text-italic.woff2 | Newsreader italic | wght 400 to 600 | emphasis inside reading text |
+| geist-mono-latin.woff2 | Geist Mono | wght 400 to 700 | reel numbers, credit lines |
+| jetbrains-mono-latin-var.woff2 | JetBrains Mono | wght 400 to 800 | timecodes, code |
 
-Keep only the `/* latin */` @font-face blocks.
-
-| file | family | style | weight | notes |
-|---|---|---|---|---|
-| anton-latin-normal-400.woff2 | Anton | normal | 400 (static) | display face; removed in v2, RESTORED in v3 (rotation 21 identity pass) from the pre-v2 tree; the cutting room's headline voice |
-| newsreader-latin-normal-var.woff2 | Newsreader | normal | 200 to 800 variable | prose |
-| newsreader-latin-italic-var.woff2 | Newsreader | italic | 200 to 800 variable | prose italics |
-| inter-latin-normal-var.woff2 | Inter | normal | 100 to 900 variable | tool UI body |
-| jetbrains-mono-latin-var.woff2 | JetBrains Mono | normal | 400 to 800 variable | the timecode voice (rotation 23): timecodes, slate labels, record numbers, metadata. Removed in v2 as decoration; restored 2026-10-14 from the Google Fonts css2 API (latin subset, variable file) with a job, the domain's own notation as design (FINDINGS 5.3) |
-
-Note: Google's css2 API now serves Inter and JetBrains Mono as single
-variable files even when discrete weights are requested (all five/six
-latin blocks point at the same URL), one file each is all we ship.
-| bodoni-moda-latin.woff2 | Bodoni Moda | normal | 400 to 800 variable (opsz 6 to 96) | v5 (rotation 129, Tonight's Programme): title cards + programme titles |
-| bodoni-moda-latin-italic.woff2 | Bodoni Moda | italic | 400 to 800 variable (opsz 6 to 96) | v5: runtimes and emphases in titles |
-| geist-latin.woff2 | Geist | normal | 400 to 700 variable | v5: reading + interface on the redesigned homepage |
-| geist-mono-latin.woff2 | Geist Mono | normal | 400 to 700 variable | v5: reel numbers + credit lines |
+Removed in v6: Anton, Bodoni Moda (roman and italic), Geist, Inter, the full Newsreader files.

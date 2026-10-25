@@ -4,7 +4,7 @@
 
 This repo is a living research project. Every claim traces back to a source (official docs, creator blogs, tutorial breakdowns, competition rules, judged-work analyses). See `sources/source-index.md` for the full catalog.
 
-No Vercel. GitHub-only: a static generated site, the chapter sources, and a versioned JSON API.
+Deployed on Vercel (Standard build machine, never Turbo): the generated static site plus the serverless functions under `server/api/`, which read `data/v1/**` from the function bundle. GitHub holds the sources and runs the six-hour heartbeat workflow (`scripts/heartbeat/`), which refreshes `data/v1/pulse.json` and the Wire.
 
 ## How to use it
 

@@ -1,43 +1,13 @@
 /* ============================================================
-   Self-hosted fonts, v4 (rotation 23): four families, four jobs.
-   Anton proclaims (headlines, slate lines, the brand): the
-   condensed voice of the cutting room, restored in the identity
-   pass after v2 cut it. Inter reads and operates. Newsreader
-   carries long-form chapter prose. JetBrains Mono is the
-   timecode voice (rotation 23, FINDINGS 5.3): timecodes, slate
-   labels, record numbers and metadata are set in it, so
-   metadata stops borrowing the body voice. It was cut in v2 as
-   decoration; it returns with a job, the domain's own notation.
-   All files SIL Open Font License; see FONTS.md.
+   Self-hosted fonts, v6 (rotation 130): Archivo variable carries
+   titles, headings and interface (width axis 70 to 112, weight
+   400 to 800; "Archivo Display" pins the width to 72 for the
+   legacy display voice). Newsreader carries long-form reading.
+   Geist Mono and JetBrains Mono are unchanged: reel numbers,
+   credit lines, timecodes, code and metadata.
+   All files SIL Open Font License 1.1; see FONTS.md.
    ============================================================ */
 
-@font-face {
-  font-family: "Anton";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("../fonts/anton-latin-normal-400.woff2") format("woff2");
-}
-
-@font-face {
-  /* Variable file: the variations format is declared so Safari
-     treats it as variable (aesthetics round 1, Section 5, rule 2);
-     the weight range above is rule 1. Anton stays a static face
-     with one exact weight (rule 4). */
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url("../fonts/inter-latin-normal-var.woff2") format("woff2-variations");
-}
-
-@font-face {
-  font-family: "Newsreader";
-  font-style: normal;
-  font-weight: 200 800;
-  font-display: swap;
-  src: url("../fonts/newsreader-latin-normal-var.woff2") format("woff2-variations");
-}
 @font-face {
   /* Variable file (weight axis 400 to 800 in the file itself);
      the variations format is declared per rule 2, the range per
@@ -48,51 +18,49 @@
   font-display: swap;
   src: url("../fonts/jetbrains-mono-latin-var.woff2") format("woff2-variations");
 }
-@font-face {
-  font-family: "Newsreader";
-  font-style: italic;
-  font-weight: 200 800;
-  font-display: swap;
-  src: url("../fonts/newsreader-latin-italic-var.woff2") format("woff2-variations");
-}
+/* Geist Mono (kept from the v5 programme set): the
+   projectionist's voice for reel numbers and credit lines. */
 
-/* ============================================================
-   v5 (rotation 129, Tonight's Programme): three families for the
-   redesigned homepage system. Bodoni Moda sets title cards and
-   programme titles (60s title-sequence contrast, optical sizes),
-   Geist reads and operates, Geist Mono is the projectionist's
-   voice for reel numbers and credit lines. The v4 faces above
-   stay for the pages that have not been redesigned yet.
-   All files SIL Open Font License; see FONTS.md.
-   ============================================================ */
-
-@font-face {
-  font-family: "Bodoni Moda";
-  font-style: normal;
-  font-weight: 400 800;
-  font-display: swap;
-  font-optical-sizing: auto;
-  src: url("../fonts/bodoni-moda-latin.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Bodoni Moda";
-  font-style: italic;
-  font-weight: 400 800;
-  font-display: swap;
-  font-optical-sizing: auto;
-  src: url("../fonts/bodoni-moda-latin-italic.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Geist";
-  font-style: normal;
-  font-weight: 400 700;
-  font-display: swap;
-  src: url("../fonts/geist-latin.woff2") format("woff2");
-}
 @font-face {
   font-family: "Geist Mono";
   font-style: normal;
   font-weight: 400 700;
   font-display: swap;
   src: url("../fonts/geist-mono-latin.woff2") format("woff2");
+}
+
+/* ---- v6 (rotation 130): the programme re-set. One grotesque with a width axis for
+   titles and interface, one reading serif, one mono. Supersedes the v5 programme faces. ---- */
+@font-face {
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 400 800;
+  font-stretch: 70% 112%;
+  font-display: swap;
+  src: url("../fonts/archivo-var.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Newsreader";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("../fonts/newsreader-text.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Newsreader";
+  font-style: italic;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("../fonts/newsreader-text-italic.woff2") format("woff2");
+}
+
+/* Same file, width pinned to 72: the legacy display voice. A pinned alias means
+   no rule has to remember to set font-stretch. */
+@font-face {
+  font-family: "Archivo Display";
+  font-style: normal;
+  font-weight: 400 800;
+  font-stretch: 72%;
+  font-display: swap;
+  src: url("../fonts/archivo-var.woff2") format("woff2");
 }

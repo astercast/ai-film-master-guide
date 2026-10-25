@@ -70,7 +70,7 @@ One Vercel project containing a static frontend plus serverless functions:
 2. Access to the user's Vercel account (Hobby).
 3. Secrets generated (see §4):
    - `CRON_SECRET` — random 32+ bytes, e.g. `openssl rand -hex 32`.
-   - `GITHUB_REPO_TOKEN` — **pending the user's decision** (spec §14.1):
+Retired 2026-10-24 (fleet-data migration): no GITHUB_REPO_TOKEN is used anywhere. Live data refreshes through the astercast/fleet-data repo; the fleet watchdog does the checking.
      either a fine-grained PAT (`contents:write`, this repo only) so the
      daily cron can commit refreshed check data back to the repo, **or**
      deliberately omitted — then the cron is read-only (it still computes
@@ -91,7 +91,7 @@ One Vercel project containing a static frontend plus serverless functions:
    - `CRON_SECRET` = `<random 32+ bytes>`
    - `GITHUB_REPO` = `astercast/ai-film-master-guide`
    - `REPO_STATIC_PREFIX` = `site/data/v1`
-   - `GITHUB_REPO_TOKEN` = `<fine-grained PAT, contents:write, this repo only>`
+Retired 2026-10-24 (fleet-data migration): no GITHUB_REPO_TOKEN is used anywhere. Live data refreshes through the astercast/fleet-data repo; the fleet watchdog does the checking.
      — or omit it deliberately (see §2.3); do not leave a placeholder value.
 4. **Build machine: Standard.** Project → Settings → Build & Deployment →
    Build Machine → **Standard**. **Never Turbo** — September 2026 Turbo CPU
@@ -124,8 +124,8 @@ One Vercel project containing a static frontend plus serverless functions:
 | name | required? | where set | rotation notes |
 |---|---|---|---|
 | `CRON_SECRET` | yes | Vercel → Project → Settings → Environment Variables (Production) | Rotate any time: update Vercel, no code change. The cron 401s fail closed on a wrong value. |
-| `GITHUB_REPO_TOKEN` | no (pending §14.1 decision) | same as above | Fine-grained PAT, `contents:write`, this repo only. Without it the cron degrades gracefully to read-only (`{committed:false, reason:'no-token'}`). Never commit the token to the repo. |
-| `GITHUB_REPO` | yes (used by cron when committing) | same as above | `astercast/ai-film-master-guide`. Only read when `GITHUB_REPO_TOKEN` is set. |
+Retired 2026-10-24 (fleet-data migration): no GITHUB_REPO_TOKEN is used anywhere. Live data refreshes through the astercast/fleet-data repo; the fleet watchdog does the checking.
+Retired 2026-10-24 (fleet-data migration): no GITHUB_REPO_TOKEN is used anywhere. Live data refreshes through the astercast/fleet-data repo; the fleet watchdog does the checking.
 | `REPO_STATIC_PREFIX` | yes (used by cron when committing) | same as above | `site/data/v1` — where the cron writes refreshed check JSON. |
 
 ## 5. Hobby limits table
@@ -171,7 +171,7 @@ upgrade without the user's explicit word.
   review-queue item — it **never auto-edits** `models.json`/`pricing.json`
   (repo promotion rule: fetched pages are unreliable signals; a human or the
   wave engine verifies and promotes). Commits only on change
-  (`writeJsonIfChanged`), only when `GITHUB_REPO_TOKEN` is set.
+Retired 2026-10-24 (fleet-data migration): no GITHUB_REPO_TOKEN is used anywhere. Live data refreshes through the astercast/fleet-data repo; the fleet watchdog does the checking.
 - **Idempotent:** 60s duplicate-delivery cooldown; re-running the same day
   re-checks the same rotation slice without duplicating queue items.
 - **Alerting:** logs only, `[cron]` prefix. **No log lines in 48h** means the

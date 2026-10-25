@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Direct: Crane up / Crane down, Skill, AI Film Master Guide</title>
   <meta name="description" content="Your shot will gain what this move is for, epic reveals; moving from intimate detail to grand scale (or reverse), in the exact words models obey, ready to paste into any prompt.">
-  <link rel="preload" href="../assets/fonts/anton-latin-normal-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="../assets/fonts/inter-latin-normal-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../assets/css/fonts.css">
   <link rel="stylesheet" href="../assets/css/tokens.css">
   <link rel="stylesheet" href="../assets/css/base.css">
@@ -15,7 +14,13 @@
   <link rel="stylesheet" href="../assets/css/motifs.css">
   <link rel="stylesheet" href="../assets/css/docs.css">
   <link rel="stylesheet" href="../assets/css/home.css">
+  <link rel="stylesheet" href="../assets/css/programme.css">
+  <link rel="stylesheet" href="../assets/css/flatbed.css">
+  <link rel="stylesheet" href="../assets/css/wire.css">
   <link rel="stylesheet" href="../assets/css/print.css">
+  <meta name="built" content="2026-10-24T13:39:13Z">
+  <link rel="stylesheet" href="/assets/css/pulse.css">
+  <script type="module" src="/assets/js/pulse.js"></script>
   <meta name="theme-color" content="#090807">
   <link rel="icon" href="/favicon.ico" sizes="48x48">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -35,24 +40,15 @@
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="../index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        <a href="../cutting-room.html">Cutting room</a>
+  <header class="house-head">
+    <a class="wordmark" href="../index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main"><a href="../cutting-room.html">Cutting room</a>
         <a href="../teardown.html">Teardowns</a>
         <a href="../workshop.html">Workshop</a>
         <a href="../prompts.html">Prompts</a>
         <a href="../models/">Models</a>
-        <details class="nav-idx"><summary class="nav-idx-btn is-current"><span class="idx-full">All pages</span><span class="idx-short">Index</span><span class="nav-idx-caret" aria-hidden="true">▾</span></summary><div class="nav-idx-panel"><p class="nav-idx-head">Every page in the guide. The bar holds the five working rooms; the rest of the building is here, grouped by the job it does.</p><div class="nav-idx-group"><p>On the bench</p><p class="idx-desc">Working tools for a film in progress: planners, sheets, and fixes.</p><ul><li><a href="../prompts.html">Prompts</a></li><li><a href="../studio.html">Studio</a></li><li><a href="../compare.html">Compare</a></li><li><a href="../shots.html">Shot list</a></li><li><a href="../style-bible.html">Style bible</a></li><li><a href="../budget.html">Budget</a></li><li><a href="../optimizer.html">Optimizer</a></li><li><a href="../doctor.html">Doctor</a></li><li><a href="../linter.html">Linter</a></li><li><a href="../greenlight.html">Green light</a></li><li><a href="../clearance.html">Script clearance</a></li><li><a href="../continuity.html">Continuity ledger</a></li><li><a href="../cuesheet.html">Cue sheet</a></li><li><a href="../grade.html">Grade sheet</a></li><li><a href="../cut.html">Cut sheet</a></li><li><a href="../take.html">Take sheet</a></li><li><a href="../longform.html">Longform sheet</a></li><li><a href="../recipes.html">Recipes</a></li><li><a href="../forge.html">Episode forge</a></li></ul></div><div class="nav-idx-group"><p>Study</p><p class="idx-desc">Reading and reference: every chapter, the argument, the guides, and the model watch.</p><ul><li><a href="../chapters.html">Chapters</a></li><li><a href="../manifesto.html">Manifesto</a></li><li><a href="../craft-not-buttons.html">Craft, not buttons</a></li><li><a href="../field-guides/">Field guides</a></li><li><a href="../checks/">Knowledge checks</a></li><li><a href="../quiz.html">Quiz</a></li><li><a href="../path.html">The path</a></li><li><a href="../gallery.html">Gallery</a></li><li><a href="../model-watch.html">Model watch</a></li><li><a href="../showdown.html">Model showdown</a></li></ul></div><div class="nav-idx-group"><p>For agents</p><p class="idx-desc">The machine-readable shelf: loadable task skills, the spec, and the API.</p><ul><li><a href="../skills.html" aria-current="page">Skills</a></li><li><a href="../skill-spec.html">Skill spec</a></li><li><a href="../api.html">API</a></li><li><a href="../changelog.html">Changelog</a></li></ul></div></div></details>
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">&#8984;K</span> Search
-      </button>
-    </div>
+        <details class="nav-idx"><summary class="nav-idx-btn is-current"><span class="idx-full">All pages</span><span class="idx-short">Index</span><span class="nav-idx-caret" aria-hidden="true">▾</span></summary><div class="nav-idx-panel"><p class="nav-idx-head">Every page in the guide. The bar holds the five working rooms; the rest of the building is here, grouped by the job it does.</p><div class="nav-idx-group"><p>On the bench</p><p class="idx-desc">Working tools for a film in progress: planners, sheets, and fixes.</p><ul><li><a href="../prompts.html">Prompts</a></li><li><a href="../studio.html">Studio</a></li><li><a href="../compare.html">Compare</a></li><li><a href="../shots.html">Shot list</a></li><li><a href="../binder.html">Binder</a></li><li><a href="../style-bible.html">Style bible</a></li><li><a href="../budget.html">Budget</a></li><li><a href="../optimizer.html">Optimizer</a></li><li><a href="../doctor.html">Doctor</a></li><li><a href="../linter.html">Linter</a></li><li><a href="../greenlight.html">Green light</a></li><li><a href="../clearance.html">Script clearance</a></li><li><a href="../continuity.html">Continuity ledger</a></li><li><a href="../cuesheet.html">Cue sheet</a></li><li><a href="../grade.html">Grade sheet</a></li><li><a href="../cut.html">Cut sheet</a></li><li><a href="../take.html">Take sheet</a></li><li><a href="../longform.html">Longform sheet</a></li><li><a href="../recipes.html">Recipes</a></li><li><a href="../forge.html">Episode forge</a></li></ul></div><div class="nav-idx-group"><p>Study</p><p class="idx-desc">Reading and reference: every chapter, the argument, the guides, and the model watch.</p><ul><li><a href="../chapters.html">Chapters</a></li><li><a href="../manifesto.html">Manifesto</a></li><li><a href="../craft-not-buttons.html">Craft, not buttons</a></li><li><a href="../field-guides/">Field guides</a></li><li><a href="../checks/">Knowledge checks</a></li><li><a href="../quiz.html">Quiz</a></li><li><a href="../path.html">The path</a></li><li><a href="../gallery.html">Gallery</a></li><li><a href="../model-watch.html">Model watch</a></li><li><a href="../wire.html">The wire</a></li><li><a href="../showdown.html">Model showdown</a></li></ul></div><div class="nav-idx-group"><p>For agents</p><p class="idx-desc">The machine-readable shelf: loadable task skills, the spec, and the API.</p><ul><li><a href="../skills.html" aria-current="page">Skills</a></li><li><a href="../skill-spec.html">Skill spec</a></li><li><a href="../api.html">API</a></li><li><a href="../changelog.html">Changelog</a></li></ul></div></div></details></nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     <section class="container" aria-labelledby="skill-title">
@@ -109,7 +105,7 @@
   <footer class="site-footer">
     <div class="container footer-grid">
       <p>AI Film Master Guide, research notes for professional AI filmmaking. Sources linked per chapter.</p>
-      <nav aria-label="Footer"><span class="footer-map-h">Site map: every page in the guide</span><a href="../index.html">Home</a><a href="../chapters.html">Chapters</a><a href="../skills.html">Skills</a><a href="../workshop.html">Workshop</a><a href="../quiz.html">Quiz</a><a href="../compare.html">Compare</a><a href="../gallery.html">Gallery</a><a href="../teardown.html">Teardowns</a><a href="../model-watch.html">Model watch</a><a href="../showdown.html">Showdown</a><a href="../forge.html">Episode forge</a><a href="../clearance.html">Script clearance</a><a href="../continuity.html">Continuity ledger</a><a href="../cuesheet.html">Cue sheet</a><a href="../grade.html">Grade sheet</a><a href="../cut.html">Cut sheet</a><a href="../take.html">Take sheet</a><a href="../longform.html">Longform sheet</a><a href="../path.html">The path</a><a href="../checks/">Knowledge checks</a><a href="../budget.html">Budget</a><a href="../optimizer.html">Optimizer</a><a href="../shots.html">Shot list</a><a href="../style-bible.html">Style bible</a><a href="../doctor.html">Doctor</a><a href="../linter.html">Linter</a><a href="../cutting-room.html">Cutting room</a><a href="../prompts.html">Prompts</a><a href="../models/">Models</a><a href="../anatomy.html">Anatomy</a><a href="../manifesto.html">Manifesto</a><a href="../craft-not-buttons.html">Craft, not buttons</a><a href="../recipes.html">Recipes</a><a href="../field-guides/">Field guides</a><a href="../changelog.html">Changelog</a><a href="../skill-spec.html">Skill spec</a><a href="../api.html">API</a></nav>
+      <nav aria-label="Footer"><span class="footer-map-h">Site map: every page in the guide</span><a href="../index.html">Home</a><a href="../chapters.html">Chapters</a><a href="../skills.html">Skills</a><a href="../workshop.html">Workshop</a><a href="../quiz.html">Quiz</a><a href="../compare.html">Compare</a><a href="../gallery.html">Gallery</a><a href="../teardown.html">Teardowns</a><a href="../model-watch.html">Model watch</a><a href="../wire.html">The wire</a><a href="../binder.html">Binder</a><a href="../showdown.html">Showdown</a><a href="../forge.html">Episode forge</a><a href="../clearance.html">Script clearance</a><a href="../continuity.html">Continuity ledger</a><a href="../cuesheet.html">Cue sheet</a><a href="../grade.html">Grade sheet</a><a href="../cut.html">Cut sheet</a><a href="../take.html">Take sheet</a><a href="../longform.html">Longform sheet</a><a href="../path.html">The path</a><a href="../checks/">Knowledge checks</a><a href="../budget.html">Budget</a><a href="../optimizer.html">Optimizer</a><a href="../shots.html">Shot list</a><a href="../style-bible.html">Style bible</a><a href="../doctor.html">Doctor</a><a href="../linter.html">Linter</a><a href="../cutting-room.html">Cutting room</a><a href="../prompts.html">Prompts</a><a href="../models/">Models</a><a href="../anatomy.html">Anatomy</a><a href="../manifesto.html">Manifesto</a><a href="../craft-not-buttons.html">Craft, not buttons</a><a href="../recipes.html">Recipes</a><a href="../field-guides/">Field guides</a><a href="../changelog.html">Changelog</a><a href="../skill-spec.html">Skill spec</a><a href="../api.html">API</a></nav>
       <div class="footer-colophon"><span>AI Film Master Guide</span><span class="tail">Craft, not buttons</span></div>
     </div>
   </footer>

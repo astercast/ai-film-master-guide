@@ -6,8 +6,7 @@
   <title>AI Film Master Guide, Professional AI Filmmaking</title>
   <meta name="description" content="The master guide to professional AI filmmaking: pick the film you want to make and walk a guided path through it, chapter by chapter. Higgsfield mastery, pro craft, animated and photorealistic tracks, competition-entry craft, and a machine-readable API.">
   <meta name="theme-color" content="#000000">
-  <link rel="preload" href="assets/fonts/bodoni-moda-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/fonts.css">
   <link rel="stylesheet" href="assets/css/tokens.css">
   <link rel="stylesheet" href="assets/css/base.css">
@@ -17,7 +16,12 @@
   <link rel="stylesheet" href="assets/css/docs.css">
   <link rel="stylesheet" href="assets/css/home.css">
   <link rel="stylesheet" href="assets/css/programme.css">
+  <link rel="stylesheet" href="assets/css/flatbed.css">
+  <link rel="stylesheet" href="assets/css/wire.css">
   <link rel="stylesheet" href="assets/css/print.css">
+  <meta name="built" content="2026-10-24T13:39:13Z">
+  <link rel="stylesheet" href="/assets/css/pulse.css">
+  <script type="module" src="/assets/js/pulse.js"></script>
   <meta name="theme-color" content="#090807">
   <link rel="icon" href="/favicon.ico" sizes="48x48">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -46,12 +50,21 @@
         <a href="workshop.html">Workshop</a>
         <a href="prompts.html">Prompts</a>
         <a href="models/">Models</a>
-        <details class="nav-idx"><summary class="nav-idx-btn"><span class="idx-full">All pages</span><span class="idx-short">Index</span><span class="nav-idx-caret" aria-hidden="true">▾</span></summary><div class="nav-idx-panel"><p class="nav-idx-head">Every page in the guide. The bar holds the five working rooms; the rest of the building is here, grouped by the job it does.</p><div class="nav-idx-group"><p>On the bench</p><p class="idx-desc">Working tools for a film in progress: planners, sheets, and fixes.</p><ul><li><a href="prompts.html">Prompts</a></li><li><a href="studio.html">Studio</a></li><li><a href="compare.html">Compare</a></li><li><a href="shots.html">Shot list</a></li><li><a href="style-bible.html">Style bible</a></li><li><a href="budget.html">Budget</a></li><li><a href="optimizer.html">Optimizer</a></li><li><a href="doctor.html">Doctor</a></li><li><a href="linter.html">Linter</a></li><li><a href="greenlight.html">Green light</a></li><li><a href="clearance.html">Script clearance</a></li><li><a href="continuity.html">Continuity ledger</a></li><li><a href="cuesheet.html">Cue sheet</a></li><li><a href="grade.html">Grade sheet</a></li><li><a href="cut.html">Cut sheet</a></li><li><a href="take.html">Take sheet</a></li><li><a href="longform.html">Longform sheet</a></li><li><a href="recipes.html">Recipes</a></li><li><a href="forge.html">Episode forge</a></li></ul></div><div class="nav-idx-group"><p>Study</p><p class="idx-desc">Reading and reference: every chapter, the argument, the guides, and the model watch.</p><ul><li><a href="chapters.html">Chapters</a></li><li><a href="manifesto.html">Manifesto</a></li><li><a href="craft-not-buttons.html">Craft, not buttons</a></li><li><a href="field-guides/">Field guides</a></li><li><a href="checks/">Knowledge checks</a></li><li><a href="quiz.html">Quiz</a></li><li><a href="path.html">The path</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="model-watch.html">Model watch</a></li><li><a href="showdown.html">Model showdown</a></li></ul></div><div class="nav-idx-group"><p>For agents</p><p class="idx-desc">The machine-readable shelf: loadable task skills, the spec, and the API.</p><ul><li><a href="skills.html">Skills</a></li><li><a href="skill-spec.html">Skill spec</a></li><li><a href="api.html">API</a></li><li><a href="changelog.html">Changelog</a></li></ul></div></div></details>
+        <details class="nav-idx"><summary class="nav-idx-btn"><span class="idx-full">All pages</span><span class="idx-short">Index</span><span class="nav-idx-caret" aria-hidden="true">▾</span></summary><div class="nav-idx-panel"><p class="nav-idx-head">Every page in the guide. The bar holds the five working rooms; the rest of the building is here, grouped by the job it does.</p><div class="nav-idx-group"><p>On the bench</p><p class="idx-desc">Working tools for a film in progress: planners, sheets, and fixes.</p><ul><li><a href="prompts.html">Prompts</a></li><li><a href="studio.html">Studio</a></li><li><a href="compare.html">Compare</a></li><li><a href="shots.html">Shot list</a></li><li><a href="binder.html">Binder</a></li><li><a href="style-bible.html">Style bible</a></li><li><a href="budget.html">Budget</a></li><li><a href="optimizer.html">Optimizer</a></li><li><a href="doctor.html">Doctor</a></li><li><a href="linter.html">Linter</a></li><li><a href="greenlight.html">Green light</a></li><li><a href="clearance.html">Script clearance</a></li><li><a href="continuity.html">Continuity ledger</a></li><li><a href="cuesheet.html">Cue sheet</a></li><li><a href="grade.html">Grade sheet</a></li><li><a href="cut.html">Cut sheet</a></li><li><a href="take.html">Take sheet</a></li><li><a href="longform.html">Longform sheet</a></li><li><a href="recipes.html">Recipes</a></li><li><a href="forge.html">Episode forge</a></li></ul></div><div class="nav-idx-group"><p>Study</p><p class="idx-desc">Reading and reference: every chapter, the argument, the guides, and the model watch.</p><ul><li><a href="chapters.html">Chapters</a></li><li><a href="manifesto.html">Manifesto</a></li><li><a href="craft-not-buttons.html">Craft, not buttons</a></li><li><a href="field-guides/">Field guides</a></li><li><a href="checks/">Knowledge checks</a></li><li><a href="quiz.html">Quiz</a></li><li><a href="path.html">The path</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="model-watch.html">Model watch</a></li><li><a href="wire.html">The wire</a></li><li><a href="showdown.html">Model showdown</a></li></ul></div><div class="nav-idx-group"><p>For agents</p><p class="idx-desc">The machine-readable shelf: loadable task skills, the spec, and the API.</p><ul><li><a href="skills.html">Skills</a></li><li><a href="skill-spec.html">Skill spec</a></li><li><a href="api.html">API</a></li><li><a href="changelog.html">Changelog</a></li></ul></div></div></details>
     </nav>
     <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
 
   <main id="main">
+    <section class="flatbed" aria-label="The flatbed">
+      <div class="fb-edge" aria-hidden="true"><span>Models <b>44</b></span><span>Checked <b>2026-10-15 21:50</b></span><span>Chapters <b>31</b></span></div>
+      <div class="fb-gate" tabindex="0" role="slider" aria-label="Scrub the film" aria-valuemin="0" aria-valuemax="23" aria-valuenow="0">
+        <ol class="fb-strip"><li><picture><source srcset="assets/film/f01.avif" type="image/avif"><img src="assets/film/f01.webp" width="960" height="720" alt="" loading="eager"></picture></li><li><picture><source srcset="assets/film/f02.avif" type="image/avif"><img src="assets/film/f02.webp" width="960" height="720" alt="" loading="eager"></picture></li><li><picture><source srcset="assets/film/f03.avif" type="image/avif"><img src="assets/film/f03.webp" width="960" height="720" alt="" loading="eager"></picture></li><li><picture><source srcset="assets/film/f04.avif" type="image/avif"><img src="assets/film/f04.webp" width="960" height="720" alt="" loading="lazy"></picture></li><li><picture><source srcset="assets/film/f05.avif" type="image/avif"><img src="assets/film/f05.webp" width="960" height="720" alt="" loading="lazy"></picture></li><li><picture><source srcset="assets/film/f06.avif" type="image/avif"><img src="assets/film/f06.webp" width="960" height="720" alt="" loading="lazy"></picture></li><li><picture><source srcset="assets/film/f07.avif" type="image/avif"><img src="assets/film/f07.webp" width="960" height="720" alt="" loading="lazy"></picture></li><li><picture><source srcset="assets/film/f08.avif" type="image/avif"><img src="assets/film/f08.webp" width="960" height="720" alt="" loading="lazy"></picture></li><li><picture><source srcset="assets/film/f09.avif" type="image/avif"><img src="assets/film/f09.webp" width="960" height="720" alt="" loading="lazy"></picture></li><li><picture><source srcset="assets/film/f10.avif" type="image/avif"><img src="assets/film/f10.webp" width="960" height="720" alt="" loading="lazy"></picture></li><li><picture><source srcset="assets/film/f11.avif" type="image/avif"><img src="assets/film/f11.webp" width="960" height="720" alt="" loading="lazy"></picture></li><li><picture><source srcset="assets/film/f12.avif" type="image/avif"><img src="assets/film/f12.webp" width="960" height="720" alt="" loading="lazy"></picture></li><li><picture><source srcset="assets/film/f13.avif" type="image/avif"><img src="assets/film/f13.webp" width="960" height="720" alt="" loading="lazy"></picture></li><li><picture><source srcset="assets/film/f14.avif" type="image/avif"><img src="assets/film/f14.webp" width="960" height="720" alt="" loading="lazy"></picture></li><li><picture><source srcset="assets/film/f15.avif" type="image/avif"><img src="assets/film/f15.webp" width="960" height="720" alt="" loading="lazy"></picture></li><li><picture><source srcset="assets/film/f16.avif" type="image/avif"><img src="assets/film/f16.webp" width="960" height="720" alt="" loading="lazy"></picture></li><li><picture><source srcset="assets/film/f17.avif" type="image/avif"><img src="assets/film/f17.webp" width="960" height="720" alt="" loading="lazy"></picture></li><li><picture><source srcset="assets/film/f18.avif" type="image/avif"><img src="assets/film/f18.webp" width="960" height="720" alt="" loading="lazy"></picture></li><li><picture><source srcset="assets/film/f19.avif" type="image/avif"><img src="assets/film/f19.webp" width="960" height="720" alt="" loading="lazy"></picture></li><li><picture><source srcset="assets/film/f20.avif" type="image/avif"><img src="assets/film/f20.webp" width="960" height="720" alt="" loading="lazy"></picture></li><li><picture><source srcset="assets/film/f21.avif" type="image/avif"><img src="assets/film/f21.webp" width="960" height="720" alt="" loading="lazy"></picture></li><li><picture><source srcset="assets/film/f22.avif" type="image/avif"><img src="assets/film/f22.webp" width="960" height="720" alt="" loading="lazy"></picture></li><li><picture><source srcset="assets/film/f23.avif" type="image/avif"><img src="assets/film/f23.webp" width="960" height="720" alt="" loading="lazy"></picture></li><li><picture><source srcset="assets/film/f24.avif" type="image/avif"><img src="assets/film/f24.webp" width="960" height="720" alt="" loading="lazy"></picture></li></ol>
+        <i class="fb-hair"></i>
+        <p class="fb-tc" aria-hidden="true">00:00:00:00</p>
+        <p class="fb-cap">Frames from A Trip to the Moon, 1902, public domain (Internet Archive). Drag or use the arrow keys.</p>
+      </div>
+    </section>
     <section class="door" id="paths" aria-labelledby="door-title">
       <div class="screen">
         <div class="bar bar-top">
@@ -118,13 +131,13 @@
             <div class="bill-body">
               <p class="bill-logline">A first short you finish, not start. Seven days, an evening at a time.</p>
               <ol class="path-steps">
-                <li><input type="checkbox" class="path-check" id="pc-first-short-1" data-step="first-short-1" aria-label="Mark complete: Day 1, concept lock"><a href="guides/first-short.html">Day 1</a> <span class="path-note">concept lock</span></li>
-                <li><input type="checkbox" class="path-check" id="pc-first-short-2" data-step="first-short-2" aria-label="Mark complete: Day 2, prompt workshop"><a href="guides/first-short.html">Day 2</a> <span class="path-note">prompt workshop</span></li>
-                <li><input type="checkbox" class="path-check" id="pc-first-short-3" data-step="first-short-3" aria-label="Mark complete: Day 3, generation batches"><a href="guides/first-short.html">Day 3</a> <span class="path-note">generation batches</span></li>
-                <li><input type="checkbox" class="path-check" id="pc-first-short-4" data-step="first-short-4" aria-label="Mark complete: Day 4, selects and assembly"><a href="guides/first-short.html">Day 4</a> <span class="path-note">selects &amp; assembly</span></li>
-                <li><input type="checkbox" class="path-check" id="pc-first-short-5" data-step="first-short-5" aria-label="Mark complete: Day 5, performance fixes"><a href="guides/first-short.html">Day 5</a> <span class="path-note">performance fixes</span></li>
-                <li><input type="checkbox" class="path-check" id="pc-first-short-6" data-step="first-short-6" aria-label="Mark complete: Day 6, sound"><a href="guides/first-short.html">Day 6</a> <span class="path-note">sound</span></li>
-                <li><input type="checkbox" class="path-check" id="pc-first-short-7" data-step="first-short-7" aria-label="Mark complete: Day 7, grade and export"><a href="guides/first-short.html">Day 7</a> <span class="path-note">grade &amp; export</span></li>
+                <li><input type="checkbox" class="path-check" id="pc-first-short-1" data-step="first-short-1" aria-label="Mark complete: Day 1, concept lock"><a href="guides/first-short.html#day-1-concept-lock">Day 1</a> <span class="path-note">concept lock</span></li>
+                <li><input type="checkbox" class="path-check" id="pc-first-short-2" data-step="first-short-2" aria-label="Mark complete: Day 2, prompt workshop"><a href="guides/first-short.html#day-2-prompt-workshop-session">Day 2</a> <span class="path-note">prompt workshop</span></li>
+                <li><input type="checkbox" class="path-check" id="pc-first-short-3" data-step="first-short-3" aria-label="Mark complete: Day 3, generation batches"><a href="guides/first-short.html#day-3-generation-batches">Day 3</a> <span class="path-note">generation batches</span></li>
+                <li><input type="checkbox" class="path-check" id="pc-first-short-4" data-step="first-short-4" aria-label="Mark complete: Day 4, selects and assembly"><a href="guides/first-short.html#day-4-selects-assembly">Day 4</a> <span class="path-note">selects &amp; assembly</span></li>
+                <li><input type="checkbox" class="path-check" id="pc-first-short-5" data-step="first-short-5" aria-label="Mark complete: Day 5, performance fixes"><a href="guides/first-short.html#day-5-performance-fixes">Day 5</a> <span class="path-note">performance fixes</span></li>
+                <li><input type="checkbox" class="path-check" id="pc-first-short-6" data-step="first-short-6" aria-label="Mark complete: Day 6, sound"><a href="guides/first-short.html#day-6-sound">Day 6</a> <span class="path-note">sound</span></li>
+                <li><input type="checkbox" class="path-check" id="pc-first-short-7" data-step="first-short-7" aria-label="Mark complete: Day 7, grade and export"><a href="guides/first-short.html#day-7-grade-mix-qc-export">Day 7</a> <span class="path-note">grade &amp; export</span></li>
               </ol>
               <p class="bill-foot"><span data-path-progress>0 of 7 complete</span><button type="button" class="bill-reset" data-path-reset="first-short">Start again</button></p>
             </div>
@@ -233,72 +246,28 @@
       </ol>
     </section>
 
-    <section class="workbench scene" aria-labelledby="bench-h">
-      <div class="bench-bleed">
-      <h2 id="bench-h">The workbench</h2>
-      <p class="section-lede">Four tools, no filler. Each one answers a question you'll actually ask at 2 a.m. The bench pack lies with them, free to download.</p>
-      <div class="bench-layout">
-        <a class="bench-obj bench-slip" href="budget.html">
-          <p class="bench-kicker">Economics</p>
-          <h3>Budget calculator</h3>
-          <p>What will this film actually cost? Runtime in, cost envelope out, per-clip math from the credit-math chapter.</p>
-          <span class="bench-go" aria-hidden="true">Open <span>&rarr;</span></span>
-        </a>
-        <a class="bench-obj bench-console" href="workshop.html">
-          <p class="bench-kicker">Craft</p>
-          <h3>Prompt workshop</h3>
-          <p>A pro prompt in sixty seconds. Pick a template, pick a model, learn why it works, copy it.</p>
-          <span class="bench-go" aria-hidden="true">Open <span>&rarr;</span></span>
-        </a>
-        <a class="bench-obj bench-strip" href="prompts.html">
-          <p class="bench-kicker">Library</p>
-          <h3>Prompt library</h3>
-          <p>All 47 templates, filterable by shot, camera move, lighting, and mood. Remix and send to the Studio.</p>
-          <span class="bench-go" aria-hidden="true">Open <span>&rarr;</span></span>
-        </a>
-        <a class="bench-obj bench-ticket" href="api.html">
-          <p class="bench-kicker">Machine-readable</p>
-          <h3>For agents</h3>
-          <p>Versioned JSON: 44 model records, 47 templates, the 22-move camera lexicon, checklists, glossary, with schemas and llms.txt.</p>
-          <span class="bench-go" aria-hidden="true">Open <span>&rarr;</span></span>
-        </a>
-        <div class="bench-obj bench-pack">
-          <p class="bench-kicker">Downloads</p>
-          <h3>The bench pack</h3>
-          <p>Editor assets as actual files, made in this room: three LUTs, two transition mattes, three letterbox mattes, two sound effects. No account, no licence wall.</p>
-          <ul class="pack-list">
-            <li><a href="assets/packs/bench-pack/cutting-room-tungsten.cube" download>cutting-room-tungsten.cube</a><span>LUT · 130 KB</span></li>
-            <li><a href="assets/packs/bench-pack/daylight-answer.cube" download>daylight-answer.cube</a><span>LUT · 130 KB</span></li>
-            <li><a href="assets/packs/bench-pack/ember-night.cube" download>ember-night.cube</a><span>LUT · 130 KB</span></li>
-            <li><a href="assets/packs/bench-pack/wipe-linear.png" download>wipe-linear.png</a><span>transition matte · 4 KB</span></li>
-            <li><a href="assets/packs/bench-pack/wipe-soft.png" download>wipe-soft.png</a><span>transition matte · 6 KB</span></li>
-            <li><a href="assets/packs/bench-pack/letterbox-239.png" download>letterbox-239.png</a><span>letterbox matte · 9 KB</span></li>
-            <li><a href="assets/packs/bench-pack/letterbox-185.png" download>letterbox-185.png</a><span>letterbox matte · 8 KB</span></li>
-            <li><a href="assets/packs/bench-pack/letterbox-43.png" download>letterbox-43.png</a><span>letterbox matte · 15 KB</span></li>
-            <li><a href="assets/packs/bench-pack/sfx-whoosh.wav" download>sfx-whoosh.wav</a><span>sound effect · 60 KB</span></li>
-            <li><a href="assets/packs/bench-pack/sfx-tape-stop.wav" download>sfx-tape-stop.wav</a><span>sound effect · 69 KB</span></li>
-          </ul>
-        </div>
-      </div>
-      </div>
+    <section class="container home-close tools-row scene" aria-labelledby="tools-h">
+      <h2 id="tools-h">Need a tool mid-film?</h2>
+      <ul class="tools-list">
+        <li><a href="budget.html"><span class="tl-name">Budget calculator</span><span class="tl-what">What the film will cost.</span></a></li>
+        <li><a href="workshop.html"><span class="tl-name">Prompt workshop</span><span class="tl-what">A good prompt in one minute.</span></a></li>
+        <li><a href="prompts.html"><span class="tl-name">Prompt library</span><span class="tl-what">47 templates to copy and change.</span></a></li>
+        <li><a href="doctor.html"><span class="tl-name">Shot doctor</span><span class="tl-what">Why a shot looks wrong, and the fix.</span></a></li>
+      </ul>
+      <p class="tl-search">Looking for something else? Press <kbd>Ctrl K</kbd> to search the whole guide.</p>
     </section>
 
-    <section class="container screening scene" aria-labelledby="curator-h">
-      <h2 id="curator-h">From the cutting room</h2>
-      <article class="sr-piece">
-        <h3 class="sr-headline">If you read one chapter this week</h3>
-        <figure class="sr-frame">
-          <img src="assets/film-editing-reels.webp" alt="Reels of film on the editing bench" loading="lazy">
-          <figcaption>Reels on the bench. The cutting room, 2026.</figcaption>
-        </figure>
-        <p class="sr-prose">Make it <a href="higgsfield/prompt-engineering.html">prompt engineering</a>. Everything downstream, the budget, the edit, the grade, gets cheaper when the prompt is right on the first take. And skip the model-comparison rabbit hole until you've finished three clips on whatever you already have. The model is never the reason the film is bad; the cut is.</p>
-        <p class="sr-byline">The editor</p>
-      </article>
+    <section class="container scene" aria-labelledby="since-h">
+      <div class="since-panel" data-since>
+        <h2 id="since-h" data-since-head>Since you were last here</h2>
+        <ul data-since-list><li>Loading the wire for this browser...</li></ul>
+        <p><a href="wire.html">Open the wire</a> &middot; <a href="binder.html">Your binder</a></p>
+      </div>
     </section>
 
     <section class="container home-close scene" aria-labelledby="close-h">
       <h2 id="close-h" class="close-h">The feed, and the whole shelf</h2>
-      <p class="wt-line"><span class="tc wt-tag">The Watchtower</span><span class="wt-facts">44 models tracked &middot; 0 changed at the last check &middot; 0 check errors &middot; 0 unwatched &middot; last published check 2026-10-15 21:50:00 UTC.</span> <span class="wt-stale">That check is 8 days old, so the feed is behind: these counts are the last published picture, not live.</span> <a href="model-watch.html">Open model watch</a></p>
+      <p class="wt-line"><span class="tc wt-tag">The Watchtower</span><span class="wt-facts">44 models tracked &middot; 0 changed at the last check &middot; Checks failed on the last run &middot; 0 unwatched &middot; last published check 2026-10-15 21:50:00 UTC.</span> <span class="wt-stale">That check is 8 days old, so the feed is behind: these counts are the last published picture, not live.</span> <a href="model-watch.html">Open model watch</a></p>
       <a class="index-door" href="chapters.html">
         <span class="index-door-t">Every chapter, one index</span>
         <span class="index-door-s">31 chapters on ten shelves, the two ways to shoot, and a filter that narrows as you type. Nothing stacked twice.</span>
@@ -310,7 +279,7 @@
 <footer class="site-footer">
     <div class="container footer-grid">
       <p>AI Film Master Guide, research notes for professional AI filmmaking. Sources linked per chapter.</p>
-      <nav aria-label="Footer"><span class="footer-map-h">Site map: every page in the guide</span><a href="index.html">Home</a><a href="chapters.html">Chapters</a><a href="skills.html">Skills</a><a href="workshop.html">Workshop</a><a href="quiz.html">Quiz</a><a href="compare.html">Compare</a><a href="gallery.html">Gallery</a><a href="teardown.html">Teardowns</a><a href="model-watch.html">Model watch</a><a href="showdown.html">Showdown</a><a href="forge.html">Episode forge</a><a href="clearance.html">Script clearance</a><a href="continuity.html">Continuity ledger</a><a href="cuesheet.html">Cue sheet</a><a href="grade.html">Grade sheet</a><a href="cut.html">Cut sheet</a><a href="take.html">Take sheet</a><a href="longform.html">Longform sheet</a><a href="path.html">The path</a><a href="checks/">Knowledge checks</a><a href="budget.html">Budget</a><a href="optimizer.html">Optimizer</a><a href="shots.html">Shot list</a><a href="style-bible.html">Style bible</a><a href="doctor.html">Doctor</a><a href="linter.html">Linter</a><a href="cutting-room.html">Cutting room</a><a href="prompts.html">Prompts</a><a href="models/">Models</a><a href="anatomy.html">Anatomy</a><a href="manifesto.html">Manifesto</a><a href="craft-not-buttons.html">Craft, not buttons</a><a href="recipes.html">Recipes</a><a href="field-guides/">Field guides</a><a href="changelog.html">Changelog</a><a href="skill-spec.html">Skill spec</a><a href="api.html">API</a></nav>
+      <nav aria-label="Footer"><span class="footer-map-h">Site map: every page in the guide</span><a href="index.html">Home</a><a href="chapters.html">Chapters</a><a href="skills.html">Skills</a><a href="workshop.html">Workshop</a><a href="quiz.html">Quiz</a><a href="compare.html">Compare</a><a href="gallery.html">Gallery</a><a href="teardown.html">Teardowns</a><a href="model-watch.html">Model watch</a><a href="wire.html">The wire</a><a href="binder.html">Binder</a><a href="showdown.html">Showdown</a><a href="forge.html">Episode forge</a><a href="clearance.html">Script clearance</a><a href="continuity.html">Continuity ledger</a><a href="cuesheet.html">Cue sheet</a><a href="grade.html">Grade sheet</a><a href="cut.html">Cut sheet</a><a href="take.html">Take sheet</a><a href="longform.html">Longform sheet</a><a href="path.html">The path</a><a href="checks/">Knowledge checks</a><a href="budget.html">Budget</a><a href="optimizer.html">Optimizer</a><a href="shots.html">Shot list</a><a href="style-bible.html">Style bible</a><a href="doctor.html">Doctor</a><a href="linter.html">Linter</a><a href="cutting-room.html">Cutting room</a><a href="prompts.html">Prompts</a><a href="models/">Models</a><a href="anatomy.html">Anatomy</a><a href="manifesto.html">Manifesto</a><a href="craft-not-buttons.html">Craft, not buttons</a><a href="recipes.html">Recipes</a><a href="field-guides/">Field guides</a><a href="changelog.html">Changelog</a><a href="skill-spec.html">Skill spec</a><a href="api.html">API</a></nav>
       <div class="footer-colophon"><span>AI Film Master Guide</span><span class="tail">Craft, not buttons</span></div>
     </div>
   </footer>
@@ -324,5 +293,10 @@
   <script src="assets/js/paths.js"></script>
   <script src="assets/js/identity.js"></script>
   <script src="assets/js/grain.js"></script>
+  <script src="assets/js/flatbed.js"></script>
+  <script src="assets/js/binder.js"></script>
+  <script src="assets/js/wire.js"></script>
+  <script src="/assets/js/fleet-live.js"></script>
+  <script src="/assets/js/fleet-bar.js" data-site="ai-film-master-guide"></script>
 </body>
 </html>

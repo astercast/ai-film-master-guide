@@ -157,7 +157,9 @@ def main():
     # model-checks.json and model-review-queue.json are maintained by the
     # model-watch refresh loop, not from artifacts; curriculum.json is the
     # hand-authored Path sequencing, rotation 19; skills-audit.json is the
-    # rotation-20 usefulness-audit record, kept by scripts/audit_skills.py).
+    # rotation-20 usefulness-audit record, kept by scripts/audit_skills.py;
+    # wire.json, pulse.json and heartbeat-state.json are maintained by the
+    # heartbeat loop, bundle 2026-10-24, seeded by scripts/build_wire_seed.py).
     preserved = {}
     for rel in ["teardowns.json", "schema/teardown.json", "model-updates.md",
                 "model-checks.json", "model-review-queue.json",
@@ -166,7 +168,8 @@ def main():
                 "pricing.json", "schema/envelope.json",
                 "model-history.json", "schema/model-history.json",
                 "model-review-log.json", "schema/model-review-log.json",
-                "curriculum.json", "skills-audit.json"]:
+                "curriculum.json", "skills-audit.json",
+                "wire.json", "pulse.json", "heartbeat-state.json"]:
         p = API / rel
         if p.exists():
             preserved[rel] = p.read_bytes()

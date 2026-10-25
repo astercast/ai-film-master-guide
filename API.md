@@ -53,7 +53,7 @@ backend problem.
 | `/api/models-changes` | GET | Watchtower 2.0 “what changed” endpoint: `events` from `model-history.json` in the `?since=YYYY-MM-DD` window (default: the baseline date; invalid date → 400 `BAD_INPUT`), `price_changes` — the mechanical diff of the live pricing table against the 2026-10-11 baseline, and `drift_alerts` — models needing review or on watch right now. `?model_id=` restricts all three (unknown id → 404 `NOT_FOUND`). |
 | `/api/models-pricing` | GET | The curated pricing table (`?model_id=` filters; unknown id → 404 `NOT_FOUND`). |
 | `/api/calc-cost` | POST | `{model_id, seconds, resolution_tier, clips=1}` → `{cost_low, cost_high, currency:"USD", breakdown[], pricing_as_of, note}`. Full validation: 400 `BAD_INPUT` (bad body/seconds/clips/tier, human messages for image/per-clip/discontinued models), 404 for unknown model. Compute bucket 20/min, no-store. |
-| `/api/cron/watchtower` | GET | Daily incremental freshness refresh (Vercel Cron `0 14 * * *` UTC). Bearer `CRON_SECRET`, fail closed (401 without). Flags changed models into the review queue; never auto-edits `models.json`/`pricing.json`. Commits back only when `GITHUB_REPO_TOKEN` is set. Watchtower 2.0: the response also carries a `drift` summary (models needing review/watch + pricing-diff count). |
+Retired 2026-10-24 (fleet-data migration): no GITHUB_REPO_TOKEN is used anywhere. Live data refreshes through the astercast/fleet-data repo; the fleet watchdog does the checking.
 
 Error codes: `BAD_INPUT` 400, `UNAUTHORIZED` 401, `NOT_FOUND` 404,
 `RATE_LIMITED` 429 (with `Retry-After`), `UPSTREAM_UNAVAILABLE` 502,

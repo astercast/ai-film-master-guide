@@ -16,7 +16,7 @@ Snapshot built 2026-10-11 from working-repo commit `ddddbe8`'s tree
 | `GET /api/models-pricing` | `api/models-pricing.js` | 32-model pricing, `?model_id=` filter |
 | `GET /api/models-changes` | `api/models-changes.js` | Watchtower 2.0: events since `?since=`, pricing diff vs the 2026-10-11 baseline, drift alerts (`lib/drift.js`) |
 | `POST /api/calc-cost` | `api/calc-cost.js` | full 400/404 validation |
-| `GET /api/cron/watchtower` | `api/cron/watchtower.js` | Bearer `CRON_SECRET`; read-only without `GITHUB_REPO_TOKEN` |
+Retired 2026-10-24 (fleet-data migration): no GITHUB_REPO_TOKEN is used anywhere. Live data refreshes through the astercast/fleet-data repo; the fleet watchdog does the checking.
 
 Shared lib: `lib/{envelope,cronauth,fetchx,github,ratelimit,drift}.js` (from working `server/lib/`).
 
@@ -29,7 +29,7 @@ Shared lib: `lib/{envelope,cronauth,fetchx,github,ratelimit,drift}.js` (from wor
 ## Env vars (set on the Vercel project, Production)
 
 - `CRON_SECRET` — required (cron 401s fail-closed without it)
-- `GITHUB_REPO_TOKEN` — optional; without it the cron is read-only
+Retired 2026-10-24 (fleet-data migration): no GITHUB_REPO_TOKEN is used anywhere. Live data refreshes through the astercast/fleet-data repo; the fleet watchdog does the checking.
   (`{committed:false, reason:'no-token'}`)
 - `GITHUB_REPO` / `REPO_STATIC_PREFIX` — only used with the token
 
@@ -314,7 +314,7 @@ auto-mutates the model records (it flags; the review desk adjudicates).
 ## Open / not yet done
 
 - Vercel project itself not yet created; import the -live repo (not this one).
-- `CRON_SECRET` not yet generated; `GITHUB_REPO_TOKEN` pending user's call.
+Retired 2026-10-24 (fleet-data migration): no GITHUB_REPO_TOKEN is used anywhere. Live data refreshes through the astercast/fleet-data repo; the fleet watchdog does the checking.
 - Static data fallback paths: frontend `fetchWithFallback` static paths now
   point at `/data/v1/*.json` (Vercel never serves `api/` statics);
   `tests/api.test.sh` §7 and `tests/local-server.js` updated to match.

@@ -154,7 +154,7 @@ body.home main section h2::before {
 /* Tracks: the two lanes as kept cards with display titles */
 .track-card { border-top: 3px solid var(--amber-deep); padding: var(--space-6); }
 .track-card h3 {
-  font-family: var(--font-display); font-weight: 400; text-transform: uppercase;
+  font-family: var(--font-display); font-weight: 700; text-transform: uppercase;
   letter-spacing: 0.05em; font-size: 1.4rem;
 }
 
@@ -190,7 +190,7 @@ body.home main section h2::before {
 
 /*  The shelf's reading-order heads  */
 .shelf-order-h {
-  font-family: var(--font-display); font-weight: 400; text-transform: uppercase;
+  font-family: var(--font-display); font-weight: 700; text-transform: uppercase;
   letter-spacing: 0.08em; font-size: 1.15rem; color: var(--ink);
   margin: var(--space-7) 0 var(--space-3);
 }
@@ -204,7 +204,7 @@ body.home main section h2::before {
   padding: var(--space-4) 0; border-bottom: 1px solid var(--line);
 }
 .track-line h4 {
-  font-family: var(--font-display); font-weight: 400; text-transform: uppercase;
+  font-family: var(--font-display); font-weight: 700; text-transform: uppercase;
   letter-spacing: 0.05em; font-size: 1.05rem; margin: 0;
 }
 .track-line p { margin: 0; color: var(--ink-dim); max-width: 62ch; }
@@ -522,7 +522,7 @@ body.home .paths-door h2 { margin-top: 0; }
 /* --- The quiet close: Watchtower line + the index door -------- */
 .home-close { padding-bottom: var(--space-9); }
 .close-h {
-  font-family: var(--font-display); font-weight: 400; letter-spacing: 0.012em;
+  font-family: var(--font-display); font-weight: 700; letter-spacing: 0.012em;
   font-size: 1.5rem; margin: 0 0 var(--space-5); color: var(--ink);
 }
 .wt-line {
@@ -563,7 +563,7 @@ body.chapters main > section.container { margin-bottom: var(--space-8); }
   margin-top: var(--space-2);
 }
 .chapters-tracks h2, .chapters-shelf h2 {
-  font-family: var(--font-display); font-weight: 400; letter-spacing: 0.012em;
+  font-family: var(--font-display); font-weight: 700; letter-spacing: 0.012em;
   font-size: clamp(1.9rem, 4vw, 2.7rem); margin: 0 0 var(--space-4); color: var(--ink);
   padding-left: var(--space-4); border-left: 4px solid var(--gold);
 }

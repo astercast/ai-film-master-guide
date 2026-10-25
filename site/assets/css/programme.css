@@ -14,8 +14,9 @@
   --tally: #D0232B;
   --screen-soft: color-mix(in oklab, var(--screen) 82%, var(--house));
   --row-lit: color-mix(in oklab, var(--screen) 5%, var(--house));
-  --font-title: "Bodoni Moda", "Bodoni 72", Didot, Georgia, serif;
-  --font-ui: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-title: "Archivo", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --font-ui: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-read: "Newsreader", "Iowan Old Style", Georgia, serif;
   --font-tc: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   --fs-bill: clamp(1.3rem, .95rem + 1.4vw, 2.2rem);
   --fs-h1: clamp(1.02rem, .9rem + .5vw, 1.32rem);
@@ -59,7 +60,7 @@
   --tungsten: #FFFFFF;
   --amber-deep: var(--tally);
   --font-display: var(--font-title);
-  --font-serif: var(--font-title);
+  --font-serif: var(--font-read);
   --font-body: var(--font-ui);
   --font-mono: var(--font-tc);
   --radius: 0;
@@ -102,7 +103,7 @@ a:hover { text-decoration-color: var(--tally); }
 }
 .wordmark { display: inline-flex; align-items: baseline; gap: .5em; text-decoration: none; white-space: nowrap; }
 .wm-a { font: 600 .74rem/1 var(--font-ui); letter-spacing: .24em; text-transform: uppercase; }
-.wm-b { font: italic 500 1.22rem/1 var(--font-title); font-variation-settings: "opsz" 24; }
+.wm-b { font: 800 1.12rem/1 var(--font-title); font-stretch: 74%; letter-spacing: .01em; text-transform: uppercase; }
 .house-nav { display: flex; align-items: center; gap: var(--s-4); min-width: 0; }
 .house-nav > a { font: 500 var(--fs-small)/1 var(--font-ui); color: var(--aisle); text-decoration: none; padding-block: .55rem; }
 .house-nav > a:hover, .house-nav > a[aria-current="page"] { color: var(--screen); }
@@ -185,11 +186,11 @@ a:hover { text-decoration-color: var(--tally); }
 .tc p { margin: 0; }
 .tc-kicker { font: 500 var(--fs-tc)/1 var(--font-tc); letter-spacing: .16em; text-transform: uppercase; color: var(--aisle); }
 .tc-title {
-  font-family: var(--font-title); font-weight: 500; font-variation-settings: "opsz" 96;
-  font-size: clamp(2rem, min(19cqb, 8.5cqi), 5.75rem);
-  line-height: .95; letter-spacing: -.012em; max-inline-size: 13ch; text-wrap: balance;
+  font-family: var(--font-title); font-weight: 700; font-stretch: 72%;
+  font-size: clamp(2.2rem, min(21cqb, 9.5cqi), 6.6rem);
+  line-height: .92; letter-spacing: -.018em; max-inline-size: 20ch; text-wrap: balance;
 }
-.tc-title em { font-style: italic; }
+.tc-title em { font-style: normal; font-weight: 400; font-stretch: 104%; letter-spacing: -.02em; }
 /* Round 2, fix B: keep a styled run on one line, so the Reel 01 card
    reads "60-second" whole instead of breaking as "60-" / "second". */
 .tc-title em { white-space: nowrap; }
@@ -237,8 +238,8 @@ a:hover { text-decoration-color: var(--tally); }
 .bill > summary::-webkit-details-marker { display: none; }
 .bill > summary:hover { background: var(--row-lit); }
 .bill-reel { position: relative; font: 500 var(--fs-tc)/1 var(--font-tc); letter-spacing: .12em; color: var(--aisle); }
-.bill-title { font: 400 var(--fs-bill)/1.1 var(--font-title); font-variation-settings: "opsz" 48; }
-.bill-time { font: italic 400 1.05rem/1 var(--font-title); color: var(--aisle); white-space: nowrap; }
+.bill-title { font: 600 var(--fs-bill)/1.1 var(--font-title); font-stretch: 80%; letter-spacing: -.005em; }
+.bill-time { font: 400 .95rem/1 var(--font-tc); letter-spacing: .04em; font-variant-numeric: tabular-nums; color: var(--aisle); white-space: nowrap; }
 .bill-meter { position: relative; display: block; block-size: 2px; background: var(--rule); }
 .bill-meter .path-bar-fill { position: absolute; inset: 0 auto 0 0; width: 0; background: var(--tally); }
 
@@ -352,3 +353,37 @@ a:hover { text-decoration-color: var(--tally); }
 .picture .tc { font-family: var(--font-ui); font-size: 1rem; color: var(--screen); white-space: normal; letter-spacing: normal; }
 .house-nav .nav-idx summary { font: 500 var(--fs-small)/1 var(--font-ui); color: var(--aisle); cursor: pointer; padding-block: .55rem; }
 .house-nav .nav-idx summary:hover { color: var(--screen); }
+
+/* ============ ROUND 3 (Claude consult): prose face, tick targets, optimizer, tools list ============ */
+/* Long reading stays in the UI face; the title face stays for titles */
+.prose, .prose p, .prose li, .prose blockquote, .docs-main p, .docs-main li { font-family: var(--font-ui); }
+
+/* Step ticks: a real 44px tap target around the small circle */
+.programme .path-steps > li { grid-template-columns: 2.25rem 2.75rem auto minmax(0, 1fr); align-items: center; padding-block: 0; }
+.programme .path-check { inline-size: 1.15rem; block-size: 1.15rem; translate: 0; justify-self: center; position: relative; }
+.programme .path-check::after { content: ""; position: absolute; inset: -.85rem; }
+.programme .path-steps > li > a { display: inline-flex; align-items: center; min-block-size: 2.75rem; }
+@media (max-width: 40rem) {
+  .programme .path-steps > li { grid-template-columns: 1.6rem 2.75rem minmax(0, 1fr); }
+  .programme .path-note { grid-column: 3; margin-top: -.5rem; padding-bottom: .5rem; }
+}
+
+/* Optimizer: the result box is a normal column, not a row of tiles */
+.calc-grid > * { min-width: 0; }
+#o-results .calc-results { display: block; }
+#o-results .calc-grid { grid-template-columns: minmax(0, 1fr); margin-bottom: var(--s-4); }
+#o-results .calc-results { grid-template-columns: repeat(auto-fit, minmax(min(11rem, 100%), 1fr)); }
+
+/* Home, below the programme: one ruled list, no tiles */
+.tools-row { padding-block: var(--s-6) var(--s-5); }
+.tools-list, .tl-search { max-inline-size: 52rem; }
+.tools-row h2 { font: 400 var(--fs-bill)/1.1 var(--font-title); margin: 0 var(--s-3); }
+.tools-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+.tools-list li { border-bottom: 1px solid var(--rule); }
+.tools-list a { display: grid; grid-template-columns: minmax(11rem, 1fr) 2fr; gap: var(--s-2) var(--s-4); align-items: baseline; padding: var(--s-3) var(--s-1); min-block-size: 3.25rem; text-decoration: none; }
+.tools-list a:hover .tl-name, .tools-list a:focus-visible .tl-name { text-decoration: underline; text-decoration-color: var(--tally); }
+.tl-name { font: 600 1.05rem/1.2 var(--font-ui); }
+.tl-what { color: var(--aisle); }
+.tl-search { margin: var(--s-3) 0; color: var(--aisle); font-size: var(--fs-small); }
+.tl-search kbd { font: 500 var(--fs-tc)/1 var(--font-tc); border: 1px solid var(--rule); padding: .15em .45em; }
+@media (max-width: 40rem) { .tools-list a { grid-template-columns: 1fr; } }

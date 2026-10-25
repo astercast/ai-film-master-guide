@@ -114,14 +114,14 @@ fieldset > legend {
 }
 .ledger-row a:hover { background: var(--panel); text-decoration: none; }
 .ledger-row a:hover .ledger-name { color: var(--gold); }
-.ledger-name { display: block; font-family: var(--font-display); font-size: 1.28rem; font-weight: 400; letter-spacing: 0.01em; text-transform: uppercase; color: var(--ink); line-height: 1.1; }
+.ledger-name { display: block; font-family: var(--font-display); font-size: 1.28rem; font-weight: 700; letter-spacing: 0.01em; text-transform: uppercase; color: var(--ink); line-height: 1.1; }
 .ledger-vendor { display: block; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
 .ledger-use { color: var(--ink-dim); font-size: 0.94rem; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .ledger-cost { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); max-width: 36ch; }
 .ledger-row .mw-badge { margin: 0; }
 /* The (0,2,1) form is deliberate: docs.css sets every .container > h2
    at display size, and an ordinary .ledger-h rule loses to it, which
-   set the group label as a second Anton headline on first build. */
+   set the group label as a second display headline on first build. */
 .container > h2.ledger-h, .ledger-h {
   display: flex; align-items: center; gap: var(--space-3);
   font-family: var(--font-mono); font-size: 0.75rem; font-weight: 600;
@@ -252,7 +252,7 @@ fieldset > legend {
     padding: var(--space-3) var(--space-4); margin-bottom: var(--space-4);
   }
   .fg-models-table th[scope="row"] {
-    font-family: var(--font-display); font-size: 1.12rem; font-weight: 400;
+    font-family: var(--font-display); font-size: 1.12rem; font-weight: 700;
     letter-spacing: 0.02em; color: var(--ink); padding: 0 0 var(--space-2);
   }
   .fg-models-table td {
@@ -405,7 +405,7 @@ fieldset > legend {
    voice, and the fact that changed it.  */
 .wt-state { margin-bottom: var(--space-7); }
 .wt-state-h {
-  font-family: var(--font-display); font-weight: 400; text-transform: uppercase;
+  font-family: var(--font-display); font-weight: 700; text-transform: uppercase;
   letter-spacing: 0.06em; font-size: var(--display-3); margin: 0 0 var(--space-1);
   display: flex; align-items: baseline; gap: var(--space-3); flex-wrap: wrap;
 }

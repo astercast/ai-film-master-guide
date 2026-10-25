@@ -45,7 +45,8 @@ CHAPTER_ORDER = {
 
 CSS = ["assets/css/tokens.css", "assets/css/base.css", "assets/css/layout.css",
        "assets/css/components.css", "assets/css/motifs.css", "assets/css/docs.css",
-       "assets/css/home.css", "assets/css/print.css"]
+       "assets/css/home.css", "assets/css/programme.css", "assets/css/flatbed.css",
+       "assets/css/wire.css", "assets/css/print.css"]
 
 NAV_TOP = [
     # Navigation standard (rotation 21): five visible primaries,
@@ -73,6 +74,7 @@ NAV_INDEX = [
         ("studio.html", "Studio"),
         ("compare.html", "Compare"),
         ("shots.html", "Shot list"),
+        ("binder.html", "Binder"),
         ("style-bible.html", "Style bible"),
         ("budget.html", "Budget"),
         ("optimizer.html", "Optimizer"),
@@ -99,6 +101,7 @@ NAV_INDEX = [
         ("path.html", "The path"),
         ("gallery.html", "Gallery"),
         ("model-watch.html", "Model watch"),
+        ("wire.html", "The wire"),
         ("showdown.html", "Model showdown"),
     ]),
     ("For agents", "The machine-readable shelf: loadable task skills, the spec, and the API.", [
@@ -119,6 +122,8 @@ FOOTER_ITEMS = [
     ("gallery.html", "Gallery"),
     ("teardown.html", "Teardowns"),
     ("model-watch.html", "Model watch"),
+    ("wire.html", "The wire"),
+    ("binder.html", "Binder"),
     ("showdown.html", "Showdown"),
     ("forge.html", "Episode forge"),
     ("clearance.html", "Script clearance"),
@@ -248,19 +253,10 @@ PAGE_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="../index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">⌘K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="../index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <div class="container docs-layout">
     <nav class="docs-nav" aria-label="Chapters">{nav}</nav>
@@ -320,6 +316,15 @@ INDEX_TMPL = """<!DOCTYPE html>
   </header>
 
   <main id="main">
+    <section class="flatbed" aria-label="The flatbed">
+      <div class="fb-edge" aria-hidden="true"><span>Models <b>{fb_models}</b></span><span>Checked <b>{fb_checked}</b></span><span>Chapters <b>{fb_chapters}</b></span></div>
+      <div class="fb-gate" tabindex="0" role="slider" aria-label="Scrub the film" aria-valuemin="0" aria-valuemax="23" aria-valuenow="0">
+        <ol class="fb-strip">{flatbed_frames}</ol>
+        <i class="fb-hair"></i>
+        <p class="fb-tc" aria-hidden="true">00:00:00:00</p>
+        <p class="fb-cap">Frames from A Trip to the Moon, 1902, public domain (Internet Archive). Drag or use the arrow keys.</p>
+      </div>
+    </section>
     <section class="door" id="paths" aria-labelledby="door-title">
       <div class="screen">
         <div class="bar bar-top">
@@ -386,13 +391,13 @@ INDEX_TMPL = """<!DOCTYPE html>
             <div class="bill-body">
               <p class="bill-logline">A first short you finish, not start. Seven days, an evening at a time.</p>
               <ol class="path-steps">
-                <li><input type="checkbox" class="path-check" id="pc-first-short-1" data-step="first-short-1" aria-label="Mark complete: Day 1, concept lock"><a href="guides/first-short.html">Day 1</a> <span class="path-note">concept lock</span></li>
-                <li><input type="checkbox" class="path-check" id="pc-first-short-2" data-step="first-short-2" aria-label="Mark complete: Day 2, prompt workshop"><a href="guides/first-short.html">Day 2</a> <span class="path-note">prompt workshop</span></li>
-                <li><input type="checkbox" class="path-check" id="pc-first-short-3" data-step="first-short-3" aria-label="Mark complete: Day 3, generation batches"><a href="guides/first-short.html">Day 3</a> <span class="path-note">generation batches</span></li>
-                <li><input type="checkbox" class="path-check" id="pc-first-short-4" data-step="first-short-4" aria-label="Mark complete: Day 4, selects and assembly"><a href="guides/first-short.html">Day 4</a> <span class="path-note">selects &amp; assembly</span></li>
-                <li><input type="checkbox" class="path-check" id="pc-first-short-5" data-step="first-short-5" aria-label="Mark complete: Day 5, performance fixes"><a href="guides/first-short.html">Day 5</a> <span class="path-note">performance fixes</span></li>
-                <li><input type="checkbox" class="path-check" id="pc-first-short-6" data-step="first-short-6" aria-label="Mark complete: Day 6, sound"><a href="guides/first-short.html">Day 6</a> <span class="path-note">sound</span></li>
-                <li><input type="checkbox" class="path-check" id="pc-first-short-7" data-step="first-short-7" aria-label="Mark complete: Day 7, grade and export"><a href="guides/first-short.html">Day 7</a> <span class="path-note">grade &amp; export</span></li>
+                <li><input type="checkbox" class="path-check" id="pc-first-short-1" data-step="first-short-1" aria-label="Mark complete: Day 1, concept lock"><a href="guides/first-short.html#day-1-concept-lock">Day 1</a> <span class="path-note">concept lock</span></li>
+                <li><input type="checkbox" class="path-check" id="pc-first-short-2" data-step="first-short-2" aria-label="Mark complete: Day 2, prompt workshop"><a href="guides/first-short.html#day-2-prompt-workshop-session">Day 2</a> <span class="path-note">prompt workshop</span></li>
+                <li><input type="checkbox" class="path-check" id="pc-first-short-3" data-step="first-short-3" aria-label="Mark complete: Day 3, generation batches"><a href="guides/first-short.html#day-3-generation-batches">Day 3</a> <span class="path-note">generation batches</span></li>
+                <li><input type="checkbox" class="path-check" id="pc-first-short-4" data-step="first-short-4" aria-label="Mark complete: Day 4, selects and assembly"><a href="guides/first-short.html#day-4-selects-assembly">Day 4</a> <span class="path-note">selects &amp; assembly</span></li>
+                <li><input type="checkbox" class="path-check" id="pc-first-short-5" data-step="first-short-5" aria-label="Mark complete: Day 5, performance fixes"><a href="guides/first-short.html#day-5-performance-fixes">Day 5</a> <span class="path-note">performance fixes</span></li>
+                <li><input type="checkbox" class="path-check" id="pc-first-short-6" data-step="first-short-6" aria-label="Mark complete: Day 6, sound"><a href="guides/first-short.html#day-6-sound">Day 6</a> <span class="path-note">sound</span></li>
+                <li><input type="checkbox" class="path-check" id="pc-first-short-7" data-step="first-short-7" aria-label="Mark complete: Day 7, grade and export"><a href="guides/first-short.html#day-7-grade-mix-qc-export">Day 7</a> <span class="path-note">grade &amp; export</span></li>
               </ol>
               <p class="bill-foot"><span data-path-progress>0 of 7 complete</span><button type="button" class="bill-reset" data-path-reset="first-short">Start again</button></p>
             </div>
@@ -501,63 +506,28 @@ INDEX_TMPL = """<!DOCTYPE html>
       </ol>
     </section>
 
-    <section class="workbench scene" aria-labelledby="bench-h">
-      <div class="bench-bleed">
-      <h2 id="bench-h">The workbench</h2>
-      <p class="section-lede">Four tools, no filler. Each one answers a question you'll actually ask at 2 a.m. The bench pack lies with them, free to download.</p>
-      <div class="bench-layout">
-        <a class="bench-obj bench-slip" href="budget.html">
-          <p class="bench-kicker">Economics</p>
-          <h3>Budget calculator</h3>
-          <p>What will this film actually cost? Runtime in, cost envelope out, per-clip math from the credit-math chapter.</p>
-          <span class="bench-go" aria-hidden="true">Open <span>&rarr;</span></span>
-        </a>
-        <a class="bench-obj bench-console" href="workshop.html">
-          <p class="bench-kicker">Craft</p>
-          <h3>Prompt workshop</h3>
-          <p>A pro prompt in sixty seconds. Pick a template, pick a model, learn why it works, copy it.</p>
-          <span class="bench-go" aria-hidden="true">Open <span>&rarr;</span></span>
-        </a>
-        <a class="bench-obj bench-strip" href="prompts.html">
-          <p class="bench-kicker">Library</p>
-          <h3>Prompt library</h3>
-          <p>All 47 templates, filterable by shot, camera move, lighting, and mood. Remix and send to the Studio.</p>
-          <span class="bench-go" aria-hidden="true">Open <span>&rarr;</span></span>
-        </a>
-        <a class="bench-obj bench-ticket" href="api.html">
-          <p class="bench-kicker">Machine-readable</p>
-          <h3>For agents</h3>
-          <p>Versioned JSON: {model_count} model records, 47 templates, the 22-move camera lexicon, checklists, glossary, with schemas and llms.txt.</p>
-          <span class="bench-go" aria-hidden="true">Open <span>&rarr;</span></span>
-        </a>
-        <div class="bench-obj bench-pack">
-          <p class="bench-kicker">Downloads</p>
-          <h3>The bench pack</h3>
-          <p>Editor assets as actual files, made in this room: three LUTs, two transition mattes, three letterbox mattes, two sound effects. No account, no licence wall.</p>
-          <ul class="pack-list">
-{pack_rows}
-          </ul>
-        </div>
-      </div>
-      </div>
+    <section class="container home-close tools-row scene" aria-labelledby="tools-h">
+      <h2 id="tools-h">Need a tool mid-film?</h2>
+      <ul class="tools-list">
+        <li><a href="budget.html"><span class="tl-name">Budget calculator</span><span class="tl-what">What the film will cost.</span></a></li>
+        <li><a href="workshop.html"><span class="tl-name">Prompt workshop</span><span class="tl-what">A good prompt in one minute.</span></a></li>
+        <li><a href="prompts.html"><span class="tl-name">Prompt library</span><span class="tl-what">47 templates to copy and change.</span></a></li>
+        <li><a href="doctor.html"><span class="tl-name">Shot doctor</span><span class="tl-what">Why a shot looks wrong, and the fix.</span></a></li>
+      </ul>
+      <p class="tl-search">Looking for something else? Press <kbd>Ctrl K</kbd> to search the whole guide.</p>
     </section>
 
-    <section class="container screening scene" aria-labelledby="curator-h">
-      <h2 id="curator-h">From the cutting room</h2>
-      <article class="sr-piece">
-        <h3 class="sr-headline">If you read one chapter this week</h3>
-        <figure class="sr-frame">
-          <img src="assets/film-editing-reels.webp" alt="Reels of film on the editing bench" loading="lazy">
-          <figcaption>Reels on the bench. The cutting room, 2026.</figcaption>
-        </figure>
-        <p class="sr-prose">Make it <a href="higgsfield/prompt-engineering.html">prompt engineering</a>. Everything downstream, the budget, the edit, the grade, gets cheaper when the prompt is right on the first take. And skip the model-comparison rabbit hole until you've finished three clips on whatever you already have. The model is never the reason the film is bad; the cut is.</p>
-        <p class="sr-byline">The editor</p>
-      </article>
+    <section class="container scene" aria-labelledby="since-h">
+      <div class="since-panel" data-since>
+        <h2 id="since-h" data-since-head>Since you were last here</h2>
+        <ul data-since-list><li>Loading the wire for this browser...</li></ul>
+        <p><a href="wire.html">Open the wire</a> &middot; <a href="binder.html">Your binder</a></p>
+      </div>
     </section>
 
     <section class="container home-close scene" aria-labelledby="close-h">
       <h2 id="close-h" class="close-h">The feed, and the whole shelf</h2>
-      <p class="wt-line"><span class="tc wt-tag">The Watchtower</span><span class="wt-facts">{wt_total} models tracked &middot; {wt_changed} changed at the last check &middot; {wt_errors} check errors &middot; {wt_unwatched} unwatched &middot; last published check {wt_when}.</span>{wt_stale} <a href="model-watch.html">Open model watch</a></p>
+      <p class="wt-line"><span class="tc wt-tag">The Watchtower</span><span class="wt-facts">{wt_total} models tracked &middot; {wt_changed} changed at the last check &middot; {wt_errors_text} &middot; {wt_unwatched} unwatched &middot; last published check {wt_when}.</span>{wt_stale} <a href="model-watch.html">Open model watch</a></p>
       <a class="index-door" href="chapters.html">
         <span class="index-door-t">Every chapter, one index</span>
         <span class="index-door-s">{chapter_count} chapters on ten shelves, the two ways to shoot, and a filter that narrows as you type. Nothing stacked twice.</span>
@@ -583,6 +553,9 @@ INDEX_TMPL = """<!DOCTYPE html>
   <script src="assets/js/paths.js"></script>
   <script src="assets/js/identity.js"></script>
   <script src="assets/js/grain.js"></script>
+  <script src="assets/js/flatbed.js"></script>
+  <script src="assets/js/binder.js"></script>
+  <script src="assets/js/wire.js"></script>
 </body>
 </html>
 """
@@ -600,19 +573,10 @@ CHAPTERS_TMPL = """<!DOCTYPE html>
 <body class="chapters">
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">⌘K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
 
   <main id="main">
@@ -752,19 +716,10 @@ SKILLS_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">⌘K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     {hero}
@@ -800,19 +755,10 @@ BUDGET_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">⌘K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     {hero}
@@ -881,19 +827,10 @@ OPTIMIZER_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">⌘K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     {hero}
@@ -965,19 +902,10 @@ DOCTOR_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">⌘K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     {hero}
@@ -1040,19 +968,10 @@ EPISODEPLANNER_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">⌘K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     {hero}
@@ -1236,19 +1155,10 @@ HOOKGEN_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">⌘K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     {hero}
@@ -1420,19 +1330,10 @@ STUDIO_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">⌘K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     <section class="hero hero-cutroom" aria-labelledby="st-title-h">
@@ -1606,19 +1507,10 @@ LINTER_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">⌘K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     {hero}
@@ -1670,19 +1562,10 @@ CUTTINGROOM_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">⌘K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     {hero}
@@ -1885,19 +1768,10 @@ GREENLIGHT_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">⌘K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     {hero}
@@ -1990,19 +1864,10 @@ SHOTS_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">⌘K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     {hero}
@@ -2117,19 +1982,10 @@ STYLEBIBLE_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">&#8984;K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     {hero}
@@ -2232,19 +2088,10 @@ ANATOMY_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">⌘K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     {hero}
@@ -2348,19 +2195,10 @@ PROMPTS_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">⌘K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     {hero}
@@ -2492,19 +2330,10 @@ WORKSHOP_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">⌘K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     {hero}
@@ -2603,19 +2432,10 @@ QUIZ_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">⌘K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     {hero}
@@ -2700,19 +2520,10 @@ COMPARE_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">&#8984;K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     {hero}
@@ -2801,19 +2612,10 @@ SHOWDOWN_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">&#8984;K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     {hero}
@@ -2890,19 +2692,10 @@ FORGE_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">&#8984;K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     {hero}
@@ -3168,19 +2961,10 @@ CLEARANCE_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">&#8984;K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     {hero}
@@ -3404,19 +3188,10 @@ CONTINUITY_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">&#8984;K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     {hero}
@@ -3630,19 +3405,10 @@ CUESHEET_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">&#8984;K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     {hero}
@@ -3900,19 +3666,10 @@ GRADE_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">&#8984;K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     {hero}
@@ -4184,19 +3941,10 @@ CUT_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">&#8984;K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     {hero}
@@ -4533,19 +4281,10 @@ TAKE_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">&#8984;K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     {hero}
@@ -4872,19 +4611,10 @@ LONG_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">&#8984;K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     {hero}
@@ -5239,19 +4969,10 @@ PATH_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">&#8984;K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     {hero}
@@ -5373,19 +5094,10 @@ SKILL_PAGE_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="../index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">&#8984;K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="../index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     <section class="container" aria-labelledby="skill-title">
@@ -5647,19 +5359,10 @@ GALLERY_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">&#8984;K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     {hero}
@@ -5747,19 +5450,10 @@ CHANGELOG_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">⌘K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     {hero}
@@ -5805,19 +5499,10 @@ SKILLSPEC_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">⌘K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     {hero}
@@ -5887,19 +5572,10 @@ TEARDOWN_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">⌘K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     <section class="hero hero-cutroom" aria-labelledby="td-title">
@@ -5946,19 +5622,10 @@ MANIFESTO_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">⌘K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     {hero}
@@ -6023,19 +5690,10 @@ RECIPES_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">&#8984;K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     {hero}
@@ -6079,16 +5737,9 @@ FIELDGUIDE_TMPL = """<!DOCTYPE html>
 </head>
 <body class="fg-page">
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header no-print">
-    <div class="container header-bar">
-      <a class="brand" href="../index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-    </div>
+  <header class="house-head no-print">
+    <a class="wordmark" href="../index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
   </header>
   <main id="main" class="fg-body">
     <div class="container">
@@ -6129,19 +5780,10 @@ FIELDGUIDES_INDEX_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="../index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">⌘K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="../index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     {hero}
@@ -6431,19 +6073,10 @@ MODELWATCH_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">&#8984;K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     {hero}
@@ -6461,7 +6094,7 @@ MODELWATCH_TMPL = """<!DOCTYPE html>
         <p class="slate-title">Watchtower freshness <span class="api-badge" id="mw-api-badge" data-api-state="none" role="status" tabindex="0"></span></p>
         <div class="slate-row"><span>Models tracked</span><b>{total}</b></div>
         <div class="slate-row"><span>Changed at the last check</span><b>{n_changed}</b></div>
-        <div class="slate-row"><span>Check errors</span><b>{n_errors}</b></div>
+        <div class="slate-row"><span>Check errors</span><b>{errors_label}</b></div>
         <div class="slate-row"><span>Unwatched</span><b>{n_unwatched}</b></div>
         <p class="slate-foot" id="mw-freshness-line">{freshness_line}</p>
       </div>
@@ -6554,6 +6187,229 @@ MODELWATCH_TMPL = """<!DOCTYPE html>
 </html>
 """
 
+def checks_degraded(checks_doc):
+    """True when the last published check run was not fully ok.
+
+    The summary's with_errors counts only models whose sources all
+    failed (see scripts/refresh/check_models.py, DATAOPS-002), so a
+    run where many models came back partial reads 0 there while the
+    live status still reports degraded. A page must never print that
+    0 next to a degraded status: when this is true, the check-errors
+    line says checks failed on the last run instead of a number.
+    """
+    summary = checks_doc.get("summary", {}) or {}
+    dist = summary.get("source_status") or {}
+    if dist:
+        return any(n for k, n in dist.items() if k != "ok")
+    if summary.get("with_errors"):
+        return True
+    for rec in checks_doc.get("models", []) or []:
+        if rec.get("source_status") not in (None, "ok"):
+            return True
+        if any(not s.get("ok") for s in rec.get("source_results") or []):
+            return True
+    return False
+
+
+
+# ---- The Wire + One Binder (bundle 2026-10-24, RECORD 11.1) ----
+WIRE_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The wire, AI Film Master Guide</title>
+  <meta name="description" content="Dated AI-video changes as they are sighted: Verified items from the curated model-history record, Unconfirmed items from the six-hour heartbeat, each labelled, each filterable by model.">
+  {css}
+</head>
+<body>
+  <div class="edge-right" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="house-head">
+    <a class="wordmark" href="index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
+  </header>
+  <main id="main" class="container">
+    <section class="scene">
+      <p class="hero-kicker tc">The wire</p>
+      <h1>What changed, dated and labelled.</h1>
+      <p class="section-lede">Every item carries its label. <strong>Verified</strong> means a human checked it into the curated record. <strong>Unconfirmed</strong> means the six-hour heartbeat sighted it and it waits for review; the heartbeat never edits a price, price-shaped sightings land here and in the review queue only. Feed: <a href="wire.xml">wire.xml</a>.</p>
+      <div class="since-panel" data-since>
+        <h2 data-since-head>Since you were last here</h2>
+        <ul data-since-list><li>Loading the wire for this browser...</li></ul>
+      </div>
+      <form class="wire-filters" id="wire-filters">
+        <label>Model
+          <select id="wire-model" class="input"><option value="">All models</option>{model_options}</select>
+        </label>
+        <label>Label
+          <select id="wire-label" class="input"><option value="">All labels</option><option>Verified</option><option>Unconfirmed</option></select>
+        </label>
+        <p class="tc" id="wire-count" aria-live="polite"></p>
+      </form>
+      <ol class="wire-list">{wire_items}</ol>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide, research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span>AI Film Master Guide</span><span class="tail">Craft, not buttons</span></div>
+    </div>
+  </footer>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
+    <div class="palette-box">
+      <input id="palette-input" type="search" placeholder="Search chapters, prompts, models..." autocomplete="off" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/binder.js"></script>
+  <script src="assets/js/wire.js"></script>
+</body>
+</html>
+"""
+
+
+def build_wire(css_links):
+    wire_path = ROOT / "data" / "v1" / "wire.json"
+    items = []
+    if wire_path.exists():
+        items = json.loads(wire_path.read_text()).get("items", [])
+    if not items:
+        hist = json.loads((ROOT / "data" / "v1" / "model-history.json").read_text())
+        items = [{"id": "history-" + e["id"], "at": e["date"], "model": e.get("model", ""),
+                  "title": e.get("summary", ""), "url": None, "kind": e.get("kind", "event"),
+                  "label": "Verified", "source": "model-history"}
+                 for e in sorted(hist.get("events", []), key=lambda x: (x["date"], x["id"]), reverse=True)[:60]]
+    models = sorted({i.get("model") for i in items if i.get("model")})
+    model_options = "".join(
+        f'<option value="{html.escape(m, quote=True)}">{html.escape(m)}</option>' for m in models)
+    rows = []
+    for i in items:
+        label = i.get("label", "Unconfirmed")
+        title = html.escape(str(i.get("title", "")))
+        if i.get("url"):
+            title = f'<a href="{html.escape(str(i["url"]), quote=True)}">{title}</a>'
+        rows.append(
+            f'<li class="wire-item" data-model="{html.escape(str(i.get("model", "")), quote=True)}" '
+            f'data-label="{html.escape(label, quote=True)}">'
+            f'<span class="wire-date">{html.escape(str(i.get("at", ""))[:10])}</span>'
+            f'<span class="wire-body"><span class="wire-label wire-label-{label.lower()}">{label}</span>'
+            f'<strong>{html.escape(str(i.get("model", "")))}</strong> {title} '
+            f'<span class="wire-kind">{html.escape(str(i.get("kind", "")))} / {html.escape(str(i.get("source", "")))}</span></span></li>')
+    (SITE / "wire.html").write_text(WIRE_TMPL.format(
+        css=css_links, sitenav=nav_html("", "wire.html"), footer=footer_html(""),
+        model_options=model_options, wire_items="\n".join(rows)))
+    # wire.xml: RSS 2.0 over the same items, newest first.
+    import email.utils as _eu
+    rss_items = []
+    for i in items[:50]:
+        try:
+            import datetime as _dt_rss
+            d = _dt_rss.date.fromisoformat(str(i.get("at", ""))[:10])
+            pub = _eu.format_datetime(_dt_rss.datetime(d.year, d.month, d.day, tzinfo=_dt_rss.timezone.utc))
+        except Exception:
+            pub = _eu.format_datetime(_dt_rss.datetime.now(_dt_rss.timezone.utc))
+        link = html.escape(str(i.get("url") or "wire.html"), quote=True)
+        rss_items.append(
+            "<item><title>" + html.escape(f'[{i.get("label", "")}] {i.get("model", "")}: {i.get("title", "")}') + "</title>"
+            f"<link>{link}</link><guid isPermaLink=\"false\">{html.escape(str(i.get('id', '')))}</guid>"
+            f"<pubDate>{pub}</pubDate></item>")
+    (SITE / "wire.xml").write_text(
+        '<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0"><channel>'
+        "<title>AI Film Master Guide: The Wire</title><link>wire.html</link>"
+        "<description>Dated AI-video changes, Verified and Unconfirmed, labelled.</description>"
+        + "".join(rss_items) + "</channel></rss>\n")
+
+
+BINDER_TMPL = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Binder, AI Film Master Guide</title>
+  <meta name="description" content="One binder for the whole film: project, models, style and notes in a single shared record the guide's tools read, stored only in this browser, exportable as JSON, printable as the production bible.">
+  {css}
+</head>
+<body>
+  <div class="edge-right" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="house-head">
+    <a class="wordmark" href="index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
+  </header>
+  <main id="main" class="container">
+    <section class="scene" data-binder>
+      <p class="hero-kicker tc">One binder</p>
+      <h1>The production binder.</h1>
+      <p class="section-lede">One shared project record for every tool in the guide, stored only in this browser under one key (<code>afmg.binder.v1</code>). The Wire's "since you were last here" panel reads it and narrows to the models below. Export it, import it on another machine, or print it as the production bible.</p>
+      <div class="binder-grid">
+        <div class="card">
+          <h2>The film</h2>
+          <div class="field"><label for="b-title">Title</label><input class="input" id="b-title" data-b-title type="text" placeholder="Untitled film"></div>
+          <div class="field"><label for="b-format">Format</label><input class="input" id="b-format" data-b-format type="text" placeholder="e.g. 60-second short, 16:9"></div>
+          <div class="field"><label for="b-logline">Logline</label><input class="input" id="b-logline" data-b-logline type="text" placeholder="One sentence"></div>
+        </div>
+        <div class="card">
+          <h2>Models on this film</h2>
+          <p class="tc" data-b-count></p>
+          <div class="binder-models">{model_boxes}</div>
+        </div>
+        <div class="card">
+          <h2>Style</h2>
+          <div class="field"><label for="b-palette">Palette</label><input class="input" id="b-palette" data-b-palette type="text"></div>
+          <div class="field"><label for="b-lens">Lens and camera</label><input class="input" id="b-lens" data-b-lens type="text"></div>
+          <div class="field"><label for="b-snotes">Style notes</label><input class="input" id="b-snotes" data-b-snotes type="text"></div>
+        </div>
+        <div class="card">
+          <h2>Shot list and notes</h2>
+          <div class="field"><label for="b-shotlist">Shot list for this film (from the <a href="shots.html">shot-list builder</a>)</label>
+          <select class="input" id="b-shotlist" data-b-shotlist><option value="">None</option></select></div>
+          <div class="field"><label for="b-notes">Notes</label><textarea class="input" id="b-notes" data-b-notes rows="5"></textarea></div>
+        </div>
+        <div class="binder-actions">
+          <button type="button" class="btn" data-b-print>Print the production bible</button>
+          <button type="button" class="btn btn-ghost" data-b-export>Export binder JSON</button>
+          <label class="btn btn-ghost" for="b-import">Import binder JSON</label>
+          <input id="b-import" data-b-import type="file" accept="application/json" hidden>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>AI Film Master Guide, research notes for professional AI filmmaking. Sources linked per chapter.</p>
+      <nav aria-label="Footer">{footer}</nav>
+      <div class="footer-colophon"><span>AI Film Master Guide</span><span class="tail">Craft, not buttons</span></div>
+    </div>
+  </footer>
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Search the guide" hidden>
+    <div class="palette-box">
+      <input id="palette-input" type="search" placeholder="Search chapters, prompts, models..." autocomplete="off" aria-label="Search the guide">
+      <div id="palette-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </div>
+  <script src="assets/js/palette.js"></script>
+  <script src="assets/js/binder.js"></script>
+</body>
+</html>
+"""
+
+
+def build_binder(css_links):
+    doc = json.loads((ROOT / "data" / "v1" / "models.json").read_text())
+    boxes = "".join(
+        f'<label><input type="checkbox" data-b-model="{html.escape(m["model"], quote=True)}"> '
+        f'{html.escape(m["model"])} <span class="tc">{html.escape(m.get("platform", ""))}</span></label>'
+        for m in sorted(doc["models"], key=lambda x: x["model"]))
+    (SITE / "binder.html").write_text(BINDER_TMPL.format(
+        css=css_links, sitenav=nav_html("", "binder.html"), footer=footer_html(""),
+        model_boxes=boxes))
+
+
 def build_model_watch(css_links):
     """Model freshness page, Watchtower 2.0.
 
@@ -6577,13 +6433,16 @@ def build_model_watch(css_links):
     history = json.loads((ROOT / "data" / "v1" / "model-history.json").read_text())
     ck_when = str(checks.get("checked_at", "")).replace("T", " ").replace("+00:00", " UTC")
     ck_sum = checks.get("summary", {})
+    wt_degraded = checks_degraded(checks)
+    errors_label = "Checks failed on the last run" if wt_degraded else str(ck_sum.get("with_errors", 0))
+    errors_phrase = "checks failed on the last run" if wt_degraded else f"{ck_sum.get('with_errors', 0)} check errors"
     freshness_line = (
         "Last published check: {when}, {total} models, {changed} changed, "
-        "{errors} check errors, {unwatched} unwatched.".format(
+        "{errors}, {unwatched} unwatched.".format(
             when=ck_when or "unknown time",
             total=ck_sum.get("models_total", len(models)),
             changed=ck_sum.get("changed", 0),
-            errors=ck_sum.get("with_errors", 0),
+            errors=errors_phrase,
             unwatched=ck_sum.get("no_sources", 0)))
 
     ref_day = _dt.date.fromisoformat(str(history.get("generated_at", "2026-10-12"))[:10])
@@ -6910,7 +6769,7 @@ def build_model_watch(css_links):
                 extra=""""""),        css=css_links, sitenav=nav_html("", "model-watch.html"), footer=footer_html(""),
         cards=ledger_html,
         total=len(models), n_active=counts.get("active", 0),
-        n_changed=ck_sum.get("changed", 0), n_errors=ck_sum.get("with_errors", 0),
+        n_changed=ck_sum.get("changed", 0), n_errors=ck_sum.get("with_errors", 0), errors_label=errors_label,
         n_unwatched=ck_sum.get("no_sources", 0),
         n_reported=counts.get("reported", 0), n_discontinued=counts.get("discontinued", 0),
         freshness_line=freshness_line,
@@ -6935,19 +6794,10 @@ MODEL_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="../index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">&#8984;K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="../index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     {hero}
@@ -7020,19 +6870,10 @@ MODELS_INDEX_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="../index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">&#8984;K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="../index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     {hero}
@@ -7400,7 +7241,7 @@ def build_showdown(css_links):
     ck_sum = checks.get("summary", {})
     feed_line = (f"Built from the published check feed of {ck_when or 'unknown time'}, "
                  f"{ck_sum.get('models_total', len(models))} models, {ck_sum.get('changed', 0)} changed, "
-                 f"{ck_sum.get('with_errors', 0)} check errors. Every figure below is the record, "
+                 f"{'checks failed on the last run' if checks_degraded(checks) else str(ck_sum.get('with_errors', 0)) + ' check errors'}. Every figure below is the record, "
                  "not a rating: rates are the published ones, and a model with no published rate says so.")
     island = {"feed": {"checked_at": checks.get("checked_at"), "baseline_day": baseline_day},
               "models": records}
@@ -7606,19 +7447,10 @@ CHECK_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="../index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">&#8984;K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="../index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     {hero}
@@ -7668,19 +7500,10 @@ CHECKS_INDEX_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="../index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">&#8984;K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="../index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     {hero}
@@ -7802,19 +7625,10 @@ FOUR_OH_FOUR_TMPL = """<!DOCTYPE html>
 <body>
   <div class="edge-right" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-bar">
-      <a class="brand" href="index.html" aria-label="AI Film Master Guide home">
-        <span class="brand-mark" aria-hidden="true">AF</span>
-        <span class="brand-name">AI FILM<small>MASTER GUIDE</small></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {sitenav}
-      </nav>
-      <button type="button" class="btn btn-sm btn-ghost palette-open" aria-label="Search the guide (Ctrl+K)">
-        <span aria-hidden="true">⌘K</span> Search
-      </button>
-    </div>
+  <header class="house-head">
+    <a class="wordmark" href="index.html" aria-label="AI Film Master Guide home"><span class="wm-a">AI Film</span><span class="wm-b">Master Guide</span></a>
+    <nav class="house-nav" aria-label="Main">{sitenav}</nav>
+    <button type="button" class="house-search palette-open" aria-haspopup="dialog">Search <kbd>Ctrl K</kbd></button>
   </header>
   <main id="main">
     <section class="container">
@@ -7883,6 +7697,8 @@ def inject_head_meta():
     ratings, or offers exist in the data, so none are emitted).
     Idempotent: pages already carrying og:image are skipped.
     """
+    import datetime as _dt_meta
+    built_iso = _dt_meta.datetime.now(_dt_meta.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     models_doc = json.loads((ROOT / "data" / "v1" / "models.json").read_text())
     itemlist = {
         "@context": "https://schema.org",
@@ -7906,6 +7722,11 @@ def inject_head_meta():
         rel = path.relative_to(SITE).as_posix()
         canon = _canonical_url(rel)
         block = [
+            f'  <meta name="built" content="{built_iso}">',
+            '  <link rel="stylesheet" href="/assets/css/pulse.css">',
+            '  <script type="module" src="/assets/js/pulse.js"></script>',
+            '  <script src="/assets/js/fleet-live.js"></script>',
+            '  <script src="/assets/js/fleet-bar.js" data-site="ai-film-master-guide"></script>',
             '  <meta name="theme-color" content="#090807">',
             '  <link rel="icon" href="/favicon.ico" sizes="48x48">',
             '  <link rel="icon" href="/favicon.svg" type="image/svg+xml">',
@@ -7962,20 +7783,18 @@ def main():
             }))
 
     font_links = (
-        '<link rel="preload" href="assets/fonts/anton-latin-normal-400.woff2" as="font" type="font/woff2" crossorigin>\n  '
-        '<link rel="preload" href="assets/fonts/inter-latin-normal-var.woff2" as="font" type="font/woff2" crossorigin>\n  '
+        '<link rel="preload" href="assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>\n  '
         '<link rel="stylesheet" href="assets/css/fonts.css">\n  '
     )
     css_links = font_links + "\n  ".join(f'<link rel="stylesheet" href="{c}">' for c in CSS)
     font_links_home = (
-        '<link rel="preload" href="assets/fonts/bodoni-moda-latin.woff2" as="font" type="font/woff2" crossorigin>\n  '
-        '<link rel="preload" href="assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>\n  '
+        '<link rel="preload" href="assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>\n  '
         '<link rel="stylesheet" href="assets/css/fonts.css">\n  '
     )
     css_home_list = []
     for c in CSS:
         css_home_list.append(c)
-        if c == "assets/css/home.css":
+        if c == "assets/css/home.css" and "assets/css/programme.css" not in CSS:
             css_home_list.append("assets/css/programme.css")
     css_links_home = font_links_home + "\n  ".join(f'<link rel="stylesheet" href="{c}">' for c in css_home_list)
 
@@ -8114,8 +7933,15 @@ def main():
         f'<span>{kind} · {round((pack_dir / name).stat().st_size / 1024)} KB</span></li>'
         for name, kind in pack_kinds.items())
     total_read = fmt_total_minutes(sum(c["read_min"] for _, _, c in flat))
+    flatbed_frames = "".join(
+        f'<li><picture><source srcset="assets/film/f{i:02d}.avif" type="image/avif">'
+        f'<img src="assets/film/f{i:02d}.webp" width="960" height="720" alt="" '
+        f'loading="{"eager" if i <= 3 else "lazy"}"></picture></li>'
+        for i in range(1, 25))
     (SITE / "index.html").write_text(INDEX_TMPL.format(
         css=css_links_home,
+        flatbed_frames=flatbed_frames, fb_models=model_count,
+        fb_chapters=chapter_count, fb_checked=wt_when[:16],
         total_read=total_read,
         model_count=model_count,
         chapter_count=chapter_count,
@@ -8132,7 +7958,8 @@ def main():
         pack_rows=pack_rows,
         wt_total=ck_sum_home.get("models_total", model_count),
         wt_changed=ck_sum_home.get("changed", 0),
-        wt_errors=ck_sum_home.get("with_errors", 0),
+        wt_errors_text=("Checks failed on the last run" if checks_degraded(checks_doc)
+                        else f"{ck_sum_home.get('with_errors', 0)} check errors"),
         wt_unwatched=ck_sum_home.get("no_sources", 0),
         wt_when=wt_when,
         wt_stale=wt_stale,
@@ -8408,6 +8235,10 @@ def main():
 
     # Model freshness page (generated from data/v1/models.json)
     build_model_watch(css_links)
+
+    # The Wire (/wire + /wire.xml) and One Binder (bundle 2026-10-24)
+    build_wire(css_links)
+    build_binder(css_links)
 
     # Model showdown page (two models on the cutting table, Watchtower data)
     build_showdown(css_links)

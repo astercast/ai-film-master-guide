@@ -1,0 +1,8 @@
+.pulse { position: fixed; left: 16px; bottom: 16px; z-index: 50; display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center;
+  max-width: min(92vw, 460px); padding: 10px 14px; background: var(--paper, #fff); color: var(--ink, #111);
+  border: 1px solid currentColor; font: 500 13px/1.3 var(--ui, system-ui); }
+.pulse-dot { width: 8px; height: 8px; background: var(--accent, #c00); animation: pulse-beat 2.4s ease-in-out infinite; }
+.pulse button { font: inherit; padding: 2px 10px; border: 1px solid currentColor; background: transparent; color: inherit; cursor: pointer; }
+.pulse-warn { flex-basis: 100%; opacity: .75; }
+@keyframes pulse-beat { 50% { opacity: .25; } }
+@media (prefers-reduced-motion: reduce) { .pulse-dot { animation: none; } }

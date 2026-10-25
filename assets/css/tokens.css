@@ -14,13 +14,13 @@
      action, the slate lines, the display accents and the hover
      states. Status colours (red, blue, green, amber) still mean
      data only: Watchtower badges and verdicts.
-   - Four type jobs, each with its own face (rotation 23). Anton,
-     the condensed display voice of slate boards and leader cards,
-     proclaims. Inter reads and operates. Newsreader carries long
-     chapter prose. JetBrains Mono is the timecode voice: timecodes,
-     slate labels, record numbers and metadata are set in it, so
-     metadata stops borrowing the body voice. Display never sets
-     body text; mono never sets a headline.
+   - Type jobs (v6, rotation 130): Archivo variable proclaims
+     (titles and headings, width pinned via Archivo Display) and
+     operates (interface and body). Newsreader carries long
+     chapter prose. JetBrains Mono is the timecode voice:
+     timecodes, slate labels, record numbers and metadata are set
+     in it, so metadata stops borrowing the body voice. Display
+     never sets body text; mono never sets a headline.
    - Space stays on the v2 strict scale: distance means
      relationship. Sections are grouped by warm surface shifts
      as well as space, so the page has rooms, not voids.
@@ -61,8 +61,8 @@
   --warn: #ffb35c;
 
   /* Type: four jobs, four faces (rotation 23) */
-  --font-display: "Anton", "Inter", "Helvetica Neue", sans-serif;
-  --font-body: "Inter", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --font-display: "Archivo Display", "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Archivo", "Helvetica Neue", Arial, system-ui, sans-serif;
   --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
@@ -71,7 +71,7 @@
   --text-base: 1rem;
   --text-lg: 1.13rem;
 
-  /* Display scale: Anton speaks rarely and large. */
+  /* Display scale: the display voice speaks rarely and large. */
   --display-1: clamp(2.9rem, 6.2vw, 4.9rem);
   --display-2: clamp(2rem, 3.8vw, 3rem);
   --display-3: clamp(1.45rem, 2.4vw, 1.85rem);

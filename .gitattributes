@@ -13,3 +13,4 @@
 *.pdf binary
 *.wav binary
 *.cube text eol=lf
+*.avif binary

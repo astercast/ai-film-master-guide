@@ -14,7 +14,11 @@
    - The front door remembers you. On load, the first path that is
      started but not finished is opened instead of Reel 01; if none is
      part done, the path you last opened is reopened. Reel 01 is only
-     the default for a first visit. */
+     the default for a first visit.
+   Round 3 change:
+   - The last-opened path comes first: when it is started but not
+     finished it is the one reopened, ahead of the first started path
+     in page order (shared progress can start a path you never opened). */
 (function () {
   "use strict";
 
@@ -116,9 +120,12 @@
 
   update();
 
-  /* Resume: open the path that is started but not finished. Fall back
-     to the path last opened by hand. Otherwise leave the printed
-     default (Reel 01) exactly as it is. */
+  /* Resume (round 3): the path you opened last wins when it is
+     started but not finished, because progress is shared between
+     paths and the first started path in page order may not be the
+     one you were working in. Otherwise the first started path, then
+     the last opened path. Otherwise leave the printed default
+     (Reel 01) exactly as it is. */
   var bills = [].slice.call(document.querySelectorAll(".bill[data-path]"));
   bills.forEach(function (bill) {
     bill.addEventListener("toggle", function () {
@@ -128,19 +135,15 @@
     });
   });
 
-  var target = bills.filter(function (b) {
+  function started(b) {
     var c = [].slice.call(b.querySelectorAll(".path-check"));
-    var n = c.filter(function (x) { return x.checked; }).length;
+    var n = c.filter(function(x) { return x.checked; }).length;
     return n > 0 && n < c.length;
-  })[0];
-
-  if (!target) {
-    var last = null;
-    try { last = localStorage.getItem(OPEN_KEY); } catch (e) { last = null; }
-    if (last) {
-      target = bills.filter(function (b) { return b.getAttribute("data-path") === last; })[0] || null;
-    }
   }
+  var last = null;
+  try { last = localStorage.getItem(OPEN_KEY); } catch (e) { last = null; }
+  var lastBill = last ? bills.filter(function(b) { return b.getAttribute("data-path") === last; })[0] : null;
+  var target = (lastBill && started(lastBill)) ? lastBill : (bills.filter(started)[0] || lastBill || null);
 
   if (target && !target.open) {
     bills.forEach(function (b) { if (b !== target) b.open = false; });

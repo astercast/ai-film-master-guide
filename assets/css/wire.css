@@ -1,0 +1,29 @@
+/* The Wire, the Binder, and the since panel (bundle 2026-10-24).
+   Uses the programme tokens; no new colours beyond the tally red
+   already in the system for the Unconfirmed label. */
+.wire-filters { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: end; margin-bottom: var(--space-4); }
+.wire-filters label { display: grid; gap: var(--space-1); font-size: var(--text-sm); color: var(--muted); }
+.wire-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.wire-item { display: grid; grid-template-columns: 7.5rem 1fr; gap: var(--space-2) var(--space-4); padding: var(--space-3) var(--space-1); border-bottom: 1px solid var(--line); }
+.wire-item[hidden] { display: none; }
+.wire-date { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); letter-spacing: .06em; padding-top: .2rem; }
+.wire-body { color: var(--ink-dim); line-height: 1.5; }
+.wire-body strong { color: var(--ink); }
+.wire-label { display: inline-block; font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: .1em; text-transform: uppercase; border: 1px solid var(--line-bright); padding: .1em .5em; margin-right: var(--space-2); color: var(--ink); }
+.wire-label-unconfirmed { border-color: var(--tally, #D0232B); color: var(--tally, #D0232B); }
+.wire-kind { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+@media (max-width: 40rem) { .wire-item { grid-template-columns: 1fr; } }
+
+.since-panel { border: 1px solid var(--line); padding: var(--space-4); margin-block: var(--space-5); background: var(--panel); }
+.since-panel h2, .since-panel h3 { margin-top: 0; }
+.since-panel ul { margin: 0; padding-left: 1.2rem; display: grid; gap: var(--space-2); }
+
+.binder-grid { display: grid; gap: var(--space-5); }
+.binder-models { columns: 2; column-gap: var(--space-6); }
+.binder-models label { display: block; break-inside: avoid; padding-block: .3rem; }
+.binder-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; }
+#binder-bible { display: none; }
+@media print {
+  body.binder-printing > *:not(#binder-bible) { display: none !important; }
+  body.binder-printing #binder-bible { display: block !important; color: #111; }
+}

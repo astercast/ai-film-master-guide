@@ -1,0 +1,20 @@
+/* The Flatbed. A strip of 24 real frames you drag, like a Steenbeck. Uses the site tokens. */
+.flatbed { position: relative; display: grid; grid-template-columns: 3.25rem 1fr; background: var(--bg); border-block: 1px solid var(--line); overflow: hidden; }
+.fb-edge { writing-mode: vertical-rl; transform: rotate(180deg); display: flex; justify-content: space-between; align-items: center; gap: 1.5rem;
+  padding: 1.25rem .6rem; border-right: 1px solid var(--line); font: 500 var(--text-xs)/1 var(--font-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-dim); }
+.fb-edge b { color: var(--ink); font-weight: 500; }
+.fb-gate { position: relative; height: clamp(300px, 52vh, 560px); cursor: grab; touch-action: pan-y; outline-offset: -3px; user-select: none; }
+.fb-gate:active { cursor: grabbing; }
+.fb-strip { position: absolute; inset: 0 0 2.4rem; display: flex; align-items: center; margin: 0; padding: 0; list-style: none; will-change: transform; }
+.fb-strip li { --d: 1; flex: 0 0 auto; height: 74%; aspect-ratio: 4 / 3; margin-right: 14px; position: relative;
+  opacity: calc(1 - var(--d) * .62); transform: scale(calc(1 - var(--d) * .07)); filter: grayscale(calc(var(--d) * .9)) brightness(calc(1 - var(--d) * .25)); }
+.fb-strip img { display: block; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+/* the film itself: sprocket rows above and below every frame, drawn, not imaged */
+.fb-strip::before, .fb-strip::after { content: ""; position: absolute; left: -100vw; right: -100vw; height: 7%; z-index: -1;
+  background: repeating-linear-gradient(90deg, transparent 0 14px, color-mix(in srgb, var(--ink) 55%, transparent) 14px 30px, transparent 30px 44px); mask: linear-gradient(#000 0 0); }
+.fb-strip::before { top: 6%; } .fb-strip::after { bottom: 6%; }
+.fb-hair { position: absolute; inset: 0 auto 0 50%; width: 1px; background: var(--brass, var(--ink)); opacity: .9; pointer-events: none; }
+.fb-tc { position: absolute; left: 1rem; bottom: .7rem; margin: 0; font: 500 var(--text-sm)/1 var(--font-mono); letter-spacing: .08em; color: var(--ink); text-shadow: 0 1px 0 var(--bg); }
+.fb-cap { position: absolute; right: 1rem; bottom: .7rem; margin: 0; font: 400 var(--text-xs)/1.2 var(--font-mono); color: var(--ink-dim); max-width: 40ch; text-align: right; }
+@media (max-width: 640px) { .flatbed { grid-template-columns: 2.4rem 1fr; } .fb-cap { display: none; } .fb-strip li { height: 66%; } }
+@media (prefers-reduced-motion: reduce) { .fb-strip li { transition: none; } }

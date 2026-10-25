@@ -1,0 +1,1436 @@
+{
+ "format": "wire/1",
+ "generated_at": "2026-10-24T13:33:52Z",
+ "items": [
+  {
+   "id": "hf-emdashthreee/pix-vid-wn-2.1-t2v-14b",
+   "at": "2026-10-24T11:46:33Z",
+   "model": "emdashthreee/pix-vid-wn-2.1-t2v-14b",
+   "title": "New text-to-video model listed on Hugging Face: emdashthreee/pix-vid-wn-2.1-t2v-14b",
+   "url": "https://huggingface.co/emdashthreee/pix-vid-wn-2.1-t2v-14b",
+   "kind": "new-model",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hf-RunningHubAI/rh-moss-image-bf16-miaomiao-anima-unet",
+   "at": "2026-10-24T08:57:02Z",
+   "model": "RunningHubAI/rh-moss-image-bf16-miaomiao-anima-unet",
+   "title": "New text-to-video model listed on Hugging Face: RunningHubAI/rh-moss-image-bf16-miaomiao-anima-unet",
+   "url": "https://huggingface.co/RunningHubAI/rh-moss-image-bf16-miaomiao-anima-unet",
+   "kind": "new-model",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hf-Kompaktion/Movetoy",
+   "at": "2026-10-24T03:58:06Z",
+   "model": "Kompaktion/Movetoy",
+   "title": "New text-to-video model listed on Hugging Face: Kompaktion/Movetoy",
+   "url": "https://huggingface.co/Kompaktion/Movetoy",
+   "kind": "new-model",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hf-onocloud/onoai-motion-1.0-pro",
+   "at": "2026-10-24T01:55:34Z",
+   "model": "onocloud/onoai-motion-1.0-pro",
+   "title": "New text-to-video model listed on Hugging Face: onocloud/onoai-motion-1.0-pro",
+   "url": "https://huggingface.co/onocloud/onoai-motion-1.0-pro",
+   "kind": "new-model",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hf-PedroMarinhoDev/Hy-Nomas-ComfyUI",
+   "at": "2026-10-23T22:21:59Z",
+   "model": "PedroMarinhoDev/Hy-Nomas-ComfyUI",
+   "title": "New text-to-video model listed on Hugging Face: PedroMarinhoDev/Hy-Nomas-ComfyUI",
+   "url": "https://huggingface.co/PedroMarinhoDev/Hy-Nomas-ComfyUI",
+   "kind": "new-model",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hf-dragonlimited/LTX2-marimo",
+   "at": "2026-10-23T21:01:01Z",
+   "model": "dragonlimited/LTX2-marimo",
+   "title": "New text-to-video model listed on Hugging Face: dragonlimited/LTX2-marimo",
+   "url": "https://huggingface.co/dragonlimited/LTX2-marimo",
+   "kind": "new-model",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hf-berryber09/FastH3-OmniRef-8step-pruned-w4a8",
+   "at": "2026-10-23T20:22:21Z",
+   "model": "berryber09/FastH3-OmniRef-8step-pruned-w4a8",
+   "title": "New text-to-video model listed on Hugging Face: berryber09/FastH3-OmniRef-8step-pruned-w4a8",
+   "url": "https://huggingface.co/berryber09/FastH3-OmniRef-8step-pruned-w4a8",
+   "kind": "new-model",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hf-ducvh5/looptrans-a5-b5x4-c5-tf-fm-tm",
+   "at": "2026-10-23T19:59:33Z",
+   "model": "ducvh5/looptrans-a5-b5x4-c5-tf-fm-tm",
+   "title": "New text-to-video model listed on Hugging Face: ducvh5/looptrans-a5-b5x4-c5-tf-fm-tm",
+   "url": "https://huggingface.co/ducvh5/looptrans-a5-b5x4-c5-tf-fm-tm",
+   "kind": "new-model",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "gh-diffusers-v0.42.0",
+   "at": "2026-10-23T15:39:55Z",
+   "model": "diffusers",
+   "title": "diffusers release: Diffusers 0.42.0: FLUX.3, Fibo 2.0, Kandinsky 6, and more",
+   "url": "https://github.com/huggingface/diffusers/releases/tag/v0.42.0",
+   "kind": "release",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hf-yaleiyaleichiling/NSFW-Anime-wan-5B",
+   "at": "2026-10-23T14:52:02Z",
+   "model": "yaleiyaleichiling/NSFW-Anime-wan-5B",
+   "title": "New text-to-video model listed on Hugging Face: yaleiyaleichiling/NSFW-Anime-wan-5B",
+   "url": "https://huggingface.co/yaleiyaleichiling/NSFW-Anime-wan-5B",
+   "kind": "new-model",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hf-EXCAI/ForcingBooster",
+   "at": "2026-10-23T09:58:40Z",
+   "model": "EXCAI/ForcingBooster",
+   "title": "New text-to-video model listed on Hugging Face: EXCAI/ForcingBooster",
+   "url": "https://huggingface.co/EXCAI/ForcingBooster",
+   "kind": "new-model",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hf-Sistafistaz/text-to-video-ms-1.7b",
+   "at": "2026-10-23T09:09:54Z",
+   "model": "Sistafistaz/text-to-video-ms-1.7b",
+   "title": "New text-to-video model listed on Hugging Face: Sistafistaz/text-to-video-ms-1.7b",
+   "url": "https://huggingface.co/Sistafistaz/text-to-video-ms-1.7b",
+   "kind": "new-model",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hf-Wuli-art/MiniMax-H3-Turbo",
+   "at": "2026-10-23T08:17:28Z",
+   "model": "Wuli-art/MiniMax-H3-Turbo",
+   "title": "New text-to-video model listed on Hugging Face: Wuli-art/MiniMax-H3-Turbo",
+   "url": "https://huggingface.co/Wuli-art/MiniMax-H3-Turbo",
+   "kind": "new-model",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hf-sanjeevkumar70550932/LTX-Video-0.9.7-distilled",
+   "at": "2026-10-23T01:44:45Z",
+   "model": "sanjeevkumar70550932/LTX-Video-0.9.7-distilled",
+   "title": "New text-to-video model listed on Hugging Face: sanjeevkumar70550932/LTX-Video-0.9.7-distilled",
+   "url": "https://huggingface.co/sanjeevkumar70550932/LTX-Video-0.9.7-distilled",
+   "kind": "new-model",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hf-nvidia/Wan2.2-T2V-A14B-Diffusers-FP8",
+   "at": "2026-10-23T00:43:15Z",
+   "model": "nvidia/Wan2.2-T2V-A14B-Diffusers-FP8",
+   "title": "New text-to-video model listed on Hugging Face: nvidia/Wan2.2-T2V-A14B-Diffusers-FP8",
+   "url": "https://huggingface.co/nvidia/Wan2.2-T2V-A14B-Diffusers-FP8",
+   "kind": "new-model",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hf-nvidia/Wan2.2-T2V-A14B-Diffusers-NVFP4",
+   "at": "2026-10-23T00:42:57Z",
+   "model": "nvidia/Wan2.2-T2V-A14B-Diffusers-NVFP4",
+   "title": "New text-to-video model listed on Hugging Face: nvidia/Wan2.2-T2V-A14B-Diffusers-NVFP4",
+   "url": "https://huggingface.co/nvidia/Wan2.2-T2V-A14B-Diffusers-NVFP4",
+   "kind": "new-model",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "gh-comfyui-v0.42.5",
+   "at": "2026-10-23T00:07:14Z",
+   "model": "comfyui",
+   "title": "comfyui release: v0.42.5",
+   "url": "https://github.com/Comfy-Org/ComfyUI/releases/tag/v0.42.5",
+   "kind": "release",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hf-epfl-neuroai/NEvo",
+   "at": "2026-10-22T18:54:47Z",
+   "model": "epfl-neuroai/NEvo",
+   "title": "New text-to-video model listed on Hugging Face: epfl-neuroai/NEvo",
+   "url": "https://huggingface.co/epfl-neuroai/NEvo",
+   "kind": "new-model",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "arxiv-2610.31640v1",
+   "at": "2026-10-22T17:53:03Z",
+   "model": "",
+   "title": "New arXiv paper: WorldForge V2: Eliciting Camera-Trajectory Alignment in Video Diffusion Models",
+   "url": "http://arxiv.org/abs/2610.31640v1",
+   "kind": "paper",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hf-dragonlimited/comfyui-molab",
+   "at": "2026-10-22T17:44:28Z",
+   "model": "dragonlimited/comfyui-molab",
+   "title": "New text-to-video model listed on Hugging Face: dragonlimited/comfyui-molab",
+   "url": "https://huggingface.co/dragonlimited/comfyui-molab",
+   "kind": "new-model",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "arxiv-2610.31466v1",
+   "at": "2026-10-22T15:58:39Z",
+   "model": "",
+   "title": "New arXiv paper: AnyGameRenderer: Entity-Consistent Generative Rendering Across Games and an Entity-Level Benchmark",
+   "url": "http://arxiv.org/abs/2610.31466v1",
+   "kind": "paper",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "arxiv-2610.31429v1",
+   "at": "2026-10-22T15:27:58Z",
+   "model": "",
+   "title": "New arXiv paper: PhysTrace: Interpretable Temporal Evaluation of Physical Consistency in Video Generative Models",
+   "url": "http://arxiv.org/abs/2610.31429v1",
+   "kind": "paper",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hf-nynxz/MiniMax-H3-PTD-LoRAs",
+   "at": "2026-10-22T13:32:14Z",
+   "model": "nynxz/MiniMax-H3-PTD-LoRAs",
+   "title": "New text-to-video model listed on Hugging Face: nynxz/MiniMax-H3-PTD-LoRAs",
+   "url": "https://huggingface.co/nynxz/MiniMax-H3-PTD-LoRAs",
+   "kind": "new-model",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hf-infosave/LTX-2.5-cmf",
+   "at": "2026-10-22T12:04:44Z",
+   "model": "infosave/LTX-2.5-cmf",
+   "title": "New text-to-video model listed on Hugging Face: infosave/LTX-2.5-cmf",
+   "url": "https://huggingface.co/infosave/LTX-2.5-cmf",
+   "kind": "new-model",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hf-infosave/MiniMax-H3-Turbo-cmf",
+   "at": "2026-10-22T12:04:41Z",
+   "model": "infosave/MiniMax-H3-Turbo-cmf",
+   "title": "New text-to-video model listed on Hugging Face: infosave/MiniMax-H3-Turbo-cmf",
+   "url": "https://huggingface.co/infosave/MiniMax-H3-Turbo-cmf",
+   "kind": "new-model",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hf-unsloth/Wan2.2-TI2V-5B-FP8",
+   "at": "2026-10-22T12:02:51Z",
+   "model": "unsloth/Wan2.2-TI2V-5B-FP8",
+   "title": "New text-to-video model listed on Hugging Face: unsloth/Wan2.2-TI2V-5B-FP8",
+   "url": "https://huggingface.co/unsloth/Wan2.2-TI2V-5B-FP8",
+   "kind": "new-model",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "arxiv-2610.31121v1",
+   "at": "2026-10-22T11:39:01Z",
+   "model": "",
+   "title": "New arXiv paper: RGraph-Eval: Task-Grounded Scene Graphs for Evaluating Robot Video Generation",
+   "url": "http://arxiv.org/abs/2610.31121v1",
+   "kind": "paper",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hf-sjxknukkji/wan2.2-t2v-a14b-transformers-bf16",
+   "at": "2026-10-22T09:16:55Z",
+   "model": "sjxknukkji/wan2.2-t2v-a14b-transformers-bf16",
+   "title": "New text-to-video model listed on Hugging Face: sjxknukkji/wan2.2-t2v-a14b-transformers-bf16",
+   "url": "https://huggingface.co/sjxknukkji/wan2.2-t2v-a14b-transformers-bf16",
+   "kind": "new-model",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hf-Lightricks/LTX-2.5-Diffusers",
+   "at": "2026-10-22T08:58:38Z",
+   "model": "Lightricks/LTX-2.5-Diffusers",
+   "title": "New text-to-video model listed on Hugging Face: Lightricks/LTX-2.5-Diffusers",
+   "url": "https://huggingface.co/Lightricks/LTX-2.5-Diffusers",
+   "kind": "new-model",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hf-Lightricks/LTX-2.3-22b-IC-LoRA-Cross-Eyed",
+   "at": "2026-10-22T08:57:46Z",
+   "model": "Lightricks/LTX-2.3-22b-IC-LoRA-Cross-Eyed",
+   "title": "New text-to-video model listed on Hugging Face: Lightricks/LTX-2.3-22b-IC-LoRA-Cross-Eyed",
+   "url": "https://huggingface.co/Lightricks/LTX-2.3-22b-IC-LoRA-Cross-Eyed",
+   "kind": "new-model",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hf-Lightricks/LTX-2-19b-LoRA-Camera-Control-Static",
+   "at": "2026-10-22T08:57:40Z",
+   "model": "Lightricks/LTX-2-19b-LoRA-Camera-Control-Static",
+   "title": "New text-to-video model listed on Hugging Face: Lightricks/LTX-2-19b-LoRA-Camera-Control-Static",
+   "url": "https://huggingface.co/Lightricks/LTX-2-19b-LoRA-Camera-Control-Static",
+   "kind": "new-model",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hf-Lightricks/LTX-2-19b-LoRA-Camera-Control-Jib-Up",
+   "at": "2026-10-22T08:57:38Z",
+   "model": "Lightricks/LTX-2-19b-LoRA-Camera-Control-Jib-Up",
+   "title": "New text-to-video model listed on Hugging Face: Lightricks/LTX-2-19b-LoRA-Camera-Control-Jib-Up",
+   "url": "https://huggingface.co/Lightricks/LTX-2-19b-LoRA-Camera-Control-Jib-Up",
+   "kind": "new-model",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hf-Lightricks/LTX-2-19b-LoRA-Camera-Control-Jib-Down",
+   "at": "2026-10-22T08:57:36Z",
+   "model": "Lightricks/LTX-2-19b-LoRA-Camera-Control-Jib-Down",
+   "title": "New text-to-video model listed on Hugging Face: Lightricks/LTX-2-19b-LoRA-Camera-Control-Jib-Down",
+   "url": "https://huggingface.co/Lightricks/LTX-2-19b-LoRA-Camera-Control-Jib-Down",
+   "kind": "new-model",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hf-Lightricks/LTX-2-19b-LoRA-Camera-Control-Dolly-Right",
+   "at": "2026-10-22T08:57:34Z",
+   "model": "Lightricks/LTX-2-19b-LoRA-Camera-Control-Dolly-Right",
+   "title": "New text-to-video model listed on Hugging Face: Lightricks/LTX-2-19b-LoRA-Camera-Control-Dolly-Right",
+   "url": "https://huggingface.co/Lightricks/LTX-2-19b-LoRA-Camera-Control-Dolly-Right",
+   "kind": "new-model",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hf-Lightricks/LTX-2-19b-LoRA-Camera-Control-Dolly-Out",
+   "at": "2026-10-22T08:57:33Z",
+   "model": "Lightricks/LTX-2-19b-LoRA-Camera-Control-Dolly-Out",
+   "title": "New text-to-video model listed on Hugging Face: Lightricks/LTX-2-19b-LoRA-Camera-Control-Dolly-Out",
+   "url": "https://huggingface.co/Lightricks/LTX-2-19b-LoRA-Camera-Control-Dolly-Out",
+   "kind": "new-model",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hf-Lightricks/LTX-2-19b-LoRA-Camera-Control-Dolly-Left",
+   "at": "2026-10-22T08:57:31Z",
+   "model": "Lightricks/LTX-2-19b-LoRA-Camera-Control-Dolly-Left",
+   "title": "New text-to-video model listed on Hugging Face: Lightricks/LTX-2-19b-LoRA-Camera-Control-Dolly-Left",
+   "url": "https://huggingface.co/Lightricks/LTX-2-19b-LoRA-Camera-Control-Dolly-Left",
+   "kind": "new-model",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "arxiv-2610.30926v1",
+   "at": "2026-10-22T08:43:48Z",
+   "model": "",
+   "title": "New arXiv paper: Making MLLM Latents Matter: Factor-Aware Predictive Learning for Cinematic Video Generation",
+   "url": "http://arxiv.org/abs/2610.30926v1",
+   "kind": "paper",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "arxiv-2610.30866v1",
+   "at": "2026-10-22T07:44:36Z",
+   "model": "",
+   "title": "New arXiv paper: Verus-Insight: Towards Explainable Artifact Detection in AI-Generated Videos",
+   "url": "http://arxiv.org/abs/2610.30866v1",
+   "kind": "paper",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "arxiv-2610.30861v1",
+   "at": "2026-10-22T07:41:41Z",
+   "model": "",
+   "title": "New arXiv paper: Direct Forcing: A Single-Stage Training Recipe for Few-Step Autoregressive Text-to-Video Generation",
+   "url": "http://arxiv.org/abs/2610.30861v1",
+   "kind": "paper",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "arxiv-2610.30781v1",
+   "at": "2026-10-22T06:02:09Z",
+   "model": "",
+   "title": "New arXiv paper: DeXplicit: Making Physical State Explicit in Dexterous Manipulation World Models",
+   "url": "http://arxiv.org/abs/2610.30781v1",
+   "kind": "paper",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "arxiv-2610.30717v1",
+   "at": "2026-10-22T04:33:35Z",
+   "model": "",
+   "title": "New arXiv paper: PhyEvolve: Multi-Agent State-Evolution Planning for Physics-Aware Video Generation",
+   "url": "http://arxiv.org/abs/2610.30717v1",
+   "kind": "paper",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "gh-comfyui-v0.42.4",
+   "at": "2026-10-21T23:31:22Z",
+   "model": "comfyui",
+   "title": "comfyui release: v0.42.4",
+   "url": "https://github.com/Comfy-Org/ComfyUI/releases/tag/v0.42.4",
+   "kind": "release",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "arxiv-2610.30390v1",
+   "at": "2026-10-21T19:48:57Z",
+   "model": "",
+   "title": "New arXiv paper: Latent Space Jam: Layout Guided Video Synthesis",
+   "url": "http://arxiv.org/abs/2610.30390v1",
+   "kind": "paper",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "arxiv-2610.30320v1",
+   "at": "2026-10-21T18:33:13Z",
+   "model": "",
+   "title": "New arXiv paper: Self-Distilling Future Video Representations for World Action Models",
+   "url": "http://arxiv.org/abs/2610.30320v1",
+   "kind": "paper",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "arxiv-2610.30129v1",
+   "at": "2026-10-21T17:58:11Z",
+   "model": "",
+   "title": "New arXiv paper: Rethinking Video Autoencoders for Interactive World Models",
+   "url": "http://arxiv.org/abs/2610.30129v1",
+   "kind": "paper",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "arxiv-2610.30036v1",
+   "at": "2026-10-21T16:59:51Z",
+   "model": "",
+   "title": "New arXiv paper: Attn-Forcing: Learning Full-Context Attention Proxies for Streaming Video Generation",
+   "url": "http://arxiv.org/abs/2610.30036v1",
+   "kind": "paper",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "arxiv-2610.29989v1",
+   "at": "2026-10-21T16:28:46Z",
+   "model": "",
+   "title": "New arXiv paper: Looking Ahead: Modeling Future Evolution in Autoregressive Video Generation",
+   "url": "http://arxiv.org/abs/2610.29989v1",
+   "kind": "paper",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "arxiv-2610.29915v1",
+   "at": "2026-10-21T15:54:57Z",
+   "model": "",
+   "title": "New arXiv paper: CausalAlign: Causal Alignment of Video Generation Models for Consistent Ego-Motion",
+   "url": "http://arxiv.org/abs/2610.29915v1",
+   "kind": "paper",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "arxiv-2610.29590v1",
+   "at": "2026-10-21T11:30:09Z",
+   "model": "",
+   "title": "New arXiv paper: CineEvolve: An Agentic Self-Evolution Framework for Cinematic Multi-Shot Video Generation",
+   "url": "http://arxiv.org/abs/2610.29590v1",
+   "kind": "paper",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "gh-comfyui-v0.42.3",
+   "at": "2026-10-20T22:44:30Z",
+   "model": "comfyui",
+   "title": "comfyui release: v0.42.3",
+   "url": "https://github.com/Comfy-Org/ComfyUI/releases/tag/v0.42.3",
+   "kind": "release",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "arxiv-2610.28954v1",
+   "at": "2026-10-20T22:09:29Z",
+   "model": "",
+   "title": "New arXiv paper: Pair-Free Coarse-to-Real Video Generation via Real-to-Coarse Image Supervision",
+   "url": "http://arxiv.org/abs/2610.28954v1",
+   "kind": "paper",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "gh-comfyui-v0.42.2",
+   "at": "2026-10-20T20:34:13Z",
+   "model": "comfyui",
+   "title": "comfyui release: v0.42.2",
+   "url": "https://github.com/Comfy-Org/ComfyUI/releases/tag/v0.42.2",
+   "kind": "release",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "arxiv-2610.28829v1",
+   "at": "2026-10-20T18:51:48Z",
+   "model": "",
+   "title": "New arXiv paper: HorizonComposer: Spatiotemporally Consistent Driving Video Editing with Enriched Traffic Semantics",
+   "url": "http://arxiv.org/abs/2610.28829v1",
+   "kind": "paper",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "arxiv-2610.28632v1",
+   "at": "2026-10-20T17:59:56Z",
+   "model": "",
+   "title": "New arXiv paper: Joints, Camera, Action! Co-Generating 3D Motion and Video for Arbitrary Rigs",
+   "url": "http://arxiv.org/abs/2610.28632v1",
+   "kind": "paper",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "arxiv-2610.28631v1",
+   "at": "2026-10-20T17:59:51Z",
+   "model": "",
+   "title": "New arXiv paper: AEON: Unifying Video and 3D World Models",
+   "url": "http://arxiv.org/abs/2610.28631v1",
+   "kind": "paper",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "gh-comfyui-v0.42.1",
+   "at": "2026-10-19T01:33:54Z",
+   "model": "comfyui",
+   "title": "comfyui release: v0.42.1",
+   "url": "https://github.com/Comfy-Org/ComfyUI/releases/tag/v0.42.1",
+   "kind": "release",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "history-2026-10-15-topaz-astra-record-added",
+   "at": "2026-10-15",
+   "model": "Topaz Astra",
+   "title": "Coverage (completeness wave, 2026-10-15): Topaz Labs finishing record added (creative upscaling to 4K, Precise and Creative modes, Astra 2 promptable upscaling Apr 2026, interpolation to 120fps). Typed suite: a finishing tool, not a shot generator.",
+   "url": null,
+   "kind": "coverage",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-15-suno-v5-5-record-added",
+   "at": "2026-10-15",
+   "model": "Suno v5.5",
+   "title": "Coverage (completeness wave, 2026-10-15): the guide's first music record. Suno v5.5 (Mar 26, 2026) with Voices, Custom Models, My Taste, and Suno Studio; rights posture mid-transition under the Warner and BMG label deals, stated on the record.",
+   "url": null,
+   "kind": "coverage",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-15-seedream-5-0-pro-record-added",
+   "at": "2026-10-15",
+   "model": "Seedream 5.0 Pro",
+   "title": "Coverage (completeness wave, 2026-10-15): ByteDance image record added, 5.0 Pro flagship (July 2026, per BytePlus) with the 4.5 workhorse (Dec 2025, $0.04/image official API rate) and the 5.0 Flash tier ($0.018/image, OpenRouter) inside one record.",
+   "url": null,
+   "kind": "coverage",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-15-runway-aleph-2-0-record-added",
+   "at": "2026-10-15",
+   "model": "Runway Aleph 2.0",
+   "title": "Coverage (completeness wave, 2026-10-15): Runway's in-context video editing model (May 21, 2026) added, and the Gen-4.5 record corrected in the same wave: Runway did ship a new model in 2026, in the editing lane. No Gen-5 exists.",
+   "url": null,
+   "kind": "coverage",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-15-runway-act-two-record-added",
+   "at": "2026-10-15",
+   "model": "Runway Act-Two",
+   "title": "Coverage (completeness coordinator addendum, 2026-10-15): Runway performance-capture record added. Runway Dev's first-party line is Gen-4.5, Aleph 2.0 and Act-Two; the completeness wave's lanes carried the first two. Act-Two transfers a driving performance (face, head, hands, body) onto a character image or video, up to 30 s at 24 fps, billed at 5 credits per second.",
+   "url": null,
+   "kind": "coverage",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-15-nano-banana-2-and-pro-record-added",
+   "at": "2026-10-15",
+   "model": "Nano Banana 2 and Pro",
+   "title": "Coverage (completeness wave, 2026-10-15): Google image record added. The guide tracked no Google image model while its keyframe chapters assumed one; the record covers Nano Banana 2 (Gemini 3.1 Flash Image, Feb 2026) and Nano Banana Pro (Gemini 3 Pro Image, Nov 2025) with the family lineage, and leaves the single-source '2.1' report unrecorded as unverified.",
+   "url": null,
+   "kind": "coverage",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-15-midjourney-v8-2-record-added",
+   "at": "2026-10-15",
+   "model": "Midjourney V8.2",
+   "title": "Coverage (completeness wave, 2026-10-15): Midjourney image record added. V8.2 has been the default image model since July 24, 2026, with an Edit Model in public testing from Aug 27, 2026; the guide previously tracked only Midjourney V1 Video.",
+   "url": null,
+   "kind": "coverage",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-15-lyria-3-pro-record-added",
+   "at": "2026-10-15",
+   "model": "Lyria 3 Pro",
+   "title": "Coverage (completeness wave, 2026-10-15): Google DeepMind music record added (Mar 25, 2026): 3-minute structured tracks at 48kHz, SynthID on every output, Gemini and Vertex surfaces.",
+   "url": null,
+   "kind": "coverage",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-15-gpt-image-2-record-added",
+   "at": "2026-10-15",
+   "model": "GPT Image 2",
+   "title": "Coverage (completeness wave, 2026-10-15): OpenAI image record added (ChatGPT Images 2.0, April 21, 2026; gpt-image-2 in OpenAI's developer docs). The reported 2.5 variants rest on reseller docs only and are not recorded.",
+   "url": null,
+   "kind": "coverage",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-15-flux-2-record-added",
+   "at": "2026-10-15",
+   "model": "FLUX.2",
+   "title": "Coverage (completeness wave, 2026-10-15): Black Forest Labs image record added (family released Nov 25, 2025; dev 32B open weights, klein line Jan 2026, hosted Pro and Flex). The guide tracked FLUX 3 Video only.",
+   "url": null,
+   "kind": "coverage",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-15-elevenlabs-eleven-v3-record-added",
+   "at": "2026-10-15",
+   "model": "ElevenLabs Eleven v3",
+   "title": "Coverage (completeness wave, 2026-10-15): the guide's first audio record. Eleven v3 (GA Mar 14, 2026) covers directed voice, Text to Dialogue, Eleven Music, and SFX on one platform.",
+   "url": null,
+   "kind": "coverage",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-15-adobe-firefly-record-added",
+   "at": "2026-10-15",
+   "model": "Adobe Firefly",
+   "title": "Coverage (completeness wave, 2026-10-15): Adobe suite record added, Firefly Image Model 5 and the Firefly Video model (Premiere Generative Extend) plus the 30+ model partner hub, per Adobe's April 2026 newsroom lineup.",
+   "url": null,
+   "kind": "coverage",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "watch-Seedance 3.0",
+   "at": "2026-10-14",
+   "model": "Seedance 3.0",
+   "title": "Seedance 3.0: standing watch - Wave 21 (2026-10-11): still unconfirmed",
+   "url": null,
+   "kind": "watch",
+   "label": "Unconfirmed",
+   "source": "review-queue"
+  },
+  {
+   "id": "watch-Kling 4.0",
+   "at": "2026-10-14",
+   "model": "Kling 4.0",
+   "title": "Kling 4.0: standing watch - Wave 21 (2026-10-11): full model promised 'this October' with no date",
+   "url": null,
+   "kind": "watch",
+   "label": "Unconfirmed",
+   "source": "review-queue"
+  },
+  {
+   "id": "watch-Soul Cinema",
+   "at": "2026-10-14",
+   "model": "Soul Cinema",
+   "title": "Soul Cinema: standing watch - Wave 21 (2026-10-11): now the default image model in Cinema Studio 3.0/3.5; per-image credit cost still unpublished",
+   "url": null,
+   "kind": "watch",
+   "label": "Unconfirmed",
+   "source": "review-queue"
+  },
+  {
+   "id": "history-2026-10-13-wan-3-0-zacks-flag-dismissed-calibration-2-13",
+   "at": "2026-10-13",
+   "model": "Wan 3.0 / 3.0 Prime",
+   "title": "Flag dismissed + calibration (Watchtower 2.13): run 1 flagged Wan 3.0 on the Zacks stock-news article for the second consecutive pass (9756a800…, 15,877 chars in 2.12 → 38edd398…, 15,897 chars in this pass's run 1; two checker-path probes returned the flagged signature exactly). Read in full it is the same 25 August 2026 equity story, Alibaba's Wan 3.0 debut following the $10.2B share sale, whose Wan content is the launch coverage already behind the record. The page's chrome rotates between days while staying stable within one, so the URL is signature-excluded for this model in the 2.13 calibration (still fetched and recorded every run), following the 2.12 magichour precedent. No record change.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-wan-3-0-zacks-flag-dismissed-2-12",
+   "at": "2026-10-13",
+   "model": "Wan 3.0 / 3.0 Prime",
+   "title": "Flag dismissed (Watchtower 2.12): the adjudication run flagged Wan 3.0 on its Zacks stock-news source (Alibaba's Wan 3.0 debut / $10.2B share sale, 25 August 2026). Two checker-path adjudication fetches returned the flagged signature exactly (9756a800…, 15,877 chars, +30 on the 15,847-char baseline, page chrome on an equity story), and the article's Wan content is the launch coverage already behind the record; no spec, rate, or status fact on it moves the record. The model's Medium source still 403s (standing cohort) and its OpenRouter page moved only on a signature-excluded rendering. No record change.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-wan-2-7-createvision-flag-dismissed-2-13",
+   "at": "2026-10-13",
+   "model": "Wan 2.7",
+   "title": "Flag dismissed (Watchtower 2.13): run 1 flagged Wan 2.7 on createvision.ai's model page (4d5b9447…, 68,640 chars → 985bfeab…, 67,855). Two checker-path probes returned the flagged signature exactly. The page's credit table (40 credits/s at 720p) is CreateVision's own reseller-pool pricing, not a Wan rate the record rests on, and its Wan 2.7 facts, 2 to 15s clips, native audio, per-second billing, match the record. Dismissed as reseller-page churn.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-vidu-lapaas-flag-dismissed-2-17",
+   "at": "2026-10-13",
+   "model": "Vidu S2",
+   "title": "Flag dismissed (Watchtower 2.17): run 3 flagged Vidu S2 on lapaasvoice.com's S2 explainer (7d9bf2d6…, 7,636 chars → 2d5c1921…, 7,655). Two checker-path probes returned the flagged signature exactly; read in full, the post matches the record on every carried point (S2-Avatar for continuous interactive characters, real-time output raised from 540p to 720p; S2-Editing applying style, clothing, character, and background references to a live stream) and publishes no price or version fact that postdates or contradicts the record; Vidu's official pricing page held its baseline signature (66450841…) in the same run. The +19 chars are blog churn. (The page's pass-2 appearance was a baseline-settling artifact, not a counted churn flag; this in-pass move is its first counted flag, no exclusion; a second earns one.) Dismissed as explainer churn.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-veo-scriptbyai-flag-dismissed-calibration-2-15",
+   "at": "2026-10-13",
+   "model": "Veo 3.1",
+   "title": "Flag dismissed + calibration (Watchtower 2.15): run 2 flagged Veo 3.1 on scriptbyai.com's multi-vendor pricing page (→ da1fa4dd…, 45,040 chars), the page adjudicated in 2.13, whose Veo table carries Google's long-standing published per-second rates and whose own changelog dates its last Veo change to 31 March 2026; the deltas sit in other vendors' tables. This pass the page additionally proved rendering-variant: six consecutive checker-path probes returned a smaller signature-stable rendering (4f242c2c…, 30,922 chars) while the checker runs received the full ~45k rendering. Veo's remaining sources all answered unchanged in the same run, and Google's own Gemini API pricing page was read verbatim in 2.14. This is the second flag on this URL for this model, so the 2.15 calibration signature-excludes it (exact URL) for Veo 3.1, still fetched and recorded every run; the rates stay signature-live on the model's remaining sources. Run 3, the final re-baseline, read changed=0 with the calibration live. No record change.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-veo-3-1-scriptbyai-flag-dismissed-2-13",
+   "at": "2026-10-13",
+   "model": "Veo 3.1",
+   "title": "Flag dismissed (Watchtower 2.13): run 1 flagged Veo 3.1 on scriptbyai.com's multi-vendor pricing page (45717f00…, 46,273 chars → 7783188d…, 45,760). Two checker-path probes returned the flagged signature exactly. The page's Veo 3.1 table, Standard $0.40/s (720p and 1080p) and $0.60 (4K), Fast $0.15/$0.35, Light $0.05/$0.08, carries Google's long-standing published per-second rates, and the page's own changelog dates its last Veo change to 31 March 2026; the −513-char delta sits in the other vendors' tables the page tracks. No Veo 3.1 fact moved; dismissed as other-vendor churn on a shared pricing page.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-soul-cinema-watch-stands-2-18",
+   "at": "2026-10-13",
+   "model": "Soul Cinema",
+   "title": "Watch stands (Watchtower 2.18): Higgsfield's pricing page answered at the settled 428-char shell (f14e9f4a…) in two checker-path probes, with no in-app credit figure; the API post, read via checker-path probes, still lists only the $0.0032/image rate tabled in 2.3. The in-app credit cost is still unpublished. Watch stays open.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-soul-cinema-watch-stands-2-17",
+   "at": "2026-10-13",
+   "model": "Soul Cinema",
+   "title": "Watch stands (Watchtower 2.17): Higgsfield's pricing page answered at the settled 428-char shell (f14e9f4a…) in two checker-path probes, with no in-app credit figure; the API post, read via checker-path probes, still lists only the $0.0032/image rate tabled in 2.3. The in-app credit cost is still unpublished. Watch stays open.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-soul-cinema-watch-stands-2-16",
+   "at": "2026-10-13",
+   "model": "Soul Cinema",
+   "title": "Watch stands (Watchtower 2.16): Higgsfield's pricing page answered at the settled 428-char shell (f14e9f4a…) in two checker-path probes, with no in-app credit figure; the API post answered at identical length (62,594 chars) under a fresh signature, the per-request variance it has been signature-excluded for since 2.4, and still lists only the $0.0032/image rate tabled in 2.3. The in-app credit cost is still unpublished. Watch stays open.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-soul-cinema-watch-stands-2-15",
+   "at": "2026-10-13",
+   "model": "Soul Cinema",
+   "title": "Watch stands (Watchtower 2.15): Higgsfield's pricing page answered at the settled 428-char shell (f14e9f4a…) in two checker-path probes, with no in-app credit figure; the API post still lists only the $0.0032/image rate tabled in 2.3 (and stays signature-excluded for its per-request variance, as since 2.4). The in-app credit cost is still unpublished. Watch stays open.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-soul-cinema-watch-stands-2-14",
+   "at": "2026-10-13",
+   "model": "Soul Cinema",
+   "title": "Watch stands (Watchtower 2.14): Higgsfield's pricing page answered at the settled 428-char shell (f14e9f4a…) in two checker-path probes, with no in-app credit figure; the API post still lists only the $0.0032/image rate tabled in 2.3 (and returned a different signature at identical length, 62,719 chars, on every fetch this pass, the per-request variance it has been signature-excluded for since 2.4). The in-app credit cost is still unpublished. Watch stays open.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-soul-cinema-watch-stands-2-13",
+   "at": "2026-10-13",
+   "model": "Soul Cinema",
+   "title": "Standing watch stands (Watchtower 2.13): the in-app credit cost is still unpublished, Higgsfield's pricing page answered at the settled 428-char app-shell signature (f14e9f4a…) in two checker-path probes with no credit figure, and the API post's rate table still lists only the $0.0032/image API starting rate tabled in 2.3 (across the two probes the post returned two different signatures at identical length, 62,719 chars, the per-request variance it has been signature-excluded for since 2.4). Watch stays open, still narrowed.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-soul-cinema-watch-rechecked-2-11",
+   "at": "2026-10-13",
+   "model": "Soul Cinema",
+   "title": "Standing watch re-checked (Watchtower 2.11): the in-app credit cost is still unpublished. Higgsfield's pricing page still serves the 428-char shell at its baseline signature (f14e9f4a…) with no credit figure anywhere on it, and the API post still lists only the $0.0032/image rate tabled in 2.3. The narrowed watch (in-app credit cost only) stays open.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-soul-cinema-watch-rechecked-2-10",
+   "at": "2026-10-13",
+   "model": "Soul Cinema",
+   "title": "Standing watch re-checked (Watchtower 2.10): the in-app per-image credit cost is still not published by Higgsfield, its pricing page returned the same 428-char app shell at the settled signature (f14e9f4a…) in two probes with no credit figure, and the API post's rate table still lists only the $0.0032/image API starting rate tabled in Watchtower 2.3. The narrowed watch stays open.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-soul-cinema-flag-calibrated-2-19",
+   "at": "2026-10-13",
+   "model": "Soul Cinema",
+   "title": "Flag calibrated + watch stands (Watchtower 2.19): Soul Cinema's aiforautomation.io preview article flagged in two consecutive checker runs (runs 1 and 2) on rendering variance, proven: the page alternates between an 8,368-char rendering (4f79c2aa…, the long-standing baseline, which run 2 itself drew again) and a ~16,900-char long rendering whose embedded tail payload varies per request (32052cd7…, 19f1b5cc…, fc4b4c8c… across three fetches at 16,908 to 16,911 chars). Two checker-path probes drew the two long renderings; read in full, the article matches the record on every carried point (Soul Cinema Preview, announced 4 March 2026; Soul ID consistency; one-click cinematic) and publishes no postdating price or version fact. 2.19 calibration: the article's URL is signature-excluded (exact URL) for Soul Cinema, still fetched and recorded every run. The watch itself stands: Higgsfield's pricing page answered at the settled 428-char shell (f14e9f4a…) in two checker-path probes with no in-app credit figure, and the API post, read via probes, still lists only the $0.0032/image rate tabled in 2.3. The in-app credit cost is still unpublished.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-soul-cinema-credit-cost-unpublished-2-12",
+   "at": "2026-10-13",
+   "model": "Soul Cinema",
+   "title": "Standing watch re-checked (Watchtower 2.12): Higgsfield's pricing page answered at the settled 428-char app-shell signature (f14e9f4a…) in both completed runs and in two checker-path probes, still publishing no in-app credit figure; the API post (signature-excluded since 2.4) still lists only the $0.0032/image API starting rate tabled in 2.3. The in-app credit cost remains unpublished. No record change.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-seedance-3-0-watch-stands-2-19",
+   "at": "2026-10-13",
+   "model": "Seedance 3.0",
+   "title": "Watch stands (Watchtower 2.19): the pass could not content-read Seedance 3.0's criteria pages through the checker path at all, Versely's criteria page and the breakread article failed every fetch in all completed checker runs (IncompleteRead) and in four checker-path probes (IncompleteRead at 0 to 129,422 bytes), and the model's remaining sources gated likewise (all_failed in every completed run). No ByteDance announcement, model card, API ID, or pricing reached the record through any answering source, and the runs' news sweep carries no Seedance 3.0 announcement (its one 3.0 headline is a 'verify the model before you render' caution piece). The watch stays open, re-checked as far as the gated path allows, the first pass in the 2.x series whose Seedance criteria pages never answered.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-seedance-3-0-watch-stands-2-18",
+   "at": "2026-10-13",
+   "model": "Seedance 3.0",
+   "title": "Watch stands (Watchtower 2.18): Versely's criteria page answered at the 2.11 variant signature (506d7e9d…, 12,513 chars) in both checker runs and in two checker-path probes, the rendering read directly in 2.13, which still lists Seedance 3.0 among the models announced by no vendor as of 1 October ('there is no announcement, no API and no date'). The breakread article answered at its 2.12 re-baseline signature (63a60eae…) in both runs and both probes. No ByteDance announcement, model card, API ID, or pricing. Watch stays open, unconfirmed.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-seedance-3-0-watch-stands-2-17",
+   "at": "2026-10-13",
+   "model": "Seedance 3.0",
+   "title": "Watch stands (Watchtower 2.17): Versely's criteria page answered at the 2.11 variant signature (506d7e9d…, 12,513 chars) in the pass's first checker run and in two checker-path probes, the rendering read directly in 2.13, which still lists Seedance 3.0 among the models announced by no vendor as of 1 October ('there is no announcement, no API and no date'). The breakread article answered at its 2.12 re-baseline signature (63a60eae…) in the checker run and in both probes. No ByteDance announcement, model card, API ID, or pricing. Watch stays open, unconfirmed.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-seedance-3-0-watch-stands-2-16",
+   "at": "2026-10-13",
+   "model": "Seedance 3.0",
+   "title": "Watch stands (Watchtower 2.16): Versely's criteria page answered at the 2.11 variant signature (506d7e9d…, 12,513 chars) in both of the pass's completed checker runs, the rendering read directly in 2.13, which still lists Seedance 3.0 among the models announced by no vendor as of 1 October; one of two checker-path probes truncated (IncompleteRead) and the other returned the same variant signature. The breakread article answered at its 2.12 re-baseline signature (63a60eae…) in run 1. No ByteDance announcement, model card, API ID, or pricing. Watch stays open, unconfirmed.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-seedance-3-0-watch-stands-2-15",
+   "at": "2026-10-13",
+   "model": "Seedance 3.0",
+   "title": "Watch stands (Watchtower 2.15): Versely's criteria page answered at the 2.11 variant signature (506d7e9d…, 12,513 chars) in all three of the pass's completed checker runs and in two checker-path probes, the rendering read directly in 2.13, which still lists Seedance 3.0 among the models announced by no vendor as of 1 October. The breakread article held its 2.12 re-baseline signature (63a60eae…) in every run. No ByteDance announcement, model card, API ID, or pricing. Watch stays open, unconfirmed.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-seedance-3-0-watch-stands-2-14",
+   "at": "2026-10-13",
+   "model": "Seedance 3.0",
+   "title": "Watch stands (Watchtower 2.14): Versely's state-of-the-field criteria page answered at the 2.11 variant signature (506d7e9d…, 12,513 chars) in the pass's completed checker runs and in two checker-path probes, the same rendering read directly in 2.13, which still lists Seedance 3.0 among the models announced by no vendor as of 1 October. The breakread article held its 2.12 re-baseline signature (63a60eae…) in the runs and both probes. No ByteDance announcement, model card, API ID, or pricing. Watch stays open, unconfirmed.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-seedance-3-0-watch-stands-2-13",
+   "at": "2026-10-13",
+   "model": "Seedance 3.0",
+   "title": "Standing watch stands (Watchtower 2.13): still no official announcement, Versely's state-of-the-field criteria page answered at the 2.11 variant signature (506d7e9d…, 12,513 chars) in this pass's checker runs and in two checker-path probes, and read directly it still lists Seedance 3.0 among the models that 'had been announced by no vendor as of 1 October', with no announcement, no API, and no date. The breakread world-model article held the signature 2.12 re-baselined it at (63a60eae…, 9,687 chars) all pass, no re-flag. Watch stays open.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-seedance-3-0-watch-rechecked-2-11",
+   "at": "2026-10-13",
+   "model": "Seedance 3.0",
+   "title": "Standing watch re-checked (Watchtower 2.11): still unconfirmed. The criteria page (versely.studio, State of AI Video Oct 2026) answered in this pass's pre-run probe at its long-standing baseline signature (59931bf3…, 12,499 chars) and later in the pass at a new signature (506d7e9d…, 12,513 chars); the new variant was read directly and still lists Seedance 3.0 among the models that 'had been announced by no vendor as of 1 October', the signature move is an edit elsewhere on the page, not an announcement. No first-party ByteDance announcement, model card, API identifier, or pricing. The record stays reported/unconfirmed and the watch stays open.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-seedance-3-0-watch-rechecked-2-10",
+   "at": "2026-10-13",
+   "model": "Seedance 3.0",
+   "title": "Standing watch re-checked (Watchtower 2.10): still no official ByteDance announcement, the state-of-the-field coverage page this watch reads returned a signature identical to the 2.6 to 2.9 baseline (59931bf3…) in the checker run and still lists Seedance 3.0 among models announced by no vendor as of October 1, with no announcement, no API, and no date. The record's standing position (reported, unconfirmed) is unchanged and the watch stays open.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-seedance-3-0-still-unconfirmed-2-12",
+   "at": "2026-10-13",
+   "model": "Seedance 3.0",
+   "title": "Standing watch re-checked (Watchtower 2.12, tenth review pass): Versely's state-of-the-field criteria page answered at the variant signature first seen in 2.11 (506d7e9d…, 12,513 chars) in both completed checker runs and in two checker-path probes, and read directly it still lists Seedance 3.0 among the models that had been announced by no vendor as of 1 October. No ByteDance announcement, model card, API ID, or pricing. Watch stays open; no record change.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-seedance-3-0-flag-reviewed-2-10",
+   "at": "2026-10-13",
+   "model": "Seedance 3.0",
+   "title": "Checker flag reviewed and dismissed (Watchtower 2.10): the flagged source is a third-party article (breakread.com, September 8, 2026, reporting Bloomberg coverage) about a reported ByteDance real-time world model built on Seedance technology, signature-stable at dd63241d… (9,701 chars) across the run and two re-probes. It is not a Seedance 3.0 announcement: no model card, no API identifier, no pricing, and no first-party statement. No ByteDance source moved; the record stays reported/unconfirmed and the standing watch stays open.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-seedance-3-0-breakread-flag-dismissed-2-12",
+   "at": "2026-10-13",
+   "model": "Seedance 3.0",
+   "title": "Flag dismissed (Watchtower 2.12): the final re-baseline run flagged Seedance 3.0 on breakread.com's ByteDance article, whose signature moved +8 chars (31268bd0…, 9,679 → 63a60eae…, 9,687). Two checker-path adjudication fetches returned the flagged signature exactly, and read in full the article is the same 8 September 2026 story adjudicated in 2.10, a reported real-time world model built on Seedance technology, launch date uncertain, no Seedance 3.0 announcement, model card, API identifier, or pricing, while the watch's criteria page (Versely) held its signature through the same run. The delta is article chrome. No record change.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-runway-pricing-shell-flag-dismissed-calibration-2-14",
+   "at": "2026-10-13",
+   "model": "Runway Gen-4.5",
+   "title": "Flag dismissed + calibration (Watchtower 2.14): runwayml.com/pricing flagged for the second consecutive pass, run 1 fetched a 420-char shell (95b43e21…) against the 1,071-char baseline, and two checker-path probes returned 1,142 and 992 chars at two further signatures; every rendering is a JavaScript app shell with no plan prices and no credit rate, as read in full in 2.13. This is the second flag 2.13 said would earn the exclusion: the URL is signature-excluded (exact URL) for this model in the 2.14 calibration, still fetched and recorded every run; the record's figures (12 credits/s; API $0.12/s) stay signature-live on the model's remaining sources. No record change.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-runway-pricing-shell-flag-dismissed-2-13",
+   "at": "2026-10-13",
+   "model": "Runway Gen-4.5",
+   "title": "Flag dismissed (Watchtower 2.13): run 1 flagged Runway Gen-4.5 on runwayml.com/pricing, the vendor's own pricing page answered at 1,071 chars (a1b50174…) against a 431-char baseline (4b28e43e…). Both renderings are JavaScript app shells: navigation, plan names, an SVG path, and the page's static '$12/month' title, no plan prices and no Gen-4.5 credit rate in either. An adjudication probe timed out once, then returned the flagged signature exactly. The record's figures (12 credits/s; API $0.12/s) stay signature-live on the model's remaining sources after the 2.12 magichour calibration. First flag on this URL; dismissed as shell variance, no exclusion, a second flag earns one.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-runway-magichour-alternation-calibrated-2-12",
+   "at": "2026-10-13",
+   "model": "Runway Gen-4.5",
+   "title": "Flag dismissed + churn calibration (Watchtower 2.12): the adjudication run flagged Runway Gen-4.5 on magichour.ai's pricing blog at a new signature (a84522ba…, 22,395 chars), but two checker-path probes both returned the long-standing baseline rendering exactly (4571fe2d…, 22,892 chars), and the re-baseline run fetched the new variant again, proving the page alternates renderings within a single pass (the 2.7 FLUX pattern). The baseline rendering's figures (12 credits per second; API $0.12/s) match the record exactly. The URL is now signature-excluded for this model in the checker config, still fetched and recorded every run; the rate stays signature-live on the model's remaining sources. No record change.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-pixverse-v6-third-clean-pass-2-13",
+   "at": "2026-10-13",
+   "model": "PixVerse V6",
+   "title": "Third clean pass (Watchtower 2.13): PixVerse V6's docs source fetched clean at its baseline signature (95c88c96…, 4,278 chars) inside this pass's completed runs and in two checker-path probes, with all five of the model's sources answering in the runs, the 2.10 recovery now stands on three consecutive clean passes. No record change.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-pixverse-v6-sixth-clean-pass-2-16",
+   "at": "2026-10-13",
+   "model": "PixVerse V6",
+   "title": "Sixth clean pass (Watchtower 2.16): PixVerse V6's docs source fetched clean at the baseline signature (95c88c96…, 4,278 chars) in both of the pass's completed runs and in two checker-path probes, all five sources answering (source_status ok in the final feed), the 2.10 recovery now stands on six consecutive clean passes, one more than 2.15 claimed. Record unchanged.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-pixverse-v6-seventh-clean-pass-2-17",
+   "at": "2026-10-13",
+   "model": "PixVerse V6",
+   "title": "Seventh clean pass (Watchtower 2.17): PixVerse V6's docs source fetched clean at the baseline signature (95c88c96…, 4,278 chars) in the pass's first checker run and in two checker-path probes, all five sources answering (source_status ok in the run's feed), the 2.10 recovery now stands on seven consecutive clean passes, one more than 2.16 claimed. Record unchanged.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-pixverse-v6-second-clean-pass-2-12",
+   "at": "2026-10-13",
+   "model": "PixVerse V6",
+   "title": "Second clean pass claimed (Watchtower 2.12): PixVerse V6's official docs source fetched clean at its baseline signature (95c88c96…, 4,278 chars) inside both completed checker runs of this pass, with all five sources answering, the second-clean-run evidence 2.11 could not claim (its docs source answered only in an inter-run probe that pass). The 2.10 recovery is now backed by two consecutive clean passes. Record unchanged; severity remains watch only on its own baseline pricing diff.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-pixverse-v6-recovered-2-10",
+   "at": "2026-10-13",
+   "model": "PixVerse V6",
+   "title": "Partial record recovered (Watchtower 2.10): PixVerse's official docs source, the source that truncated through 2.8 and again in 2.9's final run, fetched clean in both of this pass's checker runs at the baseline signature (95c88c96…, 4,278 chars), with all five of the model's sources answering. Per the criterion stated in 2.9 (recovery only on a clean final-run fetch at a verifiable signature), the recovery is claimed now: the record is stable in the published feed, its severity watch only on its own baseline pricing diff, the PixVerse pattern.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-pixverse-v6-ninth-clean-pass-2-19",
+   "at": "2026-10-13",
+   "model": "PixVerse V6",
+   "title": "Ninth clean pass (Watchtower 2.19): PixVerse V6's docs source fetched clean at the baseline signature (95c88c96…, 4,278 chars) in the pass's later completed checker runs (source_status ok in the final feed) and in two checker-path probes, one earlier run's fetch of it was gated (IncompleteRead) and is not counted. The 2.10 recovery now stands on nine consecutive clean passes, one more than 2.18 claimed. Record unchanged.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-pixverse-v6-fourth-clean-pass-2-14",
+   "at": "2026-10-13",
+   "model": "PixVerse V6",
+   "title": "Fourth clean pass (Watchtower 2.14): PixVerse V6's docs source fetched clean at the baseline signature (95c88c96…, 4,278 chars) inside the pass's completed runs and in two checker-path probes, all five sources answering, the 2.10 recovery now stands on four consecutive clean passes, one more than 2.13 claimed. Record unchanged.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-pixverse-v6-fifth-clean-pass-2-15",
+   "at": "2026-10-13",
+   "model": "PixVerse V6",
+   "title": "Fifth clean pass (Watchtower 2.15): PixVerse V6's docs source fetched clean at the baseline signature (95c88c96…, 4,278 chars) inside the pass's completed runs, all five sources answering (source_status ok in the final feed), the 2.10 recovery now stands on five consecutive clean passes, one more than 2.14 claimed. Record unchanged.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-pixverse-v6-eighth-clean-pass-2-18",
+   "at": "2026-10-13",
+   "model": "PixVerse V6",
+   "title": "Eighth clean pass (Watchtower 2.18): PixVerse V6's docs source fetched clean at the baseline signature (95c88c96…, 4,278 chars) in both checker runs and in two checker-path probes, all five sources answering (source_status ok in both runs' feeds), the 2.10 recovery now stands on eight consecutive clean passes, one more than 2.17 claimed. Record unchanged.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-pixverse-v6-docs-probe-baseline-2-11",
+   "at": "2026-10-13",
+   "model": "PixVerse V6",
+   "title": "Docs-source state (Watchtower 2.11, stated plainly): PixVerse's official docs source answered at its baseline signature (95c88c96…, 4,278 chars) in a checker's-path probe between this pass's runs, but timed out inside both completed runs, so the published feed carries a partial stamp for PixVerse this pass and NO second clean run pass is claimed. The 2.10 recovery stands on 2.10's two clean runs plus today's probe evidence; the record itself is unchanged and its severity, when the docs source answers, remains watch only on its own baseline pricing diff.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-pika-homepage-flag-dismissed-2-14",
+   "at": "2026-10-13",
+   "model": "Pika 2.5",
+   "title": "Flag dismissed (Watchtower 2.14): run 3 flagged Pika 2.5 on pika.art, the vendor homepage; three checker-path probes returned the flagged signature exactly (cd214343…, 5,606 chars), the page is signature-stable today, and its model menu (Pika 2.5 and Pikaframes alongside routed third-party models: Seedance 2.5, MiniMax H3, Wan 3.0, Gemini Omni Flash) matches the record: 2.5 remains the current Pika model and the platform routes third-party models. The delta against the stored baseline is homepage marketing rotation. First flag on this URL, no exclusion; a second earns the homepage treatment klingai.com carries. Dismissed as homepage churn.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-minimax-h3-flag-artifact-2-11",
+   "at": "2026-10-13",
+   "model": "MiniMax H3",
+   "title": "Flag artifact closed (Watchtower 2.11): the Hugging Face community post carrying H3's record (ResterChed, minimax-h3-hailuo-3-0) was flagged in this pass's first completed run at signature de7d5dce…, but two adjudication fetches through the checker's own path both returned the long-standing baseline signature exactly (055593b3…, 23,304 chars) with content matching the record (2K only tier, 4 to 15 seconds, 24fps, API live), the run's variant was a one-off rendering served inside the day's degraded-egress window. The second run's repeat flag was the mechanical echo of the first run's stored bad signature. The final re-baseline run reads the baseline signature and flags nothing. No record change.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-midjourney-krea-flag-dismissed-2-17",
+   "at": "2026-10-13",
+   "model": "Midjourney V1 Video",
+   "title": "Flag dismissed (Watchtower 2.17): run 1 flagged Midjourney V1 Video on Krea's Midjourney pricing/video explainer (81a079c6…, 20,081 chars → d06aa50a…, 20,077). Two checker-path probes returned the flagged signature exactly. Read in full, the page matches the record on every carried point: V1 released June 18, 2025; image-to-video only (no text-to-video); 5-second clips extendable four times to 21 seconds; 480p by default, 720p in Fast Mode on Standard and up; about 8× an image job's cost, SD batch at 8 GPU-minutes. The −4 chars are blog-page churn around unchanged facts. First flag on this URL for this model, no exclusion; a second flag earns one. Dismissed as explainer-page churn.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-luma-mivicai-flag-dismissed-calibration-2-14",
+   "at": "2026-10-13",
+   "model": "Luma App / Ray 3.2",
+   "title": "Flag dismissed + calibration (Watchtower 2.14): the mivicai.com Ray 3.2 article returned four different signatures within one pass, the 2.13 baseline (ade39dfc…, 17,046 chars), run 1 (f6583f76…, 16,918), two checker-path probes (cabb6b55…, 17,023), and run 2 at a new signature again. Read in full, its facts match the record: Ray 3.2 is Luma's current model, served on the Luma Agents API, developer access credit/usage-based. The page alternates renderings within a pass, the 2.12 magichour pattern, so the URL is signature-excluded for this model in the 2.14 calibration (still fetched and recorded every run). No record change.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-ltx-2-5-robotics-flag-dismissed-calibration-2-14",
+   "at": "2026-10-13",
+   "model": "LTX-2.5",
+   "title": "Flag dismissed + calibration (Watchtower 2.14): run 1 flagged LTX-2.5 on roboticsandautomationnews.com's 13 August launch article for the second consecutive pass (2432801d…, 14,203 chars → 2f64eaef…, 14,165); two checker-path probes returned a third signature (48a217ae…, 14,169 chars), so the page is never signature-stable. Read in full, its only money figure is the under-$10M free-use threshold already in the record. The URL is signature-excluded for this model in the 2.14 calibration (still fetched and recorded every run), following the 2.13 Zacks/eWeek precedent. No record change.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-ltx-2-5-robotics-flag-dismissed-2-13",
+   "at": "2026-10-13",
+   "model": "LTX-2.5",
+   "title": "Flag dismissed (Watchtower 2.13): run 1 flagged LTX-2.5 on roboticsandautomationnews.com's launch article (b6a3d18f…, 14,227 chars → 2432801d…, 14,203, a −24-char delta). Two checker-path probes returned the flagged signature exactly; the article is the 13 August 2026 LTX-2.5 launch coverage already behind the record, and its only money figure is the under-$10M-revenue free-use threshold the record already carries. Dismissed as page chrome.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "history-2026-10-13-kling-4-0-watch-stands-2-19",
+   "at": "2026-10-13",
+   "model": "Kling 4.0",
+   "title": "Watch stands (Watchtower 2.19): APIMart's criteria page answered at its baseline signature (fc55ce30…, 136,708 chars) in every completed checker run, a fourteenth consecutive pass at the identical signature, still 'API Coming Soon', availability 'Not yet', pricing 'has not been announced'; its text schedules Kling 4.0 for October 2026 with Flash in limited early access. Two checker-path probes returned the smaller known rendering (c612033c…, 9,434 chars), read in full: the same criteria text on every point that matters. No GA model ID, no Kuaishou pricing. Watch stays 'announced'.",
+   "url": null,
+   "kind": "verification",
+   "label": "Verified",
+   "source": "model-history"
+  },
+  {
+   "id": "gh-diffusers-v0.41.0",
+   "at": "2026-10-06T06:47:10Z",
+   "model": "diffusers",
+   "title": "diffusers release: Diffusers 0.41.0: QwenImage 2.1 pipeline and more",
+   "url": "https://github.com/huggingface/diffusers/releases/tag/v0.41.0",
+   "kind": "release",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hn-49528895",
+   "at": "2026-09-01T22:06:57Z",
+   "model": "",
+   "title": "Show HN: Weedout – Safari extension that hides YouTube AI-labeled videos",
+   "url": "https://masteranza.github.io/weedout/",
+   "kind": "story",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "gh-diffusers-v0.40.0",
+   "at": "2026-08-20T14:59:37Z",
+   "model": "diffusers",
+   "title": "diffusers release: Diffusers 0.40.0: New pipelines, tensor-parallel support, improved CLI, and more",
+   "url": "https://github.com/huggingface/diffusers/releases/tag/v0.40.0",
+   "kind": "release",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hn-48939524",
+   "at": "2026-07-16T20:03:23Z",
+   "model": "",
+   "title": "$100 AI Music Video: Claude Fable 5 vs. GPT-5.6 Sol",
+   "url": "https://www.tryai.dev/blog/ai-music-video-arena-claude-vs-gpt-5.6",
+   "kind": "story",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hn-48856904",
+   "at": "2026-07-10T07:39:11Z",
+   "model": "",
+   "title": "AI-generated videos to maximally drive a target brain region",
+   "url": "https://nevo-project.epfl.ch/",
+   "kind": "story",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "gh-diffusers-v0.39.0",
+   "at": "2026-07-03T08:57:37Z",
+   "model": "diffusers",
+   "title": "diffusers release: Diffusers 0.39.0: New image and video pipelines, core library improvements, and more",
+   "url": "https://github.com/huggingface/diffusers/releases/tag/v0.39.0",
+   "kind": "release",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hn-48299753",
+   "at": "2026-05-27T20:00:51Z",
+   "model": "",
+   "title": "YouTube to automatically label AI-generated videos",
+   "url": "https://blog.youtube/news-and-events/improving-ai-labels-viewers-creators/",
+   "kind": "story",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "gh-diffusers-v0.38.0",
+   "at": "2026-05-01T05:55:12Z",
+   "model": "diffusers",
+   "title": "diffusers release: Diffusers 0.38.0: New image and audio pipelines, Core library improvements, and more",
+   "url": "https://github.com/huggingface/diffusers/releases/tag/v0.38.0",
+   "kind": "release",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hn-47652007",
+   "at": "2026-04-05T17:53:19Z",
+   "model": "",
+   "title": "Show HN: Real-time AI (audio/video in, voice out) on an M3 Pro with Gemma E2B",
+   "url": "https://github.com/fikrikarim/parlor",
+   "kind": "story",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hn-46498651",
+   "at": "2026-01-05T13:44:59Z",
+   "model": "",
+   "title": "All AI Videos Are Harmful (2025)",
+   "url": "https://idiallo.com/blog/all-ai-videos-are-harmful",
+   "kind": "story",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hn-46231187",
+   "at": "2025-12-11T13:35:55Z",
+   "model": "",
+   "title": "French supermarket's Christmas advert is worldwide hit (without AI) [video]",
+   "url": "https://www.youtube.com/watch?v=Na9VmMNJvsA",
+   "kind": "story",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hn-45505626",
+   "at": "2025-10-07T16:56:40Z",
+   "model": "",
+   "title": "Robin Williams' daughter pleads for people to stop sending AI videos of her dad",
+   "url": "https://www.bbc.co.uk/news/articles/c0r0erqk18jo",
+   "kind": "story",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hn-44521225",
+   "at": "2025-07-10T14:02:08Z",
+   "model": "",
+   "title": "Andrew Ng: Building Faster with AI [video]",
+   "url": "https://www.youtube.com/watch?v=RNJCfif1dPY",
+   "kind": "story",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hn-44433996",
+   "at": "2025-07-01T14:00:33Z",
+   "model": "",
+   "title": "Fei-Fei Li: Spatial intelligence is the next frontier in AI [video]",
+   "url": "https://www.youtube.com/watch?v=_PioN-CpOP0",
+   "kind": "story",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hn-44314423",
+   "at": "2025-06-19T00:33:21Z",
+   "model": "",
+   "title": "Andrej Karpathy: Software in the era of AI [video]",
+   "url": "https://www.youtube.com/watch?v=LCEmiRjPEtQ",
+   "kind": "story",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hn-44119144",
+   "at": "2025-05-28T18:33:50Z",
+   "model": "",
+   "title": "AI video you can watch and interact with, in real-time",
+   "url": "https://experience.odyssey.world",
+   "kind": "story",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hn-43944974",
+   "at": "2025-05-10T11:59:10Z",
+   "model": "",
+   "title": "LTXVideo 13B AI video generation",
+   "url": "https://ltxv.video/",
+   "kind": "story",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hn-42806616",
+   "at": "2025-01-23T18:34:38Z",
+   "model": "",
+   "title": "Show HN: Open-source AI video editor",
+   "url": "https://github.com/fal-ai-community/video-starter-kit",
+   "kind": "story",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hn-41710227",
+   "at": "2024-10-01T16:04:20Z",
+   "model": "",
+   "title": "Show HN: A real time AI video agent with under 1 second of latency",
+   "url": "https://news.ycombinator.com/item?id=41710227",
+   "kind": "story",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hn-41629916",
+   "at": "2024-09-23T20:05:47Z",
+   "model": "",
+   "title": "What I've Learned in the Past Year Spent Building an AI Video Editor",
+   "url": "https://www.makeartwithpython.com/blog/a-year-of-showing-up/",
+   "kind": "story",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hn-33020181",
+   "at": "2022-09-29T13:16:50Z",
+   "model": "",
+   "title": "Make-A-Video: AI system that generates videos from text",
+   "url": "https://makeavideo.studio/",
+   "kind": "story",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hn-27328205",
+   "at": "2021-05-29T21:02:26Z",
+   "model": "",
+   "title": "Create AI videos by simply typing in text",
+   "url": "https://www.synthesia.io/",
+   "kind": "story",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hn-22047661",
+   "at": "2020-01-14T18:23:06Z",
+   "model": "",
+   "title": "Thinking Fast and Slow, Deep Learning, and AI [video]",
+   "url": "https://lexfridman.com/daniel-kahneman",
+   "kind": "story",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  },
+  {
+   "id": "hn-14950122",
+   "at": "2017-08-07T18:49:28Z",
+   "model": "",
+   "title": "Jeff Dean’s Lecture for YC AI [video]",
+   "url": "http://blog.ycombinator.com/jeff-deans-lecture-for-yc-ai?src=hn",
+   "kind": "story",
+   "label": "Unconfirmed",
+   "source": "heartbeat"
+  }
+ ]
+}
