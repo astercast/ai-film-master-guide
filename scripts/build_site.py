@@ -46,7 +46,7 @@ CHAPTER_ORDER = {
 CSS = ["assets/css/tokens.css", "assets/css/base.css", "assets/css/layout.css",
        "assets/css/components.css", "assets/css/motifs.css", "assets/css/docs.css",
        "assets/css/home.css", "assets/css/programme.css", "assets/css/flatbed.css",
-       "assets/css/wire.css", "assets/css/print.css"]
+       "assets/css/wire.css", "assets/css/bill.css", "assets/css/print.css"]
 
 NAV_TOP = [
     # Navigation standard (rotation 21): five visible primaries,
@@ -316,79 +316,23 @@ INDEX_TMPL = """<!DOCTYPE html>
   </header>
 
   <main id="main">
-    <section class="flatbed" aria-label="The flatbed">
-      <div class="fb-edge" aria-hidden="true"><span>Models <b>{fb_models}</b></span><span>Checked <b>{fb_checked}</b></span><span>Chapters <b>{fb_chapters}</b></span></div>
-      <div class="fb-gate" tabindex="0" role="slider" aria-label="Scrub the film" aria-valuemin="0" aria-valuemax="23" aria-valuenow="0">
-        <ol class="fb-strip">{flatbed_frames}</ol>
-        <i class="fb-hair"></i>
-        <p class="fb-tc" aria-hidden="true">00:00:00:00</p>
-        <p class="fb-cap">Frames from A Trip to the Moon, 1902, public domain (Internet Archive). Drag or use the arrow keys.</p>
-      </div>
-    </section>
     <section class="door" id="paths" aria-labelledby="door-title">
-      <div class="screen">
-        <div class="bar bar-top">
-          <h1 id="door-title">Pick the film you want to make.</h1>
-          <p class="bar-meta">Repertory programme · One path at a time</p>
-        </div>
-        <div class="picture">
-          <canvas id="hero-grain" class="hero-grain" aria-hidden="true"></canvas>
-          <div class="tc" data-for="none">
-            <p class="tc-kicker">Tonight</p>
-            <p class="tc-title">Pick the film you want to make.</p>
-            <p class="tc-line">Seven films on the bill. Each one is a path through the whole guide, in the order the work happens.</p>
-          </div>
-          <div class="tc" data-for="first-short">
-            <p class="tc-kicker">Reel 01 · 7 days · 7 steps</p>
-            <p class="tc-title">Your first <em>60-second</em> short</p>
-            <p class="tc-line">A first short you finish, not start. Seven days, an evening at a time.</p>
-          </div>
-          <div class="tc" data-for="first-film">
-            <p class="tc-kicker">Reel 02 · a weekend · 5 steps</p>
-            <p class="tc-title">Your first <em>AI</em> film</p>
-            <p class="tc-line">The same spine as the short, opened up to a full weekend.</p>
-          </div>
-          <div class="tc" data-for="animated">
-            <p class="tc-kicker">Reel 03 · 1 to 2 weeks · 4 steps</p>
-            <p class="tc-title"><em>Animated</em> / stylized</p>
-            <p class="tc-line">Style first. The story gets drawn, not shot.</p>
-          </div>
-          <div class="tc" data-for="photoreal">
-            <p class="tc-kicker">Reel 04 · 3 to 6 weeks · 4 steps</p>
-            <p class="tc-title"><em>Photorealistic</em> drama</p>
-            <p class="tc-line">Where the craft is making it look shot, not made.</p>
-          </div>
-          <div class="tc" data-for="competition">
-            <p class="tc-kicker">Reel 05 · 2 to 4 weeks · 5 steps</p>
-            <p class="tc-title">Competition-ready <em>craft</em></p>
-            <p class="tc-line">Craft, polish and a deadline. The one to open when the short is already done.</p>
-          </div>
-          <div class="tc" data-for="longform">
-            <p class="tc-kicker">Reel 06 · ongoing · 4 steps</p>
-            <p class="tc-title">Long-form: <em>20+ minutes</em></p>
-            <p class="tc-line">Episodes, chapters and a film that stays one film.</p>
-          </div>
-          <div class="tc" data-for="filmmaker">
-            <p class="tc-kicker">Reel 07 · 12 weeks · 12 steps</p>
-            <p class="tc-title">The <em>90-day</em> filmmaker</p>
-            <p class="tc-line">Everything, in order, over a season. The full programme.</p>
-          </div>
-        </div>
-        <div class="bar bar-bottom">
-          <p>AI Film Master Guide · {chapter_count} chapters · 7 paths</p>
-          <a href="chapters.html">See all {chapter_count} chapters</a>
-        </div>
-      </div>
+      <header class="door-head">
+        <p class="door-kicker"><span class="cue" aria-hidden="true"></span>Tonight &middot; Seven films &middot; One path at a time</p>
+        <h1 id="door-title">Pick the film you want to make.</h1>
+        <p class="door-note"><span>Open a film. Tick each step as you finish it.</span><a href="chapters.html">All {chapter_count} chapters &rarr;</a></p>
+      </header>
       <ol class="programme">
         <li>
-          <details class="bill path-card" data-path="first-short" name="programme" open>
+          <details class="bill path-card" data-path="first-short" name="programme" style="--still: image-set(url(/assets/film/f02.avif) type('image/avif'), url(/assets/film/f02.webp) type('image/webp'))">
             <summary>
-              <span class="bill-reel">01</span>
-              <span class="bill-title">Your first 60-second short</span>
+              <span class="bill-reel">01</span><span class="bill-still" aria-hidden="true"></span>
+              <span class="bill-title">Your first 60-second short<span class="bill-start">Start here</span></span>
               <span class="bill-time">7 days</span>
               <span class="bill-meter"><span class="path-bar-fill"></span></span>
             </summary>
             <div class="bill-body">
+              <figure class="bill-fig"><div class="bill-screen" role="img" aria-label="Frame from A Trip to the Moon, 1902"></div><figcaption>Frame from A Trip to the Moon, 1902. Public domain.</figcaption></figure>
               <p class="bill-logline">A first short you finish, not start. Seven days, an evening at a time.</p>
               <ol class="path-steps">
                 <li><input type="checkbox" class="path-check" id="pc-first-short-1" data-step="first-short-1" aria-label="Mark complete: Day 1, concept lock"><a href="guides/first-short.html#day-1-concept-lock">Day 1</a> <span class="path-note">concept lock</span></li>
@@ -404,9 +348,10 @@ INDEX_TMPL = """<!DOCTYPE html>
           </details>
         </li>
         <li>
-          <details class="bill path-card" data-path="first-film" name="programme">
-            <summary><span class="bill-reel">02</span><span class="bill-title">Your first AI film</span><span class="bill-time">a weekend</span><span class="bill-meter"><span class="path-bar-fill"></span></span></summary>
+          <details class="bill path-card" data-path="first-film" name="programme" style="--still: image-set(url(/assets/film/f07.avif) type('image/avif'), url(/assets/film/f07.webp) type('image/webp'))">
+            <summary><span class="bill-reel">02</span><span class="bill-still" aria-hidden="true"></span><span class="bill-title">Your first AI film</span><span class="bill-time">a weekend</span><span class="bill-meter"><span class="path-bar-fill"></span></span></summary>
             <div class="bill-body">
+              <figure class="bill-fig"><div class="bill-screen" role="img" aria-label="Frame from A Trip to the Moon, 1902"></div><figcaption>Frame from A Trip to the Moon, 1902. Public domain.</figcaption></figure>
               <p class="bill-logline">The same spine as the short, opened up to a full weekend.</p>
               <ol class="path-steps">
                 <li><input type="checkbox" class="path-check" id="pc-first-film-1" data-step="first-film-1" aria-label="Mark complete: Story structure"><a href="craft/story-structure.html">Story structure</a></li>
@@ -420,9 +365,10 @@ INDEX_TMPL = """<!DOCTYPE html>
           </details>
         </li>
         <li>
-          <details class="bill path-card" data-path="animated" name="programme">
-            <summary><span class="bill-reel">03</span><span class="bill-title">Animated / stylized</span><span class="bill-time">1 to 2 weeks</span><span class="bill-meter"><span class="path-bar-fill"></span></span></summary>
+          <details class="bill path-card" data-path="animated" name="programme" style="--still: image-set(url(/assets/film/f11.avif) type('image/avif'), url(/assets/film/f11.webp) type('image/webp'))">
+            <summary><span class="bill-reel">03</span><span class="bill-still" aria-hidden="true"></span><span class="bill-title">Animated / stylized</span><span class="bill-time">1 to 2 weeks</span><span class="bill-meter"><span class="path-bar-fill"></span></span></summary>
             <div class="bill-body">
+              <figure class="bill-fig"><div class="bill-screen" role="img" aria-label="Frame from A Trip to the Moon, 1902"></div><figcaption>Frame from A Trip to the Moon, 1902. Public domain.</figcaption></figure>
               <p class="bill-logline">Style first. The story gets drawn, not shot.</p>
               <ol class="path-steps">
                 <li><input type="checkbox" class="path-check" id="pc-animated-1" data-step="animated-1" aria-label="Mark complete: Prompt engineering, animated register"><a href="higgsfield/prompt-engineering.html">Prompt engineering</a> <span class="path-note">animated register</span></li>
@@ -435,9 +381,10 @@ INDEX_TMPL = """<!DOCTYPE html>
           </details>
         </li>
         <li>
-          <details class="bill path-card" data-path="photoreal" name="programme">
-            <summary><span class="bill-reel">04</span><span class="bill-title">Photorealistic drama</span><span class="bill-time">3 to 6 weeks</span><span class="bill-meter"><span class="path-bar-fill"></span></span></summary>
+          <details class="bill path-card" data-path="photoreal" name="programme" style="--still: image-set(url(/assets/film/f14.avif) type('image/avif'), url(/assets/film/f14.webp) type('image/webp'))">
+            <summary><span class="bill-reel">04</span><span class="bill-still" aria-hidden="true"></span><span class="bill-title">Photorealistic drama</span><span class="bill-time">3 to 6 weeks</span><span class="bill-meter"><span class="path-bar-fill"></span></span></summary>
             <div class="bill-body">
+              <figure class="bill-fig"><div class="bill-screen" role="img" aria-label="Frame from A Trip to the Moon, 1902"></div><figcaption>Frame from A Trip to the Moon, 1902. Public domain.</figcaption></figure>
               <p class="bill-logline">Where the craft is making it look shot, not made.</p>
               <ol class="path-steps">
                 <li><input type="checkbox" class="path-check" id="pc-photoreal-1" data-step="photoreal-1" aria-label="Mark complete: Soul ID deep dive"><a href="higgsfield/soul-id-deep-dive.html">Soul ID deep dive</a></li>
@@ -450,9 +397,10 @@ INDEX_TMPL = """<!DOCTYPE html>
           </details>
         </li>
         <li>
-          <details class="bill path-card" data-path="competition" name="programme">
-            <summary><span class="bill-reel">05</span><span class="bill-title">Competition-ready craft</span><span class="bill-time">2 to 4 weeks</span><span class="bill-meter"><span class="path-bar-fill"></span></span></summary>
+          <details class="bill path-card" data-path="competition" name="programme" style="--still: image-set(url(/assets/film/f20.avif) type('image/avif'), url(/assets/film/f20.webp) type('image/webp'))">
+            <summary><span class="bill-reel">05</span><span class="bill-still" aria-hidden="true"></span><span class="bill-title">Competition-ready craft</span><span class="bill-time">2 to 4 weeks</span><span class="bill-meter"><span class="path-bar-fill"></span></span></summary>
             <div class="bill-body">
+              <figure class="bill-fig"><div class="bill-screen" role="img" aria-label="Frame from A Trip to the Moon, 1902"></div><figcaption>Frame from A Trip to the Moon, 1902. Public domain.</figcaption></figure>
               <p class="bill-logline">Craft, polish and a deadline. The one to open when the short is already done.</p>
               <ol class="path-steps">
                 <li><input type="checkbox" class="path-check" id="pc-competition-1" data-step="competition-1" aria-label="Mark complete: Competition-entry craft"><a href="higgsfield/competition-entry-craft.html">Competition-entry craft</a></li>
@@ -466,9 +414,10 @@ INDEX_TMPL = """<!DOCTYPE html>
           </details>
         </li>
         <li>
-          <details class="bill path-card" data-path="longform" name="programme">
-            <summary><span class="bill-reel">06</span><span class="bill-title">Long-form: 20+ minutes</span><span class="bill-time">ongoing</span><span class="bill-meter"><span class="path-bar-fill"></span></span></summary>
+          <details class="bill path-card" data-path="longform" name="programme" style="--still: image-set(url(/assets/film/f22.avif) type('image/avif'), url(/assets/film/f22.webp) type('image/webp'))">
+            <summary><span class="bill-reel">06</span><span class="bill-still" aria-hidden="true"></span><span class="bill-title">Long-form: 20+ minutes</span><span class="bill-time">ongoing</span><span class="bill-meter"><span class="path-bar-fill"></span></span></summary>
             <div class="bill-body">
+              <figure class="bill-fig"><div class="bill-screen" role="img" aria-label="Frame from A Trip to the Moon, 1902"></div><figcaption>Frame from A Trip to the Moon, 1902. Public domain.</figcaption></figure>
               <p class="bill-logline">Episodes, chapters and a film that stays one film.</p>
               <ol class="path-steps">
                 <li><input type="checkbox" class="path-check" id="pc-longform-1" data-step="longform-1" aria-label="Mark complete: Long-form pipelines"><a href="craft/longform-pipelines.html">Long-form pipelines</a></li>
@@ -481,9 +430,10 @@ INDEX_TMPL = """<!DOCTYPE html>
           </details>
         </li>
         <li>
-          <details class="bill path-card" data-path="filmmaker" name="programme">
-            <summary><span class="bill-reel">07</span><span class="bill-title">The 90-day filmmaker</span><span class="bill-time">12 weeks</span><span class="bill-meter"><span class="path-bar-fill"></span></span></summary>
+          <details class="bill path-card" data-path="filmmaker" name="programme" style="--still: image-set(url(/assets/film/f24.avif) type('image/avif'), url(/assets/film/f24.webp) type('image/webp'))">
+            <summary><span class="bill-reel">07</span><span class="bill-still" aria-hidden="true"></span><span class="bill-title">The 90-day filmmaker</span><span class="bill-time">12 weeks</span><span class="bill-meter"><span class="path-bar-fill"></span></span></summary>
             <div class="bill-body">
+              <figure class="bill-fig"><div class="bill-screen" role="img" aria-label="Frame from A Trip to the Moon, 1902"></div><figcaption>Frame from A Trip to the Moon, 1902. Public domain.</figcaption></figure>
               <p class="bill-logline">Everything, in order, over a season. The full programme.</p>
               <ol class="path-steps">
                 <li><input type="checkbox" class="path-check" id="pc-filmmaker-1" data-step="filmmaker-1" aria-label="Mark complete: Weeks 1 and 2, story foundations"><a href="craft/story-structure.html">Weeks 1 to 2</a> <span class="path-note">story foundations, logline + beat sheet</span></li>
@@ -504,6 +454,15 @@ INDEX_TMPL = """<!DOCTYPE html>
           </details>
         </li>
       </ol>
+    </section>
+    <section class="flatbed" aria-label="The flatbed">
+      <div class="fb-edge" aria-hidden="true"><span>Models <b>{fb_models}</b></span><span>Chapters <b>{fb_chapters}</b></span></div>
+      <div class="fb-gate" tabindex="0" role="slider" aria-label="Scrub the film" aria-valuemin="0" aria-valuemax="23" aria-valuenow="0">
+        <ol class="fb-strip">{flatbed_frames}</ol>
+        <i class="fb-hair"></i>
+        <p class="fb-tc" aria-hidden="true">00:00:00:00</p>
+        <p class="fb-cap">Frames from A Trip to the Moon, 1902, public domain (Internet Archive). Drag or use the arrow keys.</p>
+      </div>
     </section>
 
     <section class="container home-close tools-row scene" aria-labelledby="tools-h">
@@ -539,7 +498,7 @@ INDEX_TMPL = """<!DOCTYPE html>
 <footer class="site-footer">
     <div class="container footer-grid">
       <p>AI Film Master Guide, research notes for professional AI filmmaking. Sources linked per chapter.</p>
-      <nav aria-label="Footer">{footer}</nav>
+      <details class="sitemap"><summary>Every page in the guide</summary><nav aria-label="Footer">{footer}</nav></details>
       <div class="footer-colophon"><span>AI Film Master Guide</span><span class="tail">Craft, not buttons</span></div>
     </div>
   </footer>
@@ -552,7 +511,6 @@ INDEX_TMPL = """<!DOCTYPE html>
   <script src="assets/js/palette.js"></script>
   <script src="assets/js/paths.js"></script>
   <script src="assets/js/identity.js"></script>
-  <script src="assets/js/grain.js"></script>
   <script src="assets/js/flatbed.js"></script>
   <script src="assets/js/binder.js"></script>
   <script src="assets/js/wire.js"></script>
@@ -7725,8 +7683,8 @@ def inject_head_meta():
             f'  <meta name="built" content="{built_iso}">',
             '  <link rel="stylesheet" href="/assets/css/pulse.css">',
             '  <script type="module" src="/assets/js/pulse.js"></script>',
-            '  <script src="/assets/js/fleet-live.js"></script>',
-            '  <script src="/assets/js/fleet-bar.js" data-site="ai-film-master-guide"></script>',
+            '  <script defer src="/assets/js/fleet-live.js"></script>',
+            '  <script defer src="/assets/js/fleet-bar.js" data-site="ai-film-master-guide"></script>',
             '  <meta name="theme-color" content="#090807">',
             '  <link rel="icon" href="/favicon.ico" sizes="48x48">',
             '  <link rel="icon" href="/favicon.svg" type="image/svg+xml">',

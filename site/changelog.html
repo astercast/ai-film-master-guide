@@ -17,10 +17,13 @@
   <link rel="stylesheet" href="assets/css/programme.css">
   <link rel="stylesheet" href="assets/css/flatbed.css">
   <link rel="stylesheet" href="assets/css/wire.css">
+  <link rel="stylesheet" href="assets/css/bill.css">
   <link rel="stylesheet" href="assets/css/print.css">
-  <meta name="built" content="2026-10-24T13:39:13Z">
+  <meta name="built" content="2026-10-26T23:33:08Z">
   <link rel="stylesheet" href="/assets/css/pulse.css">
   <script type="module" src="/assets/js/pulse.js"></script>
+  <script defer src="/assets/js/fleet-live.js"></script>
+  <script defer src="/assets/js/fleet-bar.js" data-site="ai-film-master-guide"></script>
   <meta name="theme-color" content="#090807">
   <link rel="icon" href="/favicon.ico" sizes="48x48">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -65,7 +68,9 @@
         <p>This changelog is rebuilt from the repository's git history on every site build, so it always reflects the latest release. Each entry below is a shipped change with its commit date, not a roadmap, not a promise. When a model price, feature, or platform rule changes in the world, the corresponding chapter or API update appears here with its date, and the affected chapter links its sources.</p>
       </div>
       <h2>Recent changes</h2>
-      <ol class="change-list"><li><span class="change-date">2026-10-24</span> <span class="change-hash">8cd9825c</span><p>Round 3 (design consult): one programme look on every page (house header + programme.css in the inner template), front door reopens the last-opened path, Day 1-7 links land on their day anchors, home below the reels becomes one ruled tools list (Workbench substance kept; downloads stay on api.html and the All-pages index), 44px step-tick targets, optimizer results as a normal column, Watchtower can no longer say 0 errors while degraded</p></li>
+      <ol class="change-list"><li><span class="change-date">2026-10-25</span> <span class="change-hash">67f67f4c</span><p>Fleet-data migration: heartbeat run.py becomes scripts/heartbeat/film.py on the fleet lib (HB_SRC/HB_OUT); per-site heartbeat workflow, site-local lib and the Watchtower Vercel cron retired (function, cronauth/github commit-back libs, vercel crons + functions entries); /api/health replaced by build-written health.json (scripts/write_health.py in the build); fleet-live.js + fleet-bar.js wired on the home page</p></li>
+      <li><span class="change-date">2026-10-24</span> <span class="change-hash">8c1c4089</span><p>Bundle 2026-10-24 (Film): Archivo+Newsreader fonts, Flatbed hero, Wire, One Binder, heartbeat kit</p></li>
+      <li><span class="change-date">2026-10-24</span> <span class="change-hash">8cd9825c</span><p>Round 3 (design consult): one programme look on every page (house header + programme.css in the inner template), front door reopens the last-opened path, Day 1-7 links land on their day anchors, home below the reels becomes one ruled tools list (Workbench substance kept; downloads stay on api.html and the All-pages index), 44px step-tick targets, optimizer results as a normal column, Watchtower can no longer say 0 errors while degraded</p></li>
       <li><span class="change-date">2026-10-24</span> <span class="change-hash">ab97aabd</span><p>Round 2 (Claude consult 2026-10-24): front door remembers you, shared path progress, headline/still/nav/bench fixes, Watchtower stale flag</p></li>
       <li><span class="change-date">2026-10-23</span> <span class="change-hash">d4b97dd1</span><p>F3 residue purge (Aesthetics R357): brass hex removed from legacy tokens.css</p></li>
       <li><span class="change-date">2026-10-23</span> <span class="change-hash">9a063b19</span><p>Tonight&#x27;s Programme: Claude design consult site 1 (extraction graded PASS, Aesthetics R355)</p></li>
@@ -77,9 +82,7 @@
       <li><span class="change-date">2026-10-15</span> <span class="change-hash">38a9a26b</span><p>VP-0044 (r37): chapter crumb Guide is plain text, not a second home link (31 chapter pages, generator PAGE_TMPL); residue census re-measured 493/393</p></li>
       <li><span class="change-date">2026-10-15</span> <span class="change-hash">3fa8ad7d</span><p>S5 residue (r30): legacy-nav labels and skills-start links to the 44px floor, prompt contents links to 44px on phones</p></li>
       <li><span class="change-date">2026-10-14</span> <span class="change-hash">e00a82fd</span><p>VP-0044 (r30): nav clarity - Prompts in the bar, one home label, labelled All pages hub, room distinctions, prompt anchors</p></li>
-      <li><span class="change-date">2026-10-14</span> <span class="change-hash">b232c65d</span><p>Rotation 29 SUB-44: Film tap-target pass (phone-scoped 44px floor for site chrome, docs nav, Index panel, footer, buttons, form fields, skill deck; generator-rebuilt)</p></li>
-      <li><span class="change-date">2026-10-14</span> <span class="change-hash">74bc12e6</span><p>Rotation 28 VP-0030 follow-through: model titles stand whole on one line at phone widths (hero takes the full measure at phone sizes, model-title size step); changelog regenerated by build</p></li>
-      <li><span class="change-date">2026-10-14</span> <span class="change-hash">48722b65</span><p>Rotation 28 VP-0030: Film mobile layout repair (model quick-reference phone composition, unbreakable-token wrap for source lists/prose/model pages, phone-fit hero type, legacy nav wrap; generator-owned, rebuilt)</p></li></ol>
+      <li><span class="change-date">2026-10-14</span> <span class="change-hash">b232c65d</span><p>Rotation 29 SUB-44: Film tap-target pass (phone-scoped 44px floor for site chrome, docs nav, Index panel, footer, buttons, form fields, skill deck; generator-rebuilt)</p></li></ol>
       <p class="calc-note" style="margin-bottom:var(--space-7);">Older history lives in the repository's git log. The guide also ships <code>llms.txt</code> so agents can check freshness programmatically.</p>
     </section>
   </main>

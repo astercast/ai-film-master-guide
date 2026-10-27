@@ -1,0 +1,182 @@
+/* ==========================================================================
+   bill.css  "Tonight's Bill"
+   Loaded after programme.css. Tokens, header, the home door (headline and
+   the seven films) and the freshness chip. Vanilla CSS, no build step.
+
+   One idea: the home page is the board in a repertory cinema's foyer.
+   Seven films, each with a running time and a still. The stills are seven
+   frames from one public-domain film, A Trip to the Moon (1902), taken in
+   story order, so the bill reads as one film from "everyone gathers" to
+   "splashdown". Pick a film and its steps unroll as a strip of frames.
+   Ticking a step exposes that frame.
+   References: repertory programme sheets (title big, running time as the
+   figure), silent-film intertitles, reel-change cue marks. Principles only.
+   ========================================================================== */
+
+/* ---------- 1. TOKENS ---------- */
+:root {
+  /* house: the room at showtime. Warm near-black, never #000 on the page. */
+  --house: #0A0908;
+  /* bar: pure black, only for the header and the letterbox bars */
+  --bar: #000000;
+  /* picture: the lifted surface a frame sits on */
+  --picture: #13110F;
+  /* screen: projected white, warm. 16.6:1 on house. All main text. */
+  --screen: #EEEAE0;
+  /* aisle: aisle-light grey for secondary text. 6.8:1 on house. */
+  --aisle: #9C968C;
+  --rule: #2B2825;
+  /* tally: the cue mark. The ONLY colour. It means "you are here" and
+     "progress". Never decoration, never body text. */
+  --tally: #E0352B;
+
+  /* type: Archivo at width 72 for titles, Archivo for interface,
+     Newsreader for the intertitle line, Geist Mono for figures. */
+  --font-title: "Archivo Display", "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --fs-door: clamp(2.3rem, .35rem + 5.65vw, 6.6rem);      /* the H1 */
+  --fs-reel: clamp(1.4rem, 1rem + 1.6vw, 2.4rem);        /* a film title */
+  --fs-lede: clamp(1.05rem, .98rem + .35vw, 1.25rem);
+  --fs-tc: .72rem;
+
+  /* rhythm: one 4.25rem row is one film. Space steps are 6px multiples. */
+  --row-h: 4.25rem;
+  --reel-col: 3rem;
+  --still-w: 9.5rem;
+  --gutter: clamp(1rem, .25rem + 3vw, 3rem);
+  --page: 78rem;
+
+  /* the shared freshness chip (pulse.css) reads these two names */
+  --paper: var(--house);
+  --accent: var(--tally);
+}
+
+/* ---------- 2. FRESHNESS CHIP ---------- */
+/* pulse.css falls back to a white box. Here it was white on white. */
+body .pulse { left: var(--gutter); bottom: 0; padding: .4rem .7rem; max-inline-size: none;
+  background: var(--bar); color: var(--aisle); border: 0; border-top: 1px solid var(--rule);
+  font: 500 .72rem/1.2 var(--font-tc); letter-spacing: .04em; }
+body .pulse button { color: var(--screen); border-color: var(--aisle); }
+body { padding-block-end: 1.9rem; }
+
+/* ---------- 3. HEADER ---------- */
+.house-head { padding-block: .7rem; border-bottom: 1px solid var(--rule);
+  /* header, headline and bill share one left edge */
+  padding-inline: max(var(--gutter), calc((100% - var(--page)) / 2 + var(--gutter))); }
+.wm-a { color: var(--aisle); }
+.wm-b { font-size: 1.2rem; letter-spacing: .02em; }
+.house-nav > a { padding-block: .7rem; }
+
+/* ---------- 4. THE DOOR: headline, then the bill ---------- */
+body.home .door { max-inline-size: var(--page); margin-inline: auto;
+  padding: clamp(1.5rem, .9rem + 3vw, 3.5rem) var(--gutter) 0; }
+.door-head { display: grid; gap: .9rem; padding-block-end: clamp(1.25rem, .9rem + 1.6vw, 2.25rem); }
+.door-kicker { margin: 0; display: flex; align-items: center; gap: .75em;
+  font: 500 var(--fs-tc)/1 var(--font-tc); letter-spacing: .16em; text-transform: uppercase; color: var(--aisle); }
+.cue { flex: none; inline-size: .6rem; block-size: .6rem; border-radius: 50%; background: var(--tally); }
+.door-head h1 { margin: 0; max-inline-size: none;
+  font: 700 var(--fs-door)/.9 var(--font-title); text-transform: uppercase; letter-spacing: -.005em; text-wrap: balance; }
+.door-note { margin: 0; display: flex; flex-wrap: wrap; justify-content: space-between; gap: .4rem 2rem;
+  font-size: var(--fs-lede); color: color-mix(in oklab, var(--screen) 82%, var(--house)); }
+.door-note a { font: 500 var(--fs-tc)/1.6 var(--font-tc); letter-spacing: .12em; text-transform: uppercase; align-self: center; }
+
+.programme { max-inline-size: none; margin: 0; padding: 0 0 var(--s-6); }
+.programme > li { border-bottom: 1px solid var(--rule); }
+.programme > li:first-child { border-top: 1px solid var(--screen); }
+
+.bill > summary { grid-template-columns: var(--reel-col) var(--still-w) minmax(0, 1fr) auto 5.5rem;
+  gap: var(--s-2) var(--s-4); min-block-size: var(--row-h); padding: .55rem 0; }
+.bill > summary:hover { background: transparent; }
+.bill-title { font: 700 var(--fs-reel)/1 var(--font-title); font-stretch: 100%; text-transform: uppercase; letter-spacing: .005em; }
+.bill > summary:hover .bill-title, .bill > summary:focus-visible .bill-title { text-decoration: underline; text-decoration-thickness: 2px; text-decoration-color: var(--tally); text-underline-offset: .18em; }
+.bill-start { margin-inline-start: .9em; font: 500 var(--fs-tc)/1 var(--font-tc); letter-spacing: .14em; vertical-align: .35em; color: var(--aisle); }
+.bill-start::before { content: ""; display: inline-block; inline-size: .5rem; block-size: .5rem; border-radius: 50%; background: var(--tally); margin-inline-end: .6em; }
+.bill-time { font-size: var(--fs-tc); letter-spacing: .12em; text-transform: uppercase; }
+
+/* the still: one frame of the 1902 film, set 2.39 to 1 like a scope print */
+.bill-still { display: block; aspect-ratio: 2.39; inline-size: var(--still-w);
+  background: var(--still, none) 50% 45% / cover no-repeat, var(--picture);
+  filter: grayscale(1) contrast(1.08) brightness(.6); transition: filter .35s ease; }
+.bill > summary:hover .bill-still, .bill > summary:focus-visible .bill-still { filter: grayscale(1) contrast(1.08) brightness(1); }
+
+/* open: the small still leaves the row and becomes the screen in the body */
+.bill[open] > summary { grid-template-columns: var(--reel-col) 0 minmax(0, 1fr) auto 5.5rem; }
+.bill[open] .bill-still { inline-size: 0; opacity: 0; }
+.bill[open] .bill-reel { color: transparent; }
+
+.bill[open] .bill-logline { display: block; font-family: "Newsreader", Georgia, serif; font-style: italic; font-size: clamp(1.25rem, 1rem + 1vw, 1.7rem); line-height: 1.3; color: var(--screen); max-inline-size: 30ch; }
+.bill-body { padding: var(--s-2) 0 var(--s-5) calc(var(--reel-col) + var(--s-4) * 2); gap: var(--s-4); }
+.bill-fig { margin: 0; display: grid; gap: .5rem; }
+.bill-fig figcaption { font: 400 var(--fs-tc)/1.4 var(--font-tc); letter-spacing: .06em; color: var(--aisle); }
+.bill-screen { position: relative; aspect-ratio: 2.39; background: var(--still, none) 50% 45% / cover no-repeat, var(--picture);
+  filter: grayscale(1) contrast(1.08); }
+/* reel-change cue marks, top right, as on a release print */
+.bill-screen::before, .bill-screen::after { content: ""; position: absolute; inset-block-start: .7rem; block-size: .7rem; inline-size: .7rem;
+  border-radius: 50%; border: 1.5px solid var(--screen); opacity: .85; }
+.bill-screen::before { inset-inline-end: 2rem; }
+.bill-screen::after { inset-inline-end: .7rem; background: var(--screen); }
+@container programme (width >= 60rem) {
+  .bill[open] .bill-body { grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); grid-template-areas: "log screen" "steps screen" "foot screen"; column-gap: var(--s-6); align-items: start; }
+  .bill[open] .bill-logline { grid-area: log; }
+  .bill[open] .path-steps { grid-area: steps; max-inline-size: none; }
+  .bill[open] .bill-foot { grid-area: foot; }
+  .bill-fig { grid-area: screen; }
+}
+@container programme (width < 60rem) { .bill-fig { order: -1; } }
+@container programme (width < 40rem) {
+  :root { --still-w: 5.5rem; }
+  .bill > summary { grid-template-columns: var(--still-w) minmax(0, 1fr); column-gap: var(--s-3); }
+  .bill[open] > summary { grid-template-columns: 0 minmax(0, 1fr); column-gap: 0; }
+  .bill-reel { display: none; }
+  .bill-still { grid-row: 1 / span 2; align-self: start; }
+  .bill-title { grid-column: 2; }
+  .bill-time { grid-column: 2; justify-self: start; }
+  .bill-meter { grid-column: 1 / -1; }
+  .door-kicker { font-size: .64rem; letter-spacing: .1em; }
+  .bill-body { padding-inline-start: 0; }
+  .bill-start { display: block; margin: .5em 0 0; }
+}
+
+/* the steps: a strip of frames. A ticked step is an exposed frame. */
+.programme .path-steps { display: grid; grid-template-columns: repeat(auto-fill, minmax(8.25rem, 1fr)); gap: .5rem; margin: 0; padding: 1.1rem 0;
+  background: repeating-linear-gradient(90deg, color-mix(in srgb, var(--screen) 24%, transparent) 0 .5rem, transparent .5rem 1rem) 0 0 / 100% .38rem no-repeat,
+              repeating-linear-gradient(90deg, color-mix(in srgb, var(--screen) 24%, transparent) 0 .5rem, transparent .5rem 1rem) 0 100% / 100% .38rem no-repeat; }
+.programme .path-steps > li { position: relative; display: grid; grid-template-columns: 1fr auto; grid-template-areas: "n box" "link link" "note note";
+  align-content: start; gap: .3rem .5rem; min-block-size: 6.6rem; padding: .6rem .7rem .7rem; border: 1px solid var(--rule); background: var(--picture); }
+.programme .path-steps > li::before { grid-area: n; font: 500 var(--fs-tc)/1.6 var(--font-tc); letter-spacing: .1em; color: var(--aisle); }
+.programme .path-check { grid-area: box; justify-self: end; inline-size: 1.15rem; block-size: 1.15rem; margin: 0; translate: 0; }
+.programme .path-steps > li > a { grid-area: link; display: block; min-block-size: 0; font: 600 .98rem/1.2 var(--font-ui); }
+.programme .path-note { grid-area: note; margin: 0; padding: 0; font-size: .8rem; line-height: 1.3; color: var(--aisle); }
+.programme .path-steps > li:has(.path-check:checked) { background: var(--screen); border-color: var(--screen); color: #15120F; }
+.programme .path-steps > li:has(.path-check:checked)::before,
+.programme .path-steps > li:has(.path-check:checked) .path-note,
+.programme .path-check:checked ~ a { color: #3B362F; }
+.programme .path-check:checked { background: var(--tally); border-color: var(--tally); }
+.programme .path-steps > li:focus-within { outline: 2px solid var(--tally); outline-offset: 2px; }
+@media (max-width: 40rem) {
+  .programme .path-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .programme .path-steps > li { grid-template-columns: 1fr auto; }
+  .programme .path-note { grid-column: 1 / -1; margin: 0; padding: 0; }
+}
+
+/* ---------- 5. BELOW THE DOOR ---------- */
+.home .flatbed { margin-block-start: var(--s-6); }
+.home .scene h2, .home .home-close h2 { font: 700 clamp(1.3rem, 1rem + 1vw, 1.9rem)/1.1 var(--font-title); text-transform: uppercase; letter-spacing: .01em; }
+.home .scene h2::before, .home .home-close h2::before { content: none; }
+.sitemap { border-top: 1px solid var(--rule); margin-block-start: var(--s-4); }
+.sitemap summary { cursor: pointer; padding-block: var(--s-3); font: 500 var(--fs-tc)/1 var(--font-tc); letter-spacing: .14em; text-transform: uppercase; color: var(--aisle); }
+.sitemap nav { columns: 4 11rem; column-gap: var(--s-5); padding-block-end: var(--s-4); }
+.sitemap nav a { display: block; padding-block: .35rem; font-size: var(--fs-small, .875rem); color: var(--aisle); text-decoration: none; break-inside: avoid; }
+.sitemap nav a:hover { color: var(--screen); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .bill-still { transition: filter .35s ease; }
+  .programme .path-steps > li { transition: background-color .25s ease, color .25s ease; }
+}
+@media (prefers-reduced-motion: reduce) { .bill-still { transition: none; } }
+
+/* ---------- 6. ONE LEFT EDGE ----------
+   Header, headline, bill, tools, the since panel and the colophon start on one line. */
+.home .container.scene, .home .home-close { max-inline-size: var(--page); margin-inline: auto; padding-inline: var(--gutter); box-sizing: border-box; }
+.home .tools-row h2 { margin-inline: 0; }
+.home .tools-row .tools-list a { padding-inline: 0; }
+.home .since-panel { padding: var(--s-4) 0 var(--s-4); background: none; border: 0; border-top: 1px solid var(--rule); }
