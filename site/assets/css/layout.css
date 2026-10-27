@@ -1,5 +1,5 @@
 /* Layout, header, hero, footer, containers (wave 36: cutting-room chrome) */
-.container { width: 100%; max-width: 1280px; margin-inline: auto; padding-inline: var(--space-5); }
+.container { width: 100%; max-width: var(--page); margin-inline: auto; padding-inline: var(--gutter); }
 
 /*  Header: the edit bay  */
 .site-header {
@@ -166,7 +166,7 @@ main > .hero + section { padding-top: var(--space-8); }
 .footer-colophon .tail { margin-left: auto; color: var(--muted); }
 
 @media (max-width: 720px) {
-  .container { padding-inline: 12px; }
+  .container { padding-inline: var(--gutter); }
   .header-bar { flex-wrap: wrap; gap: var(--space-3); }
   /* VP-0004: the nav wrapped to two rows on phones and, with the hero
      deck, pushed the homepage headline ~74% down the first viewport.

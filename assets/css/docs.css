@@ -189,3 +189,17 @@
   .docs-nav summary { display: flex; align-items: center; min-height: 44px; }
   .docs-nav li a { display: flex; align-items: center; min-height: 44px; }
 }
+
+/*  R302 FIX PASS (review-film-1 item 1, BLOCKING): a chapter page on
+    a phone opened with the docs nav, 1,995px of menu before the
+    article title at 2,251px. Under 56rem the docs layout stacks in
+    one column with the article first: the nav stands static, at its
+    natural height, after the article (order 2), so the page opens
+    on the chapter and the shelf waits at the foot. Desktop and the
+    two-column band above 56rem are unchanged.  */
+@media (max-width: 56rem) {
+  .docs-layout { grid-template-columns: 1fr; }
+  .docs-main { order: 1; }
+  .docs-nav { position: static; max-height: none; overflow: visible; order: 2; }
+  .docs-toc { order: 3; }
+}

@@ -28,6 +28,14 @@
 :root {
   color-scheme: dark;
 
+  /* The one shared page measure (review-film-1 item 3): the Bill
+     header, the door and every .container take the same width and
+     the same gutter, so no page starts its content on a second edge.
+     programme.css and bill.css carry the same two values from their
+     own :root blocks; this is the shared definition they agree on. */
+  --page: 78rem;
+  --gutter: clamp(1rem, .25rem + 3vw, 3rem);
+
   /* Surfaces: warm steps, lit like a bench at night */
   --bg: #0d0b08;
   --bg-soft: #121009;

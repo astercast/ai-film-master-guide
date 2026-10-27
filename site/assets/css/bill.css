@@ -180,3 +180,17 @@ body.home .door { max-inline-size: var(--page); margin-inline: auto;
 .home .tools-row h2 { margin-inline: 0; }
 .home .tools-row .tools-list a { padding-inline: 0; }
 .home .since-panel { padding: var(--s-4) 0 var(--s-4); background: none; border: 0; border-top: 1px solid var(--rule); }
+
+/* ---------- 7. R302 FIX PASS (review-film-1 item 2): the 44px floor ----------
+   The wordmark stood 19px tall, the nav links 36px, the search
+   button 31px and the door's chapters link 18px: under the 24px
+   minimum, let alone the 44px floor this site holds elsewhere.
+   Heights only: each label centres in its taller box, so the
+   header's type, spacing and edges do not move. The nav's Index
+   summary is a header target of the same class and takes the
+   same floor. */
+.house-head .wordmark { align-items: center; min-block-size: 44px; }
+.house-nav > a { display: inline-flex; align-items: center; min-block-size: 44px; }
+.house-nav .nav-idx summary { display: inline-flex; align-items: center; min-block-size: 44px; }
+.house-search { min-block-size: 44px; }
+.door-note a { display: inline-flex; align-items: center; min-block-size: 44px; }

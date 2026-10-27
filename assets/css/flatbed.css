@@ -1,7 +1,13 @@
 /* The Flatbed. A strip of 24 real frames you drag, like a Steenbeck. Uses the site tokens. */
 .flatbed { position: relative; display: grid; grid-template-columns: 3.25rem 1fr; background: var(--bg); border-block: 1px solid var(--line); overflow: hidden; }
+/* R302 (review-film-1 item 4): the rail stands above the strip and
+   takes the ground colour as its own background. The strip's
+   sprocket rows run the full width under the rail, and the strip's
+   own stacking context painted them over the rail's ground, through
+   the rotated Models / Chapters labels. On top and backed, the
+   labels sit on clean ground and the sprockets start at the gate. */
 .fb-edge { writing-mode: vertical-rl; transform: rotate(180deg); display: flex; justify-content: space-between; align-items: center; gap: 1.5rem;
-  padding: 1.25rem .6rem; border-right: 1px solid var(--line); font: 500 var(--text-xs)/1 var(--font-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-dim); }
+  padding: 1.25rem .6rem; border-right: 1px solid var(--line); background: var(--bg); position: relative; z-index: 1; font: 500 var(--text-xs)/1 var(--font-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-dim); }
 .fb-edge b { color: var(--ink); font-weight: 500; }
 .fb-gate { position: relative; height: clamp(300px, 52vh, 560px); cursor: grab; touch-action: pan-y; outline-offset: -3px; user-select: none; }
 .fb-gate:active { cursor: grabbing; }
